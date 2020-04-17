@@ -1,0 +1,7 @@
+{
+    "main": "pager.umd.js",
+    "module": "pager.esm.js",
+	"typings": "pager.d.ts",
+    "name": "smart-webcomponents-react/pager",
+    "sideEffects": false
+  }

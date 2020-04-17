@@ -1,0 +1,7 @@
+{
+    "main": "listmenu.umd.js",
+    "module": "listmenu.esm.js",
+	"typings": "listmenu.d.ts",
+    "name": "smart-webcomponents-react/listmenu",
+    "sideEffects": false
+  }

@@ -1,0 +1,7 @@
+{
+    "main": "querybuilder.umd.js",
+    "module": "querybuilder.esm.js",
+	"typings": "querybuilder.d.ts",
+    "name": "smart-webcomponents-react/querybuilder",
+    "sideEffects": false
+  }

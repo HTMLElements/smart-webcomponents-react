@@ -1,0 +1,7 @@
+{
+    "main": "multisplitbutton.umd.js",
+    "module": "multisplitbutton.esm.js",
+	"typings": "multisplitbutton.d.ts",
+    "name": "smart-webcomponents-react/multisplitbutton",
+    "sideEffects": false
+  }

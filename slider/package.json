@@ -1,0 +1,7 @@
+{
+    "main": "slider.umd.js",
+    "module": "slider.esm.js",
+	"typings": "slider.d.ts",
+    "name": "smart-webcomponents-react/slider",
+    "sideEffects": false
+  }

@@ -1,0 +1,7 @@
+{
+    "main": "grouppanel.umd.js",
+    "module": "grouppanel.esm.js",
+	"typings": "grouppanel.d.ts",
+    "name": "smart-webcomponents-react/grouppanel",
+    "sideEffects": false
+  }

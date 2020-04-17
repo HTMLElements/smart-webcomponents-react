@@ -1,0 +1,7 @@
+{
+    "main": "button.umd.js",
+    "module": "button.esm.js",
+	"typings": "button.d.ts",
+    "name": "smart-webcomponents-react/button",
+    "sideEffects": false
+  }

@@ -1,0 +1,7 @@
+{
+    "main": "maskedtextbox.umd.js",
+    "module": "maskedtextbox.esm.js",
+	"typings": "maskedtextbox.d.ts",
+    "name": "smart-webcomponents-react/maskedtextbox",
+    "sideEffects": false
+  }

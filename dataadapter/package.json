@@ -1,0 +1,7 @@
+{
+    "main": "dataadapter.umd.js",
+    "module": "dataadapter.esm.js",
+	"typings": "dataadapter.d.ts",
+    "name": "smart-webcomponents-react/dataadapter",
+    "sideEffects": false
+  }

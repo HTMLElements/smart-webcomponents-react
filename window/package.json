@@ -1,0 +1,7 @@
+{
+    "main": "window.umd.js",
+    "module": "window.esm.js",
+	"typings": "window.d.ts",
+    "name": "smart-webcomponents-react/window",
+    "sideEffects": false
+  }

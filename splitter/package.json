@@ -1,0 +1,7 @@
+{
+    "main": "splitter.umd.js",
+    "module": "splitter.esm.js",
+	"typings": "splitter.d.ts",
+    "name": "smart-webcomponents-react/splitter",
+    "sideEffects": false
+  }

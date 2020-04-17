@@ -1,0 +1,7 @@
+{
+    "main": "colorinput.umd.js",
+    "module": "colorinput.esm.js",
+	"typings": "colorinput.d.ts",
+    "name": "smart-webcomponents-react/colorinput",
+    "sideEffects": false
+  }

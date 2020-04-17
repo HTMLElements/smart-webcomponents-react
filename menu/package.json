@@ -1,0 +1,7 @@
+{
+    "main": "menu.umd.js",
+    "module": "menu.esm.js",
+	"typings": "menu.d.ts",
+    "name": "smart-webcomponents-react/menu",
+    "sideEffects": false
+  }

@@ -1,0 +1,7 @@
+{
+    "main": "rating.umd.js",
+    "module": "rating.esm.js",
+	"typings": "rating.d.ts",
+    "name": "smart-webcomponents-react/rating",
+    "sideEffects": false
+  }

@@ -1,0 +1,7 @@
+{
+    "main": "datetimepicker.umd.js",
+    "module": "datetimepicker.esm.js",
+	"typings": "datetimepicker.d.ts",
+    "name": "smart-webcomponents-react/datetimepicker",
+    "sideEffects": false
+  }

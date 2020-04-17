@@ -1,0 +1,7 @@
+{
+    "main": "calendar.umd.js",
+    "module": "calendar.esm.js",
+	"typings": "calendar.d.ts",
+    "name": "smart-webcomponents-react/calendar",
+    "sideEffects": false
+  }

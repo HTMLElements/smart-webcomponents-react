@@ -1,0 +1,7 @@
+{
+    "main": "table.umd.js",
+    "module": "table.esm.js",
+	"typings": "table.d.ts",
+    "name": "smart-webcomponents-react/table",
+    "sideEffects": false
+  }

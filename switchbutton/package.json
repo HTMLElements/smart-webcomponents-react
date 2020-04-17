@@ -1,0 +1,7 @@
+{
+    "main": "switchbutton.umd.js",
+    "module": "switchbutton.esm.js",
+	"typings": "switchbutton.d.ts",
+    "name": "smart-webcomponents-react/switchbutton",
+    "sideEffects": false
+  }

@@ -1,0 +1,7 @@
+{
+    "main": "progressbar.umd.js",
+    "module": "progressbar.esm.js",
+	"typings": "progressbar.d.ts",
+    "name": "smart-webcomponents-react/progressbar",
+    "sideEffects": false
+  }

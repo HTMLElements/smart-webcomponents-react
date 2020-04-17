@@ -1,0 +1,7 @@
+{
+    "main": "chart.umd.js",
+    "module": "chart.esm.js",
+	"typings": "chart.d.ts",
+    "name": "smart-webcomponents-react/chart",
+    "sideEffects": false
+  }

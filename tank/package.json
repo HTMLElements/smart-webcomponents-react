@@ -1,0 +1,7 @@
+{
+    "main": "tank.umd.js",
+    "module": "tank.esm.js",
+	"typings": "tank.d.ts",
+    "name": "smart-webcomponents-react/tank",
+    "sideEffects": false
+  }

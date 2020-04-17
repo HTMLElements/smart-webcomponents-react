@@ -1,0 +1,7 @@
+{
+    "main": "sortpanel.umd.js",
+    "module": "sortpanel.esm.js",
+	"typings": "sortpanel.d.ts",
+    "name": "smart-webcomponents-react/sortpanel",
+    "sideEffects": false
+  }

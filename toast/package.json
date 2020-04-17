@@ -1,0 +1,7 @@
+{
+    "main": "toast.umd.js",
+    "module": "toast.esm.js",
+	"typings": "toast.d.ts",
+    "name": "smart-webcomponents-react/toast",
+    "sideEffects": false
+  }

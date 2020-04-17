@@ -1,0 +1,7 @@
+{
+    "main": "textbox.umd.js",
+    "module": "textbox.esm.js",
+	"typings": "textbox.d.ts",
+    "name": "smart-webcomponents-react/textbox",
+    "sideEffects": false
+  }

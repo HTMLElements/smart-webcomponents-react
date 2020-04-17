@@ -1,0 +1,7 @@
+{
+    "main": "numerictextbox.umd.js",
+    "module": "numerictextbox.esm.js",
+	"typings": "numerictextbox.d.ts",
+    "name": "smart-webcomponents-react/numerictextbox",
+    "sideEffects": false
+  }

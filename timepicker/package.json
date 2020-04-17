@@ -1,0 +1,7 @@
+{
+    "main": "timepicker.umd.js",
+    "module": "timepicker.esm.js",
+	"typings": "timepicker.d.ts",
+    "name": "smart-webcomponents-react/timepicker",
+    "sideEffects": false
+  }

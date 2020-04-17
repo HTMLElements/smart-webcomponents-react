@@ -1,0 +1,7 @@
+{
+    "main": "dockinglayout.umd.js",
+    "module": "dockinglayout.esm.js",
+	"typings": "dockinglayout.d.ts",
+    "name": "smart-webcomponents-react/dockinglayout",
+    "sideEffects": false
+  }

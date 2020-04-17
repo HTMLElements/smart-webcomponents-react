@@ -1,0 +1,7 @@
+{
+    "main": "colorpicker.umd.js",
+    "module": "colorpicker.esm.js",
+	"typings": "colorpicker.d.ts",
+    "name": "smart-webcomponents-react/colorpicker",
+    "sideEffects": false
+  }

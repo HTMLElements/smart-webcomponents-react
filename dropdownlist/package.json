@@ -1,0 +1,7 @@
+{
+    "main": "dropdownlist.umd.js",
+    "module": "dropdownlist.esm.js",
+	"typings": "dropdownlist.d.ts",
+    "name": "smart-webcomponents-react/dropdownlist",
+    "sideEffects": false
+  }

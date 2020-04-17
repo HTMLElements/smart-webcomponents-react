@@ -1,0 +1,7 @@
+{
+    "main": "filterbuilder.umd.js",
+    "module": "filterbuilder.esm.js",
+	"typings": "filterbuilder.d.ts",
+    "name": "smart-webcomponents-react/filterbuilder",
+    "sideEffects": false
+  }

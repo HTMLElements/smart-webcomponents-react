@@ -1,0 +1,7 @@
+{
+    "main": "checkbox.umd.js",
+    "module": "checkbox.esm.js",
+	"typings": "checkbox.d.ts",
+    "name": "smart-webcomponents-react/checkbox",
+    "sideEffects": false
+  }

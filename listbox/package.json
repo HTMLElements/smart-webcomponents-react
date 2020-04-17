@@ -1,0 +1,7 @@
+{
+    "main": "listbox.umd.js",
+    "module": "listbox.esm.js",
+	"typings": "listbox.d.ts",
+    "name": "smart-webcomponents-react/listbox",
+    "sideEffects": false
+  }

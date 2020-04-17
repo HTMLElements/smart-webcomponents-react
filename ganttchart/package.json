@@ -1,0 +1,7 @@
+{
+    "main": "ganttchart.umd.js",
+    "module": "ganttchart.esm.js",
+	"typings": "ganttchart.d.ts",
+    "name": "smart-webcomponents-react/ganttchart",
+    "sideEffects": false
+  }

@@ -1,0 +1,7 @@
+{
+    "main": "cardview.umd.js",
+    "module": "cardview.esm.js",
+	"typings": "cardview.d.ts",
+    "name": "smart-webcomponents-react/cardview",
+    "sideEffects": false
+  }

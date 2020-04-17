@@ -1,0 +1,7 @@
+{
+    "main": "card.umd.js",
+    "module": "card.esm.js",
+	"typings": "card.d.ts",
+    "name": "smart-webcomponents-react/card",
+    "sideEffects": false
+  }

@@ -1,0 +1,7 @@
+{
+    "main": "input.umd.js",
+    "module": "input.esm.js",
+	"typings": "input.d.ts",
+    "name": "smart-webcomponents-react/input",
+    "sideEffects": false
+  }

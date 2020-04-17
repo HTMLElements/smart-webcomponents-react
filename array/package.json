@@ -1,0 +1,7 @@
+{
+    "main": "array.umd.js",
+    "module": "array.esm.js",
+	"typings": "array.d.ts",
+    "name": "smart-webcomponents-react/array",
+    "sideEffects": false
+  }

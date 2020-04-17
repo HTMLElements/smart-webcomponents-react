@@ -1,0 +1,7 @@
+{
+    "main": "passwordtextbox.umd.js",
+    "module": "passwordtextbox.esm.js",
+	"typings": "passwordtextbox.d.ts",
+    "name": "smart-webcomponents-react/passwordtextbox",
+    "sideEffects": false
+  }

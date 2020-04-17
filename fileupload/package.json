@@ -1,0 +1,7 @@
+{
+    "main": "fileupload.umd.js",
+    "module": "fileupload.esm.js",
+	"typings": "fileupload.d.ts",
+    "name": "smart-webcomponents-react/fileupload",
+    "sideEffects": false
+  }

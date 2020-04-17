@@ -1,0 +1,7 @@
+{
+    "main": "layout.umd.js",
+    "module": "layout.esm.js",
+	"typings": "layout.d.ts",
+    "name": "smart-webcomponents-react/layout",
+    "sideEffects": false
+  }

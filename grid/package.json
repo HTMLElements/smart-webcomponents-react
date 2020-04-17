@@ -1,0 +1,7 @@
+{
+    "main": "grid.umd.js",
+    "module": "grid.esm.js",
+	"typings": "grid.d.ts",
+    "name": "smart-webcomponents-react/grid",
+    "sideEffects": false
+  }

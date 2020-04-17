@@ -1,0 +1,7 @@
+{
+    "main": "dropdownbutton.umd.js",
+    "module": "dropdownbutton.esm.js",
+	"typings": "dropdownbutton.d.ts",
+    "name": "smart-webcomponents-react/dropdownbutton",
+    "sideEffects": false
+  }

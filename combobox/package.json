@@ -1,0 +1,7 @@
+{
+    "main": "combobox.umd.js",
+    "module": "combobox.esm.js",
+	"typings": "combobox.d.ts",
+    "name": "smart-webcomponents-react/combobox",
+    "sideEffects": false
+  }

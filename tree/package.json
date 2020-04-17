@@ -1,0 +1,7 @@
+{
+    "main": "tree.umd.js",
+    "module": "tree.esm.js",
+	"typings": "tree.d.ts",
+    "name": "smart-webcomponents-react/tree",
+    "sideEffects": false
+  }
