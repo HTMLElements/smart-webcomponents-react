@@ -16,6 +16,7 @@ require('../source/modules/smart.progressbar');
 	class CircularProgressBar extends React.Component {
 	    constructor(props) {
 	        super(props);
+	        this.componentRef = React.createRef();
 	    }
 	    // Gets the id of the React component.
 	    get id() {
@@ -217,7 +218,7 @@ require('../source/modules/smart.progressbar');
 	            props[prop] = that.props[prop];
 	        }
 	        if (initialize) {
-	            that.nativeElement = this.refs[this.id];
+	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class') {
@@ -280,7 +281,7 @@ require('../source/modules/smart.progressbar');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-circular-progress-bar", { ref: this.id }, this.props.children));
+	        return (React.createElement("smart-circular-progress-bar", { ref: this.componentRef }, this.props.children));
 	    }
 	}
 
@@ -291,6 +292,7 @@ require('../source/modules/smart.progressbar');
 	class ProgressBar extends React.Component {
 	    constructor(props) {
 	        super(props);
+	        this.componentRef = React.createRef();
 	    }
 	    // Gets the id of the React component.
 	    get id() {
@@ -503,7 +505,7 @@ require('../source/modules/smart.progressbar');
 	            props[prop] = that.props[prop];
 	        }
 	        if (initialize) {
-	            that.nativeElement = this.refs[this.id];
+	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class') {
@@ -566,7 +568,7 @@ require('../source/modules/smart.progressbar');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-progress-bar", { ref: this.id }, this.props.children));
+	        return (React.createElement("smart-progress-bar", { ref: this.componentRef }, this.props.children));
 	    }
 	}
 

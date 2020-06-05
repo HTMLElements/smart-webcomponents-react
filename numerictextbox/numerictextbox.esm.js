@@ -1,5 +1,5 @@
 
-import '../source/modules/smart.numerictextbox';
+import '../source/modules/smart.textbox';
 
 import React from 'react';
 
@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class NumericTextBox extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -553,7 +554,7 @@ class NumericTextBox extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -616,7 +617,7 @@ class NumericTextBox extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-numeric-text-box", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-numeric-text-box", { ref: this.componentRef }, this.props.children));
     }
 }
 

@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class SplitterItem extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -197,7 +198,7 @@ class SplitterItem extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -260,7 +261,7 @@ class SplitterItem extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-splitter-item", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-splitter-item", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -271,6 +272,7 @@ const Smart$1 = window.Smart;
 class SplitterBar extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -355,7 +357,7 @@ class SplitterBar extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -418,7 +420,7 @@ class SplitterBar extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-splitter-bar", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-splitter-bar", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -429,6 +431,7 @@ const Smart$2 = window.Smart;
 class Splitter extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -865,7 +868,7 @@ class Splitter extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -928,7 +931,7 @@ class Splitter extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-splitter", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-splitter", { ref: this.componentRef }, this.props.children));
     }
 }
 

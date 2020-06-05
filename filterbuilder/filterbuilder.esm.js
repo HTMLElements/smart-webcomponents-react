@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class FilterBuilder extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -424,7 +425,7 @@ class FilterBuilder extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -487,7 +488,7 @@ class FilterBuilder extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-filter-builder", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-filter-builder", { ref: this.componentRef }, this.props.children));
     }
 }
 

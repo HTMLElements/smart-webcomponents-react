@@ -3,5 +3,5 @@
     "module": "tabs.esm.js",
 	"typings": "tabs.d.ts",
     "name": "smart-webcomponents-react/tabs",
-    "sideEffects": false
+    "sideEffects": ["tabs.esm.js"]
   }

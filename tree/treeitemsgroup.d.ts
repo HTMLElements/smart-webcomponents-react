@@ -13,6 +13,7 @@ export interface TreeItemsGroupProps extends TreeItemsGroupProperties {
 export declare class TreeItemsGroup extends React.Component<React.HTMLProps<Element> & TreeItemsGroupProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Enables or disables element.
     *	Property type: boolean
@@ -67,6 +68,8 @@ export declare class TreeItemsGroup extends React.Component<React.HTMLProps<Elem
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default TreeItemsGroup;

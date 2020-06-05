@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines a Tabs component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapTabs extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapTabsProperties {
   /**
    * Sets the tabs alignment
    * Default value: 
@@ -47,10 +41,18 @@ export interface BootstrapTabs extends BaseElement {
    * Default value: tabs
    */
   tabType?: BootstrapTabsTabType;
-  /** 
+}
+/**
+ Defines a Tabs component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapTabs extends BaseElement, BootstrapTabsProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Show event.
 	* @param event. The custom event.    */
-  onShow?: ((this: any, ev: Event) => any) | null;
+  onShow?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
    * Shows an item
    * @param {HTMLElement} item. The tab item to be shown.
@@ -58,13 +60,13 @@ export interface BootstrapTabs extends BaseElement {
   show(item: HTMLElement): void;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-tabs"): BootstrapTabs;
-			querySelector(selectors: "bootstrap-tabs"): BootstrapTabs | null;	
-			querySelectorAll(selectors: "bootstrap-tabs"): NodeListOf<BootstrapTabs>;
-			getElementsByTagName(qualifiedName: "bootstrap-tabs"): HTMLCollectionOf<BootstrapTabs>;
-			getElementsByName(elementName: "bootstrap-tabs"): NodeListOf<BootstrapTabs>;	
+        createElement(tagName: "bootstrap-tabs"): BootstrapTabs;
+        querySelector(selectors: "bootstrap-tabs"): BootstrapTabs | null;
+        querySelectorAll(selectors: "bootstrap-tabs"): NodeListOf<BootstrapTabs>;
+        getElementsByTagName(qualifiedName: "bootstrap-tabs"): HTMLCollectionOf<BootstrapTabs>;
+        getElementsByName(elementName: "bootstrap-tabs"): NodeListOf<BootstrapTabs>;
     }
 }
 

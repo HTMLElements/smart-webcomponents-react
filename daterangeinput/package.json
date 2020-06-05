@@ -1,0 +1,7 @@
+{
+    "main": "daterangeinput.umd.js",
+    "module": "daterangeinput.esm.js",
+	"typings": "daterangeinput.d.ts",
+    "name": "smart-webcomponents-react/daterangeinput",
+    "sideEffects": false
+  }

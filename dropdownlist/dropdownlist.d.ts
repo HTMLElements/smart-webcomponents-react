@@ -30,6 +30,7 @@ export interface DropDownListProps extends DropDownListProperties {
 export declare class DropDownList extends React.Component<React.HTMLProps<Element> & DropDownListProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
     *	Property type: Animation
@@ -447,6 +448,8 @@ export declare class DropDownList extends React.Component<React.HTMLProps<Elemen
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default DropDownList;

@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines a Toggle Button component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapToggleButton extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapToggleButtonProperties {
   /**
    * Gets or sets the checked state of the element. 
    * Default value: false
@@ -37,7 +31,15 @@ export interface BootstrapToggleButton extends BaseElement {
    * Default value: primary
    */
   styleMode?: BootstrapToggleButtonStyleMode;
-  /** 
+}
+/**
+ Defines a Toggle Button component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapToggleButton extends BaseElement, BootstrapToggleButtonProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Change event is triggered when the value of the element is changed.
 	* @param event. The custom event.    */
   onChange: ((this: any, ev: Event) => any) | null;
@@ -47,13 +49,13 @@ export interface BootstrapToggleButton extends BaseElement {
   toggle(): void;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-toggle-button"): BootstrapToggleButton;
-			querySelector(selectors: "bootstrap-toggle-button"): BootstrapToggleButton | null;	
-			querySelectorAll(selectors: "bootstrap-toggle-button"): NodeListOf<BootstrapToggleButton>;
-			getElementsByTagName(qualifiedName: "bootstrap-toggle-button"): HTMLCollectionOf<BootstrapToggleButton>;
-			getElementsByName(elementName: "bootstrap-toggle-button"): NodeListOf<BootstrapToggleButton>;	
+        createElement(tagName: "bootstrap-toggle-button"): BootstrapToggleButton;
+        querySelector(selectors: "bootstrap-toggle-button"): BootstrapToggleButton | null;
+        querySelectorAll(selectors: "bootstrap-toggle-button"): NodeListOf<BootstrapToggleButton>;
+        getElementsByTagName(qualifiedName: "bootstrap-toggle-button"): HTMLCollectionOf<BootstrapToggleButton>;
+        getElementsByName(elementName: "bootstrap-toggle-button"): NodeListOf<BootstrapToggleButton>;
     }
 }
 

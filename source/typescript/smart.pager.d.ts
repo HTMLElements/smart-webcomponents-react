@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Pagination component that is used to navigate between a set of results.
-*/
-export interface Pager extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface PagerProperties {
   /**
    * Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
    * Default value: advanced
@@ -149,14 +143,22 @@ export interface Pager extends BaseElement {
    * Default value: null
    */
   totalRecords?: number;
-  /** 
+}
+/**
+ Pagination component that is used to navigate between a set of results.
+*/
+export interface Pager extends BaseElement, PagerProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * This event is triggered when user selects a new item.
 	* @param event. The custom event.    */
   onChange: ((this: any, ev: Event) => any) | null;
-  /** 
+  /**
    * This event is triggered when page size is changed.
 	* @param event. The custom event.    */
-  onPageSizeChanged?: ((this: any, ev: Event) => any) | null;
+  onPageSizeChanged?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
    * Selects first item.
    */
@@ -180,13 +182,13 @@ export interface Pager extends BaseElement {
   prev(): void;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "smart-pager"): Pager;
-			querySelector(selectors: "smart-pager"): Pager | null;	
-			querySelectorAll(selectors: "smart-pager"): NodeListOf<Pager>;
-			getElementsByTagName(qualifiedName: "smart-pager"): HTMLCollectionOf<Pager>;
-			getElementsByName(elementName: "smart-pager"): NodeListOf<Pager>;	
+        createElement(tagName: "smart-pager"): Pager;
+        querySelector(selectors: "smart-pager"): Pager | null;
+        querySelectorAll(selectors: "smart-pager"): NodeListOf<Pager>;
+        getElementsByTagName(qualifiedName: "smart-pager"): HTMLCollectionOf<Pager>;
+        getElementsByName(elementName: "smart-pager"): NodeListOf<Pager>;
     }
 }
 

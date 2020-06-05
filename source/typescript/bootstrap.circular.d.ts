@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines a Circular Progress component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapCircular extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapCircularProperties {
   /**
    * Enables or disables the element. 
    * Default value: false
@@ -42,19 +36,27 @@ export interface BootstrapCircular extends BaseElement {
    * Default value: 5
    */
   value?: number;
-  /** 
+}
+/**
+ Defines a Circular Progress component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapCircular extends BaseElement, BootstrapCircularProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Change event is triggered when the value of the element is changed.
 	* @param event. The custom event.    */
   onChange: ((this: any, ev: Event) => any) | null;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-circular"): BootstrapCircular;
-			querySelector(selectors: "bootstrap-circular"): BootstrapCircular | null;	
-			querySelectorAll(selectors: "bootstrap-circular"): NodeListOf<BootstrapCircular>;
-			getElementsByTagName(qualifiedName: "bootstrap-circular"): HTMLCollectionOf<BootstrapCircular>;
-			getElementsByName(elementName: "bootstrap-circular"): NodeListOf<BootstrapCircular>;	
+        createElement(tagName: "bootstrap-circular"): BootstrapCircular;
+        querySelector(selectors: "bootstrap-circular"): BootstrapCircular | null;
+        querySelectorAll(selectors: "bootstrap-circular"): NodeListOf<BootstrapCircular>;
+        getElementsByTagName(qualifiedName: "bootstrap-circular"): HTMLCollectionOf<BootstrapCircular>;
+        getElementsByName(elementName: "bootstrap-circular"): NodeListOf<BootstrapCircular>;
     }
 }
 

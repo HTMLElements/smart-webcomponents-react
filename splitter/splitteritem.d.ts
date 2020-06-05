@@ -13,6 +13,7 @@ export interface SplitterItemProps extends SplitterItemProperties {
 export declare class SplitterItem extends React.Component<React.HTMLProps<Element> & SplitterItemProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Enables or disables the element.
     *	Property type: boolean
@@ -75,6 +76,8 @@ export declare class SplitterItem extends React.Component<React.HTMLProps<Elemen
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default SplitterItem;

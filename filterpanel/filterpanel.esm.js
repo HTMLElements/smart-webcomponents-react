@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class FilterPanel extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -315,7 +316,7 @@ class FilterPanel extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -378,7 +379,7 @@ class FilterPanel extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-filter-panel", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-filter-panel", { ref: this.componentRef }, this.props.children));
     }
 }
 

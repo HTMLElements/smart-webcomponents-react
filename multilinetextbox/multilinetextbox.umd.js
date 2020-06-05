@@ -1,5 +1,5 @@
 
-require('../source/modules/smart.multilinetextbox');
+require('../source/modules/smart.textbox');
 
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
@@ -41,6 +41,7 @@ require('../source/modules/smart.multilinetextbox');
     class ListItem extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -198,7 +199,7 @@ require('../source/modules/smart.multilinetextbox');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -261,7 +262,7 @@ require('../source/modules/smart.multilinetextbox');
             }
         }
         render() {
-            return (React.createElement("smart-list-item", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-list-item", { ref: this.componentRef }, this.props.children));
         }
     }
 
@@ -272,6 +273,7 @@ require('../source/modules/smart.multilinetextbox');
     class ListItemsGroup extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -319,7 +321,7 @@ require('../source/modules/smart.multilinetextbox');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -382,7 +384,7 @@ require('../source/modules/smart.multilinetextbox');
             }
         }
         render() {
-            return (React.createElement("smart-list-items-group", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-list-items-group", { ref: this.componentRef }, this.props.children));
         }
     }
 
@@ -393,6 +395,7 @@ require('../source/modules/smart.multilinetextbox');
     class MultilineTextBox extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -870,7 +873,7 @@ require('../source/modules/smart.multilinetextbox');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -933,7 +936,7 @@ require('../source/modules/smart.multilinetextbox');
             }
         }
         render() {
-            return (React.createElement("smart-multiline-text-box", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-multiline-text-box", { ref: this.componentRef }, this.props.children));
         }
     }
 

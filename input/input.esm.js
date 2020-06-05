@@ -10,6 +10,7 @@ const Smart = window.Smart;
 class Input extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -380,7 +381,7 @@ class Input extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -443,7 +444,7 @@ class Input extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-input", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-input", { ref: this.componentRef }, this.props.children));
     }
 }
 

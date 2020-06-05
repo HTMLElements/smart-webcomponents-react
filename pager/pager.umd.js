@@ -16,6 +16,7 @@ require('../source/modules/smart.pager');
 	class Pager extends React.Component {
 	    constructor(props) {
 	        super(props);
+	        this.componentRef = React.createRef();
 	    }
 	    // Gets the id of the React component.
 	    get id() {
@@ -377,7 +378,7 @@ require('../source/modules/smart.pager');
 	            props[prop] = that.props[prop];
 	        }
 	        if (initialize) {
-	            that.nativeElement = this.refs[this.id];
+	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class') {
@@ -440,7 +441,7 @@ require('../source/modules/smart.pager');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-pager", { ref: this.id }, this.props.children));
+	        return (React.createElement("smart-pager", { ref: this.componentRef }, this.props.children));
 	    }
 	}
 

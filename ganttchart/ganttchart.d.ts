@@ -1,8 +1,8 @@
 import React from "react";
 import { GanttChartProperties } from "./../index";
-import { GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDataSource, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskColumn } from './../index';
+import { GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDataSource, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskColumn } from './../index';
 export { GanttChartProperties } from "./../index";
-export { GanttChartDataExportItemType, GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartTaskType, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDataSource, GanttChartDataSourceConnection, GanttChartDataSourceResource, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskConnection, GanttChartTaskResource, GanttChartTaskColumn } from './../index';
+export { GanttChartDataExportItemType, GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, GanttChartTaskType, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDataSource, GanttChartDataSourceConnection, GanttChartDataSourceResource, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskConnection, GanttChartTaskResource, GanttChartTaskColumn } from './../index';
 export declare const Smart: any;
 export interface GanttChartProps extends GanttChartProperties {
     className?: string;
@@ -22,6 +22,8 @@ export interface GanttChartProps extends GanttChartProperties {
     onOpen?: ((event?: Event) => void) | undefined;
     onClosing?: ((event?: Event) => void) | undefined;
     onClose?: ((event?: Event) => void) | undefined;
+    onCollapse?: ((event?: Event) => void) | undefined;
+    onExpand?: ((event?: Event) => void) | undefined;
 }
 /**
  Gantt charts are specialized bar charts that help clearly represent how tasks and resources are allocated over time in planning, project management, and scheduling applications.
@@ -29,6 +31,7 @@ export interface GanttChartProps extends GanttChartProperties {
 export declare class GanttChart extends React.Component<React.HTMLProps<Element> & GanttChartProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Recalculates the tasks that are connected and re-schedules them according to their connections. If no connections are present, autoScheduling has no effect until a connection is created. Connection types determines the start/end date limits of the tasks.
     *	Property type: boolean
@@ -235,6 +238,16 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     */
     get snapToNearest(): boolean;
     set snapToNearest(value: boolean);
+    /** Determines whether the GanttChart can be sorted or not.
+    *	Property type: boolean
+    */
+    get sortable(): boolean;
+    set sortable(value: boolean);
+    /** Determines whether the GanttChart can be sorted by one or more columns.
+    *	Property type: GanttChartSortMode
+    */
+    get sortMode(): GanttChartSortMode;
+    set sortMode(value: GanttChartSortMode);
     /** A getter that returns a flat structure as an array of all tasks inside the element.
     *	Property type: GanttChartTask[]
     */
@@ -388,6 +401,20 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     /**  This event is triggered when the window for task editing is closed( hidden )
     *  @param event. The custom event. 	*/
     onClose?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a Project is collapsed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	index, 	label, 	value)
+    *   index - The index of the collapsed project.
+    *   label - The label of the collapsed project.
+    *   value - The value of the collapsed project.
+    */
+    onCollapse?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a Project is expanded.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	label, 	value)
+    *   item - The index of the expanded project.
+    *   label - The label of the expanded project.
+    *   value - The value of the expanded project.
+    */
+    onExpand?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;
@@ -526,11 +553,17 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     /** Prepares the GanttChart for printing by opening the browser's Print Preview.
     */
     print(): void;
+    /** Sorts the GanttChart tasks/resources if sortable is enabled.
+    * @param {any} columns?. An Array of objects which determine which columns to be sorted, the sort order and the type of item to sort: task or resource. If no arguments are provided sorting will be removed. <br /> An object should have the following properties: <ul><li><b>value</b> - a string that represents the value of a <b>taskColumn</b> to sort.</li><li><b>sortOrder</b> - a string that represents the sorting order for the column: 'asc' (asscending sorting) or 'desc' (descending) are possible values. </li><li><b>type</b> - a string that represents the type of item to sort. This property determines which panel will be sorted. Two possible values: 'task', 'resource'.</li></ul>
+    */
+    sort(columns?: any): void;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default GanttChart;

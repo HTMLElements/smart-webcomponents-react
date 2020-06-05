@@ -1,9 +1,9 @@
 import React from "react";
 import { GridProperties } from "./../index";
-import { Scrolling, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnGroup, GridCharting, GridCheckBoxes, GridDataExport, GridEditing, GridFiltering, GridGrouping, GridPaging, GridPager, GridRowDetail, GridColumnHeader, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSorting } from './../index';
+import { Scrolling, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnGroup, GridCharting, GridCheckBoxes, GridDataExport, GridEditing, GridFiltering, GridGrouping, GridPaging, GridPager, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSorting } from './../index';
 import { DataAdapter } from './../index';
 export { GridProperties } from "./../index";
-export { GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnSortOrder, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridFilteringFilterRowApplyMode, GridGroupingExpandMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnMenuDataSource, GridCommand, GridColumnGroup, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingGroupPanel, GridGroupingSummaryRow, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
+export { GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnSortOrder, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridFilteringFilterRowApplyMode, GridGroupingExpandMode, GridGroupingRenderMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnMenuDataSource, GridCommand, GridColumnGroup, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
 export { DataAdapter, Chart } from './../index';
 export declare const Smart: any;
 export interface GridProps extends GridProperties {
@@ -14,6 +14,12 @@ export interface GridProps extends GridProperties {
     onColumnClick?: ((event?: Event) => void) | undefined;
     onColumnDoubleClick?: ((event?: Event) => void) | undefined;
     onColumnResize?: ((event?: Event) => void) | undefined;
+    onColumnDragStart?: ((event?: Event) => void) | undefined;
+    onColumnDragging?: ((event?: Event) => void) | undefined;
+    onColumnDragEnd?: ((event?: Event) => void) | undefined;
+    onRowDragStart?: ((event?: Event) => void) | undefined;
+    onRowDragging?: ((event?: Event) => void) | undefined;
+    onRowDragEnd?: ((event?: Event) => void) | undefined;
     onRowExpand?: ((event?: Event) => void) | undefined;
     onRowCollapse?: ((event?: Event) => void) | undefined;
     onRowClick?: ((event?: Event) => void) | undefined;
@@ -37,6 +43,7 @@ export interface GridProps extends GridProperties {
 export declare class Grid extends React.Component<React.HTMLProps<Element> & GridProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** An object containing settings related to the grid's appearance.
     *	Property type: GridAppearance
@@ -128,7 +135,7 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     set onCellValue(value: {
         (cell: GridCell): void;
     });
-    /** Describes the paging settings.
+    /** Callback function() called when the grid has been rendered.
     *	Property type: {(cell: GridCell, oldValue: any, value: any, confirm: {(commit: boolean): void}): void}
     */
     get onCellUpdate(): {
@@ -141,7 +148,7 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
             (commit: boolean): void;
         }): void;
     });
-    /** Describes the pager settings.
+    /** Describes the paging settings.
     *	Property type: {(cell: GridCell): void}
     */
     get onCellRender(): {
@@ -150,7 +157,7 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     set onCellRender(value: {
         (cell: GridCell): void;
     });
-    /** Sets the row details.
+    /** Describes the pager settings.
     *	Property type: {(): void}
     */
     get onBeforeInit(): {
@@ -159,7 +166,7 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     set onBeforeInit(value: {
         (): void;
     });
-    /** Sets the scroll mode settings.
+    /** Sets the row details.
     *	Property type: {(): void}
     */
     get onInit(): {
@@ -168,7 +175,7 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     set onInit(value: {
         (): void;
     });
-    /** Describes the column header settings.
+    /** Sets the scroll mode settings.
     *	Property type: {(): void}
     */
     get onAfterInit(): {
@@ -177,21 +184,17 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     set onAfterInit(value: {
         (): void;
     });
-    /** Describes the settings for the group header.
+    /** Describes the column header settings.
     *	Property type: any
     */
     get onChartInit(): any;
     set onChartInit(value: any);
-    /** Describes the header settings of the grid.
-    *	Property type: {(): void}
+    /** Describes the summary row settings.
+    *	Property type: any
     */
-    get onRender(): {
-        (): void;
-    };
-    set onRender(value: {
-        (): void;
-    });
-    /** Describes the footer settings of the grid.
+    get onRender(): any;
+    set onRender(value: any);
+    /** Describes the settings for the group header.
     *	Property type: {(event: KeyboardEvent): void}
     */
     get onKey(): {
@@ -200,7 +203,7 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     set onKey(value: {
         (event: KeyboardEvent): void;
     });
-    /** The rows property is used to describe all rows displayed in the grid.
+    /** Describes the header settings of the grid.
     *	Property type: {(index: number, row: GridRow): void}
     */
     get onRowInit(): {
@@ -209,7 +212,7 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     set onRowInit(value: {
         (index: number, row: GridRow): void;
     });
-    /** Describes the selection settings.
+    /** Describes the footer settings of the grid.
     *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
     */
     get onRowDetailInit(): {
@@ -218,7 +221,7 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     set onRowDetailInit(value: {
         (index: number, row: GridRow, details: HTMLElement): void;
     });
-    /** Describes sorting settings.
+    /** The rows property is used to describe all rows displayed in the grid.
     *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
     */
     get onRowDetailUpdated(): {
@@ -227,7 +230,7 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     set onRowDetailUpdated(value: {
         (index: number, row: GridRow, details: HTMLElement): void;
     });
-    /** undefined
+    /** Describes the selection settings.
     *	Property type: {(index: number, row: GridRow): void}
     */
     get onRowInserted(): {
@@ -236,7 +239,7 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     set onRowInserted(value: {
         (index: number, row: GridRow): void;
     });
-    /** undefined
+    /** Describes sorting settings.
     *	Property type: {(index: number, row: GridRow): void}
     */
     get onRowRemoved(): {
@@ -338,6 +341,11 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     get columnHeader(): GridColumnHeader;
     set columnHeader(value: GridColumnHeader);
     /** undefined
+    *	Property type: GridSummaryRow
+    */
+    get summaryRow(): GridSummaryRow;
+    set summaryRow(value: GridSummaryRow);
+    /** undefined
     *	Property type: GridGroupHeader
     */
     get groupHeader(): GridGroupHeader;
@@ -401,6 +409,54 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     *   width - The new width of the column.
     */
     onColumnResize?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the user starts a column drag.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	index, 	originalEvent)
+    *   column - The column.
+    *   index - The column's index
+    *   originalEvent - The origianl Event object.
+    */
+    onColumnDragStart?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the user drags a column.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	index, 	data, 	originalEvent)
+    *   column - The column.
+    *   index - The column's index
+    *   data - The dragging object. data.feedback and data.feedbackLine are HTML Elements which are displayed while the user drags. The object has error(), success() and data() methods which you can call to set the feedback state.
+    *   originalEvent - The origianl Event object.
+    */
+    onColumnDragging?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the user drags a column.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	index, 	newIndex, 	data, 	originalEvent)
+    *   column - The column.
+    *   index - The column's index
+    *   newIndex - The column's new index
+    *   data - The dragging object. data.feedback and data.feedbackLine are HTML Elements which are displayed while the user drags. The object has error(), success() and data() methods which you can call to set the feedback state.
+    *   originalEvent - The origianl Event object.
+    */
+    onColumnDragEnd?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the user starts a row drag.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	index, 	originalEvent)
+    *   row - The row.
+    *   index - The row's index
+    *   originalEvent - The origianl Event object.
+    */
+    onRowDragStart?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the user drags a row.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	index, 	data, 	originalEvent)
+    *   row - The row.
+    *   index - The row's index
+    *   data - The dragging object. data.feedback and data.feedbackLine are HTML Elements which are displayed while the user drags. The object has error(), success() and data() methods which you can call to set the feedback state.
+    *   originalEvent - The origianl Event object.
+    */
+    onRowDragging?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the user drags a row.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	index, 	newIndex, 	data, 	originalEvent)
+    *   row - The row.
+    *   index - The row's index
+    *   newIndex - The row's new index
+    *   data - The dragging object. data.feedback and data.feedbackLine are HTML Elements which are displayed while the user drags. The object has error(), success() and data() methods which you can call to set the feedback state.
+    *   originalEvent - The origianl Event object.
+    */
+    onRowDragEnd?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user expands a row of the grid. The Grid is in TreeGrid/Grouping mode.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent)
     *   row - The expanded row.
@@ -681,6 +737,8 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default Grid;

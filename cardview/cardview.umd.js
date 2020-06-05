@@ -41,6 +41,7 @@ require('../source/modules/smart.cardview');
     class CardView extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -181,6 +182,17 @@ require('../source/modules/smart.cardview');
                 this.nativeElement.headerPosition = value;
             }
         }
+        /** Sets or gets the locale. Used in conjunction with the property messages.
+        *	Property type: string
+        */
+        get locale() {
+            return this.nativeElement ? this.nativeElement.locale : undefined;
+        }
+        set locale(value) {
+            if (this.nativeElement) {
+                this.nativeElement.locale = value;
+            }
+        }
         /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
         *	Property type: any
         */
@@ -238,7 +250,7 @@ require('../source/modules/smart.cardview');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["addNewButton", "allowDrag", "animation", "cardHeight", "cellOrientation", "collapsible", "columns", "coverField", "coverMode", "dataSource", "editable", "headerPosition", "messages", "onRecordInserted", "onRecordRemoved", "scrolling", "titleField"];
+            return ["addNewButton", "allowDrag", "animation", "cardHeight", "cellOrientation", "collapsible", "columns", "coverField", "coverMode", "dataSource", "editable", "headerPosition", "locale", "messages", "onRecordInserted", "onRecordRemoved", "scrolling", "titleField"];
         }
         // Gets the events of the React component.
         get events() {
@@ -460,7 +472,7 @@ require('../source/modules/smart.cardview');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -523,7 +535,7 @@ require('../source/modules/smart.cardview');
             }
         }
         render() {
-            return (React.createElement("smart-card-view", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-card-view", { ref: this.componentRef }, this.props.children));
         }
     }
 

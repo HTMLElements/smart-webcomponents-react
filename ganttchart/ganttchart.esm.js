@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class GanttChart extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -494,6 +495,28 @@ class GanttChart extends React.Component {
             this.nativeElement.snapToNearest = value;
         }
     }
+    /** Determines whether the GanttChart can be sorted or not.
+    *	Property type: boolean
+    */
+    get sortable() {
+        return this.nativeElement ? this.nativeElement.sortable : undefined;
+    }
+    set sortable(value) {
+        if (this.nativeElement) {
+            this.nativeElement.sortable = value;
+        }
+    }
+    /** Determines whether the GanttChart can be sorted by one or more columns.
+    *	Property type: GanttChartSortMode
+    */
+    get sortMode() {
+        return this.nativeElement ? this.nativeElement.sortMode : undefined;
+    }
+    set sortMode(value) {
+        if (this.nativeElement) {
+            this.nativeElement.sortMode = value;
+        }
+    }
     /** A getter that returns a flat structure as an array of all tasks inside the element.
     *	Property type: GanttChartTask[]
     */
@@ -650,11 +673,11 @@ class GanttChart extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableWindowEditor", "durationUnit", "headerTemplate", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "inverted", "locale", "max", "min", "messages", "monthFormat", "nonworkingDays", "nonworkingHours", "popupWindowCustomizationFunction", "resources", "resourceColumns", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedIndexes", "snapToNearest", "tasks", "taskColumns", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
+        return ["autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableWindowEditor", "durationUnit", "headerTemplate", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "inverted", "locale", "max", "min", "messages", "monthFormat", "nonworkingDays", "nonworkingHours", "popupWindowCustomizationFunction", "resources", "resourceColumns", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedIndexes", "snapToNearest", "sortable", "sortMode", "tasks", "taskColumns", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
     }
     // Gets the events of the React component.
     get events() {
-        return ["onChange", "onProgressChangeStart", "onProgressChangeEnd", "onDragStart", "onDragEnd", "onResizeStart", "onResizeEnd", "onConnectionStart", "onConnectionEnd", "onScrollBottomReached", "onScrollTopReached", "onOpening", "onOpen", "onClosing", "onClose", "onCreate", "onReady"];
+        return ["onChange", "onProgressChangeStart", "onProgressChangeEnd", "onDragStart", "onDragEnd", "onResizeStart", "onResizeEnd", "onConnectionStart", "onConnectionEnd", "onScrollBottomReached", "onScrollTopReached", "onOpening", "onOpen", "onClosing", "onClose", "onCollapse", "onExpand", "onCreate", "onReady"];
     }
     /** Adds a task as the last item of a Project.
     * @param {string | number} taskIndex. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
@@ -1090,6 +1113,19 @@ class GanttChart extends React.Component {
             });
         }
     }
+    /** Sorts the GanttChart tasks/resources if sortable is enabled.
+    * @param {any} columns?. An Array of objects which determine which columns to be sorted, the sort order and the type of item to sort: task or resource. If no arguments are provided sorting will be removed. <br /> An object should have the following properties: <ul><li><b>value</b> - a string that represents the value of a <b>taskColumn</b> to sort.</li><li><b>sortOrder</b> - a string that represents the sorting order for the column: 'asc' (asscending sorting) or 'desc' (descending) are possible values. </li><li><b>type</b> - a string that represents the type of item to sort. This property determines which panel will be sorted. Two possible values: 'task', 'resource'.</li></ul>
+    */
+    sort(columns) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.sort(columns);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.sort(columns);
+            });
+        }
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
@@ -1110,7 +1146,7 @@ class GanttChart extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -1173,7 +1209,7 @@ class GanttChart extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-gantt-chart", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-gantt-chart", { ref: this.componentRef }, this.props.children));
     }
 }
 

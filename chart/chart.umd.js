@@ -41,6 +41,7 @@ require('../source/modules/smart.chart');
     class Chart extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -424,7 +425,7 @@ require('../source/modules/smart.chart');
             }
         }
         /** Determines the set of default background, line, text and band colors that will be used in the Chart.
-        *	Property type: ChartTheme
+        *	Property type: string
         */
         get theme() {
             return this.nativeElement ? this.nativeElement.theme : undefined;
@@ -880,7 +881,7 @@ require('../source/modules/smart.chart');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -943,7 +944,7 @@ require('../source/modules/smart.chart');
             }
         }
         render() {
-            return (React.createElement("smart-chart", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-chart", { ref: this.componentRef }, this.props.children));
         }
     }
 

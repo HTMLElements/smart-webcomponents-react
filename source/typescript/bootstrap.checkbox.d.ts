@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines a CheckBox component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapCheckBox extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapCheckBoxProperties {
   /**
    * Gets or sets the checked state of the element. 
    * Default value: false
@@ -42,7 +36,15 @@ export interface BootstrapCheckBox extends BaseElement {
    * Default value: primary
    */
   styleMode?: BootstrapCheckBoxStyleMode;
-  /** 
+}
+/**
+ Defines a CheckBox component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapCheckBox extends BaseElement, BootstrapCheckBoxProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Change event is triggered when the value of the checkbox is changed.
 	* @param event. The custom event.    */
   onChange: ((this: any, ev: Event) => any) | null;
@@ -52,13 +54,13 @@ export interface BootstrapCheckBox extends BaseElement {
   toggle(): void;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-check-box"): BootstrapCheckBox;
-			querySelector(selectors: "bootstrap-check-box"): BootstrapCheckBox | null;	
-			querySelectorAll(selectors: "bootstrap-check-box"): NodeListOf<BootstrapCheckBox>;
-			getElementsByTagName(qualifiedName: "bootstrap-check-box"): HTMLCollectionOf<BootstrapCheckBox>;
-			getElementsByName(elementName: "bootstrap-check-box"): NodeListOf<BootstrapCheckBox>;	
+        createElement(tagName: "bootstrap-check-box"): BootstrapCheckBox;
+        querySelector(selectors: "bootstrap-check-box"): BootstrapCheckBox | null;
+        querySelectorAll(selectors: "bootstrap-check-box"): NodeListOf<BootstrapCheckBox>;
+        getElementsByTagName(qualifiedName: "bootstrap-check-box"): HTMLCollectionOf<BootstrapCheckBox>;
+        getElementsByName(elementName: "bootstrap-check-box"): NodeListOf<BootstrapCheckBox>;
     }
 }
 

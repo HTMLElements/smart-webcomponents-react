@@ -41,6 +41,7 @@ require('../source/modules/smart.grid');
     class Grid extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -225,7 +226,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onCellValue = value;
             }
         }
-        /** Describes the paging settings.
+        /** Callback function() called when the grid has been rendered.
         *	Property type: {(cell: GridCell, oldValue: any, value: any, confirm: {(commit: boolean): void}): void}
         */
         get onCellUpdate() {
@@ -236,7 +237,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onCellUpdate = value;
             }
         }
-        /** Describes the pager settings.
+        /** Describes the paging settings.
         *	Property type: {(cell: GridCell): void}
         */
         get onCellRender() {
@@ -247,7 +248,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onCellRender = value;
             }
         }
-        /** Sets the row details.
+        /** Describes the pager settings.
         *	Property type: {(): void}
         */
         get onBeforeInit() {
@@ -258,7 +259,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onBeforeInit = value;
             }
         }
-        /** Sets the scroll mode settings.
+        /** Sets the row details.
         *	Property type: {(): void}
         */
         get onInit() {
@@ -269,7 +270,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onInit = value;
             }
         }
-        /** Describes the column header settings.
+        /** Sets the scroll mode settings.
         *	Property type: {(): void}
         */
         get onAfterInit() {
@@ -280,7 +281,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onAfterInit = value;
             }
         }
-        /** Describes the settings for the group header.
+        /** Describes the column header settings.
         *	Property type: any
         */
         get onChartInit() {
@@ -291,8 +292,8 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onChartInit = value;
             }
         }
-        /** Describes the header settings of the grid.
-        *	Property type: {(): void}
+        /** Describes the summary row settings.
+        *	Property type: any
         */
         get onRender() {
             return this.nativeElement ? this.nativeElement.onRender : undefined;
@@ -302,7 +303,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onRender = value;
             }
         }
-        /** Describes the footer settings of the grid.
+        /** Describes the settings for the group header.
         *	Property type: {(event: KeyboardEvent): void}
         */
         get onKey() {
@@ -313,7 +314,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onKey = value;
             }
         }
-        /** The rows property is used to describe all rows displayed in the grid.
+        /** Describes the header settings of the grid.
         *	Property type: {(index: number, row: GridRow): void}
         */
         get onRowInit() {
@@ -324,7 +325,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onRowInit = value;
             }
         }
-        /** Describes the selection settings.
+        /** Describes the footer settings of the grid.
         *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
         */
         get onRowDetailInit() {
@@ -335,7 +336,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onRowDetailInit = value;
             }
         }
-        /** Describes sorting settings.
+        /** The rows property is used to describe all rows displayed in the grid.
         *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
         */
         get onRowDetailUpdated() {
@@ -346,7 +347,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onRowDetailUpdated = value;
             }
         }
-        /** undefined
+        /** Describes the selection settings.
         *	Property type: {(index: number, row: GridRow): void}
         */
         get onRowInserted() {
@@ -357,7 +358,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onRowInserted = value;
             }
         }
-        /** undefined
+        /** Describes sorting settings.
         *	Property type: {(index: number, row: GridRow): void}
         */
         get onRowRemoved() {
@@ -501,6 +502,17 @@ require('../source/modules/smart.grid');
             }
         }
         /** undefined
+        *	Property type: GridSummaryRow
+        */
+        get summaryRow() {
+            return this.nativeElement ? this.nativeElement.summaryRow : undefined;
+        }
+        set summaryRow(value) {
+            if (this.nativeElement) {
+                this.nativeElement.summaryRow = value;
+            }
+        }
+        /** undefined
         *	Property type: GridGroupHeader
         */
         get groupHeader() {
@@ -568,11 +580,11 @@ require('../source/modules/smart.grid');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["appearance", "behavior", "layout", "clipboard", "columns", "columnMenu", "columnGroups", "charting", "checkBoxes", "dataExport", "dataSource", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onCommand", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "groupHeader", "header", "footer", "rows", "selection", "sorting"];
+            return ["appearance", "behavior", "layout", "clipboard", "columns", "columnMenu", "columnGroups", "charting", "checkBoxes", "dataExport", "dataSource", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onCommand", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "groupHeader", "header", "footer", "rows", "selection", "sorting"];
         }
         // Gets the events of the React component.
         get events() {
-            return ["onBeginEdit", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
+            return ["onBeginEdit", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnDragging", "onColumnDragEnd", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
         }
         /** Adds a new row and puts it into edit mode. When batch editing is enabled, the row is not saved until the batch edit is saved.
         * @param {string} position?. 'near' or 'far'
@@ -1234,7 +1246,7 @@ require('../source/modules/smart.grid');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -1297,7 +1309,7 @@ require('../source/modules/smart.grid');
             }
         }
         render() {
-            return (React.createElement("smart-grid", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-grid", { ref: this.componentRef }, this.props.children));
         }
     }
 

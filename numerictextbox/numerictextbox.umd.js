@@ -1,5 +1,5 @@
 
-require('../source/modules/smart.numerictextbox');
+require('../source/modules/smart.textbox');
 
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
@@ -41,6 +41,7 @@ require('../source/modules/smart.numerictextbox');
     class NumericTextBox extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -559,7 +560,7 @@ require('../source/modules/smart.numerictextbox');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -622,7 +623,7 @@ require('../source/modules/smart.numerictextbox');
             }
         }
         render() {
-            return (React.createElement("smart-numeric-text-box", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-numeric-text-box", { ref: this.componentRef }, this.props.children));
         }
     }
 

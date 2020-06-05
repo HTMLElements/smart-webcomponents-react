@@ -1,5 +1,5 @@
 
-import '../source/modules/smart.passwordtextbox';
+import '../source/modules/smart.textbox';
 
 import React from 'react';
 
@@ -10,6 +10,7 @@ const Smart = window.Smart;
 class PasswordTextBox extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -367,7 +368,7 @@ class PasswordTextBox extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -430,7 +431,7 @@ class PasswordTextBox extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-password-text-box", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-password-text-box", { ref: this.componentRef }, this.props.children));
     }
 }
 

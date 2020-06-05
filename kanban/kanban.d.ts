@@ -25,6 +25,7 @@ export interface KanbanProps extends KanbanProperties {
 export declare class Kanban extends React.Component<React.HTMLProps<Element> & KanbanProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Toggles the visibility of the column buttons for adding tasks. A particular button can be disabled by setting addNewButton in the column's definition to false.
     *	Property type: boolean
@@ -106,6 +107,11 @@ export declare class Kanban extends React.Component<React.HTMLProps<Element> & K
     */
     get hierarchy(): KanbanHierarchy;
     set hierarchy(value: KanbanHierarchy);
+    /** Sets or gets the locale. Used in conjunction with the property messages.
+    *	Property type: string
+    */
+    get locale(): string;
+    set locale(value: string);
     /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
     *	Property type: any
     */
@@ -186,7 +192,7 @@ export declare class Kanban extends React.Component<React.HTMLProps<Element> & K
     */
     get userList(): boolean;
     set userList(value: boolean);
-    /** Toggles the visibility of the task user icon.
+    /** Determines the users Kanban tasks can be assigned to and their characteristics and privileges.
     *	Property type: KanbanUser[]
     */
     get users(): KanbanUser[];
@@ -385,6 +391,8 @@ export declare class Kanban extends React.Component<React.HTMLProps<Element> & K
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default Kanban;

@@ -1,0 +1,7 @@
+{
+    "main": "multiinput.umd.js",
+    "module": "multiinput.esm.js",
+	"typings": "multiinput.d.ts",
+    "name": "smart-webcomponents-react/multiinput",
+    "sideEffects": false
+  }

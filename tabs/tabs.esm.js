@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class TabItem extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -126,7 +127,7 @@ class TabItem extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -189,7 +190,7 @@ class TabItem extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-tab-item", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-tab-item", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -200,6 +201,7 @@ const Smart$1 = window.Smart;
 class TabItemsGroup extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -258,7 +260,7 @@ class TabItemsGroup extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -321,7 +323,7 @@ class TabItemsGroup extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-tab-items-group", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-tab-items-group", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -332,6 +334,7 @@ const Smart$2 = window.Smart;
 class Tabs extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -798,7 +801,7 @@ class Tabs extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -861,7 +864,7 @@ class Tabs extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-tabs", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-tabs", { ref: this.componentRef }, this.props.children));
     }
 }
 

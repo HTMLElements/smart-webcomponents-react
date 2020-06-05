@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class ListItem extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -192,7 +193,7 @@ class ListItem extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -255,7 +256,7 @@ class ListItem extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-list-item", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-list-item", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -266,6 +267,7 @@ const Smart$1 = window.Smart;
 class ListItemsGroup extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -313,7 +315,7 @@ class ListItemsGroup extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -376,7 +378,7 @@ class ListItemsGroup extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-list-items-group", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-list-items-group", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -387,6 +389,7 @@ const Smart$2 = window.Smart;
 class ComboBox extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -1328,7 +1331,7 @@ class ComboBox extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -1391,7 +1394,7 @@ class ComboBox extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-combo-box", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-combo-box", { ref: this.componentRef }, this.props.children));
     }
 }
 

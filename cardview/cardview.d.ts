@@ -24,6 +24,7 @@ export interface CardViewProps extends CardViewProperties {
 export declare class CardView extends React.Component<React.HTMLProps<Element> & CardViewProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Toggles the button for adding new cards.
     *	Property type: boolean
@@ -85,6 +86,11 @@ export declare class CardView extends React.Component<React.HTMLProps<Element> &
     */
     get headerPosition(): CardViewHeaderPosition;
     set headerPosition(value: CardViewHeaderPosition);
+    /** Sets or gets the locale. Used in conjunction with the property messages.
+    *	Property type: string
+    */
+    get locale(): string;
+    set locale(value: string);
     /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
     *	Property type: any
     */
@@ -207,6 +213,8 @@ export declare class CardView extends React.Component<React.HTMLProps<Element> &
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default CardView;

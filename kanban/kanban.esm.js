@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class Kanban extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -219,6 +220,17 @@ class Kanban extends React.Component {
             this.nativeElement.hierarchy = value;
         }
     }
+    /** Sets or gets the locale. Used in conjunction with the property messages.
+    *	Property type: string
+    */
+    get locale() {
+        return this.nativeElement ? this.nativeElement.locale : undefined;
+    }
+    set locale(value) {
+        if (this.nativeElement) {
+            this.nativeElement.locale = value;
+        }
+    }
     /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
     *	Property type: any
     */
@@ -395,7 +407,7 @@ class Kanban extends React.Component {
             this.nativeElement.userList = value;
         }
     }
-    /** Toggles the visibility of the task user icon.
+    /** Determines the users Kanban tasks can be assigned to and their characteristics and privileges.
     *	Property type: KanbanUser[]
     */
     get users() {
@@ -408,7 +420,7 @@ class Kanban extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["addNewButton", "allowDrag", "allowDrop", "animation", "autoLoadState", "autoSaveState", "collapsible", "columns", "currentUser", "dataSource", "dragOffset", "editable", "formatStringDate", "formatStringTime", "headerPosition", "hierarchy", "messages", "selectionMode", "swimlanes", "swimlanesFrom", "swimlanesTo", "tags", "taskActions", "taskComments", "taskDue", "taskPosition", "taskPriority", "taskProgress", "taskTags", "taskUserIcon", "textTemplate", "userList", "users"];
+        return ["addNewButton", "allowDrag", "allowDrop", "animation", "autoLoadState", "autoSaveState", "collapsible", "columns", "currentUser", "dataSource", "dragOffset", "editable", "formatStringDate", "formatStringTime", "headerPosition", "hierarchy", "locale", "messages", "selectionMode", "swimlanes", "swimlanesFrom", "swimlanesTo", "tags", "taskActions", "taskComments", "taskDue", "taskPosition", "taskPriority", "taskProgress", "taskTags", "taskUserIcon", "textTemplate", "userList", "users"];
     }
     // Gets the events of the React component.
     get events() {
@@ -757,7 +769,7 @@ class Kanban extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -820,7 +832,7 @@ class Kanban extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-kanban", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-kanban", { ref: this.componentRef }, this.props.children));
     }
 }
 

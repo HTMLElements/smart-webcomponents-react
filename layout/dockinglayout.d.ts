@@ -20,6 +20,7 @@ export interface DockingLayoutProps extends DockingLayoutProperties {
 export declare class DockingLayout extends React.Component<React.HTMLProps<Element> & DockingLayoutProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
     *	Property type: Animation
@@ -248,10 +249,10 @@ export declare class DockingLayout extends React.Component<React.HTMLProps<Eleme
     */
     insertOutsideTargetGroupRight(index: number | HTMLElement | string, tabsWindow: any): void;
     /** The method returns an array of all autohidden items.
-    * @param {string} node?. Determines which auto hidden items to return ( vertical or horizontal ). If not set the method will return all autohidden items. Possible values: 'vertical', 'horizontal'.
+    * @param {string} orientation?. Determines which auto hidden items to return ( vertical or horizontal ). If not set the method will return all autohidden items. Possible values: 'vertical', 'horizontal'.
     * @returns {any[]}
   */
-    getAutoHideItems(node?: string): Promise<any>;
+    getAutoHideItems(orientation?: string): Promise<any>;
     /** The method returns the index of a target item.
     * @param {HTMLElement} node. Returns the index of the target item.
     * @returns {number}
@@ -304,6 +305,8 @@ export declare class DockingLayout extends React.Component<React.HTMLProps<Eleme
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default DockingLayout;

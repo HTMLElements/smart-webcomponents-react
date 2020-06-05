@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines a DropDown component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapDropDown extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapDropDownProperties {
   /**
    * Enables or disables the element. 
    * Default value: false
@@ -57,22 +51,30 @@ export interface BootstrapDropDown extends BaseElement {
    * Default value: ""
    */
   sizeMode?: string;
-  /** 
+}
+/**
+ Defines a DropDown component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapDropDown extends BaseElement, BootstrapDropDownProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Show event is triggered when the dropdown is going to show.
 	* @param event. The custom event.    */
-  onShow?: ((this: any, ev: Event) => any) | null;
-  /** 
+  onShow?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
    * Shown event is triggered when the dropdown is shown.
 	* @param event. The custom event.    */
-  onShown?: ((this: any, ev: Event) => any) | null;
-  /** 
+  onShown?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
    * Hide event is triggered when the dropdown is going to be hidden.
 	* @param event. The custom event.    */
-  onHide?: ((this: any, ev: Event) => any) | null;
-  /** 
+  onHide?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
    * Hidden event is triggered when the dropdown is hidden
 	* @param event. The custom event.    */
-  onHidden?: ((this: any, ev: Event) => any) | null;
+  onHidden?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
    * Toggles the dropdown visibility
    */
@@ -87,13 +89,13 @@ export interface BootstrapDropDown extends BaseElement {
   hide(): void;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-drop-down"): BootstrapDropDown;
-			querySelector(selectors: "bootstrap-drop-down"): BootstrapDropDown | null;	
-			querySelectorAll(selectors: "bootstrap-drop-down"): NodeListOf<BootstrapDropDown>;
-			getElementsByTagName(qualifiedName: "bootstrap-drop-down"): HTMLCollectionOf<BootstrapDropDown>;
-			getElementsByName(elementName: "bootstrap-drop-down"): NodeListOf<BootstrapDropDown>;	
+        createElement(tagName: "bootstrap-drop-down"): BootstrapDropDown;
+        querySelector(selectors: "bootstrap-drop-down"): BootstrapDropDown | null;
+        querySelectorAll(selectors: "bootstrap-drop-down"): NodeListOf<BootstrapDropDown>;
+        getElementsByTagName(qualifiedName: "bootstrap-drop-down"): HTMLCollectionOf<BootstrapDropDown>;
+        getElementsByName(elementName: "bootstrap-drop-down"): NodeListOf<BootstrapDropDown>;
     }
 }
 

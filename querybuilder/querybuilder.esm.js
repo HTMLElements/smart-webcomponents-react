@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class QueryBuilder extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -352,7 +353,7 @@ class QueryBuilder extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -415,7 +416,7 @@ class QueryBuilder extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-query-builder", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-query-builder", { ref: this.componentRef }, this.props.children));
     }
 }
 

@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class Slider extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -613,7 +614,7 @@ class Slider extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -676,7 +677,7 @@ class Slider extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-slider", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-slider", { ref: this.componentRef }, this.props.children));
     }
 }
 

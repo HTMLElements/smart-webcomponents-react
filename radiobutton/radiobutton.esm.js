@@ -1,5 +1,5 @@
 
-import '../source/modules/smart.radiobutton';
+import '../source/modules/smart.button';
 
 import React from 'react';
 
@@ -10,6 +10,7 @@ const Smart = window.Smart;
 class RadioButton extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -222,7 +223,7 @@ class RadioButton extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -285,7 +286,7 @@ class RadioButton extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-radio-button", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-radio-button", { ref: this.componentRef }, this.props.children));
     }
 }
 

@@ -41,6 +41,7 @@ require('../source/modules/smart.tree');
     class TreeItem extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -165,7 +166,7 @@ require('../source/modules/smart.tree');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -228,7 +229,7 @@ require('../source/modules/smart.tree');
             }
         }
         render() {
-            return (React.createElement("smart-tree-item", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-tree-item", { ref: this.componentRef }, this.props.children));
         }
     }
 
@@ -239,6 +240,7 @@ require('../source/modules/smart.tree');
     class TreeItemsGroup extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -363,7 +365,7 @@ require('../source/modules/smart.tree');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -426,7 +428,7 @@ require('../source/modules/smart.tree');
             }
         }
         render() {
-            return (React.createElement("smart-tree-items-group", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-tree-items-group", { ref: this.componentRef }, this.props.children));
         }
     }
 
@@ -437,6 +439,7 @@ require('../source/modules/smart.tree');
     class Tree extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -902,7 +905,7 @@ require('../source/modules/smart.tree');
         }
         // Gets the events of the React component.
         get events() {
-            return ["onChange", "onCollapse", "onCollapsing", "onDragEnd", "onDragging", "onDragStart", "onExpand", "onExpanding", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
+            return ["onChange", "onCollapse", "onCollapsing", "onDragEnd", "onDragging", "onDragStart", "onExpand", "onExpanding", "onScrollBottomReached", "onScrollTopReached", "onSwipeleft", "onSwiperight", "onCreate", "onReady"];
         }
         /** Adds an item after another item as a sibling.
         * @param {HTMLElement} item. A smart-tree-item/smart-tree-items-group to add to the Tree
@@ -1216,7 +1219,7 @@ require('../source/modules/smart.tree');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -1279,7 +1282,7 @@ require('../source/modules/smart.tree');
             }
         }
         render() {
-            return (React.createElement("smart-tree", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-tree", { ref: this.componentRef }, this.props.children));
         }
     }
 

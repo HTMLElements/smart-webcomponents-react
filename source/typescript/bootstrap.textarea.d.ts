@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines a Textarea component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapTextarea extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapTextareaProperties {
   /**
    * Enables or disables the element. 
    * Default value: false
@@ -47,19 +41,27 @@ export interface BootstrapTextarea extends BaseElement {
    * Default value: "false"
    */
   value?: string;
-  /** 
+}
+/**
+ Defines a Textarea component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapTextarea extends BaseElement, BootstrapTextareaProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Change event is triggered when the value of the element is changed.
 	* @param event. The custom event.    */
   onChange: ((this: any, ev: Event) => any) | null;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-textarea"): BootstrapTextarea;
-			querySelector(selectors: "bootstrap-textarea"): BootstrapTextarea | null;	
-			querySelectorAll(selectors: "bootstrap-textarea"): NodeListOf<BootstrapTextarea>;
-			getElementsByTagName(qualifiedName: "bootstrap-textarea"): HTMLCollectionOf<BootstrapTextarea>;
-			getElementsByName(elementName: "bootstrap-textarea"): NodeListOf<BootstrapTextarea>;	
+        createElement(tagName: "bootstrap-textarea"): BootstrapTextarea;
+        querySelector(selectors: "bootstrap-textarea"): BootstrapTextarea | null;
+        querySelectorAll(selectors: "bootstrap-textarea"): NodeListOf<BootstrapTextarea>;
+        getElementsByTagName(qualifiedName: "bootstrap-textarea"): HTMLCollectionOf<BootstrapTextarea>;
+        getElementsByName(elementName: "bootstrap-textarea"): NodeListOf<BootstrapTextarea>;
     }
 }
 

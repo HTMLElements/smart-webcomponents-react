@@ -1,7 +1,7 @@
 {
   "name": "smart-webcomponents-react",
-  "version": "7.1.15",
-  "preferGlobal": true,
+  "version": "7.6.0",
+   "preferGlobal": true,
   "keywords": [
     "ReactJS",
     "React JS",

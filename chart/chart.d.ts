@@ -1,8 +1,8 @@
 import React from "react";
 import { ChartProperties } from "./../index";
-import { Animation, ChartColorScheme, ChartRenderEngine, ChartTheme, ChartLocalization, Padding, ChartLegendPosition, ChartSeriesGroup, ChartValueAxis, ChartXAxis } from './../index';
+import { Animation, ChartColorScheme, ChartRenderEngine, ChartLocalization, Padding, ChartLegendPosition, ChartSeriesGroup, ChartValueAxis, ChartXAxis } from './../index';
 export { ChartProperties } from "./../index";
-export { Animation, ChartColorScheme, ChartRenderEngine, HorizontalAlignment, ChartRotationPoint, VerticalAlignment, ChartAnnotationType, ChartUnselectMode, Orientation, ChartSeriesGroupSerieEmptyPointsDisplay, ChartSymbolType, ChartType, AxisPosition, ChartBaseUnit, ChartXAxisType, ChartTheme, ChartLocalization, Padding, ChartLegendPosition, ChartSeriesGroup, ChartAnnotation, Offset, ChartAnnotationText, ChartBand, ChartFormatSettings, ChartSeriesGroupSerie, ChartLabels, ChartValueAxis, ChartLines, ChartLine, ChartTitle, ChartXAxis, ChartRangeSelector } from './../index';
+export { Animation, ChartColorScheme, ChartRenderEngine, HorizontalAlignment, ChartRotationPoint, VerticalAlignment, ChartAnnotationType, ChartUnselectMode, Orientation, ChartSeriesGroupSerieEmptyPointsDisplay, ChartSymbolType, ChartType, AxisPosition, ChartBaseUnit, ChartXAxisType, ChartLocalization, Padding, ChartLegendPosition, ChartSeriesGroup, ChartAnnotation, Offset, ChartAnnotationText, ChartBand, ChartFormatSettings, ChartSeriesGroupSerie, ChartLabels, ChartValueAxis, ChartLines, ChartLine, ChartTitle, ChartXAxis, ChartRangeSelector } from './../index';
 export declare const Smart: any;
 export interface ChartProps extends ChartProperties {
     className?: string;
@@ -25,6 +25,7 @@ export interface ChartProps extends ChartProperties {
 export declare class Chart extends React.Component<React.HTMLProps<Element> & ChartProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'.
     *	Property type: Animation
@@ -197,10 +198,10 @@ export declare class Chart extends React.Component<React.HTMLProps<Element> & Ch
     get showToolTipsOnAllSeries(): boolean;
     set showToolTipsOnAllSeries(value: boolean);
     /** Determines the set of default background, line, text and band colors that will be used in the Chart.
-    *	Property type: ChartTheme
+    *	Property type: string
     */
-    get theme(): ChartTheme;
-    set theme(value: ChartTheme);
+    get theme(): string;
+    set theme(value: string);
     /** Sets the padding of the chart's title (caption).
     *	Property type: Padding
     */
@@ -396,6 +397,8 @@ export declare class Chart extends React.Component<React.HTMLProps<Element> & Ch
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default Chart;

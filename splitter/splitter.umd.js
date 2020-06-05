@@ -41,6 +41,7 @@ require('../source/modules/smart.splitter');
     class SplitterItem extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -203,7 +204,7 @@ require('../source/modules/smart.splitter');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -266,7 +267,7 @@ require('../source/modules/smart.splitter');
             }
         }
         render() {
-            return (React.createElement("smart-splitter-item", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-splitter-item", { ref: this.componentRef }, this.props.children));
         }
     }
 
@@ -277,6 +278,7 @@ require('../source/modules/smart.splitter');
     class SplitterBar extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -361,7 +363,7 @@ require('../source/modules/smart.splitter');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -424,7 +426,7 @@ require('../source/modules/smart.splitter');
             }
         }
         render() {
-            return (React.createElement("smart-splitter-bar", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-splitter-bar", { ref: this.componentRef }, this.props.children));
         }
     }
 
@@ -435,6 +437,7 @@ require('../source/modules/smart.splitter');
     class Splitter extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -871,7 +874,7 @@ require('../source/modules/smart.splitter');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -934,7 +937,7 @@ require('../source/modules/smart.splitter');
             }
         }
         render() {
-            return (React.createElement("smart-splitter", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-splitter", { ref: this.componentRef }, this.props.children));
         }
     }
 

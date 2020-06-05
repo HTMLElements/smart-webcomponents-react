@@ -10,6 +10,7 @@ const Smart = window.Smart;
 class AccordionItem extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -90,7 +91,7 @@ class AccordionItem extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -153,7 +154,7 @@ class AccordionItem extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-accordion-item", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-accordion-item", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -164,6 +165,7 @@ const Smart$1 = window.Smart;
 class Accordion extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -399,7 +401,7 @@ class Accordion extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -462,7 +464,7 @@ class Accordion extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-accordion", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-accordion", { ref: this.componentRef }, this.props.children));
     }
 }
 

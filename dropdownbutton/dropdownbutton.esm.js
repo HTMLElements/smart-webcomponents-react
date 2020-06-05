@@ -1,5 +1,5 @@
 
-import '../source/modules/smart.dropdownbutton';
+import '../source/modules/smart.button';
 
 import React from 'react';
 
@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class DropDownButton extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -487,7 +488,7 @@ class DropDownButton extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -550,7 +551,7 @@ class DropDownButton extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-drop-down-button", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-drop-down-button", { ref: this.componentRef }, this.props.children));
     }
 }
 

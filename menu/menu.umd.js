@@ -41,6 +41,7 @@ require('../source/modules/smart.menu');
     class MenuItem extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -154,7 +155,7 @@ require('../source/modules/smart.menu');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -217,7 +218,7 @@ require('../source/modules/smart.menu');
             }
         }
         render() {
-            return (React.createElement("smart-menu-item", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-menu-item", { ref: this.componentRef }, this.props.children));
         }
     }
 
@@ -228,6 +229,7 @@ require('../source/modules/smart.menu');
     class MenuItemsGroup extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -374,7 +376,7 @@ require('../source/modules/smart.menu');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -437,7 +439,7 @@ require('../source/modules/smart.menu');
             }
         }
         render() {
-            return (React.createElement("smart-menu-items-group", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-menu-items-group", { ref: this.componentRef }, this.props.children));
         }
     }
 
@@ -448,6 +450,7 @@ require('../source/modules/smart.menu');
     class Menu extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -964,7 +967,7 @@ require('../source/modules/smart.menu');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -1027,7 +1030,7 @@ require('../source/modules/smart.menu');
             }
         }
         render() {
-            return (React.createElement("smart-menu", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-menu", { ref: this.componentRef }, this.props.children));
         }
     }
 

@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines an Input component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapInput extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapInputProperties {
   /**
    * Enables or disables the element. 
    * Default value: false
@@ -47,19 +41,27 @@ export interface BootstrapInput extends BaseElement {
    * Default value: "false"
    */
   value?: string;
-  /** 
+}
+/**
+ Defines an Input component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapInput extends BaseElement, BootstrapInputProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Change event is triggered when the value of the element is changed.
 	* @param event. The custom event.    */
   onChange: ((this: any, ev: Event) => any) | null;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-input"): BootstrapInput;
-			querySelector(selectors: "bootstrap-input"): BootstrapInput | null;	
-			querySelectorAll(selectors: "bootstrap-input"): NodeListOf<BootstrapInput>;
-			getElementsByTagName(qualifiedName: "bootstrap-input"): HTMLCollectionOf<BootstrapInput>;
-			getElementsByName(elementName: "bootstrap-input"): NodeListOf<BootstrapInput>;	
+        createElement(tagName: "bootstrap-input"): BootstrapInput;
+        querySelector(selectors: "bootstrap-input"): BootstrapInput | null;
+        querySelectorAll(selectors: "bootstrap-input"): NodeListOf<BootstrapInput>;
+        getElementsByTagName(qualifiedName: "bootstrap-input"): HTMLCollectionOf<BootstrapInput>;
+        getElementsByName(elementName: "bootstrap-input"): NodeListOf<BootstrapInput>;
     }
 }
 

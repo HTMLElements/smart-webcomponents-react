@@ -16,6 +16,7 @@ require('../source/modules/smart.validator');
 	class Validator extends React.Component {
 	    constructor(props) {
 	        super(props);
+	        this.componentRef = React.createRef();
 	    }
 	    // Gets the id of the React component.
 	    get id() {
@@ -99,7 +100,7 @@ require('../source/modules/smart.validator');
 	            props[prop] = that.props[prop];
 	        }
 	        if (initialize) {
-	            that.nativeElement = this.refs[this.id];
+	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class') {
@@ -162,7 +163,7 @@ require('../source/modules/smart.validator');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("jqxValidator", { ref: this.id }, this.props.children));
+	        return (React.createElement("jqxValidator", { ref: this.componentRef }, this.props.children));
 	    }
 	}
 

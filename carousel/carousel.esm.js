@@ -10,6 +10,7 @@ const Smart = window.Smart;
 class Carousel extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -288,7 +289,7 @@ class Carousel extends React.Component {
     }
     // Gets the events of the React component.
     get events() {
-        return ["onChange", "onChanging", "onCreate", "onReady"];
+        return ["onChange", "onChanging", "onSwipeleft", "onSwiperight", "onCreate", "onReady"];
     }
     /** Navigates to the next slide.
     */
@@ -371,7 +372,7 @@ class Carousel extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -434,7 +435,7 @@ class Carousel extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-carousel", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-carousel", { ref: this.componentRef }, this.props.children));
     }
 }
 

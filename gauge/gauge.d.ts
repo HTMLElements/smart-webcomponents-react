@@ -15,6 +15,7 @@ export interface GaugeProps extends GaugeProperties {
 export declare class Gauge extends React.Component<React.HTMLProps<Element> & GaugeProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Determines the type of gauge's indicator.
     *	Property type: GaugeAnalogDisplayType
@@ -290,6 +291,8 @@ export declare class Gauge extends React.Component<React.HTMLProps<Element> & Ga
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default Gauge;

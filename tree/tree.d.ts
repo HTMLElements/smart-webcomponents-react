@@ -21,6 +21,8 @@ export interface TreeProps extends TreeProperties {
     onExpanding?: ((event?: Event) => void) | undefined;
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
     onScrollTopReached?: ((event?: Event) => void) | undefined;
+    onSwipeleft?: ((event?: Event) => void) | undefined;
+    onSwiperight?: ((event?: Event) => void) | undefined;
 }
 /**
  Treeview component is a user interface that is used to represent hierarchical data in a tree structure.
@@ -28,6 +30,7 @@ export interface TreeProps extends TreeProperties {
 export declare class Tree extends React.Component<React.HTMLProps<Element> & TreeProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Allows drag operation in current tree. When enabled, items can be dragged and dropped to a tree with enabled allowDrop.
     *	Property type: boolean
@@ -313,6 +316,12 @@ export declare class Tree extends React.Component<React.HTMLProps<Element> & Tre
     /**  This event is triggered when the Tree has been scrolled to the top.
     *  @param event. The custom event. 	*/
     onScrollTopReached?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the user swipes to the left inside the Tree.
+    *  @param event. The custom event. 	*/
+    onSwipeleft?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the user swipes to the right inside the Tree.
+    *  @param event. The custom event. 	*/
+    onSwiperight?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;
@@ -416,6 +425,8 @@ export declare class Tree extends React.Component<React.HTMLProps<Element> & Tre
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default Tree;

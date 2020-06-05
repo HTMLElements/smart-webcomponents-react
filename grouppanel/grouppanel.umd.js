@@ -1,5 +1,5 @@
 
-require('../source/modules/smart.grouppanel');
+require('../source/modules/smart.gridpanel');
 
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
@@ -16,6 +16,7 @@ require('../source/modules/smart.grouppanel');
 	class GroupPanel extends React.Component {
 	    constructor(props) {
 	        super(props);
+	        this.componentRef = React.createRef();
 	    }
 	    // Gets the id of the React component.
 	    get id() {
@@ -173,7 +174,7 @@ require('../source/modules/smart.grouppanel');
 	            props[prop] = that.props[prop];
 	        }
 	        if (initialize) {
-	            that.nativeElement = this.refs[this.id];
+	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class') {
@@ -236,7 +237,7 @@ require('../source/modules/smart.grouppanel');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-group-panel", { ref: this.id }, this.props.children));
+	        return (React.createElement("smart-group-panel", { ref: this.componentRef }, this.props.children));
 	    }
 	}
 

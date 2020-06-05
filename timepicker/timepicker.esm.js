@@ -10,6 +10,7 @@ const Smart = window.Smart;
 class TimePicker extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -270,7 +271,7 @@ class TimePicker extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -333,7 +334,7 @@ class TimePicker extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-time-picker", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-time-picker", { ref: this.componentRef }, this.props.children));
     }
 }
 

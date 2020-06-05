@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines a Switch Button component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapSwitchButton extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapSwitchButtonProperties {
   /**
    * Gets or sets the checked state of the element. 
    * Default value: false
@@ -42,7 +36,15 @@ export interface BootstrapSwitchButton extends BaseElement {
    * Default value: primary
    */
   styleMode?: BootstrapSwitchButtonStyleMode;
-  /** 
+}
+/**
+ Defines a Switch Button component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapSwitchButton extends BaseElement, BootstrapSwitchButtonProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Change event is triggered when the value of the element is changed.
 	* @param event. The custom event.    */
   onChange: ((this: any, ev: Event) => any) | null;
@@ -52,13 +54,13 @@ export interface BootstrapSwitchButton extends BaseElement {
   toggle(): void;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-switch-button"): BootstrapSwitchButton;
-			querySelector(selectors: "bootstrap-switch-button"): BootstrapSwitchButton | null;	
-			querySelectorAll(selectors: "bootstrap-switch-button"): NodeListOf<BootstrapSwitchButton>;
-			getElementsByTagName(qualifiedName: "bootstrap-switch-button"): HTMLCollectionOf<BootstrapSwitchButton>;
-			getElementsByName(elementName: "bootstrap-switch-button"): NodeListOf<BootstrapSwitchButton>;	
+        createElement(tagName: "bootstrap-switch-button"): BootstrapSwitchButton;
+        querySelector(selectors: "bootstrap-switch-button"): BootstrapSwitchButton | null;
+        querySelectorAll(selectors: "bootstrap-switch-button"): NodeListOf<BootstrapSwitchButton>;
+        getElementsByTagName(qualifiedName: "bootstrap-switch-button"): HTMLCollectionOf<BootstrapSwitchButton>;
+        getElementsByName(elementName: "bootstrap-switch-button"): NodeListOf<BootstrapSwitchButton>;
     }
 }
 

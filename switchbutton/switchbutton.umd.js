@@ -1,5 +1,5 @@
 
-require('../source/modules/smart.switchbutton');
+require('../source/modules/smart.button');
 
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
@@ -16,6 +16,7 @@ require('../source/modules/smart.switchbutton');
 	class SwitchButton extends React.Component {
 	    constructor(props) {
 	        super(props);
+	        this.componentRef = React.createRef();
 	    }
 	    // Gets the id of the React component.
 	    get id() {
@@ -272,7 +273,7 @@ require('../source/modules/smart.switchbutton');
 	            props[prop] = that.props[prop];
 	        }
 	        if (initialize) {
-	            that.nativeElement = this.refs[this.id];
+	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class') {
@@ -335,7 +336,7 @@ require('../source/modules/smart.switchbutton');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-switch-button", { ref: this.id }, this.props.children));
+	        return (React.createElement("smart-switch-button", { ref: this.componentRef }, this.props.children));
 	    }
 	}
 

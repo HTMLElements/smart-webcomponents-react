@@ -41,6 +41,7 @@ require('../source/modules/smart.gauge');
     class Gauge extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -641,7 +642,7 @@ require('../source/modules/smart.gauge');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -704,7 +705,7 @@ require('../source/modules/smart.gauge');
             }
         }
         render() {
-            return (React.createElement("smart-gauge", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-gauge", { ref: this.componentRef }, this.props.children));
         }
     }
 

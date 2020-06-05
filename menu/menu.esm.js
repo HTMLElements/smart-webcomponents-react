@@ -35,6 +35,7 @@ const Smart = window.Smart;
 class MenuItem extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -148,7 +149,7 @@ class MenuItem extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -211,7 +212,7 @@ class MenuItem extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-menu-item", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-menu-item", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -222,6 +223,7 @@ const Smart$1 = window.Smart;
 class MenuItemsGroup extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -368,7 +370,7 @@ class MenuItemsGroup extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -431,7 +433,7 @@ class MenuItemsGroup extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-menu-items-group", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-menu-items-group", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -442,6 +444,7 @@ const Smart$2 = window.Smart;
 class Menu extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -958,7 +961,7 @@ class Menu extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -1021,7 +1024,7 @@ class Menu extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-menu", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-menu", { ref: this.componentRef }, this.props.children));
     }
 }
 

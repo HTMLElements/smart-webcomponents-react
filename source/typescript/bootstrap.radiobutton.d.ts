@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines a Radio Button component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapRadioButton extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapRadioButtonProperties {
   /**
    * Gets or sets the checked state of the element. 
    * Default value: false
@@ -37,7 +31,15 @@ export interface BootstrapRadioButton extends BaseElement {
    * Default value: primary
    */
   styleMode?: BootstrapRadioButtonStyleMode;
-  /** 
+}
+/**
+ Defines a Radio Button component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapRadioButton extends BaseElement, BootstrapRadioButtonProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Change event is triggered when the value of the element is changed.
 	* @param event. The custom event.    */
   onChange: ((this: any, ev: Event) => any) | null;
@@ -47,13 +49,13 @@ export interface BootstrapRadioButton extends BaseElement {
   toggle(): void;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-radio-button"): BootstrapRadioButton;
-			querySelector(selectors: "bootstrap-radio-button"): BootstrapRadioButton | null;	
-			querySelectorAll(selectors: "bootstrap-radio-button"): NodeListOf<BootstrapRadioButton>;
-			getElementsByTagName(qualifiedName: "bootstrap-radio-button"): HTMLCollectionOf<BootstrapRadioButton>;
-			getElementsByName(elementName: "bootstrap-radio-button"): NodeListOf<BootstrapRadioButton>;	
+        createElement(tagName: "bootstrap-radio-button"): BootstrapRadioButton;
+        querySelector(selectors: "bootstrap-radio-button"): BootstrapRadioButton | null;
+        querySelectorAll(selectors: "bootstrap-radio-button"): NodeListOf<BootstrapRadioButton>;
+        getElementsByTagName(qualifiedName: "bootstrap-radio-button"): HTMLCollectionOf<BootstrapRadioButton>;
+        getElementsByName(elementName: "bootstrap-radio-button"): NodeListOf<BootstrapRadioButton>;
     }
 }
 

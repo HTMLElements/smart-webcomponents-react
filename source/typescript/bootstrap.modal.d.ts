@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content
-*/
-export interface BootstrapModal extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapModalProperties {
   /**
    * Clicking on the modal “backdrop” will automatically close the modal. 
    * Default value: default
@@ -42,14 +36,22 @@ export interface BootstrapModal extends BaseElement {
    * Default value: ""
    */
   sizeMode?: string;
-  /** 
+}
+/**
+ Modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content
+*/
+export interface BootstrapModal extends BaseElement, BootstrapModalProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Show event is triggered when the modal is going to show.
 	* @param event. The custom event.    */
-  onShow?: ((this: any, ev: Event) => any) | null;
-  /** 
+  onShow?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
    * Hide event is triggered when the modal is going to be hidden.
 	* @param event. The custom event.    */
-  onHide?: ((this: any, ev: Event) => any) | null;
+  onHide?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
    * Toggles the modal visibility
    */
@@ -64,13 +66,13 @@ export interface BootstrapModal extends BaseElement {
   hide(): void;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-modal"): BootstrapModal;
-			querySelector(selectors: "bootstrap-modal"): BootstrapModal | null;	
-			querySelectorAll(selectors: "bootstrap-modal"): NodeListOf<BootstrapModal>;
-			getElementsByTagName(qualifiedName: "bootstrap-modal"): HTMLCollectionOf<BootstrapModal>;
-			getElementsByName(elementName: "bootstrap-modal"): NodeListOf<BootstrapModal>;	
+        createElement(tagName: "bootstrap-modal"): BootstrapModal;
+        querySelector(selectors: "bootstrap-modal"): BootstrapModal | null;
+        querySelectorAll(selectors: "bootstrap-modal"): NodeListOf<BootstrapModal>;
+        getElementsByTagName(qualifiedName: "bootstrap-modal"): HTMLCollectionOf<BootstrapModal>;
+        getElementsByName(elementName: "bootstrap-modal"): NodeListOf<BootstrapModal>;
     }
 }
 

@@ -41,6 +41,7 @@ require('../source/modules/smart.dockinglayout');
     class DockingLayout extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -574,15 +575,15 @@ require('../source/modules/smart.dockinglayout');
             }
         }
         /** The method returns an array of all autohidden items.
-        * @param {string} node?. Determines which auto hidden items to return ( vertical or horizontal ). If not set the method will return all autohidden items. Possible values: 'vertical', 'horizontal'.
+        * @param {string} orientation?. Determines which auto hidden items to return ( vertical or horizontal ). If not set the method will return all autohidden items. Possible values: 'vertical', 'horizontal'.
         * @returns {any[]}
       */
-        getAutoHideItems(node) {
+        getAutoHideItems(orientation) {
             return __awaiter(this, void 0, void 0, function* () {
                 const getResultOnRender = () => {
                     return new Promise(resolve => {
                         this.nativeElement.whenRendered(() => {
-                            const result = this.nativeElement.getAutoHideItems(node);
+                            const result = this.nativeElement.getAutoHideItems(orientation);
                             resolve(result);
                         });
                     });
@@ -777,7 +778,7 @@ require('../source/modules/smart.dockinglayout');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -840,7 +841,7 @@ require('../source/modules/smart.dockinglayout');
             }
         }
         render() {
-            return (React.createElement("smart-docking-layout", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-docking-layout", { ref: this.componentRef }, this.props.children));
         }
     }
 

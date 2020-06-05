@@ -10,6 +10,7 @@ const Smart = window.Smart;
 class RepeatButton extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -200,7 +201,7 @@ class RepeatButton extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -263,7 +264,7 @@ class RepeatButton extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-repeat-button", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-repeat-button", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -274,6 +275,7 @@ const Smart$1 = window.Smart;
 class ToggleButton extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -453,7 +455,7 @@ class ToggleButton extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -516,7 +518,7 @@ class ToggleButton extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-toggle-button", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-toggle-button", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -527,6 +529,7 @@ const Smart$2 = window.Smart;
 class PowerButton extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -695,7 +698,7 @@ class PowerButton extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -758,7 +761,7 @@ class PowerButton extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-power-button", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-power-button", { ref: this.componentRef }, this.props.children));
     }
 }
 
@@ -769,6 +772,7 @@ const Smart$3 = window.Smart;
 class Button extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -959,7 +963,7 @@ class Button extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -1022,7 +1026,7 @@ class Button extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-button", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-button", { ref: this.componentRef }, this.props.children));
     }
 }
 

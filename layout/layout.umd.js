@@ -41,6 +41,7 @@ require('../source/modules/smart.layout');
     class Layout extends React.Component {
         constructor(props) {
             super(props);
+            this.componentRef = React.createRef();
         }
         // Gets the id of the React component.
         get id() {
@@ -488,7 +489,7 @@ require('../source/modules/smart.layout');
                 props[prop] = that.props[prop];
             }
             if (initialize) {
-                that.nativeElement = this.refs[this.id];
+                that.nativeElement = this.componentRef.current;
             }
             for (let prop in props) {
                 if (prop === 'class') {
@@ -551,7 +552,7 @@ require('../source/modules/smart.layout');
             }
         }
         render() {
-            return (React.createElement("smart-layout", { ref: this.id }, this.props.children));
+            return (React.createElement("smart-layout", { ref: this.componentRef }, this.props.children));
         }
     }
 

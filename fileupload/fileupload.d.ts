@@ -21,6 +21,7 @@ export interface FileUploadProps extends FileUploadProperties {
 export declare class FileUpload extends React.Component<React.HTMLProps<Element> & FileUploadProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Sets or gets the file types that can be submitted to the server via the element. This property corresponds to the 'accept' attribute of the hidden file input which is submitted to the URL specified by the uploadUrl property.
     *	Property type: string | null
@@ -231,6 +232,8 @@ export declare class FileUpload extends React.Component<React.HTMLProps<Element>
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default FileUpload;

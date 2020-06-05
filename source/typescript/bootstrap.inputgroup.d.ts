@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines an InputGroup component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapInputGroup extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapInputGroupProperties {
   /**
    * Sets the content before the input.
    * Default value: """"
@@ -57,19 +51,27 @@ export interface BootstrapInputGroup extends BaseElement {
    * Default value: ""
    */
   value?: string;
-  /** 
+}
+/**
+ Defines an InputGroup component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapInputGroup extends BaseElement, BootstrapInputGroupProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Click event.
 	* @param event. The custom event.    */
   onClick: ((this: any, ev: Event) => any) | null;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-input-group"): BootstrapInputGroup;
-			querySelector(selectors: "bootstrap-input-group"): BootstrapInputGroup | null;	
-			querySelectorAll(selectors: "bootstrap-input-group"): NodeListOf<BootstrapInputGroup>;
-			getElementsByTagName(qualifiedName: "bootstrap-input-group"): HTMLCollectionOf<BootstrapInputGroup>;
-			getElementsByName(elementName: "bootstrap-input-group"): NodeListOf<BootstrapInputGroup>;	
+        createElement(tagName: "bootstrap-input-group"): BootstrapInputGroup;
+        querySelector(selectors: "bootstrap-input-group"): BootstrapInputGroup | null;
+        querySelectorAll(selectors: "bootstrap-input-group"): NodeListOf<BootstrapInputGroup>;
+        getElementsByTagName(qualifiedName: "bootstrap-input-group"): HTMLCollectionOf<BootstrapInputGroup>;
+        getElementsByName(elementName: "bootstrap-input-group"): NodeListOf<BootstrapInputGroup>;
     }
 }
 

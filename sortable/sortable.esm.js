@@ -10,6 +10,7 @@ const Smart = window.Smart;
 class Sortable extends React.Component {
     constructor(props) {
         super(props);
+        this.componentRef = React.createRef();
     }
     // Gets the id of the React component.
     get id() {
@@ -193,7 +194,7 @@ class Sortable extends React.Component {
             props[prop] = that.props[prop];
         }
         if (initialize) {
-            that.nativeElement = this.refs[this.id];
+            that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
             if (prop === 'class') {
@@ -256,7 +257,7 @@ class Sortable extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-sortable", { ref: this.id }, this.props.children));
+        return (React.createElement("smart-sortable", { ref: this.componentRef }, this.props.children));
     }
 }
 

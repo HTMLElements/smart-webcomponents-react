@@ -16,6 +16,7 @@ require('../source/modules/smart.chip');
 	class Chip extends React.Component {
 	    constructor(props) {
 	        super(props);
+	        this.componentRef = React.createRef();
 	    }
 	    // Gets the id of the React component.
 	    get id() {
@@ -207,7 +208,7 @@ require('../source/modules/smart.chip');
 	            props[prop] = that.props[prop];
 	        }
 	        if (initialize) {
-	            that.nativeElement = this.refs[this.id];
+	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class') {
@@ -270,7 +271,7 @@ require('../source/modules/smart.chip');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-chip", { ref: this.id }, this.props.children));
+	        return (React.createElement("smart-chip", { ref: this.componentRef }, this.props.children));
 	    }
 	}
 

@@ -1,0 +1,7 @@
+{
+    "main": "checkinput.umd.js",
+    "module": "checkinput.esm.js",
+	"typings": "checkinput.d.ts",
+    "name": "smart-webcomponents-react/checkinput",
+    "sideEffects": false
+  }

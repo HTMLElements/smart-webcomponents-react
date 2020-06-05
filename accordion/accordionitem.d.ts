@@ -16,6 +16,7 @@ export interface AccordionItemProps extends AccordionItemProperties {
 export declare class AccordionItem extends React.Component<React.HTMLProps<Element> & AccordionItemProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Sets or gets header's arrow position. If the value is 'none' the arrow is not shown.
     *	Property type: AccordionItemArrow
@@ -56,6 +57,8 @@ export declare class AccordionItem extends React.Component<React.HTMLProps<Eleme
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default AccordionItem;

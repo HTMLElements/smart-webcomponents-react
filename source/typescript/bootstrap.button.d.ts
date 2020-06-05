@@ -1,12 +1,6 @@
 import  {BaseElement, Animation} from "./smart.element"
 
-/**
- Defines a Button component, which includes Material and Bootstrap styles
-*/
-export interface BootstrapButton extends BaseElement {
-
-  /* Get a member by its name */
-  [name: string]: any;
+export interface BootstrapButtonProperties {
   /**
    * Enables or disables the button. 
    * Default value: false
@@ -47,19 +41,27 @@ export interface BootstrapButton extends BaseElement {
    * Default value: ""
    */
   value?: string;
-  /** 
+}
+/**
+ Defines a Button component, which includes Material and Bootstrap styles
+*/
+export interface BootstrapButton extends BaseElement, BootstrapButtonProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
    * Click event.
 	* @param event. The custom event.    */
   onClick: ((this: any, ev: Event) => any) | null;
 }
 
-declare global {    
+declare global {
     interface Document {
-			createElement(tagName: "bootstrap-button"): BootstrapButton;
-			querySelector(selectors: "bootstrap-button"): BootstrapButton | null;	
-			querySelectorAll(selectors: "bootstrap-button"): NodeListOf<BootstrapButton>;
-			getElementsByTagName(qualifiedName: "bootstrap-button"): HTMLCollectionOf<BootstrapButton>;
-			getElementsByName(elementName: "bootstrap-button"): NodeListOf<BootstrapButton>;	
+        createElement(tagName: "bootstrap-button"): BootstrapButton;
+        querySelector(selectors: "bootstrap-button"): BootstrapButton | null;
+        querySelectorAll(selectors: "bootstrap-button"): NodeListOf<BootstrapButton>;
+        getElementsByTagName(qualifiedName: "bootstrap-button"): HTMLCollectionOf<BootstrapButton>;
+        getElementsByName(elementName: "bootstrap-button"): NodeListOf<BootstrapButton>;
     }
 }
 

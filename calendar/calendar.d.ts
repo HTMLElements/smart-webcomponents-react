@@ -19,6 +19,7 @@ export interface CalendarProps extends CalendarProperties {
 export declare class Calendar extends React.Component<React.HTMLProps<Element> & CalendarProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
     *	Property type: Animation
@@ -325,6 +326,8 @@ export declare class Calendar extends React.Component<React.HTMLProps<Element> &
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default Calendar;

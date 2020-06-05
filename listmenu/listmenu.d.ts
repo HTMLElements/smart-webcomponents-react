@@ -15,6 +15,8 @@ export interface ListMenuProps extends ListMenuProperties {
     onItemCheckChange?: ((event?: Event) => void) | undefined;
     onItemClick?: ((event?: Event) => void) | undefined;
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
+    onSwipeleft?: ((event?: Event) => void) | undefined;
+    onSwiperight?: ((event?: Event) => void) | undefined;
 }
 /**
  ListMenu allows you to present users a listing of options and sub options.
@@ -22,6 +24,7 @@ export interface ListMenuProps extends ListMenuProperties {
 export declare class ListMenu extends React.Component<React.HTMLProps<Element> & ListMenuProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
     *	Property type: Animation
@@ -206,6 +209,12 @@ export declare class ListMenu extends React.Component<React.HTMLProps<Element> &
     /**  This event is triggered when the user scrolls to the bottom of the ListMenu.
     *  @param event. The custom event. 	*/
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the user swipes to the left inside the ListMenu.
+    *  @param event. The custom event. 	*/
+    onSwipeleft?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the user swipes to the right inside the ListMenu.
+    *  @param event. The custom event. 	*/
+    onSwiperight?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;
@@ -254,6 +263,8 @@ export declare class ListMenu extends React.Component<React.HTMLProps<Element> &
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default ListMenu;

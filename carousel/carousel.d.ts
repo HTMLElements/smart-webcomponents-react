@@ -9,6 +9,8 @@ export interface CarouselProps extends CarouselProperties {
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
     onChanging?: ((event?: Event) => void) | undefined;
+    onSwipeleft?: ((event?: Event) => void) | undefined;
+    onSwiperight?: ((event?: Event) => void) | undefined;
 }
 /**
  Carousel is a slideshow component for cycling through elements—images or slides of text
@@ -16,6 +18,7 @@ export interface CarouselProps extends CarouselProperties {
 export declare class Carousel extends React.Component<React.HTMLProps<Element> & CarouselProps, any> {
     private _id;
     private nativeElement;
+    private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
     *	Property type: Animation
@@ -150,6 +153,12 @@ export declare class Carousel extends React.Component<React.HTMLProps<Element> &
     *   previousIndex - The index of the previous slide that was active.
     */
     onChanging?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the user swipes to the left inside the Carousel.
+    *  @param event. The custom event. 	*/
+    onSwipeleft?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the user swipes to the right inside the Carousel.
+    *  @param event. The custom event. 	*/
+    onSwiperight?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;
@@ -178,6 +187,8 @@ export declare class Carousel extends React.Component<React.HTMLProps<Element> &
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    render(): React.DOMElement<React.DOMAttributes<Element>, Element>;
+    render(): React.ReactElement<{
+        ref: any;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 export default Carousel;
