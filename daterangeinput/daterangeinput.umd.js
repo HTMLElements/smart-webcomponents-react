@@ -289,8 +289,8 @@ require('../source/modules/smart.daterangeinput');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Sets or gets the value of the element.
-	    *	Property type: string
+	    /** Sets or gets the value of the element. The type of the value depends on the valueType property.
+	    *	Property type: any
 	    */
 	    get value() {
 	        return this.nativeElement ? this.nativeElement.value : undefined;

@@ -237,6 +237,17 @@ require('../source/modules/smart.ganttchart');
                 this.nativeElement.headerTemplate = value;
             }
         }
+        /** By default the Timeline has a two level header - timeline details and timeline header. This property hides the header details container( the top container ).
+        *	Property type: boolean
+        */
+        get hideTimelineHeaderDetails() {
+            return this.nativeElement ? this.nativeElement.hideTimelineHeaderDetails : undefined;
+        }
+        set hideTimelineHeaderDetails(value) {
+            if (this.nativeElement) {
+                this.nativeElement.hideTimelineHeaderDetails = value;
+            }
+        }
         /** Hides the Resource panel regardless of the resources availability By default the Resource panel is visible if resources are added to the GanttChart. This property allows to hide the Resource panel permanently.
         *	Property type: boolean
         */
@@ -369,6 +380,17 @@ require('../source/modules/smart.ganttchart');
                 this.nativeElement.popupWindowCustomizationFunction = value;
             }
         }
+        /** A format function for the Timeline task progress label. The expected result from the function is a string. The label is hidden by default can be shown with the showProgressLabel property.
+        *	Property type: any
+        */
+        get progressLabelFormatFunction() {
+            return this.nativeElement ? this.nativeElement.progressLabelFormatFunction : undefined;
+        }
+        set progressLabelFormatFunction(value) {
+            if (this.nativeElement) {
+                this.nativeElement.progressLabelFormatFunction = value;
+            }
+        }
         /** A getter that returns a flat structure as an array of all resources inside the element.
         *	Property type: GanttChartResource[]
         */
@@ -490,6 +512,17 @@ require('../source/modules/smart.ganttchart');
                 this.nativeElement.selectedIndexes = value;
             }
         }
+        /** Shows the progress label inside the progress bars of the Timeline tasks.
+        *	Property type: boolean
+        */
+        get showProgressLabel() {
+            return this.nativeElement ? this.nativeElement.showProgressLabel : undefined;
+        }
+        set showProgressLabel(value) {
+            if (this.nativeElement) {
+                this.nativeElement.showProgressLabel = value;
+            }
+        }
         /** If set the dateStart/dateEnd of the tasks will be coerced to the nearest timeline cell date ( according to the view ). Affects the dragging operation as well.
         *	Property type: boolean
         */
@@ -600,7 +633,7 @@ require('../source/modules/smart.ganttchart');
                 this.nativeElement.treeSize = value;
             }
         }
-        /** A format function for the Header of the Timeline.
+        /** A format function for the Header of the Timeline. The function provides the following arguments: date - a Date object that represets the date for the current cell.type - a string that represents the type of date that the cell is showing, e.g. 'month', 'week', 'day', etc.isHeaderDetails - a boolean that indicates whether the current cell is part of the Header Details Container or not.value - a string that represents the default value for the cell provided by the element.
         *	Property type: any
         */
         get timelineHeaderFormatFunction() {
@@ -679,11 +712,11 @@ require('../source/modules/smart.ganttchart');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableWindowEditor", "durationUnit", "headerTemplate", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "inverted", "locale", "max", "min", "messages", "monthFormat", "nonworkingDays", "nonworkingHours", "popupWindowCustomizationFunction", "resources", "resourceColumns", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedIndexes", "snapToNearest", "sortable", "sortMode", "tasks", "taskColumns", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
+            return ["autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableWindowEditor", "durationUnit", "headerTemplate", "hideTimelineHeaderDetails", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "inverted", "locale", "max", "min", "messages", "monthFormat", "nonworkingDays", "nonworkingHours", "popupWindowCustomizationFunction", "progressLabelFormatFunction", "resources", "resourceColumns", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedIndexes", "showProgressLabel", "snapToNearest", "sortable", "sortMode", "tasks", "taskColumns", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
         }
         // Gets the events of the React component.
         get events() {
-            return ["onChange", "onProgressChangeStart", "onProgressChangeEnd", "onDragStart", "onDragEnd", "onResizeStart", "onResizeEnd", "onConnectionStart", "onConnectionEnd", "onScrollBottomReached", "onScrollTopReached", "onOpening", "onOpen", "onClosing", "onClose", "onCollapse", "onExpand", "onCreate", "onReady"];
+            return ["onBeginUpdate", "onEndUpdate", "onChange", "onItemClick", "onItemInsert", "onItemRemove", "onItemUpdate", "onProgressChangeStart", "onProgressChangeEnd", "onDragStart", "onDragEnd", "onResizeStart", "onResizeEnd", "onConnectionStart", "onConnectionEnd", "onScrollBottomReached", "onScrollTopReached", "onOpening", "onOpen", "onClosing", "onClose", "onCollapse", "onExpand", "onCreate", "onReady"];
         }
         /** Adds a task as the last item of a Project.
         * @param {string | number} taskIndex. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
@@ -896,8 +929,26 @@ require('../source/modules/smart.ganttchart');
                 return result;
             });
         }
+        /** Returns the Tree path of a task/resource.
+        * @param {GanttChartTask | GanttChartResource | number} item. A GattChartTask/GanttChartResource item object or index.
+        * @returns {string}
+      */
+        getItemPath(item) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.getItemPath(item);
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
         /** Returns the index of a task.
-        * @param {HTMLElement} task. A GattChartTask object.
+        * @param {GanttChartTask} task. A GattChartTask object.
         * @returns {number}
       */
         getTaskIndex(task) {
@@ -915,7 +966,7 @@ require('../source/modules/smart.ganttchart');
             });
         }
         /** Returns the tree path of a task.
-        * @param {GanttChartTask} task. Returns the Tree path of the task as a string.
+        * @param {GanttChartTask} task. A GanttChartTask object.
         * @returns {string}
       */
         getTaskPath(task) {
@@ -924,6 +975,24 @@ require('../source/modules/smart.ganttchart');
                     return new Promise(resolve => {
                         this.nativeElement.whenRendered(() => {
                             const result = this.nativeElement.getTaskPath(task);
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
+        /** Returns teh Project of a task if any.
+        * @param {GanttChartTask} task. A GantChartTask object.
+        * @returns {GanttChartTask | undefined}
+      */
+        getTaskProject(task) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.getTaskProject(task);
                             resolve(result);
                         });
                     });
@@ -942,6 +1011,24 @@ require('../source/modules/smart.ganttchart');
                     return new Promise(resolve => {
                         this.nativeElement.whenRendered(() => {
                             const result = this.nativeElement.getResourceIndex(resource);
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
+        /** Returns the tasks that are assigned to the resource.
+        * @param {any} resource. A GanttChartResource object.
+        * @returns {any}
+      */
+        getResourceTasks(resource) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.getResourceTasks(resource);
                             resolve(result);
                         });
                     });
@@ -1015,7 +1102,7 @@ require('../source/modules/smart.ganttchart');
             }
         }
         /** Updates a task inside the timeline.
-        * @param {string | number} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+        * @param {any} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
         * @param {any} taskObject. An object describing a Gantt Chart task. The properties of this object will be applied to the desired task.
         */
         updateTask(index, taskObject) {
@@ -1029,7 +1116,7 @@ require('../source/modules/smart.ganttchart');
             }
         }
         /** Removes a task from the timeline.
-        * @param {string | number} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+        * @param {any} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
         */
         removeTask(index) {
             if (this.nativeElement.isRendered) {

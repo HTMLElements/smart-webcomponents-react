@@ -1,0 +1,7 @@
+{
+    "main": "textarea.umd.js",
+    "module": "textarea.esm.js",
+	"typings": "textarea.d.ts",
+    "name": "smart-webcomponents-react/textarea",
+    "sideEffects": false
+  }

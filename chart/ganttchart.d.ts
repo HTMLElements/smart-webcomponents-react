@@ -7,7 +7,13 @@ export declare const Smart: any;
 export interface GanttChartProps extends GanttChartProperties {
     className?: string;
     style?: React.CSSProperties;
+    onBeginUpdate?: ((event?: Event) => void) | undefined;
+    onEndUpdate?: ((event?: Event) => void) | undefined;
     onChange?: ((event?: Event) => void) | undefined;
+    onItemClick?: ((event?: Event) => void) | undefined;
+    onItemInsert?: ((event?: Event) => void) | undefined;
+    onItemRemove?: ((event?: Event) => void) | undefined;
+    onItemUpdate?: ((event?: Event) => void) | undefined;
     onProgressChangeStart?: ((event?: Event) => void) | undefined;
     onProgressChangeEnd?: ((event?: Event) => void) | undefined;
     onDragStart?: ((event?: Event) => void) | undefined;
@@ -118,6 +124,11 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     */
     get headerTemplate(): any;
     set headerTemplate(value: any);
+    /** By default the Timeline has a two level header - timeline details and timeline header. This property hides the header details container( the top container ).
+    *	Property type: boolean
+    */
+    get hideTimelineHeaderDetails(): boolean;
+    set hideTimelineHeaderDetails(value: boolean);
     /** Hides the Resource panel regardless of the resources availability By default the Resource panel is visible if resources are added to the GanttChart. This property allows to hide the Resource panel permanently.
     *	Property type: boolean
     */
@@ -178,6 +189,11 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     */
     get popupWindowCustomizationFunction(): any;
     set popupWindowCustomizationFunction(value: any);
+    /** A format function for the Timeline task progress label. The expected result from the function is a string. The label is hidden by default can be shown with the showProgressLabel property.
+    *	Property type: any
+    */
+    get progressLabelFormatFunction(): any;
+    set progressLabelFormatFunction(value: any);
     /** A getter that returns a flat structure as an array of all resources inside the element.
     *	Property type: GanttChartResource[]
     */
@@ -233,6 +249,11 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     */
     get selectedIndexes(): number[];
     set selectedIndexes(value: number[]);
+    /** Shows the progress label inside the progress bars of the Timeline tasks.
+    *	Property type: boolean
+    */
+    get showProgressLabel(): boolean;
+    set showProgressLabel(value: boolean);
     /** If set the dateStart/dateEnd of the tasks will be coerced to the nearest timeline cell date ( according to the view ). Affects the dragging operation as well.
     *	Property type: boolean
     */
@@ -283,7 +304,7 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     */
     get treeSize(): any;
     set treeSize(value: any);
-    /** A format function for the Header of the Timeline.
+    /** A format function for the Header of the Timeline. The function provides the following arguments: date - a Date object that represets the date for the current cell.type - a string that represents the type of date that the cell is showing, e.g. 'month', 'week', 'day', etc.isHeaderDetails - a boolean that indicates whether the current cell is part of the Header Details Container or not.value - a string that represents the default value for the cell provided by the element.
     *	Property type: any
     */
     get timelineHeaderFormatFunction(): any;
@@ -319,12 +340,43 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
     get properties(): string[];
+    /**  This event is triggered when a batch update was started after executing the beginUpdate method.
+    *  @param event. The custom event. 	*/
+    onBeginUpdate?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a batch update was ended from after executing the endUpdate method.
+    *  @param event. The custom event. 	*/
+    onEndUpdate?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a Task is selected/unselected.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	value, 	oldValue)
     *   value - The index of the new selected task.
     *   oldValue - The index of the previously selected task.
     */
     onChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a task, resource or connection is clicked inside the Timeline or the Tree columns.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	type, 	originalEvent)
+    *   item - The item that was clicked. It cam be a task, resource or connection.
+    *   type - The type of item. Possible values are: 'task', 'resource', 'connection'.
+    *   originalEvent - The original DOM event.
+    */
+    onItemClick?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a Task/Resource/Connection is inserted.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	type, 	item)
+    *   type - The type of item that has been modified.
+    *   item - An object that represents the actual item with it's attributes.
+    */
+    onItemInsert?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a Task/Resource/Connection is removed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	type, 	item)
+    *   type - The type of item that has been modified.
+    *   item - An object that represents the actual item with it's attributes.
+    */
+    onItemRemove?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a Task/Resource/Connection is updated.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	type, 	item)
+    *   type - The type of item that has been modified.
+    *   item - An object that represents the actual item with it's attributes.
+    */
+    onItemUpdate?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the progress of a task bar starts to change as a result of user interaction. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	index, 	progress)
     *   index - The index of the task which progress is going to be changed.
@@ -486,21 +538,36 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     * @returns {any[]}
   */
     getState(): Promise<any>;
+    /** Returns the Tree path of a task/resource.
+    * @param {GanttChartTask | GanttChartResource | number} item. A GattChartTask/GanttChartResource item object or index.
+    * @returns {string}
+  */
+    getItemPath(item: GanttChartTask | GanttChartResource | number): Promise<any>;
     /** Returns the index of a task.
-    * @param {HTMLElement} task. A GattChartTask object.
+    * @param {GanttChartTask} task. A GattChartTask object.
     * @returns {number}
   */
-    getTaskIndex(task: HTMLElement): Promise<any>;
+    getTaskIndex(task: GanttChartTask): Promise<any>;
     /** Returns the tree path of a task.
-    * @param {GanttChartTask} task. Returns the Tree path of the task as a string.
+    * @param {GanttChartTask} task. A GanttChartTask object.
     * @returns {string}
   */
     getTaskPath(task: GanttChartTask): Promise<any>;
+    /** Returns teh Project of a task if any.
+    * @param {GanttChartTask} task. A GantChartTask object.
+    * @returns {GanttChartTask | undefined}
+  */
+    getTaskProject(task: GanttChartTask): Promise<any>;
     /** Returns the index of a resource.
     * @param {any} resource. A GanttChartResource object.
     * @returns {number}
   */
     getResourceIndex(resource: any): Promise<any>;
+    /** Returns the tasks that are assigned to the resource.
+    * @param {any} resource. A GanttChartResource object.
+    * @returns {any}
+  */
+    getResourceTasks(resource: any): Promise<any>;
     /** Unselects all currently selected items inside the GanttChart including Tasks and Resources. It also clears the assignment highlgihters.
     */
     clearSelection(): void;
@@ -521,14 +588,14 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     */
     insertTask(index: string | number, taskObject: any): void;
     /** Updates a task inside the timeline.
-    * @param {string | number} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    * @param {any} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
     * @param {any} taskObject. An object describing a Gantt Chart task. The properties of this object will be applied to the desired task.
     */
-    updateTask(index: string | number, taskObject: any): void;
+    updateTask(index: any, taskObject: any): void;
     /** Removes a task from the timeline.
-    * @param {string | number} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    * @param {any} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
     */
-    removeTask(index: string | number): void;
+    removeTask(index: any): void;
     /** Inserts a new resource.
     * @param {string | number} resourceId. A string that represents the id of a resource or it's hierarchical position, e.g. '0' ( following jqxTree syntax), or a number that represents the index of a resource.
     * @param {any} resourceObject?. An object describing a Gantt Chart resource.

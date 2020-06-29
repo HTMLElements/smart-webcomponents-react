@@ -1,0 +1,7 @@
+{
+    "main": "form.umd.js",
+    "module": "form.esm.js",
+	"typings": "form.d.ts",
+    "name": "smart-webcomponents-react/form",
+    "sideEffects": false
+  }

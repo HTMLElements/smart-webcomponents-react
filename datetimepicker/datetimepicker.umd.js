@@ -312,7 +312,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Sets dates, displayed as important in the calendar pop-up.
-	    *	Property type: string[]
+	    *	Property type: string[] | Date[]
 	    */
 	    get importantDates() {
 	        return this.nativeElement ? this.nativeElement.importantDates : undefined;

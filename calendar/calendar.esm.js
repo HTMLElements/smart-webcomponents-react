@@ -232,7 +232,7 @@ class Calendar extends React.Component {
         }
     }
     /** Sets the dates that will be displayed as important.
-    *	Property type: string[]
+    *	Property type: string[] | Date[]
     */
     get importantDates() {
         return this.nativeElement ? this.nativeElement.importantDates : undefined;
@@ -397,7 +397,7 @@ class Calendar extends React.Component {
         }
     }
     /** Sets the dates that will be selected. Selected dates are styled differently than the rest. The dates can be Date objects or strings in a valid date format.
-    *	Property type: string[]
+    *	Property type: string[] | Date[]
     */
     get selectedDates() {
         return this.nativeElement ? this.nativeElement.selectedDates : undefined;
@@ -600,7 +600,7 @@ class Calendar extends React.Component {
     }
     // Gets the events of the React component.
     get events() {
-        return ["onChange", "onDisplayModeChanging", "onDisplayModeChange", "onNavigationChanging", "onNavigationChange", "onCreate", "onReady"];
+        return ["onChange", "onDisplayModeChanging", "onDisplayModeChange", "onNavigationChanging", "onNavigationChange", "onOpen", "onClose", "onCreate", "onReady"];
     }
     /** Clears the selection. Removes all seleceted dates.
     */

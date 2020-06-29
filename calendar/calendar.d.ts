@@ -12,6 +12,8 @@ export interface CalendarProps extends CalendarProperties {
     onDisplayModeChange?: ((event?: Event) => void) | undefined;
     onNavigationChanging?: ((event?: Event) => void) | undefined;
     onNavigationChange?: ((event?: Event) => void) | undefined;
+    onOpen?: ((event?: Event) => void) | undefined;
+    onClose?: ((event?: Event) => void) | undefined;
 }
 /**
  Calendar allows user to easily select one or more dates. This control supports multi-calendar view, special dates, holidays, weekends, decade views.
@@ -107,10 +109,10 @@ export declare class Calendar extends React.Component<React.HTMLProps<Element> &
     get hideTooltipArrow(): boolean;
     set hideTooltipArrow(value: boolean);
     /** Sets the dates that will be displayed as important.
-    *	Property type: string[]
+    *	Property type: string[] | Date[]
     */
-    get importantDates(): string[];
-    set importantDates(value: string[]);
+    get importantDates(): string[] | Date[];
+    set importantDates(value: string[] | Date[]);
     /** Sets a template for the important dates. Accepts the id of an HTMLTemplate element inside the DOM of or a reference to it.
     *	Property type: any
     */
@@ -182,10 +184,10 @@ export declare class Calendar extends React.Component<React.HTMLProps<Element> &
     get scrollButtonsPosition(): LayoutPosition;
     set scrollButtonsPosition(value: LayoutPosition);
     /** Sets the dates that will be selected. Selected dates are styled differently than the rest. The dates can be Date objects or strings in a valid date format.
-    *	Property type: string[]
+    *	Property type: string[] | Date[]
     */
-    get selectedDates(): string[];
-    set selectedDates(value: string[]);
+    get selectedDates(): string[] | Date[];
+    set selectedDates(value: string[] | Date[]);
     /** Determines the date selection mode.
     *	Property type: CalendarSelectionMode
     */
@@ -298,6 +300,18 @@ export declare class Calendar extends React.Component<React.HTMLProps<Element> &
     *   type - The view type - 'month', 'decade' or 'year'.
     */
     onNavigationChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the tooltip for the important date is opened.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	value)
+    *   target - The event target - tooltip.
+    *   value - The important date of the hovered cell.
+    */
+    onOpen?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the tooltip for the important date is closed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	value)
+    *   target - The event target - tooltip.
+    *   value - The important date of the hovered cell.
+    */
+    onClose?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;

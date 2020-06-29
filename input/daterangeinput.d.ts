@@ -137,11 +137,11 @@ export declare class DateRangeInput extends React.Component<React.HTMLProps<Elem
     */
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
-    /** Sets or gets the value of the element.
-    *	Property type: string
+    /** Sets or gets the value of the element. The type of the value depends on the valueType property.
+    *	Property type: any
     */
-    get value(): string;
-    set value(value: string);
+    get value(): any;
+    set value(value: any);
     /** Determines the value type returned from the `value` property.
     *	Property type: DateRangeInputValueType
     */
