@@ -21,6 +21,7 @@ export interface ComboBoxProps extends ComboBoxProperties {
     onResizeEnd?: ((event?: Event) => void) | undefined;
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
     onScrollTopReached?: ((event?: Event) => void) | undefined;
+    onTokenClick?: ((event?: Event) => void) | undefined;
 }
 /**
  ComboBox is the alternate for the HTML select tag with editable option. It supports data binding, auto-complete, filtering, grouping, cascading and more.
@@ -405,6 +406,9 @@ export declare class ComboBox extends React.Component<React.HTMLProps<Element> &
     /**  This event is triggered when user scrolls to the start of the dropDown list.
     *  @param event. The custom event. 	*/
     onScrollTopReached?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a token item(pill) has been clicked. This event allows to cancel the opening operation calling event.preventDefault() in the event handler function.
+    *  @param event. The custom event. 	*/
+    onTokenClick?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;

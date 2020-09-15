@@ -714,8 +714,8 @@ require('../source/modules/smart.splitter');
             }
         }
         /** Inserts the specified "smart-splitter-item" node before the reference "smart-splitter-item" node.
-        * @param {Node} newNode. The  "smart-splitter-item" node to insert.
-        * @param {Node | null} referenceNode?. The "smart-splitter-item" node before which newNode is inserted.
+        * @param {Node} newNode. The  "jqx-splitter-item" node to insert.
+        * @param {Node | null} referenceNode?. The "jqx-splitter-item" node before which newNode is inserted.
         * @returns {Node}
       */
         insertBefore(newNode, referenceNode) {
@@ -784,7 +784,7 @@ require('../source/modules/smart.splitter');
             }
         }
         /** Removes a child "smart-splitter-item" node.
-        * @param {Node} node. The "smart-splitter-item" node to remove.
+        * @param {Node} node. The "jqx-splitter-item" node to remove.
         * @returns {Node}
       */
         removeChild(node) {

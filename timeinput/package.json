@@ -1,0 +1,7 @@
+{
+    "main": "timeinput.umd.js",
+    "module": "timeinput.esm.js",
+	"typings": "timeinput.d.ts",
+    "name": "smart-webcomponents-react/timeinput",
+    "sideEffects": false
+  }

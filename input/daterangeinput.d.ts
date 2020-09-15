@@ -22,7 +22,7 @@ export declare class DateRangeInput extends React.Component<React.HTMLProps<Elem
     */
     get animation(): Animation;
     set animation(value: Animation);
-    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date foramt is determined by the 'locale' property.
+    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is determined by the 'locale' property.
     *	Property type: DateRangeInputDateFormat
     */
     get dateFormat(): DateRangeInputDateFormat;

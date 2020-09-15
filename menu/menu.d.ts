@@ -184,7 +184,7 @@ export declare class Menu extends React.Component<React.HTMLProps<Element> & Men
     *   trigger - Indicates whether the event was called from inside the element or programatically.
     */
     onClosing?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a smart-menu-items-group is collapsed.
+    /**  This event is triggered when a jqx-menu-items-group is collapsed.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	label, 	value, 	path, 	children)
     *   item - The menu item that was collapsed.
     *   label - The label of the toggled item that was collapsed.
@@ -193,7 +193,7 @@ export declare class Menu extends React.Component<React.HTMLProps<Element> & Men
     *   children - The children items of the toggled item that was collapsed.
     */
     onCollapse?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a smart-menu-items-group is collapsing.
+    /**  This event is triggered when a jqx-menu-items-group is collapsing.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	label, 	value, 	path, 	children)
     *   item - The menu item that is going to be collapsed.
     *   label - The label of the toggled item that is going to be collapsed.
@@ -202,7 +202,7 @@ export declare class Menu extends React.Component<React.HTMLProps<Element> & Men
     *   children - The children items of the toggled item that is going to be collapsed.
     */
     onCollapsing?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a smart-menu-items-group is expanded.
+    /**  This event is triggered when a jqx-menu-items-group is expanded.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	label, 	value, 	path, 	children)
     *   item - The menu item that was expanded.
     *   label - The label of the toggled item that was expanded.
@@ -211,7 +211,7 @@ export declare class Menu extends React.Component<React.HTMLProps<Element> & Men
     *   children - The children items of the toggled item that was expanded.
     */
     onExpand?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered before a smart-menu-items-group is expanded.
+    /**  This event is triggered before a jqx-menu-items-group is expanded.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	label, 	value, 	path, 	children)
     *   item - The menu item that is going to be expanded.
     *   label - The label of the toggled item that is going to be expanded.
@@ -249,12 +249,12 @@ export declare class Menu extends React.Component<React.HTMLProps<Element> & Men
     onReady?: ((event?: Event) => void) | undefined;
     get events(): string[];
     /** Adds an item to the menu.
-    * @param {HTMLElement} Item. A smart-menu-item to add to the Menu.
-    * @param {HTMLElement | string} Parent?. The smart-menu-items-group or its id or numeric path to add the item to.
+    * @param {HTMLElement} Item. A jqx-menu-item to add to the Menu.
+    * @param {HTMLElement | string} Parent?. The jqx-menu-items-group or its id or numeric path to add the item to.
     */
     addItem(Item: HTMLElement, Parent?: HTMLElement | string): void;
     /** Checks an item.
-    * @param {HTMLElement | string} item. smart-menu-item/smart-menu-items-group or its id or numeric path.
+    * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group or its id or numeric path.
     */
     checkItem(item: HTMLElement | string): void;
     /** Clears all Menu items.
@@ -264,12 +264,12 @@ export declare class Menu extends React.Component<React.HTMLProps<Element> & Men
     */
     close(): void;
     /** Collapses an item.
-    * @param {HTMLElement | string} item?. smart-menu-item/smart-menu-items-group or its id or numeric path. If no item is passed, all open items are collapsed.
+    * @param {HTMLElement | string} item?. jqx-menu-item/jqx-menu-items-group or its id or numeric path. If no item is passed, all open items are collapsed.
     * @param {boolean} animation?. If set to false, disables collapse animation even if animation is enabled for the element.
     */
     collapseItem(item?: HTMLElement | string, animation?: boolean): void;
     /** Expands an item.
-    * @param {HTMLElement | string} item. smart-menu-item/smart-menu-items-group or its id or numeric path.
+    * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group or its id or numeric path.
     * @param {boolean} animation?. If set to false, disables expand animation even if animation is enabled for the element.
     */
     expandItem(item: HTMLElement | string, animation?: boolean): void;
@@ -290,11 +290,11 @@ export declare class Menu extends React.Component<React.HTMLProps<Element> & Men
     */
     open(left: number, top: number): void;
     /** Removes an item from the menu.
-    * @param {HTMLElement | string} item. The smart-menu-item/smart-menu-items-group or its id or numeric path to remove.
+    * @param {HTMLElement | string} item. The jqx-menu-item/jqx-menu-items-group or its id or numeric path to remove.
     */
     removeItem(item: HTMLElement | string): void;
     /** Unchecks an item.
-    * @param {HTMLElement | string} item. smart-menu-item/smart-menu-items-group (or its id or numeric path)
+    * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group (or its id or numeric path)
     */
     uncheckItem(item: HTMLElement | string): void;
     constructor(props: any);

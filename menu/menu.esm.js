@@ -781,8 +781,8 @@ class Menu extends React.Component {
         return ["onClose", "onClosing", "onCollapse", "onCollapsing", "onExpand", "onExpanding", "onItemCheckChange", "onItemClick", "onOpen", "onOpening", "onCreate", "onReady"];
     }
     /** Adds an item to the menu.
-    * @param {HTMLElement} Item. A smart-menu-item to add to the Menu.
-    * @param {HTMLElement | string} Parent?. The smart-menu-items-group or its id or numeric path to add the item to.
+    * @param {HTMLElement} Item. A jqx-menu-item to add to the Menu.
+    * @param {HTMLElement | string} Parent?. The jqx-menu-items-group or its id or numeric path to add the item to.
     */
     addItem(Item, Parent) {
         if (this.nativeElement.isRendered) {
@@ -795,7 +795,7 @@ class Menu extends React.Component {
         }
     }
     /** Checks an item.
-    * @param {HTMLElement | string} item. smart-menu-item/smart-menu-items-group or its id or numeric path.
+    * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group or its id or numeric path.
     */
     checkItem(item) {
         if (this.nativeElement.isRendered) {
@@ -832,7 +832,7 @@ class Menu extends React.Component {
         }
     }
     /** Collapses an item.
-    * @param {HTMLElement | string} item?. smart-menu-item/smart-menu-items-group or its id or numeric path. If no item is passed, all open items are collapsed.
+    * @param {HTMLElement | string} item?. jqx-menu-item/jqx-menu-items-group or its id or numeric path. If no item is passed, all open items are collapsed.
     * @param {boolean} animation?. If set to false, disables collapse animation even if animation is enabled for the element.
     */
     collapseItem(item, animation) {
@@ -846,7 +846,7 @@ class Menu extends React.Component {
         }
     }
     /** Expands an item.
-    * @param {HTMLElement | string} item. smart-menu-item/smart-menu-items-group or its id or numeric path.
+    * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group or its id or numeric path.
     * @param {boolean} animation?. If set to false, disables expand animation even if animation is enabled for the element.
     */
     expandItem(item, animation) {
@@ -916,7 +916,7 @@ class Menu extends React.Component {
         }
     }
     /** Removes an item from the menu.
-    * @param {HTMLElement | string} item. The smart-menu-item/smart-menu-items-group or its id or numeric path to remove.
+    * @param {HTMLElement | string} item. The jqx-menu-item/jqx-menu-items-group or its id or numeric path to remove.
     */
     removeItem(item) {
         if (this.nativeElement.isRendered) {
@@ -929,7 +929,7 @@ class Menu extends React.Component {
         }
     }
     /** Unchecks an item.
-    * @param {HTMLElement | string} item. smart-menu-item/smart-menu-items-group (or its id or numeric path)
+    * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group (or its id or numeric path)
     */
     uncheckItem(item) {
         if (this.nativeElement.isRendered) {

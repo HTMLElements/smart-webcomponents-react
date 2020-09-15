@@ -1108,7 +1108,7 @@ class ComboBox extends React.Component {
     }
     // Gets the events of the React component.
     get events() {
-        return ["onChange", "onClose", "onClosing", "onItemClick", "onOpen", "onOpening", "onResizeStart", "onResizeEnd", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
+        return ["onChange", "onClose", "onClosing", "onItemClick", "onOpen", "onOpening", "onResizeStart", "onResizeEnd", "onScrollBottomReached", "onScrollTopReached", "onTokenClick", "onCreate", "onReady"];
     }
     /** Appends a ListItem to the end of the list of items inside element.
     * @param {Node} node. A ListItem element that should be added to the rest of the items as the last item.

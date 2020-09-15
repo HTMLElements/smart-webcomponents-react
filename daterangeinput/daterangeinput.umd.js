@@ -1,5 +1,5 @@
 
-require('../source/modules/smart.daterangeinput');
+require('../source/modules/smart.input');
 
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
@@ -36,7 +36,7 @@ require('../source/modules/smart.daterangeinput');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date foramt is determined by the 'locale' property.
+	    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is determined by the 'locale' property.
 	    *	Property type: DateRangeInputDateFormat
 	    */
 	    get dateFormat() {

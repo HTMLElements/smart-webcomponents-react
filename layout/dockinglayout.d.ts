@@ -159,26 +159,26 @@ export declare class DockingLayout extends React.Component<React.HTMLProps<Eleme
     onReady?: ((event?: Event) => void) | undefined;
     get events(): string[];
     /** Makes a "smart-tabs-window" node, that is a child of the Layout, auto hidden by placing it at the Bottom position inside the element. This means that the item will be positioned near the bottom side of the layout and it's content will be hidden until the user selects one of it's labels.
-    * @param {HTMLElement | number | string} node. The "smart-tabs-window" or "smart-tab-item" node to append
+    * @param {HTMLElement | number | string} node. The "jqx-tabs-window" or "jqx-tab-item" node to append
     */
     autoHideBottom(node: HTMLElement | number | string): void;
     /** Makes a "smart-tabs-window" node, that is a child of the Layout, auto hidden by placing it at the Left position inside the layout. This means that the item will be positioned near the left side of the layout and it's content will be hidden until the user selects one of it's labels.
-    * @param {HTMLElement | number | string} node. The "smart-tabs-window" or "smart-tab-item" node to append
+    * @param {HTMLElement | number | string} node. The "jqx-tabs-window" or "jqx-tab-item" node to append
     */
     autoHideLeft(node: HTMLElement | number | string): void;
     /** Makes a "smart-tabs-window" node, that is a child of the Layout, auto hidden by placing it at the Right position inside the layout. This means that the item will be positioned near the right side of the layout and it's content will be hidden until the user selects one of it's labels.
-    * @param {HTMLElement | number | string} node. The "smart-tabs-window" or "smart-tab-item" node to append
+    * @param {HTMLElement | number | string} node. The "jqx-tabs-window" or "jqx-tab-item" node to append
     */
     autoHideRight(node: HTMLElement | number | string): void;
     /** Makes a "smart-tabs-window" node, that is a child of the Layout, auto hidden by placing it at the Top position inside the layout. This means that the item will be positioned near the top side of the layout and it's content will be hidden until the user selects one of it's labels.
-    * @param {HTMLElement | number | string} node. The "smart-tabs-window" or "smart-tab-item" node to append
+    * @param {HTMLElement | number | string} node. The "jqx-tabs-window" or "jqx-tab-item" node to append
     */
     autoHideTop(node: HTMLElement | number | string): void;
     /** Clears the localStorage of any previous cached state of the DockingLayout.
     */
     clearState(): void;
     /** The method will reset an autohidden item to it's normal behavior and re-insert it at a specified position. It can also be used to insert items into the DockingLayout. Note: Items inserted via this method are added as a top level items.
-    * @param {string | number | Node} node. An autohidden "smart-tabs-window" item instance or a new "smart-tabs-window" instance.
+    * @param {string | number | Node} node. An autohidden "jqx-tabs-window" item instance or a new "jqx-tabs-window" instance.
     * @returns {Node}
   */
     dock(node: string | number | Node): Promise<any>;
@@ -284,7 +284,7 @@ export declare class DockingLayout extends React.Component<React.HTMLProps<Eleme
     */
     removeAll(): void;
     /** Removes a "smart-tabs-window" node that is a DockingLayout item.
-    * @param {Node} node. The "smart-tabs-window" node to remove.
+    * @param {Node} node. The "jqx-tabs-window" node to remove.
     * @returns {Node}
   */
     removeChild(node: Node): Promise<any>;
@@ -292,7 +292,7 @@ export declare class DockingLayout extends React.Component<React.HTMLProps<Eleme
     */
     saveState(): void;
     /** The method undocks/removes an item from the Layout and places it at the same position but it's no more part of the layout. The item becomes an 'outher' item that can be reinserted at any time.
-    * @param {string | number | Node} node. A "smart-tabs-window" instance that is part of the DockingLayout.
+    * @param {string | number | Node} node. A "jqx-tabs-window" instance that is part of the DockingLayout.
     */
     undock(node: string | number | Node): void;
     /** Updates a TabsWindow and it's contents.

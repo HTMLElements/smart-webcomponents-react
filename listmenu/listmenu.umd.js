@@ -809,8 +809,8 @@ require('../source/modules/smart.listmenu');
             return ["onExpand", "onItemCheckChange", "onItemClick", "onScrollBottomReached", "onSwipeleft", "onSwiperight", "onCreate", "onReady"];
         }
         /** Adds an item to the list.
-        * @param {HTMLElement} Item. A smart-menu-item to add to the List Menu.
-        * @param {HTMLElement | string} Parent?. The smart-menu-items-group (or its id or numeric path) to add the item to.
+        * @param {HTMLElement} Item. A jqx-menu-item to add to the List Menu.
+        * @param {HTMLElement | string} Parent?. The jqx-menu-items-group (or its id or numeric path) to add the item to.
         */
         addItem(Item, Parent) {
             if (this.nativeElement.isRendered) {
@@ -836,7 +836,7 @@ require('../source/modules/smart.listmenu');
             }
         }
         /** Navigates to a particular page (smart-menu-items-group).
-        * @param {string} id. The id or numeric path of a page (smart-menu-items-group).
+        * @param {string} id. The id or numeric path of a page (jqx-menu-items-group).
         */
         changePage(id) {
             if (this.nativeElement.isRendered) {
@@ -849,7 +849,7 @@ require('../source/modules/smart.listmenu');
             }
         }
         /** Checks an item.
-        * @param {HTMLElement | string} item. smart-menu-item/smart-menu-items-group (or its id or numeric path).
+        * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group (or its id or numeric path).
         */
         checkItem(item) {
             if (this.nativeElement.isRendered) {
@@ -904,7 +904,7 @@ require('../source/modules/smart.listmenu');
             }
         }
         /** Removes an item.
-        * @param {HTMLElement | string} item. The smart-menu-item/smart-menu-items-group (or its id or numeric path) to remove.
+        * @param {HTMLElement | string} item. The jqx-menu-item/jqx-menu-items-group (or its id or numeric path) to remove.
         */
         removeItem(item) {
             if (this.nativeElement.isRendered) {
@@ -917,7 +917,7 @@ require('../source/modules/smart.listmenu');
             }
         }
         /** Unchecks an item.
-        * @param {HTMLElement | string} item. smart-menu-item/smart-menu-items-group (or its id or numeric path).
+        * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group (or its id or numeric path).
         */
         uncheckItem(item) {
             if (this.nativeElement.isRendered) {

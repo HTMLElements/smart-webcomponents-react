@@ -8,7 +8,9 @@ export interface TooltipProps extends TooltipProperties {
     className?: string;
     style?: React.CSSProperties;
     onOpen?: ((event?: Event) => void) | undefined;
+    onOpening?: ((event?: Event) => void) | undefined;
     onClose?: ((event?: Event) => void) | undefined;
+    onClosing?: ((event?: Event) => void) | undefined;
 }
 /**
  Tooltip is an alternate for the html title. It displays a popup with details on hover.
@@ -107,9 +109,15 @@ export declare class Tooltip extends React.Component<React.HTMLProps<Element> & 
     /**  This event is triggered when the tooltip is opened.
     *  @param event. The custom event. 	*/
     onOpen?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered before the tooltip is opened. The event can be prevented via event.preventDefault().
+    *  @param event. The custom event. 	*/
+    onOpening?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the tooltip is closed.
     *  @param event. The custom event. 	*/
     onClose?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered before the tooltip is closed. The event can be prevented via event.preventDefault().
+    *  @param event. The custom event. 	*/
+    onClosing?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;
@@ -126,6 +134,9 @@ export declare class Tooltip extends React.Component<React.HTMLProps<Element> & 
     /** Toggles smart-tooltip.
     */
     toggle(): void;
+    /** Clears the content of the Tooltip.
+    */
+    clear(): void;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

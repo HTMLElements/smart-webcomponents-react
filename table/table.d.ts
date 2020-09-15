@@ -1,8 +1,8 @@
 import React from "react";
 import { TableProperties } from "./../index";
-import { Animation, TableEditMode, TablePageSize, TableSortMode, TableColumn } from './../index';
+import { Animation, TableColumnSizeMode, TableEditMode, TablePageSize, TableSelectionMode, TableSortMode, TableColumn, TableConditionalFormatting } from './../index';
 export { TableProperties } from "./../index";
-export { Animation, TableColumnDataType, TableColumnFreeze, TableColumnResponsivePriority, TableEditMode, TablePageSize, TableSortMode, TableColumn } from './../index';
+export { Animation, TableColumnDataType, TableColumnFreeze, TableColumnResponsivePriority, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableEditMode, TablePageSize, TableSelectionMode, TableSortMode, TableColumn, TableConditionalFormatting } from './../index';
 export declare const Smart: any;
 export interface TableProps extends TableProperties {
     className?: string;
@@ -10,6 +10,7 @@ export interface TableProps extends TableProperties {
     onCellBeginEdit?: ((event?: Event) => void) | undefined;
     onCellClick?: ((event?: Event) => void) | undefined;
     onCellEndEdit?: ((event?: Event) => void) | undefined;
+    onChange?: ((event?: Event) => void) | undefined;
     onColumnClick?: ((event?: Event) => void) | undefined;
     onFilter?: ((event?: Event) => void) | undefined;
     onGroup?: ((event?: Event) => void) | undefined;
@@ -29,21 +30,56 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     */
     get animation(): Animation;
     set animation(value: Animation);
-    /** Describes the columns properties.
-    *	Property type: TableColumn[]
+    /** Enables or disables auto load state from the browser's localStorage. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is loaded, based on the value of the stateSettings property.
+    *	Property type: boolean
     */
-    get columns(): TableColumn[];
-    set columns(value: TableColumn[]);
+    get autoLoadState(): boolean;
+    set autoLoadState(value: boolean);
+    /** Enables or disables auto save state to the browser's localStorage. Information about columns, expanded rows, selected rows, applied fitering, grouping, and   sorted columns is saved, based on the value of the stateSettings property.
+    *	Property type: boolean
+    */
+    get autoSaveState(): boolean;
+    set autoSaveState(value: boolean);
+    /** Sets or gets the min width of columns when columnSizeMode is 'auto'.
+    *	Property type: string | number
+    */
+    get columnMinWidth(): string | number;
+    set columnMinWidth(value: string | number);
     /** Sets or gets whether the reordering of columns is enabled.
     *	Property type: boolean
     */
     get columnReorder(): boolean;
     set columnReorder(value: boolean);
+    /** Describes the columns properties.
+    *	Property type: TableColumn[]
+    */
+    get columns(): TableColumn[];
+    set columns(value: TableColumn[]);
+    /** Sets or gets details about conditional formatting to be applied to the Table's cells.
+    *	Property type: TableConditionalFormatting[]
+    */
+    get conditionalFormatting(): TableConditionalFormatting[];
+    set conditionalFormatting(value: TableConditionalFormatting[]);
+    /** Sets or gets the column sizing behavior.
+    *	Property type: TableColumnSizeMode
+    */
+    get columnSizeMode(): TableColumnSizeMode;
+    set columnSizeMode(value: TableColumnSizeMode);
+    /** Sets or gets whether the "Conditional Formatting" button appears in the Table's header (toolbar). Clicking this button opens a dialog with formatting options.
+    *	Property type: boolean
+    */
+    get conditionalFormattingButton(): boolean;
+    set conditionalFormattingButton(value: boolean);
     /** Determines the data source of the table component.
     *	Property type: any
     */
     get dataSource(): any;
     set dataSource(value: any);
+    /** A callback function that can be used to transform the initial dataSource records. If implemented, it is called once for each record (which is passed as an argument).
+    *	Property type: any
+    */
+    get dataTransform(): any;
+    set dataTransform(value: any);
     /** Disables the interaction with the element.
     *	Property type: boolean
     */
@@ -167,16 +203,36 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     */
     get selection(): boolean;
     set selection(value: boolean);
+    /** Sets or gets the selection mode. Only applicable when selection is enabled.
+    *	Property type: TableSelectionMode
+    */
+    get selectionMode(): TableSelectionMode;
+    set selectionMode(value: TableSelectionMode);
+    /** A callback function executed when a column is sorted that can be used to override the default sorting behavior. The function is passed four parameters: dataSource - the Table's data sourcesortColumns - an array of the data fields of columns to be sorted bydirections - an array of sort directions to be sorted by (corresponding to sortColumns)defaultCompareFunctions - an array of default compare functions to be sorted by (corresponding to sortColumns), useful if the sorting of some columns does not have to be overridden
+    *	Property type: any
+    */
+    get sort(): any;
+    set sort(value: any);
     /** Determines the sorting mode of the Table.
     *	Property type: TableSortMode
     */
     get sortMode(): TableSortMode;
     set sortMode(value: TableSortMode);
+    /** Sets or gets what settings of the Table's state can be saved (by autoSaveState or saveState) or loaded (by autoLoadState or loadState).
+    *	Property type: string[]
+    */
+    get stateSettings(): string[];
+    set stateSettings(value: string[]);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */
     get theme(): string;
     set theme(value: string);
+    /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
+    *	Property type: boolean
+    */
+    get tooltip(): boolean;
+    set tooltip(value: boolean);
     get properties(): string[];
     /**  This event is triggered when a cell edit operation has been initiated.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	row)
@@ -196,6 +252,9 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     *   row - The new data of the cell's row.
     */
     onCellEndEdit?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the selection is changed.
+    *  @param event. The custom event. 	*/
+    onChange?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a column header cell has been clicked.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField)
     *   dataField - The data field of the cell's column.
@@ -267,7 +326,7 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     * @param {string} index. The group's hierarchical index.
     */
     collapseGroup(index: string): void;
-    /** Collapses a group.
+    /** Collapses a row (in tree mode).
     * @param {string | number} rowId. The id of the row to collapse.
     */
     collapseRow(rowId: string | number): void;
@@ -297,12 +356,20 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     * @returns {(string | number)[]}
   */
     getSelection(): Promise<any>;
+    /** Returns the Table's state, containing information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns. It can then be stored or passed to the method loadState.
+    * @returns {any}
+  */
+    getState(): Promise<any>;
     /** Returns the value of a cell.
     * @param {string | number} row. The id of the cell's row.
     * @param {string} dataField. The dataField of the cell's column.
     * @returns {any}
   */
     getValue(row: string | number, dataField: string): Promise<any>;
+    /** Loads the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is loaded, based on the value of the stateSettings property.
+    * @param {any} state?. An object returned by one of the methods <strong>getState</strong> or <strong>saveState</strong>. If a state is not passed, the method tries to load the state from the browser's localStorage.
+    */
+    loadState(state?: any): void;
     /** Navigates to a page.
     * @param {number} pageIndex. The zero-based page index to navigate to.
     */
@@ -318,6 +385,10 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     * @param {string} dataField. The column's data field.
     */
     removeGroup(dataField: string): void;
+    /** Saves the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is saved, based on the value of the stateSettings property.
+    * @returns {any}
+  */
+    saveState(): Promise<any>;
     /** Selects a row.
     * @param {string | number} rowId. The id of the row to select.
     */
@@ -330,7 +401,7 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     setValue(row: string | number, dataField: string, value: any): void;
     /** Sorts the Table by a column.
     * @param {string} columnDataField. Column field name.
-    * @param {string} sortOrder?. Sort order. Possible values: 'asc' (ascending) and 'desc' (descending).
+    * @param {string} sortOrder?. Sort order. Possible values: 'asc' (ascending), 'desc' (descending), and null (removes sorting by column). If not provided, toggles the sorting.
     */
     sortBy(columnDataField: string, sortOrder?: string): void;
     /** Unselects a row.

@@ -1,5 +1,5 @@
 
-import '../source/modules/smart.daterangeinput';
+import '../source/modules/smart.input';
 
 import React from 'react';
 
@@ -30,7 +30,7 @@ class DateRangeInput extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date foramt is determined by the 'locale' property.
+    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is determined by the 'locale' property.
     *	Property type: DateRangeInputDateFormat
     */
     get dateFormat() {

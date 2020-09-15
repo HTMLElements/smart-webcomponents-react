@@ -17,10 +17,10 @@ export declare class FormControl extends React.Component<React.HTMLProps<Element
     private componentRef;
     get id(): string;
     /** HTML Content displayed after the Form Control
-    *	Property type: string
+    *	Property type: any
     */
-    get append(): string;
-    set append(value: string);
+    get appendHTML(): any;
+    set appendHTML(value: any);
     /** JSON object with initialization properties of the UI component. Example: { dataSource: ['item 1', 'item 2', 'item 3'] } will set the dataSource property of the Form control.
     *	Property type: any
     */
@@ -97,10 +97,10 @@ export declare class FormControl extends React.Component<React.HTMLProps<Element
     get backButtonLabel(): string;
     set backButtonLabel(value: string);
     /** HTML Content displayed before the Form Control
-    *	Property type: string
+    *	Property type: any
     */
-    get prepend(): string;
-    set prepend(value: string);
+    get prependHTML(): any;
+    set prependHTML(value: any);
     /** Gets or Sets the Form control readonly mode.
     *	Property type: boolean
     */

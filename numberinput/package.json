@@ -1,0 +1,7 @@
+{
+    "main": "numberinput.umd.js",
+    "module": "numberinput.esm.js",
+	"typings": "numberinput.d.ts",
+    "name": "smart-webcomponents-react/numberinput",
+    "sideEffects": false
+  }

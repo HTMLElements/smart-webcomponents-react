@@ -212,7 +212,7 @@ class Tooltip extends React.Component {
     }
     // Gets the events of the React component.
     get events() {
-        return ["onOpen", "onClose", "onCreate", "onReady"];
+        return ["onOpen", "onOpening", "onClose", "onClosing", "onCreate", "onReady"];
     }
     /** Closes smart-tooltip.
     */
@@ -247,6 +247,18 @@ class Tooltip extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.toggle();
+            });
+        }
+    }
+    /** Clears the content of the Tooltip.
+    */
+    clear() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.clear();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.clear();
             });
         }
     }

@@ -61,15 +61,37 @@ require('../source/modules/smart.table');
                 this.nativeElement.animation = value;
             }
         }
-        /** Describes the columns properties.
-        *	Property type: TableColumn[]
+        /** Enables or disables auto load state from the browser's localStorage. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is loaded, based on the value of the stateSettings property.
+        *	Property type: boolean
         */
-        get columns() {
-            return this.nativeElement ? this.nativeElement.columns : undefined;
+        get autoLoadState() {
+            return this.nativeElement ? this.nativeElement.autoLoadState : undefined;
         }
-        set columns(value) {
+        set autoLoadState(value) {
             if (this.nativeElement) {
-                this.nativeElement.columns = value;
+                this.nativeElement.autoLoadState = value;
+            }
+        }
+        /** Enables or disables auto save state to the browser's localStorage. Information about columns, expanded rows, selected rows, applied fitering, grouping, and   sorted columns is saved, based on the value of the stateSettings property.
+        *	Property type: boolean
+        */
+        get autoSaveState() {
+            return this.nativeElement ? this.nativeElement.autoSaveState : undefined;
+        }
+        set autoSaveState(value) {
+            if (this.nativeElement) {
+                this.nativeElement.autoSaveState = value;
+            }
+        }
+        /** Sets or gets the min width of columns when columnSizeMode is 'auto'.
+        *	Property type: string | number
+        */
+        get columnMinWidth() {
+            return this.nativeElement ? this.nativeElement.columnMinWidth : undefined;
+        }
+        set columnMinWidth(value) {
+            if (this.nativeElement) {
+                this.nativeElement.columnMinWidth = value;
             }
         }
         /** Sets or gets whether the reordering of columns is enabled.
@@ -83,6 +105,50 @@ require('../source/modules/smart.table');
                 this.nativeElement.columnReorder = value;
             }
         }
+        /** Describes the columns properties.
+        *	Property type: TableColumn[]
+        */
+        get columns() {
+            return this.nativeElement ? this.nativeElement.columns : undefined;
+        }
+        set columns(value) {
+            if (this.nativeElement) {
+                this.nativeElement.columns = value;
+            }
+        }
+        /** Sets or gets details about conditional formatting to be applied to the Table's cells.
+        *	Property type: TableConditionalFormatting[]
+        */
+        get conditionalFormatting() {
+            return this.nativeElement ? this.nativeElement.conditionalFormatting : undefined;
+        }
+        set conditionalFormatting(value) {
+            if (this.nativeElement) {
+                this.nativeElement.conditionalFormatting = value;
+            }
+        }
+        /** Sets or gets the column sizing behavior.
+        *	Property type: TableColumnSizeMode
+        */
+        get columnSizeMode() {
+            return this.nativeElement ? this.nativeElement.columnSizeMode : undefined;
+        }
+        set columnSizeMode(value) {
+            if (this.nativeElement) {
+                this.nativeElement.columnSizeMode = value;
+            }
+        }
+        /** Sets or gets whether the "Conditional Formatting" button appears in the Table's header (toolbar). Clicking this button opens a dialog with formatting options.
+        *	Property type: boolean
+        */
+        get conditionalFormattingButton() {
+            return this.nativeElement ? this.nativeElement.conditionalFormattingButton : undefined;
+        }
+        set conditionalFormattingButton(value) {
+            if (this.nativeElement) {
+                this.nativeElement.conditionalFormattingButton = value;
+            }
+        }
         /** Determines the data source of the table component.
         *	Property type: any
         */
@@ -92,6 +158,17 @@ require('../source/modules/smart.table');
         set dataSource(value) {
             if (this.nativeElement) {
                 this.nativeElement.dataSource = value;
+            }
+        }
+        /** A callback function that can be used to transform the initial dataSource records. If implemented, it is called once for each record (which is passed as an argument).
+        *	Property type: any
+        */
+        get dataTransform() {
+            return this.nativeElement ? this.nativeElement.dataTransform : undefined;
+        }
+        set dataTransform(value) {
+            if (this.nativeElement) {
+                this.nativeElement.dataTransform = value;
             }
         }
         /** Disables the interaction with the element.
@@ -347,6 +424,28 @@ require('../source/modules/smart.table');
                 this.nativeElement.selection = value;
             }
         }
+        /** Sets or gets the selection mode. Only applicable when selection is enabled.
+        *	Property type: TableSelectionMode
+        */
+        get selectionMode() {
+            return this.nativeElement ? this.nativeElement.selectionMode : undefined;
+        }
+        set selectionMode(value) {
+            if (this.nativeElement) {
+                this.nativeElement.selectionMode = value;
+            }
+        }
+        /** A callback function executed when a column is sorted that can be used to override the default sorting behavior. The function is passed four parameters: dataSource - the Table's data sourcesortColumns - an array of the data fields of columns to be sorted bydirections - an array of sort directions to be sorted by (corresponding to sortColumns)defaultCompareFunctions - an array of default compare functions to be sorted by (corresponding to sortColumns), useful if the sorting of some columns does not have to be overridden
+        *	Property type: any
+        */
+        get sort() {
+            return this.nativeElement ? this.nativeElement.sort : undefined;
+        }
+        set sort(value) {
+            if (this.nativeElement) {
+                this.nativeElement.sort = value;
+            }
+        }
         /** Determines the sorting mode of the Table.
         *	Property type: TableSortMode
         */
@@ -356,6 +455,17 @@ require('../source/modules/smart.table');
         set sortMode(value) {
             if (this.nativeElement) {
                 this.nativeElement.sortMode = value;
+            }
+        }
+        /** Sets or gets what settings of the Table's state can be saved (by autoSaveState or saveState) or loaded (by autoLoadState or loadState).
+        *	Property type: string[]
+        */
+        get stateSettings() {
+            return this.nativeElement ? this.nativeElement.stateSettings : undefined;
+        }
+        set stateSettings(value) {
+            if (this.nativeElement) {
+                this.nativeElement.stateSettings = value;
             }
         }
         /** Determines the theme. Theme defines the look of the element
@@ -369,13 +479,24 @@ require('../source/modules/smart.table');
                 this.nativeElement.theme = value;
             }
         }
+        /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
+        *	Property type: boolean
+        */
+        get tooltip() {
+            return this.nativeElement ? this.nativeElement.tooltip : undefined;
+        }
+        set tooltip(value) {
+            if (this.nativeElement) {
+                this.nativeElement.tooltip = value;
+            }
+        }
         // Gets the properties of the React component.
         get properties() {
-            return ["animation", "columns", "columnReorder", "dataSource", "disabled", "editing", "editMode", "filtering", "filterRow", "filterTemplate", "footerRow", "freezeFooter", "freezeHeader", "grouping", "headerRow", "keyboardNavigation", "locale", "messages", "onCellRender", "onColumnRender", "onInit", "pageSize", "pageIndex", "paging", "rightToLeft", "rowDetailTemplate", "selection", "sortMode", "theme"];
+            return ["animation", "autoLoadState", "autoSaveState", "columnMinWidth", "columnReorder", "columns", "conditionalFormatting", "columnSizeMode", "conditionalFormattingButton", "dataSource", "dataTransform", "disabled", "editing", "editMode", "filtering", "filterRow", "filterTemplate", "footerRow", "freezeFooter", "freezeHeader", "grouping", "headerRow", "keyboardNavigation", "locale", "messages", "onCellRender", "onColumnRender", "onInit", "pageSize", "pageIndex", "paging", "rightToLeft", "rowDetailTemplate", "selection", "selectionMode", "sort", "sortMode", "stateSettings", "theme", "tooltip"];
         }
         // Gets the events of the React component.
         get events() {
-            return ["onCellBeginEdit", "onCellClick", "onCellEndEdit", "onColumnClick", "onFilter", "onGroup", "onPage", "onSort", "onCreate", "onReady"];
+            return ["onCellBeginEdit", "onCellClick", "onCellEndEdit", "onChange", "onColumnClick", "onFilter", "onGroup", "onPage", "onSort", "onCreate", "onReady"];
         }
         /** Adds a filter to a specific column.
         * @param {string} dataField. The column's data field.
@@ -503,7 +624,7 @@ require('../source/modules/smart.table');
                 });
             }
         }
-        /** Collapses a group.
+        /** Collapses a row (in tree mode).
         * @param {string | number} rowId. The id of the row to collapse.
         */
         collapseRow(rowId) {
@@ -604,6 +725,23 @@ require('../source/modules/smart.table');
                 return result;
             });
         }
+        /** Returns the Table's state, containing information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns. It can then be stored or passed to the method loadState.
+        * @returns {any}
+      */
+        getState() {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.getState();
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
         /** Returns the value of a cell.
         * @param {string | number} row. The id of the cell's row.
         * @param {string} dataField. The dataField of the cell's column.
@@ -622,6 +760,19 @@ require('../source/modules/smart.table');
                 const result = yield getResultOnRender();
                 return result;
             });
+        }
+        /** Loads the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is loaded, based on the value of the stateSettings property.
+        * @param {any} state?. An object returned by one of the methods <strong>getState</strong> or <strong>saveState</strong>. If a state is not passed, the method tries to load the state from the browser's localStorage.
+        */
+        loadState(state) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.loadState(state);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.loadState(state);
+                });
+            }
         }
         /** Navigates to a page.
         * @param {number} pageIndex. The zero-based page index to navigate to.
@@ -674,6 +825,23 @@ require('../source/modules/smart.table');
                 });
             }
         }
+        /** Saves the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is saved, based on the value of the stateSettings property.
+        * @returns {any}
+      */
+        saveState() {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.saveState();
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
         /** Selects a row.
         * @param {string | number} rowId. The id of the row to select.
         */
@@ -704,7 +872,7 @@ require('../source/modules/smart.table');
         }
         /** Sorts the Table by a column.
         * @param {string} columnDataField. Column field name.
-        * @param {string} sortOrder?. Sort order. Possible values: 'asc' (ascending) and 'desc' (descending).
+        * @param {string} sortOrder?. Sort order. Possible values: 'asc' (ascending), 'desc' (descending), and null (removes sorting by column). If not provided, toggles the sorting.
         */
         sortBy(columnDataField, sortOrder) {
             if (this.nativeElement.isRendered) {

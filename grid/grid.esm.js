@@ -121,6 +121,17 @@ class Grid extends React.Component {
             this.nativeElement.columnGroups = value;
         }
     }
+    /** Sets or gets details about conditional formatting to be applied to the Grid's cells.
+    *	Property type: GridConditionalFormatting[]
+    */
+    get conditionalFormatting() {
+        return this.nativeElement ? this.nativeElement.conditionalFormatting : undefined;
+    }
+    set conditionalFormatting(value) {
+        if (this.nativeElement) {
+            this.nativeElement.conditionalFormatting = value;
+        }
+    }
     /** Sets the Grid Charting Data Visualization.
     *	Property type: GridCharting
     */
@@ -574,7 +585,7 @@ class Grid extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["appearance", "behavior", "layout", "clipboard", "columns", "columnMenu", "columnGroups", "charting", "checkBoxes", "dataExport", "dataSource", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onCommand", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "groupHeader", "header", "footer", "rows", "selection", "sorting"];
+        return ["appearance", "behavior", "layout", "clipboard", "columns", "columnMenu", "columnGroups", "conditionalFormatting", "charting", "checkBoxes", "dataExport", "dataSource", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onCommand", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "groupHeader", "header", "footer", "rows", "selection", "sorting"];
     }
     // Gets the events of the React component.
     get events() {

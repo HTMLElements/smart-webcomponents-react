@@ -166,7 +166,7 @@ export declare class QueryBuilder extends React.Component<React.HTMLProps<Elemen
     *   originalEvent - The original event.
     */
     onDragging?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a dragging operation is started in smart-query-builder. This action can be canceled by calling event.preventDefault() in the event handler function.
+    /**  This event is triggered when a dragging operation is started in jqx-query-builder. This action can be canceled by calling event.preventDefault() in the event handler function.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	data, 	originalEvent)
     *   item - The item is going to be dragged.
     *   data - The data of the item that is going to be dragged.

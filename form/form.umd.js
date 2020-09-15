@@ -51,14 +51,14 @@ require('../source/modules/smart.form');
             return this._id;
         }
         /** HTML Content displayed after the Form Control
-        *	Property type: string
+        *	Property type: any
         */
-        get append() {
-            return this.nativeElement ? this.nativeElement.append : undefined;
+        get appendHTML() {
+            return this.nativeElement ? this.nativeElement.appendHTML : undefined;
         }
-        set append(value) {
+        set appendHTML(value) {
             if (this.nativeElement) {
-                this.nativeElement.append = value;
+                this.nativeElement.appendHTML = value;
             }
         }
         /** JSON object with initialization properties of the UI component. Example: { dataSource: ['item 1', 'item 2', 'item 3'] } will set the dataSource property of the Form control.
@@ -227,14 +227,14 @@ require('../source/modules/smart.form');
             }
         }
         /** HTML Content displayed before the Form Control
-        *	Property type: string
+        *	Property type: any
         */
-        get prepend() {
-            return this.nativeElement ? this.nativeElement.prepend : undefined;
+        get prependHTML() {
+            return this.nativeElement ? this.nativeElement.prependHTML : undefined;
         }
-        set prepend(value) {
+        set prependHTML(value) {
             if (this.nativeElement) {
-                this.nativeElement.prepend = value;
+                this.nativeElement.prependHTML = value;
             }
         }
         /** Gets or Sets the Form control readonly mode.
@@ -327,7 +327,7 @@ require('../source/modules/smart.form');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["append", "controlOptions", "controlType", "columns", "columnSpan", "dataField", "disabled", "dirty", "info", "invalid", "label", "labelPosition", "labelOffset", "labelAlign", "nextButtonLabel", "backButtonLabel", "prepend", "readonly", "untouched", "showColonAfterLabel", "showButtons", "value", "valid", "validationRules", "viewMode"];
+            return ["appendHTML", "controlOptions", "controlType", "columns", "columnSpan", "dataField", "disabled", "dirty", "info", "invalid", "label", "labelPosition", "labelOffset", "labelAlign", "nextButtonLabel", "backButtonLabel", "prependHTML", "readonly", "untouched", "showColonAfterLabel", "showButtons", "value", "valid", "validationRules", "viewMode"];
         }
         // Gets the events of the React component.
         get events() {

@@ -1,0 +1,7 @@
+{
+    "main": "pivottable.umd.js",
+    "module": "pivottable.esm.js",
+	"typings": "pivottable.d.ts",
+    "name": "smart-webcomponents-react/pivottable",
+    "sideEffects": false
+  }
