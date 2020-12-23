@@ -1,18 +1,20 @@
 import React from "react";
 import { ColorInputProperties } from "./../index";
-import { Animation, ColorDisplayMode, DropDownButtonPosition, ColorQueryMode, ColorValueDisplayMode, ColorValueFormat } from './../index';
+import { Animation, ColorInputDisplayMode, DropDownButtonPosition, ColorQueryMode, ColorValueDisplayMode, ColorValueFormat } from './../index';
 export { ColorInputProperties } from "./../index";
-export { Animation, ColorDisplayMode, DropDownButtonPosition, ColorQueryMode, ColorValueDisplayMode, ColorValueFormat } from './../index';
+export { Animation, ColorInputDisplayMode, DropDownButtonPosition, ColorQueryMode, ColorValueDisplayMode, ColorValueFormat } from './../index';
 export declare const Smart: any;
 export interface ColorInputProps extends ColorInputProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  ColorInput is an input field with colors displayed in a DropDown grid like in Excel.
 */
-export declare class ColorInput extends React.Component<React.HTMLProps<Element> & ColorInputProps, any> {
+export declare class ColorInput extends React.Component<React.HTMLAttributes<Element> & ColorInputProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -38,10 +40,10 @@ export declare class ColorInput extends React.Component<React.HTMLProps<Element>
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Determines the colors that will be displayed and their layout.
-    *	Property type: ColorDisplayMode
+    *	Property type: ColorInputDisplayMode
     */
-    get displayMode(): ColorDisplayMode;
-    set displayMode(value: ColorDisplayMode);
+    get displayMode(): ColorInputDisplayMode;
+    set displayMode(value: ColorInputDisplayMode);
     /** Determines the position of the drop down button.
     *	Property type: DropDownButtonPosition
     */
@@ -162,7 +164,7 @@ export declare class ColorInput extends React.Component<React.HTMLProps<Element>
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes the drop down.
     */
     close(): void;

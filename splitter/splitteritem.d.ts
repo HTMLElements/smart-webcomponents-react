@@ -6,11 +6,13 @@ export declare const Smart: any;
 export interface SplitterItemProps extends SplitterItemProperties {
     className?: string;
     style?: React.CSSProperties;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Splitter Item is a Panel in a Splitter component.
 */
-export declare class SplitterItem extends React.Component<React.HTMLProps<Element> & SplitterItemProps, any> {
+export declare class SplitterItem extends React.Component<React.HTMLAttributes<Element> & SplitterItemProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -57,7 +59,7 @@ export declare class SplitterItem extends React.Component<React.HTMLProps<Elemen
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Collapses the item.
     * @param {string} far. If set to true the item will collapse to it's far side ( to the right for vertical splitter and down for horizontal)
     */

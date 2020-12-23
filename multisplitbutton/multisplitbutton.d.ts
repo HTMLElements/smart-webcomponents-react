@@ -19,11 +19,13 @@ export interface MultiSplitButtonProps extends MultiSplitButtonProperties {
     onOpening?: ((event?: Event) => void) | undefined;
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
     onScrollTopReached?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Buttons group with DropDown and multiple action buttons.
 */
-export declare class MultiSplitButton extends React.Component<React.HTMLProps<Element> & MultiSplitButtonProps, any> {
+export declare class MultiSplitButton extends React.Component<React.HTMLAttributes<Element> & MultiSplitButtonProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -234,7 +236,7 @@ export declare class MultiSplitButton extends React.Component<React.HTMLProps<El
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes button's dropDown list.
     */
     close(): void;

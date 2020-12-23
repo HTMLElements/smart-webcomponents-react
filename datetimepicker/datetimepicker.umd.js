@@ -657,7 +657,7 @@ require('../source/modules/smart.datetimepicker');
 	        return ["animation", "animationSettings", "autoClose", "autoCloseDelay", "calendarButton", "calendarButtonPosition", "calendarMode", "dayNameFormat", "disabled", "disableAutoNavigation", "displayKind", "displayModeView", "dropDownAppendTo", "dropDownDisplayMode", "dropDownOverlay", "dropDownPosition", "editMode", "enableMouseWheelAction", "firstDayOfWeek", "footerTemplate", "formatString", "headerTemplate", "hideDayNames", "hideOtherMonthDays", "hideTooltipArrow", "hint", "importantDates", "importantDatesTemplate", "interval", "label", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "nullable", "opened", "placeholder", "readonly", "restrictedDates", "rightToLeft", "spinButtons", "spinButtonsDelay", "spinButtonsInitialDelay", "spinButtonsPosition", "theme", "tooltip", "tooltipDelay", "tooltipPosition", "tooltipTemplate", "unfocusable", "validation", "value", "weekNumbers", "weeks", "yearCutoff"];
 	    }
 	    // Gets the events of the React component.
-	    get events() {
+	    get eventListeners() {
 	        return ["onChange", "onClose", "onClosing", "onOpen", "onOpening", "onCreate", "onReady"];
 	    }
 	    /** Closes the calendar pop-up.
@@ -785,8 +785,9 @@ require('../source/modules/smart.datetimepicker');
 	        if (!that.nativeElement) {
 	            return;
 	        }
-	        for (let i = 0; i < that.events.length; i++) {
-	            const eventName = that.events[i];
+	        that.nativeElement.whenRenderedCallbacks = [];
+	        for (let i = 0; i < that.eventListeners.length; i++) {
+	            const eventName = that.eventListeners[i];
 	            that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
 	        }
 	    }

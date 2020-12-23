@@ -126,7 +126,7 @@ class MenuItem extends React.Component {
         return ["checked", "disabled", "label", "level", "separator", "shortcut", "value"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -206,8 +206,9 @@ class MenuItem extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -347,7 +348,7 @@ class MenuItemsGroup extends React.Component {
         return ["checkable", "checked", "checkMode", "disabled", "dropDownHeight", "expanded", "label", "level", "separator", "value"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -427,8 +428,9 @@ class MenuItemsGroup extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -706,6 +708,17 @@ class Menu extends React.Component {
             this.nativeElement.overflow = value;
         }
     }
+    /** If set to true, prevents the closing of the Menu or its dropdowns when Menu items are checked/unchecked.
+    *	Property type: boolean
+    */
+    get preventCloseOnCheck() {
+        return this.nativeElement ? this.nativeElement.preventCloseOnCheck : undefined;
+    }
+    set preventCloseOnCheck(value) {
+        if (this.nativeElement) {
+            this.nativeElement.preventCloseOnCheck = value;
+        }
+    }
     /** If the element is readonly, users cannot interact with it.
     *	Property type: boolean
     */
@@ -774,10 +787,10 @@ class Menu extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoCloseDelay", "autoFocusOnMouseenter", "checkable", "checkboxes", "checkMode", "closeAction", "dataSource", "disabled", "displayMember", "dropDownAppendTo", "dropDownOverlay", "dropDownPosition", "items", "itemsMember", "locale", "localizeFormatFunction", "messages", "minimizeIconTemplate", "minimizeWidth", "mode", "opened", "overflow", "readonly", "rightToLeft", "selectionMode", "theme", "unfocusable", "valueMember"];
+        return ["animation", "autoCloseDelay", "autoFocusOnMouseenter", "checkable", "checkboxes", "checkMode", "closeAction", "dataSource", "disabled", "displayMember", "dropDownAppendTo", "dropDownOverlay", "dropDownPosition", "items", "itemsMember", "locale", "localizeFormatFunction", "messages", "minimizeIconTemplate", "minimizeWidth", "mode", "opened", "overflow", "preventCloseOnCheck", "readonly", "rightToLeft", "selectionMode", "theme", "unfocusable", "valueMember"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onClose", "onClosing", "onCollapse", "onCollapsing", "onExpand", "onExpanding", "onItemCheckChange", "onItemClick", "onOpen", "onOpening", "onCreate", "onReady"];
     }
     /** Adds an item to the menu.
@@ -1018,8 +1031,9 @@ class Menu extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

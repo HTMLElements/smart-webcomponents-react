@@ -18,11 +18,13 @@ export interface ChartProps extends ChartProperties {
     onRefreshBegin?: ((event?: Event) => void) | undefined;
     onRefreshEnd?: ((event?: Event) => void) | undefined;
     onToggle?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Chart is a feature-complete interactive graph library that answers the data visualization needs of any modern web app.
 */
-export declare class Chart extends React.Component<React.HTMLProps<Element> & ChartProps, any> {
+export declare class Chart extends React.Component<React.HTMLAttributes<Element> & ChartProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -93,10 +95,10 @@ export declare class Chart extends React.Component<React.HTMLProps<Element> & Ch
     get crosshairsLineWidth(): number;
     set crosshairsLineWidth(value: number);
     /** Sets the chart's data source.
-    *	Property type: any
+    *	Property type: any[]
     */
-    get dataSource(): any;
-    set dataSource(value: any);
+    get dataSource(): any[];
+    set dataSource(value: any[]);
     /** Sets the description text of the chart.
     *	Property type: string
     */
@@ -286,7 +288,7 @@ export declare class Chart extends React.Component<React.HTMLProps<Element> & Ch
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds a new color sheme. If a scheme with the same name already exists, the method will update its colors.
     * @param {string} schemeName. The name of the custom color scheme.
     * @param {any[]} colorsArray. An array of color values.

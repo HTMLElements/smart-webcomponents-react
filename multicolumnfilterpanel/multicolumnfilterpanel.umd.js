@@ -195,7 +195,7 @@ require('../source/modules/smart.gridpanel');
 	        return ["animation", "closeButtonPosition", "dataSource", "disabled", "editorCallback", "editorPlaceholder", "locale", "localizeFormatFunction", "maxLevel", "messages", "operator", "readonly", "rightToLeft", "unfocusable", "value"];
 	    }
 	    // Gets the events of the React component.
-	    get events() {
+	    get eventListeners() {
 	        return ["onApply", "onCancel", "onCollapseAll", "onExpandAll", "onCreate", "onReady"];
 	    }
 	    componentDidRender(initialize) {
@@ -275,8 +275,9 @@ require('../source/modules/smart.gridpanel');
 	        if (!that.nativeElement) {
 	            return;
 	        }
-	        for (let i = 0; i < that.events.length; i++) {
-	            const eventName = that.events[i];
+	        that.nativeElement.whenRenderedCallbacks = [];
+	        for (let i = 0; i < that.eventListeners.length; i++) {
+	            const eventName = that.eventListeners[i];
 	            that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
 	        }
 	    }

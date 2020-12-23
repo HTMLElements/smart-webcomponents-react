@@ -126,7 +126,7 @@ class MenuItem extends React.Component {
         return ["checked", "disabled", "label", "level", "separator", "shortcut", "value"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -206,8 +206,9 @@ class MenuItem extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -347,7 +348,7 @@ class MenuItemsGroup extends React.Component {
         return ["checkable", "checked", "checkMode", "disabled", "dropDownHeight", "expanded", "label", "level", "separator", "value"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -427,8 +428,9 @@ class MenuItemsGroup extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -799,7 +801,7 @@ class ListMenu extends React.Component {
         return ["animation", "autoFocusOnMouseenter", "checkable", "checkboxes", "checkMode", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownOverlay", "dropDownPosition", "enableMouseWheelAction", "filterable", "filterInputPlaceholder", "filterMode", "grouped", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "minimizeIconTemplate", "minimizeWidth", "overflow", "readonly", "rightToLeft", "theme", "unfocusable", "valueMember"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onExpand", "onItemCheckChange", "onItemClick", "onScrollBottomReached", "onSwipeleft", "onSwiperight", "onCreate", "onReady"];
     }
     /** Adds an item to the list.
@@ -1000,8 +1002,9 @@ class ListMenu extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

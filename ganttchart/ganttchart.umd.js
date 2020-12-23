@@ -715,11 +715,11 @@ require('../source/modules/smart.ganttchart');
             return ["autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableWindowEditor", "durationUnit", "headerTemplate", "hideTimelineHeaderDetails", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "inverted", "locale", "max", "min", "messages", "monthFormat", "nonworkingDays", "nonworkingHours", "popupWindowCustomizationFunction", "progressLabelFormatFunction", "resources", "resourceColumns", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedIndexes", "showProgressLabel", "snapToNearest", "sortable", "sortMode", "tasks", "taskColumns", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onBeginUpdate", "onEndUpdate", "onChange", "onItemClick", "onItemInsert", "onItemRemove", "onItemUpdate", "onProgressChangeStart", "onProgressChangeEnd", "onDragStart", "onDragEnd", "onResizeStart", "onResizeEnd", "onConnectionStart", "onConnectionEnd", "onScrollBottomReached", "onScrollTopReached", "onOpening", "onOpen", "onClosing", "onClose", "onCollapse", "onExpand", "onCreate", "onReady"];
         }
         /** Adds a task as the last item of a Project.
-        * @param {string | number} taskIndex. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+        * @param {any} taskIndex. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
         * @param {string | number} projectIndex. A number that represents the index of a project or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
         */
         addTaskTo(taskIndex, projectIndex) {
@@ -930,7 +930,7 @@ require('../source/modules/smart.ganttchart');
             });
         }
         /** Returns the Tree path of a task/resource.
-        * @param {GanttChartTask | GanttChartResource | number} item. A GattChartTask/GanttChartResource item object or index.
+        * @param {any} item. A GattChartTask/GanttChartResource item object or index.
         * @returns {string}
       */
         getItemPath(item) {
@@ -948,7 +948,7 @@ require('../source/modules/smart.ganttchart');
             });
         }
         /** Returns the index of a task.
-        * @param {GanttChartTask} task. A GattChartTask object.
+        * @param {any} task. A GattChartTask object.
         * @returns {number}
       */
         getTaskIndex(task) {
@@ -966,7 +966,7 @@ require('../source/modules/smart.ganttchart');
             });
         }
         /** Returns the tree path of a task.
-        * @param {GanttChartTask} task. A GanttChartTask object.
+        * @param {any} task. A GanttChartTask object.
         * @returns {string}
       */
         getTaskPath(task) {
@@ -984,8 +984,8 @@ require('../source/modules/smart.ganttchart');
             });
         }
         /** Returns teh Project of a task if any.
-        * @param {GanttChartTask} task. A GantChartTask object.
-        * @returns {GanttChartTask | undefined}
+        * @param {any} task. A GantChartTask object.
+        * @returns {any}
       */
         getTaskProject(task) {
             return __awaiter(this, void 0, void 0, function* () {
@@ -1296,8 +1296,9 @@ require('../source/modules/smart.ganttchart');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

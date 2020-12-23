@@ -22,11 +22,13 @@ export interface ListBoxProps extends ListBoxProperties {
     onScrollTopReached?: ((event?: Event) => void) | undefined;
     onSwipeleft?: ((event?: Event) => void) | undefined;
     onSwiperight?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  ListBox allows the user to select one or more items from a list.
 */
-export declare class ListBox extends React.Component<React.HTMLProps<Element> & ListBoxProps, any> {
+export declare class ListBox extends React.Component<React.HTMLAttributes<Element> & ListBoxProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -365,7 +367,7 @@ export declare class ListBox extends React.Component<React.HTMLProps<Element> & 
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Appends a ListItem to the end of the list of items inside element.
     * @param {Node} node. A ListItem element that should be added to the rest of the items as the last item.
     * @returns {Node}

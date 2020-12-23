@@ -1,9 +1,8 @@
 import React from "react";
 import { GridProperties } from "./../index";
 import { Scrolling, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnGroup, GridConditionalFormatting, GridCharting, GridCheckBoxes, GridDataExport, GridEditing, GridFiltering, GridGrouping, GridPaging, GridPager, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSorting } from './../index';
-import { DataAdapter } from './../index';
 export { GridProperties } from "./../index";
-export { GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnSortOrder, GridConditionalFormattingCondition, GridConditionalFormattingFontFamily, GridConditionalFormattingFontSize, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridFilteringFilterRowApplyMode, GridGroupingExpandMode, GridGroupingRenderMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnMenuDataSource, GridCommand, GridColumnGroup, GridConditionalFormatting, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
+export { GridAppearanceAutoGenerateRowLabelMode, GridAppearanceAutoGenerateColumnLabelMode, GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnSortOrder, GridConditionalFormattingCondition, GridDataExportPageOrientation, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridFilteringFilterRowApplyMode, GridFilteringFilterMenuMode, GridGroupingExpandMode, GridGroupingRenderMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnMenuDataSource, GridCommand, GridColumnGroup, GridConditionalFormatting, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
 export { DataAdapter, Chart } from './../index';
 export declare const Smart: any;
 export interface GridProps extends GridProperties {
@@ -36,11 +35,13 @@ export interface GridProps extends GridProperties {
     onSort?: ((event?: Event) => void) | undefined;
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
     onScrollTopReached?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Data Grid UI Component that covers everything from paging, sorting, grouping, filtering, and editing to row and column virtualization, right-to-left layout, export to Excel and PDF and Accessibility.
 */
-export declare class Grid extends React.Component<React.HTMLProps<Element> & GridProps, any> {
+export declare class Grid extends React.Component<React.HTMLAttributes<Element> & GridProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -106,11 +107,11 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     */
     get dataExport(): GridDataExport;
     set dataExport(value: GridDataExport);
-    /** Sets the grid's data source. The value of dataSource can be an instance of JQX.DataAdapter.
-    *	Property type: DataAdapter
+    /** Sets the grid's data source. The value of dataSource can be an instance of JQX.DataAdapter or an Array.
+    *	Property type: any
     */
-    get dataSource(): DataAdapter;
-    set dataSource(value: DataAdapter);
+    get dataSource(): any;
+    set dataSource(value: any);
     /** Describes the grid's editing settings.
     *	Property type: GridEditing
     */
@@ -554,7 +555,13 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
+    /** Adds a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
+    * @param {any} data. row data matching the data source
+    * @param {boolean} insertAtBottom?. Determines whether to add the new row to the bottom or top of the collection. The default value is 'true'
+    * @param {any} callback?. Sets a callback function, which is called after the new row is added. The callback's argument is the new row.
+    */
+    addRow(data: any, insertAtBottom?: boolean, callback?: any): void;
     /** Adds a new row and puts it into edit mode. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string} position?. 'near' or 'far'
     * @returns {boolean}
@@ -618,13 +625,14 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     collapseAllRows(): void;
     /** Creates a Chart, when charting is enabled.
     * @param {string} type. Chart's type
-    * @param {any[]} dataSource?. Chart's data source
+    * @param {any} dataSource?. Chart's data source
     */
-    createChart(type: string, dataSource?: any[]): void;
+    createChart(type: string, dataSource?: any): void;
     /** Delete a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string | number} rowId. row bound id
+    * @param {any} callback?. Sets a callback function, which is called after the row is deleted. The callback's argument is the deleted row.
     */
-    deleteRow(rowId: string | number): void;
+    deleteRow(rowId: string | number, callback?: any): void;
     /** Scrolls to a row or cell. This method scrolls to a row or cell, when scrolling is necessary. If pagination is enabled, it will automatically change the page.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field
@@ -657,6 +665,10 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     * @returns {any}
   */
     getSelection(): Promise<any>;
+    /** Gets the selected row ids.
+    * @returns {any[]}
+  */
+    getSelectedRows(): Promise<any>;
     /** Gets an array of columns with applied filters.
     * @returns {any}
   */
@@ -707,6 +719,12 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     saveBatchEdit(): void;
     /** Saves the batch edit changes. This method confirms the editing changes made by the end-user.
     * @param {string | number} rowId. row bound id
+    * @param {any} data. row data matching the data source
+    * @param {any} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
+    */
+    updateRow(rowId: string | number, data: any, callback?: any): void;
+    /** Updates a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
+    * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field
     */
     select(rowId: string | number, dataField?: string): void;
@@ -718,6 +736,19 @@ export declare class Grid extends React.Component<React.HTMLProps<Element> & Gri
     */
     selectRange(rowId: string | number, dataField: string, endRowId: string | number, endDataField: string): void;
     /** Selects a range of rows, cells or columns. The result of the method depends on the selection configuration of the Grid.
+    * @param {string | number} rowId. row bound id
+    * @param {string | number} endRowId. row bound id
+    */
+    selectRowsRange(rowId: string | number, endRowId: string | number): void;
+    /** Selects a range of rows.
+    * @param {(string | number)[]} rowId. Array of row ids
+    */
+    selectRows(rowId: (string | number)[]): void;
+    /** Selects multiple rows by their ids.
+    * @param {number[]} rowIndex. Array of row indexes
+    */
+    selectRowsByIndex(rowIndex: number[]): void;
+    /** Selects multiple rows by their index.
     * @param {string | number} rowId. row bound id
     */
     showDetail(rowId: string | number): void;

@@ -255,7 +255,7 @@ class Led extends React.Component {
         return ["animation", "checked", "clickMode", "disabled", "falseContent", "falseTemplate", "indeterminate", "indeterminateContent", "indeterminateTemplate", "locale", "localizeFormatFunction", "messages", "name", "readonly", "rightToLeft", "shape", "theme", "trueContent", "trueTemplate", "unfocusable", "value"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -335,8 +335,9 @@ class Led extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

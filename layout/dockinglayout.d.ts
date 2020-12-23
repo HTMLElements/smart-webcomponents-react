@@ -13,11 +13,13 @@ export interface DockingLayoutProps extends DockingLayoutProperties {
     onStateChange?: ((event?: Event) => void) | undefined;
     onResizeStart?: ((event?: Event) => void) | undefined;
     onResizeEnd?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  DockingLayout enables the creation of complex layouts consisting of panels that can be floated, docked, nested, resized, pinned.
 */
-export declare class DockingLayout extends React.Component<React.HTMLProps<Element> & DockingLayoutProps, any> {
+export declare class DockingLayout extends React.Component<React.HTMLAttributes<Element> & DockingLayoutProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -157,7 +159,7 @@ export declare class DockingLayout extends React.Component<React.HTMLProps<Eleme
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Makes a "smart-tabs-window" node, that is a child of the Layout, auto hidden by placing it at the Bottom position inside the element. This means that the item will be positioned near the bottom side of the layout and it's content will be hidden until the user selects one of it's labels.
     * @param {HTMLElement | number | string} node. The "jqx-tabs-window" or "jqx-tab-item" node to append
     */

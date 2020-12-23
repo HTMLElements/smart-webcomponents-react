@@ -8,11 +8,13 @@ export interface InputProps extends InputProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Input specifies an input field where the user can enter data. Auto-complete options are displayed for easier input.
 */
-export declare class Input extends React.Component<React.HTMLProps<Element> & InputProps, any> {
+export declare class Input extends React.Component<React.HTMLAttributes<Element> & InputProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -162,7 +164,7 @@ export declare class Input extends React.Component<React.HTMLProps<Element> & In
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes the drop down.
     */
     close(): void;

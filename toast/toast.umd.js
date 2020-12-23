@@ -286,7 +286,7 @@ require('../source/modules/smart.toast');
             return ["animation", "appendTo", "autoClose", "autoCloseDelay", "autoOpen", "disabled", "iconClass", "itemClass", "itemTemplate", "locale", "localizeFormatFunction", "messages", "modal", "position", "readonly", "rightToLeft", "showCloseButton", "theme", "type", "unfocusable", "value"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onClick", "onClose", "onOpen", "onSwipebottom", "onSwipeleft", "onSwiperight", "onSwipetop", "onCreate", "onReady"];
         }
         /** Closes all opened toast items.
@@ -327,14 +327,16 @@ require('../source/modules/smart.toast');
             }
         }
         /** Opens a new toast item and returns the opened smart-toast-item instance.
+        * @param {HTMLElement | string} value?. The value for the toast item. If not set, the value property will be used.
+        * @param {string} iconType?. The icon name for the toast item. If not set, the type property determines the icon type that will be used.
         * @returns {HTMLElement}
       */
-        open() {
+        open(value, iconType) {
             return __awaiter(this, void 0, void 0, function* () {
                 const getResultOnRender = () => {
                     return new Promise(resolve => {
                         this.nativeElement.whenRendered(() => {
-                            const result = this.nativeElement.open();
+                            const result = this.nativeElement.open(value, iconType);
                             resolve(result);
                         });
                     });
@@ -420,8 +422,9 @@ require('../source/modules/smart.toast');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

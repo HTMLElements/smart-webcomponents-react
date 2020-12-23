@@ -37,7 +37,7 @@ require('../source/modules/smart.input');
 	        }
 	    }
 	    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is determined by the 'locale' property.
-	    *	Property type: DateRangeInputDateFormat
+	    *	Property type: DateRangeFormat
 	    */
 	    get dateFormat() {
 	        return this.nativeElement ? this.nativeElement.dateFormat : undefined;
@@ -246,7 +246,7 @@ require('../source/modules/smart.input');
 	        }
 	    }
 	    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date foramt is determined by the 'locale' property.
-	    *	Property type: DateRangeInputTimeFormat
+	    *	Property type: TimeRangeFormat
 	    */
 	    get timeFormat() {
 	        return this.nativeElement ? this.nativeElement.timeFormat : undefined;
@@ -316,7 +316,7 @@ require('../source/modules/smart.input');
 	        return ["animation", "dateFormat", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "icons", "inputPurpose", "locale", "localizeFormatFunction", "max", "messages", "min", "months", "name", "opened", "placeholder", "readonly", "rightToLeft", "separator", "timeFormat", "timepicker", "theme", "unfocusable", "value", "valueType"];
 	    }
 	    // Gets the events of the React component.
-	    get events() {
+	    get eventListeners() {
 	        return ["onChange", "onCreate", "onReady"];
 	    }
 	    /** Closes the drop down.
@@ -432,8 +432,9 @@ require('../source/modules/smart.input');
 	        if (!that.nativeElement) {
 	            return;
 	        }
-	        for (let i = 0; i < that.events.length; i++) {
-	            const eventName = that.events[i];
+	        that.nativeElement.whenRenderedCallbacks = [];
+	        for (let i = 0; i < that.eventListeners.length; i++) {
+	            const eventName = that.eventListeners[i];
 	            that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
 	        }
 	    }

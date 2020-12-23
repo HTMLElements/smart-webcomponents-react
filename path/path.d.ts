@@ -15,11 +15,13 @@ export interface PathProps extends PathProperties {
     onItemClick?: ((event?: Event) => void) | undefined;
     onOpen?: ((event?: Event) => void) | undefined;
     onOpening?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Path component is used to display the path to url.
 */
-export declare class Path extends React.Component<React.HTMLProps<Element> & PathProps, any> {
+export declare class Path extends React.Component<React.HTMLAttributes<Element> & PathProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -205,7 +207,7 @@ export declare class Path extends React.Component<React.HTMLProps<Element> & Pat
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes the dropDown.
     */
     close(): void;

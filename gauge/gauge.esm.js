@@ -566,7 +566,7 @@ class Gauge extends React.Component {
         return ["analogDisplayType", "animation", "animationDuration", "coerce", "customInterval", "customTicks", "dateLabelFormatString", "decimalSeparator", "digitalDisplay", "digitalDisplayPosition", "disabled", "drawNeedle", "endAngle", "interval", "inverted", "labelFormatFunction", "labelsVisibility", "locale", "localizeFormatFunction", "logarithmicScale", "max", "mechanicalAction", "messages", "min", "mode", "name", "needlePosition", "precisionDigits", "ranges", "readonly", "rightToLeft", "scalePosition", "scaleType", "scientificNotation", "showRanges", "showUnit", "significantDigits", "sizeMode", "startAngle", "theme", "ticksPosition", "ticksVisibility", "unfocusable", "unit", "validation", "value", "wordLength"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
     /** Focuses the element.
@@ -693,8 +693,9 @@ class Gauge extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

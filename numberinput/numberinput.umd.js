@@ -217,7 +217,7 @@ require('../source/modules/smart.input');
 	        return ["animation", "disabled", "inputPurpose", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "numberFormat", "placeholder", "readonly", "rightToLeft", "step", "theme", "unfocusable", "value"];
 	    }
 	    // Gets the events of the React component.
-	    get events() {
+	    get eventListeners() {
 	        return ["onChange", "onCreate", "onReady"];
 	    }
 	    /** Returns the value in the desired format.
@@ -348,8 +348,9 @@ require('../source/modules/smart.input');
 	        if (!that.nativeElement) {
 	            return;
 	        }
-	        for (let i = 0; i < that.events.length; i++) {
-	            const eventName = that.events[i];
+	        that.nativeElement.whenRenderedCallbacks = [];
+	        for (let i = 0; i < that.eventListeners.length; i++) {
+	            const eventName = that.eventListeners[i];
 	            that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
 	        }
 	    }

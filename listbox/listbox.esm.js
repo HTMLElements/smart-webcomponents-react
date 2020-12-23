@@ -170,7 +170,7 @@ class ListItem extends React.Component {
         return ["alternationIndex", "color", "displayMode", "grouped", "selected", "value", "label", "details", "group", "hidden", "readonly"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -250,8 +250,9 @@ class ListItem extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -292,7 +293,7 @@ class ListItemsGroup extends React.Component {
         return ["label"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -372,8 +373,9 @@ class ListItemsGroup extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -953,7 +955,7 @@ class ListBox extends React.Component {
         return ["allowDrag", "allowDrop", "alternationCount", "alternationEnd", "alternationStart", "animation", "autoSort", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dragFeedbackFormatFunction", "dragOffset", "dropAction", "editable", "filterable", "filterCallback", "filterMode", "filterInputPlaceholder", "grouped", "groupMember", "horizontalScrollBarVisibility", "incrementalSearchDelay", "incrementalSearchMode", "itemHeight", "itemMeasureMode", "items", "itemTemplate", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "name", "placeholder", "readonly", "rightToLeft", "selectedIndexes", "selectedValues", "selectionMode", "selectionChangeAction", "sorted", "sortDirection", "theme", "topVisibleIndex", "unfocusable", "value", "valueMember", "verticalScrollBarVisibility", "virtualized"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onBindingComplete", "onChange", "onDragEnd", "onDragging", "onDragStart", "onItemClick", "onItemLabelChange", "onScrollBottomReached", "onScrollTopReached", "onSwipeleft", "onSwiperight", "onCreate", "onReady"];
     }
     /** Appends a ListItem to the end of the list of items inside element.
@@ -1210,8 +1212,9 @@ class ListBox extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

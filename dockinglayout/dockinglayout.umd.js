@@ -297,7 +297,7 @@ require('../source/modules/smart.dockinglayout');
             return ["animation", "autoHideItems", "autoLoadState", "autoSaveState", "disabled", "draggable", "floatable", "hideSplitterBars", "items", "closedItems", "layout", "liveResize", "locale", "localizeFormatFunction", "messages", "readonly", "rightToLeft", "resizeStep", "snapMode", "theme", "undockedItems", "unfocusable"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onChange", "onClose", "onClosing", "onStateChange", "onResizeStart", "onResizeEnd", "onCreate", "onReady"];
         }
         /** Makes a "smart-tabs-window" node, that is a child of the Layout, auto hidden by placing it at the Bottom position inside the element. This means that the item will be positioned near the bottom side of the layout and it's content will be hidden until the user selects one of it's labels.
@@ -835,8 +835,9 @@ require('../source/modules/smart.dockinglayout');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

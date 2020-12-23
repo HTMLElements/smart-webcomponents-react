@@ -6,11 +6,13 @@ export declare const Smart: any;
 export interface MenuItemProps extends MenuItemProperties {
     className?: string;
     style?: React.CSSProperties;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Defines a menu item.
 */
-export declare class MenuItem extends React.Component<React.HTMLProps<Element> & MenuItemProps, any> {
+export declare class MenuItem extends React.Component<React.HTMLAttributes<Element> & MenuItemProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -57,7 +59,7 @@ export declare class MenuItem extends React.Component<React.HTMLProps<Element> &
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

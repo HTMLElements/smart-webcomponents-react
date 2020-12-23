@@ -506,7 +506,7 @@ require('../source/modules/smart.textbox');
             return ["animation", "decimalSeparator", "disabled", "dropDownAppendTo", "dropDownEnabled", "enableMouseWheelAction", "hint", "inputFormat", "label", "leadingZeros", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "nullable", "opened", "outputFormatString", "placeholder", "precisionDigits", "radix", "radixDisplay", "radixDisplayPosition", "readonly", "rightToLeft", "scientificNotation", "showDropDownValues", "showUnit", "significantDigits", "spinButtons", "spinButtonsDelay", "spinButtonsInitialDelay", "spinButtonsPosition", "spinButtonsStep", "theme", "unfocusable", "unit", "validation", "value", "wordLength"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onChange", "onChanging", "onClose", "onClosing", "onOpen", "onOpening", "onRadixChange", "onCreate", "onReady"];
         }
         /** Focuses the NumericTextBox.
@@ -617,8 +617,9 @@ require('../source/modules/smart.textbox');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

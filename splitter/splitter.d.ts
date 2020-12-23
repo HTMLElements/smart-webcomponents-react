@@ -15,11 +15,13 @@ export interface SplitterProps extends SplitterProperties {
     onExpand?: ((event?: Event) => void) | undefined;
     onResizeStart?: ((event?: Event) => void) | undefined;
     onResizeEnd?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Splitter is a layout component that supports all important features such as resizing, collapsing, and nesting panels.
 */
-export declare class Splitter extends React.Component<React.HTMLProps<Element> & SplitterProps, any> {
+export declare class Splitter extends React.Component<React.HTMLAttributes<Element> & SplitterProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -128,7 +130,7 @@ export declare class Splitter extends React.Component<React.HTMLProps<Element> &
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Appends a new node.
     * @param {Node} node. The node to append
     */
@@ -178,6 +180,9 @@ export declare class Splitter extends React.Component<React.HTMLProps<Element> &
     * @returns {Node}
   */
     removeChild(node: Node): Promise<any>;
+    /** Refreshes the Splitter
+    */
+    refresh(): void;
     /** Unhides a Splitter Bar
     * @param {number} splitterBar. An instance of a splitter bar.
     */

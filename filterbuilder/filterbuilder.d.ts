@@ -17,11 +17,13 @@ export interface FilterBuilderProps extends FilterBuilderProperties {
     onOpening?: ((event?: Event) => void) | undefined;
     onClose?: ((event?: Event) => void) | undefined;
     onClosing?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  FilterBuilder allows you to dynamically build filters.
 */
-export declare class FilterBuilder extends React.Component<React.HTMLProps<Element> & FilterBuilderProps, any> {
+export declare class FilterBuilder extends React.Component<React.HTMLAttributes<Element> & FilterBuilderProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -186,7 +188,7 @@ export declare class FilterBuilder extends React.Component<React.HTMLProps<Eleme
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds new condition in particular group.
     * @param {string | HTMLElement} parentGroup. A string, representing the id of the item or an HTML Element referencing this condition.
     * @param {any[]} data. An array, representing condition. Condition's element's role is related to their position in the condition's array. At index 0 - field name, index 1 - condition's opertor, index 2 - condition's value.

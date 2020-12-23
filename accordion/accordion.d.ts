@@ -15,11 +15,13 @@ export interface AccordionProps extends AccordionProperties {
     onDragStart?: ((event?: Event) => void) | undefined;
     onExpand?: ((event?: Event) => void) | undefined;
     onExpanding?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Accordion organizes content within collapsable items.
 */
-export declare class Accordion extends React.Component<React.HTMLProps<Element> & AccordionProps, any> {
+export declare class Accordion extends React.Component<React.HTMLAttributes<Element> & AccordionProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -139,7 +141,7 @@ export declare class Accordion extends React.Component<React.HTMLProps<Element> 
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Collapses an item at a specified index.
     * @param {number} position. The index of the collapsed item.
     */

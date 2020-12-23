@@ -143,7 +143,7 @@ require('../source/modules/smart.tree');
             return ["disabled", "label", "level", "selected", "separator", "shortcut", "value", "readonly"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCreate", "onReady"];
         }
         componentDidRender(initialize) {
@@ -223,8 +223,9 @@ require('../source/modules/smart.tree');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }
@@ -342,7 +343,7 @@ require('../source/modules/smart.tree');
             return ["disabled", "expanded", "label", "level", "selected", "separator", "value", "readonly"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCreate", "onReady"];
         }
         componentDidRender(initialize) {
@@ -422,8 +423,9 @@ require('../source/modules/smart.tree');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }
@@ -926,7 +928,7 @@ require('../source/modules/smart.tree');
             return ["allowDrag", "allowDrop", "animation", "autoHideToggleElement", "autoLoadState", "autoSaveState", "autoSort", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dragFeedbackFormatFunction", "dragOffset", "editable", "expandMode", "filterable", "filterInputPlaceholder", "filterMode", "hasThreeStates", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "overflow", "readonly", "rightToLeft", "scrollMode", "selectedIndexes", "selectionDisplayMode", "selectionMode", "selectionTarget", "showLines", "showRootLines", "sort", "sortDirection", "sorted", "theme", "toggleElementPosition", "toggleMode", "unfocusable", "valueMember"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onChange", "onCollapse", "onCollapsing", "onDragEnd", "onDragging", "onDragStart", "onExpand", "onExpanding", "onScrollBottomReached", "onScrollTopReached", "onSwipeleft", "onSwiperight", "onCreate", "onReady"];
         }
         /** Adds an item after another item as a sibling.
@@ -1298,8 +1300,9 @@ require('../source/modules/smart.tree');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

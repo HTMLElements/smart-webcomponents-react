@@ -14,11 +14,13 @@ export interface ButtonProps extends ButtonProperties {
     className?: string;
     style?: React.CSSProperties;
     onClick?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Buttons allow users to take actions, and make choices, with a single tap. Buttons communicate actions that users can take.
 */
-export declare class Button extends React.Component<React.HTMLProps<Element> & ButtonProps, any> {
+export declare class Button extends React.Component<React.HTMLAttributes<Element> & ButtonProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -103,7 +105,7 @@ export declare class Button extends React.Component<React.HTMLProps<Element> & B
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

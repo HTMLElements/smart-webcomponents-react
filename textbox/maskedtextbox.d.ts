@@ -9,11 +9,13 @@ export interface MaskedTextBoxProps extends MaskedTextBoxProperties {
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
     onValidation?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  MaskedTextBox uses a mask to control the input of the user.
 */
-export declare class MaskedTextBox extends React.Component<React.HTMLProps<Element> & MaskedTextBoxProps, any> {
+export declare class MaskedTextBox extends React.Component<React.HTMLAttributes<Element> & MaskedTextBoxProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -206,7 +208,7 @@ export declare class MaskedTextBox extends React.Component<React.HTMLProps<Eleme
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Focuses the element.
     */
     focus(): void;

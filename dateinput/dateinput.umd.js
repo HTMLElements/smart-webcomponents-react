@@ -36,8 +36,8 @@ require('../source/modules/smart.input');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is 'numeric'.
-	    *	Property type: DateInputDateTimeFormat
+	    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is 'numeric'. The default value is: { day: 'numeric', month: 'numeric', year: 'numeric' }
+	    *	Property type: DateTimeFormat
 	    */
 	    get dateTimeFormat() {
 	        return this.nativeElement ? this.nativeElement.dateTimeFormat : undefined;
@@ -250,7 +250,7 @@ require('../source/modules/smart.input');
 	        return ["animation", "dateTimeFormat", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "opened", "placeholder", "readonly", "rightToLeft", "theme", "unfocusable", "value"];
 	    }
 	    // Gets the events of the React component.
-	    get events() {
+	    get eventListeners() {
 	        return ["onChange", "onCreate", "onReady"];
 	    }
 	    /** Closes the drop down.
@@ -405,8 +405,9 @@ require('../source/modules/smart.input');
 	        if (!that.nativeElement) {
 	            return;
 	        }
-	        for (let i = 0; i < that.events.length; i++) {
-	            const eventName = that.events[i];
+	        that.nativeElement.whenRenderedCallbacks = [];
+	        for (let i = 0; i < that.eventListeners.length; i++) {
+	            const eventName = that.eventListeners[i];
 	            that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
 	        }
 	    }

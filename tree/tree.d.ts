@@ -23,11 +23,13 @@ export interface TreeProps extends TreeProperties {
     onScrollTopReached?: ((event?: Event) => void) | undefined;
     onSwipeleft?: ((event?: Event) => void) | undefined;
     onSwiperight?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Treeview component is a user interface that is used to represent hierarchical data in a tree structure.
 */
-export declare class Tree extends React.Component<React.HTMLProps<Element> & TreeProps, any> {
+export declare class Tree extends React.Component<React.HTMLAttributes<Element> & TreeProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -338,7 +340,7 @@ export declare class Tree extends React.Component<React.HTMLProps<Element> & Tre
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds an item after another item as a sibling.
     * @param {HTMLElement} item. A jqx-tree-item/jqx-tree-items-group to add to the Tree
     * @param {string | HTMLElement} sibling. The jqx-tree-item/jqx-tree-items-group (or its id or numeric path) to add the item after.

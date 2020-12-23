@@ -8,11 +8,13 @@ export interface ScrollBarProps extends ScrollBarProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Scrollbar is a replacement of the default scroll bar with multiple UI Styling options.
 */
-export declare class ScrollBar extends React.Component<React.HTMLProps<Element> & ScrollBarProps, any> {
+export declare class ScrollBar extends React.Component<React.HTMLAttributes<Element> & ScrollBarProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -112,7 +114,7 @@ export declare class ScrollBar extends React.Component<React.HTMLProps<Element> 
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Redraws the element.
     */
     refresh(): void;

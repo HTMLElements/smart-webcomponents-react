@@ -64,7 +64,7 @@ class ColorInput extends React.Component {
         }
     }
     /** Determines the colors that will be displayed and their layout.
-    *	Property type: ColorDisplayMode
+    *	Property type: ColorInputDisplayMode
     */
     get displayMode() {
         return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -310,7 +310,7 @@ class ColorInput extends React.Component {
         return ["animation", "autoCompleteDelay", "dataSource", "disabled", "displayMode", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "query", "queryMode", "readonly", "rightToLeft", "theme", "unfocusable", "value", "valueDisplayMode", "valueFormat"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
     /** Closes the drop down.
@@ -426,8 +426,9 @@ class ColorInput extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

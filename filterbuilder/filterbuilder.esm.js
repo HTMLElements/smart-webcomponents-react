@@ -302,7 +302,7 @@ class FilterBuilder extends React.Component {
         return ["animation", "customOperations", "disableContextMenu", "disabled", "fields", "formatStringDate", "formatStringDateTime", "hint", "icons", "locale", "localizeFormatFunction", "maxConditions", "maxConditionsPerGroup", "maxLevel", "messages", "readonly", "restrictedMode", "showIcons", "theme", "unfocusable", "value", "valueFormatFunction", "valuePlaceholder"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onEditorClose", "onEditorClosing", "onEditorOpen", "onEditorOpening", "onItemClick", "onOpen", "onOpening", "onClose", "onClosing", "onCreate", "onReady"];
     }
     /** Adds new condition in particular group.
@@ -482,8 +482,9 @@ class FilterBuilder extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

@@ -1,18 +1,20 @@
 import React from "react";
 import { ButtonGroupProperties } from "./../index";
-import { Animation, ClickMode } from './../index';
+import { Animation, ButtonGroupSelectionMode } from './../index';
 export { ButtonGroupProperties } from "./../index";
-export { Animation, ClickMode } from './../index';
+export { Animation, ButtonGroupSelectionMode } from './../index';
 export declare const Smart: any;
 export interface ButtonGroupProps extends ButtonGroupProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  ButtonGroup creates a set of buttons that can work as normal buttons, radio buttons or checkboxes.
 */
-export declare class ButtonGroup extends React.Component<React.HTMLProps<Element> & ButtonGroupProps, any> {
+export declare class ButtonGroup extends React.Component<React.HTMLAttributes<Element> & ButtonGroupProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -28,10 +30,10 @@ export declare class ButtonGroup extends React.Component<React.HTMLProps<Element
     get dataSource(): any;
     set dataSource(value: any);
     /** Determines the selection mode for the element.
-    *	Property type: ClickMode
+    *	Property type: ButtonGroupSelectionMode
     */
-    get selectionMode(): ClickMode;
-    set selectionMode(value: ClickMode);
+    get selectionMode(): ButtonGroupSelectionMode;
+    set selectionMode(value: ButtonGroupSelectionMode);
     /** Enables or disables the element.
     *	Property type: boolean
     */
@@ -97,7 +99,7 @@ export declare class ButtonGroup extends React.Component<React.HTMLProps<Element
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Selects/Unselects an item inside the element.
     * @param {number | string} value. The index or the value of the item to be selected/unselected.
     */

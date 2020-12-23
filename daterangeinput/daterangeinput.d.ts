@@ -1,18 +1,20 @@
 import React from "react";
 import { DateRangeInputProperties } from "./../index";
-import { Animation, DropDownButtonPosition, DateRangeInputValueType, DateRangeInputDateFormat, DateRangeInputTimeFormat } from './../index';
+import { Animation, DropDownButtonPosition, DateRangeInputValueType, DateRangeFormat, TimeRangeFormat } from './../index';
 export { DateRangeInputProperties } from "./../index";
-export { Animation, DropDownButtonPosition, DateRangeInputValueType, DateRangeInputDateFormat, DateRangeInputTimeFormat } from './../index';
+export { Animation, DropDownButtonPosition, DateRangeInputValueType, DateRangeFormat, TimeRangeFormat } from './../index';
 export declare const Smart: any;
 export interface DateRangeInputProps extends DateRangeInputProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  DateRangeInput specifies an input field where the user can enter a date range ( from date - to date ). It also has a popup with a Calendar that allows to select a date range. Time selection is an additional feature that can be enabled which allows to specify time for the date range.
 */
-export declare class DateRangeInput extends React.Component<React.HTMLProps<Element> & DateRangeInputProps, any> {
+export declare class DateRangeInput extends React.Component<React.HTMLAttributes<Element> & DateRangeInputProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -23,10 +25,10 @@ export declare class DateRangeInput extends React.Component<React.HTMLProps<Elem
     get animation(): Animation;
     set animation(value: Animation);
     /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is determined by the 'locale' property.
-    *	Property type: DateRangeInputDateFormat
+    *	Property type: DateRangeFormat
     */
-    get dateFormat(): DateRangeInputDateFormat;
-    set dateFormat(value: DateRangeInputDateFormat);
+    get dateFormat(): DateRangeFormat;
+    set dateFormat(value: DateRangeFormat);
     /** Enables or disables the element.
     *	Property type: boolean
     */
@@ -118,10 +120,10 @@ export declare class DateRangeInput extends React.Component<React.HTMLProps<Elem
     get separator(): string;
     set separator(value: string);
     /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date foramt is determined by the 'locale' property.
-    *	Property type: DateRangeInputTimeFormat
+    *	Property type: TimeRangeFormat
     */
-    get timeFormat(): DateRangeInputTimeFormat;
-    set timeFormat(value: DateRangeInputTimeFormat);
+    get timeFormat(): TimeRangeFormat;
+    set timeFormat(value: TimeRangeFormat);
     /** Determines whether time selection is available or not.
     *	Property type: boolean
     */
@@ -162,7 +164,7 @@ export declare class DateRangeInput extends React.Component<React.HTMLProps<Elem
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes the drop down.
     */
     close(): void;

@@ -68,7 +68,7 @@ class AccordionItem extends React.Component {
         return ["arrow", "content", "expanded", "focused", "label"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCollapse", "onExpand", "onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -148,8 +148,9 @@ class AccordionItem extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -311,7 +312,7 @@ class Accordion extends React.Component {
         return ["animation", "disabled", "expandedIndexes", "expandMode", "locale", "localizeFormatFunction", "messages", "readonly", "reorder", "rightToLeft", "theme", "unfocusable"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCollapse", "onCollapsing", "onDragEnd", "onDragStart", "onExpand", "onExpanding", "onCreate", "onReady"];
     }
     /** Collapses an item at a specified index.
@@ -458,8 +459,9 @@ class Accordion extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

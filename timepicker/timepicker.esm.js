@@ -222,7 +222,7 @@ class TimePicker extends React.Component {
         return ["animation", "autoSwitchToMinutes", "disabled", "footer", "footerTemplate", "format", "locale", "localizeFormatFunction", "messages", "minuteInterval", "name", "readonly", "rightToLeft", "selection", "theme", "unfocusable", "value", "view"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
     /** Sets the hours.
@@ -328,8 +328,9 @@ class TimePicker extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

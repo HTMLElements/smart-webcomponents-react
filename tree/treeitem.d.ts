@@ -6,11 +6,13 @@ export declare const Smart: any;
 export interface TreeItemProps extends TreeItemProperties {
     className?: string;
     style?: React.CSSProperties;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Defines a tree items.
 */
-export declare class TreeItem extends React.Component<React.HTMLProps<Element> & TreeItemProps, any> {
+export declare class TreeItem extends React.Component<React.HTMLAttributes<Element> & TreeItemProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -62,7 +64,7 @@ export declare class TreeItem extends React.Component<React.HTMLProps<Element> &
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

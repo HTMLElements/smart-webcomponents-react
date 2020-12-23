@@ -110,7 +110,7 @@ require('../source/modules/smart.tabs');
             return ["closeButtonHidden", "index", "selected", "label", "content", "labelSize"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCreate", "onReady"];
         }
         componentDidRender(initialize) {
@@ -190,8 +190,9 @@ require('../source/modules/smart.tabs');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }
@@ -243,7 +244,7 @@ require('../source/modules/smart.tabs');
             return ["label", "labelSize"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCreate", "onReady"];
         }
         componentDidRender(initialize) {
@@ -323,8 +324,9 @@ require('../source/modules/smart.tabs');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }
@@ -662,7 +664,7 @@ require('../source/modules/smart.tabs');
             return ["addNewTab", "allowToggle", "animation", "closeButtonMode", "closeButtons", "collapsed", "collapsible", "dataSource", "disabled", "enableMouseWheelAction", "locale", "localizeFormatFunction", "messages", "name", "overflow", "readonly", "reorder", "resize", "rightToLeft", "scrollButtonsPosition", "scrollMode", "selectedIndex", "selectionMode", "tabLayout", "tabPosition", "tabTextOrientation", "theme", "unfocusable"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onChange", "onClose", "onClosing", "onDragEnd", "onDragStart", "onReorder", "onCreate", "onReady"];
         }
         /** Collapses the content section.
@@ -864,8 +866,9 @@ require('../source/modules/smart.tabs');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

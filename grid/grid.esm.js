@@ -165,8 +165,8 @@ class Grid extends React.Component {
             this.nativeElement.dataExport = value;
         }
     }
-    /** Sets the grid's data source. The value of dataSource can be an instance of JQX.DataAdapter.
-    *	Property type: DataAdapter
+    /** Sets the grid's data source. The value of dataSource can be an instance of JQX.DataAdapter or an Array.
+    *	Property type: any
     */
     get dataSource() {
         return this.nativeElement ? this.nativeElement.dataSource : undefined;
@@ -588,8 +588,23 @@ class Grid extends React.Component {
         return ["appearance", "behavior", "layout", "clipboard", "columns", "columnMenu", "columnGroups", "conditionalFormatting", "charting", "checkBoxes", "dataExport", "dataSource", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onCommand", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "groupHeader", "header", "footer", "rows", "selection", "sorting"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onBeginEdit", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnDragging", "onColumnDragEnd", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
+    }
+    /** Adds a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
+    * @param {any} data. row data matching the data source
+    * @param {boolean} insertAtBottom?. Determines whether to add the new row to the bottom or top of the collection. The default value is 'true'
+    * @param {any} callback?. Sets a callback function, which is called after the new row is added. The callback's argument is the new row.
+    */
+    addRow(data, insertAtBottom, callback) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.addRow(data, insertAtBottom, callback);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.addRow(data, insertAtBottom, callback);
+            });
+        }
     }
     /** Adds a new row and puts it into edit mode. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string} position?. 'near' or 'far'
@@ -810,7 +825,7 @@ class Grid extends React.Component {
     }
     /** Creates a Chart, when charting is enabled.
     * @param {string} type. Chart's type
-    * @param {any[]} dataSource?. Chart's data source
+    * @param {any} dataSource?. Chart's data source
     */
     createChart(type, dataSource) {
         if (this.nativeElement.isRendered) {
@@ -824,14 +839,15 @@ class Grid extends React.Component {
     }
     /** Delete a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string | number} rowId. row bound id
+    * @param {any} callback?. Sets a callback function, which is called after the row is deleted. The callback's argument is the deleted row.
     */
-    deleteRow(rowId) {
+    deleteRow(rowId, callback) {
         if (this.nativeElement.isRendered) {
-            this.nativeElement.deleteRow(rowId);
+            this.nativeElement.deleteRow(rowId, callback);
         }
         else {
             this.nativeElement.whenRendered(() => {
-                this.nativeElement.deleteRow(rowId);
+                this.nativeElement.deleteRow(rowId, callback);
             });
         }
     }
@@ -943,6 +959,23 @@ class Grid extends React.Component {
                 return new Promise(resolve => {
                     this.nativeElement.whenRendered(() => {
                         const result = this.nativeElement.getSelection();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the selected row ids.
+    * @returns {any[]}
+  */
+    getSelectedRows() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getSelectedRows();
                         resolve(result);
                     });
                 });
@@ -1138,6 +1171,21 @@ class Grid extends React.Component {
     }
     /** Saves the batch edit changes. This method confirms the editing changes made by the end-user.
     * @param {string | number} rowId. row bound id
+    * @param {any} data. row data matching the data source
+    * @param {any} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
+    */
+    updateRow(rowId, data, callback) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.updateRow(rowId, data, callback);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.updateRow(rowId, data, callback);
+            });
+        }
+    }
+    /** Updates a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
+    * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field
     */
     select(rowId, dataField) {
@@ -1167,6 +1215,46 @@ class Grid extends React.Component {
         }
     }
     /** Selects a range of rows, cells or columns. The result of the method depends on the selection configuration of the Grid.
+    * @param {string | number} rowId. row bound id
+    * @param {string | number} endRowId. row bound id
+    */
+    selectRowsRange(rowId, endRowId) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.selectRowsRange(rowId, endRowId);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.selectRowsRange(rowId, endRowId);
+            });
+        }
+    }
+    /** Selects a range of rows.
+    * @param {(string | number)[]} rowId. Array of row ids
+    */
+    selectRows(rowId) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.selectRows(rowId);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.selectRows(rowId);
+            });
+        }
+    }
+    /** Selects multiple rows by their ids.
+    * @param {number[]} rowIndex. Array of row indexes
+    */
+    selectRowsByIndex(rowIndex) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.selectRowsByIndex(rowIndex);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.selectRowsByIndex(rowIndex);
+            });
+        }
+    }
+    /** Selects multiple rows by their index.
     * @param {string | number} rowId. row bound id
     */
     showDetail(rowId) {
@@ -1308,8 +1396,9 @@ class Grid extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

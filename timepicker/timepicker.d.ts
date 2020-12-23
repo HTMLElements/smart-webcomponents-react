@@ -8,11 +8,13 @@ export interface TimePickerProps extends TimePickerProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Time Picker component allows the user to select time from spinners.
 */
-export declare class TimePicker extends React.Component<React.HTMLProps<Element> & TimePickerProps, any> {
+export declare class TimePicker extends React.Component<React.HTMLAttributes<Element> & TimePickerProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -120,7 +122,7 @@ export declare class TimePicker extends React.Component<React.HTMLProps<Element>
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Sets the hours.
     * @param {number} hours. The hours to set.
     */

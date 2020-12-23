@@ -11,11 +11,13 @@ export interface CarouselProps extends CarouselProperties {
     onChanging?: ((event?: Event) => void) | undefined;
     onSwipeleft?: ((event?: Event) => void) | undefined;
     onSwiperight?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Carousel is a slideshow component for cycling through elements—images or slides of text
 */
-export declare class Carousel extends React.Component<React.HTMLProps<Element> & CarouselProps, any> {
+export declare class Carousel extends React.Component<React.HTMLAttributes<Element> & CarouselProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -165,7 +167,7 @@ export declare class Carousel extends React.Component<React.HTMLProps<Element> &
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Navigates to the next slide.
     */
     next(): void;

@@ -6,11 +6,13 @@ export declare const Smart: any;
 export interface SplitterBarProps extends SplitterBarProperties {
     className?: string;
     style?: React.CSSProperties;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  SplitterBar splits two Split panels in a Splitter.
 */
-export declare class SplitterBar extends React.Component<React.HTMLProps<Element> & SplitterBarProps, any> {
+export declare class SplitterBar extends React.Component<React.HTMLAttributes<Element> & SplitterBarProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -22,7 +24,7 @@ export declare class SplitterBar extends React.Component<React.HTMLProps<Element
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Hides the splitter bar.
     */
     hide(): void;

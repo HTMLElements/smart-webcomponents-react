@@ -11,11 +11,13 @@ export interface CardProps extends CardProperties {
     onSwipeleft?: ((event?: Event) => void) | undefined;
     onSwiperight?: ((event?: Event) => void) | undefined;
     onSwipetop?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Card component with header, footer and content sections.
 */
-export declare class Card extends React.Component<React.HTMLProps<Element> & CardProps, any> {
+export declare class Card extends React.Component<React.HTMLAttributes<Element> & CardProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -94,7 +96,7 @@ export declare class Card extends React.Component<React.HTMLProps<Element> & Car
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

@@ -8,11 +8,13 @@ export interface ToggleButtonProps extends ToggleButtonProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  ToggleButton allows the user to change a setting between two states.
 */
-export declare class ToggleButton extends React.Component<React.HTMLProps<Element> & ToggleButtonProps, any> {
+export declare class ToggleButton extends React.Component<React.HTMLAttributes<Element> & ToggleButtonProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -92,7 +94,7 @@ export declare class ToggleButton extends React.Component<React.HTMLProps<Elemen
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

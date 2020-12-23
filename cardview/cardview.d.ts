@@ -17,11 +17,13 @@ export interface CardViewProps extends CardViewProperties {
     onDragStart?: ((event?: Event) => void) | undefined;
     onDragging?: ((event?: Event) => void) | undefined;
     onDragEnd?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  CardView creates Card-based layout. Supports Filtering, Sorting, Grouping, Editing and UI Virtualization.
 */
-export declare class CardView extends React.Component<React.HTMLProps<Element> & CardViewProps, any> {
+export declare class CardView extends React.Component<React.HTMLAttributes<Element> & CardViewProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -96,16 +98,6 @@ export declare class CardView extends React.Component<React.HTMLProps<Element> &
     */
     get messages(): any;
     set messages(value: any);
-    /** Callback function, used when record is inserted.
-    *	Property type: any
-    */
-    get onRecordInserted(): any;
-    set onRecordInserted(value: any);
-    /** Callback function, used when record is removed.
-    *	Property type: any
-    */
-    get onRecordRemoved(): any;
-    set onRecordRemoved(value: any);
     /** Describes the scrolling behavior of the element.
     *	Property type: Scrolling
     */
@@ -150,7 +142,7 @@ export declare class CardView extends React.Component<React.HTMLProps<Element> &
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds filtering
     * @param {string[]} filters. Filter information
     * @param {string} operator?. Logical operator between the filters of different fields

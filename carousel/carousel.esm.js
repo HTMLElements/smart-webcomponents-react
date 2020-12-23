@@ -288,7 +288,7 @@ class Carousel extends React.Component {
         return ["animation", "autoPlay", "dataSource", "delay", "disabled", "disableItemClick", "displayMode", "hideArrows", "hideIndicators", "indicatorTemplate", "interval", "itemTemplate", "keyboard", "locale", "localizeFormatFunction", "loop", "messages", "readonly", "rightToLeft", "slideShow", "swipe", "theme", "unfocusable", "wheel"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onChanging", "onSwipeleft", "onSwiperight", "onCreate", "onReady"];
     }
     /** Navigates to the next slide.
@@ -429,8 +429,9 @@ class Carousel extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

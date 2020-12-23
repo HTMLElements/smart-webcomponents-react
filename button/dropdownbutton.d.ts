@@ -15,11 +15,13 @@ export interface DropDownButtonProps extends DropDownButtonProperties {
     onOpening?: ((event?: Event) => void) | undefined;
     onResizeStart?: ((event?: Event) => void) | undefined;
     onResizeEnd?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  DropDownButton displays any type of content like components, text, images, etc in a DropDown.
 */
-export declare class DropDownButton extends React.Component<React.HTMLProps<Element> & DropDownButtonProps, any> {
+export declare class DropDownButton extends React.Component<React.HTMLAttributes<Element> & DropDownButtonProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -209,7 +211,7 @@ export declare class DropDownButton extends React.Component<React.HTMLProps<Elem
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Appends a new HTML node to the drop down.
     * @param {Node} node. The node to be appended
     * @returns {Node}

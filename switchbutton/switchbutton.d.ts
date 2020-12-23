@@ -8,11 +8,13 @@ export interface SwitchButtonProps extends SwitchButtonProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  A Switch represents a button with two states, on and off. Switches are most often used on mobile devices to enable and disable options.
 */
-export declare class SwitchButton extends React.Component<React.HTMLProps<Element> & SwitchButtonProps, any> {
+export declare class SwitchButton extends React.Component<React.HTMLAttributes<Element> & SwitchButtonProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -127,7 +129,7 @@ export declare class SwitchButton extends React.Component<React.HTMLProps<Elemen
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

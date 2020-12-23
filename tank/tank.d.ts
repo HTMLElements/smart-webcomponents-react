@@ -8,11 +8,13 @@ export interface TankProps extends TankProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Tank is a UI Component used in Engineering and Scientific applications. It is broadly used to display the fluid levels.
 */
-export declare class Tank extends React.Component<React.HTMLProps<Element> & TankProps, any> {
+export declare class Tank extends React.Component<React.HTMLAttributes<Element> & TankProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -232,7 +234,7 @@ export declare class Tank extends React.Component<React.HTMLProps<Element> & Tan
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Focuses the tank.
     */
     focus(): void;

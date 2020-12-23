@@ -1,8 +1,8 @@
 import React from "react";
 import { TableProperties } from "./../index";
-import { Animation, TableColumnSizeMode, TableEditMode, TablePageSize, TableSelectionMode, TableSortMode, TableColumn, TableConditionalFormatting } from './../index';
+import { Animation, TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting } from './../index';
 export { TableProperties } from "./../index";
-export { Animation, TableColumnDataType, TableColumnFreeze, TableColumnResponsivePriority, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableEditMode, TablePageSize, TableSelectionMode, TableSortMode, TableColumn, TableConditionalFormatting } from './../index';
+export { Animation, TableColumnDataType, TableColumnFreeze, TableColumnResponsivePriority, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting } from './../index';
 export declare const Smart: any;
 export interface TableProps extends TableProperties {
     className?: string;
@@ -11,16 +11,23 @@ export interface TableProps extends TableProperties {
     onCellClick?: ((event?: Event) => void) | undefined;
     onCellEndEdit?: ((event?: Event) => void) | undefined;
     onChange?: ((event?: Event) => void) | undefined;
+    onCollapse?: ((event?: Event) => void) | undefined;
+    onExpand?: ((event?: Event) => void) | undefined;
     onColumnClick?: ((event?: Event) => void) | undefined;
+    onColumnResize?: ((event?: Event) => void) | undefined;
     onFilter?: ((event?: Event) => void) | undefined;
     onGroup?: ((event?: Event) => void) | undefined;
     onPage?: ((event?: Event) => void) | undefined;
+    onRowBeginEdit?: ((event?: Event) => void) | undefined;
+    onRowEndEdit?: ((event?: Event) => void) | undefined;
     onSort?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Table is an alternative of the HTMLTableElement.
 */
-export declare class Table extends React.Component<React.HTMLProps<Element> & TableProps, any> {
+export declare class Table extends React.Component<React.HTMLAttributes<Element> & TableProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -40,7 +47,12 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     */
     get autoSaveState(): boolean;
     set autoSaveState(value: boolean);
-    /** Sets or gets the min width of columns when columnSizeMode is 'auto'.
+    /** Sets or gets a list of column groups that constitute the column header hierarchy. Note: when column header hierarchy is created, column resizing and auto-sizing is not supported.
+    *	Property type: TableColumnGroup[]
+    */
+    get columnGroups(): TableColumnGroup[];
+    set columnGroups(value: TableColumnGroup[]);
+    /** Sets or gets the min width of columns when columnSizeMode is 'auto' or when resizing columns. This property has no effect on columns with programmatically set width.
     *	Property type: string | number
     */
     get columnMinWidth(): string | number;
@@ -50,6 +62,16 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     */
     get columnReorder(): boolean;
     set columnReorder(value: boolean);
+    /** Sets or gets whether the resizing of columns is enabled. Note: column sizes continue to adhere to the behavior of the standard HTML table element's table-layout: fixed, upon which smart-table is based.
+    *	Property type: boolean
+    */
+    get columnResize(): boolean;
+    set columnResize(value: boolean);
+    /** Sets or gets whether when resizing a column, a feedback showing the new column width in px will be displayed.
+    *	Property type: boolean
+    */
+    get columnResizeFeedback(): boolean;
+    set columnResizeFeedback(value: boolean);
     /** Describes the columns properties.
     *	Property type: TableColumn[]
     */
@@ -70,6 +92,11 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     */
     get conditionalFormattingButton(): boolean;
     set conditionalFormattingButton(value: boolean);
+    /** When binding the dataSource property directly to an array (as opposed to an instance of JQX.DataAdapter), sets or gets the name of the data field in the source array to bind row ids to.
+    *	Property type: string
+    */
+    get dataRowId(): string;
+    set dataRowId(value: string);
     /** Determines the data source of the table component.
     *	Property type: any
     */
@@ -115,6 +142,11 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     */
     get footerRow(): string;
     set footerRow(value: string);
+    /** Sets or gets whether Excel-like formulas can be passed as cell values. Formulas are always preceded by the = sign and are re-evaluated when cell values are changed. This feature depends on the third-party free plug-in formula-parser (the file formula-parser.min.js has to be referenced).
+    *	Property type: boolean
+    */
+    get formulas(): boolean;
+    set formulas(value: boolean);
     /** Sets or gets whether the Table's footer is sticky/frozen.
     *	Property type: boolean
     */
@@ -140,6 +172,11 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     */
     get keyboardNavigation(): boolean;
     set keyboardNavigation(value: boolean);
+    /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
+    *	Property type: TableLoadColumnStateBehavior
+    */
+    get loadColumnStateBehavior(): TableLoadColumnStateBehavior;
+    set loadColumnStateBehavior(value: TableLoadColumnStateBehavior);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -198,6 +235,11 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     */
     get rowDetailTemplate(): string;
     set rowDetailTemplate(value: string);
+    /** Sets or gets an array of the Table's selected row's ids.
+    *	Property type: any[]
+    */
+    get selected(): any[];
+    set selected(value: any[]);
     /** Sets or gets whether row selection (via checkboxes) is enabled.
     *	Property type: boolean
     */
@@ -233,33 +275,62 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     */
     get tooltip(): boolean;
     set tooltip(value: boolean);
+    /** Enables or disables HTML virtualization. This functionality allows for only visible rows to be rendered, resulting in an increased Table performance.
+    *	Property type: boolean
+    */
+    get virtualization(): boolean;
+    set virtualization(value: boolean);
     get properties(): string[];
     /**  This event is triggered when a cell edit operation has been initiated.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	row)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	row, 	value)
     *   dataField - The data field of the cell's column.
     *   row - The data of the cell's row.
+    *   value - The data value of the cell.
     */
     onCellBeginEdit?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a cell has been clicked.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	row)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	dataField, 	row, 	value, 	originalEvent)
+    *   id - The cell's row id.
     *   dataField - The data field of the cell's column.
     *   row - The data of the cell's row.
+    *   value - The data value of the cell.
+    *   originalEvent - The 'click' event object.
     */
     onCellClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a cell has been edited.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	row)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	row, 	value)
     *   dataField - The data field of the cell's column.
     *   row - The new data of the cell's row.
+    *   value - The data value of the cell.
     */
     onCellEndEdit?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the selection is changed.
-    *  @param event. The custom event. 	*/
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	type)
+    *   type - The type of action that initiated the selection change. Possible types: 'programmatic', 'interaction', 'remove'.
+    */
     onChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a row has been collapsed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	record)
+    *   record - The data of the collapsed row.
+    */
+    onCollapse?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a row has been expanded.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	record)
+    *   record - The (aggregated) data of the expanded row.
+    */
+    onExpand?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a column header cell has been clicked.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField)
     *   dataField - The data field of the cell's column.
     */
     onColumnClick?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a column has been resized via dragging or double-click.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	headerCellElement, 	width)
+    *   dataField - The data field of the column.
+    *   headerCellElement - The column's header cell HTML element.
+    *   width - The new width of the column.
+    */
+    onColumnResize?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a filtering-related action is made.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	action, 	filters)
     *   action - The filtering action. Possible actions: 'add', 'remove'.
@@ -278,6 +349,16 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     *   action - The paging action. Possible actions: 'pageIndexChange', 'pageSizeChange'.
     */
     onPage?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a row edit operation has been initiated (only when editMode is 'row').
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row)
+    *   row - The data of the row.
+    */
+    onRowBeginEdit?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a row has been edited (only when editMode is 'row').
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row)
+    *   row - The new data of the row.
+    */
+    onRowEndEdit?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a column header cell has been clicked.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	columns)
     *   columns - An array with information about the columns the Table has been sorted by.
@@ -289,7 +370,7 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds a filter to a specific column.
     * @param {string} dataField. The column's data field.
     * @param {any} filter. FilterGroup object.
@@ -389,10 +470,10 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     * @returns {any}
   */
     saveState(): Promise<any>;
-    /** Selects a row.
-    * @param {string | number} rowId. The id of the row to select.
+    /** Selects one or more rows.
+    * @param {string | number | (string | number)[]} rowId. The id of the row (or an array of row ids) to select.
     */
-    select(rowId: string | number): void;
+    select(rowId: string | number | (string | number)[]): void;
     /** Sets the value of a cell.
     * @param {string | number} row. The id of the cell's row.
     * @param {string} dataField. The dataField of the cell's column.
@@ -404,10 +485,10 @@ export declare class Table extends React.Component<React.HTMLProps<Element> & Ta
     * @param {string} sortOrder?. Sort order. Possible values: 'asc' (ascending), 'desc' (descending), and null (removes sorting by column). If not provided, toggles the sorting.
     */
     sortBy(columnDataField: string, sortOrder?: string): void;
-    /** Unselects a row.
-    * @param {string | number} rowId. The id of the row to unselect.
+    /** Unselects one or more rows.
+    * @param {string | number | (string | number)[]} rowId. The id of the row (or an array of row ids) to unselect.
     */
-    unselect(rowId: string | number): void;
+    unselect(rowId: string | number | (string | number)[]): void;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

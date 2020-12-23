@@ -11,11 +11,13 @@ export interface GroupPanelProps extends GroupPanelProperties {
     onCancel?: ((event?: Event) => void) | undefined;
     onCollapseAll?: ((event?: Event) => void) | undefined;
     onExpandAll?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Defines a group of grouped items in a panel.
 */
-export declare class GroupPanel extends React.Component<React.HTMLProps<Element> & GroupPanelProps, any> {
+export declare class GroupPanel extends React.Component<React.HTMLAttributes<Element> & GroupPanelProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -106,7 +108,7 @@ export declare class GroupPanel extends React.Component<React.HTMLProps<Element>
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

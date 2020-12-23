@@ -1,18 +1,20 @@
 import React from "react";
 import { TimeInputProperties } from "./../index";
-import { Animation, DropDownButtonPosition, TimeInputDateTimeFormat } from './../index';
+import { Animation, DropDownButtonPosition, TimeFormat } from './../index';
 export { TimeInputProperties } from "./../index";
-export { Animation, DropDownButtonPosition, TimeInputDateTimeFormat } from './../index';
+export { Animation, DropDownButtonPosition, TimeFormat } from './../index';
 export declare const Smart: any;
 export interface TimeInputProps extends TimeInputProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  TimeInput specifies an input field where the user can enter a time. It also has a popup with a Calendar that allows to pick a time.
 */
-export declare class TimeInput extends React.Component<React.HTMLProps<Element> & TimeInputProps, any> {
+export declare class TimeInput extends React.Component<React.HTMLAttributes<Element> & TimeInputProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -23,10 +25,10 @@ export declare class TimeInput extends React.Component<React.HTMLProps<Element> 
     get animation(): Animation;
     set animation(value: Animation);
     /** Determines the format of the time displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is 'numeric'.
-    *	Property type: TimeInputDateTimeFormat
+    *	Property type: TimeFormat
     */
-    get dateTimeFormat(): TimeInputDateTimeFormat;
-    set dateTimeFormat(value: TimeInputDateTimeFormat);
+    get dateTimeFormat(): TimeFormat;
+    set dateTimeFormat(value: TimeFormat);
     /** Enables or disables the element.
     *	Property type: boolean
     */
@@ -122,7 +124,7 @@ export declare class TimeInput extends React.Component<React.HTMLProps<Element> 
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes the drop down.
     */
     close(): void;

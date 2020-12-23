@@ -9,11 +9,13 @@ export interface PagerProps extends PagerProperties {
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
     onPageSizeChanged?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Pagination component that is used to navigate between a set of results.
 */
-export declare class Pager extends React.Component<React.HTMLProps<Element> & PagerProps, any> {
+export declare class Pager extends React.Component<React.HTMLAttributes<Element> & PagerProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -151,7 +153,7 @@ export declare class Pager extends React.Component<React.HTMLProps<Element> & Pa
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Selects first item.
     */
     first(): void;

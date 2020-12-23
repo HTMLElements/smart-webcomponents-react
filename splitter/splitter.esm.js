@@ -126,7 +126,7 @@ class SplitterItem extends React.Component {
         return ["disabled", "collapsed", "collapsible", "content", "locked", "max", "min", "size"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     /** Collapses the item.
@@ -255,8 +255,9 @@ class SplitterItem extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -286,7 +287,7 @@ class SplitterBar extends React.Component {
         return [];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     /** Hides the splitter bar.
@@ -414,8 +415,9 @@ class SplitterBar extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -632,7 +634,7 @@ class Splitter extends React.Component {
         return ["animation", "autoFitMode", "disabled", "dataSource", "items", "keepProportionsOnResize", "locale", "localizeFormatFunction", "messages", "orientation", "readonly", "resizeMode", "resizeStep", "rightToLeft", "liveResize", "theme", "unfocusable"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCollapse", "onExpand", "onResizeStart", "onResizeEnd", "onCreate", "onReady"];
     }
     /** Appends a new node.
@@ -795,6 +797,18 @@ class Splitter extends React.Component {
             return result;
         });
     }
+    /** Refreshes the Splitter
+    */
+    refresh() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.refresh();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.refresh();
+            });
+        }
+    }
     /** Unhides a Splitter Bar
     * @param {number} splitterBar. An instance of a splitter bar.
     */
@@ -925,8 +939,9 @@ class Splitter extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

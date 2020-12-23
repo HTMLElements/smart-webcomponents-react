@@ -31,7 +31,7 @@ class TimeInput extends React.Component {
         }
     }
     /** Determines the format of the time displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is 'numeric'.
-    *	Property type: TimeInputDateTimeFormat
+    *	Property type: TimeFormat
     */
     get dateTimeFormat() {
         return this.nativeElement ? this.nativeElement.dateTimeFormat : undefined;
@@ -222,7 +222,7 @@ class TimeInput extends React.Component {
         return ["animation", "dateTimeFormat", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "locale", "localizeFormatFunction", "messages", "name", "opened", "placeholder", "readonly", "rightToLeft", "theme", "unfocusable", "value"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
     /** Closes the drop down.
@@ -375,8 +375,9 @@ class TimeInput extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

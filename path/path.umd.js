@@ -360,7 +360,7 @@ require('../source/modules/smart.path');
 	        return ["animation", "dataSource", "disabled", "displayMember", "dropDownAppendTo", "dropDownHeight", "dropDownMaxHeight", "dropDownMaxWidth", "dropDownMinHeight", "dropDownMinWidth", "dropDownOverlay", "dropDownPosition", "dropDownWidth", "hint", "indicator", "items", "label", "locale", "messages", "name", "opened", "placeholder", "pathFormat", "readonly", "rightToLeft", "theme", "unfocusable", "value", "valueMember", "wrap"];
 	    }
 	    // Gets the events of the React component.
-	    get events() {
+	    get eventListeners() {
 	        return ["onBrowseButtonClick", "onChange", "onClose", "onClosing", "onDropDownButtonClick", "onItemClick", "onOpen", "onOpening", "onCreate", "onReady"];
 	    }
 	    /** Closes the dropDown.
@@ -488,8 +488,9 @@ require('../source/modules/smart.path');
 	        if (!that.nativeElement) {
 	            return;
 	        }
-	        for (let i = 0; i < that.events.length; i++) {
-	            const eventName = that.events[i];
+	        that.nativeElement.whenRenderedCallbacks = [];
+	        for (let i = 0; i < that.eventListeners.length; i++) {
+	            const eventName = that.eventListeners[i];
 	            that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
 	        }
 	    }

@@ -14,11 +14,13 @@ export interface ToastProps extends ToastProperties {
     onSwipeleft?: ((event?: Event) => void) | undefined;
     onSwiperight?: ((event?: Event) => void) | undefined;
     onSwipetop?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  The toast component is like an alert box that is only shown for a couple of seconds when something happens.
 */
-export declare class Toast extends React.Component<React.HTMLProps<Element> & ToastProps, any> {
+export declare class Toast extends React.Component<React.HTMLAttributes<Element> & ToastProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -156,7 +158,7 @@ export declare class Toast extends React.Component<React.HTMLProps<Element> & To
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes all opened toast items.
     */
     closeAll(): void;
@@ -168,9 +170,11 @@ export declare class Toast extends React.Component<React.HTMLProps<Element> & To
     */
     closeLast(): void;
     /** Opens a new toast item and returns the opened smart-toast-item instance.
+    * @param {HTMLElement | string} value?. The value for the toast item. If not set, the value property will be used.
+    * @param {string} iconType?. The icon name for the toast item. If not set, the type property determines the icon type that will be used.
     * @returns {HTMLElement}
   */
-    open(): Promise<any>;
+    open(value?: HTMLElement | string, iconType?: string): Promise<any>;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

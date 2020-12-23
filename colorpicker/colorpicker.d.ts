@@ -19,11 +19,13 @@ export interface ColorPickerProps extends ColorPickerProperties {
     onOpening?: ((event?: Event) => void) | undefined;
     onResizeStart?: ((event?: Event) => void) | undefined;
     onResizeEnd?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  ColorPicker is an advanced color picking component with Pallete, Spectrum Grid, Radial Palette and Excel-like options. Users can input colors either by a dropdown or input field.
 */
-export declare class ColorPicker extends React.Component<React.HTMLProps<Element> & ColorPickerProps, any> {
+export declare class ColorPicker extends React.Component<React.HTMLAttributes<Element> & ColorPickerProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -321,7 +323,7 @@ export declare class ColorPicker extends React.Component<React.HTMLProps<Element
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Opens the drop down of the color picker.
     */
     open(): void;

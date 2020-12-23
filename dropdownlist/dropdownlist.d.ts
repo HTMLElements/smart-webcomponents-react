@@ -23,11 +23,13 @@ export interface DropDownListProps extends DropDownListProperties {
     onResizeEnd?: ((event?: Event) => void) | undefined;
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
     onScrollTopReached?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  The DropDownList is a form component that lets you choose a single predefined value from a list. It is a more advanced version of the 'select' tag.
 */
-export declare class DropDownList extends React.Component<React.HTMLProps<Element> & DropDownListProps, any> {
+export declare class DropDownList extends React.Component<React.HTMLAttributes<Element> & DropDownListProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -383,7 +385,7 @@ export declare class DropDownList extends React.Component<React.HTMLProps<Elemen
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Appends a ListItem to the end of the list of items inside element.
     * @param {Node} node. A ListItem element that should be added to the rest of the items as the last item.
     * @returns {Node}

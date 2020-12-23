@@ -9,11 +9,13 @@ export interface ColumnPanelProps extends ColumnPanelProperties {
     style?: React.CSSProperties;
     onApply?: ((event?: Event) => void) | undefined;
     onCancel?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Column Panel allows toggling the visibility and changing the order of columns.
 */
-export declare class ColumnPanel extends React.Component<React.HTMLProps<Element> & ColumnPanelProps, any> {
+export declare class ColumnPanel extends React.Component<React.HTMLAttributes<Element> & ColumnPanelProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -79,7 +81,7 @@ export declare class ColumnPanel extends React.Component<React.HTMLProps<Element
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

@@ -12,11 +12,13 @@ export interface TextBoxProps extends TextBoxProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  TextBox is an input field with auto-suggest options.
 */
-export declare class TextBox extends React.Component<React.HTMLProps<Element> & TextBoxProps, any> {
+export declare class TextBox extends React.Component<React.HTMLAttributes<Element> & TextBoxProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -295,7 +297,7 @@ export declare class TextBox extends React.Component<React.HTMLProps<Element> & 
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes the drop down. The drop down is used only when auto complete is enabled.
     */
     close(): void;

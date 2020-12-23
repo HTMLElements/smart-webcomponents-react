@@ -11,11 +11,13 @@ export declare const Smart: any;
 export interface FormProps extends FormProperties {
     className?: string;
     style?: React.CSSProperties;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Reactive Form Component with Advanced Validation
 */
-export declare class Form extends React.Component<React.HTMLProps<Element> & FormProps, any> {
+export declare class Form extends React.Component<React.HTMLAttributes<Element> & FormProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -77,7 +79,7 @@ export declare class Form extends React.Component<React.HTMLProps<Element> & For
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds a control to the Form.
     * @param {any} controlOptions. Control options. The control options description is available in the <em>controls</em> property.
     */

@@ -228,7 +228,7 @@ require('../source/modules/smart.customizationdialog');
 	        return ["animation", "dataSource", "displayMember", "disabled", "filtering", "grouping", "headerButtons", "locale", "localizeFormatFunction", "messages", "reorder", "selectedTab", "sorting", "theme", "unfocusable", "value", "valueMember", "visibility"];
 	    }
 	    // Gets the events of the React component.
-	    get events() {
+	    get eventListeners() {
 	        return ["onOpen", "onClose", "onChange", "onApply", "onCreate", "onReady"];
 	    }
 	    /** Opens the dialog
@@ -332,8 +332,9 @@ require('../source/modules/smart.customizationdialog');
 	        if (!that.nativeElement) {
 	            return;
 	        }
-	        for (let i = 0; i < that.events.length; i++) {
-	            const eventName = that.events[i];
+	        that.nativeElement.whenRenderedCallbacks = [];
+	        for (let i = 0; i < that.eventListeners.length; i++) {
+	            const eventName = that.eventListeners[i];
 	            that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
 	        }
 	    }

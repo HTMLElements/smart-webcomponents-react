@@ -9,11 +9,13 @@ export interface SortPanelProps extends SortPanelProperties {
     style?: React.CSSProperties;
     onApply?: ((event?: Event) => void) | undefined;
     onCancel?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  SortPanel allows you to add and remove sort columns and update the sort order of the columns.
 */
-export declare class SortPanel extends React.Component<React.HTMLProps<Element> & SortPanelProps, any> {
+export declare class SortPanel extends React.Component<React.HTMLAttributes<Element> & SortPanelProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -88,7 +90,7 @@ export declare class SortPanel extends React.Component<React.HTMLProps<Element> 
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

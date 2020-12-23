@@ -7,11 +7,13 @@ export declare const Smart: any;
 export interface RatingProps extends RatingProperties {
     className?: string;
     style?: React.CSSProperties;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Rating allows you to input a rating. It is broadly used in applications with reviews.
 */
-export declare class Rating extends React.Component<React.HTMLProps<Element> & RatingProps, any> {
+export declare class Rating extends React.Component<React.HTMLAttributes<Element> & RatingProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -78,7 +80,7 @@ export declare class Rating extends React.Component<React.HTMLProps<Element> & R
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

@@ -288,7 +288,7 @@ class Pager extends React.Component {
         return ["animation", "autoEllipsis", "disabled", "locale", "localizeFormatFunction", "messages", "navigationButtonsPosition", "pageIndex", "pageIndexSelectors", "pageSize", "pageSizeSelectorDataSource", "pagesCount", "readonly", "rightToLeft", "showFirstLastNavigationButtons", "showNavigationButtonLabels", "showNavigationInput", "showPageIndexSelectors", "showPageSizeSelector", "showPrevNextNavigationButtons", "showSummary", "theme", "unfocusable", "totalRecords"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onPageSizeChanged", "onCreate", "onReady"];
     }
     /** Selects first item.
@@ -429,8 +429,9 @@ class Pager extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

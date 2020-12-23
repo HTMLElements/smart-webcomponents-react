@@ -8,11 +8,13 @@ export interface TextAreaProps extends TextAreaProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  TextArea specifies a textarea field where the user can enter data. Auto-complete options are displayed for easier input.
 */
-export declare class TextArea extends React.Component<React.HTMLProps<Element> & TextAreaProps, any> {
+export declare class TextArea extends React.Component<React.HTMLAttributes<Element> & TextAreaProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -162,7 +164,7 @@ export declare class TextArea extends React.Component<React.HTMLProps<Element> &
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes the drop down.
     */
     close(): void;

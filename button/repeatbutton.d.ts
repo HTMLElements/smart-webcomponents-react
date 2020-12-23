@@ -8,11 +8,13 @@ export interface RepeatButtonProps extends RepeatButtonProperties {
     className?: string;
     style?: React.CSSProperties;
     onClick?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  RepatButton provides press-and-hold functionality and it is an ideal UI component for allowing end-users to control an increasing or decreasing value.
 */
-export declare class RepeatButton extends React.Component<React.HTMLProps<Element> & RepeatButtonProps, any> {
+export declare class RepeatButton extends React.Component<React.HTMLAttributes<Element> & RepeatButtonProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -97,7 +99,7 @@ export declare class RepeatButton extends React.Component<React.HTMLProps<Elemen
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

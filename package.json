@@ -1,6 +1,6 @@
 {
   "name": "smart-webcomponents-react",
-  "version": "8.0.0",
+  "version": "9.0.0",
    "preferGlobal": true,
   "keywords": [
     "ReactJS",
@@ -57,7 +57,7 @@
    
   },
   "devDependencies": {
-
+	
   },  
   "author": "jQWidgets <support@htmlelements.com> (https://www.htmlelements.com/)",
   "license": "SEE LICENSE IN https://www.htmlelements.com/license/",

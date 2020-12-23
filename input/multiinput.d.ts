@@ -8,11 +8,13 @@ export interface MultiInputProps extends MultiInputProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  MultiInput specifies an input field where the user can enter data. Auto-complete options are displayed for easier input. Allows multiple selection. Selected items are added to the input's value.
 */
-export declare class MultiInput extends React.Component<React.HTMLProps<Element> & MultiInputProps, any> {
+export declare class MultiInput extends React.Component<React.HTMLAttributes<Element> & MultiInputProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -172,7 +174,7 @@ export declare class MultiInput extends React.Component<React.HTMLProps<Element>
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes the drop down.
     */
     close(): void;

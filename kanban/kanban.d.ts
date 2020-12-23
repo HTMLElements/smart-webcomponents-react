@@ -18,11 +18,13 @@ export interface KanbanProps extends KanbanProperties {
     onOpen?: ((event?: Event) => void) | undefined;
     onOpening?: ((event?: Event) => void) | undefined;
     onSort?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Kanban represents a kanban board that visually depicts work at various stages of a process using cards to represent tasks and columns to represent each stage of the process.
 */
-export declare class Kanban extends React.Component<React.HTMLProps<Element> & KanbanProps, any> {
+export declare class Kanban extends React.Component<React.HTMLAttributes<Element> & KanbanProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -32,6 +34,11 @@ export declare class Kanban extends React.Component<React.HTMLProps<Element> & K
     */
     get addNewButton(): boolean;
     set addNewButton(value: boolean);
+    /** Sets or gets whether a column with a button for adding new status columns to the Kanban will be displayed.
+    *	Property type: boolean
+    */
+    get addNewColumn(): boolean;
+    set addNewColumn(value: boolean);
     /** Allows the dragging of tasks.
     *	Property type: boolean
     */
@@ -77,6 +84,39 @@ export declare class Kanban extends React.Component<React.HTMLProps<Element> & K
     */
     get dataSource(): KanbanDataSource[];
     set dataSource(value: KanbanDataSource[]);
+    /** Determines the the relation (mapping) between the Kanban's default fields (keywords) and the data fields from the data source. Not necessary if both match. Only some of the default mapping can be overwritten.
+    *	Property type: { checklist: string; color: string; comments: string; dueDate: string; id: string; priority: string; progress: string; startDate: string; status: string; swimlane: string; tags: string; text: string; userId: string; }
+    */
+    get dataSourceMap(): {
+        checklist: string;
+        color: string;
+        comments: string;
+        dueDate: string;
+        id: string;
+        priority: string;
+        progress: string;
+        startDate: string;
+        status: string;
+        swimlane: string;
+        tags: string;
+        text: string;
+        userId: string;
+    };
+    set dataSourceMap(value: {
+        checklist: string;
+        color: string;
+        comments: string;
+        dueDate: string;
+        id: string;
+        priority: string;
+        progress: string;
+        startDate: string;
+        status: string;
+        swimlane: string;
+        tags: string;
+        text: string;
+        userId: string;
+    });
     /** Determines the offset of the drag feedback element from the mouse cursor when dragging tasks. The first member of the array is the horizontal offset and the second one - the vertical offset. If set to 'auto', the offset is based on the mouse position when the dragging started.
     *	Property type: boolean
     */
@@ -262,7 +302,7 @@ export declare class Kanban extends React.Component<React.HTMLProps<Element> & K
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds filtering
     * @param {string[]} filters. Filter information
     * @param {string} operator?. Logical operator between the filters of different fields

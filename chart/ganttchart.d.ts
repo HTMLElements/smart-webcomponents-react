@@ -2,7 +2,7 @@ import React from "react";
 import { GanttChartProperties } from "./../index";
 import { GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDataSource, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskColumn } from './../index';
 export { GanttChartProperties } from "./../index";
-export { GanttChartDataExportItemType, GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, GanttChartTaskType, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDataSource, GanttChartDataSourceConnection, GanttChartDataSourceResource, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskConnection, GanttChartTaskResource, GanttChartTaskColumn } from './../index';
+export { GanttChartDataExportItemType, GanttChartTaskType, GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDataSource, GanttChartDataSourceResource, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskColumn } from './../index';
 export declare const Smart: any;
 export interface GanttChartProps extends GanttChartProperties {
     className?: string;
@@ -30,11 +30,13 @@ export interface GanttChartProps extends GanttChartProperties {
     onClose?: ((event?: Event) => void) | undefined;
     onCollapse?: ((event?: Event) => void) | undefined;
     onExpand?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Gantt charts are specialized bar charts that help clearly represent how tasks and resources are allocated over time in planning, project management, and scheduling applications.
 */
-export declare class GanttChart extends React.Component<React.HTMLProps<Element> & GanttChartProps, any> {
+export declare class GanttChart extends React.Component<React.HTMLAttributes<Element> & GanttChartProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -473,12 +475,12 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds a task as the last item of a Project.
-    * @param {string | number} taskIndex. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    * @param {any} taskIndex. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
     * @param {string | number} projectIndex. A number that represents the index of a project or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
     */
-    addTaskTo(taskIndex: string | number, projectIndex: string | number): void;
+    addTaskTo(taskIndex: any, projectIndex: string | number): void;
     /** Starts an update operation. This is appropriate when calling multiple methods or set multiple properties at once.
     */
     beginUpdate(): void;
@@ -539,25 +541,25 @@ export declare class GanttChart extends React.Component<React.HTMLProps<Element>
   */
     getState(): Promise<any>;
     /** Returns the Tree path of a task/resource.
-    * @param {GanttChartTask | GanttChartResource | number} item. A GattChartTask/GanttChartResource item object or index.
+    * @param {any} item. A GattChartTask/GanttChartResource item object or index.
     * @returns {string}
   */
-    getItemPath(item: GanttChartTask | GanttChartResource | number): Promise<any>;
+    getItemPath(item: any): Promise<any>;
     /** Returns the index of a task.
-    * @param {GanttChartTask} task. A GattChartTask object.
+    * @param {any} task. A GattChartTask object.
     * @returns {number}
   */
-    getTaskIndex(task: GanttChartTask): Promise<any>;
+    getTaskIndex(task: any): Promise<any>;
     /** Returns the tree path of a task.
-    * @param {GanttChartTask} task. A GanttChartTask object.
+    * @param {any} task. A GanttChartTask object.
     * @returns {string}
   */
-    getTaskPath(task: GanttChartTask): Promise<any>;
+    getTaskPath(task: any): Promise<any>;
     /** Returns teh Project of a task if any.
-    * @param {GanttChartTask} task. A GantChartTask object.
-    * @returns {GanttChartTask | undefined}
+    * @param {any} task. A GantChartTask object.
+    * @returns {any}
   */
-    getTaskProject(task: GanttChartTask): Promise<any>;
+    getTaskProject(task: any): Promise<any>;
     /** Returns the index of a resource.
     * @param {any} resource. A GanttChartResource object.
     * @returns {number}

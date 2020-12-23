@@ -8,11 +8,13 @@ export interface LedProps extends LedProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  LET Toggle button with Checked boolean value.
 */
-export declare class Led extends React.Component<React.HTMLProps<Element> & LedProps, any> {
+export declare class Led extends React.Component<React.HTMLAttributes<Element> & LedProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -135,7 +137,7 @@ export declare class Led extends React.Component<React.HTMLProps<Element> & LedP
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

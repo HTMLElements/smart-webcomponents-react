@@ -14,11 +14,13 @@ export interface CalendarProps extends CalendarProperties {
     onNavigationChange?: ((event?: Event) => void) | undefined;
     onOpen?: ((event?: Event) => void) | undefined;
     onClose?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Calendar allows user to easily select one or more dates. This control supports multi-calendar view, special dates, holidays, weekends, decade views.
 */
-export declare class Calendar extends React.Component<React.HTMLProps<Element> & CalendarProps, any> {
+export declare class Calendar extends React.Component<React.HTMLAttributes<Element> & CalendarProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -318,7 +320,7 @@ export declare class Calendar extends React.Component<React.HTMLProps<Element> &
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Clears the selection. Removes all seleceted dates.
     */
     clearSelection(): void;

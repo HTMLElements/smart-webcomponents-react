@@ -1,8 +1,8 @@
 import React from "react";
 import { MultilineTextBoxProperties } from "./../index";
-import { Animation, MultilineTextBoxAutoCapitalize, AutoComplete, TextBoxDisplayMode, MultilineTextBoxEnterKeyBehavior, HorizontalScrollBarVisibility, VerticalScrollBarVisibility, MultilineTextBoxWrap } from './../index';
+import { Animation, MultilineTextBoxAutoCapitalize, MultiLineTextBoxAutoComplete, TextBoxDisplayMode, MultilineTextBoxEnterKeyBehavior, HorizontalScrollBarVisibility, VerticalScrollBarVisibility, MultilineTextBoxWrap } from './../index';
 export { MultilineTextBoxProperties } from "./../index";
-export { Animation, MultilineTextBoxAutoCapitalize, AutoComplete, TextBoxDisplayMode, MultilineTextBoxEnterKeyBehavior, HorizontalScrollBarVisibility, VerticalScrollBarVisibility, MultilineTextBoxWrap } from './../index';
+export { Animation, MultilineTextBoxAutoCapitalize, MultiLineTextBoxAutoComplete, TextBoxDisplayMode, MultilineTextBoxEnterKeyBehavior, HorizontalScrollBarVisibility, VerticalScrollBarVisibility, MultilineTextBoxWrap } from './../index';
 export { ListItem } from './listitem';
 export { ListItemProperties } from "./../index";
 export { ListItemsGroup } from './listitemsgroup';
@@ -12,11 +12,13 @@ export interface MultilineTextBoxProps extends MultilineTextBoxProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Defines a multi-line text input control. MultilineTextBox can hold an unlimited number of characters, and the text renders in a fixed-width font
 */
-export declare class MultilineTextBox extends React.Component<React.HTMLProps<Element> & MultilineTextBoxProps, any> {
+export declare class MultilineTextBox extends React.Component<React.HTMLAttributes<Element> & MultilineTextBoxProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -32,10 +34,10 @@ export declare class MultilineTextBox extends React.Component<React.HTMLProps<El
     get autoCapitalize(): MultilineTextBoxAutoCapitalize;
     set autoCapitalize(value: MultilineTextBoxAutoCapitalize);
     /** Determines whether the value of the control can be automatically completed by the browser.
-    *	Property type: AutoComplete
+    *	Property type: MultiLineTextBoxAutoComplete
     */
-    get autoComplete(): AutoComplete;
-    set autoComplete(value: AutoComplete);
+    get autoComplete(): MultiLineTextBoxAutoComplete;
+    set autoComplete(value: MultiLineTextBoxAutoComplete);
     /** Determines whether element will auto expand when the input overflows vertically.
     *	Property type: boolean
     */
@@ -210,7 +212,7 @@ export declare class MultilineTextBox extends React.Component<React.HTMLProps<El
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Focuses the element.
     */
     focus(): void;

@@ -145,7 +145,7 @@ class Sortable extends React.Component {
         return ["animation", "disabled", "dragMode", "handlePosition", "handleVisibility", "items", "locale", "localizeFormatFunction", "messages", "mode", "rightToLeft"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onDragEnd", "onCreate", "onReady"];
     }
     /** Moves a sortable item from one index to another.
@@ -251,8 +251,9 @@ class Sortable extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

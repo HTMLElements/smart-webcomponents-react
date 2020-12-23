@@ -21,11 +21,13 @@ export interface MenuProps extends MenuProperties {
     onItemClick?: ((event?: Event) => void) | undefined;
     onOpen?: ((event?: Event) => void) | undefined;
     onOpening?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Horizontal, Vertical and Popup Menu. Popup Menus appear when a user taps an interactive UI element such as an icon, button, action, or content, such as selected items or text.
 */
-export declare class Menu extends React.Component<React.HTMLProps<Element> & MenuProps, any> {
+export declare class Menu extends React.Component<React.HTMLAttributes<Element> & MenuProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -145,6 +147,11 @@ export declare class Menu extends React.Component<React.HTMLProps<Element> & Men
     */
     get overflow(): Overflow;
     set overflow(value: Overflow);
+    /** If set to true, prevents the closing of the Menu or its dropdowns when Menu items are checked/unchecked.
+    *	Property type: boolean
+    */
+    get preventCloseOnCheck(): boolean;
+    set preventCloseOnCheck(value: boolean);
     /** If the element is readonly, users cannot interact with it.
     *	Property type: boolean
     */
@@ -247,7 +254,7 @@ export declare class Menu extends React.Component<React.HTMLProps<Element> & Men
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds an item to the menu.
     * @param {HTMLElement} Item. A jqx-menu-item to add to the Menu.
     * @param {HTMLElement | string} Parent?. The jqx-menu-items-group or its id or numeric path to add the item to.

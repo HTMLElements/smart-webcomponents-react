@@ -17,11 +17,13 @@ export interface ListMenuProps extends ListMenuProperties {
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
     onSwipeleft?: ((event?: Event) => void) | undefined;
     onSwiperight?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  ListMenu allows you to present users a listing of options and sub options.
 */
-export declare class ListMenu extends React.Component<React.HTMLProps<Element> & ListMenuProps, any> {
+export declare class ListMenu extends React.Component<React.HTMLAttributes<Element> & ListMenuProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -221,7 +223,7 @@ export declare class ListMenu extends React.Component<React.HTMLProps<Element> &
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds an item to the list.
     * @param {HTMLElement} Item. A jqx-menu-item to add to the List Menu.
     * @param {HTMLElement | string} Parent?. The jqx-menu-items-group (or its id or numeric path) to add the item to.

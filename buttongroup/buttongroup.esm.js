@@ -42,7 +42,7 @@ class ButtonGroup extends React.Component {
         }
     }
     /** Determines the selection mode for the element.
-    *	Property type: ClickMode
+    *	Property type: ButtonGroupSelectionMode
     */
     get selectionMode() {
         return this.nativeElement ? this.nativeElement.selectionMode : undefined;
@@ -178,7 +178,7 @@ class ButtonGroup extends React.Component {
         return ["animation", "dataSource", "selectionMode", "disabled", "locale", "localizeFormatFunction", "messages", "name", "readonly", "rightToLeft", "theme", "selectedValues", "selectedIndexes", "unfocusable"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
     /** Selects/Unselects an item inside the element.
@@ -271,8 +271,9 @@ class ButtonGroup extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

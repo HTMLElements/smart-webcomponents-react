@@ -9,11 +9,13 @@ export interface ElementProps extends ElementProperties {
     style?: React.CSSProperties;
     onResize?: ((event?: Event) => void) | undefined;
     onStyleChanged?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  BaseElement extending the HTMLElement with localization, on-demand rendering, typed properties, two-way bound properties, property change notifications, lifecycle callbacks, automatic events listen and unlisten.
 */
-export declare class Element extends React.Component<React.HTMLProps<Element> & ElementProps, any> {
+export declare class Element extends React.Component<React.HTMLAttributes<Element> & ElementProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -108,7 +110,7 @@ export declare class Element extends React.Component<React.HTMLProps<Element> & 
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Unwatches the element.
     */
     unwatch(): void;

@@ -176,7 +176,7 @@ require('../source/modules/smart.dropdownlist');
             return ["alternationIndex", "color", "displayMode", "grouped", "selected", "value", "label", "details", "group", "hidden", "readonly"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCreate", "onReady"];
         }
         componentDidRender(initialize) {
@@ -256,8 +256,9 @@ require('../source/modules/smart.dropdownlist');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }
@@ -298,7 +299,7 @@ require('../source/modules/smart.dropdownlist');
             return ["label"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCreate", "onReady"];
         }
         componentDidRender(initialize) {
@@ -378,8 +379,9 @@ require('../source/modules/smart.dropdownlist');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }
@@ -1047,7 +1049,7 @@ require('../source/modules/smart.dropdownlist');
             return ["animation", "autoCloseDelay", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownButtonPosition", "dropDownHeight", "dropDownMaxHeight", "dropDownMaxWidth", "dropDownMinHeight", "dropDownMinWidth", "dropDownOpenMode", "dropDownOverlay", "dropDownPlaceholder", "dropDownPosition", "dropDownWidth", "filterable", "filterInputPlaceholder", "filterMode", "grouped", "groupMember", "hint", "horizontalScrollBarVisibility", "inputMember", "incrementalSearchDelay", "incrementalSearchMode", "itemHeight", "itemMeasureMode", "items", "itemTemplate", "label", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "name", "opened", "placeholder", "readonly", "rightToLeft", "resizeIndicator", "resizeMode", "selectionDisplayMode", "selectedIndexes", "selectedValues", "selectionMode", "sorted", "sortDirection", "theme", "tokenTemplate", "unfocusable", "value", "valueMember", "verticalScrollBarVisibility", "virtualized"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onActionButtonClick", "onChange", "onClose", "onClosing", "onDropDownButtonClick", "onItemClick", "onOpen", "onOpening", "onResizeStart", "onResizeEnd", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
         }
         /** Appends a ListItem to the end of the list of items inside element.
@@ -1328,8 +1330,9 @@ require('../source/modules/smart.dropdownlist');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

@@ -8,11 +8,13 @@ export interface ChipProps extends ChipProperties {
     className?: string;
     style?: React.CSSProperties;
     onClose?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Chip is a simple rounded box that displays a single value and optionally an icon.
 */
-export declare class Chip extends React.Component<React.HTMLProps<Element> & ChipProps, any> {
+export declare class Chip extends React.Component<React.HTMLAttributes<Element> & ChipProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -94,7 +96,7 @@ export declare class Chip extends React.Component<React.HTMLProps<Element> & Chi
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes the chip and removes it from the DOM.
     */
     close(): void;

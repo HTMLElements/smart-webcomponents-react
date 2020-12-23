@@ -145,7 +145,7 @@ class ListItem extends React.Component {
         return ["alternationIndex", "color", "displayMode", "grouped", "selected", "value", "label", "details", "group", "hidden", "readonly"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -225,8 +225,9 @@ class ListItem extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -267,7 +268,7 @@ class ListItemsGroup extends React.Component {
         return ["label"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -347,8 +348,9 @@ class ListItemsGroup extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -950,7 +952,7 @@ class TextBox extends React.Component {
         return ["animation", "autoFocus", "autoComplete", "autoCompleteDelay", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "displayMode", "dropDownAppendTo", "dropDownHeight", "dropDownMaxHeight", "dropDownMaxWidth", "dropDownMinHeight", "dropDownMinWidth", "dropDownOpenMode", "dropDownOverlay", "dropDownPlaceholder", "dropDownPosition", "dropDownWidth", "escKeyMode", "enterKeyBehavior", "form", "hint", "horizontalScrollBarVisibility", "inputMember", "inputPurpose", "itemHeight", "itemMeasureMode", "items", "itemTemplate", "label", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "maxLength", "minLength", "messages", "name", "opened", "placeholder", "readonly", "rightToLeft", "required", "requiredMessage", "selectAllOnFocus", "theme", "unfocusable", "value", "valueMember", "verticalScrollBarVisibility"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
     /** Closes the drop down. The drop down is used only when auto complete is enabled.
@@ -1066,8 +1068,9 @@ class TextBox extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

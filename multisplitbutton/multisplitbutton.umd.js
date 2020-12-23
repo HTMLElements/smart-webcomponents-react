@@ -176,7 +176,7 @@ require('../source/modules/smart.multisplitbutton');
             return ["alternationIndex", "color", "displayMode", "grouped", "selected", "value", "label", "details", "group", "hidden", "readonly"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCreate", "onReady"];
         }
         componentDidRender(initialize) {
@@ -256,8 +256,9 @@ require('../source/modules/smart.multisplitbutton');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }
@@ -298,7 +299,7 @@ require('../source/modules/smart.multisplitbutton');
             return ["label"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCreate", "onReady"];
         }
         componentDidRender(initialize) {
@@ -378,8 +379,9 @@ require('../source/modules/smart.multisplitbutton');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }
@@ -794,7 +796,7 @@ require('../source/modules/smart.multisplitbutton');
             return ["animation", "buttonsDataSource", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownButtonPosition", "dropDownOpenMode", "dropDownOverlay", "dropDownPosition", "filterable", "filterMode", "filterInputPlaceholder", "grouped", "groupMember", "incrementalSearchDelay", "incrementalSearchMode", "itemHeight", "itemTemplate", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "opened", "readonly", "selectedIndexes", "selectedValues", "selectionMode", "sorted", "theme", "unfocusable", "valueMember", "virtualized"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onChange", "onClose", "onClosing", "onItemClick", "onOpen", "onOpening", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
         }
         /** Closes button's dropDown list.
@@ -974,8 +976,9 @@ require('../source/modules/smart.multisplitbutton');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

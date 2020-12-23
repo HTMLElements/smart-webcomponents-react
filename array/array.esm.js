@@ -346,7 +346,7 @@ class Array$1 extends React.Component {
         return ["animation", "arrayIndexingMode", "changeProperty", "columns", "customWidgetDefaultValue", "dimensions", "disabled", "elementHeight", "elementTemplate", "elementWidth", "getElementValue", "indexerHeight", "indexerWidth", "locale", "localizeFormatFunction", "messages", "readonly", "rows", "setElementValue", "showHorizontalScrollbar", "showIndexDisplay", "showSelection", "showVerticalScrollbar", "theme", "type", "unfocusable", "value"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onArraySizeChange", "onChange", "onDimensionChange", "onElementClick", "onScroll", "onSizeChange", "onCreate", "onReady"];
     }
     /** Adds a dimension to the array. Note: when adding multiple dimensions simultaneously, it is recommended to do so by dynamically setting the dimensions property.
@@ -811,8 +811,9 @@ class Array$1 extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

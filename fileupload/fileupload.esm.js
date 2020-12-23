@@ -277,7 +277,7 @@ class FileUpload extends React.Component {
         return ["accept", "animation", "appendTo", "autoUpload", "directory", "disabled", "dropZone", "hideFooter", "itemTemplate", "locale", "localizeFormatFunction", "messages", "multiple", "name", "readonly", "responseHandler", "rightToLeft", "setHeaders", "showProgress", "theme", "uploadUrl", "unfocusable", "validateFile"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onFileSelected", "onUploadCanceled", "onUploadCompleted", "onUploadError", "onUploadPaused", "onUploadStarted", "onValidationError", "onCreate", "onReady"];
     }
     /** Opens a popup to browse for a file.
@@ -444,8 +444,9 @@ class FileUpload extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

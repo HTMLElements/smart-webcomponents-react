@@ -8,11 +8,13 @@ export interface NumberInputProps extends NumberInputProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  NumberInput specifies an input field where the user can enter a numbers.
 */
-export declare class NumberInput extends React.Component<React.HTMLProps<Element> & NumberInputProps, any> {
+export declare class NumberInput extends React.Component<React.HTMLAttributes<Element> & NumberInputProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -117,7 +119,7 @@ export declare class NumberInput extends React.Component<React.HTMLProps<Element
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Returns the value in the desired format.
     * @param {string | number} value. The value to be formatted by the method.
     * @param {any} format?. The object that contains the formatting properties. The argument should contain Intl.NumberFormat valid properties. For example, { style: 'currency', currency: 'EUR' }

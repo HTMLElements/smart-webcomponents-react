@@ -11,11 +11,13 @@ export interface CustomizationDialogProps extends CustomizationDialogProperties 
     onClose?: ((event?: Event) => void) | undefined;
     onChange?: ((event?: Event) => void) | undefined;
     onApply?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Defines a dialog for customization of filtering, sorting.
 */
-export declare class CustomizationDialog extends React.Component<React.HTMLProps<Element> & CustomizationDialogProps, any> {
+export declare class CustomizationDialog extends React.Component<React.HTMLAttributes<Element> & CustomizationDialogProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -129,7 +131,7 @@ export declare class CustomizationDialog extends React.Component<React.HTMLProps
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Opens the dialog
     */
     open(): void;

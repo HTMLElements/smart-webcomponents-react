@@ -156,7 +156,7 @@ class Breadcrumb extends React.Component {
         return ["addNewItem", "allowDrag", "allowDrop", "animation", "closeButtons", "dataSource", "disabled", "itemTemplate", "locale", "messages", "minimizeWidth", "unfocusable"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onClose", "onClosing", "onDragEnd", "onDragging", "onAddNewItem", "onCreate", "onReady"];
     }
     /** Adds an item.
@@ -286,8 +286,9 @@ class Breadcrumb extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

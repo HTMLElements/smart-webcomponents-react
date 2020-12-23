@@ -7,11 +7,13 @@ export declare const Smart: any;
 export interface ValidatorProps extends ValidatorProperties {
     className?: string;
     style?: React.CSSProperties;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Validator plug-in is used to validate form elements.
 */
-export declare class Validator extends React.Component<React.HTMLProps<Element> & ValidatorProps, any> {
+export declare class Validator extends React.Component<React.HTMLAttributes<Element> & ValidatorProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -33,7 +35,7 @@ export declare class Validator extends React.Component<React.HTMLProps<Element> 
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Clears the error messages.
     */
     reset(): void;

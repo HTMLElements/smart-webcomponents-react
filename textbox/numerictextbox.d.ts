@@ -14,11 +14,13 @@ export interface NumericTextBoxProps extends NumericTextBoxProperties {
     onOpen?: ((event?: Event) => void) | undefined;
     onOpening?: ((event?: Event) => void) | undefined;
     onRadixChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  input field for entering a number. Includes number formatting for Engineers and Scientists.
 */
-export declare class NumericTextBox extends React.Component<React.HTMLProps<Element> & NumericTextBoxProps, any> {
+export declare class NumericTextBox extends React.Component<React.HTMLAttributes<Element> & NumericTextBoxProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -256,7 +258,7 @@ export declare class NumericTextBox extends React.Component<React.HTMLProps<Elem
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Focuses the NumericTextBox.
     */
     focus(): void;

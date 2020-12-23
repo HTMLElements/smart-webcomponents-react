@@ -6,11 +6,13 @@ export declare const Smart: any;
 export interface TreeItemsGroupProps extends TreeItemsGroupProperties {
     className?: string;
     style?: React.CSSProperties;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Defines a group of tree items.
 */
-export declare class TreeItemsGroup extends React.Component<React.HTMLProps<Element> & TreeItemsGroupProps, any> {
+export declare class TreeItemsGroup extends React.Component<React.HTMLAttributes<Element> & TreeItemsGroupProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -62,7 +64,7 @@ export declare class TreeItemsGroup extends React.Component<React.HTMLProps<Elem
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

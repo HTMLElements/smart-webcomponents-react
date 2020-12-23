@@ -12,11 +12,13 @@ export interface BreadcrumbProps extends BreadcrumbProperties {
     onDragEnd?: ((event?: Event) => void) | undefined;
     onDragging?: ((event?: Event) => void) | undefined;
     onAddNewItem?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Breadcrumbs allow users to make selections from a range of values.
 */
-export declare class Breadcrumb extends React.Component<React.HTMLProps<Element> & BreadcrumbProps, any> {
+export declare class Breadcrumb extends React.Component<React.HTMLAttributes<Element> & BreadcrumbProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -117,7 +119,7 @@ export declare class Breadcrumb extends React.Component<React.HTMLProps<Element>
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds an item.
     * @param {any} itemDetails. An Object with the fields "index", "label", and "value".
     */

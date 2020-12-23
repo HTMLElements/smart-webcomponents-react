@@ -204,28 +204,6 @@ require('../source/modules/smart.cardview');
                 this.nativeElement.messages = value;
             }
         }
-        /** Callback function, used when record is inserted.
-        *	Property type: any
-        */
-        get onRecordInserted() {
-            return this.nativeElement ? this.nativeElement.onRecordInserted : undefined;
-        }
-        set onRecordInserted(value) {
-            if (this.nativeElement) {
-                this.nativeElement.onRecordInserted = value;
-            }
-        }
-        /** Callback function, used when record is removed.
-        *	Property type: any
-        */
-        get onRecordRemoved() {
-            return this.nativeElement ? this.nativeElement.onRecordRemoved : undefined;
-        }
-        set onRecordRemoved(value) {
-            if (this.nativeElement) {
-                this.nativeElement.onRecordRemoved = value;
-            }
-        }
         /** Describes the scrolling behavior of the element.
         *	Property type: Scrolling
         */
@@ -250,10 +228,10 @@ require('../source/modules/smart.cardview');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["addNewButton", "allowDrag", "animation", "cardHeight", "cellOrientation", "collapsible", "columns", "coverField", "coverMode", "dataSource", "editable", "headerPosition", "locale", "messages", "onRecordInserted", "onRecordRemoved", "scrolling", "titleField"];
+            return ["addNewButton", "allowDrag", "animation", "cardHeight", "cellOrientation", "collapsible", "columns", "coverField", "coverMode", "dataSource", "editable", "headerPosition", "locale", "messages", "scrolling", "titleField"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onFilter", "onSort", "onOpen", "onOpening", "onClose", "onClosing", "onDragStart", "onDragging", "onDragEnd", "onCreate", "onReady"];
         }
         /** Adds filtering
@@ -529,8 +507,9 @@ require('../source/modules/smart.cardview');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

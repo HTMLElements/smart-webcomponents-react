@@ -189,7 +189,7 @@ class Element extends React.Component {
         return ["animation", "disabled", "isRendered", "locale", "localizeFormatFunction", "messages", "onAttached", "onDetached", "onCreated", "onRender", "readonly", "renderMode", "rightToLeft", "theme", "unfocusable"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onResize", "onStyleChanged", "onCreate", "onReady"];
     }
     /** Unwatches the element.
@@ -308,8 +308,9 @@ class Element extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

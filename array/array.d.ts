@@ -13,11 +13,13 @@ export interface ArrayProps extends ArrayProperties {
     onElementClick?: ((event?: Event) => void) | undefined;
     onScroll?: ((event?: Event) => void) | undefined;
     onSizeChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Array is broadly used in Engineering applications and displays a Grid of values.
 */
-export declare class Array extends React.Component<React.HTMLProps<Element> & ArrayProps, any> {
+export declare class Array extends React.Component<React.HTMLAttributes<Element> & ArrayProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -182,7 +184,7 @@ export declare class Array extends React.Component<React.HTMLProps<Element> & Ar
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds a dimension to the array. Note: when adding multiple dimensions simultaneously, it is recommended to do so by dynamically setting the dimensions property.
     */
     addDimension(): void;

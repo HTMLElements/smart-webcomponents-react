@@ -376,7 +376,7 @@ class ColorPanel extends React.Component {
         return ["animation", "applyValueMode", "columnCount", "disabled", "displayMode", "disableUndo", "editAlphaChannel", "enableCustomColors", "gridThemeColors", "gridShadeColors", "gridStandardColors", "hideAlphaEditor", "hideContentToFit", "hideHEXEditor", "hidePreviewContainer", "hideRGBEditor", "inverted", "locale", "localizeFormatFunction", "messages", "name", "palette", "paletteColors", "paletteCustomColors", "readonly", "rightToLeft", "theme", "tooltipDisplayMode", "value", "valueFormat", "valueMember", "unfocusable"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onCancelButtonClick", "onCustomColorSelection", "onOkButtonClick", "onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -456,8 +456,9 @@ class ColorPanel extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

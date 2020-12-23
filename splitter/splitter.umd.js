@@ -132,7 +132,7 @@ require('../source/modules/smart.splitter');
             return ["disabled", "collapsed", "collapsible", "content", "locked", "max", "min", "size"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCreate", "onReady"];
         }
         /** Collapses the item.
@@ -261,8 +261,9 @@ require('../source/modules/smart.splitter');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }
@@ -292,7 +293,7 @@ require('../source/modules/smart.splitter');
             return [];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCreate", "onReady"];
         }
         /** Hides the splitter bar.
@@ -420,8 +421,9 @@ require('../source/modules/smart.splitter');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }
@@ -638,7 +640,7 @@ require('../source/modules/smart.splitter');
             return ["animation", "autoFitMode", "disabled", "dataSource", "items", "keepProportionsOnResize", "locale", "localizeFormatFunction", "messages", "orientation", "readonly", "resizeMode", "resizeStep", "rightToLeft", "liveResize", "theme", "unfocusable"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCollapse", "onExpand", "onResizeStart", "onResizeEnd", "onCreate", "onReady"];
         }
         /** Appends a new node.
@@ -801,6 +803,18 @@ require('../source/modules/smart.splitter');
                 return result;
             });
         }
+        /** Refreshes the Splitter
+        */
+        refresh() {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.refresh();
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.refresh();
+                });
+            }
+        }
         /** Unhides a Splitter Bar
         * @param {number} splitterBar. An instance of a splitter bar.
         */
@@ -931,8 +945,9 @@ require('../source/modules/smart.splitter');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

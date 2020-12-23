@@ -379,7 +379,7 @@ class DropDownButton extends React.Component {
         return ["animation", "autoCloseDelay", "disabled", "dropDownAppendTo", "dropDownButtonPosition", "dropDownHeight", "dropDownMaxHeight", "dropDownMaxWidth", "dropDownMinHeight", "dropDownMinWidth", "dropDownOpenMode", "dropDownOverlay", "dropDownPlaceholder", "dropDownPosition", "dropDownWidth", "hint", "horizontalScrollBarVisibility", "label", "locale", "localizeFormatFunction", "messages", "opened", "placeholder", "readonly", "resizeIndicator", "resizeMode", "rightToLeft", "theme", "unfocusable", "verticalScrollBarVisibility"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onActionButtonClick", "onClose", "onClosing", "onDropDownButtonClick", "onOpen", "onOpening", "onResizeStart", "onResizeEnd", "onCreate", "onReady"];
     }
     /** Appends a new HTML node to the drop down.
@@ -545,8 +545,9 @@ class DropDownButton extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

@@ -506,7 +506,7 @@ require('../source/modules/smart.tank');
             return ["animation", "coerce", "customInterval", "customTicks", "dateLabelFormatString", "decimalSeparator", "disabled", "interval", "inverted", "labelFormatFunction", "labelsVisibility", "locale", "localizeFormatFunction", "logarithmicScale", "max", "mechanicalAction", "messages", "min", "mode", "name", "orientation", "precisionDigits", "readonly", "rightToLeft", "scalePosition", "scaleType", "scientificNotation", "showThumbLabel", "showTooltip", "showUnit", "significantDigits", "theme", "thumbLabelPosition", "ticksPosition", "ticksVisibility", "tooltipPosition", "unfocusable", "unit", "validation", "value", "wordLength"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onChange", "onCreate", "onReady"];
         }
         /** Focuses the tank.
@@ -633,8 +633,9 @@ require('../source/modules/smart.tank');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

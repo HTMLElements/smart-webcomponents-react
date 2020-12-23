@@ -220,7 +220,7 @@ require('../source/modules/smart.filterpanel');
             return ["animation", "buttons", "data", "dataField", "dataSource", "disabled", "evaluateFilterExpression", "filterType", "formatString", "locale", "messages", "mode", "readonly", "theme", "unfocusable"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onCancel", "onClear", "onFilter", "onCreate", "onReady"];
         }
         /** Discards current filtering.
@@ -379,8 +379,9 @@ require('../source/modules/smart.filterpanel');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

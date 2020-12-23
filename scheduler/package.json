@@ -1,0 +1,7 @@
+{
+    "main": "scheduler.umd.js",
+    "module": "scheduler.esm.js",
+	"typings": "scheduler.d.ts",
+    "name": "smart-webcomponents-react/scheduler",
+    "sideEffects": false
+  }

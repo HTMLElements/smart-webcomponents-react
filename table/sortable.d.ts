@@ -8,11 +8,13 @@ export interface SortableProps extends SortableProperties {
     className?: string;
     style?: React.CSSProperties;
     onDragEnd?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Sortable allows you to rearrange a group of html elements.
 */
-export declare class Sortable extends React.Component<React.HTMLProps<Element> & SortableProps, any> {
+export declare class Sortable extends React.Component<React.HTMLAttributes<Element> & SortableProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -82,7 +84,7 @@ export declare class Sortable extends React.Component<React.HTMLProps<Element> &
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Moves a sortable item from one index to another.
     * @param {number} fromIndex?. The original index of the item.
     * @param {number} toIndex?. The index to move the item to.

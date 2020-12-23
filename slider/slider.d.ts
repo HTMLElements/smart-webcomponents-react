@@ -8,11 +8,13 @@ export interface SliderProps extends SliderProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Sliders allow users to make selections from a range of values.
 */
-export declare class Slider extends React.Component<React.HTMLProps<Element> & SliderProps, any> {
+export declare class Slider extends React.Component<React.HTMLAttributes<Element> & SliderProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -252,7 +254,7 @@ export declare class Slider extends React.Component<React.HTMLProps<Element> & S
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Focuses the slider.
     */
     focus(): void;

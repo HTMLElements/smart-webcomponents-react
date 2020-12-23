@@ -599,7 +599,7 @@ class Calendar extends React.Component {
         return ["animation", "animationSettings", "calendarMode", "dayNameFormat", "dateFormatFunction", "disabled", "disableAutoNavigation", "displayMode", "displayModeView", "dropDownHeight", "dropDownWidth", "firstDayOfWeek", "footerTemplate", "headerTemplate", "hideDayNames", "hideOtherMonthDays", "hideTooltipArrow", "importantDates", "importantDatesTemplate", "locale", "localizeFormatFunction", "max", "messages", "min", "months", "monthNameFormat", "name", "readonly", "restrictedDates", "rightToLeft", "scrollButtonsNavigationMode", "scrollButtonsPosition", "selectedDates", "selectionMode", "spinButtonsDelay", "spinButtonsInitialDelay", "theme", "titleTemplate", "tooltip", "tooltipArrow", "tooltipDelay", "tooltipOffset", "tooltipPosition", "tooltipTemplate", "unfocusable", "view", "viewSections", "weekNumbers", "weeks", "yearFormat"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onChange", "onDisplayModeChanging", "onDisplayModeChange", "onNavigationChanging", "onNavigationChange", "onOpen", "onClose", "onCreate", "onReady"];
     }
     /** Clears the selection. Removes all seleceted dates.
@@ -739,8 +739,9 @@ class Calendar extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

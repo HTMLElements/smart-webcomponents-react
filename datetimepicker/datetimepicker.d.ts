@@ -12,11 +12,13 @@ export interface DateTimePickerProps extends DateTimePickerProperties {
     onClosing?: ((event?: Event) => void) | undefined;
     onOpen?: ((event?: Event) => void) | undefined;
     onOpening?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Date & time selection component. It allows to select both date and time with the same control.
 */
-export declare class DateTimePicker extends React.Component<React.HTMLProps<Element> & DateTimePickerProps, any> {
+export declare class DateTimePicker extends React.Component<React.HTMLAttributes<Element> & DateTimePickerProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -331,7 +333,7 @@ export declare class DateTimePicker extends React.Component<React.HTMLProps<Elem
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes the calendar pop-up.
     */
     close(): void;

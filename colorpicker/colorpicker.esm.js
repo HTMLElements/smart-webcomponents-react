@@ -541,7 +541,7 @@ class ColorPicker extends React.Component {
         return ["animation", "editable", "autoCloseDelay", "applyValueMode", "columnCount", "displayMode", "disabled", "disableUndo", "dropDownAppendTo", "dropDownOpenMode", "dropDownButtonPosition", "dropDownPosition", "dropDownHeight", "dropDownOverlay", "dropDownWidth", "editAlphaChannel", "enableCustomColors", "gridThemeColors", "gridShadeColors", "gridStandardColors", "hideAlphaEditor", "hideContentToFit", "hideHEXEditor", "hidePreviewContainer", "hideRGBEditor", "hint", "inverted", "label", "locale", "localizeFormatFunction", "messages", "name", "opened", "palette", "paletteColors", "paletteCustomColors", "placeholder", "readonly", "resizeIndicator", "resizeMode", "rightToLeft", "theme", "tooltipDisplayMode", "unfocusable", "value", "valueFormat", "valueDisplayMode"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onActionButtonClick", "onCancelButtonClick", "onChange", "onClose", "onClosing", "onCustomColorSelection", "onDropDownButtonClick", "onOkButtonClick", "onOpen", "onOpening", "onResizeStart", "onResizeEnd", "onCreate", "onReady"];
     }
     /** Opens the drop down of the color picker.
@@ -645,8 +645,9 @@ class ColorPicker extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }

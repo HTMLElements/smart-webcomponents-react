@@ -194,7 +194,7 @@ require('../source/modules/smart.chart');
             }
         }
         /** Sets the chart's data source.
-        *	Property type: any
+        *	Property type: any[]
         */
         get dataSource() {
             return this.nativeElement ? this.nativeElement.dataSource : undefined;
@@ -528,7 +528,7 @@ require('../source/modules/smart.chart');
             return ["animation", "animationDuration", "backgroundColor", "backgroundImage", "borderLineColor", "borderLineWidth", "caption", "clip", "colorScheme", "columnSeriesOverlap", "crosshairsColor", "crosshairsDashStyle", "crosshairsLineWidth", "dataSource", "description", "disabled", "draw", "drawBefore", "enableAxisTextAnimation", "enableCrosshairs", "greyScale", "legendLayout", "locale", "localization", "messages", "padding", "legendPosition", "renderEngine", "rightToLeft", "seriesGroups", "showBorderLine", "showLegend", "showToolTips", "showToolTipsOnAllSeries", "theme", "titlePadding", "toolTipBackground", "toolTipFormatFunction", "toolTipHideDelay", "toolTipLineColor", "toolTipShowDelay", "valueAxis", "xAxis"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onAnnotationClick", "onAnnotationMouseenter", "onAnnotationMouseleave", "onClick", "onMouseout", "onMouseover", "onRangeSelectionChanged", "onRangeSelectionChanging", "onRefreshBegin", "onRefreshEnd", "onToggle", "onCreate", "onReady"];
         }
         /** Adds a new color sheme. If a scheme with the same name already exists, the method will update its colors.
@@ -938,8 +938,9 @@ require('../source/modules/smart.chart');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

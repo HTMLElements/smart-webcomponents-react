@@ -22,11 +22,13 @@ export interface ComboBoxProps extends ComboBoxProperties {
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
     onScrollTopReached?: ((event?: Event) => void) | undefined;
     onTokenClick?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  ComboBox is the alternate for the HTML select tag with editable option. It supports data binding, auto-complete, filtering, grouping, cascading and more.
 */
-export declare class ComboBox extends React.Component<React.HTMLProps<Element> & ComboBoxProps, any> {
+export declare class ComboBox extends React.Component<React.HTMLAttributes<Element> & ComboBoxProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -415,7 +417,7 @@ export declare class ComboBox extends React.Component<React.HTMLProps<Element> &
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Appends a ListItem to the end of the list of items inside element.
     * @param {Node} node. A ListItem element that should be added to the rest of the items as the last item.
     * @returns {Node}

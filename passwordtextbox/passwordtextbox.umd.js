@@ -327,7 +327,7 @@ require('../source/modules/smart.textbox');
 	        return ["animation", "autoFocus", "disabled", "enterKeyBehavior", "form", "hint", "label", "locale", "localizeFormatFunction", "maxLength", "messages", "minLength", "name", "passwordStrength", "placeholder", "required", "rightToLeft", "selectAllOnFocus", "showPasswordIcon", "showPasswordStrength", "theme", "tooltipArrow", "tooltipDelay", "tooltipPosition", "tooltipTemplate", "unfocusable", "value"];
 	    }
 	    // Gets the events of the React component.
-	    get events() {
+	    get eventListeners() {
 	        return ["onChange", "onCreate", "onReady"];
 	    }
 	    /** Focuses the element.
@@ -431,8 +431,9 @@ require('../source/modules/smart.textbox');
 	        if (!that.nativeElement) {
 	            return;
 	        }
-	        for (let i = 0; i < that.events.length; i++) {
-	            const eventName = that.events[i];
+	        that.nativeElement.whenRenderedCallbacks = [];
+	        for (let i = 0; i < that.eventListeners.length; i++) {
+	            const eventName = that.eventListeners[i];
 	            that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
 	        }
 	    }

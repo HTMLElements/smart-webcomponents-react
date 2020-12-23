@@ -792,7 +792,7 @@ require('../source/modules/smart.window');
             return ["addNewTab", "animation", "autoCapitalize", "autoExpand", "cancelLabel", "completeLabel", "confirmLabel", "collapsed", "closeOnMaskClick", "dataSource", "disabled", "disableSnap", "displayMode", "dropPosition", "formatFunction", "footerPosition", "footerTemplate", "headerButtons", "headerTemplate", "headerPosition", "hint", "indeterminate", "inverted", "label", "liveResize", "layout", "locale", "locked", "localizeFormatFunction", "maximized", "messages", "modal", "max", "min", "minimized", "maxLength", "minLength", "opened", "pinned", "placeholder", "promptLabel", "readonly", "resizeIndicator", "resizeMode", "rightToLeft", "required", "requiredMessage", "selectAllOnFocus", "selectedIndex", "selectionMode", "selectionEnd", "selectionStart", "showProgressValue", "siblings", "size", "spellCheck", "tabCloseButtons", "tabCloseButtonMode", "tabOverflow", "tabPosition", "tabScrollButtonsPosition", "tabTextOrientation", "theme", "unfocusable", "value", "windowParent", "wrap"];
         }
         // Gets the events of the React component.
-        get events() {
+        get eventListeners() {
             return ["onOpening", "onOpen", "onClosing", "onClose", "onCollapse", "onDragEnd", "onDragStart", "onExpand", "onMaximize", "onMinimize", "onResizeEnd", "onResizeStart", "onRestore", "onCreate", "onReady"];
         }
         /** Appends a tabitem to the end of the list of tab items inside element.
@@ -1137,8 +1137,9 @@ require('../source/modules/smart.window');
             if (!that.nativeElement) {
                 return;
             }
-            for (let i = 0; i < that.events.length; i++) {
-                const eventName = that.events[i];
+            that.nativeElement.whenRenderedCallbacks = [];
+            for (let i = 0; i < that.eventListeners.length; i++) {
+                const eventName = that.eventListeners[i];
                 that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
             }
         }

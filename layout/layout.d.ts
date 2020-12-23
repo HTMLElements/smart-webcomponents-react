@@ -3,12 +3,19 @@ import { LayoutProperties } from "./../index";
 import { Animation, Orientation } from './../index';
 export { LayoutProperties } from "./../index";
 export { Animation, Orientation } from './../index';
+export { LayoutItem } from './layoutitem';
+export { LayoutItemProperties } from "./../index";
+export { LayoutGroup } from './layoutgroup';
+export { LayoutGroupProperties } from "./../index";
+export { TabLayoutItem } from './tablayoutitem';
+export { TabLayoutItemProperties } from "./../index";
+export { TabLayoutGroup } from './tablayoutgroup';
+export { TabLayoutGroupProperties } from "./../index";
 export declare const Smart: any;
 export interface LayoutProps extends LayoutProperties {
     className?: string;
     style?: React.CSSProperties;
-    onResizeStart?: ((event?: Event) => void) | undefined;
-    onResizeEnd?: ((event?: Event) => void) | undefined;
+    onResize?: ((event?: Event) => void) | undefined;
     onStateChange?: ((event?: Event) => void) | undefined;
     onChange?: ((event?: Event) => void) | undefined;
     onClosing?: ((event?: Event) => void) | undefined;
@@ -16,11 +23,13 @@ export interface LayoutProps extends LayoutProperties {
     onOpening?: ((event?: Event) => void) | undefined;
     onOpen?: ((event?: Event) => void) | undefined;
     onMenuItemClick?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Layout splits your content into resizable sections.
 */
-export declare class Layout extends React.Component<React.HTMLProps<Element> & LayoutProps, any> {
+export declare class Layout extends React.Component<React.HTMLAttributes<Element> & LayoutProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -45,31 +54,11 @@ export declare class Layout extends React.Component<React.HTMLProps<Element> & L
     */
     get dataSource(): any;
     set dataSource(value: any);
-    /** Optional. A label for all Splitter items inside the Layout. Usefull when exporting the dataSource and reusing it in other elements, for example, tree, etc.
-    *	Property type: string
-    */
-    get itemLabel(): string;
-    set itemLabel(value: string);
-    /** Optional. A label for all Splitters inside the Layout. Usefull when exporting the dataSource and reusing it in other elements, for example, tree, etc.
-    *	Property type: string
-    */
-    get itemGroupLabel(): string;
-    set itemGroupLabel(value: string);
-    /** A getter that returns an array of all Splitter items inside the Layout.
-    *	Property type: any
-    */
-    get items(): any;
-    set items(value: any);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
     get locale(): string;
     set locale(value: string);
-    /** Callback, related to localization module.
-    *	Property type: any
-    */
-    get localizeFormatFunction(): any;
-    set localizeFormatFunction(value: any);
     /** Sets an object with string values, related to the different states of passwords strength.
     *	Property type: any
     */
@@ -85,27 +74,17 @@ export declare class Layout extends React.Component<React.HTMLProps<Element> & L
     */
     get readonly(): boolean;
     set readonly(value: boolean);
-    /** Determines the resize step during reisizing
-    *	Property type: number
-    */
-    get resizeStep(): number;
-    set resizeStep(value: number);
-    /** When enabled the resizing operation happens live. By default this feature is not enabled and the user sees a hightlighted bar while dragging instead of the actual splitter bar.
+    /** Determines whether splitting is live or not.
     *	Property type: boolean
     */
-    get liveResize(): boolean;
-    set liveResize(value: boolean);
-    /** Determines the placeholder text of the empty items.
-    *	Property type: string
-    */
-    get placeholder(): string;
-    set placeholder(value: string);
+    get allowLiveSplit(): boolean;
+    set allowLiveSplit(value: boolean);
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
-    /** Determines the selected item. When an item is selected the buttons for creating nested items are displayed inside it.
+    /** Determines the selected item.
     *	Property type: any
     */
     get selectedIndex(): any;
@@ -121,12 +100,9 @@ export declare class Layout extends React.Component<React.HTMLProps<Element> & L
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
     get properties(): string[];
-    /**  This event is triggered when resizing begins.
+    /**  This event is triggered after resizing is completed.
     *  @param event. The custom event. 	*/
-    onResizeStart?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when resizing finishes.
-    *  @param event. The custom event. 	*/
-    onResizeEnd?: ((event?: Event) => void) | undefined;
+    onResize?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a change regarding the Layout's state has occured, such as inserting a new item, removing an item, etc.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	type)
     *   item - The Splitter item that was the target of a change.
@@ -165,67 +141,24 @@ export declare class Layout extends React.Component<React.HTMLProps<Element> & L
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
-    /** Appends a new node.
-    * @param {Node} node. The node to append
-    * @returns {Node}
-  */
-    appendChild(node: Node): Promise<any>;
-    /** Inserts the specified "smart-splitter-item" node before the reference "smart-splitter-item" node.
-    * @param {Node} newNode. The  "jqx-splitter-item" node to insert.
-    * @param {Node | null} referenceNode?. The "jqx-splitter-item" node before which newNode is inserted.
-    * @returns {Node}
-  */
-    insertBefore(newNode: Node, referenceNode?: Node | null): Promise<any>;
-    /** Removes a child "smart-splitter-item" node from the Layout.
-    * @param {Node} node. The "jqx-splitter-item" node to remove.
-    * @returns {Node}
-  */
-    removeChild(node: Node): Promise<any>;
-    /** Returns a Splitter Item according to the index that is passed as an argument.
-    * @param {any} index. The index of an item.
+    get eventListeners(): string[];
+    /** Returns a Layout item according to the index that is passed.
+    * @param {number | string} index. The index of an item.
     */
-    getItem(index: any): void;
-    /** Returns the index of a Splitter Item that is passed as an argument.
-    * @param {any} item. The index of the Splitter item that is passed as an argument.
+    getItem(index: number | string): void;
+    /** Refreshes the Layout
     */
-    getItemIndex(item: any): void;
-    /** Insert a new Splitter item at a given position.
-    * @param {any} item. A Splitter Item or an object defining a Splitter item to be inserted.
-    * @param {number | string} index. The index at which a new item will be inserted.
-    * @param {string} position?. The postition at which the new item will be inseted - top, bottom, left, right.
+    refresh(): void;
+    /** Inserts a new item inside the Layout.
+    * @param {any} type. The index of an item to be removed or an instance of JQX.SplitterItem.
+    * @param {string | undefined} position?. A string that represents the position where the new item will be created.
     */
-    insert(item: any, index: number | string, position?: string): void;
-    /** Removes a Splitter item from the Layout.
-    * @param {any} index. The index of an item to be removed or an instance of JQX.SplitterItem.
+    createLayoutItem(type: any, position?: string | undefined): void;
+    /** Moves all children from one item to another.
+    * @param {any} oldItem. The source item that will have it's content removed.
+    * @param {any} newItem. The host item that will have it's content replaced.
     */
-    removeItem(index: any): void;
-    /** Removes all items from the Layout
-    */
-    removeAll(): void;
-    /** Selects a Splitter item from the Layout.
-    * @param {any} index. The index of an item to be removed or an instance of JQX.SplitterItem.
-    */
-    select(index: any): void;
-    /** Unselects the selected item inside the element.
-    */
-    unselect(): void;
-    /** Updates a Splitter item that is inside the Layout.
-    * @param {any} index. The index of an item to be removed or an instance of JQX.SplitterItem.
-    * @param {any} settings. An object containing properties with new values for the Splitter item that should be updated.
-    */
-    updateItem(index: any, settings: any): void;
-    /** Clears the localStorage of any previous cached states of the element according to it's id.
-    */
-    clearState(): void;
-    /** Saves the current state of the element to LocalStorage. Requires an id to be set to the element.
-    * @returns {any}
-  */
-    saveState(): Promise<any>;
-    /** Loads a previously saved state of the element. If no state is provided as an argument the method will do a localStorage lookup according to the id of the element.
-    * @param {any[]} state?. An array of objects that represents a cached state of the element. The result of calling the 'saveState' method.
-    */
-    loadState(state?: any[]): void;
+    moveChildren(oldItem: any, newItem: any): void;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

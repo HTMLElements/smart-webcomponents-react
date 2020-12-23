@@ -11,11 +11,13 @@ export interface TooltipProps extends TooltipProperties {
     onOpening?: ((event?: Event) => void) | undefined;
     onClose?: ((event?: Event) => void) | undefined;
     onClosing?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Tooltip is an alternate for the html title. It displays a popup with details on hover.
 */
-export declare class Tooltip extends React.Component<React.HTMLProps<Element> & TooltipProps, any> {
+export declare class Tooltip extends React.Component<React.HTMLAttributes<Element> & TooltipProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -124,7 +126,7 @@ export declare class Tooltip extends React.Component<React.HTMLProps<Element> & 
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Closes smart-tooltip.
     */
     close(): void;

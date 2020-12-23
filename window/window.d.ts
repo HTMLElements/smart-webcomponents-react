@@ -20,11 +20,13 @@ export interface WindowProps extends WindowProperties {
     onResizeEnd?: ((event?: Event) => void) | undefined;
     onResizeStart?: ((event?: Event) => void) | undefined;
     onRestore?: ((event?: Event) => void) | undefined;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Window or Dialog displays the interactive custom confirmations, message boxes, alerts, warnings, errors, and modal dialogs.
 */
-export declare class Window extends React.Component<React.HTMLProps<Element> & WindowProps, any> {
+export declare class Window extends React.Component<React.HTMLAttributes<Element> & WindowProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -416,7 +418,7 @@ export declare class Window extends React.Component<React.HTMLProps<Element> & W
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Appends a tabitem to the end of the list of tab items inside element.
     * @param {Node} node. A TabItem element that should be added to the rest of the items as the last item.
     * @returns {Node}

@@ -7,11 +7,13 @@ export declare const Smart: any;
 export interface FormGroupProps extends FormGroupProperties {
     className?: string;
     style?: React.CSSProperties;
+    onCreate?: ((event?: Event) => void) | undefined;
+    onReady?: ((event?: Event) => void) | undefined;
 }
 /**
  Form Group
 */
-export declare class FormGroup extends React.Component<React.HTMLProps<Element> & FormGroupProps, any> {
+export declare class FormGroup extends React.Component<React.HTMLAttributes<Element> & FormGroupProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -68,7 +70,7 @@ export declare class FormGroup extends React.Component<React.HTMLProps<Element> 
     /**  This event occurs, when the React component is completely rendered.
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
-    get events(): string[];
+    get eventListeners(): string[];
     /** Adds a control to the Form.
     * @param {any} controlOptions. Control options. The control options description is available in the <em>controls</em> property.
     */

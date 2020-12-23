@@ -173,7 +173,7 @@ require('../source/modules/smart.chip');
 	        return ["animation", "avatar", "closeButton", "disabled", "itemTemplate", "locale", "localizeFormatFunction", "messages", "readonly", "rightToLeft", "theme", "unfocusable", "value"];
 	    }
 	    // Gets the events of the React component.
-	    get events() {
+	    get eventListeners() {
 	        return ["onClose", "onCreate", "onReady"];
 	    }
 	    /** Closes the chip and removes it from the DOM.
@@ -265,8 +265,9 @@ require('../source/modules/smart.chip');
 	        if (!that.nativeElement) {
 	            return;
 	        }
-	        for (let i = 0; i < that.events.length; i++) {
-	            const eventName = that.events[i];
+	        that.nativeElement.whenRenderedCallbacks = [];
+	        for (let i = 0; i < that.eventListeners.length; i++) {
+	            const eventName = that.eventListeners[i];
 	            that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
 	        }
 	    }

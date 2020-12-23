@@ -44,6 +44,28 @@ class FormControl extends React.Component {
         }
         return this._id;
     }
+    /** Gets or Sets the FormControl Action. This property is used when the 'controlType' is 'button' or 'submit'
+    *	Property type: FormControlAction
+    */
+    get action() {
+        return this.nativeElement ? this.nativeElement.action : undefined;
+    }
+    set action(value) {
+        if (this.nativeElement) {
+            this.nativeElement.action = value;
+        }
+    }
+    /** Sets or Gets the alignment of the FormControl
+    *	Property type: FormControlAlign
+    */
+    get align() {
+        return this.nativeElement ? this.nativeElement.align : undefined;
+    }
+    set align(value) {
+        if (this.nativeElement) {
+            this.nativeElement.align = value;
+        }
+    }
     /** HTML Content displayed after the Form Control
     *	Property type: any
     */
@@ -100,7 +122,7 @@ class FormControl extends React.Component {
         }
     }
     /** Sets the Form control data field. The control's inner input's name is set to the dataField value and in the FormGroup it is accessible through the dataField value.
-    *	Property type: boolean
+    *	Property type: string
     */
     get dataField() {
         return this.nativeElement ? this.nativeElement.dataField : undefined;
@@ -188,7 +210,7 @@ class FormControl extends React.Component {
         }
     }
     /** FormGroup only(when controlType is set to 'group'). Gets or Sets whether the navigation buttons are displayed. The property has effect when the viewMode property is set.
-    *	Property type: string
+    *	Property type: FormControlAlign
     */
     get labelAlign() {
         return this.nativeElement ? this.nativeElement.labelAlign : undefined;
@@ -220,6 +242,17 @@ class FormControl extends React.Component {
             this.nativeElement.backButtonLabel = value;
         }
     }
+    /** Gets or Sets the FormControl placeholder.
+    *	Property type: string
+    */
+    get placeholder() {
+        return this.nativeElement ? this.nativeElement.placeholder : undefined;
+    }
+    set placeholder(value) {
+        if (this.nativeElement) {
+            this.nativeElement.placeholder = value;
+        }
+    }
     /** HTML Content displayed before the Form Control
     *	Property type: any
     */
@@ -240,6 +273,17 @@ class FormControl extends React.Component {
     set readonly(value) {
         if (this.nativeElement) {
             this.nativeElement.readonly = value;
+        }
+    }
+    /** Gets or Sets whether this field is required.
+    *	Property type: boolean
+    */
+    get required() {
+        return this.nativeElement ? this.nativeElement.required : undefined;
+    }
+    set required(value) {
+        if (this.nativeElement) {
+            this.nativeElement.required = value;
         }
     }
     /** Gets whether the Form control is not touched by the user. This flag is changed usually on blur, after the user interacted with the Form control
@@ -321,10 +365,10 @@ class FormControl extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["appendHTML", "controlOptions", "controlType", "columns", "columnSpan", "dataField", "disabled", "dirty", "info", "invalid", "label", "labelPosition", "labelOffset", "labelAlign", "nextButtonLabel", "backButtonLabel", "prependHTML", "readonly", "untouched", "showColonAfterLabel", "showButtons", "value", "valid", "validationRules", "viewMode"];
+        return ["action", "align", "appendHTML", "controlOptions", "controlType", "columns", "columnSpan", "dataField", "disabled", "dirty", "info", "invalid", "label", "labelPosition", "labelOffset", "labelAlign", "nextButtonLabel", "backButtonLabel", "placeholder", "prependHTML", "readonly", "required", "untouched", "showColonAfterLabel", "showButtons", "value", "valid", "validationRules", "viewMode"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     componentDidRender(initialize) {
@@ -404,8 +448,9 @@ class FormControl extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -534,7 +579,7 @@ class FormGroup extends React.Component {
         return ["columns", "controls", "onStatusChanges", "onValueChanges", "labelPosition", "readonly", "showColonAfterLabel", "showSummary", "value"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     /** Adds a control to the Form.
@@ -672,8 +717,9 @@ class FormGroup extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
@@ -813,7 +859,7 @@ class Form extends React.Component {
         return ["columns", "controls", "onStatusChanges", "onValueChanges", "labelPosition", "readonly", "showColonAfterLabel", "showSummary", "state", "value"];
     }
     // Gets the events of the React component.
-    get events() {
+    get eventListeners() {
         return ["onCreate", "onReady"];
     }
     /** Adds a control to the Form.
@@ -988,8 +1034,9 @@ class Form extends React.Component {
         if (!that.nativeElement) {
             return;
         }
-        for (let i = 0; i < that.events.length; i++) {
-            const eventName = that.events[i];
+        that.nativeElement.whenRenderedCallbacks = [];
+        for (let i = 0; i < that.eventListeners.length; i++) {
+            const eventName = that.eventListeners[i];
             that.nativeElement.removeEventListener(eventName.substring(2).toLowerCase(), that[eventName]);
         }
     }
