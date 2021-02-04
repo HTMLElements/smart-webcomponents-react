@@ -763,6 +763,17 @@ class ListMenu extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
+    /** Determines whether to use scrollbar or scrollButtons when content overflows an element's box.
+    *	Property type: ListMenuScrollMode
+    */
+    get scrollMode() {
+        return this.nativeElement ? this.nativeElement.scrollMode : undefined;
+    }
+    set scrollMode(value) {
+        if (this.nativeElement) {
+            this.nativeElement.scrollMode = value;
+        }
+    }
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */
@@ -798,7 +809,7 @@ class ListMenu extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoFocusOnMouseenter", "checkable", "checkboxes", "checkMode", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownOverlay", "dropDownPosition", "enableMouseWheelAction", "filterable", "filterInputPlaceholder", "filterMode", "grouped", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "minimizeIconTemplate", "minimizeWidth", "overflow", "readonly", "rightToLeft", "theme", "unfocusable", "valueMember"];
+        return ["animation", "autoFocusOnMouseenter", "checkable", "checkboxes", "checkMode", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownOverlay", "dropDownPosition", "enableMouseWheelAction", "filterable", "filterInputPlaceholder", "filterMode", "grouped", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "minimizeIconTemplate", "minimizeWidth", "overflow", "readonly", "rightToLeft", "scrollMode", "theme", "unfocusable", "valueMember"];
     }
     // Gets the events of the React component.
     get eventListeners() {

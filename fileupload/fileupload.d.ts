@@ -36,10 +36,10 @@ export declare class FileUpload extends React.Component<React.HTMLAttributes<Ele
     get animation(): Animation;
     set animation(value: Animation);
     /** Appends the list with selected files to a new custom container specified by the user. If the value of the property is a string it must represent a valid id of an HTML element inside the DOM that will be used as the new container for the uploaded files list.
-    *	Property type: any
+    *	Property type: string
     */
-    get appendTo(): any;
-    set appendTo(value: any);
+    get appendTo(): string;
+    set appendTo(value: string);
     /** Sets or gets whether files will be automatically uploaded after selection.
     *	Property type: boolean
     */

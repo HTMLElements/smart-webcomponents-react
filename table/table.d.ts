@@ -1,8 +1,8 @@
 import React from "react";
 import { TableProperties } from "./../index";
-import { Animation, TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting } from './../index';
+import { Animation, TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings } from './../index';
 export { TableProperties } from "./../index";
-export { Animation, TableColumnDataType, TableColumnFreeze, TableColumnResponsivePriority, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting } from './../index';
+export { Animation, TableColumnDataType, TableColumnFreeze, TableColumnResponsivePriority, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableDataSourceSettingsDataFieldDataType, TableDataSourceSettingsDataSourceType, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings, TableDataSourceSettingsDataField } from './../index';
 export declare const Smart: any;
 export interface TableProps extends TableProperties {
     className?: string;
@@ -97,11 +97,16 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     get dataRowId(): string;
     set dataRowId(value: string);
-    /** Determines the data source of the table component.
+    /** Determines the data source of the table component. The data source of the Table can be a regular Array or a DataAdapter instance. You can read more about the dataAdapter here - https://www.htmlelements.com/docs/data-adapter/.
     *	Property type: any
     */
     get dataSource(): any;
     set dataSource(value: any);
+    /** Sets the grid's data source settings when the dataSource property is set to an Array or URL.
+    *	Property type: TableDataSourceSettings
+    */
+    get dataSourceSettings(): TableDataSourceSettings;
+    set dataSourceSettings(value: TableDataSourceSettings);
     /** A callback function that can be used to transform the initial dataSource records. If implemented, it is called once for each record (which is passed as an argument).
     *	Property type: any
     */
@@ -162,6 +167,11 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     get grouping(): boolean;
     set grouping(value: boolean);
+    /** A callback function that can be used to modify the contents of a grouping header row. By changing the 'label' you modify the rendered grouping value. By changing the 'template' you can modify the entire content including the column and count information.
+    *	Property type: any
+    */
+    get groupFormatFunction(): any;
+    set groupFormatFunction(value: any);
     /** Sets or gets the id of an HTML template element to be applied as additional column header(s).
     *	Property type: string
     */

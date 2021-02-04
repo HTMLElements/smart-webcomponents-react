@@ -1,8 +1,8 @@
 import React from "react";
 import { ListMenuProperties } from "./../index";
-import { Animation, MenuCheckMode, MenuDropDownPosition, FilterMode, VerticalAlignment, Overflow } from './../index';
+import { Animation, MenuCheckMode, MenuDropDownPosition, FilterMode, VerticalAlignment, Overflow, ListMenuScrollMode } from './../index';
 export { ListMenuProperties } from "./../index";
-export { Animation, MenuCheckMode, MenuDropDownPosition, FilterMode, VerticalAlignment, Overflow } from './../index';
+export { Animation, MenuCheckMode, MenuDropDownPosition, FilterMode, VerticalAlignment, Overflow, ListMenuScrollMode } from './../index';
 export { MenuItem } from './menuitem';
 export { MenuItemProperties } from "./../index";
 export { MenuItemsGroup } from './menuitemsgroup';
@@ -168,6 +168,11 @@ export declare class ListMenu extends React.Component<React.HTMLAttributes<Eleme
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
+    /** Determines whether to use scrollbar or scrollButtons when content overflows an element's box.
+    *	Property type: ListMenuScrollMode
+    */
+    get scrollMode(): ListMenuScrollMode;
+    set scrollMode(value: ListMenuScrollMode);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */

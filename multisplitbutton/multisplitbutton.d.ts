@@ -60,11 +60,11 @@ export declare class MultiSplitButton extends React.Component<React.HTMLAttribut
     */
     get displayMember(): string;
     set displayMember(value: string);
-    /** Sets the parent container of the button's dropDown list (the popup). Used when a CSS property of unknowned parent is interfering with the visibility of the dropDown list.
-    *	Property type: any
+    /** Sets the parent container of the button's dropDown list (the popup). The expected value is CSS Selector, ID or 'body'. Used when a CSS property of unknowned parent is interfering with the visibility of the dropDown list.
+    *	Property type: string
     */
-    get dropDownAppendTo(): any;
-    set dropDownAppendTo(value: any);
+    get dropDownAppendTo(): string;
+    set dropDownAppendTo(value: string);
     /** Determines position of the drop down button.
     *	Property type: DropDownButtonPosition
     */

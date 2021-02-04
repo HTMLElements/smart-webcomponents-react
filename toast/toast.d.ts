@@ -31,10 +31,10 @@ export declare class Toast extends React.Component<React.HTMLAttributes<Element>
     get animation(): Animation;
     set animation(value: Animation);
     /** Specifies the container where new openned toast items will be displayed. The value can be an HTMLElement or element's id. This property is in relation with modal(lower priority than modal) and position(higher priority than position) properties.
-    *	Property type: any
+    *	Property type: string
     */
-    get appendTo(): any;
-    set appendTo(value: any);
+    get appendTo(): string;
+    set appendTo(value: string);
     /** Sets or gets whether the toast will automatically close after duration equal to the autoCloseDelay property.
     *	Property type: boolean
     */

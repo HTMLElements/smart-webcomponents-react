@@ -37,7 +37,7 @@ require('../source/modules/smart.carousel');
 	        }
 	    }
 	    /** The items switch automatically if set to true or to a custom number(representing the timeout in milliseconds). This property works if slideShow property is enabled.
-	    *	Property type: any
+	    *	Property type: boolean
 	    */
 	    get autoPlay() {
 	        return this.nativeElement ? this.nativeElement.autoPlay : undefined;

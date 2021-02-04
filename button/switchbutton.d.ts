@@ -8,6 +8,8 @@ export interface SwitchButtonProps extends SwitchButtonProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onCheckValue?: ((event?: Event) => void) | undefined;
+    onUncheckValue?: ((event?: Event) => void) | undefined;
     onCreate?: ((event?: Event) => void) | undefined;
     onReady?: ((event?: Event) => void) | undefined;
 }
@@ -121,8 +123,22 @@ export declare class SwitchButton extends React.Component<React.HTMLAttributes<E
     set value(value: string);
     get properties(): string[];
     /**  This event is triggered when the widget is checked/unchecked.
-    *  @param event. The custom event. 	*/
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	value, 	oldValue, 	changeType)
+    *   value - A boolean value indicating the new state of the button ( checked or not ).
+    *   oldValue - A boolean value indicating the previous state of the button ( checked or not ).
+    *   changeType - A string flag indicating whether the change event was triggered via API or an event.
+    */
     onChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the widget is checked.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	changeType)
+    *   changeType - A string flag indicating whether the change event was triggered via API or an event.
+    */
+    onCheckValue?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the widget is unchecked.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	changeType)
+    *   changeType - A string flag indicating whether the change event was triggered via API or an event.
+    */
+    onUncheckValue?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;

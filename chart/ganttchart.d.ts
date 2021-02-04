@@ -157,15 +157,15 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     get locale(): string;
     set locale(value: string);
     /** Detetmines the maximum possible date of the Timeline.
-    *	Property type: any
+    *	Property type: string | Date
     */
-    get max(): any;
-    set max(value: any);
+    get max(): string | Date;
+    set max(value: string | Date);
     /** Detetmines the minimum possible date of the Timeline.
-    *	Property type: any
+    *	Property type: string | Date
     */
-    get min(): any;
-    set min(value: any);
+    get min(): string | Date;
+    set min(value: string | Date);
     /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
     *	Property type: any
     */
@@ -282,30 +282,30 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     get taskColumns(): GanttChartTaskColumn[];
     set taskColumns(value: GanttChartTaskColumn[]);
     /** Determines the min size of the Task Panel. Used when Resource Panel is visible.
-    *	Property type: any
+    *	Property type: string | number
     */
-    get taskPanelMin(): any;
-    set taskPanelMin(value: any);
+    get taskPanelMin(): string | number;
+    set taskPanelMin(value: string | number);
     /** Determines the size of the Task Panel. Used when Resource Panel is visible.
-    *	Property type: any
+    *	Property type: string | number
     */
-    get taskPanelSize(): any;
-    set taskPanelSize(value: any);
+    get taskPanelSize(): string | number;
+    set taskPanelSize(value: string | number);
     /** Determines the min width of the timeline.
-    *	Property type: any
+    *	Property type: string | number
     */
-    get timelineMin(): any;
-    set timelineMin(value: any);
+    get timelineMin(): string | number;
+    set timelineMin(value: string | number);
     /** Determines the min width of the task tree.
-    *	Property type: any
+    *	Property type: string | number
     */
-    get treeMin(): any;
-    set treeMin(value: any);
+    get treeMin(): string | number;
+    set treeMin(value: string | number);
     /** Determines the size(width) of the task tree.
-    *	Property type: any
+    *	Property type: string | number
     */
-    get treeSize(): any;
-    set treeSize(value: any);
+    get treeSize(): string | number;
+    set treeSize(value: string | number);
     /** A format function for the Header of the Timeline. The function provides the following arguments: date - a Date object that represets the date for the current cell.type - a string that represents the type of date that the cell is showing, e.g. 'month', 'week', 'day', etc.isHeaderDetails - a boolean that indicates whether the current cell is part of the Header Details Container or not.value - a string that represents the default value for the cell provided by the element.
     *	Property type: any
     */

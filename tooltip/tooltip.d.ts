@@ -78,10 +78,10 @@ export declare class Tooltip extends React.Component<React.HTMLAttributes<Elemen
     get position(): TooltipPosition;
     set position(value: TooltipPosition);
     /** Sets the element which triggers the tooltip.
-    *	Property type: any
+    *	Property type: string | HTMLElement
     */
-    get selector(): any;
-    set selector(value: any);
+    get selector(): string | HTMLElement;
+    set selector(value: string | HTMLElement);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */

@@ -114,7 +114,7 @@ require('../source/modules/smart.pager');
 	        }
 	    }
 	    /** Defines the number of page index selectors.
-	    *	Property type: any
+	    *	Property type: number
 	    */
 	    get pageIndexSelectors() {
 	        return this.nativeElement ? this.nativeElement.pageIndexSelectors : undefined;

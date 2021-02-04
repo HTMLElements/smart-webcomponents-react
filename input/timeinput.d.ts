@@ -2,7 +2,7 @@ import React from "react";
 import { TimeInputProperties } from "./../index";
 import { Animation, DropDownButtonPosition, TimeFormat } from './../index';
 export { TimeInputProperties } from "./../index";
-export { Animation, DropDownButtonPosition, TimeFormat } from './../index';
+export { Animation, TimeFormatHour, TimeFormatMinute, DropDownButtonPosition, TimeFormat } from './../index';
 export declare const Smart: any;
 export interface TimeInputProps extends TimeInputProperties {
     className?: string;

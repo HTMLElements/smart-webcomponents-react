@@ -1,8 +1,8 @@
 import React from "react";
 import { ChartProperties } from "./../index";
-import { Animation, ChartColorScheme, ChartRenderEngine, ChartLocalization, Padding, ChartLegendPosition, ChartSeriesGroup, ChartValueAxis, ChartXAxis } from './../index';
+import { Animation, ChartColorScheme, ChartRenderEngine, ChartLocalization, Padding, ChartSeriesGroup, ChartValueAxis, ChartXAxis } from './../index';
 export { ChartProperties } from "./../index";
-export { Animation, ChartColorScheme, ChartRenderEngine, HorizontalAlignment, ChartRotationPoint, VerticalAlignment, ChartAnnotationType, ChartUnselectMode, Orientation, ChartSeriesGroupSerieEmptyPointsDisplay, ChartSymbolType, ChartType, AxisPosition, ChartBaseUnit, ChartXAxisType, ChartLocalization, Padding, ChartLegendPosition, ChartSeriesGroup, ChartAnnotation, Offset, ChartAnnotationText, ChartBand, ChartFormatSettings, ChartSeriesGroupSerie, ChartLabels, ChartValueAxis, ChartLines, ChartLine, ChartTitle, ChartXAxis, ChartRangeSelector } from './../index';
+export { Animation, ChartColorScheme, ChartRenderEngine, HorizontalAlignment, ChartRotationPoint, VerticalAlignment, ChartAnnotationType, ChartUnselectMode, Orientation, ChartSeriesGroupSerieEmptyPointsDisplay, ChartSymbolType, ChartType, AxisPosition, ChartBaseUnit, ChartXAxisType, ChartLocalization, Padding, ChartSeriesGroup, ChartAnnotation, Offset, ChartAnnotationText, ChartBand, ChartFormatSettings, ChartSeriesGroupSerie, ChartLabels, ChartValueAxis, ChartLines, ChartLine, ChartTitle, ChartXAxis, ChartRangeSelector } from './../index';
 export declare const Smart: any;
 export interface ChartProps extends ChartProperties {
     className?: string;
@@ -39,17 +39,17 @@ export declare class Chart extends React.Component<React.HTMLAttributes<Element>
     */
     get animationDuration(): number;
     set animationDuration(value: number);
-    /** Sets the chart's background color.
+    /** Sets the chart's background color. For example: '#DDFFE8'
     *	Property type: string | null
     */
     get backgroundColor(): string | null;
     set backgroundColor(value: string | null);
-    /** Sets the chart's background image.
+    /** Sets the chart's background image. For example: 'https://www.htmlelements.com/demos/images/carousel-large-1.jpg'
     *	Property type: string
     */
     get backgroundImage(): string;
     set backgroundImage(value: string);
-    /** Sets the chart's border color.
+    /** Sets the chart's border color. For example: '#098700'
     *	Property type: string | null
     */
     get borderLineColor(): string | null;
@@ -79,17 +79,17 @@ export declare class Chart extends React.Component<React.HTMLAttributes<Element>
     */
     get columnSeriesOverlap(): boolean;
     set columnSeriesOverlap(value: boolean);
-    /** Gets or sets the color of the crosshairs lines.
+    /** Gets or sets the color of the crosshairs lines. The 'enableCrosshairs' property should be 'true'.
     *	Property type: string | null
     */
     get crosshairsColor(): string | null;
     set crosshairsColor(value: string | null);
-    /** Gets or sets the dash style of the crosshairs lines. The style is a series of numbers indicating line length followed by space length.
+    /** Gets or sets the dash style of the crosshairs lines. The style is a series of numbers indicating line length followed by space length. The 'enableCrosshairs' property should be 'true'. For example: '3,3'
     *	Property type: string
     */
     get crosshairsDashStyle(): string;
     set crosshairsDashStyle(value: string);
-    /** Gets or sets the width of the crosshairs lines.
+    /** Gets or sets the width of the crosshairs lines. The 'enableCrosshairs' property should be 'true'
     *	Property type: number
     */
     get crosshairsLineWidth(): number;
@@ -159,11 +159,6 @@ export declare class Chart extends React.Component<React.HTMLAttributes<Element>
     */
     get padding(): Padding;
     set padding(value: Padding);
-    /** Sets the legend bar position in the Chart.
-    *	Property type: ChartLegendPosition
-    */
-    get legendPosition(): ChartLegendPosition;
-    set legendPosition(value: ChartLegendPosition);
     /** Determines the rendering engine used to display the chart. When the property is set to an empty string, jqxChart will automatically select an optimal rendering engine depending on the browser capabilities.
     *	Property type: ChartRenderEngine
     */

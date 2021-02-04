@@ -60,10 +60,10 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     get enableMouseWheelAction(): boolean;
     set enableMouseWheelAction(value: boolean);
     /** Determines what values the thumb snaps to.
-    *	Property type: any
+    *	Property type: string | number
     */
-    get interval(): any;
-    set interval(value: any);
+    get interval(): string | number;
+    set interval(value: string | number);
     /** Sets the direction of the slider. If is true - positions of the slider's begin and end are changed.
     *	Property type: boolean
     */
@@ -95,10 +95,10 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     get logarithmicScale(): boolean;
     set logarithmicScale(value: boolean);
     /** Sets or gets the maximum value of the widget.
-    *	Property type: any
+    *	Property type: string | number
     */
-    get max(): any;
-    set max(value: any);
+    get max(): string | number;
+    set max(value: string | number);
     /** Sets or gets the type of used mechanical action.
     *	Property type: DragMechanicalAction
     */
@@ -110,10 +110,10 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     get messages(): any;
     set messages(value: any);
     /** Sets or gets the minimum value of the widget.
-    *	Property type: any
+    *	Property type: string | number
     */
-    get min(): any;
-    set min(value: any);
+    get min(): string | number;
+    set min(value: string | number);
     /** Sets or gets whether the widget works with numbers or dates.
     *	Property type: ScaleMode
     */

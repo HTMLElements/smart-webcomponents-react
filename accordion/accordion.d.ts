@@ -31,6 +31,11 @@ export declare class Accordion extends React.Component<React.HTMLAttributes<Elem
     */
     get animation(): Animation;
     set animation(value: Animation);
+    /** Determines the data source that will be loaded to the Accordion.
+    *	Property type: any
+    */
+    get dataSource(): any;
+    set dataSource(value: any);
     /** Enables or disables the accordion. Disabled elements can not be interacted with.
     *	Property type: boolean
     */

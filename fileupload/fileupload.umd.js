@@ -48,7 +48,7 @@ require('../source/modules/smart.fileupload');
 	        }
 	    }
 	    /** Appends the list with selected files to a new custom container specified by the user. If the value of the property is a string it must represent a valid id of an HTML element inside the DOM that will be used as the new container for the uploaded files list.
-	    *	Property type: any
+	    *	Property type: string
 	    */
 	    get appendTo() {
 	        return this.nativeElement ? this.nativeElement.appendTo : undefined;

@@ -194,7 +194,7 @@ require('../source/modules/smart.gauge');
             }
         }
         /** When cooerce property is true, all values coerce to the interval's value.
-        *	Property type: any
+        *	Property type: number
         */
         get interval() {
             return this.nativeElement ? this.nativeElement.interval : undefined;
@@ -271,7 +271,7 @@ require('../source/modules/smart.gauge');
             }
         }
         /** Determines the maximum value for the scale of the element.
-        *	Property type: any
+        *	Property type: number
         */
         get max() {
             return this.nativeElement ? this.nativeElement.max : undefined;
@@ -304,7 +304,7 @@ require('../source/modules/smart.gauge');
             }
         }
         /** Determines the minimum value for the scale of the element.
-        *	Property type: any
+        *	Property type: number
         */
         get min() {
             return this.nativeElement ? this.nativeElement.min : undefined;

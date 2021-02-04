@@ -84,10 +84,10 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     get displayModeView(): CalendarDisplayModeView;
     set displayModeView(value: CalendarDisplayModeView);
     /** Sets custom container to append the pop-up to. By default, it is in the DateTimePicker. The value of the property can be an HTML element or the id of an HTML element.
-    *	Property type: any
+    *	Property type: string
     */
-    get dropDownAppendTo(): any;
-    set dropDownAppendTo(value: any);
+    get dropDownAppendTo(): string;
+    set dropDownAppendTo(value: string);
     /** Sets or gets the pop-up display mode (what components appear in it, and its behaviour).
     *	Property type: DateTimePickerDropDownDisplayMode
     */

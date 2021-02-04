@@ -177,7 +177,7 @@ class NumericTextBox extends React.Component {
         }
     }
     /** Sets or gets the maximum value of the widget.
-    *	Property type: any
+    *	Property type: number | string
     */
     get max() {
         return this.nativeElement ? this.nativeElement.max : undefined;
@@ -199,7 +199,7 @@ class NumericTextBox extends React.Component {
         }
     }
     /** Sets or gets the minimum value of the widget.
-    *	Property type: any
+    *	Property type: number | string
     */
     get min() {
         return this.nativeElement ? this.nativeElement.min : undefined;
@@ -419,7 +419,7 @@ class NumericTextBox extends React.Component {
         }
     }
     /** Sets or gets the increase/decrease step.
-    *	Property type: any
+    *	Property type: number | string
     */
     get spinButtonsStep() {
         return this.nativeElement ? this.nativeElement.spinButtonsStep : undefined;

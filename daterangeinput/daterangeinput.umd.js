@@ -36,7 +36,7 @@ require('../source/modules/smart.input');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is determined by the 'locale' property.
+	    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is determined by the 'locale' property. Intl.DateTimeFormat is used to format date strings in JavaScript
 	    *	Property type: DateRangeFormat
 	    */
 	    get dateFormat() {

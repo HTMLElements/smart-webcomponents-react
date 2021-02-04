@@ -62,7 +62,7 @@ require('../source/modules/smart.toast');
             }
         }
         /** Specifies the container where new openned toast items will be displayed. The value can be an HTMLElement or element's id. This property is in relation with modal(lower priority than modal) and position(higher priority than position) properties.
-        *	Property type: any
+        *	Property type: string
         */
         get appendTo() {
             return this.nativeElement ? this.nativeElement.appendTo : undefined;

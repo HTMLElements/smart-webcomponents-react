@@ -2,7 +2,7 @@ import React from "react";
 import { DateRangeInputProperties } from "./../index";
 import { Animation, DropDownButtonPosition, DateRangeInputValueType, DateRangeFormat, TimeRangeFormat } from './../index';
 export { DateRangeInputProperties } from "./../index";
-export { Animation, DropDownButtonPosition, DateRangeInputValueType, DateRangeFormat, TimeRangeFormat } from './../index';
+export { Animation, DateRangeFormatDay, DateRangeFormatMonth, DateRangeFormatYear, DropDownButtonPosition, TimeRangeFormatHour, TimeRangeFormatMinute, DateRangeInputValueType, DateRangeFormat, TimeRangeFormat } from './../index';
 export declare const Smart: any;
 export interface DateRangeInputProps extends DateRangeInputProperties {
     className?: string;
@@ -24,7 +24,7 @@ export declare class DateRangeInput extends React.Component<React.HTMLAttributes
     */
     get animation(): Animation;
     set animation(value: Animation);
-    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is determined by the 'locale' property.
+    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is determined by the 'locale' property. Intl.DateTimeFormat is used to format date strings in JavaScript
     *	Property type: DateRangeFormat
     */
     get dateFormat(): DateRangeFormat;

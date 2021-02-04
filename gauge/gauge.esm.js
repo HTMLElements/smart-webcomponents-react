@@ -188,7 +188,7 @@ class Gauge extends React.Component {
         }
     }
     /** When cooerce property is true, all values coerce to the interval's value.
-    *	Property type: any
+    *	Property type: number
     */
     get interval() {
         return this.nativeElement ? this.nativeElement.interval : undefined;
@@ -265,7 +265,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines the maximum value for the scale of the element.
-    *	Property type: any
+    *	Property type: number
     */
     get max() {
         return this.nativeElement ? this.nativeElement.max : undefined;
@@ -298,7 +298,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines the minimum value for the scale of the element.
-    *	Property type: any
+    *	Property type: number
     */
     get min() {
         return this.nativeElement ? this.nativeElement.min : undefined;

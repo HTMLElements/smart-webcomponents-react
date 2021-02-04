@@ -61,10 +61,10 @@ export declare class Pager extends React.Component<React.HTMLAttributes<Element>
     get pageIndex(): number;
     set pageIndex(value: number);
     /** Defines the number of page index selectors.
-    *	Property type: any
+    *	Property type: number
     */
-    get pageIndexSelectors(): any;
-    set pageIndexSelectors(value: any);
+    get pageIndexSelectors(): number;
+    set pageIndexSelectors(value: number);
     /** Gets/sets total number of items displayed on page.
     *	Property type: number
     */

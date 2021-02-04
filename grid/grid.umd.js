@@ -83,6 +83,17 @@ require('../source/modules/smart.grid');
                 this.nativeElement.layout = value;
             }
         }
+        /** Sets or gets the language. Used in conjunction with the property messages.
+        *	Property type: string
+        */
+        get locale() {
+            return this.nativeElement ? this.nativeElement.locale : undefined;
+        }
+        set locale(value) {
+            if (this.nativeElement) {
+                this.nativeElement.locale = value;
+            }
+        }
         /** The clipboard property is used to enable/disable clipboard operations with Ctrl+C, Ctrl+X and Ctrl+V keyboard navigations..
         *	Property type: GridClipboard
         */
@@ -180,6 +191,17 @@ require('../source/modules/smart.grid');
         set dataSource(value) {
             if (this.nativeElement) {
                 this.nativeElement.dataSource = value;
+            }
+        }
+        /** Sets the grid's data source settings when the dataSource property is set to an Array or URL.
+        *	Property type: GridDataSourceSettings
+        */
+        get dataSourceSettings() {
+            return this.nativeElement ? this.nativeElement.dataSourceSettings : undefined;
+        }
+        set dataSourceSettings(value) {
+            if (this.nativeElement) {
+                this.nativeElement.dataSourceSettings = value;
             }
         }
         /** Describes the grid's editing settings.
@@ -347,7 +369,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onRowDetailInit = value;
             }
         }
-        /** The rows property is used to describe all rows displayed in the grid.
+        /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
         *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
         */
         get onRowDetailUpdated() {
@@ -358,7 +380,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onRowDetailUpdated = value;
             }
         }
-        /** Describes the selection settings.
+        /** The rows property is used to describe all rows displayed in the grid.
         *	Property type: {(index: number, row: GridRow): void}
         */
         get onRowInserted() {
@@ -369,7 +391,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onRowInserted = value;
             }
         }
-        /** Describes sorting settings.
+        /** Describes the selection settings.
         *	Property type: {(index: number, row: GridRow): void}
         */
         get onRowRemoved() {
@@ -380,7 +402,7 @@ require('../source/modules/smart.grid');
                 this.nativeElement.onRowRemoved = value;
             }
         }
-        /** undefined
+        /** Describes sorting settings.
         *	Property type: {(index: number, row: GridRow, oldValues: any[], values: any[], confirm: {(commit: boolean): void}): void}
         */
         get onRowUpdate() {
@@ -557,6 +579,17 @@ require('../source/modules/smart.grid');
             }
         }
         /** undefined
+        *	Property type: boolean
+        */
+        get rightToLeft() {
+            return this.nativeElement ? this.nativeElement.rightToLeft : undefined;
+        }
+        set rightToLeft(value) {
+            if (this.nativeElement) {
+                this.nativeElement.rightToLeft = value;
+            }
+        }
+        /** undefined
         *	Property type: GridRow[]
         */
         get rows() {
@@ -591,7 +624,7 @@ require('../source/modules/smart.grid');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["appearance", "behavior", "layout", "clipboard", "columns", "columnMenu", "columnGroups", "conditionalFormatting", "charting", "checkBoxes", "dataExport", "dataSource", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onCommand", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "groupHeader", "header", "footer", "rows", "selection", "sorting"];
+            return ["appearance", "behavior", "layout", "locale", "clipboard", "columns", "columnMenu", "columnGroups", "conditionalFormatting", "charting", "checkBoxes", "dataExport", "dataSource", "dataSourceSettings", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onCommand", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "groupHeader", "header", "footer", "rightToLeft", "rows", "selection", "sorting"];
         }
         // Gets the events of the React component.
         get eventListeners() {

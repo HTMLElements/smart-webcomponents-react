@@ -192,6 +192,17 @@ require('../source/modules/smart.accordion');
 	            this.nativeElement.animation = value;
 	        }
 	    }
+	    /** Determines the data source that will be loaded to the Accordion.
+	    *	Property type: any
+	    */
+	    get dataSource() {
+	        return this.nativeElement ? this.nativeElement.dataSource : undefined;
+	    }
+	    set dataSource(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.dataSource = value;
+	        }
+	    }
 	    /** Enables or disables the accordion. Disabled elements can not be interacted with.
 	    *	Property type: boolean
 	    */
@@ -315,7 +326,7 @@ require('../source/modules/smart.accordion');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["animation", "disabled", "expandedIndexes", "expandMode", "locale", "localizeFormatFunction", "messages", "readonly", "reorder", "rightToLeft", "theme", "unfocusable"];
+	        return ["animation", "dataSource", "disabled", "expandedIndexes", "expandMode", "locale", "localizeFormatFunction", "messages", "readonly", "reorder", "rightToLeft", "theme", "unfocusable"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {

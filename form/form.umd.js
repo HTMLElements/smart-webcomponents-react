@@ -347,8 +347,8 @@ require('../source/modules/smart.form');
                 this.nativeElement.valid = value;
             }
         }
-        /** Validation rules array. Accepts any JQX.Validator rules.
-        *	Property type: any[]
+        /** Sets or gets the column's validation rules. The expected value is an Array of Objects. Each object should have a 'type' property that can be set to 'required', 'min', 'max', 'minLength', 'maxLength', 'email', 'null', 'requiredTrue', 'minData', 'maxDate', 'pattern'. The 'value' property should be set, too. For validation rule types 'required', 'requiredTrue' and 'null' you can skip the 'value' property. Optional property is 'message', which determines the error message.
+        *	Property type: [] | null
         */
         get validationRules() {
             return this.nativeElement ? this.nativeElement.validationRules : undefined;
@@ -761,7 +761,7 @@ require('../source/modules/smart.form');
                 this.nativeElement.columns = value;
             }
         }
-        /**
+        /** Sets or gets the form controls.
         *	Property type: Control[]
         */
         get controls() {

@@ -71,15 +71,15 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     get displayModeView(): CalendarDisplayModeView;
     set displayModeView(value: CalendarDisplayModeView);
     /** Determines the height of the month's drop down inside the Calendar.
-    *	Property type: string
+    *	Property type: string | number
     */
-    get dropDownHeight(): string;
-    set dropDownHeight(value: string);
+    get dropDownHeight(): string | number;
+    set dropDownHeight(value: string | number);
     /** Determines the width of the month's drop down inside the Calendar.
-    *	Property type: string
+    *	Property type: string | number
     */
-    get dropDownWidth(): string;
-    set dropDownWidth(value: string);
+    get dropDownWidth(): string | number;
+    set dropDownWidth(value: string | number);
     /** Determines the first day of the week. From 0(Sunday) to 6(Saturday)
     *	Property type: number
     */
@@ -131,20 +131,20 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     get localizeFormatFunction(): any;
     set localizeFormatFunction(value: any);
     /** Determines the max date for the Calendar. Accepts date objects and valid date string formats.
-    *	Property type: any
+    *	Property type: string | Date
     */
-    get max(): any;
-    set max(value: any);
+    get max(): string | Date;
+    set max(value: string | Date);
     /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
     *	Property type: any
     */
     get messages(): any;
     set messages(value: any);
     /** Determines the min date for the Calendar. Accepts date objects and valid date string formats.
-    *	Property type: any
+    *	Property type: string | Date
     */
-    get min(): any;
-    set min(value: any);
+    get min(): string | Date;
+    set min(value: string | Date);
     /** Determines the number of months to be displayed inside the calendar. The maximum amount of months that can be shown is 12. By default only 1 month is shown.
     *	Property type: number
     */
@@ -166,10 +166,10 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     get readonly(): boolean;
     set readonly(value: boolean);
     /** Sets restricted dates. Restricted dates are dates that cannot be selected/hovered/focused. They are visualy styled as restricted. The dates can be javascript date objects or strings representing a valid date.
-    *	Property type: string[]
+    *	Property type: string[] | Date[]
     */
-    get restrictedDates(): string[];
-    set restrictedDates(value: string[]);
+    get restrictedDates(): string[] | Date[];
+    set restrictedDates(value: string[] | Date[]);
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */

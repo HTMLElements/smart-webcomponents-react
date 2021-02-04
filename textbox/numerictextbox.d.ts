@@ -86,20 +86,20 @@ export declare class NumericTextBox extends React.Component<React.HTMLAttributes
     get localizeFormatFunction(): any;
     set localizeFormatFunction(value: any);
     /** Sets or gets the maximum value of the widget.
-    *	Property type: any
+    *	Property type: number | string
     */
-    get max(): any;
-    set max(value: any);
+    get max(): number | string;
+    set max(value: number | string);
     /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
     *	Property type: any
     */
     get messages(): any;
     set messages(value: any);
     /** Sets or gets the minimum value of the widget.
-    *	Property type: any
+    *	Property type: number | string
     */
-    get min(): any;
-    set min(value: any);
+    get min(): number | string;
+    set min(value: number | string);
     /** The name of the control.
     *	Property type: string
     */
@@ -196,10 +196,10 @@ export declare class NumericTextBox extends React.Component<React.HTMLAttributes
     get spinButtonsPosition(): NumericTextBoxDisplayPosition;
     set spinButtonsPosition(value: NumericTextBoxDisplayPosition);
     /** Sets or gets the increase/decrease step.
-    *	Property type: any
+    *	Property type: number | string
     */
-    get spinButtonsStep(): any;
-    set spinButtonsStep(value: any);
+    get spinButtonsStep(): number | string;
+    set spinButtonsStep(value: number | string);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */

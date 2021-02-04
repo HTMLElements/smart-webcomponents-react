@@ -472,8 +472,8 @@ require('../source/modules/smart.multisplitbutton');
                 this.nativeElement.displayMember = value;
             }
         }
-        /** Sets the parent container of the button's dropDown list (the popup). Used when a CSS property of unknowned parent is interfering with the visibility of the dropDown list.
-        *	Property type: any
+        /** Sets the parent container of the button's dropDown list (the popup). The expected value is CSS Selector, ID or 'body'. Used when a CSS property of unknowned parent is interfering with the visibility of the dropDown list.
+        *	Property type: string
         */
         get dropDownAppendTo() {
             return this.nativeElement ? this.nativeElement.dropDownAppendTo : undefined;

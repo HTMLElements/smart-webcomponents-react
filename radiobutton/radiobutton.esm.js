@@ -201,7 +201,7 @@ class RadioButton extends React.Component {
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onChange", "onCreate", "onReady"];
+        return ["onChange", "onCheckValue", "onUncheckValue", "onCreate", "onReady"];
     }
     componentDidRender(initialize) {
         const that = this;

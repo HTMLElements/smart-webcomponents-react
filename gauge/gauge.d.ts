@@ -85,10 +85,10 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get endAngle(): number;
     set endAngle(value: number);
     /** When cooerce property is true, all values coerce to the interval's value.
-    *	Property type: any
+    *	Property type: number
     */
-    get interval(): any;
-    set interval(value: any);
+    get interval(): number;
+    set interval(value: number);
     /** Sets the direction of the gauge. If true - the positions of the gauge's start and end are switched.
     *	Property type: boolean
     */
@@ -120,10 +120,10 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get logarithmicScale(): boolean;
     set logarithmicScale(value: boolean);
     /** Determines the maximum value for the scale of the element.
-    *	Property type: any
+    *	Property type: number
     */
-    get max(): any;
-    set max(value: any);
+    get max(): number;
+    set max(value: number);
     /** Determines when the value of the element is updated.
     *	Property type: DragMechanicalAction
     */
@@ -135,10 +135,10 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get messages(): any;
     set messages(value: any);
     /** Determines the minimum value for the scale of the element.
-    *	Property type: any
+    *	Property type: number
     */
-    get min(): any;
-    set min(value: any);
+    get min(): number;
+    set min(value: number);
     /** Determines whether the element works with numbers or dates.
     *	Property type: ScaleMode
     */

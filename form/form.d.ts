@@ -27,7 +27,7 @@ export declare class Form extends React.Component<React.HTMLAttributes<Element> 
     */
     get columns(): number;
     set columns(value: number);
-    /**
+    /** Sets or gets the form controls.
     *	Property type: Control[]
     */
     get controls(): Control[];

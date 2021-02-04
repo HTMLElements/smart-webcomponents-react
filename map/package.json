@@ -1,0 +1,7 @@
+{
+    "main": "map.umd.js",
+    "module": "map.esm.js",
+	"typings": "map.d.ts",
+    "name": "smart-webcomponents-react/map",
+    "sideEffects": false
+  }

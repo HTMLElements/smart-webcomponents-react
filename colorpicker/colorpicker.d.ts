@@ -70,11 +70,11 @@ export declare class ColorPicker extends React.Component<React.HTMLAttributes<El
     */
     get disableUndo(): boolean;
     set disableUndo(value: boolean);
-    /** Sets the parent container of the dropDown (the popup). Used when a CSS property of unknowned parent is interfering with the visibility of the dropDown.
-    *	Property type: any
+    /** Sets the parent container of the dropDown (the popup). The expected value is CSS Selector, ID or 'body'. Used when a CSS property of unknowned parent is interfering with the visibility of the dropDown. Example: 'body'.
+    *	Property type: string
     */
-    get dropDownAppendTo(): any;
-    set dropDownAppendTo(value: any);
+    get dropDownAppendTo(): string;
+    set dropDownAppendTo(value: string);
     /** Determines how the drop down is going to open.
     *	Property type: DropDownOpenMode
     */

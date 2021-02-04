@@ -72,7 +72,7 @@ require('../source/modules/smart.chart');
                 this.nativeElement.animationDuration = value;
             }
         }
-        /** Sets the chart's background color.
+        /** Sets the chart's background color. For example: '#DDFFE8'
         *	Property type: string | null
         */
         get backgroundColor() {
@@ -83,7 +83,7 @@ require('../source/modules/smart.chart');
                 this.nativeElement.backgroundColor = value;
             }
         }
-        /** Sets the chart's background image.
+        /** Sets the chart's background image. For example: 'https://www.htmlelements.com/demos/images/carousel-large-1.jpg'
         *	Property type: string
         */
         get backgroundImage() {
@@ -94,7 +94,7 @@ require('../source/modules/smart.chart');
                 this.nativeElement.backgroundImage = value;
             }
         }
-        /** Sets the chart's border color.
+        /** Sets the chart's border color. For example: '#098700'
         *	Property type: string | null
         */
         get borderLineColor() {
@@ -160,7 +160,7 @@ require('../source/modules/smart.chart');
                 this.nativeElement.columnSeriesOverlap = value;
             }
         }
-        /** Gets or sets the color of the crosshairs lines.
+        /** Gets or sets the color of the crosshairs lines. The 'enableCrosshairs' property should be 'true'.
         *	Property type: string | null
         */
         get crosshairsColor() {
@@ -171,7 +171,7 @@ require('../source/modules/smart.chart');
                 this.nativeElement.crosshairsColor = value;
             }
         }
-        /** Gets or sets the dash style of the crosshairs lines. The style is a series of numbers indicating line length followed by space length.
+        /** Gets or sets the dash style of the crosshairs lines. The style is a series of numbers indicating line length followed by space length. The 'enableCrosshairs' property should be 'true'. For example: '3,3'
         *	Property type: string
         */
         get crosshairsDashStyle() {
@@ -182,7 +182,7 @@ require('../source/modules/smart.chart');
                 this.nativeElement.crosshairsDashStyle = value;
             }
         }
-        /** Gets or sets the width of the crosshairs lines.
+        /** Gets or sets the width of the crosshairs lines. The 'enableCrosshairs' property should be 'true'
         *	Property type: number
         */
         get crosshairsLineWidth() {
@@ -334,17 +334,6 @@ require('../source/modules/smart.chart');
         set padding(value) {
             if (this.nativeElement) {
                 this.nativeElement.padding = value;
-            }
-        }
-        /** Sets the legend bar position in the Chart.
-        *	Property type: ChartLegendPosition
-        */
-        get legendPosition() {
-            return this.nativeElement ? this.nativeElement.legendPosition : undefined;
-        }
-        set legendPosition(value) {
-            if (this.nativeElement) {
-                this.nativeElement.legendPosition = value;
             }
         }
         /** Determines the rendering engine used to display the chart. When the property is set to an empty string, jqxChart will automatically select an optimal rendering engine depending on the browser capabilities.
@@ -525,7 +514,7 @@ require('../source/modules/smart.chart');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["animation", "animationDuration", "backgroundColor", "backgroundImage", "borderLineColor", "borderLineWidth", "caption", "clip", "colorScheme", "columnSeriesOverlap", "crosshairsColor", "crosshairsDashStyle", "crosshairsLineWidth", "dataSource", "description", "disabled", "draw", "drawBefore", "enableAxisTextAnimation", "enableCrosshairs", "greyScale", "legendLayout", "locale", "localization", "messages", "padding", "legendPosition", "renderEngine", "rightToLeft", "seriesGroups", "showBorderLine", "showLegend", "showToolTips", "showToolTipsOnAllSeries", "theme", "titlePadding", "toolTipBackground", "toolTipFormatFunction", "toolTipHideDelay", "toolTipLineColor", "toolTipShowDelay", "valueAxis", "xAxis"];
+            return ["animation", "animationDuration", "backgroundColor", "backgroundImage", "borderLineColor", "borderLineWidth", "caption", "clip", "colorScheme", "columnSeriesOverlap", "crosshairsColor", "crosshairsDashStyle", "crosshairsLineWidth", "dataSource", "description", "disabled", "draw", "drawBefore", "enableAxisTextAnimation", "enableCrosshairs", "greyScale", "legendLayout", "locale", "localization", "messages", "padding", "renderEngine", "rightToLeft", "seriesGroups", "showBorderLine", "showLegend", "showToolTips", "showToolTipsOnAllSeries", "theme", "titlePadding", "toolTipBackground", "toolTipFormatFunction", "toolTipHideDelay", "toolTipLineColor", "toolTipShowDelay", "valueAxis", "xAxis"];
         }
         // Gets the events of the React component.
         get eventListeners() {

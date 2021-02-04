@@ -144,7 +144,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the height of the month's drop down inside the Calendar.
-    *	Property type: string
+    *	Property type: string | number
     */
     get dropDownHeight() {
         return this.nativeElement ? this.nativeElement.dropDownHeight : undefined;
@@ -155,7 +155,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the width of the month's drop down inside the Calendar.
-    *	Property type: string
+    *	Property type: string | number
     */
     get dropDownWidth() {
         return this.nativeElement ? this.nativeElement.dropDownWidth : undefined;
@@ -276,7 +276,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the max date for the Calendar. Accepts date objects and valid date string formats.
-    *	Property type: any
+    *	Property type: string | Date
     */
     get max() {
         return this.nativeElement ? this.nativeElement.max : undefined;
@@ -298,7 +298,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the min date for the Calendar. Accepts date objects and valid date string formats.
-    *	Property type: any
+    *	Property type: string | Date
     */
     get min() {
         return this.nativeElement ? this.nativeElement.min : undefined;
@@ -353,7 +353,7 @@ class Calendar extends React.Component {
         }
     }
     /** Sets restricted dates. Restricted dates are dates that cannot be selected/hovered/focused. They are visualy styled as restricted. The dates can be javascript date objects or strings representing a valid date.
-    *	Property type: string[]
+    *	Property type: string[] | Date[]
     */
     get restrictedDates() {
         return this.nativeElement ? this.nativeElement.restrictedDates : undefined;

@@ -42,10 +42,10 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Sets the parent container of the dropDown (the popup). Used when a CSS property of unknowned parent is interfering with the visibility of the dropDown.
-    *	Property type: any
+    *	Property type: string
     */
-    get dropDownAppendTo(): any;
-    set dropDownAppendTo(value: any);
+    get dropDownAppendTo(): string;
+    set dropDownAppendTo(value: string);
     /** Determines the position of the drop down button.
     *	Property type: DropDownButtonPosition
     */
