@@ -27,6 +27,11 @@ export declare class Tooltip extends React.Component<React.HTMLAttributes<Elemen
     */
     get animation(): Animation;
     set animation(value: Animation);
+    /** Determines how to align the tooltip.
+    *	Property type: string
+    */
+    get align(): string;
+    set align(value: string);
     /** Gets or sets whether a tooltip's arrow will be shown.
     *	Property type: boolean
     */

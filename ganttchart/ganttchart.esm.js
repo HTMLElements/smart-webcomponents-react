@@ -44,6 +44,17 @@ class GanttChart extends React.Component {
         }
         return this._id;
     }
+    /** Determines whether nonworkingDays/nonworkingHours are taken into considuration when determining the dateEnd of the tasks. When this property is enabled the dateEnd of the tasks is calculated to include only the actual working time. By default it's disabled and only calendar time is used.
+    *	Property type: boolean
+    */
+    get adjustToNonworkingTime() {
+        return this.nativeElement ? this.nativeElement.adjustToNonworkingTime : undefined;
+    }
+    set adjustToNonworkingTime(value) {
+        if (this.nativeElement) {
+            this.nativeElement.adjustToNonworkingTime = value;
+        }
+    }
     /** Recalculates the tasks that are connected and re-schedules them according to their connections. If no connections are present, autoScheduling has no effect until a connection is created. Connection types determines the start/end date limits of the tasks.
     *	Property type: boolean
     */
@@ -77,6 +88,28 @@ class GanttChart extends React.Component {
             this.nativeElement.autoScrollStep = value;
         }
     }
+    /** Determines whether the Table columns are resizable or not. When enabled it is possible to resize the columns from the header cells of the Table in both Task and Resource timelines.
+    *	Property type: boolean
+    */
+    get columnResize() {
+        return this.nativeElement ? this.nativeElement.columnResize : undefined;
+    }
+    set columnResize(value) {
+        if (this.nativeElement) {
+            this.nativeElement.columnResize = value;
+        }
+    }
+    /** Determines resize feedback is used during column resizing. This property is applicable only when columnResize is enabled.
+    *	Property type: boolean
+    */
+    get columnResizeFeedback() {
+        return this.nativeElement ? this.nativeElement.columnResizeFeedback : undefined;
+    }
+    set columnResizeFeedback(value) {
+        if (this.nativeElement) {
+            this.nativeElement.columnResizeFeedback = value;
+        }
+    }
     /** Sets the GanttChart's Data Export options.
     *	Property type: GanttChartDataExport
     */
@@ -88,8 +121,8 @@ class GanttChart extends React.Component {
             this.nativeElement.dataExport = value;
         }
     }
-    /** Determines the tasks that will be loaded inside the Timeline. Each item represents an object that should contain the following properties: label - the label of the TaskdateStart - the starting date of the Task. Should be a string representing a valid date.dateEnd - the ending date of the Task. Should be a string representing a valid date.type - determines the type of the task. Whether it's a simple task, a project or a milestone. Each type of task has specific behavior and additional attributes..  Additional properties: connections - an array of objects representing the connection between two tasks. Each connection (object) should have the following properties : target - a number representing the index of the target tasktype - a number representing the type of the connection. Four types of connections are available: 0 - is a connection of type Start-to-Start 1 - is a connection of type End-to-Start 2 - is a connection of type End-to-End3 - is a connection of type Start-to-End lag - a number that determines the delay between two connected auto scheduled tasks. Lag property can be a positive or a negative number. When negative it determines the overlap between two connected tasks. This property is used in conjuction with autoSchedule.duration - determines the duration of a Task in days, hours, minutes, seconds or miliseconds. Very usefull when the the dateEnd of a Task is unknown.minDuration - sets the minimum duration of a task. maxDuration - sets the maximum duration of a task.minDateStart - determines the mininum date that a task can start from. Must be if type string and should represent a valid date.maxDateStart - determines the maximum date that a task can start from. Must be if type string and should represent a valid date.minDateEnd - determines the mininum date that a task can end. Must be if type string and should represent a valid date.maxDateEnd - determines the maximum date that a task can end. Must be if type string and should represent a valid date.progress - a number that determines the progress of a task ( from 0 to 100 ).disableDrag - a boolean property that disables the dragging of a task when set to true.disableResize - a boolean property that disables the resizing of a task when set to true.dragProject - a boolean that determines whether or not the whole project (along with the tasks) can be dragged while dragging the project task. Applicalbe only to Projects.synchronized - a boolean that if set the project task's start/end dates are automatically calculated based on the tasks. By default a synchronized project task can't be dragged alone. Applicable only to Project tasks.expanded - a boolean that determines if a project is expanded or not. If not all of it's sub-tasks are not visible. Only the project task itself is visible. By default no projects are expanded. Applicable only to project tasks..
-    *	Property type: GanttChartDataSource[]
+    /** Determines the tasks that will be loaded inside the Timeline. Each item represents an object that should contain the following properties: label - the label of the TaskdateStart - the starting date of the Task. Should be a string representing a valid date.dateEnd - the ending date of the Task. Should be a string representing a valid date.type - determines the type of the task. Whether it's a simple task, a project or a milestone. Each type of task has specific behavior and additional attributes..  Additional properties: connections - an array of objects representing the connection between two tasks. Each connection (object) should have the following properties : target - a number representing the index of the target tasktype - a number representing the type of the connection. Four types of connections are available: 0 - is a connection of type Start-to-Start 1 - is a connection of type End-to-Start 2 - is a connection of type End-to-End3 - is a connection of type Start-to-End lag - a number that determines the delay between two connected auto scheduled tasks. Lag property can be a positive or a negative number. When negative it determines the overlap between two connected tasks. This property is used in conjuction with autoSchedule.duration - determines the duration of a Task in days, hours, minutes, seconds or miliseconds. Very usefull when the the dateEnd of a Task is unknown. The duration always shows the calendar time whether it is in days/hours or other.minDuration - sets the minimum duration of a task. maxDuration - sets the maximum duration of a task.minDateStart - determines the mininum date that a task can start from. Must be if type string and should represent a valid date.maxDateStart - determines the maximum date that a task can start from. Must be if type string and should represent a valid date.minDateEnd - determines the mininum date that a task can end. Must be if type string and should represent a valid date.maxDateEnd - determines the maximum date that a task can end. Must be if type string and should represent a valid date.progress - a number that determines the progress of a task ( from 0 to 100 ).disableDrag - a boolean property that disables the dragging of a task when set to true.disableResize - a boolean property that disables the resizing of a task when set to true.dragProject - a boolean that determines whether or not the whole project (along with the tasks) can be dragged while dragging the project task. Applicalbe only to Projects.synchronized - a boolean that if set the project task's start/end dates are automatically calculated based on the tasks. By default a synchronized project task can't be dragged alone. Applicable only to Project tasks.expanded - a boolean that determines if a project is expanded or not. If not all of it's sub-tasks are not visible. Only the project task itself is visible. By default no projects are expanded. Applicable only to project tasks..  GanttChart also accepts a DataAdapter instance as dataSource. You can read more about the dataAdapter here - https://www.htmlelements.com/docs/data-adapter/.
+    *	Property type: any
     */
     get dataSource() {
         return this.nativeElement ? this.nativeElement.dataSource : undefined;
@@ -220,6 +253,28 @@ class GanttChart extends React.Component {
             this.nativeElement.durationUnit = value;
         }
     }
+    /** Determines whether a dedicated filter row is used for Table filtering instead of the default filter input. This property has no effect if filtering is not enabled.
+    *	Property type: boolean
+    */
+    get filterRow() {
+        return this.nativeElement ? this.nativeElement.filterRow : undefined;
+    }
+    set filterRow(value) {
+        if (this.nativeElement) {
+            this.nativeElement.filterRow = value;
+        }
+    }
+    /** Groups the tasks inside the Task timeline according to the resources they are assigned to. Unassigned tasks are placed in a default group labeled 'Unassigned'.
+    *	Property type: boolean
+    */
+    get groupByResources() {
+        return this.nativeElement ? this.nativeElement.groupByResources : undefined;
+    }
+    set groupByResources(value) {
+        if (this.nativeElement) {
+            this.nativeElement.groupByResources = value;
+        }
+    }
     /** Allows to create a custom header content for the Task Panel. The attribute accepts an HTMLTemplate element, it's id or a function.
     *	Property type: any
     */
@@ -275,6 +330,28 @@ class GanttChart extends React.Component {
             this.nativeElement.hourFormat = value;
         }
     }
+    /** When enabled, scrolling to the end of the horizotal timeline, triggers the creation of additional to extend the time range. The number of cells to be added when the scrollbar reaches the end position is determined by the infiniteTimelineStep.
+    *	Property type: boolean
+    */
+    get infiniteTimeline() {
+        return this.nativeElement ? this.nativeElement.infiniteTimeline : undefined;
+    }
+    set infiniteTimeline(value) {
+        if (this.nativeElement) {
+            this.nativeElement.infiniteTimeline = value;
+        }
+    }
+    /** Determines the number of cells to be added when the horizontal scroll bar of the Timeline reaches it's end position when infiniteTimeline is enabled.
+    *	Property type: number
+    */
+    get infiniteTimelineStep() {
+        return this.nativeElement ? this.nativeElement.infiniteTimelineStep : undefined;
+    }
+    set infiniteTimelineStep(value) {
+        if (this.nativeElement) {
+            this.nativeElement.infiniteTimelineStep = value;
+        }
+    }
     /** When set the Timeline is positioned on the left side while the Task Tree is positioned on the right. By default it's vice versa.
     *	Property type: boolean
     */
@@ -284,6 +361,17 @@ class GanttChart extends React.Component {
     set inverted(value) {
         if (this.nativeElement) {
             this.nativeElement.inverted = value;
+        }
+    }
+    /** Determines whether keyboard navigation inside the Table is enabled or not. Keyboard navigation affects both Task and Resource Tables. It allows to navigate between items. the following keyboard shortcut keys are available for focused tasks inside the Task Table: Enter - opens the Window editor to edit the currently focused task.Delete - opens a confirmation window regarding the deletion of the currently focused task.
+    *	Property type: boolean
+    */
+    get keyboardNavigation() {
+        return this.nativeElement ? this.nativeElement.keyboardNavigation : undefined;
+    }
+    set keyboardNavigation(value) {
+        if (this.nativeElement) {
+            this.nativeElement.keyboardNavigation = value;
         }
     }
     /**  Determines the language of the GanttChart.
@@ -341,7 +429,7 @@ class GanttChart extends React.Component {
             this.nativeElement.monthFormat = value;
         }
     }
-    /** Determines the nonworking days of the week from 0 to 6, where 0 is the first day of the week and 6 is the last day. Nonworking days will be displayed with colored cells inside the timeline and will be ignored during task range calculations.
+    /** Determines the nonworking days of the week from 0 to 6, where 0 is the first day of the week and 6 is the last day. Nonworking days will be displayed with colored cells inside the timeline and will not affect the dateEnd of the tasks unless the adjustToNonworkingTime property is enabled.
     *	Property type: number[]
     */
     get nonworkingDays() {
@@ -352,8 +440,8 @@ class GanttChart extends React.Component {
             this.nativeElement.nonworkingDays = value;
         }
     }
-    /** Determines the nonworking hours of a day. Hours are represented as numbers inside an array. In the timline the cells that represent nonworking days are colored differently from the rest.
-    *	Property type: number[]
+    /** Determines the nonworking hours of a day. Hours are represented as numbers inside an array (e.g. [1,2,3] - means 1,2 and 3 AM) or number ranges represented as nested arrays(e.g. [[0,6]] - means from 0 to 6 AM). In the timline the cells that represent nonworking days are colored differently from the rest and will not affect the dateEnd of the tasks unless the adjustToNonworkingTime property is enabled.
+    *	Property type: number[] | number[][]
     */
     get nonworkingHours() {
         return this.nativeElement ? this.nativeElement.nonworkingHours : undefined;
@@ -405,6 +493,28 @@ class GanttChart extends React.Component {
     set resourceColumns(value) {
         if (this.nativeElement) {
             this.nativeElement.resourceColumns = value;
+        }
+    }
+    /** Determines whether the Resource Table is filterable or not.
+    *	Property type: boolean
+    */
+    get resourceFiltering() {
+        return this.nativeElement ? this.nativeElement.resourceFiltering : undefined;
+    }
+    set resourceFiltering(value) {
+        if (this.nativeElement) {
+            this.nativeElement.resourceFiltering = value;
+        }
+    }
+    /** A format function that allows to re-format the group row labels when groupByResources is enabled.
+    *	Property type: any
+    */
+    get resourceGroupFormatFunction() {
+        return this.nativeElement ? this.nativeElement.resourceGroupFormatFunction : undefined;
+    }
+    set resourceGroupFormatFunction(value) {
+        if (this.nativeElement) {
+            this.nativeElement.resourceGroupFormatFunction = value;
         }
     }
     /** Allows to create a custom header content for the Resource Panel. The attribute accepts an HTMLTemplate element, it's id or a function.
@@ -495,15 +605,26 @@ class GanttChart extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Determines the selected task(s). If empty no tasks are selected.
-    *	Property type: number[]
+    /** Sets which tasks to select by their id or gets the currently selected task ids. If no id is provided for the task, an internal id is generated for each task according to it's index(tree path).
+    *	Property type: number[] | string[]
     */
-    get selectedIndexes() {
-        return this.nativeElement ? this.nativeElement.selectedIndexes : undefined;
+    get selectedTaskIds() {
+        return this.nativeElement ? this.nativeElement.selectedTaskIds : undefined;
     }
-    set selectedIndexes(value) {
+    set selectedTaskIds(value) {
         if (this.nativeElement) {
-            this.nativeElement.selectedIndexes = value;
+            this.nativeElement.selectedTaskIds = value;
+        }
+    }
+    /** Sets which resources to select by their id or gets the currently selected resource ids. If no id is provided for the resource, an internal id is generated for each resource according to it's index(tree path).
+    *	Property type: number[] | string[]
+    */
+    get selectedResourceIds() {
+        return this.nativeElement ? this.nativeElement.selectedResourceIds : undefined;
+    }
+    set selectedResourceIds(value) {
+        if (this.nativeElement) {
+            this.nativeElement.selectedResourceIds = value;
         }
     }
     /** Shows the progress label inside the progress bars of the Timeline tasks.
@@ -528,18 +649,7 @@ class GanttChart extends React.Component {
             this.nativeElement.snapToNearest = value;
         }
     }
-    /** Determines whether the GanttChart can be sorted or not.
-    *	Property type: boolean
-    */
-    get sortable() {
-        return this.nativeElement ? this.nativeElement.sortable : undefined;
-    }
-    set sortable(value) {
-        if (this.nativeElement) {
-            this.nativeElement.sortable = value;
-        }
-    }
-    /** Determines whether the GanttChart can be sorted by one or more columns.
+    /** Determines whether the GanttChart can be sorted by one, more then one or no columns.
     *	Property type: GanttChartSortMode
     */
     get sortMode() {
@@ -570,6 +680,17 @@ class GanttChart extends React.Component {
     set taskColumns(value) {
         if (this.nativeElement) {
             this.nativeElement.taskColumns = value;
+        }
+    }
+    /** Determines whether the Task Table is filterable or not.
+    *	Property type: boolean
+    */
+    get taskFiltering() {
+        return this.nativeElement ? this.nativeElement.taskFiltering : undefined;
+    }
+    set taskFiltering(value) {
+        if (this.nativeElement) {
+            this.nativeElement.taskFiltering = value;
         }
     }
     /** Determines the min size of the Task Panel. Used when Resource Panel is visible.
@@ -605,7 +726,7 @@ class GanttChart extends React.Component {
             this.nativeElement.timelineMin = value;
         }
     }
-    /** Determines the min width of the task tree.
+    /** Determines the min width of the task table.
     *	Property type: string | number
     */
     get treeMin() {
@@ -616,7 +737,7 @@ class GanttChart extends React.Component {
             this.nativeElement.treeMin = value;
         }
     }
-    /** Determines the size(width) of the task tree.
+    /** Determines the size(width) of the task table.
     *	Property type: string | number
     */
     get treeSize() {
@@ -706,23 +827,124 @@ class GanttChart extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableWindowEditor", "durationUnit", "headerTemplate", "hideTimelineHeaderDetails", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "inverted", "locale", "max", "min", "messages", "monthFormat", "nonworkingDays", "nonworkingHours", "popupWindowCustomizationFunction", "progressLabelFormatFunction", "resources", "resourceColumns", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedIndexes", "showProgressLabel", "snapToNearest", "sortable", "sortMode", "tasks", "taskColumns", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
+        return ["adjustToNonworkingTime", "autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "columnResize", "columnResizeFeedback", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableWindowEditor", "durationUnit", "filterRow", "groupByResources", "headerTemplate", "hideTimelineHeaderDetails", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "infiniteTimeline", "infiniteTimelineStep", "inverted", "keyboardNavigation", "locale", "max", "min", "messages", "monthFormat", "nonworkingDays", "nonworkingHours", "popupWindowCustomizationFunction", "progressLabelFormatFunction", "resources", "resourceColumns", "resourceFiltering", "resourceGroupFormatFunction", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedTaskIds", "selectedResourceIds", "showProgressLabel", "snapToNearest", "sortMode", "tasks", "taskColumns", "taskFiltering", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onBeginUpdate", "onEndUpdate", "onChange", "onItemClick", "onItemInsert", "onItemRemove", "onItemUpdate", "onProgressChangeStart", "onProgressChangeEnd", "onDragStart", "onDragEnd", "onResizeStart", "onResizeEnd", "onConnectionStart", "onConnectionEnd", "onScrollBottomReached", "onScrollTopReached", "onOpening", "onOpen", "onClosing", "onClose", "onCollapse", "onExpand", "onCreate", "onReady"];
+        return ["onBeginUpdate", "onEndUpdate", "onConnectionStart", "onConnectionEnd", "onChange", "onColumnResize", "onClosing", "onClose", "onCollapse", "onDragStart", "onDragEnd", "onExpand", "onFilter", "onItemClick", "onItemInsert", "onItemRemove", "onItemUpdate", "onOpening", "onOpen", "onProgressChangeStart", "onProgressChangeEnd", "onResizeStart", "onResizeEnd", "onSort", "onScrollBottomReached", "onScrollTopReached", "onScrollLeftReached", "onScrollRightReached", "onCreate", "onReady"];
     }
-    /** Adds a task as the last item of a Project.
-    * @param {any} taskIndex. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
-    * @param {string | number} projectIndex. A number that represents the index of a project or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    /** Adds a custom filter to a specific column (task or resource column).
+    * @param {any} columns. An object or an array of objects with the following syntax: <ul><li><b>type</b> - indicates the type of column to filter. Possible values are 'task' or 'resource'.</li><li><b>value</b> - the value of the column that must match the value attribute of a taskColumns/resourceColumns object(e.g. 'label', 'dateStart', etc).</li></ul>.
+    * @param {any} filterGroup. A JQX.Utilities.FilterGroup object. Here's an example for creating a FilterGroup object: <pre>const filterGroup = new window.JQX.Utilities.FilterGroup(), filterObject = filterGroup.createFilter('string', 'Task B', 'STARTS_WITH_CASE_SENSITIVE'); filterGroup.addFilter('or', filterObject); gantt.addFilter({ type: 'task', value: 'label' }, filterGroup);</pre>
     */
-    addTaskTo(taskIndex, projectIndex) {
+    addFilter(columns, filterGroup) {
         if (this.nativeElement.isRendered) {
-            this.nativeElement.addTaskTo(taskIndex, projectIndex);
+            this.nativeElement.addFilter(columns, filterGroup);
         }
         else {
             this.nativeElement.whenRendered(() => {
-                this.nativeElement.addTaskTo(taskIndex, projectIndex);
+                this.nativeElement.addFilter(columns, filterGroup);
+            });
+        }
+    }
+    /** Clears the currently applied filters.
+    */
+    clearFilters() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.clearFilters();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.clearFilters();
+            });
+        }
+    }
+    /** Clears the currently applied column sorting.
+    */
+    clearSort() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.clearSort();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.clearSort();
+            });
+        }
+    }
+    /** Unselects all currently selected items inside the GanttChart including Tasks and Resources. It also clears the assignment highlgihters.
+    */
+    clearSelection() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.clearSelection();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.clearSelection();
+            });
+        }
+    }
+    /** Removes a previously saved state of the element form LocalStorage according to it's id. Requires an id to be set to the element.
+    */
+    clearState() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.clearState();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.clearState();
+            });
+        }
+    }
+    /** Removes all tasks.
+    */
+    clearTasks() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.clearTasks();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.clearTasks();
+            });
+        }
+    }
+    /** Removes all resources.
+    */
+    clearResources() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.clearResources();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.clearResources();
+            });
+        }
+    }
+    /** Creates a connection between two tasks.
+    * @param {number | string} startTaskIndex. The id of the start task or the connection string like '2-3-0'. <b>If the complete connections string is provided as the first argument, the rest of the method arguments are not necessary</b>
+    * @param {number | string} taskEndIndex?. The id of the end task.
+    * @param {number} connectionType?. The type of the connection. A numeric value from 0 to 3. The connection type can be: <ul><li><b>0</b> - Start-to-Start connection.</li><li><b>1</b> - End-to-Start connection.</li><li><b>2</b> - End-to-End connection.</li><li><b>3</b> - Start-to-End connection.</li></ul>
+    * @param {number} lag?. The connection lag in miliseconds. Used by the Auto scheduling algorithm in order allow some slack time slack time before or after the next task begins/ends. Lag is measured in miliseconds. It can be a negative (lead) or a positive (lag) number.
+    */
+    createConnection(startTaskIndex, taskEndIndex, connectionType, lag) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.createConnection(startTaskIndex, taskEndIndex, connectionType, lag);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.createConnection(startTaskIndex, taskEndIndex, connectionType, lag);
+            });
+        }
+    }
+    /** Collapses an expanded project.
+    * @param {string | number} id. The id of a project item that should be collapsed.
+    */
+    collapse(id) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.collapse(id);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.collapse(id);
             });
         }
     }
@@ -763,6 +985,335 @@ class GanttChart extends React.Component {
             });
         }
     }
+    /** Makes sure a Task is visible by scrolling to it.
+    * @param {string | number} taskId. The id of the target Task.
+    */
+    ensureVisible(taskId) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.ensureVisible(taskId);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.ensureVisible(taskId);
+            });
+        }
+    }
+    /** Expands a collapsed project with tasks.
+    * @param {string | number} id. The id of a project task that should be expanded.
+    */
+    expand(id) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.expand(id);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.expand(id);
+            });
+        }
+    }
+    /** Exports the data of Tree of the GanttChart.
+    * @param {string} dataFormat. Determines the format of the exported file. Three possible values are available: <ul><li><b>pdf</b></li><li><b>xlsx</b></li><li><b>html</b></li><li><b>tsv</b></li><li><b>csv</b></li><li><b>xml</b></li></ul>
+    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer ro the JQX Export Documentation.
+    */
+    exportData(dataFormat, callback) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.exportData(dataFormat, callback);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.exportData(dataFormat, callback);
+            });
+        }
+    }
+    /** Returns a JSON representation of all tasks inside the element along with their connections and settings.
+    * @returns {any[]}
+  */
+    getState() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getState();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the Tree path of a task/resource. The tree path is used as task/resource id if no id is provided by the user.
+    * @param {any} item. A GattChartTask/GanttChartResource item object.
+    * @returns {string}
+  */
+    getItemPath(item) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getItemPath(item);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the task object that corresponds to the id/path.
+    * @param {string | number} itemId. The id/path of a task.
+    * @returns {any}
+  */
+    getTask(itemId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getTask(itemId);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns an array of all GanttChart tasks.
+    * @returns {any[]}
+  */
+    getTasks() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getTasks();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the index of a task.
+    * @param {any} task. A GattChartTask object.
+    * @returns {number}
+  */
+    getTaskIndex(task) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getTaskIndex(task);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the connections definitions of a task.
+    * @param {any} taskId. A GanttChartTask object or it's id.
+    * @returns {any}
+  */
+    getTaskConnections(taskId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getTaskConnections(taskId);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the Project of a task or undefined if it does not have one.
+    * @param {any} task. A GantChartTask object.
+    * @returns {any}
+  */
+    getTaskProject(task) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getTaskProject(task);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the resource object that corresponds to the id/path.
+    * @param {string | number} itemId. The id/path of a resource.
+    * @returns {any}
+  */
+    getResource(itemId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getResource(itemId);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns an array of all GanttChart resources.
+    * @returns {any[]}
+  */
+    getResources() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getResources();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the index of a resource.
+    * @param {any} resource. A GanttChartResource object.
+    * @returns {number}
+  */
+    getResourceIndex(resource) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getResourceIndex(resource);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the tasks that are assigned to the resource.
+    * @param {any} resource. A GanttChartResource object or it's id.
+    * @returns {any}
+  */
+    getResourceTasks(resource) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getResourceTasks(resource);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the currently selected tasks/resource ids. If selection is disabled or no items are selected returns null.
+    * @returns {any}
+  */
+    getSelectedIds() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getSelectedIds();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the currently selected tasks.
+    * @returns {any}
+  */
+    getSelectedTasks() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getSelectedTasks();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the currently selected resources.
+    * @returns {any}
+  */
+    getSelectedResources() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getSelectedResources();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the working hours of the day as numbers.
+    * @returns {any}
+  */
+    getWorkingHours() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getWorkingHours();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Depending on the nonworkingDays property, returns true or false whether the target date is on a working day or not.
+    * @param {Date} date. A javascript Date object or a string/number which represents a valid JS Date.
+    */
+    isWorkingDay(date) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.isWorkingDay(date);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.isWorkingDay(date);
+            });
+        }
+    }
+    /** Loads a previously saved state of the element or checks LocalStorage for any saved states if no argument is passed to the method.
+    * @param {any[]} state?. An Array containing a valid structure of Gantt Chart tasks.
+    */
+    loadState(state) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.loadState(state);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.loadState(state);
+            });
+        }
+    }
     /** Removes all connections between tasks.
     */
     removeAllConnections() {
@@ -796,275 +1347,16 @@ class GanttChart extends React.Component {
         });
     }
     /** Removes all connections of a task or between two tasks if the second argument is provided and valid.
-    * @param {number} taskStartIndex. The index of the start task.
-    * @param {number} taskEndIndex?. The index of the end task.
-    * @returns {string}
-  */
-    removeTaskConnection(taskStartIndex, taskEndIndex) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.removeTaskConnection(taskStartIndex, taskEndIndex);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
-    }
-    /** Removes all tasks.
+    * @param {any} taskStart. The start task object or it's id.
+    * @param {any} taskEnd?. The end task object or it's id.
     */
-    clearTasks() {
+    removeTaskConnection(taskStart, taskEnd) {
         if (this.nativeElement.isRendered) {
-            this.nativeElement.clearTasks();
+            this.nativeElement.removeTaskConnection(taskStart, taskEnd);
         }
         else {
             this.nativeElement.whenRendered(() => {
-                this.nativeElement.clearTasks();
-            });
-        }
-    }
-    /** Removes all resources.
-    */
-    clearResources() {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.clearResources();
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.clearResources();
-            });
-        }
-    }
-    /** Creates a connection between two tasks.
-    * @param {number | string} startTaskIndex. The index of the start task or the connection string like '2-3-0.
-    * @param {number} taskEndIndex?. The index of the end task.
-    * @param {number} connectionType?. The type of the connection. A numeric value from 0 to 3.
-    */
-    createConnection(startTaskIndex, taskEndIndex, connectionType) {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.createConnection(startTaskIndex, taskEndIndex, connectionType);
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.createConnection(startTaskIndex, taskEndIndex, connectionType);
-            });
-        }
-    }
-    /** Collapses an expanded project with tasks.
-    * @param {string | number} index. The index of a project task that should be collapsed.
-    */
-    collapse(index) {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.collapse(index);
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.collapse(index);
-            });
-        }
-    }
-    /** Makes sure a Task is visible by scrolling to it.
-    * @param {string | number} item. The index of the target Task. Can be a string representing a Tree index ( similar to jqxTree )
-    */
-    ensureVisible(item) {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.ensureVisible(item);
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.ensureVisible(item);
-            });
-        }
-    }
-    /** Expands a collapsed project with tasks.
-    * @param {string | number} index. The index of a project task that should be expanded.
-    */
-    expand(index) {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.expand(index);
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.expand(index);
-            });
-        }
-    }
-    /** Exports the data of Tree of the GanttChart.
-    * @param {string} dataFormat. Determines the format of the exported file. Three possible values are available: <ul><li><b>pdf</b></li><li><b>xlsx</b></li><li><b>html</b></li></ul>
-    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer ro the Smart Export Documentation.
-    */
-    exportData(dataFormat, callback) {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.exportData(dataFormat, callback);
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.exportData(dataFormat, callback);
-            });
-        }
-    }
-    /** Returns a JSON representation of all tasks inside the element along with their connections and settings.
-    * @returns {any[]}
-  */
-    getState() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getState();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
-    }
-    /** Returns the Tree path of a task/resource.
-    * @param {any} item. A GattChartTask/GanttChartResource item object or index.
-    * @returns {string}
-  */
-    getItemPath(item) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItemPath(item);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
-    }
-    /** Returns the index of a task.
-    * @param {any} task. A GattChartTask object.
-    * @returns {number}
-  */
-    getTaskIndex(task) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTaskIndex(task);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
-    }
-    /** Returns the tree path of a task.
-    * @param {any} task. A GanttChartTask object.
-    * @returns {string}
-  */
-    getTaskPath(task) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTaskPath(task);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
-    }
-    /** Returns teh Project of a task if any.
-    * @param {any} task. A GantChartTask object.
-    * @returns {any}
-  */
-    getTaskProject(task) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTaskProject(task);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
-    }
-    /** Returns the index of a resource.
-    * @param {any} resource. A GanttChartResource object.
-    * @returns {number}
-  */
-    getResourceIndex(resource) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getResourceIndex(resource);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
-    }
-    /** Returns the tasks that are assigned to the resource.
-    * @param {any} resource. A GanttChartResource object.
-    * @returns {any}
-  */
-    getResourceTasks(resource) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getResourceTasks(resource);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
-    }
-    /** Unselects all currently selected items inside the GanttChart including Tasks and Resources. It also clears the assignment highlgihters.
-    */
-    clearSelection() {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.clearSelection();
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.clearSelection();
-            });
-        }
-    }
-    /** Removes a previously saved state of the element form LocalStorage according to it's id. Requires an id to be set to the element.
-    */
-    clearState() {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.clearState();
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.clearState();
-            });
-        }
-    }
-    /** Loads a previously saved state of the element or checks LocalStorage for any saved states if no argument is passed to the method.
-    * @param {any[]} state?. An Array containing a valid structure of Gantt Chart tasks.
-    */
-    loadState(state) {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.loadState(state);
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.loadState(state);
+                this.nativeElement.removeTaskConnection(taskStart, taskEnd);
             });
         }
     }
@@ -1081,44 +1373,50 @@ class GanttChart extends React.Component {
             });
         }
     }
-    /** Inserts a new task in the timeline.
-    * @param {string | number} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    /** Inserts a new task in the timeline. The new task can be inserted as a sub task of a project by passing the appropriate argument for the project id or as a root level item.
     * @param {any} taskObject. An object describing a Gantt Chart task.
-    */
-    insertTask(index, taskObject) {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.insertTask(index, taskObject);
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.insertTask(index, taskObject);
-            });
-        }
+    * @param {any} project?. A number or string that represents the id of a project (e.g. '0') or a project object definition present in the GanttChart. This parameter determines the parent project of the task that will be inserted. If <b>null</b> is passed as an arguemnt the new task will be inserted at root level without a parent project.
+    * @param {number} index?. The index where the new item should be inserted(e.g. 2). This index will determine the position of the newly inserted task.
+    * @returns {string | number | undefined}
+  */
+    insertTask(taskObject, project, index) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.insertTask(taskObject, project, index);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
     }
-    /** Updates a task inside the timeline.
-    * @param {any} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    /** Updates a task/project/milestone.
+    * @param {any} taskId. A number or string that represents the id of a task/project(e.g. '0') or the object definition of the task/project.
     * @param {any} taskObject. An object describing a Gantt Chart task. The properties of this object will be applied to the desired task.
     */
-    updateTask(index, taskObject) {
+    updateTask(taskId, taskObject) {
         if (this.nativeElement.isRendered) {
-            this.nativeElement.updateTask(index, taskObject);
+            this.nativeElement.updateTask(taskId, taskObject);
         }
         else {
             this.nativeElement.whenRendered(() => {
-                this.nativeElement.updateTask(index, taskObject);
+                this.nativeElement.updateTask(taskId, taskObject);
             });
         }
     }
     /** Removes a task from the timeline.
-    * @param {any} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    * @param {any} taskId. A number or string that represents the id of a task or the actual item object.
     */
-    removeTask(index) {
+    removeTask(taskId) {
         if (this.nativeElement.isRendered) {
-            this.nativeElement.removeTask(index);
+            this.nativeElement.removeTask(taskId);
         }
         else {
             this.nativeElement.whenRendered(() => {
-                this.nativeElement.removeTask(index);
+                this.nativeElement.removeTask(taskId);
             });
         }
     }
@@ -1163,16 +1461,16 @@ class GanttChart extends React.Component {
             });
         }
     }
-    /** Opens the popup Window for specific task Editing.
-    * @param {string | number} index. A string or number that represents the index of a task that is going to be edited.
+    /** Opens the popup Window for specific task to edit or to delete a connection if a connection string is passed.
+    * @param {any} taskId. A string or number that represents the id of a task or the task object that is going to be edited or a connection string(e.g. '2-0-0').
     */
-    openWindow(index) {
+    openWindow(taskId) {
         if (this.nativeElement.isRendered) {
-            this.nativeElement.openWindow(index);
+            this.nativeElement.openWindow(taskId);
         }
         else {
             this.nativeElement.whenRendered(() => {
-                this.nativeElement.openWindow(index);
+                this.nativeElement.openWindow(taskId);
             });
         }
     }
@@ -1200,8 +1498,86 @@ class GanttChart extends React.Component {
             });
         }
     }
+    /** Allows to sets the working days and hours at once.
+    * @param {{ days: (number | string | number[])[], hours: (number | string | number[])[] }} settings. An object definition that contains the days and hours that should be working. The days and hours can be defined as an array of numbers where each number is a day/hour, strings where each string represents a range of days/hours (e.g. '1-5' or '2:00-8:00') or nested array of numbers (e.g. [[1,5]] or [[2, 8]]) which means from 1 to 5 or 2 to 8.
+    */
+    setWorkTime(settings) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setWorkTime(settings);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setWorkTime(settings);
+            });
+        }
+    }
+    /** Allows to select a task based on it's id.
+    * @param {string | number} id. The id of the task to select.
+    */
+    selectTask(id) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.selectTask(id);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.selectTask(id);
+            });
+        }
+    }
+    /** Allows to select a resource based on it's id.
+    * @param {string | number} id. The id of the resource to select.
+    */
+    selectResource(id) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.selectResource(id);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.selectResource(id);
+            });
+        }
+    }
+    /** Allows to unselect a task based on it's id.
+    * @param {string | number} id. The id of the task to unselect.
+    */
+    unselectTask(id) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.unselectTask(id);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.unselectTask(id);
+            });
+        }
+    }
+    /** Allows to unselect a resource based on it's id.
+    * @param {string | number} id. The id of the resource to unselect.
+    */
+    unselectResource(id) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.unselectResource(id);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.unselectResource(id);
+            });
+        }
+    }
+    /** Allows to unset previously set working time. The opposte method for setWorkingTime.
+    * @param {{ days: (number | string | number[])[], hours: (number | string | number[])[] }} settings. An object definition that contains the days and hours that should not be working. The days and hours can be defined as an array of numbers where each number is a day/hour, strings where each string represents a range of days/hours (e.g. '1-5' or '2:00-8:00') or nested array of numbers (e.g. [[1,5]] or [[2, 8]]) which means from 1 to 5 or 2 to 8.
+    */
+    unsetWorkTime(settings) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.unsetWorkTime(settings);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.unsetWorkTime(settings);
+            });
+        }
+    }
     /** Sorts the GanttChart tasks/resources if sortable is enabled.
-    * @param {any} columns?. An Array of objects which determine which columns to be sorted, the sort order and the type of item to sort: task or resource. If no arguments are provided sorting will be removed. <br /> An object should have the following properties: <ul><li><b>value</b> - a string that represents the value of a <b>taskColumn</b> to sort.</li><li><b>sortOrder</b> - a string that represents the sorting order for the column: 'asc' (asscending sorting) or 'desc' (descending) are possible values. </li><li><b>type</b> - a string that represents the type of item to sort. This property determines which panel will be sorted. Two possible values: 'task', 'resource'.</li></ul>
+    * @param {any} columns. An Array of objects which determine which columns to be sorted, the sort order and the type of item to sort: task or resource. If no arguments are provided sorting will be removed. <br /> An object should have the following properties: <ul><li><b>value</b> - a string that represents the value of a <b>taskColumn</b> to sort.</li><li><b>sortOrder</b> - a string that represents the sorting order for the column: 'asc' (asscending sorting) or 'desc' (descending) are possible values. </li><li><b>type</b> - a string that represents the type of item to sort. This property determines which panel will be sorted. Two possible values: 'task', 'resource'.</li></ul>
     */
     sort(columns) {
         if (this.nativeElement.isRendered) {

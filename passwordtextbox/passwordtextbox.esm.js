@@ -322,7 +322,7 @@ class PasswordTextBox extends React.Component {
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onChange", "onCreate", "onReady"];
+        return ["onChange", "onChanging", "onCreate", "onReady"];
     }
     /** Focuses the element.
     */

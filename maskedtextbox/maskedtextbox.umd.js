@@ -405,7 +405,7 @@ require('../source/modules/smart.textbox');
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
-	        return ["onChange", "onValidation", "onCreate", "onReady"];
+	        return ["onChange", "onChanging", "onValidation", "onCreate", "onReady"];
 	    }
 	    /** Focuses the element.
 	    */

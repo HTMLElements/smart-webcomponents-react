@@ -1,8 +1,8 @@
 import React from "react";
 import { CardViewProperties } from "./../index";
-import { Animation, Orientation, CardViewCoverMode, CardViewHeaderPosition, Scrolling, CardViewColumn } from './../index';
+import { Animation, Orientation, CardViewCoverMode, CardViewHeaderPosition, Scrolling, CardViewColumn, DataSourceSettings } from './../index';
 export { CardViewProperties } from "./../index";
-export { Animation, Orientation, CardViewCoverMode, CardViewHeaderPosition, Scrolling, CardViewColumn } from './../index';
+export { Animation, Orientation, CardViewColumnDataType, CardViewCoverMode, DataSourceSettingsSanitizeHTML, DataSourceSettingsDataFieldDataType, DataSourceSettingsDataSourceType, CardViewHeaderPosition, Scrolling, CardViewColumn, DataSourceSettings, DataSourceSettingsDataField } from './../index';
 export { DataAdapter } from './../index';
 export declare const Smart: any;
 export interface CardViewProps extends CardViewProperties {
@@ -78,6 +78,11 @@ export declare class CardView extends React.Component<React.HTMLAttributes<Eleme
     */
     get dataSource(): any;
     set dataSource(value: any);
+    /** Sets the grid's data source settings when the dataSource property is set to an Array or URL.
+    *	Property type: DataSourceSettings
+    */
+    get dataSourceSettings(): DataSourceSettings;
+    set dataSourceSettings(value: DataSourceSettings);
     /** Allows the edit option for the cards.
     *	Property type: boolean
     */
@@ -98,6 +103,16 @@ export declare class CardView extends React.Component<React.HTMLAttributes<Eleme
     */
     get messages(): any;
     set messages(value: any);
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    *	Property type: boolean
+    */
+    get rightToLeft(): boolean;
+    set rightToLeft(value: boolean);
+    /** Determines the theme. Theme defines the look of the element
+    *	Property type: string
+    */
+    get theme(): string;
+    set theme(value: string);
     /** Describes the scrolling behavior of the element.
     *	Property type: Scrolling
     */

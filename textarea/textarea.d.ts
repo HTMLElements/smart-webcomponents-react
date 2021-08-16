@@ -8,6 +8,7 @@ export interface TextAreaProps extends TextAreaProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onChanging?: ((event?: Event) => void) | undefined;
     onCreate?: ((event?: Event) => void) | undefined;
     onReady?: ((event?: Event) => void) | undefined;
 }
@@ -158,6 +159,12 @@ export declare class TextArea extends React.Component<React.HTMLAttributes<Eleme
     *   value - The value of the new selected item.
     */
     onChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered on each key up event of the TextArea, if the value is changed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value)
+    *   oldValue - The previous value before it was changed.
+    *   value - The new value.
+    */
+    onChanging?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;

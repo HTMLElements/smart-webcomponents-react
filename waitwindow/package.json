@@ -1,0 +1,7 @@
+{
+    "main": "waitwindow.umd.js",
+    "module": "waitwindow.esm.js",
+	"typings": "waitwindow.d.ts",
+    "name": "smart-webcomponents-react/waitwindow",
+    "sideEffects": false
+  }

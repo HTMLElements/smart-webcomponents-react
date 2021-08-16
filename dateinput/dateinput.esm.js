@@ -30,6 +30,28 @@ class DateInput extends React.Component {
             this.nativeElement.animation = value;
         }
     }
+    /** Determines whether the calendar button pop-up will be closed automatically when date or time is selected through it.
+    *	Property type: boolean
+    */
+    get autoClose() {
+        return this.nativeElement ? this.nativeElement.autoClose : undefined;
+    }
+    set autoClose(value) {
+        if (this.nativeElement) {
+            this.nativeElement.autoClose = value;
+        }
+    }
+    /** Determines the delay before the calendar pop-up is automatically closed. Applicable only when autoClose is set to true.
+    *	Property type: number
+    */
+    get autoCloseDelay() {
+        return this.nativeElement ? this.nativeElement.autoCloseDelay : undefined;
+    }
+    set autoCloseDelay(value) {
+        if (this.nativeElement) {
+            this.nativeElement.autoCloseDelay = value;
+        }
+    }
     /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. Intl.DateTimeFormat is used to format date strings in JavaScript. By default the date format is 'numeric'. The default value is: { day: 'numeric', month: 'numeric', year: 'numeric' }
     *	Property type: DateTimeFormat
     */
@@ -228,7 +250,7 @@ class DateInput extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Sets or gets the value of the element.
+    /** Sets or gets the value of the element. Expected value is: Date string, Date object or null.
     *	Property type: any
     */
     get value() {
@@ -241,7 +263,7 @@ class DateInput extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "dateTimeFormat", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "opened", "placeholder", "readonly", "rightToLeft", "theme", "unfocusable", "value"];
+        return ["animation", "autoClose", "autoCloseDelay", "dateTimeFormat", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "opened", "placeholder", "readonly", "rightToLeft", "theme", "unfocusable", "value"];
     }
     // Gets the events of the React component.
     get eventListeners() {

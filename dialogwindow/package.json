@@ -1,0 +1,7 @@
+{
+    "main": "dialogwindow.umd.js",
+    "module": "dialogwindow.esm.js",
+	"typings": "dialogwindow.d.ts",
+    "name": "smart-webcomponents-react/dialogwindow",
+    "sideEffects": false
+  }

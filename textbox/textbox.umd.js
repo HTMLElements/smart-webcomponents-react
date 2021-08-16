@@ -959,7 +959,7 @@ require('../source/modules/smart.textbox');
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
-	        return ["onChange", "onCreate", "onReady"];
+	        return ["onChange", "onChanging", "onCreate", "onReady"];
 	    }
 	    /** Closes the drop down. The drop down is used only when auto complete is enabled.
 	    */

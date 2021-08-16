@@ -1,35 +1,40 @@
 import React from "react";
 import { GanttChartProperties } from "./../index";
-import { GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDataSource, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskColumn } from './../index';
+import { GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskColumn } from './../index';
 export { GanttChartProperties } from "./../index";
-export { GanttChartDataExportItemType, GanttChartTaskType, GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDataSource, GanttChartDataSourceResource, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskColumn } from './../index';
+export { GanttChartDataExportItemType, GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, GanttChartTaskType, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskColumn } from './../index';
 export declare const Smart: any;
 export interface GanttChartProps extends GanttChartProperties {
     className?: string;
     style?: React.CSSProperties;
     onBeginUpdate?: ((event?: Event) => void) | undefined;
     onEndUpdate?: ((event?: Event) => void) | undefined;
+    onConnectionStart?: ((event?: Event) => void) | undefined;
+    onConnectionEnd?: ((event?: Event) => void) | undefined;
     onChange?: ((event?: Event) => void) | undefined;
+    onColumnResize?: ((event?: Event) => void) | undefined;
+    onClosing?: ((event?: Event) => void) | undefined;
+    onClose?: ((event?: Event) => void) | undefined;
+    onCollapse?: ((event?: Event) => void) | undefined;
+    onDragStart?: ((event?: Event) => void) | undefined;
+    onDragEnd?: ((event?: Event) => void) | undefined;
+    onExpand?: ((event?: Event) => void) | undefined;
+    onFilter?: ((event?: Event) => void) | undefined;
     onItemClick?: ((event?: Event) => void) | undefined;
     onItemInsert?: ((event?: Event) => void) | undefined;
     onItemRemove?: ((event?: Event) => void) | undefined;
     onItemUpdate?: ((event?: Event) => void) | undefined;
-    onProgressChangeStart?: ((event?: Event) => void) | undefined;
-    onProgressChangeEnd?: ((event?: Event) => void) | undefined;
-    onDragStart?: ((event?: Event) => void) | undefined;
-    onDragEnd?: ((event?: Event) => void) | undefined;
-    onResizeStart?: ((event?: Event) => void) | undefined;
-    onResizeEnd?: ((event?: Event) => void) | undefined;
-    onConnectionStart?: ((event?: Event) => void) | undefined;
-    onConnectionEnd?: ((event?: Event) => void) | undefined;
-    onScrollBottomReached?: ((event?: Event) => void) | undefined;
-    onScrollTopReached?: ((event?: Event) => void) | undefined;
     onOpening?: ((event?: Event) => void) | undefined;
     onOpen?: ((event?: Event) => void) | undefined;
-    onClosing?: ((event?: Event) => void) | undefined;
-    onClose?: ((event?: Event) => void) | undefined;
-    onCollapse?: ((event?: Event) => void) | undefined;
-    onExpand?: ((event?: Event) => void) | undefined;
+    onProgressChangeStart?: ((event?: Event) => void) | undefined;
+    onProgressChangeEnd?: ((event?: Event) => void) | undefined;
+    onResizeStart?: ((event?: Event) => void) | undefined;
+    onResizeEnd?: ((event?: Event) => void) | undefined;
+    onSort?: ((event?: Event) => void) | undefined;
+    onScrollBottomReached?: ((event?: Event) => void) | undefined;
+    onScrollTopReached?: ((event?: Event) => void) | undefined;
+    onScrollLeftReached?: ((event?: Event) => void) | undefined;
+    onScrollRightReached?: ((event?: Event) => void) | undefined;
     onCreate?: ((event?: Event) => void) | undefined;
     onReady?: ((event?: Event) => void) | undefined;
 }
@@ -41,6 +46,11 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     private nativeElement;
     private componentRef;
     get id(): string;
+    /** Determines whether nonworkingDays/nonworkingHours are taken into considuration when determining the dateEnd of the tasks. When this property is enabled the dateEnd of the tasks is calculated to include only the actual working time. By default it's disabled and only calendar time is used.
+    *	Property type: boolean
+    */
+    get adjustToNonworkingTime(): boolean;
+    set adjustToNonworkingTime(value: boolean);
     /** Recalculates the tasks that are connected and re-schedules them according to their connections. If no connections are present, autoScheduling has no effect until a connection is created. Connection types determines the start/end date limits of the tasks.
     *	Property type: boolean
     */
@@ -56,16 +66,26 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get autoScrollStep(): number;
     set autoScrollStep(value: number);
+    /** Determines whether the Table columns are resizable or not. When enabled it is possible to resize the columns from the header cells of the Table in both Task and Resource timelines.
+    *	Property type: boolean
+    */
+    get columnResize(): boolean;
+    set columnResize(value: boolean);
+    /** Determines resize feedback is used during column resizing. This property is applicable only when columnResize is enabled.
+    *	Property type: boolean
+    */
+    get columnResizeFeedback(): boolean;
+    set columnResizeFeedback(value: boolean);
     /** Sets the GanttChart's Data Export options.
     *	Property type: GanttChartDataExport
     */
     get dataExport(): GanttChartDataExport;
     set dataExport(value: GanttChartDataExport);
-    /** Determines the tasks that will be loaded inside the Timeline. Each item represents an object that should contain the following properties: label - the label of the TaskdateStart - the starting date of the Task. Should be a string representing a valid date.dateEnd - the ending date of the Task. Should be a string representing a valid date.type - determines the type of the task. Whether it's a simple task, a project or a milestone. Each type of task has specific behavior and additional attributes..  Additional properties: connections - an array of objects representing the connection between two tasks. Each connection (object) should have the following properties : target - a number representing the index of the target tasktype - a number representing the type of the connection. Four types of connections are available: 0 - is a connection of type Start-to-Start 1 - is a connection of type End-to-Start 2 - is a connection of type End-to-End3 - is a connection of type Start-to-End lag - a number that determines the delay between two connected auto scheduled tasks. Lag property can be a positive or a negative number. When negative it determines the overlap between two connected tasks. This property is used in conjuction with autoSchedule.duration - determines the duration of a Task in days, hours, minutes, seconds or miliseconds. Very usefull when the the dateEnd of a Task is unknown.minDuration - sets the minimum duration of a task. maxDuration - sets the maximum duration of a task.minDateStart - determines the mininum date that a task can start from. Must be if type string and should represent a valid date.maxDateStart - determines the maximum date that a task can start from. Must be if type string and should represent a valid date.minDateEnd - determines the mininum date that a task can end. Must be if type string and should represent a valid date.maxDateEnd - determines the maximum date that a task can end. Must be if type string and should represent a valid date.progress - a number that determines the progress of a task ( from 0 to 100 ).disableDrag - a boolean property that disables the dragging of a task when set to true.disableResize - a boolean property that disables the resizing of a task when set to true.dragProject - a boolean that determines whether or not the whole project (along with the tasks) can be dragged while dragging the project task. Applicalbe only to Projects.synchronized - a boolean that if set the project task's start/end dates are automatically calculated based on the tasks. By default a synchronized project task can't be dragged alone. Applicable only to Project tasks.expanded - a boolean that determines if a project is expanded or not. If not all of it's sub-tasks are not visible. Only the project task itself is visible. By default no projects are expanded. Applicable only to project tasks..
-    *	Property type: GanttChartDataSource[]
+    /** Determines the tasks that will be loaded inside the Timeline. Each item represents an object that should contain the following properties: label - the label of the TaskdateStart - the starting date of the Task. Should be a string representing a valid date.dateEnd - the ending date of the Task. Should be a string representing a valid date.type - determines the type of the task. Whether it's a simple task, a project or a milestone. Each type of task has specific behavior and additional attributes..  Additional properties: connections - an array of objects representing the connection between two tasks. Each connection (object) should have the following properties : target - a number representing the index of the target tasktype - a number representing the type of the connection. Four types of connections are available: 0 - is a connection of type Start-to-Start 1 - is a connection of type End-to-Start 2 - is a connection of type End-to-End3 - is a connection of type Start-to-End lag - a number that determines the delay between two connected auto scheduled tasks. Lag property can be a positive or a negative number. When negative it determines the overlap between two connected tasks. This property is used in conjuction with autoSchedule.duration - determines the duration of a Task in days, hours, minutes, seconds or miliseconds. Very usefull when the the dateEnd of a Task is unknown. The duration always shows the calendar time whether it is in days/hours or other.minDuration - sets the minimum duration of a task. maxDuration - sets the maximum duration of a task.minDateStart - determines the mininum date that a task can start from. Must be if type string and should represent a valid date.maxDateStart - determines the maximum date that a task can start from. Must be if type string and should represent a valid date.minDateEnd - determines the mininum date that a task can end. Must be if type string and should represent a valid date.maxDateEnd - determines the maximum date that a task can end. Must be if type string and should represent a valid date.progress - a number that determines the progress of a task ( from 0 to 100 ).disableDrag - a boolean property that disables the dragging of a task when set to true.disableResize - a boolean property that disables the resizing of a task when set to true.dragProject - a boolean that determines whether or not the whole project (along with the tasks) can be dragged while dragging the project task. Applicalbe only to Projects.synchronized - a boolean that if set the project task's start/end dates are automatically calculated based on the tasks. By default a synchronized project task can't be dragged alone. Applicable only to Project tasks.expanded - a boolean that determines if a project is expanded or not. If not all of it's sub-tasks are not visible. Only the project task itself is visible. By default no projects are expanded. Applicable only to project tasks..  GanttChart also accepts a DataAdapter instance as dataSource. You can read more about the dataAdapter here - https://www.htmlelements.com/docs/data-adapter/.
+    *	Property type: any
     */
-    get dataSource(): GanttChartDataSource[];
-    set dataSource(value: GanttChartDataSource[]);
+    get dataSource(): any;
+    set dataSource(value: any);
     /** Determines the format of the dates in the timeline header when they represent days.
     *	Property type: GanttDayFormat
     */
@@ -121,6 +141,16 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get durationUnit(): Duration;
     set durationUnit(value: Duration);
+    /** Determines whether a dedicated filter row is used for Table filtering instead of the default filter input. This property has no effect if filtering is not enabled.
+    *	Property type: boolean
+    */
+    get filterRow(): boolean;
+    set filterRow(value: boolean);
+    /** Groups the tasks inside the Task timeline according to the resources they are assigned to. Unassigned tasks are placed in a default group labeled 'Unassigned'.
+    *	Property type: boolean
+    */
+    get groupByResources(): boolean;
+    set groupByResources(value: boolean);
     /** Allows to create a custom header content for the Task Panel. The attribute accepts an HTMLTemplate element, it's id or a function.
     *	Property type: any
     */
@@ -146,11 +176,26 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get hourFormat(): HourFormat;
     set hourFormat(value: HourFormat);
+    /** When enabled, scrolling to the end of the horizotal timeline, triggers the creation of additional to extend the time range. The number of cells to be added when the scrollbar reaches the end position is determined by the infiniteTimelineStep.
+    *	Property type: boolean
+    */
+    get infiniteTimeline(): boolean;
+    set infiniteTimeline(value: boolean);
+    /** Determines the number of cells to be added when the horizontal scroll bar of the Timeline reaches it's end position when infiniteTimeline is enabled.
+    *	Property type: number
+    */
+    get infiniteTimelineStep(): number;
+    set infiniteTimelineStep(value: number);
     /** When set the Timeline is positioned on the left side while the Task Tree is positioned on the right. By default it's vice versa.
     *	Property type: boolean
     */
     get inverted(): boolean;
     set inverted(value: boolean);
+    /** Determines whether keyboard navigation inside the Table is enabled or not. Keyboard navigation affects both Task and Resource Tables. It allows to navigate between items. the following keyboard shortcut keys are available for focused tasks inside the Task Table: Enter - opens the Window editor to edit the currently focused task.Delete - opens a confirmation window regarding the deletion of the currently focused task.
+    *	Property type: boolean
+    */
+    get keyboardNavigation(): boolean;
+    set keyboardNavigation(value: boolean);
     /**  Determines the language of the GanttChart.
     *	Property type: string
     */
@@ -176,16 +221,16 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get monthFormat(): MonthFormat;
     set monthFormat(value: MonthFormat);
-    /** Determines the nonworking days of the week from 0 to 6, where 0 is the first day of the week and 6 is the last day. Nonworking days will be displayed with colored cells inside the timeline and will be ignored during task range calculations.
+    /** Determines the nonworking days of the week from 0 to 6, where 0 is the first day of the week and 6 is the last day. Nonworking days will be displayed with colored cells inside the timeline and will not affect the dateEnd of the tasks unless the adjustToNonworkingTime property is enabled.
     *	Property type: number[]
     */
     get nonworkingDays(): number[];
     set nonworkingDays(value: number[]);
-    /** Determines the nonworking hours of a day. Hours are represented as numbers inside an array. In the timline the cells that represent nonworking days are colored differently from the rest.
-    *	Property type: number[]
+    /** Determines the nonworking hours of a day. Hours are represented as numbers inside an array (e.g. [1,2,3] - means 1,2 and 3 AM) or number ranges represented as nested arrays(e.g. [[0,6]] - means from 0 to 6 AM). In the timline the cells that represent nonworking days are colored differently from the rest and will not affect the dateEnd of the tasks unless the adjustToNonworkingTime property is enabled.
+    *	Property type: number[] | number[][]
     */
-    get nonworkingHours(): number[];
-    set nonworkingHours(value: number[]);
+    get nonworkingHours(): number[] | number[][];
+    set nonworkingHours(value: number[] | number[][]);
     /** A function that can be used to completly customize the popup Window that is used to interact width tasks by changing their properties. The function as three arguments: target - the target popup Window that is about to be opened.type - the type of the window. The type determines the purpose of the window. Three possible values: 'task' (task editing), 'confirm' ( confirmation window), 'connection' (used when deleting a connection between tasks). taskIndex - the index of the task that is being edited. It will be undefined if the type of the window is not 'task'.
     *	Property type: any
     */
@@ -206,6 +251,16 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get resourceColumns(): GanttChartResourceColumn[];
     set resourceColumns(value: GanttChartResourceColumn[]);
+    /** Determines whether the Resource Table is filterable or not.
+    *	Property type: boolean
+    */
+    get resourceFiltering(): boolean;
+    set resourceFiltering(value: boolean);
+    /** A format function that allows to re-format the group row labels when groupByResources is enabled.
+    *	Property type: any
+    */
+    get resourceGroupFormatFunction(): any;
+    set resourceGroupFormatFunction(value: any);
     /** Allows to create a custom header content for the Resource Panel. The attribute accepts an HTMLTemplate element, it's id or a function.
     *	Property type: any
     */
@@ -246,11 +301,16 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
-    /** Determines the selected task(s). If empty no tasks are selected.
-    *	Property type: number[]
+    /** Sets which tasks to select by their id or gets the currently selected task ids. If no id is provided for the task, an internal id is generated for each task according to it's index(tree path).
+    *	Property type: number[] | string[]
     */
-    get selectedIndexes(): number[];
-    set selectedIndexes(value: number[]);
+    get selectedTaskIds(): number[] | string[];
+    set selectedTaskIds(value: number[] | string[]);
+    /** Sets which resources to select by their id or gets the currently selected resource ids. If no id is provided for the resource, an internal id is generated for each resource according to it's index(tree path).
+    *	Property type: number[] | string[]
+    */
+    get selectedResourceIds(): number[] | string[];
+    set selectedResourceIds(value: number[] | string[]);
     /** Shows the progress label inside the progress bars of the Timeline tasks.
     *	Property type: boolean
     */
@@ -261,12 +321,7 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get snapToNearest(): boolean;
     set snapToNearest(value: boolean);
-    /** Determines whether the GanttChart can be sorted or not.
-    *	Property type: boolean
-    */
-    get sortable(): boolean;
-    set sortable(value: boolean);
-    /** Determines whether the GanttChart can be sorted by one or more columns.
+    /** Determines whether the GanttChart can be sorted by one, more then one or no columns.
     *	Property type: GanttChartSortMode
     */
     get sortMode(): GanttChartSortMode;
@@ -281,6 +336,11 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get taskColumns(): GanttChartTaskColumn[];
     set taskColumns(value: GanttChartTaskColumn[]);
+    /** Determines whether the Task Table is filterable or not.
+    *	Property type: boolean
+    */
+    get taskFiltering(): boolean;
+    set taskFiltering(value: boolean);
     /** Determines the min size of the Task Panel. Used when Resource Panel is visible.
     *	Property type: string | number
     */
@@ -296,12 +356,12 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get timelineMin(): string | number;
     set timelineMin(value: string | number);
-    /** Determines the min width of the task tree.
+    /** Determines the min width of the task table.
     *	Property type: string | number
     */
     get treeMin(): string | number;
     set treeMin(value: string | number);
-    /** Determines the size(width) of the task tree.
+    /** Determines the size(width) of the task table.
     *	Property type: string | number
     */
     get treeSize(): string | number;
@@ -348,12 +408,83 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     /**  This event is triggered when a batch update was ended from after executing the endUpdate method.
     *  @param event. The custom event. 	*/
     onEndUpdate?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the user starts connecting one task to another. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	startIndex)
+    *   startIndex - The index of the task that a connection is started from.
+    */
+    onConnectionStart?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the user completes a connection between two tasks.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	startIndex, 	endIndex, 	type)
+    *   id - The id of the connection that was created.
+    *   startIndex - The index of the task that a connection is started from.
+    *   endIndex - The index of the task that a connection is started from.
+    *   type - The type of connection. Fours types are available: <ul><li><b>0</b> - start-to-start</li><li><b>1</b> - end-to-start</li><li><b>2</b> - end-to-end</li><li><b>3</b> - start-to-end</li></ul>
+    */
+    onConnectionEnd?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a Task is selected/unselected.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	value, 	oldValue)
     *   value - The index of the new selected task.
     *   oldValue - The index of the previously selected task.
     */
     onChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a Tree column is resized. Column resizing is controled by the columnResize property.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	headerCellElement, 	widthInPercentages, 	width)
+    *   dataField - The name of the column. Corresponds to the <b>value</b> attribute of a <b>taskColumns/resourceColumns</b> object.
+    *   headerCellElement - The HTMLElement column cell element that was resized.
+    *   widthInPercentages - The new width of the column in percentages.
+    *   width - The new width of the column in pixels.
+    */
+    onColumnResize?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered just before the window for task editing starts closing. The closing operation can be canceled by calling event.preventDefault() in the event handler function.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	type)
+    *   target - The instance of the window that is going to close.
+    *   type - The type of window that is going to close. There are three types of windows inside GanttChart: <ul><li><b>confirm</b> - a confirm window. This type of window is usually used to confirm the deletion of a task.</li><li><b>task</b> - a window used for task editing.</li><li><b>connection</b> - a window used to delete a connection.</li></ul>
+    */
+    onClosing?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the window for task editing is closed( hidden )
+    *  @param event. The custom event. 	*/
+    onClose?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when an item is collapsed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	isGroup, 	item, 	index, 	label, 	value)
+    *   isGroup - A boolean flag indicating whether the collapsed item is a resource group. This is the case when <b>groupByResoruces</b> is enabled.
+    *   item - The object details of the collapsed item.
+    *   index - The index of the collapsed item.
+    *   label - The label of the collapsed item.
+    *   value - The value of the collapsed item.
+    */
+    onCollapse?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when dragging of a task starts. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	item, 	dateStart, 	dateEnd)
+    *   id - The id of the task that is going to be dragged.
+    *   item - The object of the task that is going to be dragged.
+    *   dateStart - The start date of the task that is going to be dragged.
+    *   dateEnd - The end date of the task that is going to be dragged.
+    */
+    onDragStart?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when dragging of a task finishes.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	item, 	dateStart, 	dateEnd)
+    *   id - The id of the task that is was dragged.
+    *   item - The object of the task that is was dragged.
+    *   dateStart - The start date of the task that is was dragged.
+    *   dateEnd - The end date of the task that is was dragged.
+    */
+    onDragEnd?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when an item is expanded.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	isGroup, 	item, 	index, 	label, 	value)
+    *   isGroup - A boolean flag indicating whether the collapsed item is a resource group. This is the case when <b>groupByResoruces</b> is enabled.
+    *   item - The index of the expanded item.
+    *   index - The index of the expanded item.
+    *   label - The label of the expanded item.
+    *   value - The value of the expanded item.
+    */
+    onExpand?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the GanttChart is filtered.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	type, 	action, 	filters)
+    *   type - The type of items that have been filtered ( task or resource ).
+    *   action - The name of the filtering action (whether filtering is added or removed).
+    *   filters - The filters that have been applied. Filters represent JQX.Utilities.FilterGroup objects.
+    */
+    onFilter?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a task, resource or connection is clicked inside the Timeline or the Tree columns.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	type, 	originalEvent)
     *   item - The item that was clicked. It cam be a task, resource or connection.
@@ -379,6 +510,15 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     *   item - An object that represents the actual item with it's attributes.
     */
     onItemUpdate?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered just before the window for task editing starts opening. The opening operation can be canceled by calling event.preventDefault() in the event handler function.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	type)
+    *   target - The instance of the window that is going to open.
+    *   type - The type of window that is going to open. There are three types of windows inside GanttChart: <ul><li><b>confirm</b> - a confirm window. This type of window is usually used to confirm the deletion of a task.</li><li><b>task</b> - a window used for task editing.</li><li><b>connection</b> - a window used to delete a connection.</li></ul>
+    */
+    onOpening?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the window for task editing is opened( visible ).
+    *  @param event. The custom event. 	*/
+    onOpen?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the progress of a task bar starts to change as a result of user interaction. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	index, 	progress)
     *   index - The index of the task which progress is going to be changed.
@@ -391,84 +531,43 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     *   progress - The progress of the task after it was changed.
     */
     onProgressChangeEnd?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when dragging of a task starts. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	index, 	dateStart, 	dateEnd)
-    *   index - The index of the task that is going to be dragged.
-    *   dateStart - The start date of the task that is going to be dragged.
-    *   dateEnd - The end date of the task that is going to be dragged.
-    */
-    onDragStart?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when dragging of a task finishes.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	index, 	dateStart, 	dateEnd)
-    *   index - The index of the task that is was dragged.
-    *   dateStart - The start date of the task that is was dragged.
-    *   dateEnd - The end date of the task that is was dragged.
-    */
-    onDragEnd?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when resizing of a task starts. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	index, 	dateStart, 	dateEnd)
-    *   index - The index of the task that is going to be resized.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	item, 	dateStart, 	dateEnd)
+    *   id - The id of the task that is going to be resized.
+    *   item - The object of the task that is going to be resized.
     *   dateStart - The start date of the task that is going to be resized.
     *   dateEnd - The end date of the task that is going to be resized.
     */
     onResizeStart?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the resizing of a task finishes.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	index, 	dateStart, 	dateEnd)
-    *   index - The index of the task that was resized.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	item, 	dateStart, 	dateEnd)
+    *   id - The id of the task that was resized.
+    *   item - The object of the task that was resized.
     *   dateStart - The start date of the task that was resized.
     *   dateEnd - The end date of the task that was resized.
     */
     onResizeEnd?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when the user starts connecting one task to another. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	startIndex)
-    *   startIndex - The index of the task that a connection is started from.
+    /**  This event is triggered when the GanttChart is sorted by some column.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	type, 	columns, 	sortDataFields, 	sortOrders, 	sortDataTypes)
+    *   type - The type of columns that have been sorted ( task or resource column ).
+    *   columns - An array of objects that contains the currently sorted column objects.
+    *   sortDataFields - The dataFields of the columns that have been sorted. The dataField corresponds to the <b>value</b> property of a <b>taskColumns/resourceColumns</b> object.
+    *   sortOrders - The orders of the columns that have been sorted.
+    *   sortDataTypes - The data types of the columns that have been sorted.
     */
-    onConnectionStart?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when the user completes a connection between two tasks.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	startIndex, 	endIndex, 	type)
-    *   startIndex - The index of the task that a connection is started from.
-    *   endIndex - The index of the task that a connection is started from.
-    *   type - The type of connection. Fours types are available: <ul><li><b>0</b> - start-to-start</li><li><b>1</b> - end-to-start</li><li><b>2</b> - end-to-end</li><li><b>3</b> - start-to-end</li></ul>
-    */
-    onConnectionEnd?: ((event?: Event) => void) | undefined;
+    onSort?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the Timeline has been scrolled to the bottom.
     *  @param event. The custom event. 	*/
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the Timeline has been scrolled to the top.
     *  @param event. The custom event. 	*/
     onScrollTopReached?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered just before the window for task editing starts opening. The opening operation can be canceled by calling event.preventDefault() in the event handler function.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	type)
-    *   target - The instance of the window that is going to open.
-    *   type - The type of window that is going to open. There are three types of windows inside GanttChart: <ul><li><b>confirm</b> - a confirm window. This type of window is usually used to confirm the deletion of a task.</li><li><b>task</b> - a window used for task editing.</li><li><b>connection</b> - a window used to delete a connection.</li></ul>
-    */
-    onOpening?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when the window for task editing is opened( visible ).
+    /**  This event is triggered when the Timeline has been scrolled to the beginning (horizontally).
     *  @param event. The custom event. 	*/
-    onOpen?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered just before the window for task editing starts closing. The closing operation can be canceled by calling event.preventDefault() in the event handler function.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	type)
-    *   target - The instance of the window that is going to close.
-    *   type - The type of window that is going to close. There are three types of windows inside GanttChart: <ul><li><b>confirm</b> - a confirm window. This type of window is usually used to confirm the deletion of a task.</li><li><b>task</b> - a window used for task editing.</li><li><b>connection</b> - a window used to delete a connection.</li></ul>
-    */
-    onClosing?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when the window for task editing is closed( hidden )
+    onScrollLeftReached?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the Timeline has been scrolled to the end (horizontally).
     *  @param event. The custom event. 	*/
-    onClose?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a Project is collapsed.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	index, 	label, 	value)
-    *   index - The index of the collapsed project.
-    *   label - The label of the collapsed project.
-    *   value - The value of the collapsed project.
-    */
-    onCollapse?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a Project is expanded.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	label, 	value)
-    *   item - The index of the expanded project.
-    *   label - The label of the expanded project.
-    *   value - The value of the expanded project.
-    */
-    onExpand?: ((event?: Event) => void) | undefined;
+    onScrollRightReached?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;
@@ -476,11 +575,40 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
-    /** Adds a task as the last item of a Project.
-    * @param {any} taskIndex. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
-    * @param {string | number} projectIndex. A number that represents the index of a project or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    /** Adds a custom filter to a specific column (task or resource column).
+    * @param {any} columns. An object or an array of objects with the following syntax: <ul><li><b>type</b> - indicates the type of column to filter. Possible values are 'task' or 'resource'.</li><li><b>value</b> - the value of the column that must match the value attribute of a taskColumns/resourceColumns object(e.g. 'label', 'dateStart', etc).</li></ul>.
+    * @param {any} filterGroup. A JQX.Utilities.FilterGroup object. Here's an example for creating a FilterGroup object: <pre>const filterGroup = new window.JQX.Utilities.FilterGroup(), filterObject = filterGroup.createFilter('string', 'Task B', 'STARTS_WITH_CASE_SENSITIVE'); filterGroup.addFilter('or', filterObject); gantt.addFilter({ type: 'task', value: 'label' }, filterGroup);</pre>
     */
-    addTaskTo(taskIndex: any, projectIndex: string | number): void;
+    addFilter(columns: any, filterGroup: any): void;
+    /** Clears the currently applied filters.
+    */
+    clearFilters(): void;
+    /** Clears the currently applied column sorting.
+    */
+    clearSort(): void;
+    /** Unselects all currently selected items inside the GanttChart including Tasks and Resources. It also clears the assignment highlgihters.
+    */
+    clearSelection(): void;
+    /** Removes a previously saved state of the element form LocalStorage according to it's id. Requires an id to be set to the element.
+    */
+    clearState(): void;
+    /** Removes all tasks.
+    */
+    clearTasks(): void;
+    /** Removes all resources.
+    */
+    clearResources(): void;
+    /** Creates a connection between two tasks.
+    * @param {number | string} startTaskIndex. The id of the start task or the connection string like '2-3-0'. <b>If the complete connections string is provided as the first argument, the rest of the method arguments are not necessary</b>
+    * @param {number | string} taskEndIndex?. The id of the end task.
+    * @param {number} connectionType?. The type of the connection. A numeric value from 0 to 3. The connection type can be: <ul><li><b>0</b> - Start-to-Start connection.</li><li><b>1</b> - End-to-Start connection.</li><li><b>2</b> - End-to-End connection.</li><li><b>3</b> - Start-to-End connection.</li></ul>
+    * @param {number} lag?. The connection lag in miliseconds. Used by the Auto scheduling algorithm in order allow some slack time slack time before or after the next task begins/ends. Lag is measured in miliseconds. It can be a negative (lead) or a positive (lag) number.
+    */
+    createConnection(startTaskIndex: number | string, taskEndIndex?: number | string, connectionType?: number, lag?: number): void;
+    /** Collapses an expanded project.
+    * @param {string | number} id. The id of a project item that should be collapsed.
+    */
+    collapse(id: string | number): void;
     /** Starts an update operation. This is appropriate when calling multiple methods or set multiple properties at once.
     */
     beginUpdate(): void;
@@ -491,6 +619,95 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     * @param {boolean} fullRefresh?. If set the GanttChart will be re-rendered completely.
     */
     refresh(fullRefresh?: boolean): void;
+    /** Makes sure a Task is visible by scrolling to it.
+    * @param {string | number} taskId. The id of the target Task.
+    */
+    ensureVisible(taskId: string | number): void;
+    /** Expands a collapsed project with tasks.
+    * @param {string | number} id. The id of a project task that should be expanded.
+    */
+    expand(id: string | number): void;
+    /** Exports the data of Tree of the GanttChart.
+    * @param {string} dataFormat. Determines the format of the exported file. Three possible values are available: <ul><li><b>pdf</b></li><li><b>xlsx</b></li><li><b>html</b></li><li><b>tsv</b></li><li><b>csv</b></li><li><b>xml</b></li></ul>
+    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer ro the JQX Export Documentation.
+    */
+    exportData(dataFormat: string, callback?: any): void;
+    /** Returns a JSON representation of all tasks inside the element along with their connections and settings.
+    * @returns {any[]}
+  */
+    getState(): Promise<any>;
+    /** Returns the Tree path of a task/resource. The tree path is used as task/resource id if no id is provided by the user.
+    * @param {any} item. A GattChartTask/GanttChartResource item object.
+    * @returns {string}
+  */
+    getItemPath(item: any): Promise<any>;
+    /** Returns the task object that corresponds to the id/path.
+    * @param {string | number} itemId. The id/path of a task.
+    * @returns {any}
+  */
+    getTask(itemId: string | number): Promise<any>;
+    /** Returns an array of all GanttChart tasks.
+    * @returns {any[]}
+  */
+    getTasks(): Promise<any>;
+    /** Returns the index of a task.
+    * @param {any} task. A GattChartTask object.
+    * @returns {number}
+  */
+    getTaskIndex(task: any): Promise<any>;
+    /** Returns the connections definitions of a task.
+    * @param {any} taskId. A GanttChartTask object or it's id.
+    * @returns {any}
+  */
+    getTaskConnections(taskId: any): Promise<any>;
+    /** Returns the Project of a task or undefined if it does not have one.
+    * @param {any} task. A GantChartTask object.
+    * @returns {any}
+  */
+    getTaskProject(task: any): Promise<any>;
+    /** Returns the resource object that corresponds to the id/path.
+    * @param {string | number} itemId. The id/path of a resource.
+    * @returns {any}
+  */
+    getResource(itemId: string | number): Promise<any>;
+    /** Returns an array of all GanttChart resources.
+    * @returns {any[]}
+  */
+    getResources(): Promise<any>;
+    /** Returns the index of a resource.
+    * @param {any} resource. A GanttChartResource object.
+    * @returns {number}
+  */
+    getResourceIndex(resource: any): Promise<any>;
+    /** Returns the tasks that are assigned to the resource.
+    * @param {any} resource. A GanttChartResource object or it's id.
+    * @returns {any}
+  */
+    getResourceTasks(resource: any): Promise<any>;
+    /** Returns the currently selected tasks/resource ids. If selection is disabled or no items are selected returns null.
+    * @returns {any}
+  */
+    getSelectedIds(): Promise<any>;
+    /** Returns the currently selected tasks.
+    * @returns {any}
+  */
+    getSelectedTasks(): Promise<any>;
+    /** Returns the currently selected resources.
+    * @returns {any}
+  */
+    getSelectedResources(): Promise<any>;
+    /** Returns the working hours of the day as numbers.
+    * @returns {any}
+  */
+    getWorkingHours(): Promise<any>;
+    /** Depending on the nonworkingDays property, returns true or false whether the target date is on a working day or not.
+    * @param {Date} date. A javascript Date object or a string/number which represents a valid JS Date.
+    */
+    isWorkingDay(date: Date): void;
+    /** Loads a previously saved state of the element or checks LocalStorage for any saved states if no argument is passed to the method.
+    * @param {any[]} state?. An Array containing a valid structure of Gantt Chart tasks.
+    */
+    loadState(state?: any[]): void;
     /** Removes all connections between tasks.
     */
     removeAllConnections(): void;
@@ -502,102 +719,30 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
   */
     removeConnection(startTaskIndex: number | string, taskEndIndex?: number, connectionType?: number): Promise<any>;
     /** Removes all connections of a task or between two tasks if the second argument is provided and valid.
-    * @param {number} taskStartIndex. The index of the start task.
-    * @param {number} taskEndIndex?. The index of the end task.
-    * @returns {string}
-  */
-    removeTaskConnection(taskStartIndex: number, taskEndIndex?: number): Promise<any>;
-    /** Removes all tasks.
+    * @param {any} taskStart. The start task object or it's id.
+    * @param {any} taskEnd?. The end task object or it's id.
     */
-    clearTasks(): void;
-    /** Removes all resources.
-    */
-    clearResources(): void;
-    /** Creates a connection between two tasks.
-    * @param {number | string} startTaskIndex. The index of the start task or the connection string like '2-3-0.
-    * @param {number} taskEndIndex?. The index of the end task.
-    * @param {number} connectionType?. The type of the connection. A numeric value from 0 to 3.
-    */
-    createConnection(startTaskIndex: number | string, taskEndIndex?: number, connectionType?: number): void;
-    /** Collapses an expanded project with tasks.
-    * @param {string | number} index. The index of a project task that should be collapsed.
-    */
-    collapse(index: string | number): void;
-    /** Makes sure a Task is visible by scrolling to it.
-    * @param {string | number} item. The index of the target Task. Can be a string representing a Tree index ( similar to jqxTree )
-    */
-    ensureVisible(item: string | number): void;
-    /** Expands a collapsed project with tasks.
-    * @param {string | number} index. The index of a project task that should be expanded.
-    */
-    expand(index: string | number): void;
-    /** Exports the data of Tree of the GanttChart.
-    * @param {string} dataFormat. Determines the format of the exported file. Three possible values are available: <ul><li><b>pdf</b></li><li><b>xlsx</b></li><li><b>html</b></li></ul>
-    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer ro the Smart Export Documentation.
-    */
-    exportData(dataFormat: string, callback?: any): void;
-    /** Returns a JSON representation of all tasks inside the element along with their connections and settings.
-    * @returns {any[]}
-  */
-    getState(): Promise<any>;
-    /** Returns the Tree path of a task/resource.
-    * @param {any} item. A GattChartTask/GanttChartResource item object or index.
-    * @returns {string}
-  */
-    getItemPath(item: any): Promise<any>;
-    /** Returns the index of a task.
-    * @param {any} task. A GattChartTask object.
-    * @returns {number}
-  */
-    getTaskIndex(task: any): Promise<any>;
-    /** Returns the tree path of a task.
-    * @param {any} task. A GanttChartTask object.
-    * @returns {string}
-  */
-    getTaskPath(task: any): Promise<any>;
-    /** Returns teh Project of a task if any.
-    * @param {any} task. A GantChartTask object.
-    * @returns {any}
-  */
-    getTaskProject(task: any): Promise<any>;
-    /** Returns the index of a resource.
-    * @param {any} resource. A GanttChartResource object.
-    * @returns {number}
-  */
-    getResourceIndex(resource: any): Promise<any>;
-    /** Returns the tasks that are assigned to the resource.
-    * @param {any} resource. A GanttChartResource object.
-    * @returns {any}
-  */
-    getResourceTasks(resource: any): Promise<any>;
-    /** Unselects all currently selected items inside the GanttChart including Tasks and Resources. It also clears the assignment highlgihters.
-    */
-    clearSelection(): void;
-    /** Removes a previously saved state of the element form LocalStorage according to it's id. Requires an id to be set to the element.
-    */
-    clearState(): void;
-    /** Loads a previously saved state of the element or checks LocalStorage for any saved states if no argument is passed to the method.
-    * @param {any[]} state?. An Array containing a valid structure of Gantt Chart tasks.
-    */
-    loadState(state?: any[]): void;
+    removeTaskConnection(taskStart: any, taskEnd?: any): void;
     /** Saves the current settings of the element to LocalStorage. Requires an id to be set to the element.
     * @param {any[]} state?. An Array containing a valid structure of Gantt Chart tasks.
     */
     saveState(state?: any[]): void;
-    /** Inserts a new task in the timeline.
-    * @param {string | number} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    /** Inserts a new task in the timeline. The new task can be inserted as a sub task of a project by passing the appropriate argument for the project id or as a root level item.
     * @param {any} taskObject. An object describing a Gantt Chart task.
-    */
-    insertTask(index: string | number, taskObject: any): void;
-    /** Updates a task inside the timeline.
-    * @param {any} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    * @param {any} project?. A number or string that represents the id of a project (e.g. '0') or a project object definition present in the GanttChart. This parameter determines the parent project of the task that will be inserted. If <b>null</b> is passed as an arguemnt the new task will be inserted at root level without a parent project.
+    * @param {number} index?. The index where the new item should be inserted(e.g. 2). This index will determine the position of the newly inserted task.
+    * @returns {string | number | undefined}
+  */
+    insertTask(taskObject: any, project?: any, index?: number): Promise<any>;
+    /** Updates a task/project/milestone.
+    * @param {any} taskId. A number or string that represents the id of a task/project(e.g. '0') or the object definition of the task/project.
     * @param {any} taskObject. An object describing a Gantt Chart task. The properties of this object will be applied to the desired task.
     */
-    updateTask(index: any, taskObject: any): void;
+    updateTask(taskId: any, taskObject: any): void;
     /** Removes a task from the timeline.
-    * @param {any} index. A number that represents the index of a task or a string that matches the hierarchical position of the item, e.g. '0' ( following jqxTree syntax).
+    * @param {any} taskId. A number or string that represents the id of a task or the actual item object.
     */
-    removeTask(index: any): void;
+    removeTask(taskId: any): void;
     /** Inserts a new resource.
     * @param {string | number} resourceId. A string that represents the id of a resource or it's hierarchical position, e.g. '0' ( following jqxTree syntax), or a number that represents the index of a resource.
     * @param {any} resourceObject?. An object describing a Gantt Chart resource.
@@ -612,20 +757,50 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     * @param {any} resourceId. A string that represents the id of a resource or it's hierarchical position, e.g. '0' ( following jqxTree syntax), or a number that represents the index of a resource.
     */
     removeResource(resourceId: any): void;
-    /** Opens the popup Window for specific task Editing.
-    * @param {string | number} index. A string or number that represents the index of a task that is going to be edited.
+    /** Opens the popup Window for specific task to edit or to delete a connection if a connection string is passed.
+    * @param {any} taskId. A string or number that represents the id of a task or the task object that is going to be edited or a connection string(e.g. '2-0-0').
     */
-    openWindow(index: string | number): void;
+    openWindow(taskId: any): void;
     /** Closes an opened popup Window. The method will close any opened popup window inside the element.
     */
     closeWindow(): void;
     /** Prepares the GanttChart for printing by opening the browser's Print Preview.
     */
     print(): void;
-    /** Sorts the GanttChart tasks/resources if sortable is enabled.
-    * @param {any} columns?. An Array of objects which determine which columns to be sorted, the sort order and the type of item to sort: task or resource. If no arguments are provided sorting will be removed. <br /> An object should have the following properties: <ul><li><b>value</b> - a string that represents the value of a <b>taskColumn</b> to sort.</li><li><b>sortOrder</b> - a string that represents the sorting order for the column: 'asc' (asscending sorting) or 'desc' (descending) are possible values. </li><li><b>type</b> - a string that represents the type of item to sort. This property determines which panel will be sorted. Two possible values: 'task', 'resource'.</li></ul>
+    /** Allows to sets the working days and hours at once.
+    * @param {{ days: (number | string | number[])[], hours: (number | string | number[])[] }} settings. An object definition that contains the days and hours that should be working. The days and hours can be defined as an array of numbers where each number is a day/hour, strings where each string represents a range of days/hours (e.g. '1-5' or '2:00-8:00') or nested array of numbers (e.g. [[1,5]] or [[2, 8]]) which means from 1 to 5 or 2 to 8.
     */
-    sort(columns?: any): void;
+    setWorkTime(settings: {
+        days: (number | string | number[])[];
+        hours: (number | string | number[])[];
+    }): void;
+    /** Allows to select a task based on it's id.
+    * @param {string | number} id. The id of the task to select.
+    */
+    selectTask(id: string | number): void;
+    /** Allows to select a resource based on it's id.
+    * @param {string | number} id. The id of the resource to select.
+    */
+    selectResource(id: string | number): void;
+    /** Allows to unselect a task based on it's id.
+    * @param {string | number} id. The id of the task to unselect.
+    */
+    unselectTask(id: string | number): void;
+    /** Allows to unselect a resource based on it's id.
+    * @param {string | number} id. The id of the resource to unselect.
+    */
+    unselectResource(id: string | number): void;
+    /** Allows to unset previously set working time. The opposte method for setWorkingTime.
+    * @param {{ days: (number | string | number[])[], hours: (number | string | number[])[] }} settings. An object definition that contains the days and hours that should not be working. The days and hours can be defined as an array of numbers where each number is a day/hour, strings where each string represents a range of days/hours (e.g. '1-5' or '2:00-8:00') or nested array of numbers (e.g. [[1,5]] or [[2, 8]]) which means from 1 to 5 or 2 to 8.
+    */
+    unsetWorkTime(settings: {
+        days: (number | string | number[])[];
+        hours: (number | string | number[])[];
+    }): void;
+    /** Sorts the GanttChart tasks/resources if sortable is enabled.
+    * @param {any} columns. An Array of objects which determine which columns to be sorted, the sort order and the type of item to sort: task or resource. If no arguments are provided sorting will be removed. <br /> An object should have the following properties: <ul><li><b>value</b> - a string that represents the value of a <b>taskColumn</b> to sort.</li><li><b>sortOrder</b> - a string that represents the sorting order for the column: 'asc' (asscending sorting) or 'desc' (descending) are possible values. </li><li><b>type</b> - a string that represents the type of item to sort. This property determines which panel will be sorted. Two possible values: 'task', 'resource'.</li></ul>
+    */
+    sort(columns: any): void;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

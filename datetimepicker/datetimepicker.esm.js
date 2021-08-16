@@ -239,6 +239,17 @@ class DateTimePicker extends React.Component {
             this.nativeElement.footerTemplate = value;
         }
     }
+    /** Determines whether to display a footer.
+    *	Property type: boolean
+    */
+    get footer() {
+        return this.nativeElement ? this.nativeElement.footer : undefined;
+    }
+    set footer(value) {
+        if (this.nativeElement) {
+            this.nativeElement.footer = value;
+        }
+    }
     /** Determines the pattern that is used to display the value in.
     *	Property type: string
     */
@@ -648,7 +659,7 @@ class DateTimePicker extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "animationSettings", "autoClose", "autoCloseDelay", "calendarButton", "calendarButtonPosition", "calendarMode", "dayNameFormat", "disabled", "disableAutoNavigation", "displayKind", "displayModeView", "dropDownAppendTo", "dropDownDisplayMode", "dropDownOverlay", "dropDownPosition", "editMode", "enableMouseWheelAction", "firstDayOfWeek", "footerTemplate", "formatString", "headerTemplate", "hideDayNames", "hideOtherMonthDays", "hideTooltipArrow", "hint", "importantDates", "importantDatesTemplate", "interval", "label", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "nullable", "opened", "placeholder", "readonly", "restrictedDates", "rightToLeft", "spinButtons", "spinButtonsDelay", "spinButtonsInitialDelay", "spinButtonsPosition", "theme", "tooltip", "tooltipDelay", "tooltipPosition", "tooltipTemplate", "unfocusable", "validation", "value", "weekNumbers", "weeks", "yearCutoff"];
+        return ["animation", "animationSettings", "autoClose", "autoCloseDelay", "calendarButton", "calendarButtonPosition", "calendarMode", "dayNameFormat", "disabled", "disableAutoNavigation", "displayKind", "displayModeView", "dropDownAppendTo", "dropDownDisplayMode", "dropDownOverlay", "dropDownPosition", "editMode", "enableMouseWheelAction", "firstDayOfWeek", "footerTemplate", "footer", "formatString", "headerTemplate", "hideDayNames", "hideOtherMonthDays", "hideTooltipArrow", "hint", "importantDates", "importantDatesTemplate", "interval", "label", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "nullable", "opened", "placeholder", "readonly", "restrictedDates", "rightToLeft", "spinButtons", "spinButtonsDelay", "spinButtonsInitialDelay", "spinButtonsPosition", "theme", "tooltip", "tooltipDelay", "tooltipPosition", "tooltipTemplate", "unfocusable", "validation", "value", "weekNumbers", "weeks", "yearCutoff"];
     }
     // Gets the events of the React component.
     get eventListeners() {

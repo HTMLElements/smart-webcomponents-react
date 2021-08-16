@@ -119,6 +119,11 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     */
     get filterInputPlaceholder(): string;
     set filterInputPlaceholder(value: string);
+    /** Determines the TreeItem property that will be used as a filtering criteria. By default the label property is used. It can be set to 'value' if the user wants to filter by the value property or 'textContent' if the user wants to filter by text inside the TreeItem's content or any other property.
+    *	Property type: string
+    */
+    get filterMember(): string;
+    set filterMember(value: string);
     /** Sets filter mode.
     *	Property type: FilterMode
     */

@@ -123,6 +123,11 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     */
     get footerTemplate(): any;
     set footerTemplate(value: any);
+    /** Determines whether to display a footer.
+    *	Property type: boolean
+    */
+    get footer(): boolean;
+    set footer(value: boolean);
     /** Determines the pattern that is used to display the value in.
     *	Property type: string
     */

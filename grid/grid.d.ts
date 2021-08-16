@@ -2,13 +2,15 @@ import React from "react";
 import { GridProperties } from "./../index";
 import { Scrolling, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnGroup, GridConditionalFormatting, GridCharting, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridEditing, GridFiltering, GridGrouping, GridPaging, GridPager, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSorting } from './../index';
 export { GridProperties } from "./../index";
-export { GridAppearanceAutoGenerateRowLabelMode, GridAppearanceAutoGenerateColumnLabelMode, GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnSortOrder, GridColumnSummary, GridConditionalFormattingCondition, GridDataExportPageOrientation, GridDataSourceSettingsDataFieldDataType, GridDataSourceSettingsDataSourceType, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridEditingAddNewRowDisplayMode, GridFilteringFilterRowApplyMode, GridFilteringFilterMenuMode, GridGroupingExpandMode, GridGroupingRenderMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnMenuDataSource, GridCommand, GridColumnGroup, GridConditionalFormatting, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridDataSourceSettingsDataField, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridEditingAddNewColumn, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
+export { GridAppearanceAutoGenerateRowLabelMode, GridAppearanceAutoGenerateColumnLabelMode, GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnFilterMenuMode, GridColumnSortOrder, GridConditionalFormattingCondition, GridDataExportPageOrientation, GridDataSourceSettingsSanitizeHTML, GridDataSourceSettingsDataFieldDataType, GridDataSourceSettingsDataSourceType, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridEditingAddNewRowDisplayMode, GridFilteringFilterRowApplyMode, GridFilteringFilterMenuMode, GridGroupingExpandMode, GridGroupingRenderMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnMenuDataSource, GridCommand, GridColumnGroup, GridConditionalFormatting, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridDataSourceSettingsDataField, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridEditingAddNewColumn, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
 export { DataAdapter, Chart } from './../index';
 export declare const Smart: any;
 export interface GridProps extends GridProperties {
     className?: string;
     style?: React.CSSProperties;
     onBeginEdit?: ((event?: Event) => void) | undefined;
+    onBatchChange?: ((event?: Event) => void) | undefined;
+    onBatchCancel?: ((event?: Event) => void) | undefined;
     onChange?: ((event?: Event) => void) | undefined;
     onColumnClick?: ((event?: Event) => void) | undefined;
     onColumnDoubleClick?: ((event?: Event) => void) | undefined;
@@ -16,9 +18,11 @@ export interface GridProps extends GridProperties {
     onColumnDragStart?: ((event?: Event) => void) | undefined;
     onColumnDragging?: ((event?: Event) => void) | undefined;
     onColumnDragEnd?: ((event?: Event) => void) | undefined;
+    onColumnReorder?: ((event?: Event) => void) | undefined;
     onRowDragStart?: ((event?: Event) => void) | undefined;
     onRowDragging?: ((event?: Event) => void) | undefined;
     onRowDragEnd?: ((event?: Event) => void) | undefined;
+    onRowReorder?: ((event?: Event) => void) | undefined;
     onRowExpand?: ((event?: Event) => void) | undefined;
     onRowCollapse?: ((event?: Event) => void) | undefined;
     onRowClick?: ((event?: Event) => void) | undefined;
@@ -404,6 +408,16 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     *   cell - The edited cell.
     */
     onBeginEdit?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the Grid's header toolbar is displayed and the 'OK' button of a header dropdown is clicked. For example, when you open the columns customize panel, reorder columns and click the 'OK' button.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	type)
+    *   type - The type of dropdown. Possible values: 'filter', 'sort', 'search', 'group', 'format', 'customize'
+    */
+    onBatchChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the Grid's header toolbar is displayed and the 'Cancel' button of a header dropdown is clicked.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	type)
+    *   type - The type of dropdown. Possible values: 'filter', 'sort', 'search', 'group', 'format', 'customize'
+    */
+    onBatchCancel?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the selection is changed. When you select with a drag, the event is triggered when the drag starts and ends.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	started, 	finished, 	originalEvent)
     *   started - The flag is <em>true</em>, when the selection starts. The flag is <em>false</em>, when the selection ends and when the user changes the selection by dragging.
@@ -412,113 +426,163 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     onChange?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user clicks on the header of a column.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	dataField, 	originalEvent)
     *   column - The clicked column.
+    *   dataField - The column's data field.
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
     */
     onColumnClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user double clicks on the header of a column.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	dataField, 	originalEvent)
     *   column - The double-clicked column.
+    *   dataField - The column's data field.
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
     */
     onColumnDoubleClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user resized a column.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	oldWidth, 	width)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	dataField, 	oldWidth, 	width)
     *   column - The resized column.
+    *   dataField - The column's data field.
     *   oldWidth - The old width of the column.
     *   width - The new width of the column.
     */
     onColumnResize?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user starts a column drag.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	index, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	dataField, 	index, 	originalEvent)
     *   column - The column.
+    *   dataField - The column's data field.
     *   index - The column's index
     *   originalEvent - The origianl Event object.
     */
     onColumnDragStart?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user drags a column.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	index, 	data, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	dataField, 	index, 	data, 	originalEvent)
     *   column - The column.
+    *   dataField - The column's data field.
     *   index - The column's index
     *   data - The dragging object. data.feedback and data.feedbackLine are HTML Elements which are displayed while the user drags. The object has error(), success() and data() methods which you can call to set the feedback state.
     *   originalEvent - The origianl Event object.
     */
     onColumnDragging?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered, when the user drags a column.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	index, 	newIndex, 	data, 	originalEvent)
+    /**  This event is triggered, when the user drops a column.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	dataField, 	index, 	newIndex, 	data, 	originalEvent)
     *   column - The column.
+    *   dataField - The column's data field.
     *   index - The column's index
     *   newIndex - The column's new index
     *   data - The dragging object. data.feedback and data.feedbackLine are HTML Elements which are displayed while the user drags. The object has error(), success() and data() methods which you can call to set the feedback state.
     *   originalEvent - The origianl Event object.
     */
     onColumnDragEnd?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the user reorders a column.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	dataField, 	index, 	newIndex, 	data, 	originalEvent)
+    *   column - The column.
+    *   dataField - The column's data field.
+    *   index - The column's index
+    *   newIndex - The column's new index
+    *   data - The dragging object. data.feedback and data.feedbackLine are HTML Elements which are displayed while the user drags. The object has error(), success() and data() methods which you can call to set the feedback state.
+    *   originalEvent - The origianl Event object.
+    */
+    onColumnReorder?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user starts a row drag.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	index, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	id, 	index, 	originalEvent)
     *   row - The row.
+    *   id - The row's id
     *   index - The row's index
     *   originalEvent - The origianl Event object.
     */
     onRowDragStart?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user drags a row.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	index, 	data, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	id, 	index, 	data, 	originalEvent)
     *   row - The row.
+    *   id - The row's id
     *   index - The row's index
     *   data - The dragging object. data.feedback and data.feedbackLine are HTML Elements which are displayed while the user drags. The object has error(), success() and data() methods which you can call to set the feedback state.
     *   originalEvent - The origianl Event object.
     */
     onRowDragging?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user drags a row.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	index, 	newIndex, 	data, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	id, 	index, 	newIndex, 	data, 	originalEvent)
     *   row - The row.
+    *   id - The row's id
     *   index - The row's index
     *   newIndex - The row's new index
     *   data - The dragging object. data.feedback and data.feedbackLine are HTML Elements which are displayed while the user drags. The object has error(), success() and data() methods which you can call to set the feedback state.
     *   originalEvent - The origianl Event object.
     */
     onRowDragEnd?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the user reorders a row.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	id, 	index, 	newIndex, 	data, 	originalEvent)
+    *   row - The row.
+    *   id - The row's id
+    *   index - The row's index
+    *   newIndex - The row's new index
+    *   data - The dragging object. data.feedback and data.feedbackLine are HTML Elements which are displayed while the user drags. The object has error(), success() and data() methods which you can call to set the feedback state.
+    *   originalEvent - The origianl Event object.
+    */
+    onRowReorder?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user expands a row of the grid. The Grid is in TreeGrid/Grouping mode.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	id, 	originalEvent)
     *   row - The expanded row.
+    *   id - The row's id
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
     */
     onRowExpand?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user collapsed a row of the grid. The Grid is in TreeGrid/Grouping mode.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	id, 	originalEvent)
     *   row - The collapsed row.
+    *   id - The row's id
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
     */
     onRowCollapse?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user clicks on a row of the grid.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent, 	id, 	isRightClick, 	pageX, 	pageY)
     *   row - The clicked row.
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
+    *   id - Gets the row id.
+    *   isRightClick - Gets whether the pointing device's right button is clicked.
+    *   pageX - Gets the click's X position.
+    *   pageY - Gets the click's Y position.
     */
     onRowClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user double clicks on a row of the grid.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent, 	id, 	isRightClick, 	pageX, 	pageY)
     *   row - The double-clicked row.
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
+    *   id - Gets the row id.
+    *   isRightClick - Gets whether the pointing device's right button is clicked.
+    *   pageX - Gets the click's X position.
+    *   pageY - Gets the click's Y position.
     */
     onRowDoubleClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user resized a row.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	oldHeight, 	height)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	id, 	oldHeight, 	height)
     *   row - The resized row.
+    *   id - Gets the row id.
     *   oldHeight - The old height of the row.
     *   height - The new height of the row.
     */
     onRowResize?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user clicks on a cell of the grid.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	cell, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	cell, 	originalEvent, 	id, 	dataField, 	isRightClick, 	pageX, 	pageY)
     *   cell - The clicked cell.
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
+    *   id - Gets the row id.
+    *   dataField - Gets the column dataField.
+    *   isRightClick - Gets whether the pointing device's right button is clicked.
+    *   pageX - Gets the click's X position.
+    *   pageY - Gets the click's Y position.
     */
     onCellClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user double clicks on a cell of the grid.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	cell, 	originalEvent)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	cell, 	originalEvent, 	id, 	dataField, 	isRightClick, 	pageX, 	pageY)
     *   cell - The double-clicked cell.
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
+    *   id - Gets the row id.
+    *   dataField - Gets the column dataField.
+    *   isRightClick - Gets whether the pointing device's right button is clicked.
+    *   pageX - Gets the click's X position.
+    *   pageY - Gets the click's Y position.
     */
     onCellDoubleClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the edit ends.
@@ -600,15 +664,18 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     /** Auto-sizes grid columns. This method will update the width of all Grid columns.
     */
     autoSizeColumns(): void;
+    /** This method returns true, if all rows in the Grid are selected.
+    * @returns {boolean}
+  */
+    areAllRowsSelected(): Promise<any>;
     /** Starts an update operation. This is appropriate when calling multiple methods or set multiple properties at once.
     */
     beginUpdate(): void;
     /** Begins row, cell or column. This method allows you to programmatically start a cell, row or column editing. After calling it, an editor HTMLElement will be created and displayed in the Grid.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field
-    * @returns {boolean}
-  */
-    beginEdit(rowId: string | number, dataField?: string): Promise<any>;
+    */
+    beginEdit(rowId: string | number, dataField?: string): void;
     /** Clears all filters. Refreshes the view and updates all filter input components.
     */
     clearFilter(): void;
@@ -672,7 +739,47 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     * @param {string} Dataformat. 'xlsx', 'pdf', 'json', 'xml', 'csv', 'tsv', 'html', 'png', 'jpeg'.
     */
     exportData(Dataformat: string): void;
-    /** Gets an array of columns with applied sorting.
+    /** Navigates to a page, when paging is enabled.
+    * @param {number} index. page index
+    */
+    goToPage(index: number): void;
+    /** Navigates to the next page, when grid paging is enabled.
+    */
+    nextPage(): void;
+    /** Navigates to the prev page, when grid paging is enabled.
+    */
+    prevPage(): void;
+    /** Navigates to the first page, when grid paging is enabled.
+    */
+    firstPage(): void;
+    /** Navigates to the last page, when grid paging is enabled.
+    */
+    lastPage(): void;
+    /** Gets the maximum position of the vertical scrollbar. You can use this method in combination with the setVerticalScrollValue to apply a new scroll position.
+    * @returns {number}
+  */
+    getVerticalScrollMax(): Promise<any>;
+    /** Gets the position of the vertical scrollbar.
+    * @returns {number}
+  */
+    getVerticalScrollValue(): Promise<any>;
+    /** Gets the maximum position of the horizontal scrollbar. You can use this method in combination with the setHorizontalScrollValue to apply a new scroll position.
+    * @returns {number}
+  */
+    getHorizontalScrollMax(): Promise<any>;
+    /** Gets the position of the horizontal scrollbar.
+    * @returns {number}
+  */
+    getHorizontalScrollValue(): Promise<any>;
+    /** Gets the columns array. Each item in the array contains the column properties which are dynamically set by the user interaction and the columns initialization data properties such as: 'label', 'dataField', 'dataType', 'visible'.
+    * @returns {any}
+  */
+    getColumns(): Promise<any>;
+    /** Gets the groups array.
+    * @returns {any[]}
+  */
+    getGroups(): Promise<any>;
+    /** Gets an array of columns with applied sorting. Each member in the array is with column's data field used as a key and 'sortOrder' and 'sortIndex' as a value.
     * @returns {{[dataField: string]: { sortOrder: string, sortIndex: number }}}
   */
     getSortedColumns(): Promise<any>;
@@ -684,6 +791,10 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     * @returns {any[]}
   */
     getSelectedRows(): Promise<any>;
+    /** Gets the selected cells. The method returns an array of cell. Each cell is an array with row id, column data field and cell value.
+    * @returns {any[]}
+  */
+    getSelectedCells(): Promise<any>;
     /** Gets an array of columns with applied filters.
     * @returns {any}
   */
@@ -696,18 +807,69 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     * @returns {any}
   */
     getViewRows(): Promise<any>;
+    /** Gets a JSON object with the following fields: 'sort', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'.
+    * @returns {any}
+  */
+    getState(): Promise<any>;
     /** Gets the changes from the batch edit.
     * @returns {{ upDated: [{ id: string, dataField: string, oldValue: Object, newValue: Object }], deleted: [{id: string, data: Object}], added: [{id: string, data: Object}] }}
   */
     getBatchEditChanges(): Promise<any>;
+    /** Gets a value of a cell.
+    * @param {string | number} rowId. row bound id
+    * @param {string} dataField. column bound data field
+    * @returns {any}
+  */
+    getCellValue(rowId: string | number, dataField: string): Promise<any>;
+    /** Gets a value of a column.
+    * @param {string} dataField. column bound data field
+    * @param {string} propertyName. The property name.
+    * @returns {any}
+  */
+    getColumnProperty(dataField: string, propertyName: string): Promise<any>;
+    /** Gets a value of a row.
+    * @param {string | number} rowId. row bound id
+    * @param {string} propertyName. The property name.
+    * @returns {any}
+  */
+    getRowProperty(rowId: string | number, propertyName: string): Promise<any>;
+    /** Gets the Data source data associated to the row.
+    * @param {string | number} rowId. row bound id
+    * @returns {any}
+  */
+    getRowData(rowId: string | number): Promise<any>;
+    /** Gets the Row's id.
+    * @param {number} rowIndex. row index
+    * @returns {any}
+  */
+    getRowId(rowIndex: number): Promise<any>;
     /** Gets whether a column's drop-down menu is opened.
     * @returns {boolean}
   */
     hasMenu(): Promise<any>;
+    /** This method returns true, if any rows in the Grid are selected.
+    * @returns {boolean}
+  */
+    hasSelectedRows(): Promise<any>;
     /** Hides the Details of a Row, when row details are enabled.
     * @param {string | number} rowId. row bound id
     */
     hideDetail(rowId: string | number): void;
+    /** Highlights a column. Highlights a Grid column.
+    * @param {string} dataField. column bound data field
+    */
+    highlightColumn(dataField: string): void;
+    /** Highlights a cell. Calling the method a second time toggle the highlight state.
+    * @param {string | number} rowId. row bound id
+    * @param {string} dataField. column bound data field
+    * @param {string} className?. CSS Class Name
+    */
+    highlightCell(rowId: string | number, dataField: string, className?: string): void;
+    /** Highlights a row. Calling the method a second time toggle the highlight state.
+    * @param {string | number} rowId. row bound id
+    * @param {string} className?. CSS Class Name
+    */
+    highlightRow(rowId: string | number, className?: string): void;
     /** Opens a column drop-down menu.
     * @param {string} dataField. column bound data field
     */
@@ -730,15 +892,20 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     revertBatchEdit(): void;
     /** Reverts the batch edit changes. This method cancels all changes made by the end-user.
+    * @param {string | number} dataField. The data field or column index of the first grid column.
+    * @param {string | number} referenceDataField. The data field or column index of the second grid column.
+    * @param {boolean} insertAfter?. Determines whether to insert the first column after the reference column.
+    */
+    reorderColumns(dataField: string | number, referenceDataField: string | number, insertAfter?: boolean): void;
+    /** Reorders two DataGrid columns.
+    * @param {string | number} dataField. The data field or column index of the first grid column.
+    * @param {string | number} referenceDataField. The data field or column index of the second grid column.
+    */
+    swapColumns(dataField: string | number, referenceDataField: string | number): void;
+    /** Swaps two DataGrid columns.
     */
     saveBatchEdit(): void;
     /** Saves the batch edit changes. This method confirms the editing changes made by the end-user.
-    * @param {string | number} rowId. row bound id
-    * @param {any} data. row data matching the data source
-    * @param {any} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
-    */
-    updateRow(rowId: string | number, data: any, callback?: any): void;
-    /** Updates a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field
     */
@@ -760,14 +927,49 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     selectRows(rowId: (string | number)[]): void;
     /** Selects multiple rows by their ids.
+    */
+    selectAllRows(): void;
+    /** Selects all rows.
     * @param {number[]} rowIndex. Array of row indexes
     */
     selectRowsByIndex(rowIndex: number[]): void;
     /** Selects multiple rows by their index.
     * @param {string | number} rowId. row bound id
+    * @param {string} dataField. column bound data field
+    * @param {string | number | Date | boolean} value. New Cell value.
+    */
+    setCellValue(rowId: string | number, dataField: string, value: string | number | Date | boolean): void;
+    /** Sets a new value to a cell.
+    * @param {string} dataField. column bound data field
+    * @param {string} propertyName. The column property's name.
+    * @param {any} value. The new property value.
+    */
+    setColumnProperty(dataField: string, propertyName: string, value: any): void;
+    /** Sets a property to a column.
+    * @param {string | number} rowId. row bound id
+    * @param {string} propertyName. The row property's name.
+    * @param {any} value. The new property value.
+    */
+    setRowProperty(rowId: string | number, propertyName: string, value: any): void;
+    /** Sets a property to a row.
+    * @param {number} value. The new scroll position
+    */
+    setVerticalScrollValue(value: number): void;
+    /** Sets the position of the vertical scrollbar. You can use this method in combination with the getVerticalScrollValue and getVerticalScrollMax.
+    * @param {number} value. The new scroll position
+    */
+    setHorizontalScrollValue(value: number): void;
+    /** Sets the position of the horizontal scrollbar. You can use this method in combination with the getHorizontalScrollValue and getHorizontalScrollMax.
+    * @param {string | number} rowId. row bound id
     */
     showDetail(rowId: string | number): void;
     /** Shows the Details of a Row, when row details are enabled.
+    * @param {string | number} rowId. row bound id
+    * @param {any} data. row data matching the data source
+    * @param {any} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
+    */
+    updateRow(rowId: string | number, data: any, callback?: any): void;
+    /** Updates a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field
     */

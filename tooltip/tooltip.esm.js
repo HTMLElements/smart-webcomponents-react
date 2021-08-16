@@ -30,6 +30,17 @@ class Tooltip extends React.Component {
             this.nativeElement.animation = value;
         }
     }
+    /** Determines how to align the tooltip.
+    *	Property type: string
+    */
+    get align() {
+        return this.nativeElement ? this.nativeElement.align : undefined;
+    }
+    set align(value) {
+        if (this.nativeElement) {
+            this.nativeElement.align = value;
+        }
+    }
     /** Gets or sets whether a tooltip's arrow will be shown.
     *	Property type: boolean
     */
@@ -208,7 +219,7 @@ class Tooltip extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "arrow", "arrowDirection", "delay", "disabled", "offset", "locale", "localizeFormatFunction", "messages", "openMode", "position", "selector", "theme", "tooltipTemplate", "unfocusable", "value", "visible"];
+        return ["animation", "align", "arrow", "arrowDirection", "delay", "disabled", "offset", "locale", "localizeFormatFunction", "messages", "openMode", "position", "selector", "theme", "tooltipTemplate", "unfocusable", "value", "visible"];
     }
     // Gets the events of the React component.
     get eventListeners() {

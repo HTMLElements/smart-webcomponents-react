@@ -311,7 +311,7 @@ class TextArea extends React.Component {
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onChange", "onCreate", "onReady"];
+        return ["onChange", "onChanging", "onCreate", "onReady"];
     }
     /** Closes the drop down.
     */

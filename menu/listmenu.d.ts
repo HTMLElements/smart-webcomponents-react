@@ -103,6 +103,11 @@ export declare class ListMenu extends React.Component<React.HTMLAttributes<Eleme
     */
     get filterInputPlaceholder(): string;
     set filterInputPlaceholder(value: string);
+    /** Determines the MenuItem property that will be used as a filtering criteria. By default the label property is used. It can be set to 'value' if the user wants to filter by the 'value' property or 'textContent' if the user wants to filter by text inside the MenuItem's content or any other property.
+    *	Property type: string
+    */
+    get filterMember(): string;
+    set filterMember(value: string);
     /** Determines the filtering mode.
     *	Property type: FilterMode
     */

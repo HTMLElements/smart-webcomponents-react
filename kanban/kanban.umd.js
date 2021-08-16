@@ -50,6 +50,39 @@ require('../source/modules/smart.kanban');
             }
             return this._id;
         }
+        /** Enables or disables column reordering. When this property is set to true and allowDrag is enabled, users will be able to reoder columns through drag & drop. For example: Click and drag the first column's header and drop it over another column.
+        *	Property type: boolean
+        */
+        get allowColumnReorder() {
+            return this.nativeElement ? this.nativeElement.allowColumnReorder : undefined;
+        }
+        set allowColumnReorder(value) {
+            if (this.nativeElement) {
+                this.nativeElement.allowColumnReorder = value;
+            }
+        }
+        /** Enables or disables column editing. When this property is set to true, users will be able to dynamically change the column's header label by double clicking on it.
+        *	Property type: boolean
+        */
+        get allowColumnEdit() {
+            return this.nativeElement ? this.nativeElement.allowColumnEdit : undefined;
+        }
+        set allowColumnEdit(value) {
+            if (this.nativeElement) {
+                this.nativeElement.allowColumnEdit = value;
+            }
+        }
+        /** Enables or disables column removing. When this property is set to true, users will be able to dynamically remove a column through the column actions menu. the 'columnActions' property should be true.
+        *	Property type: boolean
+        */
+        get allowColumnRemove() {
+            return this.nativeElement ? this.nativeElement.allowColumnRemove : undefined;
+        }
+        set allowColumnRemove(value) {
+            if (this.nativeElement) {
+                this.nativeElement.allowColumnRemove = value;
+            }
+        }
         /** Toggles the visibility of the column buttons for adding tasks. A particular button can be disabled by setting addNewButton in the column's definition to false.
         *	Property type: boolean
         */
@@ -147,6 +180,28 @@ require('../source/modules/smart.kanban');
         set columns(value) {
             if (this.nativeElement) {
                 this.nativeElement.columns = value;
+            }
+        }
+        /** Toggles the visibility of the column actions icon.
+        *	Property type: boolean
+        */
+        get columnActions() {
+            return this.nativeElement ? this.nativeElement.columnActions : undefined;
+        }
+        set columnActions(value) {
+            if (this.nativeElement) {
+                this.nativeElement.columnActions = value;
+            }
+        }
+        /** Determines the column edit behavior. With the 'header' option, edit starts on double click on the column's label. In 'menu' mode, edit is allowed from the 'columnActions' menu. In 'headerAndMenu' option, column editing includes both options.
+        *	Property type: KanbanColumnEditMode
+        */
+        get columnEditMode() {
+            return this.nativeElement ? this.nativeElement.columnEditMode : undefined;
+        }
+        set columnEditMode(value) {
+            if (this.nativeElement) {
+                this.nativeElement.columnEditMode = value;
             }
         }
         /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
@@ -279,6 +334,17 @@ require('../source/modules/smart.kanban');
         set selectionMode(value) {
             if (this.nativeElement) {
                 this.nativeElement.selectionMode = value;
+            }
+        }
+        /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+        *	Property type: boolean
+        */
+        get rightToLeft() {
+            return this.nativeElement ? this.nativeElement.rightToLeft : undefined;
+        }
+        set rightToLeft(value) {
+            if (this.nativeElement) {
+                this.nativeElement.rightToLeft = value;
             }
         }
         /** Describes the swimlanes in the kanban board. Sub-columns are not applicable when swimlanes are present.
@@ -424,6 +490,17 @@ require('../source/modules/smart.kanban');
                 this.nativeElement.textTemplate = value;
             }
         }
+        /** Determines the theme. Theme defines the look of the element
+        *	Property type: string
+        */
+        get theme() {
+            return this.nativeElement ? this.nativeElement.theme : undefined;
+        }
+        set theme(value) {
+            if (this.nativeElement) {
+                this.nativeElement.theme = value;
+            }
+        }
         /** Determines whether the user list (as defined by the users property) will be shown when clicking the user icon. Only applicable if editable privileges are enabled.
         *	Property type: boolean
         */
@@ -448,11 +525,11 @@ require('../source/modules/smart.kanban');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["addNewButton", "addNewColumn", "allowDrag", "allowDrop", "animation", "autoLoadState", "autoSaveState", "collapsible", "columns", "currentUser", "dataSource", "dataSourceMap", "dragOffset", "editable", "formatStringDate", "formatStringTime", "headerPosition", "hierarchy", "locale", "messages", "selectionMode", "swimlanes", "swimlanesFrom", "swimlanesTo", "tags", "taskActions", "taskComments", "taskDue", "taskPosition", "taskPriority", "taskProgress", "taskTags", "taskUserIcon", "textTemplate", "userList", "users"];
+            return ["allowColumnReorder", "allowColumnEdit", "allowColumnRemove", "addNewButton", "addNewColumn", "allowDrag", "allowDrop", "animation", "autoLoadState", "autoSaveState", "collapsible", "columns", "columnActions", "columnEditMode", "currentUser", "dataSource", "dataSourceMap", "dragOffset", "editable", "formatStringDate", "formatStringTime", "headerPosition", "hierarchy", "locale", "messages", "selectionMode", "rightToLeft", "swimlanes", "swimlanesFrom", "swimlanesTo", "tags", "taskActions", "taskComments", "taskDue", "taskPosition", "taskPriority", "taskProgress", "taskTags", "taskUserIcon", "textTemplate", "theme", "userList", "users"];
         }
         // Gets the events of the React component.
         get eventListeners() {
-            return ["onChange", "onClose", "onClosing", "onDragEnd", "onDragging", "onDragStart", "onFilter", "onOpen", "onOpening", "onSort", "onCreate", "onReady"];
+            return ["onChange", "onClose", "onClosing", "onColumnAdd", "onColumnRemove", "onColumnReorder", "onColumnUpdate", "onColumnClick", "onColumnDoubleClick", "onDragEnd", "onDragging", "onDragStart", "onFilter", "onOpen", "onOpening", "onSort", "onTaskAdd", "onTaskRemove", "onCreate", "onReady"];
         }
         /** Adds filtering
         * @param {string[]} filters. Filter information
@@ -492,6 +569,19 @@ require('../source/modules/smart.kanban');
             else {
                 this.nativeElement.whenRendered(() => {
                     this.nativeElement.addTask(data);
+                });
+            }
+        }
+        /** Adds a column to a Kanban. If no data is specified, an empty column is added.
+        * @param {any} data?. An object containing the new column's data
+        */
+        addColumn(data) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.addColumn(data);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.addColumn(data);
                 });
             }
         }
@@ -751,6 +841,19 @@ require('../source/modules/smart.kanban');
                 });
             }
         }
+        /** Removes a column.
+        * @param {string} dataField. The column's data field
+        */
+        removeColumn(dataField) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.removeColumn(dataField);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.removeColumn(dataField);
+                });
+            }
+        }
         /** Saves the Kanban's state to the browser's localStorage.
         */
         saveState() {
@@ -774,6 +877,20 @@ require('../source/modules/smart.kanban');
             else {
                 this.nativeElement.whenRendered(() => {
                     this.nativeElement.updateTask(task, newData);
+                });
+            }
+        }
+        /** Updates a column.
+        * @param {string} dataField. The new column's data field
+        * @param {{}} newData. The new data to visualize in the column.
+        */
+        updateColumn(dataField, newData) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.updateColumn(dataField, newData);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.updateColumn(dataField, newData);
                 });
             }
         }

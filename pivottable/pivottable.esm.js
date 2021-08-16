@@ -176,7 +176,62 @@ class PivotTable extends React.Component {
             this.nativeElement.drillDown = value;
         }
     }
+    /** If set, shows an export button in the drill down dialog.
+    *	Property type: PivotTableDrillDownDataExport
+    */
+    get drillDownDataExport() {
+        return this.nativeElement ? this.nativeElement.drillDownDataExport : undefined;
+    }
+    set drillDownDataExport(value) {
+        if (this.nativeElement) {
+            this.nativeElement.drillDownDataExport = value;
+        }
+    }
+    /** Sets or gets the drill down table export file name.
+    *	Property type: string
+    */
+    get drillDownDataExportName() {
+        return this.nativeElement ? this.nativeElement.drillDownDataExportName : undefined;
+    }
+    set drillDownDataExportName(value) {
+        if (this.nativeElement) {
+            this.nativeElement.drillDownDataExportName = value;
+        }
+    }
+    /** Sets or gets whether sorting based on columns in classic row groups layout mode is enabled.
+    *	Property type: { (table: HTMLElement ): void }
+    */
+    get drillDownTableInit() {
+        return this.nativeElement ? this.nativeElement.drillDownTableInit : undefined;
+    }
+    set drillDownTableInit(value) {
+        if (this.nativeElement) {
+            this.nativeElement.drillDownTableInit = value;
+        }
+    }
     /** Sets or gets whether the PivotTable's column header is sticky/frozen.
+    *	Property type: { (originalRecords: [] ): void }
+    */
+    get drillDownCustomAction() {
+        return this.nativeElement ? this.nativeElement.drillDownCustomAction : undefined;
+    }
+    set drillDownCustomAction(value) {
+        if (this.nativeElement) {
+            this.nativeElement.drillDownCustomAction = value;
+        }
+    }
+    /** Sets or gets whether to show a Grand total row aggregating the data of all rows.
+    *	Property type: boolean
+    */
+    get enableSortByRowGroups() {
+        return this.nativeElement ? this.nativeElement.enableSortByRowGroups : undefined;
+    }
+    set enableSortByRowGroups(value) {
+        if (this.nativeElement) {
+            this.nativeElement.enableSortByRowGroups = value;
+        }
+    }
+    /** Sets or gets the way row nesting (based on rowGroup columns) is displayed.
     *	Property type: boolean
     */
     get freezeHeader() {
@@ -187,7 +242,7 @@ class PivotTable extends React.Component {
             this.nativeElement.freezeHeader = value;
         }
     }
-    /** A callback function that returns the default summary function of a summary column when it is dynamically assigned as such (e.g. by drag-drop in the designer).
+    /** Sets or gets whether to hide the tooltip that displays details when multiple summary cells with non-null values are selected.
     *	Property type: { (column: PivotTableColumn): string }
     */
     get getDefaultSummaryFunction() {
@@ -198,7 +253,7 @@ class PivotTable extends React.Component {
             this.nativeElement.getDefaultSummaryFunction = value;
         }
     }
-    /** Sets or gets whether to show a Grand total row aggregating the data of all rows.
+    /** Sets or gets whether to hide rows that contain only 0 or null values. Applicable only when there are rowGroup columns.
     *	Property type: boolean
     */
     get grandTotal() {
@@ -209,7 +264,7 @@ class PivotTable extends React.Component {
             this.nativeElement.grandTotal = value;
         }
     }
-    /** Sets or gets the way row nesting (based on rowGroup columns) is displayed.
+    /** Sets or gets whether navigation with the keyboard is enabled in the PivotTable.
     *	Property type: PivotTableGroupLayout
     */
     get groupLayout() {
@@ -220,7 +275,7 @@ class PivotTable extends React.Component {
             this.nativeElement.groupLayout = value;
         }
     }
-    /** Sets or gets whether to hide the tooltip that displays details when multiple summary cells with non-null values are selected.
+    /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: boolean
     */
     get hideCellSelectionTooltip() {
@@ -231,7 +286,7 @@ class PivotTable extends React.Component {
             this.nativeElement.hideCellSelectionTooltip = value;
         }
     }
-    /** Sets or gets whether to hide rows that contain only 0 or null values. Applicable only when there are rowGroup columns.
+    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
     *	Property type: boolean
     */
     get hideEmptyRows() {
@@ -242,7 +297,7 @@ class PivotTable extends React.Component {
             this.nativeElement.hideEmptyRows = value;
         }
     }
-    /** Sets or gets whether navigation with the keyboard is enabled in the PivotTable.
+    /** Sets or gets what value is shown in cells that do not have aggregated data to display. By default (null), such cells are empty.
     *	Property type: boolean
     */
     get keyboardNavigation() {
@@ -253,7 +308,7 @@ class PivotTable extends React.Component {
             this.nativeElement.keyboardNavigation = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: string
     */
     get locale() {
@@ -264,7 +319,7 @@ class PivotTable extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
+    /** Sets or gets whether sorting by row (when a row group cell is clicked) is enabled. When columnTotals is also enabled, sorting is applied per "column group"; otherwise - for all columns.
     *	Property type: any
     */
     get messages() {
@@ -275,7 +330,7 @@ class PivotTable extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets what value is shown in cells that do not have aggregated data to display. By default (null), such cells are empty.
+    /** Sets or gets whether row summaries are displayed in the row headers. Example: Peterson(40) vs Peterson, when rowSummary is set to false.
     *	Property type: number
     */
     get nullDefaultValue() {
@@ -286,8 +341,8 @@ class PivotTable extends React.Component {
             this.nativeElement.nullDefaultValue = value;
         }
     }
-    /** A callback function executed each time a PivotTable cell is rendered.
-    *	Property type: any
+    /** Sets or gets whether to show row total columns for each summary column.
+    *	Property type: { (data: any, dynamicColumn: any, value: any, cell: HTMLTableCellElement): void }
     */
     get onCellRender() {
         return this.nativeElement ? this.nativeElement.onCellRender : undefined;
@@ -297,8 +352,8 @@ class PivotTable extends React.Component {
             this.nativeElement.onCellRender = value;
         }
     }
-    /** A callback function executed each time a PivotTable column header cell is rendered.
-    *	Property type: any
+    /** Sets or gets the position of row total columns (shown when rowTotals is enabled).
+    *	Property type: { (settings: { text: string, cell: HTMLTableCellElement, column: PivotTableColumn, fullDefinition: any }): void }
     */
     get onColumnRender() {
         return this.nativeElement ? this.nativeElement.onColumnRender : undefined;
@@ -308,7 +363,7 @@ class PivotTable extends React.Component {
             this.nativeElement.onColumnRender = value;
         }
     }
-    /** A callback function executed when the PivotTable is being initialized.
+    /** Sets or gets whether row selection (via checkboxes) is enabled.
     *	Property type: { (): void }
     */
     get onInit() {
@@ -319,7 +374,7 @@ class PivotTable extends React.Component {
             this.nativeElement.onInit = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or gets the selection mode. Only applicable when selection is enabled.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -330,7 +385,7 @@ class PivotTable extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Sets or gets whether sorting by row (when a row group cell is clicked) is enabled. When columnTotals is also enabled, sorting is applied per "column group"; otherwise - for all columns.
+    /** Determines the sorting mode of the PivotTable.
     *	Property type: boolean
     */
     get rowSort() {
@@ -341,7 +396,18 @@ class PivotTable extends React.Component {
             this.nativeElement.rowSort = value;
         }
     }
-    /** Sets or gets whether to show row total columns for each summary column.
+    /** Determines the theme. Theme defines the look of the element
+    *	Property type: boolean
+    */
+    get rowSummary() {
+        return this.nativeElement ? this.nativeElement.rowSummary : undefined;
+    }
+    set rowSummary(value) {
+        if (this.nativeElement) {
+            this.nativeElement.rowSummary = value;
+        }
+    }
+    /** Sets or gets whether the PivotTable's toolbar is shown. It contains two breadcrumb components that allow the modification of the row group and pivot columns, as well as the "Conditional Formatting" and "Fields" buttons that open a dialog with additional settings.
     *	Property type: boolean
     */
     get rowTotals() {
@@ -352,7 +418,7 @@ class PivotTable extends React.Component {
             this.nativeElement.rowTotals = value;
         }
     }
-    /** Sets or gets the position of row total columns (shown when rowTotals is enabled).
+    /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
     *	Property type: PivotTableRowTotalsPosition
     */
     get rowTotalsPosition() {
@@ -363,7 +429,7 @@ class PivotTable extends React.Component {
             this.nativeElement.rowTotalsPosition = value;
         }
     }
-    /** Sets or gets whether row selection (via checkboxes) is enabled.
+    /** undefined
     *	Property type: boolean
     */
     get selection() {
@@ -374,7 +440,7 @@ class PivotTable extends React.Component {
             this.nativeElement.selection = value;
         }
     }
-    /** Sets or gets the selection mode. Only applicable when selection is enabled.
+    /** undefined
     *	Property type: PivotTableSelectionMode
     */
     get selectionMode() {
@@ -385,7 +451,7 @@ class PivotTable extends React.Component {
             this.nativeElement.selectionMode = value;
         }
     }
-    /** Determines the sorting mode of the PivotTable.
+    /** undefined
     *	Property type: PivotTableSortMode
     */
     get sortMode() {
@@ -396,7 +462,7 @@ class PivotTable extends React.Component {
             this.nativeElement.sortMode = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** undefined
     *	Property type: string
     */
     get theme() {
@@ -407,7 +473,7 @@ class PivotTable extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Sets or gets whether the PivotTable's toolbar is shown. It contains two breadcrumb components that allow the modification of the row group and pivot columns, as well as the "Conditional Formatting" and "Fields" buttons that open a dialog with additional settings.
+    /** undefined
     *	Property type: boolean
     */
     get toolbar() {
@@ -418,7 +484,7 @@ class PivotTable extends React.Component {
             this.nativeElement.toolbar = value;
         }
     }
-    /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
+    /** undefined
     *	Property type: boolean
     */
     get tooltip() {
@@ -431,7 +497,7 @@ class PivotTable extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "columnReorder", "columns", "columnTotals", "columnTotalsPosition", "conditionalFormatting", "dataSource", "defaultSortByRowGroups", "designer", "designerPosition", "disabled", "drillDown", "freezeHeader", "getDefaultSummaryFunction", "grandTotal", "groupLayout", "hideCellSelectionTooltip", "hideEmptyRows", "keyboardNavigation", "locale", "messages", "nullDefaultValue", "onCellRender", "onColumnRender", "onInit", "rightToLeft", "rowSort", "rowTotals", "rowTotalsPosition", "selection", "selectionMode", "sortMode", "theme", "toolbar", "tooltip"];
+        return ["animation", "columnReorder", "columns", "columnTotals", "columnTotalsPosition", "conditionalFormatting", "dataSource", "defaultSortByRowGroups", "designer", "designerPosition", "disabled", "drillDown", "drillDownDataExport", "drillDownDataExportName", "drillDownTableInit", "drillDownCustomAction", "enableSortByRowGroups", "freezeHeader", "getDefaultSummaryFunction", "grandTotal", "groupLayout", "hideCellSelectionTooltip", "hideEmptyRows", "keyboardNavigation", "locale", "messages", "nullDefaultValue", "onCellRender", "onColumnRender", "onInit", "rightToLeft", "rowSort", "rowSummary", "rowTotals", "rowTotalsPosition", "selection", "selectionMode", "sortMode", "theme", "toolbar", "tooltip"];
     }
     // Gets the events of the React component.
     get eventListeners() {

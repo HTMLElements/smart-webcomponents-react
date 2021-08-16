@@ -2,7 +2,7 @@ import React from "react";
 import { TableProperties } from "./../index";
 import { Animation, TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings } from './../index';
 export { TableProperties } from "./../index";
-export { Animation, TableColumnDataType, TableColumnFreeze, TableColumnResponsivePriority, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableDataSourceSettingsDataFieldDataType, TableDataSourceSettingsDataSourceType, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings, TableDataSourceSettingsDataField } from './../index';
+export { Animation, TableColumnDataType, TableColumnFreeze, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableDataSourceSettingsSanitizeHTML, TableDataSourceSettingsDataFieldDataType, TableDataSourceSettingsDataSourceType, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings, TableDataSourceSettingsDataField } from './../index';
 export declare const Smart: any;
 export interface TableProps extends TableProperties {
     className?: string;
@@ -82,7 +82,7 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     get conditionalFormatting(): TableConditionalFormatting[];
     set conditionalFormatting(value: TableConditionalFormatting[]);
-    /** Sets or gets the column sizing behavior.
+    /** Sets or gets the column sizing behavior. In 'auto' mode Columns are automatically sized based on their content and the value of the columnMinWidth property, unless there is not enough space in the Table, in which case ellipses are shown. User-set static column width is still respected. In 'default' mode Columns are sized according to the rules of the standard HTML table element's table-layout: fixed. Custom width can also be applied to columns in this case by setting the column width property.
     *	Property type: TableColumnSizeMode
     */
     get columnSizeMode(): TableColumnSizeMode;
@@ -92,6 +92,11 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     get conditionalFormattingButton(): boolean;
     set conditionalFormattingButton(value: boolean);
+    /** This property determines the time in milliseconds after which the Table data is updated, when you vertically scroll.
+    *	Property type: number
+    */
+    get deferredScrollDelay(): number;
+    set deferredScrollDelay(value: number);
     /** When binding the dataSource property directly to an array (as opposed to an instance of JQX.DataAdapter), sets or gets the name of the data field in the source array to bind row ids to.
     *	Property type: string
     */
@@ -107,22 +112,26 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     get dataSourceSettings(): TableDataSourceSettings;
     set dataSourceSettings(value: TableDataSourceSettings);
-    /** A callback function that can be used to transform the initial dataSource records. If implemented, it is called once for each record (which is passed as an argument).
-    *	Property type: any
-    */
-    get dataTransform(): any;
-    set dataTransform(value: any);
     /** Disables the interaction with the element.
+    *	Property type: { (record: any): void }
+    */
+    get dataTransform(): {
+        (record: any): void;
+    };
+    set dataTransform(value: {
+        (record: any): void;
+    });
+    /** Sets or gets whether the Table can be edited.
     *	Property type: boolean
     */
     get disabled(): boolean;
     set disabled(value: boolean);
-    /** Sets or gets whether the Table can be edited.
+    /** Sets or gets the edit mode.
     *	Property type: boolean
     */
     get editing(): boolean;
     set editing(value: boolean);
-    /** Sets or gets the edit mode.
+    /** Sets or gets whether Row hierarchies are expanded by default, when created. Use this property when you want your groups to be expanded by default, when the Table is grouped or when you use the Table in tree mode.
     *	Property type: TableEditMode
     */
     get editMode(): TableEditMode;
@@ -130,79 +139,102 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     /** Sets or gets whether the Table can be filtered. By default, the Table can be filtered by all string and numeric columns through a filter input in the header.
     *	Property type: boolean
     */
+    get expandHierarchy(): boolean;
+    set expandHierarchy(value: boolean);
+    /** Sets or gets whether the Table can be filtered via a filter row.
+    *	Property type: boolean
+    */
     get filtering(): boolean;
     set filtering(value: boolean);
-    /** Sets or gets whether the Table can be filtered via a filter row.
+    /** Sets or gets the id of an HTML template element to be applied as a custom filter template.
     *	Property type: boolean
     */
     get filterRow(): boolean;
     set filterRow(value: boolean);
-    /** Sets or gets the id of an HTML template element to be applied as a custom filter template.
+    /** Sets or gets the id of an HTML template element to be applied as footer row(s).
     *	Property type: string
     */
     get filterTemplate(): string;
     set filterTemplate(value: string);
-    /** Sets or gets the id of an HTML template element to be applied as footer row(s).
+    /** Sets or gets whether Excel-like formulas can be passed as cell values. Formulas are always preceded by the = sign and are re-evaluated when cell values are changed. This feature depends on the third-party free plug-in formula-parser (the file formula-parser.min.js has to be referenced).
     *	Property type: string
     */
     get footerRow(): string;
     set footerRow(value: string);
-    /** Sets or gets whether Excel-like formulas can be passed as cell values. Formulas are always preceded by the = sign and are re-evaluated when cell values are changed. This feature depends on the third-party free plug-in formula-parser (the file formula-parser.min.js has to be referenced).
+    /** Sets or gets whether the Table's footer is sticky/frozen.
     *	Property type: boolean
     */
     get formulas(): boolean;
     set formulas(value: boolean);
-    /** Sets or gets whether the Table's footer is sticky/frozen.
+    /** Sets or gets whether the Table's column header is sticky/frozen.
     *	Property type: boolean
     */
     get freezeFooter(): boolean;
     set freezeFooter(value: boolean);
-    /** Sets or gets whether the Table's column header is sticky/frozen.
+    /** Sets or gets whether grouping the Table is enabled.
     *	Property type: boolean
     */
     get freezeHeader(): boolean;
     set freezeHeader(value: boolean);
-    /** Sets or gets whether grouping the Table is enabled.
+    /** Sets or gets the id of an HTML template element to be applied as additional column header(s).
     *	Property type: boolean
     */
     get grouping(): boolean;
     set grouping(value: boolean);
-    /** A callback function that can be used to modify the contents of a grouping header row. By changing the 'label' you modify the rendered grouping value. By changing the 'template' you can modify the entire content including the column and count information.
-    *	Property type: any
+    /** Sets or gets whether navigation with the keyboard is enabled in the Table.
+    *	Property type: { (settings: { value: any, row: string | number, column: string, template?: any }): void }
     */
-    get groupFormatFunction(): any;
-    set groupFormatFunction(value: any);
-    /** Sets or gets the id of an HTML template element to be applied as additional column header(s).
+    get groupFormatFunction(): {
+        (settings: {
+            value: any;
+            row: string | number;
+            column: string;
+            template?: any;
+        }): void;
+    };
+    set groupFormatFunction(value: {
+        (settings: {
+            value: any;
+            row: string | number;
+            column: string;
+            template?: any;
+        }): void;
+    });
+    /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
     *	Property type: string
     */
     get headerRow(): string;
     set headerRow(value: string);
-    /** Sets or gets whether navigation with the keyboard is enabled in the Table.
+    /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: boolean
     */
     get keyboardNavigation(): boolean;
     set keyboardNavigation(value: boolean);
-    /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
+    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
     *	Property type: TableLoadColumnStateBehavior
     */
     get loadColumnStateBehavior(): TableLoadColumnStateBehavior;
     set loadColumnStateBehavior(value: TableLoadColumnStateBehavior);
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or gets the page size (when paging is enabled).
     *	Property type: string
     */
     get locale(): string;
     set locale(value: string);
-    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
+    /** Sets or gets the current (zero-based) page index (when paging is enabled).
     *	Property type: any
     */
     get messages(): any;
     set messages(value: any);
-    /** A callback function executed each time a Table cell is rendered.
-    *	Property type: any
+    /** Sets or gets whether paging is enabled.
+    *	Property type: { (data: any, dataField: string, value: any, cell: HTMLTableCellElement): void }
     */
-    get onCellRender(): any;
-    set onCellRender(value: any);
-    /** A callback function executed each time a Table column header cell is rendered.
+    get onCellRender(): {
+        (data: any, dataField: string, value: any, cell: HTMLTableCellElement): void;
+    };
+    set onCellRender(value: {
+        (data: any, dataField: string, value: any, cell: HTMLTableCellElement): void;
+    });
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: { (dataField: string, headerCell: HTMLTableCellElement): void }
     */
     get onColumnRender(): {
@@ -211,7 +243,7 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     set onColumnRender(value: {
         (dataField: string, headerCell: HTMLTableCellElement): void;
     });
-    /** A callback function executed when the Table is being initialized.
+    /** Sets or gets a string template to be applied as row detail template. Each cell value in the master row can be placed in the detail row by specifying the cell's data field in double curly brackets (e.g. {{price}}. The details can then be displayed by expanding the row by clicking it.
     *	Property type: { (): void }
     */
     get onInit(): {
@@ -220,79 +252,93 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     set onInit(value: {
         (): void;
     });
-    /** Sets or gets the page size (when paging is enabled).
+    /** Sets or gets an array of the Table's selected row's ids.
     *	Property type: TablePageSize
     */
     get pageSize(): TablePageSize;
     set pageSize(value: TablePageSize);
-    /** Sets or gets the current (zero-based) page index (when paging is enabled).
+    /** Sets or gets whether row selection (via checkboxes) is enabled.
     *	Property type: number
     */
     get pageIndex(): number;
     set pageIndex(value: number);
-    /** Sets or gets whether paging is enabled.
+    /** Sets or gets the selection mode. Only applicable when selection is enabled.
     *	Property type: boolean
     */
     get paging(): boolean;
     set paging(value: boolean);
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or gets whether row selection (via checkboxes) is hierarchical. When a parent row is selected, all sub rows are selected, too.
     *	Property type: boolean
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
-    /** Sets or gets a string template to be applied as row detail template. Each cell value in the master row can be placed in the detail row by specifying the cell's data field in double curly brackets (e.g. {{price}}. The details can then be displayed by expanding the row by clicking it.
+    /** Determines the sorting mode of the Table.
     *	Property type: string
     */
     get rowDetailTemplate(): string;
     set rowDetailTemplate(value: string);
-    /** Sets or gets an array of the Table's selected row's ids.
+    /** Sets or gets what settings of the Table's state can be saved (by autoSaveState or saveState) or loaded (by autoLoadState or loadState).
     *	Property type: any[]
     */
     get selected(): any[];
     set selected(value: any[]);
-    /** Sets or gets whether row selection (via checkboxes) is enabled.
+    /** Determines the theme. Theme defines the look of the element
     *	Property type: boolean
     */
     get selection(): boolean;
     set selection(value: boolean);
-    /** Sets or gets the selection mode. Only applicable when selection is enabled.
+    /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
     *	Property type: TableSelectionMode
     */
     get selectionMode(): TableSelectionMode;
     set selectionMode(value: TableSelectionMode);
-    /** A callback function executed when a column is sorted that can be used to override the default sorting behavior. The function is passed four parameters: dataSource - the Table's data sourcesortColumns - an array of the data fields of columns to be sorted bydirections - an array of sort directions to be sorted by (corresponding to sortColumns)defaultCompareFunctions - an array of default compare functions to be sorted by (corresponding to sortColumns), useful if the sorting of some columns does not have to be overridden
-    *	Property type: any
+    /** Enables or disables HTML virtualization. This functionality allows for only visible rows to be rendered, resulting in an increased Table performance.
+    *	Property type: boolean
     */
-    get sort(): any;
-    set sort(value: any);
-    /** Determines the sorting mode of the Table.
+    get selectionByHierarchy(): boolean;
+    set selectionByHierarchy(value: boolean);
+    /** undefined
+    *	Property type: { (dataSource: any, sortColumns: string[], directions: string[], defaultCompareFunctions: { (firstRecord: any, secondRecord: any): number }[]): void }
+    */
+    get sort(): {
+        (dataSource: any, sortColumns: string[], directions: string[], defaultCompareFunctions: {
+            (firstRecord: any, secondRecord: any): number;
+        }[]): void;
+    };
+    set sort(value: {
+        (dataSource: any, sortColumns: string[], directions: string[], defaultCompareFunctions: {
+            (firstRecord: any, secondRecord: any): number;
+        }[]): void;
+    });
+    /** undefined
     *	Property type: TableSortMode
     */
     get sortMode(): TableSortMode;
     set sortMode(value: TableSortMode);
-    /** Sets or gets what settings of the Table's state can be saved (by autoSaveState or saveState) or loaded (by autoLoadState or loadState).
+    /** undefined
     *	Property type: string[]
     */
     get stateSettings(): string[];
     set stateSettings(value: string[]);
-    /** Determines the theme. Theme defines the look of the element
+    /** undefined
     *	Property type: string
     */
     get theme(): string;
     set theme(value: string);
-    /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
+    /** undefined
     *	Property type: boolean
     */
     get tooltip(): boolean;
     set tooltip(value: boolean);
-    /** Enables or disables HTML virtualization. This functionality allows for only visible rows to be rendered, resulting in an increased Table performance.
+    /** undefined
     *	Property type: boolean
     */
     get virtualization(): boolean;
     set virtualization(value: boolean);
     get properties(): string[];
     /**  This event is triggered when a cell edit operation has been initiated.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	row, 	value)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	dataField, 	row, 	value)
+    *   id - The id of the row.
     *   dataField - The data field of the cell's column.
     *   row - The data of the cell's row.
     *   value - The data value of the cell.
@@ -308,24 +354,27 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     onCellClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a cell has been edited.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	row, 	value)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	dataField, 	row, 	value)
+    *   id - The id of the row.
     *   dataField - The data field of the cell's column.
     *   row - The new data of the cell's row.
     *   value - The data value of the cell.
     */
     onCellEndEdit?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when the selection is changed.
+    /**  This event is triggered when the selection is changed. Within the event handler you can get the selection by using the 'getSelection' method.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	type)
     *   type - The type of action that initiated the selection change. Possible types: 'programmatic', 'interaction', 'remove'.
     */
     onChange?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a row has been collapsed.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	record)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	record)
+    *   id - The id of the collapsed row.
     *   record - The data of the collapsed row.
     */
     onCollapse?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a row has been expanded.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	record)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	record)
+    *   id - The id of the expanded row.
     *   record - The (aggregated) data of the expanded row.
     */
     onExpand?: ((event?: Event) => void) | undefined;
@@ -348,10 +397,11 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     onFilter?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a grouping-related action is made.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	action, 	dataField, 	label)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	action, 	dataField, 	label, 	path)
     *   action - The grouping action. Possible actions: 'add', 'collapse', 'expand', 'remove'.
     *   dataField - The data field of the column whose grouping is modified.
     *   label - The label of the group (only when collapsing/expanding).
+    *   path - The group's path (only when collapsing/expanding). The path includes the path to the expanded/collapsed group starting from the root group. The indexes are joined with '.'. This parameter is available when the 'action' is 'expand' or 'collapse'.
     */
     onGroup?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a paging-related action is made.
@@ -360,18 +410,24 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     onPage?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a row edit operation has been initiated (only when editMode is 'row').
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	row)
+    *   id - The id of the row.
     *   row - The data of the row.
     */
     onRowBeginEdit?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a row has been edited (only when editMode is 'row').
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	row)
+    *   id - The id of the row.
     *   row - The new data of the row.
     */
     onRowEndEdit?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a column header cell has been clicked.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	columns)
+    /**  This event is triggered when a column header cell has been clicked or sorting is applied programmatically using the Table API.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	columns, 	sortDataFields, 	sortOrders, 	sortDataTypes, 	type)
     *   columns - An array with information about the columns the Table has been sorted by.
+    *   sortDataFields - An array with information about the data fields the Table has been sorted by.
+    *   sortOrders - An array with information about the columns sort orders the Table has been sorted by.
+    *   sortDataTypes - An array with information about the columns data types the Table has been sorted by.
+    *   type - The type of action that initiated the data sort. Possible types: 'programmatic', 'interaction'
     */
     onSort?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
@@ -381,6 +437,10 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
+    /** Adds a new row. When you invoke the method, pass a JSON object with the row's data.
+    * @param {any} data. JSON object with the new row's data. Sample JSON: {firstName: 'Peter', lastName: 'Fuller'}.
+    */
+    addRow(data: any): void;
     /** Adds a filter to a specific column.
     * @param {string} dataField. The column's data field.
     * @param {any} filter. FilterGroup object.
@@ -395,6 +455,9 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     * @param {string} dataField?. The dataField of the cell's column. May be omitted when <strong>editMode</strong> is <em>'row'</em>.
     */
     beginEdit(row: string | number, dataField?: string): void;
+    /** Begins an update operation. Suspends all table refreshes and renders.
+    */
+    beginUpdate(): void;
     /** Ends the current edit operation and discards changes.
     */
     cancelEdit(): void;
@@ -413,6 +476,12 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     /** Collapses all rows (in tree mode).
     */
     collapseAllRows(): void;
+    /** Collapses all groups (in tree mode).
+    */
+    collapseAllGroups(): void;
+    /** Collapses all row details. Rows that have details defined via the rowDetailTemplate will be collapsed.
+    */
+    collapseAllRowDetails(): void;
     /** Collapses a group.
     * @param {string} index. The group's hierarchical index.
     */
@@ -421,12 +490,30 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     * @param {string | number} rowId. The id of the row to collapse.
     */
     collapseRow(rowId: string | number): void;
+    /** Disables a selection of a row. When the 'selection' property is set to 'true', selection is enabled for all rows by default.
+    * @param {string | number | (string | number)[]} rowId. The id of the row (or an array of row ids) to select.
+    */
+    disableSelect(rowId: string | number | (string | number)[]): void;
+    /** Enables a selection of a row, if it was previously disabled through a 'disableSelect' method call. When the 'selection' property is set to 'true', selection is enabled for all rows by default.
+    * @param {string | number | (string | number)[]} rowId. The id of the row (or an array of row ids) to select.
+    */
+    enableSelect(rowId: string | number | (string | number)[]): void;
     /** Ends the current edit operation and saves changes.
     */
     endEdit(): void;
+    /** Ends an update operation. Resumes all table refreshes and renders. Re-renders the Table.
+    * @param {boolean} refresh?. Optionally you can pass 'false' in case you need to manually call the 'refresh' method. By default, the table is re-rendered.
+    */
+    endUpdate(refresh?: boolean): void;
     /** Expands all rows (in tree mode).
     */
     expandAllRows(): void;
+    /** Expands all groups (in tree mode).
+    */
+    expandAllGroups(): void;
+    /** Expands all row details. Rows that have details defined via rowDetailTemplate will be expanded.
+    */
+    expandAllRowDetails(): void;
     /** Expands a group.
     * @param {string} index. The group's hierarchical index.
     */
@@ -457,6 +544,17 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     * @returns {any}
   */
     getValue(row: string | number, dataField: string): Promise<any>;
+    /** Gets a column property.
+    * @param {string} columnDataField. Column field name.
+    * @param {string} propertyName. Column property name.
+    * @returns {any}
+  */
+    getColumnProperty(columnDataField: string, propertyName: string): Promise<any>;
+    /** Checks whether a group is expanded and returns true or false. false is returned when the group index is undefined, too.
+    * @param {string} index. The group's hierarchical index.
+    * @returns {boolean}
+  */
+    isGroupExpanded(index: string): Promise<any>;
     /** Loads the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is loaded, based on the value of the stateSettings property.
     * @param {any} state?. An object returned by one of the methods <strong>getState</strong> or <strong>saveState</strong>. If a state is not passed, the method tries to load the state from the browser's localStorage.
     */
@@ -476,6 +574,10 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     * @param {string} dataField. The column's data field.
     */
     removeGroup(dataField: string): void;
+    /** Removes a row by its id.
+    * @param {string | number} row. The id of the cell's row.
+    */
+    removeRow(row: string | number): void;
     /** Saves the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is saved, based on the value of the stateSettings property.
     * @returns {any}
   */
@@ -495,6 +597,17 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     * @param {string} sortOrder?. Sort order. Possible values: 'asc' (ascending), 'desc' (descending), and null (removes sorting by column). If not provided, toggles the sorting.
     */
     sortBy(columnDataField: string, sortOrder?: string): void;
+    /** Sets a column property.
+    * @param {string} columnDataField. Column field name.
+    * @param {string} propertyName. Column property name.
+    * @param {any} propertyValue. Property value.
+    */
+    setColumnProperty(columnDataField: string, propertyName: string, propertyValue: any): void;
+    /** Updates a table row. The method expects two parameters - row id and JSON object with the new row data.
+    * @param {string | number} rowId. The id of the row.
+    * @param {any} data. JSON object with the new row's data. Example: {firstName: 'Peter', lastName: 'Fuller'}.
+    */
+    updateRow(rowId: string | number, data: any): void;
     /** Unselects one or more rows.
     * @param {string | number | (string | number)[]} rowId. The id of the row (or an array of row ids) to unselect.
     */

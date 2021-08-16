@@ -154,7 +154,7 @@ class Table extends React.Component {
             this.nativeElement.conditionalFormatting = value;
         }
     }
-    /** Sets or gets the column sizing behavior.
+    /** Sets or gets the column sizing behavior. In 'auto' mode Columns are automatically sized based on their content and the value of the columnMinWidth property, unless there is not enough space in the Table, in which case ellipses are shown. User-set static column width is still respected. In 'default' mode Columns are sized according to the rules of the standard HTML table element's table-layout: fixed. Custom width can also be applied to columns in this case by setting the column width property.
     *	Property type: TableColumnSizeMode
     */
     get columnSizeMode() {
@@ -174,6 +174,17 @@ class Table extends React.Component {
     set conditionalFormattingButton(value) {
         if (this.nativeElement) {
             this.nativeElement.conditionalFormattingButton = value;
+        }
+    }
+    /** This property determines the time in milliseconds after which the Table data is updated, when you vertically scroll.
+    *	Property type: number
+    */
+    get deferredScrollDelay() {
+        return this.nativeElement ? this.nativeElement.deferredScrollDelay : undefined;
+    }
+    set deferredScrollDelay(value) {
+        if (this.nativeElement) {
+            this.nativeElement.deferredScrollDelay = value;
         }
     }
     /** When binding the dataSource property directly to an array (as opposed to an instance of JQX.DataAdapter), sets or gets the name of the data field in the source array to bind row ids to.
@@ -209,8 +220,8 @@ class Table extends React.Component {
             this.nativeElement.dataSourceSettings = value;
         }
     }
-    /** A callback function that can be used to transform the initial dataSource records. If implemented, it is called once for each record (which is passed as an argument).
-    *	Property type: any
+    /** Disables the interaction with the element.
+    *	Property type: { (record: any): void }
     */
     get dataTransform() {
         return this.nativeElement ? this.nativeElement.dataTransform : undefined;
@@ -220,7 +231,7 @@ class Table extends React.Component {
             this.nativeElement.dataTransform = value;
         }
     }
-    /** Disables the interaction with the element.
+    /** Sets or gets whether the Table can be edited.
     *	Property type: boolean
     */
     get disabled() {
@@ -231,7 +242,7 @@ class Table extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Sets or gets whether the Table can be edited.
+    /** Sets or gets the edit mode.
     *	Property type: boolean
     */
     get editing() {
@@ -242,7 +253,7 @@ class Table extends React.Component {
             this.nativeElement.editing = value;
         }
     }
-    /** Sets or gets the edit mode.
+    /** Sets or gets whether Row hierarchies are expanded by default, when created. Use this property when you want your groups to be expanded by default, when the Table is grouped or when you use the Table in tree mode.
     *	Property type: TableEditMode
     */
     get editMode() {
@@ -256,6 +267,17 @@ class Table extends React.Component {
     /** Sets or gets whether the Table can be filtered. By default, the Table can be filtered by all string and numeric columns through a filter input in the header.
     *	Property type: boolean
     */
+    get expandHierarchy() {
+        return this.nativeElement ? this.nativeElement.expandHierarchy : undefined;
+    }
+    set expandHierarchy(value) {
+        if (this.nativeElement) {
+            this.nativeElement.expandHierarchy = value;
+        }
+    }
+    /** Sets or gets whether the Table can be filtered via a filter row.
+    *	Property type: boolean
+    */
     get filtering() {
         return this.nativeElement ? this.nativeElement.filtering : undefined;
     }
@@ -264,7 +286,7 @@ class Table extends React.Component {
             this.nativeElement.filtering = value;
         }
     }
-    /** Sets or gets whether the Table can be filtered via a filter row.
+    /** Sets or gets the id of an HTML template element to be applied as a custom filter template.
     *	Property type: boolean
     */
     get filterRow() {
@@ -275,7 +297,7 @@ class Table extends React.Component {
             this.nativeElement.filterRow = value;
         }
     }
-    /** Sets or gets the id of an HTML template element to be applied as a custom filter template.
+    /** Sets or gets the id of an HTML template element to be applied as footer row(s).
     *	Property type: string
     */
     get filterTemplate() {
@@ -286,7 +308,7 @@ class Table extends React.Component {
             this.nativeElement.filterTemplate = value;
         }
     }
-    /** Sets or gets the id of an HTML template element to be applied as footer row(s).
+    /** Sets or gets whether Excel-like formulas can be passed as cell values. Formulas are always preceded by the = sign and are re-evaluated when cell values are changed. This feature depends on the third-party free plug-in formula-parser (the file formula-parser.min.js has to be referenced).
     *	Property type: string
     */
     get footerRow() {
@@ -297,7 +319,7 @@ class Table extends React.Component {
             this.nativeElement.footerRow = value;
         }
     }
-    /** Sets or gets whether Excel-like formulas can be passed as cell values. Formulas are always preceded by the = sign and are re-evaluated when cell values are changed. This feature depends on the third-party free plug-in formula-parser (the file formula-parser.min.js has to be referenced).
+    /** Sets or gets whether the Table's footer is sticky/frozen.
     *	Property type: boolean
     */
     get formulas() {
@@ -308,7 +330,7 @@ class Table extends React.Component {
             this.nativeElement.formulas = value;
         }
     }
-    /** Sets or gets whether the Table's footer is sticky/frozen.
+    /** Sets or gets whether the Table's column header is sticky/frozen.
     *	Property type: boolean
     */
     get freezeFooter() {
@@ -319,7 +341,7 @@ class Table extends React.Component {
             this.nativeElement.freezeFooter = value;
         }
     }
-    /** Sets or gets whether the Table's column header is sticky/frozen.
+    /** Sets or gets whether grouping the Table is enabled.
     *	Property type: boolean
     */
     get freezeHeader() {
@@ -330,7 +352,7 @@ class Table extends React.Component {
             this.nativeElement.freezeHeader = value;
         }
     }
-    /** Sets or gets whether grouping the Table is enabled.
+    /** Sets or gets the id of an HTML template element to be applied as additional column header(s).
     *	Property type: boolean
     */
     get grouping() {
@@ -341,8 +363,8 @@ class Table extends React.Component {
             this.nativeElement.grouping = value;
         }
     }
-    /** A callback function that can be used to modify the contents of a grouping header row. By changing the 'label' you modify the rendered grouping value. By changing the 'template' you can modify the entire content including the column and count information.
-    *	Property type: any
+    /** Sets or gets whether navigation with the keyboard is enabled in the Table.
+    *	Property type: { (settings: { value: any, row: string | number, column: string, template?: any }): void }
     */
     get groupFormatFunction() {
         return this.nativeElement ? this.nativeElement.groupFormatFunction : undefined;
@@ -352,7 +374,7 @@ class Table extends React.Component {
             this.nativeElement.groupFormatFunction = value;
         }
     }
-    /** Sets or gets the id of an HTML template element to be applied as additional column header(s).
+    /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
     *	Property type: string
     */
     get headerRow() {
@@ -363,7 +385,7 @@ class Table extends React.Component {
             this.nativeElement.headerRow = value;
         }
     }
-    /** Sets or gets whether navigation with the keyboard is enabled in the Table.
+    /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: boolean
     */
     get keyboardNavigation() {
@@ -374,7 +396,7 @@ class Table extends React.Component {
             this.nativeElement.keyboardNavigation = value;
         }
     }
-    /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
+    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
     *	Property type: TableLoadColumnStateBehavior
     */
     get loadColumnStateBehavior() {
@@ -385,7 +407,7 @@ class Table extends React.Component {
             this.nativeElement.loadColumnStateBehavior = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or gets the page size (when paging is enabled).
     *	Property type: string
     */
     get locale() {
@@ -396,7 +418,7 @@ class Table extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
+    /** Sets or gets the current (zero-based) page index (when paging is enabled).
     *	Property type: any
     */
     get messages() {
@@ -407,8 +429,8 @@ class Table extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** A callback function executed each time a Table cell is rendered.
-    *	Property type: any
+    /** Sets or gets whether paging is enabled.
+    *	Property type: { (data: any, dataField: string, value: any, cell: HTMLTableCellElement): void }
     */
     get onCellRender() {
         return this.nativeElement ? this.nativeElement.onCellRender : undefined;
@@ -418,7 +440,7 @@ class Table extends React.Component {
             this.nativeElement.onCellRender = value;
         }
     }
-    /** A callback function executed each time a Table column header cell is rendered.
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: { (dataField: string, headerCell: HTMLTableCellElement): void }
     */
     get onColumnRender() {
@@ -429,7 +451,7 @@ class Table extends React.Component {
             this.nativeElement.onColumnRender = value;
         }
     }
-    /** A callback function executed when the Table is being initialized.
+    /** Sets or gets a string template to be applied as row detail template. Each cell value in the master row can be placed in the detail row by specifying the cell's data field in double curly brackets (e.g. {{price}}. The details can then be displayed by expanding the row by clicking it.
     *	Property type: { (): void }
     */
     get onInit() {
@@ -440,7 +462,7 @@ class Table extends React.Component {
             this.nativeElement.onInit = value;
         }
     }
-    /** Sets or gets the page size (when paging is enabled).
+    /** Sets or gets an array of the Table's selected row's ids.
     *	Property type: TablePageSize
     */
     get pageSize() {
@@ -451,7 +473,7 @@ class Table extends React.Component {
             this.nativeElement.pageSize = value;
         }
     }
-    /** Sets or gets the current (zero-based) page index (when paging is enabled).
+    /** Sets or gets whether row selection (via checkboxes) is enabled.
     *	Property type: number
     */
     get pageIndex() {
@@ -462,7 +484,7 @@ class Table extends React.Component {
             this.nativeElement.pageIndex = value;
         }
     }
-    /** Sets or gets whether paging is enabled.
+    /** Sets or gets the selection mode. Only applicable when selection is enabled.
     *	Property type: boolean
     */
     get paging() {
@@ -473,7 +495,7 @@ class Table extends React.Component {
             this.nativeElement.paging = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or gets whether row selection (via checkboxes) is hierarchical. When a parent row is selected, all sub rows are selected, too.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -484,7 +506,7 @@ class Table extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Sets or gets a string template to be applied as row detail template. Each cell value in the master row can be placed in the detail row by specifying the cell's data field in double curly brackets (e.g. {{price}}. The details can then be displayed by expanding the row by clicking it.
+    /** Determines the sorting mode of the Table.
     *	Property type: string
     */
     get rowDetailTemplate() {
@@ -495,7 +517,7 @@ class Table extends React.Component {
             this.nativeElement.rowDetailTemplate = value;
         }
     }
-    /** Sets or gets an array of the Table's selected row's ids.
+    /** Sets or gets what settings of the Table's state can be saved (by autoSaveState or saveState) or loaded (by autoLoadState or loadState).
     *	Property type: any[]
     */
     get selected() {
@@ -506,7 +528,7 @@ class Table extends React.Component {
             this.nativeElement.selected = value;
         }
     }
-    /** Sets or gets whether row selection (via checkboxes) is enabled.
+    /** Determines the theme. Theme defines the look of the element
     *	Property type: boolean
     */
     get selection() {
@@ -517,7 +539,7 @@ class Table extends React.Component {
             this.nativeElement.selection = value;
         }
     }
-    /** Sets or gets the selection mode. Only applicable when selection is enabled.
+    /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
     *	Property type: TableSelectionMode
     */
     get selectionMode() {
@@ -528,8 +550,19 @@ class Table extends React.Component {
             this.nativeElement.selectionMode = value;
         }
     }
-    /** A callback function executed when a column is sorted that can be used to override the default sorting behavior. The function is passed four parameters: dataSource - the Table's data sourcesortColumns - an array of the data fields of columns to be sorted bydirections - an array of sort directions to be sorted by (corresponding to sortColumns)defaultCompareFunctions - an array of default compare functions to be sorted by (corresponding to sortColumns), useful if the sorting of some columns does not have to be overridden
-    *	Property type: any
+    /** Enables or disables HTML virtualization. This functionality allows for only visible rows to be rendered, resulting in an increased Table performance.
+    *	Property type: boolean
+    */
+    get selectionByHierarchy() {
+        return this.nativeElement ? this.nativeElement.selectionByHierarchy : undefined;
+    }
+    set selectionByHierarchy(value) {
+        if (this.nativeElement) {
+            this.nativeElement.selectionByHierarchy = value;
+        }
+    }
+    /** undefined
+    *	Property type: { (dataSource: any, sortColumns: string[], directions: string[], defaultCompareFunctions: { (firstRecord: any, secondRecord: any): number }[]): void }
     */
     get sort() {
         return this.nativeElement ? this.nativeElement.sort : undefined;
@@ -539,7 +572,7 @@ class Table extends React.Component {
             this.nativeElement.sort = value;
         }
     }
-    /** Determines the sorting mode of the Table.
+    /** undefined
     *	Property type: TableSortMode
     */
     get sortMode() {
@@ -550,7 +583,7 @@ class Table extends React.Component {
             this.nativeElement.sortMode = value;
         }
     }
-    /** Sets or gets what settings of the Table's state can be saved (by autoSaveState or saveState) or loaded (by autoLoadState or loadState).
+    /** undefined
     *	Property type: string[]
     */
     get stateSettings() {
@@ -561,7 +594,7 @@ class Table extends React.Component {
             this.nativeElement.stateSettings = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** undefined
     *	Property type: string
     */
     get theme() {
@@ -572,7 +605,7 @@ class Table extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
+    /** undefined
     *	Property type: boolean
     */
     get tooltip() {
@@ -583,7 +616,7 @@ class Table extends React.Component {
             this.nativeElement.tooltip = value;
         }
     }
-    /** Enables or disables HTML virtualization. This functionality allows for only visible rows to be rendered, resulting in an increased Table performance.
+    /** undefined
     *	Property type: boolean
     */
     get virtualization() {
@@ -596,11 +629,24 @@ class Table extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoLoadState", "autoSaveState", "columnGroups", "columnMinWidth", "columnReorder", "columnResize", "columnResizeFeedback", "columns", "conditionalFormatting", "columnSizeMode", "conditionalFormattingButton", "dataRowId", "dataSource", "dataSourceSettings", "dataTransform", "disabled", "editing", "editMode", "filtering", "filterRow", "filterTemplate", "footerRow", "formulas", "freezeFooter", "freezeHeader", "grouping", "groupFormatFunction", "headerRow", "keyboardNavigation", "loadColumnStateBehavior", "locale", "messages", "onCellRender", "onColumnRender", "onInit", "pageSize", "pageIndex", "paging", "rightToLeft", "rowDetailTemplate", "selected", "selection", "selectionMode", "sort", "sortMode", "stateSettings", "theme", "tooltip", "virtualization"];
+        return ["animation", "autoLoadState", "autoSaveState", "columnGroups", "columnMinWidth", "columnReorder", "columnResize", "columnResizeFeedback", "columns", "conditionalFormatting", "columnSizeMode", "conditionalFormattingButton", "deferredScrollDelay", "dataRowId", "dataSource", "dataSourceSettings", "dataTransform", "disabled", "editing", "editMode", "expandHierarchy", "filtering", "filterRow", "filterTemplate", "footerRow", "formulas", "freezeFooter", "freezeHeader", "grouping", "groupFormatFunction", "headerRow", "keyboardNavigation", "loadColumnStateBehavior", "locale", "messages", "onCellRender", "onColumnRender", "onInit", "pageSize", "pageIndex", "paging", "rightToLeft", "rowDetailTemplate", "selected", "selection", "selectionMode", "selectionByHierarchy", "sort", "sortMode", "stateSettings", "theme", "tooltip", "virtualization"];
     }
     // Gets the events of the React component.
     get eventListeners() {
         return ["onCellBeginEdit", "onCellClick", "onCellEndEdit", "onChange", "onCollapse", "onExpand", "onColumnClick", "onColumnResize", "onFilter", "onGroup", "onPage", "onRowBeginEdit", "onRowEndEdit", "onSort", "onCreate", "onReady"];
+    }
+    /** Adds a new row. When you invoke the method, pass a JSON object with the row's data.
+    * @param {any} data. JSON object with the new row's data. Sample JSON: {firstName: 'Peter', lastName: 'Fuller'}.
+    */
+    addRow(data) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.addRow(data);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.addRow(data);
+            });
+        }
     }
     /** Adds a filter to a specific column.
     * @param {string} dataField. The column's data field.
@@ -640,6 +686,18 @@ class Table extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.beginEdit(row, dataField);
+            });
+        }
+    }
+    /** Begins an update operation. Suspends all table refreshes and renders.
+    */
+    beginUpdate() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.beginUpdate();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.beginUpdate();
             });
         }
     }
@@ -715,6 +773,30 @@ class Table extends React.Component {
             });
         }
     }
+    /** Collapses all groups (in tree mode).
+    */
+    collapseAllGroups() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.collapseAllGroups();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.collapseAllGroups();
+            });
+        }
+    }
+    /** Collapses all row details. Rows that have details defined via the rowDetailTemplate will be collapsed.
+    */
+    collapseAllRowDetails() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.collapseAllRowDetails();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.collapseAllRowDetails();
+            });
+        }
+    }
     /** Collapses a group.
     * @param {string} index. The group's hierarchical index.
     */
@@ -741,6 +823,32 @@ class Table extends React.Component {
             });
         }
     }
+    /** Disables a selection of a row. When the 'selection' property is set to 'true', selection is enabled for all rows by default.
+    * @param {string | number | (string | number)[]} rowId. The id of the row (or an array of row ids) to select.
+    */
+    disableSelect(rowId) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.disableSelect(rowId);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.disableSelect(rowId);
+            });
+        }
+    }
+    /** Enables a selection of a row, if it was previously disabled through a 'disableSelect' method call. When the 'selection' property is set to 'true', selection is enabled for all rows by default.
+    * @param {string | number | (string | number)[]} rowId. The id of the row (or an array of row ids) to select.
+    */
+    enableSelect(rowId) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.enableSelect(rowId);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.enableSelect(rowId);
+            });
+        }
+    }
     /** Ends the current edit operation and saves changes.
     */
     endEdit() {
@@ -753,6 +861,19 @@ class Table extends React.Component {
             });
         }
     }
+    /** Ends an update operation. Resumes all table refreshes and renders. Re-renders the Table.
+    * @param {boolean} refresh?. Optionally you can pass 'false' in case you need to manually call the 'refresh' method. By default, the table is re-rendered.
+    */
+    endUpdate(refresh) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.endUpdate(refresh);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.endUpdate(refresh);
+            });
+        }
+    }
     /** Expands all rows (in tree mode).
     */
     expandAllRows() {
@@ -762,6 +883,30 @@ class Table extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.expandAllRows();
+            });
+        }
+    }
+    /** Expands all groups (in tree mode).
+    */
+    expandAllGroups() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.expandAllGroups();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.expandAllGroups();
+            });
+        }
+    }
+    /** Expands all row details. Rows that have details defined via rowDetailTemplate will be expanded.
+    */
+    expandAllRowDetails() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.expandAllRowDetails();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.expandAllRowDetails();
             });
         }
     }
@@ -865,6 +1010,43 @@ class Table extends React.Component {
             return result;
         });
     }
+    /** Gets a column property.
+    * @param {string} columnDataField. Column field name.
+    * @param {string} propertyName. Column property name.
+    * @returns {any}
+  */
+    getColumnProperty(columnDataField, propertyName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getColumnProperty(columnDataField, propertyName);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Checks whether a group is expanded and returns true or false. false is returned when the group index is undefined, too.
+    * @param {string} index. The group's hierarchical index.
+    * @returns {boolean}
+  */
+    isGroupExpanded(index) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.isGroupExpanded(index);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
     /** Loads the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is loaded, based on the value of the stateSettings property.
     * @param {any} state?. An object returned by one of the methods <strong>getState</strong> or <strong>saveState</strong>. If a state is not passed, the method tries to load the state from the browser's localStorage.
     */
@@ -929,6 +1111,19 @@ class Table extends React.Component {
             });
         }
     }
+    /** Removes a row by its id.
+    * @param {string | number} row. The id of the cell's row.
+    */
+    removeRow(row) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.removeRow(row);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.removeRow(row);
+            });
+        }
+    }
     /** Saves the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is saved, based on the value of the stateSettings property.
     * @returns {any}
   */
@@ -985,6 +1180,35 @@ class Table extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.sortBy(columnDataField, sortOrder);
+            });
+        }
+    }
+    /** Sets a column property.
+    * @param {string} columnDataField. Column field name.
+    * @param {string} propertyName. Column property name.
+    * @param {any} propertyValue. Property value.
+    */
+    setColumnProperty(columnDataField, propertyName, propertyValue) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setColumnProperty(columnDataField, propertyName, propertyValue);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setColumnProperty(columnDataField, propertyName, propertyValue);
+            });
+        }
+    }
+    /** Updates a table row. The method expects two parameters - row id and JSON object with the new row data.
+    * @param {string | number} rowId. The id of the row.
+    * @param {any} data. JSON object with the new row's data. Example: {firstName: 'Peter', lastName: 'Fuller'}.
+    */
+    updateRow(rowId, data) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.updateRow(rowId, data);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.updateRow(rowId, data);
             });
         }
     }

@@ -626,6 +626,17 @@ require('../source/modules/smart.listmenu');
                 this.nativeElement.filterInputPlaceholder = value;
             }
         }
+        /** Determines the MenuItem property that will be used as a filtering criteria. By default the label property is used. It can be set to 'value' if the user wants to filter by the 'value' property or 'textContent' if the user wants to filter by text inside the MenuItem's content or any other property.
+        *	Property type: string
+        */
+        get filterMember() {
+            return this.nativeElement ? this.nativeElement.filterMember : undefined;
+        }
+        set filterMember(value) {
+            if (this.nativeElement) {
+                this.nativeElement.filterMember = value;
+            }
+        }
         /** Determines the filtering mode.
         *	Property type: FilterMode
         */
@@ -815,7 +826,7 @@ require('../source/modules/smart.listmenu');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["animation", "autoFocusOnMouseenter", "checkable", "checkboxes", "checkMode", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownOverlay", "dropDownPosition", "enableMouseWheelAction", "filterable", "filterInputPlaceholder", "filterMode", "grouped", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "minimizeIconTemplate", "minimizeWidth", "overflow", "readonly", "rightToLeft", "scrollMode", "theme", "unfocusable", "valueMember"];
+            return ["animation", "autoFocusOnMouseenter", "checkable", "checkboxes", "checkMode", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownOverlay", "dropDownPosition", "enableMouseWheelAction", "filterable", "filterInputPlaceholder", "filterMember", "filterMode", "grouped", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "minimizeIconTemplate", "minimizeWidth", "overflow", "readonly", "rightToLeft", "scrollMode", "theme", "unfocusable", "valueMember"];
         }
         // Gets the events of the React component.
         get eventListeners() {

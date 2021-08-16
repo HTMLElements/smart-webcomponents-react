@@ -687,7 +687,7 @@ class ListBox extends React.Component {
         }
     }
     /** A getter that returns an array of all ListBox items.
-    *	Property type: {label: string, value: string}[]
+    *	Property type: ListBoxItem[]
     */
     get items() {
         return this.nativeElement ? this.nativeElement.items : undefined;
@@ -1023,6 +1023,23 @@ class ListBox extends React.Component {
                 return new Promise(resolve => {
                     this.nativeElement.whenRendered(() => {
                         const result = this.nativeElement.getItem(value);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns an array of ListBox items.
+    * @returns {{label: string, value: string}[]}
+  */
+    getItems() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getItems();
                         resolve(result);
                     });
                 });

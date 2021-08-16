@@ -631,6 +631,17 @@ class Tree extends React.Component {
             this.nativeElement.filterInputPlaceholder = value;
         }
     }
+    /** Determines the TreeItem property that will be used as a filtering criteria. By default the label property is used. It can be set to 'value' if the user wants to filter by the value property or 'textContent' if the user wants to filter by text inside the TreeItem's content or any other property.
+    *	Property type: string
+    */
+    get filterMember() {
+        return this.nativeElement ? this.nativeElement.filterMember : undefined;
+    }
+    set filterMember(value) {
+        if (this.nativeElement) {
+            this.nativeElement.filterMember = value;
+        }
+    }
     /** Sets filter mode.
     *	Property type: FilterMode
     */
@@ -919,7 +930,7 @@ class Tree extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["allowDrag", "allowDrop", "animation", "autoHideToggleElement", "autoLoadState", "autoSaveState", "autoSort", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dragFeedbackFormatFunction", "dragOffset", "editable", "expandMode", "filterable", "filterInputPlaceholder", "filterMode", "hasThreeStates", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "overflow", "readonly", "rightToLeft", "scrollMode", "selectedIndexes", "selectionDisplayMode", "selectionMode", "selectionTarget", "showLines", "showRootLines", "sort", "sortDirection", "sorted", "theme", "toggleElementPosition", "toggleMode", "unfocusable", "valueMember"];
+        return ["allowDrag", "allowDrop", "animation", "autoHideToggleElement", "autoLoadState", "autoSaveState", "autoSort", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dragFeedbackFormatFunction", "dragOffset", "editable", "expandMode", "filterable", "filterInputPlaceholder", "filterMember", "filterMode", "hasThreeStates", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "overflow", "readonly", "rightToLeft", "scrollMode", "selectedIndexes", "selectionDisplayMode", "selectionMode", "selectionTarget", "showLines", "showRootLines", "sort", "sortDirection", "sorted", "theme", "toggleElementPosition", "toggleMode", "unfocusable", "valueMember"];
     }
     // Gets the events of the React component.
     get eventListeners() {

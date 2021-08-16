@@ -1,8 +1,8 @@
 import React from "react";
 import { SchedulerProperties } from "./../index";
-import { SchedulerEventRenderMode, SchedulerDayFormat, FilterMode, SchedulerGroupOrientation, SchedulerHourFormat, SchedulerHeaderDatePosition, SchedulerHeaderNavigationStyle, SchedulerHeaderViewPosition, SchedulerLegendLocation, SchedulerLegendPosition, HorizontalScrollBarVisibility, MinuteFormat, MonthFormat, ResizeHandlesVisibility, SchedulerScrollButtonsPosition, SchedulerTimelineDayScale, SchedulerTimeZone, VerticalScrollBarVisibility, SchedulerViewType, SchedulerViews, SchedulerViewSelectorType, WeekDayFormat, YearFormat, SchedulerDataExport, SchedulerDataSource, SchedulerEvent, SchedulerResource, SchedulerStatuse } from './../index';
+import { SchedulerEventRenderMode, SchedulerDayFormat, FilterMode, SchedulerGroupOrientation, SchedulerHourFormat, SchedulerHeaderDatePosition, SchedulerHeaderNavigationStyle, SchedulerHeaderViewPosition, SchedulerLegendLocation, SchedulerLegendPosition, HorizontalScrollBarVisibility, MinuteFormat, MonthFormat, ResizeHandlesVisibility, SchedulerScrollButtonsPosition, SchedulerTimelineDayScale, SchedulerTimeZone, VerticalScrollBarVisibility, SchedulerViewType, SchedulerViews, SchedulerViewSelectorType, WeekDayFormat, YearFormat, SchedulerDataExport, SchedulerEvent, SchedulerResource, SchedulerStatuse } from './../index';
 export { SchedulerProperties } from "./../index";
-export { SchedulerEventRenderMode, SchedulerRepeatFreq, SchedulerNotificationType, SchedulerDayFormat, FilterMode, SchedulerGroupOrientation, SchedulerHourFormat, SchedulerHeaderDatePosition, SchedulerHeaderNavigationStyle, SchedulerHeaderViewPosition, SchedulerLegendLocation, SchedulerLegendPosition, HorizontalScrollBarVisibility, MinuteFormat, MonthFormat, ResizeHandlesVisibility, SchedulerScrollButtonsPosition, SchedulerTimelineDayScale, SchedulerTimeZone, VerticalScrollBarVisibility, SchedulerViewType, SchedulerViews, SchedulerViewSelectorType, WeekDayFormat, YearFormat, SchedulerDataExport, SchedulerDataSource, SchedulerDataSourceRepeat, SchedulerNotification, SchedulerEvent, SchedulerEventRepeat, SchedulerResource, SchedulerStatuse } from './../index';
+export { SchedulerEventRenderMode, SchedulerRepeatFreq, SchedulerNotificationType, SchedulerDayFormat, FilterMode, SchedulerGroupOrientation, SchedulerHourFormat, SchedulerHeaderDatePosition, SchedulerHeaderNavigationStyle, SchedulerHeaderViewPosition, SchedulerLegendLocation, SchedulerLegendPosition, HorizontalScrollBarVisibility, MinuteFormat, MonthFormat, ResizeHandlesVisibility, SchedulerScrollButtonsPosition, SchedulerTimelineDayScale, SchedulerTimeZone, VerticalScrollBarVisibility, SchedulerViewType, SchedulerViews, SchedulerViewSelectorType, WeekDayFormat, YearFormat, SchedulerDataExport, SchedulerEvent, SchedulerEventRepeat, SchedulerNotification, SchedulerResource, SchedulerStatuse } from './../index';
 export { DataAdapter } from './../index';
 export declare const Smart: any;
 export interface SchedulerProps extends SchedulerProperties {
@@ -11,6 +11,7 @@ export interface SchedulerProps extends SchedulerProperties {
     onBeginUpdate?: ((event?: Event) => void) | undefined;
     onEndUpdate?: ((event?: Event) => void) | undefined;
     onChange?: ((event?: Event) => void) | undefined;
+    onItemChange?: ((event?: Event) => void) | undefined;
     onItemClick?: ((event?: Event) => void) | undefined;
     onItemInsert?: ((event?: Event) => void) | undefined;
     onItemRemove?: ((event?: Event) => void) | undefined;
@@ -118,10 +119,10 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     get dataExport(): SchedulerDataExport;
     set dataExport(value: SchedulerDataExport);
     /** Determines the events that will be loaded inside the Timeline. Each event represents an object that should contain the following properties:
-    *	Property type: SchedulerDataSource[]
+    *	Property type: SchedulerEvent[]
     */
-    get dataSource(): SchedulerDataSource[];
-    set dataSource(value: SchedulerDataSource[]);
+    get dataSource(): SchedulerEvent[];
+    set dataSource(value: SchedulerEvent[]);
     /** A callback that can be used to customize the text inside the date selector located in the header. The callback has one parameter - the current date.
     *	Property type: any
     */
@@ -292,6 +293,11 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     */
     get hideNonworkingWeekdays(): boolean;
     set hideNonworkingWeekdays(value: boolean);
+    /** Determines whether other month days are visible when view is set to month. When enabled, events that start on other month days are not displayed and the cells that represent such days do not allow the creation of new events on them. Also dragging and droping an event on other month days is not allowed. Reszing is also affected. Events can end on other month days, but cannot start on one.
+    *	Property type: boolean
+    */
+    get hideOtherMonthDays(): boolean;
+    set hideOtherMonthDays(value: boolean);
     /** Determines whether the 'Today' button is hidden or not.
     *	Property type: boolean
     */
@@ -332,6 +338,11 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     */
     get max(): string | Date;
     set max(value: string | Date);
+    /** Detetmines the maximum number of events per Scheduler cell. By default this property is null which means that the number of events per cell is automatically determined by the size of the events.
+    *	Property type: number | null
+    */
+    get maxEventsPerCell(): number | null;
+    set maxEventsPerCell(value: number | null);
     /** Detetmines the minimum view date for the Scheduler.
     *	Property type: string | Date
     */
@@ -482,7 +493,7 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     */
     get viewType(): SchedulerViewType;
     set viewType(value: SchedulerViewType);
-    /** Determines the viewing date range of the timeline. The property should be set to an array of strings or view objects. When you set it to a string, you should use any of the following: 'day', 'week', 'month', 'agenda', 'timelineDay', 'timelineWeek', 'timelineMonth'. Custom views can be defined as objects instead of strings. The view object should contain the following properties: label - the label for the view.value - the value for the view. The value is the unique identifier for the view.type - the type of view. The type should be one of the default allowed values for a view.hideWeekend - an Optional property that allows to hide the weekend only for this specific view.hideNonworkingWeekdays - an Optional property that allows to hide the nonwrking weekdays for this specific view.shortcutKey - an Optional property that allows to set a custom shortcut key for the view.
+    /** Determines the viewing date range of the timeline. The property should be set to an array of strings or view objects. When you set it to a string, you should use any of the following: 'day', 'week', 'month', 'agenda', 'timelineDay', 'timelineWeek', 'timelineMonth'. Custom views can be defined as objects instead of strings. The view object should contain the following properties: label - the label for the view.value - the value for the view. The value is the unique identifier for the view.type - the type of view. The type should be one of the default allowed values for a view.hideWeekend - an Optional property that allows to hide the weekend only for this specific view.hideNonworkingWeekdays - an Optional property that allows to hide the nonwrking weekdays for this specific view.shortcutKey - an Optional property that allows to set a custom shortcut key for the view.hideHours - an Optional property applicable only to timelineWeek view that allows to hide the hour cells and only show the day cells.
     *	Property type: SchedulerViews
     */
     get views(): SchedulerViews;
@@ -530,6 +541,12 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     *   oldValue - The previously selected Date.
     */
     onChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when an Event has been updated/inserted/removed/dragged/resized.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	type, 	item)
+    *   type - The type of change that is being done to the item.
+    *   item - An object that represents the actual item with it's attributes.
+    */
+    onItemChange?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when en event, event item or a context menu item is clicked.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	type, 	itemObj)
     *   item - The HTMLElement for the event.

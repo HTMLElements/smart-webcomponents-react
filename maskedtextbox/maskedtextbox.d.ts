@@ -8,6 +8,7 @@ export interface MaskedTextBoxProps extends MaskedTextBoxProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onChanging?: ((event?: Event) => void) | undefined;
     onValidation?: ((event?: Event) => void) | undefined;
     onCreate?: ((event?: Event) => void) | undefined;
     onReady?: ((event?: Event) => void) | undefined;
@@ -192,11 +193,17 @@ export declare class MaskedTextBox extends React.Component<React.HTMLAttributes<
     set validation(value: any);
     get properties(): string[];
     /**  This event is triggered when the value of the Text Box is changed.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	newValue)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value)
     *   oldValue - The previous value before it was changed.
-    *   newValue - The new value.
+    *   value - The new value.
     */
     onChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered on each key up event of the MaskedTextBox, if the value is changed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value)
+    *   oldValue - The previous value before it was changed.
+    *   value - The new value.
+    */
+    onChanging?: ((event?: Event) => void) | undefined;
     /**  This event is triggered if the validation property is set. Indicates whether valiation has passed successfully or not.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	success)
     *   success - A flag inidicating whether the validation was successfull or not.

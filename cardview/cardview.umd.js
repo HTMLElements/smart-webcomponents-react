@@ -160,6 +160,17 @@ require('../source/modules/smart.cardview');
                 this.nativeElement.dataSource = value;
             }
         }
+        /** Sets the grid's data source settings when the dataSource property is set to an Array or URL.
+        *	Property type: DataSourceSettings
+        */
+        get dataSourceSettings() {
+            return this.nativeElement ? this.nativeElement.dataSourceSettings : undefined;
+        }
+        set dataSourceSettings(value) {
+            if (this.nativeElement) {
+                this.nativeElement.dataSourceSettings = value;
+            }
+        }
         /** Allows the edit option for the cards.
         *	Property type: boolean
         */
@@ -204,6 +215,28 @@ require('../source/modules/smart.cardview');
                 this.nativeElement.messages = value;
             }
         }
+        /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+        *	Property type: boolean
+        */
+        get rightToLeft() {
+            return this.nativeElement ? this.nativeElement.rightToLeft : undefined;
+        }
+        set rightToLeft(value) {
+            if (this.nativeElement) {
+                this.nativeElement.rightToLeft = value;
+            }
+        }
+        /** Determines the theme. Theme defines the look of the element
+        *	Property type: string
+        */
+        get theme() {
+            return this.nativeElement ? this.nativeElement.theme : undefined;
+        }
+        set theme(value) {
+            if (this.nativeElement) {
+                this.nativeElement.theme = value;
+            }
+        }
         /** Describes the scrolling behavior of the element.
         *	Property type: Scrolling
         */
@@ -228,7 +261,7 @@ require('../source/modules/smart.cardview');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["addNewButton", "allowDrag", "animation", "cardHeight", "cellOrientation", "collapsible", "columns", "coverField", "coverMode", "dataSource", "editable", "headerPosition", "locale", "messages", "scrolling", "titleField"];
+            return ["addNewButton", "allowDrag", "animation", "cardHeight", "cellOrientation", "collapsible", "columns", "coverField", "coverMode", "dataSource", "dataSourceSettings", "editable", "headerPosition", "locale", "messages", "rightToLeft", "theme", "scrolling", "titleField"];
         }
         // Gets the events of the React component.
         get eventListeners() {

@@ -1,0 +1,7 @@
+{
+    "main": "multilinewindow.umd.js",
+    "module": "multilinewindow.esm.js",
+	"typings": "multilinewindow.d.ts",
+    "name": "smart-webcomponents-react/multilinewindow",
+    "sideEffects": false
+  }

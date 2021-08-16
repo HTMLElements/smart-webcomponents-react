@@ -41,62 +41,66 @@ export declare class ProgressBar extends React.Component<React.HTMLAttributes<El
     */
     get inverted(): boolean;
     set inverted(value: boolean);
-    /** A callback function defining the new format for the label of the Progress Bar.
-    *	Property type: any
-    */
-    get formatFunction(): any;
-    set formatFunction(value: any);
     /** Sets or gets the language. Used in conjunction with the property messages.
+    *	Property type: {(value: number): string}
+    */
+    get formatFunction(): {
+        (value: number): string;
+    };
+    set formatFunction(value: {
+        (value: number): string;
+    });
+    /** Callback, related to localization module.
     *	Property type: string
     */
     get locale(): string;
     set locale(value: string);
-    /** Callback, related to localization module.
+    /** Sets progress bars maximum possible value.
     *	Property type: any
     */
     get localizeFormatFunction(): any;
     set localizeFormatFunction(value: any);
-    /** Sets progress bars maximum possible value.
+    /** Sets an object with string values, related to the different states of passwords strength.
     *	Property type: number
     */
     get max(): number;
     set max(value: number);
-    /** Sets an object with string values, related to the different states of passwords strength.
+    /** Sets progress bars minimum possible value.
     *	Property type: any
     */
     get messages(): any;
     set messages(value: any);
-    /** Sets progress bars minimum possible value.
+    /** Sets the orientation of the progress bar
     *	Property type: number
     */
     get min(): number;
     set min(value: number);
-    /** Sets the orientation of the progress bar
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: Orientation
     */
     get orientation(): Orientation;
     set orientation(value: Orientation);
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Enables/Disabled the label for the Progress Bar.
     *	Property type: boolean
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
-    /** Enables/Disabled the label for the Progress Bar.
+    /** Determines the theme. Theme defines the look of the element
     *	Property type: boolean
     */
     get showProgressValue(): boolean;
     set showProgressValue(value: boolean);
-    /** Determines the theme. Theme defines the look of the element
+    /** If is set to true, the element cannot be focused.
     *	Property type: string
     */
     get theme(): string;
     set theme(value: string);
-    /** If is set to true, the element cannot be focused.
+    /** Sets or gets the value of the progress bar
     *	Property type: boolean
     */
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
-    /** Sets or gets the value of the progress bar
+    /** undefined
     *	Property type: number
     */
     get value(): number;

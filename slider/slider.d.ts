@@ -246,7 +246,10 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     set wordLength(value: WordLength);
     get properties(): string[];
     /**  This event is triggered when the value of the slider is changed.
-    *  @param event. The custom event. 	*/
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	value, 	oldValue)
+    *   value - A numeric value indicating the scroll position.
+    *   oldValue - A numeric value indicating the previous scroll position.
+    */
     onChange?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/

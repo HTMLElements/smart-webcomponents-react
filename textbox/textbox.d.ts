@@ -12,6 +12,7 @@ export interface TextBoxProps extends TextBoxProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onChanging?: ((event?: Event) => void) | undefined;
     onCreate?: ((event?: Event) => void) | undefined;
     onReady?: ((event?: Event) => void) | undefined;
 }
@@ -284,13 +285,19 @@ export declare class TextBox extends React.Component<React.HTMLAttributes<Elemen
     get verticalScrollBarVisibility(): VerticalScrollBarVisibility;
     set verticalScrollBarVisibility(value: VerticalScrollBarVisibility);
     get properties(): string[];
-    /**  This event is triggered when the value of the Text Box is changed.
+    /**  This event is triggered when the value of the Text Box is changed. This happens on blur and if 'Enter' is pressed.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value, 	type)
     *   oldValue - The previous value before it was changed.
     *   value - The new value.
     *   type - The type of the event.
     */
     onChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered on each key up event of the TextBox, if the value is changed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value)
+    *   oldValue - The previous value before it was changed.
+    *   value - The new value.
+    */
+    onChanging?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;

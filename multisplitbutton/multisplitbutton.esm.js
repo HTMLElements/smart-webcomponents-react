@@ -791,7 +791,7 @@ class MultiSplitButton extends React.Component {
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onChange", "onClose", "onClosing", "onItemClick", "onOpen", "onOpening", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
+        return ["onButtonClick", "onChange", "onClose", "onClosing", "onItemClick", "onOpen", "onOpening", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
     }
     /** Closes button's dropDown list.
     */

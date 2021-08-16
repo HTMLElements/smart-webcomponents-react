@@ -83,6 +83,17 @@ require('../source/modules/smart.querybuilder');
                 this.nativeElement.applyMode = value;
             }
         }
+        /** Determines whether QueryBuilder will automatically prompt the user to enter a condition value when a new condition is created. When 'applyMode' is set to 'immediately', the operation field is automatically populated if empty when the selected condition operator is changed. The input field prompts the user when the operation or operator of the condition is changed.
+        *	Property type: boolean
+        */
+        get autoPrompt() {
+            return this.nativeElement ? this.nativeElement.autoPrompt : undefined;
+        }
+        set autoPrompt(value) {
+            if (this.nativeElement) {
+                this.nativeElement.autoPrompt = value;
+            }
+        }
         /** Adds more operations that can be used to the query bilder's conditions structure. Each custom operation can have the following fields:label - label to be displayed in the operator box. Multiple operations with the same label can exist.name - unique name of the operationeditorTemplate - callback function that creates a custom value editorvalueTemplate - callback function that displays the value after the edior has been closedhandleValue - callback function that handles the value returned by the editor when it is closed. If the dataType is 'object' the expected result from the function should contain a 'label' and 'value' attributes. Where the label will be used for displaying purposes while 'value' will be used as the actual value. hideValue - a boolean condition that specifies whether the operation requires a value or notexpressionTemplate - a string representing a custom Linq expression template. If the value of the element is a string it will be considered as a Linq expression and it will be checked against all expressionTemplates to find a match.expressionReaderCallback - a callback that is used to specify which arguments from the expression are used for the fieldName and value. Used when converting a Linq expression to QueryBuilder value. Takes two arguments: expression - the LinQ expression defined in the expressionTemplate of the customOperator. Type stringbindings - an array of expression parameters based on the expression template of the customOperator. Type Array[string]expressionBuilderCallback - a callback function that is used to specify which arguments from the Linq expression are used for the fieldName and value when building the Linq expression from the current value of the element. Takes three arguments: name - the name of the dataField. Type string.operation - the name of the operation. Type stringvalue - the value of the operation. Type any( depends on the dataField).
         *	Property type: any
         */
@@ -259,6 +270,17 @@ require('../source/modules/smart.querybuilder');
                 this.nativeElement.showIcons = value;
             }
         }
+        /** Shows/Hides the drop down icon for the operator field name of the conditions.
+        *	Property type: boolean
+        */
+        get showFieldNameArrow() {
+            return this.nativeElement ? this.nativeElement.showFieldNameArrow : undefined;
+        }
+        set showFieldNameArrow(value) {
+            if (this.nativeElement) {
+                this.nativeElement.showFieldNameArrow = value;
+            }
+        }
         /** Determines the theme. Theme defines the look of the element
         *	Property type: string
         */
@@ -281,6 +303,28 @@ require('../source/modules/smart.querybuilder');
                 this.nativeElement.unfocusable = value;
             }
         }
+        /** Determines whether the value of the condition is validated on key up or not. By default the value is validated when the user blur's the value input. The validationTimeout determines the time interval after the user has ended typing that triggers the value validation.
+        *	Property type: boolean
+        */
+        get validateOnInput() {
+            return this.nativeElement ? this.nativeElement.validateOnInput : undefined;
+        }
+        set validateOnInput(value) {
+            if (this.nativeElement) {
+                this.nativeElement.validateOnInput = value;
+            }
+        }
+        /** Determines the timeout (starting after the user has finished typing in the value field) before the validation is applied to the condition value. This property works along validationOnInput.
+        *	Property type: number
+        */
+        get validationTimeout() {
+            return this.nativeElement ? this.nativeElement.validationTimeout : undefined;
+        }
+        set validationTimeout(value) {
+            if (this.nativeElement) {
+                this.nativeElement.validationTimeout = value;
+            }
+        }
         /** The value is represented by multidimensional array. The array contains group operators with conditions. Each group can contain multiple conditions.
         *	Property type: any
         */
@@ -292,7 +336,7 @@ require('../source/modules/smart.querybuilder');
                 this.nativeElement.value = value;
             }
         }
-        /** Callback used to format the content of the value fields.
+        /** Callback used to format the content of the condition value fields.
         *	Property type: any
         */
         get valueFormatFunction() {
@@ -316,7 +360,7 @@ require('../source/modules/smart.querybuilder');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["allowDrag", "animation", "applyMode", "customOperations", "disabled", "dropDownWidth", "fields", "fieldsMode", "formatStringDate", "formatStringDateTime", "getDynamicField", "icons", "locale", "localizeFormatFunction", "messages", "operatorPlaceholder", "propertyPlaceholder", "rightToLeft", "showIcons", "theme", "unfocusable", "value", "valueFormatFunction", "valuePlaceholder"];
+            return ["allowDrag", "animation", "applyMode", "autoPrompt", "customOperations", "disabled", "dropDownWidth", "fields", "fieldsMode", "formatStringDate", "formatStringDateTime", "getDynamicField", "icons", "locale", "localizeFormatFunction", "messages", "operatorPlaceholder", "propertyPlaceholder", "rightToLeft", "showIcons", "showFieldNameArrow", "theme", "unfocusable", "validateOnInput", "validationTimeout", "value", "valueFormatFunction", "valuePlaceholder"];
         }
         // Gets the events of the React component.
         get eventListeners() {

@@ -41,8 +41,8 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** A callback function defining the new format for the label of the Progress Bar.
-    *	Property type: any
+    /** Sets the value of the Circular Progress bar to indeterminate state(null) and starts the animation.
+    *	Property type: {(value: number): string}
     */
     get formatFunction() {
         return this.nativeElement ? this.nativeElement.formatFunction : undefined;
@@ -52,7 +52,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.formatFunction = value;
         }
     }
-    /** Sets the value of the Circular Progress bar to indeterminate state(null) and starts the animation.
+    /** Sets the filling direction of the Circular Progress Bar.
     *	Property type: boolean
     */
     get indeterminate() {
@@ -63,7 +63,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.indeterminate = value;
         }
     }
-    /** Sets the filling direction of the Circular Progress Bar.
+    /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: boolean
     */
     get inverted() {
@@ -74,7 +74,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.inverted = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Callback, related to localization module.
     *	Property type: string
     */
     get locale() {
@@ -85,7 +85,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback, related to localization module.
+    /** Sets progress bars maximum possible value.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -96,7 +96,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets progress bars maximum possible value.
+    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
     *	Property type: number
     */
     get max() {
@@ -107,7 +107,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.max = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Sets progress bars minimum possible value.
     *	Property type: any
     */
     get messages() {
@@ -118,7 +118,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets progress bars minimum possible value.
+    /** Enables/Disabled the label for the Progress Bar.
     *	Property type: number
     */
     get min() {
@@ -129,7 +129,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.min = value;
         }
     }
-    /** Enables/Disabled the label for the Progress Bar.
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */
     get showProgressValue() {
@@ -140,7 +140,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.showProgressValue = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Determines the theme. Theme defines the look of the element
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -151,7 +151,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** If is set to true, the element cannot be focused.
     *	Property type: string
     */
     get theme() {
@@ -162,7 +162,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** Sets or gets the value of the progress bar
     *	Property type: boolean
     */
     get unfocusable() {
@@ -173,7 +173,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Sets or gets the value of the progress bar
+    /** undefined
     *	Property type: number
     */
     get value() {
@@ -340,8 +340,8 @@ class ProgressBar extends React.Component {
             this.nativeElement.inverted = value;
         }
     }
-    /** A callback function defining the new format for the label of the Progress Bar.
-    *	Property type: any
+    /** Sets or gets the language. Used in conjunction with the property messages.
+    *	Property type: {(value: number): string}
     */
     get formatFunction() {
         return this.nativeElement ? this.nativeElement.formatFunction : undefined;
@@ -351,7 +351,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.formatFunction = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Callback, related to localization module.
     *	Property type: string
     */
     get locale() {
@@ -362,7 +362,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback, related to localization module.
+    /** Sets progress bars maximum possible value.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -373,7 +373,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets progress bars maximum possible value.
+    /** Sets an object with string values, related to the different states of passwords strength.
     *	Property type: number
     */
     get max() {
@@ -384,7 +384,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.max = value;
         }
     }
-    /** Sets an object with string values, related to the different states of passwords strength.
+    /** Sets progress bars minimum possible value.
     *	Property type: any
     */
     get messages() {
@@ -395,7 +395,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets progress bars minimum possible value.
+    /** Sets the orientation of the progress bar
     *	Property type: number
     */
     get min() {
@@ -406,7 +406,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.min = value;
         }
     }
-    /** Sets the orientation of the progress bar
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: Orientation
     */
     get orientation() {
@@ -417,7 +417,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.orientation = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Enables/Disabled the label for the Progress Bar.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -428,7 +428,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Enables/Disabled the label for the Progress Bar.
+    /** Determines the theme. Theme defines the look of the element
     *	Property type: boolean
     */
     get showProgressValue() {
@@ -439,7 +439,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.showProgressValue = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** If is set to true, the element cannot be focused.
     *	Property type: string
     */
     get theme() {
@@ -450,7 +450,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** Sets or gets the value of the progress bar
     *	Property type: boolean
     */
     get unfocusable() {
@@ -461,7 +461,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Sets or gets the value of the progress bar
+    /** undefined
     *	Property type: number
     */
     get value() {

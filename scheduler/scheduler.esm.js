@@ -190,7 +190,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the events that will be loaded inside the Timeline. Each event represents an object that should contain the following properties:
-    *	Property type: SchedulerDataSource[]
+    *	Property type: SchedulerEvent[]
     */
     get dataSource() {
         return this.nativeElement ? this.nativeElement.dataSource : undefined;
@@ -574,6 +574,17 @@ class Scheduler extends React.Component {
             this.nativeElement.hideNonworkingWeekdays = value;
         }
     }
+    /** Determines whether other month days are visible when view is set to month. When enabled, events that start on other month days are not displayed and the cells that represent such days do not allow the creation of new events on them. Also dragging and droping an event on other month days is not allowed. Reszing is also affected. Events can end on other month days, but cannot start on one.
+    *	Property type: boolean
+    */
+    get hideOtherMonthDays() {
+        return this.nativeElement ? this.nativeElement.hideOtherMonthDays : undefined;
+    }
+    set hideOtherMonthDays(value) {
+        if (this.nativeElement) {
+            this.nativeElement.hideOtherMonthDays = value;
+        }
+    }
     /** Determines whether the 'Today' button is hidden or not.
     *	Property type: boolean
     */
@@ -660,6 +671,17 @@ class Scheduler extends React.Component {
     set max(value) {
         if (this.nativeElement) {
             this.nativeElement.max = value;
+        }
+    }
+    /** Detetmines the maximum number of events per Scheduler cell. By default this property is null which means that the number of events per cell is automatically determined by the size of the events.
+    *	Property type: number | null
+    */
+    get maxEventsPerCell() {
+        return this.nativeElement ? this.nativeElement.maxEventsPerCell : undefined;
+    }
+    set maxEventsPerCell(value) {
+        if (this.nativeElement) {
+            this.nativeElement.maxEventsPerCell = value;
         }
     }
     /** Detetmines the minimum view date for the Scheduler.
@@ -992,7 +1014,7 @@ class Scheduler extends React.Component {
             this.nativeElement.viewType = value;
         }
     }
-    /** Determines the viewing date range of the timeline. The property should be set to an array of strings or view objects. When you set it to a string, you should use any of the following: 'day', 'week', 'month', 'agenda', 'timelineDay', 'timelineWeek', 'timelineMonth'. Custom views can be defined as objects instead of strings. The view object should contain the following properties: label - the label for the view.value - the value for the view. The value is the unique identifier for the view.type - the type of view. The type should be one of the default allowed values for a view.hideWeekend - an Optional property that allows to hide the weekend only for this specific view.hideNonworkingWeekdays - an Optional property that allows to hide the nonwrking weekdays for this specific view.shortcutKey - an Optional property that allows to set a custom shortcut key for the view.
+    /** Determines the viewing date range of the timeline. The property should be set to an array of strings or view objects. When you set it to a string, you should use any of the following: 'day', 'week', 'month', 'agenda', 'timelineDay', 'timelineWeek', 'timelineMonth'. Custom views can be defined as objects instead of strings. The view object should contain the following properties: label - the label for the view.value - the value for the view. The value is the unique identifier for the view.type - the type of view. The type should be one of the default allowed values for a view.hideWeekend - an Optional property that allows to hide the weekend only for this specific view.hideNonworkingWeekdays - an Optional property that allows to hide the nonwrking weekdays for this specific view.shortcutKey - an Optional property that allows to set a custom shortcut key for the view.hideHours - an Optional property applicable only to timelineWeek view that allows to hide the hour cells and only show the day cells.
     *	Property type: SchedulerViews
     */
     get views() {
@@ -1071,11 +1093,11 @@ class Scheduler extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["autoScrollStep", "colorScheme", "currentTimeIndicator", "currentTimeIndicatorInterval", "contextMenuDataSource", "contextMenuClipboardActions", "eventTemplate", "eventCollectorTemplate", "eventRenderMode", "eventTooltipTemplate", "cellTemplate", "dateCurrent", "dataExport", "dataSource", "dateSelectorFormatFunction", "dayFormat", "disabled", "disableAutoScroll", "disableDrag", "disableDrop", "disableResize", "disableSelection", "disableWindowEditor", "disableContextMenu", "disableEventMenu", "disableViewMenu", "disableDateMenu", "dragFeedbackFormatFunction", "dragOffset", "filter", "filterable", "filterMode", "events", "firstDayOfWeek", "footerTemplate", "groupByDate", "groupOrientation", "groupTemplate", "groups", "hourEnd", "hourStart", "hourFormat", "headerTemplate", "headerDatePosition", "headerNavigationStyle", "headerViewPosition", "hideAllDay", "hideNonworkingWeekdays", "hideTodayButton", "hideViewMenuCheckableItems", "hideWeekend", "legendLocation", "legendPosition", "horizontalScrollBarVisibility", "locale", "max", "min", "messages", "minuteFormat", "monthFormat", "nonworkingDays", "nonworkingHours", "notificationInterval", "resizeHandlesVisibility", "resizeInterval", "resources", "restrictedDates", "restrictedHours", "rightToLeft", "scrollButtonsPosition", "shadeUntilCurrentTime", "showLegend", "spinButtonsDelay", "spinButtonsInitialDelay", "statuses", "theme", "timelineHeaderFormatFunction", "timelineDayScale", "timeRulerTicks", "timeZone", "timeZones", "tooltipDelay", "tooltipOffset", "verticalScrollBarVisibility", "view", "viewType", "views", "viewSelectorType", "weekdayFormat", "yearFormat", "unfocusable", "undoRedoSteps", "windowCustomizationFunction"];
+        return ["autoScrollStep", "colorScheme", "currentTimeIndicator", "currentTimeIndicatorInterval", "contextMenuDataSource", "contextMenuClipboardActions", "eventTemplate", "eventCollectorTemplate", "eventRenderMode", "eventTooltipTemplate", "cellTemplate", "dateCurrent", "dataExport", "dataSource", "dateSelectorFormatFunction", "dayFormat", "disabled", "disableAutoScroll", "disableDrag", "disableDrop", "disableResize", "disableSelection", "disableWindowEditor", "disableContextMenu", "disableEventMenu", "disableViewMenu", "disableDateMenu", "dragFeedbackFormatFunction", "dragOffset", "filter", "filterable", "filterMode", "events", "firstDayOfWeek", "footerTemplate", "groupByDate", "groupOrientation", "groupTemplate", "groups", "hourEnd", "hourStart", "hourFormat", "headerTemplate", "headerDatePosition", "headerNavigationStyle", "headerViewPosition", "hideAllDay", "hideNonworkingWeekdays", "hideOtherMonthDays", "hideTodayButton", "hideViewMenuCheckableItems", "hideWeekend", "legendLocation", "legendPosition", "horizontalScrollBarVisibility", "locale", "max", "maxEventsPerCell", "min", "messages", "minuteFormat", "monthFormat", "nonworkingDays", "nonworkingHours", "notificationInterval", "resizeHandlesVisibility", "resizeInterval", "resources", "restrictedDates", "restrictedHours", "rightToLeft", "scrollButtonsPosition", "shadeUntilCurrentTime", "showLegend", "spinButtonsDelay", "spinButtonsInitialDelay", "statuses", "theme", "timelineHeaderFormatFunction", "timelineDayScale", "timeRulerTicks", "timeZone", "timeZones", "tooltipDelay", "tooltipOffset", "verticalScrollBarVisibility", "view", "viewType", "views", "viewSelectorType", "weekdayFormat", "yearFormat", "unfocusable", "undoRedoSteps", "windowCustomizationFunction"];
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onBeginUpdate", "onEndUpdate", "onChange", "onItemClick", "onItemInsert", "onItemRemove", "onItemUpdate", "onViewChange", "onViewChanging", "onEventShortcutKey", "onDateChange", "onDragStart", "onDragEnd", "onResizeStart", "onResizeEnd", "onEditDialogOpening", "onEditDialogOpen", "onEditDialogClose", "onEditDialogClosing", "onContextMenuOpening", "onContextMenuOpen", "onContextMenuClose", "onContextMenuClosing", "onEventMenuOpening", "onEventMenuOpen", "onEventMenuClose", "onEventMenuClosing", "onDateMenuOpen", "onDateMenuClose", "onViewMenuOpen", "onViewMenuClose", "onNotificationOpen", "onNotificationClose", "onCreate", "onReady"];
+        return ["onBeginUpdate", "onEndUpdate", "onChange", "onItemChange", "onItemClick", "onItemInsert", "onItemRemove", "onItemUpdate", "onViewChange", "onViewChanging", "onEventShortcutKey", "onDateChange", "onDragStart", "onDragEnd", "onResizeStart", "onResizeEnd", "onEditDialogOpening", "onEditDialogOpen", "onEditDialogClose", "onEditDialogClosing", "onContextMenuOpening", "onContextMenuOpen", "onContextMenuClose", "onContextMenuClosing", "onEventMenuOpening", "onEventMenuOpen", "onEventMenuClose", "onEventMenuClosing", "onDateMenuOpen", "onDateMenuClose", "onViewMenuOpen", "onViewMenuClose", "onNotificationOpen", "onNotificationClose", "onCreate", "onReady"];
     }
     /** Starts an update operation. This is appropriate when calling multiple methods or set multiple properties at once.
     */

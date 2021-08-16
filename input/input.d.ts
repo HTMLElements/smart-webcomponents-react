@@ -8,6 +8,8 @@ export interface InputProps extends InputProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
+    onChanging?: ((event?: Event) => void) | undefined;
+    onItemClick?: ((event?: Event) => void) | undefined;
     onCreate?: ((event?: Event) => void) | undefined;
     onReady?: ((event?: Event) => void) | undefined;
 }
@@ -39,6 +41,11 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     */
     get disabled(): boolean;
     set disabled(value: boolean);
+    /** Sets additional class names to the Input drop down.
+    *	Property type: any
+    */
+    get dropDownClassList(): any;
+    set dropDownClassList(value: any);
     /** Determines the position of the drop down button.
     *	Property type: DropDownButtonPosition
     */
@@ -158,6 +165,19 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     *   value - The value of the new selected item.
     */
     onChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered on each key up event of the Input, if the value is changed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value)
+    *   oldValue - The previous value before it was changed.
+    *   value - The new value.
+    */
+    onChanging?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the user clicks on an item from the popup list.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	label, 	value)
+    *   item - The item that was clicked.
+    *   label - The label of the item that was clicked.
+    *   value - The value of the item that was clicked.
+    */
+    onItemClick?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;

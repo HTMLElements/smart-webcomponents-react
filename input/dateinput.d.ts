@@ -24,6 +24,16 @@ export declare class DateInput extends React.Component<React.HTMLAttributes<Elem
     */
     get animation(): Animation;
     set animation(value: Animation);
+    /** Determines whether the calendar button pop-up will be closed automatically when date or time is selected through it.
+    *	Property type: boolean
+    */
+    get autoClose(): boolean;
+    set autoClose(value: boolean);
+    /** Determines the delay before the calendar pop-up is automatically closed. Applicable only when autoClose is set to true.
+    *	Property type: number
+    */
+    get autoCloseDelay(): number;
+    set autoCloseDelay(value: number);
     /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. Intl.DateTimeFormat is used to format date strings in JavaScript. By default the date format is 'numeric'. The default value is: { day: 'numeric', month: 'numeric', year: 'numeric' }
     *	Property type: DateTimeFormat
     */
@@ -114,7 +124,7 @@ export declare class DateInput extends React.Component<React.HTMLAttributes<Elem
     */
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
-    /** Sets or gets the value of the element.
+    /** Sets or gets the value of the element. Expected value is: Date string, Date object or null.
     *	Property type: any
     */
     get value(): any;

@@ -7,6 +7,7 @@ export declare const Smart: any;
 export interface RatingProps extends RatingProperties {
     className?: string;
     style?: React.CSSProperties;
+    onChange?: ((event?: Event) => void) | undefined;
     onCreate?: ((event?: Event) => void) | undefined;
     onReady?: ((event?: Event) => void) | undefined;
 }
@@ -74,6 +75,12 @@ export declare class Rating extends React.Component<React.HTMLAttributes<Element
     get value(): number;
     set value(value: number);
     get properties(): string[];
+    /**  This event is triggered when the value of the slider is changed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	value, 	oldValue)
+    *   value - A numeric value indicating the scroll position.
+    *   oldValue - A numeric value indicating the previous scroll position.
+    */
+    onChange?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;
@@ -81,6 +88,14 @@ export declare class Rating extends React.Component<React.HTMLAttributes<Element
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
+    /** Get the value of the rating.
+    * @returns {number}
+  */
+    getValue(): Promise<any>;
+    /** Sets the value of the rating.
+    * @param {number} value. Sets the value of the rating
+    */
+    setValue(value: number): void;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

@@ -63,6 +63,17 @@ class Input extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
+    /** Sets additional class names to the Input drop down.
+    *	Property type: any
+    */
+    get dropDownClassList() {
+        return this.nativeElement ? this.nativeElement.dropDownClassList : undefined;
+    }
+    set dropDownClassList(value) {
+        if (this.nativeElement) {
+            this.nativeElement.dropDownClassList = value;
+        }
+    }
     /** Determines the position of the drop down button.
     *	Property type: DropDownButtonPosition
     */
@@ -307,11 +318,11 @@ class Input extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoCompleteDelay", "dataSource", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "query", "queryMode", "readonly", "rightToLeft", "sorted", "sortDirection", "theme", "type", "unfocusable", "value"];
+        return ["animation", "autoCompleteDelay", "dataSource", "disabled", "dropDownClassList", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "query", "queryMode", "readonly", "rightToLeft", "sorted", "sortDirection", "theme", "type", "unfocusable", "value"];
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onChange", "onCreate", "onReady"];
+        return ["onChange", "onChanging", "onItemClick", "onCreate", "onReady"];
     }
     /** Closes the drop down.
     */

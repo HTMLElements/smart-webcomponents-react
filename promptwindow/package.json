@@ -1,0 +1,7 @@
+{
+    "main": "promptwindow.umd.js",
+    "module": "promptwindow.esm.js",
+	"typings": "promptwindow.d.ts",
+    "name": "smart-webcomponents-react/promptwindow",
+    "sideEffects": false
+  }

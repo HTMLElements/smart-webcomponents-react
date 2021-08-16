@@ -1,0 +1,7 @@
+{
+    "main": "alertwindow.umd.js",
+    "module": "alertwindow.esm.js",
+	"typings": "alertwindow.d.ts",
+    "name": "smart-webcomponents-react/alertwindow",
+    "sideEffects": false
+  }

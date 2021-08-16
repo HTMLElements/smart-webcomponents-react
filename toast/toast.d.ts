@@ -7,7 +7,7 @@ export declare const Smart: any;
 export interface ToastProps extends ToastProperties {
     className?: string;
     style?: React.CSSProperties;
-    onClick?: ((event?: Event) => void) | undefined;
+    onItemClick?: ((event?: Event) => void) | undefined;
     onClose?: ((event?: Event) => void) | undefined;
     onOpen?: ((event?: Event) => void) | undefined;
     onSwipebottom?: ((event?: Event) => void) | undefined;
@@ -133,7 +133,7 @@ export declare class Toast extends React.Component<React.HTMLAttributes<Element>
     get properties(): string[];
     /**  This event is triggered when the toast item is clicked.
     *  @param event. The custom event. 	*/
-    onClick?: ((event?: Event) => void) | undefined;
+    onItemClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the toast item is closed.
     *  @param event. The custom event. 	*/
     onClose?: ((event?: Event) => void) | undefined;

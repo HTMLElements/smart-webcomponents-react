@@ -1,8 +1,8 @@
 import React from "react";
 import { KanbanProperties } from "./../index";
-import { Animation, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanUser } from './../index';
+import { Animation, KanbanColumnEditMode, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanUser } from './../index';
 export { KanbanProperties } from "./../index";
-export { Animation, KanbanColumnOrientation, KanbanDataSourcePriority, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanUser } from './../index';
+export { Animation, KanbanColumnOrientation, KanbanColumnEditMode, KanbanDataSourcePriority, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanUser } from './../index';
 export { DataAdapter } from './../index';
 export declare const Smart: any;
 export interface KanbanProps extends KanbanProperties {
@@ -11,6 +11,12 @@ export interface KanbanProps extends KanbanProperties {
     onChange?: ((event?: Event) => void) | undefined;
     onClose?: ((event?: Event) => void) | undefined;
     onClosing?: ((event?: Event) => void) | undefined;
+    onColumnAdd?: ((event?: Event) => void) | undefined;
+    onColumnRemove?: ((event?: Event) => void) | undefined;
+    onColumnReorder?: ((event?: Event) => void) | undefined;
+    onColumnUpdate?: ((event?: Event) => void) | undefined;
+    onColumnClick?: ((event?: Event) => void) | undefined;
+    onColumnDoubleClick?: ((event?: Event) => void) | undefined;
     onDragEnd?: ((event?: Event) => void) | undefined;
     onDragging?: ((event?: Event) => void) | undefined;
     onDragStart?: ((event?: Event) => void) | undefined;
@@ -18,6 +24,8 @@ export interface KanbanProps extends KanbanProperties {
     onOpen?: ((event?: Event) => void) | undefined;
     onOpening?: ((event?: Event) => void) | undefined;
     onSort?: ((event?: Event) => void) | undefined;
+    onTaskAdd?: ((event?: Event) => void) | undefined;
+    onTaskRemove?: ((event?: Event) => void) | undefined;
     onCreate?: ((event?: Event) => void) | undefined;
     onReady?: ((event?: Event) => void) | undefined;
 }
@@ -29,6 +37,21 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     private nativeElement;
     private componentRef;
     get id(): string;
+    /** Enables or disables column reordering. When this property is set to true and allowDrag is enabled, users will be able to reoder columns through drag & drop. For example: Click and drag the first column's header and drop it over another column.
+    *	Property type: boolean
+    */
+    get allowColumnReorder(): boolean;
+    set allowColumnReorder(value: boolean);
+    /** Enables or disables column editing. When this property is set to true, users will be able to dynamically change the column's header label by double clicking on it.
+    *	Property type: boolean
+    */
+    get allowColumnEdit(): boolean;
+    set allowColumnEdit(value: boolean);
+    /** Enables or disables column removing. When this property is set to true, users will be able to dynamically remove a column through the column actions menu. the 'columnActions' property should be true.
+    *	Property type: boolean
+    */
+    get allowColumnRemove(): boolean;
+    set allowColumnRemove(value: boolean);
     /** Toggles the visibility of the column buttons for adding tasks. A particular button can be disabled by setting addNewButton in the column's definition to false.
     *	Property type: boolean
     */
@@ -74,6 +97,16 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get columns(): KanbanColumn[];
     set columns(value: KanbanColumn[]);
+    /** Toggles the visibility of the column actions icon.
+    *	Property type: boolean
+    */
+    get columnActions(): boolean;
+    set columnActions(value: boolean);
+    /** Determines the column edit behavior. With the 'header' option, edit starts on double click on the column's label. In 'menu' mode, edit is allowed from the 'columnActions' menu. In 'headerAndMenu' option, column editing includes both options.
+    *	Property type: KanbanColumnEditMode
+    */
+    get columnEditMode(): KanbanColumnEditMode;
+    set columnEditMode(value: KanbanColumnEditMode);
     /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
     *	Property type: string | number
     */
@@ -162,6 +195,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get selectionMode(): KanbanSelectionMode;
     set selectionMode(value: KanbanSelectionMode);
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    *	Property type: boolean
+    */
+    get rightToLeft(): boolean;
+    set rightToLeft(value: boolean);
     /** Describes the swimlanes in the kanban board. Sub-columns are not applicable when swimlanes are present.
     *	Property type: KanbanSwimlane[]
     */
@@ -227,6 +265,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get textTemplate(): any;
     set textTemplate(value: any);
+    /** Determines the theme. Theme defines the look of the element
+    *	Property type: string
+    */
+    get theme(): string;
+    set theme(value: string);
     /** Determines whether the user list (as defined by the users property) will be shown when clicking the user icon. Only applicable if editable privileges are enabled.
     *	Property type: boolean
     */
@@ -251,6 +294,48 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     /**  This event is triggered when the edit/prompt dialog is about to be closed. The closing operation can be canceled by calling event.preventDefault() in the event handler function.
     *  @param event. The custom event. 	*/
     onClosing?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a column is added.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	label, 	dataField, 	collapsed)
+    *   label - The column label.
+    *   dataField - The column data field.
+    *   collapsed - The column's collapsed state.
+    */
+    onColumnAdd?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a column is removed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	label, 	dataField, 	collapsed)
+    *   label - The column label.
+    *   dataField - The column data field.
+    *   collapsed - The column's collapsed state.
+    */
+    onColumnRemove?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a column is reordered.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	oldIndex, 	index, 	column)
+    *   oldIndex - The column's old index.
+    *   index - The column's new index.
+    *   column - The column's data object with 'label', 'dataField' and 'collapsed' fields.
+    */
+    onColumnReorder?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a column is updated.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	label, 	dataField, 	collapsed)
+    *   label - The column label.
+    *   dataField - The column data field.
+    *   collapsed - The column's collapsed state.
+    */
+    onColumnUpdate?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a column header is clicked.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	label, 	dataField, 	collapsed)
+    *   label - The column label.
+    *   dataField - The column data field.
+    *   collapsed - The column's collapsed state.
+    */
+    onColumnClick?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a column header is double clicked.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	label, 	dataField, 	collapsed)
+    *   label - The column label.
+    *   dataField - The column data field.
+    *   collapsed - The column's collapsed state.
+    */
+    onColumnDoubleClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a task is dropped somewhere in the DOM. The dragging operation can be canceled by calling event.preventDefault() in the event handler function.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	container, 	data, 	item, 	items, 	originalEvent, 	previousContainer, 	target)
     *   container - the Kanban the dragged task(s) is dropped to
@@ -296,6 +381,16 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     /**  This event is triggered when sorting has been applied.
     *  @param event. The custom event. 	*/
     onSort?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a new task is added.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	value)
+    *   value - The task data that is added to the Kanban.
+    */
+    onTaskAdd?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a task is removed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	value)
+    *   value - The task data that is removed from the Kanban.
+    */
+    onTaskRemove?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;
@@ -317,6 +412,10 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     * @param {any} data?. An object containing the new task's data
     */
     addTask(data?: any): void;
+    /** Adds a column to a Kanban. If no data is specified, an empty column is added.
+    * @param {any} data?. An object containing the new column's data
+    */
+    addColumn(data?: any): void;
     /** Begins an edit operation
     * @param {number | string | HTMLElement} task. The task's id or corresponding HTMLElement
     */
@@ -418,6 +517,10 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     * @param {boolean} prompt?. Whether or not to prompt the user before removing the task
     */
     removeTask(task: number | string | HTMLElement, prompt?: boolean): void;
+    /** Removes a column.
+    * @param {string} dataField. The column's data field
+    */
+    removeColumn(dataField: string): void;
     /** Saves the Kanban's state to the browser's localStorage.
     */
     saveState(): void;
@@ -426,6 +529,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     * @param {{}} newData. The new data to visualize in the task.
     */
     updateTask(task: number | string | HTMLElement, newData: {}): void;
+    /** Updates a column.
+    * @param {string} dataField. The new column's data field
+    * @param {{}} newData. The new data to visualize in the column.
+    */
+    updateColumn(dataField: string, newData: {}): void;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

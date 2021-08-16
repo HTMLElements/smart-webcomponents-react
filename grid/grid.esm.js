@@ -622,7 +622,7 @@ class Grid extends React.Component {
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onBeginEdit", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnDragging", "onColumnDragEnd", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
+        return ["onBeginEdit", "onBatchChange", "onBatchCancel", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnDragging", "onColumnDragEnd", "onColumnReorder", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowReorder", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
     }
     /** Adds a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {any} data. row data matching the data source
@@ -715,6 +715,23 @@ class Grid extends React.Component {
             });
         }
     }
+    /** This method returns true, if all rows in the Grid are selected.
+    * @returns {boolean}
+  */
+    areAllRowsSelected() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.areAllRowsSelected();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
     /** Starts an update operation. This is appropriate when calling multiple methods or set multiple properties at once.
     */
     beginUpdate() {
@@ -730,21 +747,16 @@ class Grid extends React.Component {
     /** Begins row, cell or column. This method allows you to programmatically start a cell, row or column editing. After calling it, an editor HTMLElement will be created and displayed in the Grid.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field
-    * @returns {boolean}
-  */
+    */
     beginEdit(rowId, dataField) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.beginEdit(rowId, dataField);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.beginEdit(rowId, dataField);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.beginEdit(rowId, dataField);
+            });
+        }
     }
     /** Clears all filters. Refreshes the view and updates all filter input components.
     */
@@ -966,7 +978,170 @@ class Grid extends React.Component {
             });
         }
     }
-    /** Gets an array of columns with applied sorting.
+    /** Navigates to a page, when paging is enabled.
+    * @param {number} index. page index
+    */
+    goToPage(index) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.goToPage(index);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.goToPage(index);
+            });
+        }
+    }
+    /** Navigates to the next page, when grid paging is enabled.
+    */
+    nextPage() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.nextPage();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.nextPage();
+            });
+        }
+    }
+    /** Navigates to the prev page, when grid paging is enabled.
+    */
+    prevPage() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.prevPage();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.prevPage();
+            });
+        }
+    }
+    /** Navigates to the first page, when grid paging is enabled.
+    */
+    firstPage() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.firstPage();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.firstPage();
+            });
+        }
+    }
+    /** Navigates to the last page, when grid paging is enabled.
+    */
+    lastPage() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.lastPage();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.lastPage();
+            });
+        }
+    }
+    /** Gets the maximum position of the vertical scrollbar. You can use this method in combination with the setVerticalScrollValue to apply a new scroll position.
+    * @returns {number}
+  */
+    getVerticalScrollMax() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getVerticalScrollMax();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the position of the vertical scrollbar.
+    * @returns {number}
+  */
+    getVerticalScrollValue() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getVerticalScrollValue();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the maximum position of the horizontal scrollbar. You can use this method in combination with the setHorizontalScrollValue to apply a new scroll position.
+    * @returns {number}
+  */
+    getHorizontalScrollMax() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getHorizontalScrollMax();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the position of the horizontal scrollbar.
+    * @returns {number}
+  */
+    getHorizontalScrollValue() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getHorizontalScrollValue();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the columns array. Each item in the array contains the column properties which are dynamically set by the user interaction and the columns initialization data properties such as: 'label', 'dataField', 'dataType', 'visible'.
+    * @returns {any}
+  */
+    getColumns() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getColumns();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the groups array.
+    * @returns {any[]}
+  */
+    getGroups() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getGroups();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets an array of columns with applied sorting. Each member in the array is with column's data field used as a key and 'sortOrder' and 'sortIndex' as a value.
     * @returns {{[dataField: string]: { sortOrder: string, sortIndex: number }}}
   */
     getSortedColumns() {
@@ -1009,6 +1184,23 @@ class Grid extends React.Component {
                 return new Promise(resolve => {
                     this.nativeElement.whenRendered(() => {
                         const result = this.nativeElement.getSelectedRows();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the selected cells. The method returns an array of cell. Each cell is an array with row id, column data field and cell value.
+    * @returns {any[]}
+  */
+    getSelectedCells() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getSelectedCells();
                         resolve(result);
                     });
                 });
@@ -1068,6 +1260,23 @@ class Grid extends React.Component {
             return result;
         });
     }
+    /** Gets a JSON object with the following fields: 'sort', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'.
+    * @returns {any}
+  */
+    getState() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getState();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
     /** Gets the changes from the batch edit.
     * @returns {{ upDated: [{ id: string, dataField: string, oldValue: Object, newValue: Object }], deleted: [{id: string, data: Object}], added: [{id: string, data: Object}] }}
   */
@@ -1077,6 +1286,99 @@ class Grid extends React.Component {
                 return new Promise(resolve => {
                     this.nativeElement.whenRendered(() => {
                         const result = this.nativeElement.getBatchEditChanges();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets a value of a cell.
+    * @param {string | number} rowId. row bound id
+    * @param {string} dataField. column bound data field
+    * @returns {any}
+  */
+    getCellValue(rowId, dataField) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getCellValue(rowId, dataField);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets a value of a column.
+    * @param {string} dataField. column bound data field
+    * @param {string} propertyName. The property name.
+    * @returns {any}
+  */
+    getColumnProperty(dataField, propertyName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getColumnProperty(dataField, propertyName);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets a value of a row.
+    * @param {string | number} rowId. row bound id
+    * @param {string} propertyName. The property name.
+    * @returns {any}
+  */
+    getRowProperty(rowId, propertyName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getRowProperty(rowId, propertyName);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the Data source data associated to the row.
+    * @param {string | number} rowId. row bound id
+    * @returns {any}
+  */
+    getRowData(rowId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getRowData(rowId);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the Row's id.
+    * @param {number} rowIndex. row index
+    * @returns {any}
+  */
+    getRowId(rowIndex) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getRowId(rowIndex);
                         resolve(result);
                     });
                 });
@@ -1102,6 +1404,23 @@ class Grid extends React.Component {
             return result;
         });
     }
+    /** This method returns true, if any rows in the Grid are selected.
+    * @returns {boolean}
+  */
+    hasSelectedRows() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.hasSelectedRows();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
     /** Hides the Details of a Row, when row details are enabled.
     * @param {string | number} rowId. row bound id
     */
@@ -1112,6 +1431,48 @@ class Grid extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.hideDetail(rowId);
+            });
+        }
+    }
+    /** Highlights a column. Highlights a Grid column.
+    * @param {string} dataField. column bound data field
+    */
+    highlightColumn(dataField) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.highlightColumn(dataField);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.highlightColumn(dataField);
+            });
+        }
+    }
+    /** Highlights a cell. Calling the method a second time toggle the highlight state.
+    * @param {string | number} rowId. row bound id
+    * @param {string} dataField. column bound data field
+    * @param {string} className?. CSS Class Name
+    */
+    highlightCell(rowId, dataField, className) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.highlightCell(rowId, dataField, className);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.highlightCell(rowId, dataField, className);
+            });
+        }
+    }
+    /** Highlights a row. Calling the method a second time toggle the highlight state.
+    * @param {string | number} rowId. row bound id
+    * @param {string} className?. CSS Class Name
+    */
+    highlightRow(rowId, className) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.highlightRow(rowId, className);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.highlightRow(rowId, className);
             });
         }
     }
@@ -1191,6 +1552,35 @@ class Grid extends React.Component {
         }
     }
     /** Reverts the batch edit changes. This method cancels all changes made by the end-user.
+    * @param {string | number} dataField. The data field or column index of the first grid column.
+    * @param {string | number} referenceDataField. The data field or column index of the second grid column.
+    * @param {boolean} insertAfter?. Determines whether to insert the first column after the reference column.
+    */
+    reorderColumns(dataField, referenceDataField, insertAfter) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.reorderColumns(dataField, referenceDataField, insertAfter);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.reorderColumns(dataField, referenceDataField, insertAfter);
+            });
+        }
+    }
+    /** Reorders two DataGrid columns.
+    * @param {string | number} dataField. The data field or column index of the first grid column.
+    * @param {string | number} referenceDataField. The data field or column index of the second grid column.
+    */
+    swapColumns(dataField, referenceDataField) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.swapColumns(dataField, referenceDataField);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.swapColumns(dataField, referenceDataField);
+            });
+        }
+    }
+    /** Swaps two DataGrid columns.
     */
     saveBatchEdit() {
         if (this.nativeElement.isRendered) {
@@ -1203,21 +1593,6 @@ class Grid extends React.Component {
         }
     }
     /** Saves the batch edit changes. This method confirms the editing changes made by the end-user.
-    * @param {string | number} rowId. row bound id
-    * @param {any} data. row data matching the data source
-    * @param {any} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
-    */
-    updateRow(rowId, data, callback) {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.updateRow(rowId, data, callback);
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.updateRow(rowId, data, callback);
-            });
-        }
-    }
-    /** Updates a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field
     */
@@ -1275,6 +1650,18 @@ class Grid extends React.Component {
         }
     }
     /** Selects multiple rows by their ids.
+    */
+    selectAllRows() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.selectAllRows();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.selectAllRows();
+            });
+        }
+    }
+    /** Selects all rows.
     * @param {number[]} rowIndex. Array of row indexes
     */
     selectRowsByIndex(rowIndex) {
@@ -1289,6 +1676,77 @@ class Grid extends React.Component {
     }
     /** Selects multiple rows by their index.
     * @param {string | number} rowId. row bound id
+    * @param {string} dataField. column bound data field
+    * @param {string | number | Date | boolean} value. New Cell value.
+    */
+    setCellValue(rowId, dataField, value) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setCellValue(rowId, dataField, value);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setCellValue(rowId, dataField, value);
+            });
+        }
+    }
+    /** Sets a new value to a cell.
+    * @param {string} dataField. column bound data field
+    * @param {string} propertyName. The column property's name.
+    * @param {any} value. The new property value.
+    */
+    setColumnProperty(dataField, propertyName, value) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setColumnProperty(dataField, propertyName, value);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setColumnProperty(dataField, propertyName, value);
+            });
+        }
+    }
+    /** Sets a property to a column.
+    * @param {string | number} rowId. row bound id
+    * @param {string} propertyName. The row property's name.
+    * @param {any} value. The new property value.
+    */
+    setRowProperty(rowId, propertyName, value) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setRowProperty(rowId, propertyName, value);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setRowProperty(rowId, propertyName, value);
+            });
+        }
+    }
+    /** Sets a property to a row.
+    * @param {number} value. The new scroll position
+    */
+    setVerticalScrollValue(value) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setVerticalScrollValue(value);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setVerticalScrollValue(value);
+            });
+        }
+    }
+    /** Sets the position of the vertical scrollbar. You can use this method in combination with the getVerticalScrollValue and getVerticalScrollMax.
+    * @param {number} value. The new scroll position
+    */
+    setHorizontalScrollValue(value) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setHorizontalScrollValue(value);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setHorizontalScrollValue(value);
+            });
+        }
+    }
+    /** Sets the position of the horizontal scrollbar. You can use this method in combination with the getHorizontalScrollValue and getHorizontalScrollMax.
+    * @param {string | number} rowId. row bound id
     */
     showDetail(rowId) {
         if (this.nativeElement.isRendered) {
@@ -1301,6 +1759,21 @@ class Grid extends React.Component {
         }
     }
     /** Shows the Details of a Row, when row details are enabled.
+    * @param {string | number} rowId. row bound id
+    * @param {any} data. row data matching the data source
+    * @param {any} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
+    */
+    updateRow(rowId, data, callback) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.updateRow(rowId, data, callback);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.updateRow(rowId, data, callback);
+            });
+        }
+    }
+    /** Updates a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field
     */

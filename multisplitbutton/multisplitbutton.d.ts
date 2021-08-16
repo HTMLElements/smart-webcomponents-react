@@ -11,6 +11,7 @@ export declare const Smart: any;
 export interface MultiSplitButtonProps extends MultiSplitButtonProperties {
     className?: string;
     style?: React.CSSProperties;
+    onButtonClick?: ((event?: Event) => void) | undefined;
     onChange?: ((event?: Event) => void) | undefined;
     onClose?: ((event?: Event) => void) | undefined;
     onClosing?: ((event?: Event) => void) | undefined;
@@ -206,8 +207,19 @@ export declare class MultiSplitButton extends React.Component<React.HTMLAttribut
     get virtualized(): boolean;
     set virtualized(value: boolean);
     get properties(): string[];
-    /**  This event is triggered when button's dropDown selection is changed.
+    /**  This event is triggered when action button is clicked.
     *  @param event. The custom event. 	*/
+    onButtonClick?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the selection is changed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	addedItems, 	disabled, 	index, 	label, 	removedItems, 	selected, 	value)
+    *   addedItems - An array of List items that have been selected.
+    *   disabled - A flag indicating whether or not the item that caused the change event is disabled.
+    *   index - The index of the List item that triggered the event.
+    *   label - The label of the List item that triggered the event.
+    *   removedItems - An array of List items that have been unselected before the event was fired.
+    *   selected - The selected state of the List item that triggered the event. If an item was selected the value will be true and vice versa.
+    *   value - The value of the List item that triggered the event.
+    */
     onChange?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when button's dropDown list is closed.
     *  @param event. The custom event. 	*/
@@ -215,8 +227,14 @@ export declare class MultiSplitButton extends React.Component<React.HTMLAttribut
     /**  This event is triggered when button's dropDown list is closing.
     *  @param event. The custom event. 	*/
     onClosing?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when user clicks any of the element's buttons or button's dropDown items.
-    *  @param event. The custom event. 	*/
+    /**  This event is triggered when an item is clicked.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	disabled, 	index, 	label, 	selected, 	value)
+    *   disabled - Indicates whether the List item that was clicked is disabled or not.
+    *   index - Indicates the index of the List item that was clicked.
+    *   label - The label of the List item that was clicked.
+    *   selected - Indicates whether the List item that was clicked is selected or not.
+    *   value - The value of the List item that was clicked.
+    */
     onItemClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when button's dropDown list is opened.
     *  @param event. The custom event. 	*/

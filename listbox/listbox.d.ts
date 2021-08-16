@@ -1,8 +1,8 @@
 import React from "react";
 import { ListBoxProperties } from "./../index";
-import { Animation, ListBoxDropAction, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ListSelectionMode, ListBoxSelectionChangeAction, VerticalScrollBarVisibility } from './../index';
+import { Animation, ListBoxDropAction, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ListSelectionMode, ListBoxSelectionChangeAction, VerticalScrollBarVisibility, ListBoxItem } from './../index';
 export { ListBoxProperties } from "./../index";
-export { Animation, ListBoxDropAction, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ListSelectionMode, ListBoxSelectionChangeAction, VerticalScrollBarVisibility } from './../index';
+export { Animation, ListBoxDropAction, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ListSelectionMode, ListBoxSelectionChangeAction, VerticalScrollBarVisibility, ListBoxItem } from './../index';
 export { ListItem } from './listitem';
 export { ListItemProperties } from "./../index";
 export { ListItemsGroup } from './listitemsgroup';
@@ -164,16 +164,10 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     get itemMeasureMode(): ListItemMeasureMode;
     set itemMeasureMode(value: ListItemMeasureMode);
     /** A getter that returns an array of all ListBox items.
-    *	Property type: {label: string, value: string}[]
+    *	Property type: ListBoxItem[]
     */
-    get items(): {
-        label: string;
-        value: string;
-    }[];
-    set items(value: {
-        label: string;
-        value: string;
-    }[]);
+    get items(): ListBoxItem[];
+    set items(value: ListBoxItem[]);
     /** A string that represents the id of an HTMLTemplateElement inside the DOM or a reference to the template itself. It's used to set a custom template for the list items.
     *	Property type: any
     */
@@ -388,6 +382,10 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     * @returns {HTMLElement}
   */
     getItem(value: string): Promise<any>;
+    /** Returns an array of ListBox items.
+    * @returns {{label: string, value: string}[]}
+  */
+    getItems(): Promise<any>;
     /** Inserts a new item at a specified index.
     * @param {number} index. The index where the item must be inserted.
     * @param {any} items. A single item/definition or an array of List Items/definitions of list items to be inserted. The format of the item definitions is the same as the format of the <strong>dataSource</strong> property.

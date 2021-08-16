@@ -281,7 +281,7 @@ class Toast extends React.Component {
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onClick", "onClose", "onOpen", "onSwipebottom", "onSwipeleft", "onSwiperight", "onSwipetop", "onCreate", "onReady"];
+        return ["onItemClick", "onClose", "onOpen", "onSwipebottom", "onSwipeleft", "onSwiperight", "onSwipetop", "onCreate", "onReady"];
     }
     /** Closes all opened toast items.
     */

@@ -317,7 +317,7 @@ require('../source/modules/smart.textarea');
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
-	        return ["onChange", "onCreate", "onReady"];
+	        return ["onChange", "onChanging", "onCreate", "onReady"];
 	    }
 	    /** Closes the drop down.
 	    */
