@@ -77,8 +77,8 @@ class Editor extends React.Component {
             this.nativeElement.autoSave = value;
         }
     }
-    /** The interval that determines the interval to automatically save the state of the Editor when the autoSave property is set.
-    *	Property type: boolean
+    /** The property that determines the interval to automatically save the state of the Editor when the autoSave property is set.
+    *	Property type: number
     */
     get autoSaveInterval() {
         return this.nativeElement ? this.nativeElement.autoSaveInterval : undefined;
@@ -242,6 +242,17 @@ class Editor extends React.Component {
             this.nativeElement.hideInlineToolbar = value;
         }
     }
+    /** Determines the file format of the image/video that are uploaded from local storage. By default images/videos are stroed as base64.
+    *	Property type: EditorImageFormat
+    */
+    get imageFormat() {
+        return this.nativeElement ? this.nativeElement.imageFormat : undefined;
+    }
+    set imageFormat(value) {
+        if (this.nativeElement) {
+            this.nativeElement.imageFormat = value;
+        }
+    }
     /** Sets the content of the Editor as HTML. Allows to insert text and HTML.
     *	Property type: string
     */
@@ -308,6 +319,17 @@ class Editor extends React.Component {
             this.nativeElement.messages = value;
         }
     }
+    /** Sets a to the element which can be used to submit the value of the Editor via a form.
+    *	Property type: string | null
+    */
+    get name() {
+        return this.nativeElement ? this.nativeElement.name : undefined;
+    }
+    set name(value) {
+        if (this.nativeElement) {
+            this.nativeElement.name = value;
+        }
+    }
     /** Determines the format of the content that will be pasted inside the Editor.
     *	Property type: PasteFormat
     */
@@ -330,6 +352,17 @@ class Editor extends React.Component {
             this.nativeElement.placeholder = value;
         }
     }
+    /** Determines whether the clearFormat toolbar action should also remove inline styles from the currently selected node.
+    *	Property type: boolean
+    */
+    get removeStylesOnClearFormat() {
+        return this.nativeElement ? this.nativeElement.removeStylesOnClearFormat : undefined;
+    }
+    set removeStylesOnClearFormat(value) {
+        if (this.nativeElement) {
+            this.nativeElement.removeStylesOnClearFormat = value;
+        }
+    }
     /** Determines whether Editor's content is required ot not. If set and the Editor's content is empty, a notification will appear to notify that the Editor cannot be empty.
     *	Property type: boolean
     */
@@ -339,6 +372,17 @@ class Editor extends React.Component {
     set required(value) {
         if (this.nativeElement) {
             this.nativeElement.required = value;
+        }
+    }
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    *	Property type: boolean
+    */
+    get rightToLeft() {
+        return this.nativeElement ? this.nativeElement.rightToLeft : undefined;
+    }
+    set rightToLeft(value) {
+        if (this.nativeElement) {
+            this.nativeElement.rightToLeft = value;
         }
     }
     /** Determines whether the value is sanitized from XSS content or not. When enabled scripts and other XSS vulnerabilities are not allowed to exist inside the Editor's as HTML content.
@@ -385,7 +429,7 @@ class Editor extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Determines the Toolbar items list. Each item can be string pointing to the name of the item or an object that defines a custom item or adds aditional settings to an item. The name of the items are case insensitive. An object definition should contain a name attribute that refers to the name of the item when modifing an existing toolbar item. The name attribute determines the action of the item. If set to 'custom' it is possible to create a custom toolbar item. If name attribute is not set or not valid it is treated as a separator, no a toolbar item. The following items are supported by default by the Editor: SourceCode - shows the HTML/Preview Panel by hiding the input panel. Item type - 'Toggle button'.SplitMode - shows both input and HTML/Preview Panel by splitting the Editor content in two sections. Item type - 'Toggle button'FullScreen - fits the viewport with the Editor by expanding it over the page content. Item type - 'Toggle button'.Alignment - aligns the selected content. Item type - 'Drop down'.FontName - changes the font family of the selected content. Item type - 'drop-down'.FontSize - changes the font size of the selected content. Item type - 'drop-down'.Formats - changes the format of the current selection. Itme type - 'drop-down'.TableRows - allows to insert/remove a row into a selected table element. Item type - 'drop-down'.TableColumns - allows to insert/remove a column into a selected table element. Itme type - 'drop-down'.TableVAlign - sets the vertical alignment of a selected table cell. Item type - 'drop-down'.TableStyle - sets additional styling to a selected table inside the Editor. Item type - 'drop-down'.BackgroundColor - changes the background color of the current selection. Item type - 'color-input'.FontColor - changes the font color of the current selection. Item type = 'color-input'.Bold - sets the currently selected text as bold or not. Item type - 'button'.Italic - sets the currently selected text as italic. Item type - 'button'. Underline - sets the currently selected text as underlined. Itme type - 'button'.Strikethrough - set the currently selected text as strikethrough. Item type - 'button'.Delete - deletes the current selection. Item type - 'button'.Undo - undoes the last operation. Item type - 'button'.Redo - redoes the previous operation. Item type - 'button'.Indent - indents the current selection once. Item type - 'button'.Outdent - outdents the current selection once. Item type - 'button'.OpenLink - triggers a hyperlink. Item type - 'button'.EditLink - creates/edits the selected hyperlink. Item type - 'button'.CreateLink - creates/edits the selected hyperlink. Item type - 'button'.RemoveLink - removes the currently selected hyperlink. Item type - 'button'.Hyperlink - same as createLink, triggers a Dialog Window for link creation. Item type - 'button'.Cut - Cuts the currently selected text. Item type - 'button'.Copy - copies the currently selected text. Item type - 'button'Paste - pastes the currenly copied/cut text from the Clipboard. Item type = 'button' or 'drop-down' when advanced attribute is set to 'true'.Image - triggers a Dialog Window to insert/edit an image. Item type - 'button'.LowerCase - changes the current selection to lower case. Item type - 'button'.UpperCase - changes the current selection to upper case. Item type - 'button'.Print - opens the browser print preview window. Item type - 'button'.Caption - insert/remove a caption when a table is selected. Item type - 'button'.ClearFormat - removes the formatting of the currntly selected text. Item type - 'button'.Table - triggers a Dialog Window to insert a table. Item type - 'button'.TableHeader - insert/remove a header row to the currently selected table. Item type - 'button'.OrderedList - insert/remove an order list. Item type = 'button'.UnorderedList - insert/remove an unordered list. Item type - 'button'.Subscript - changes the currently selected text to subscript. Item type - 'button'.Superscript - changes the currently selected text to superscript. Item type - 'button'.FindAndReplace - opens a dialog that allows to find and replace text inside the Editor's content section. Item type - 'button'.  The inlineToolbarItems attribute is applicable only to the following items: 'table', 'image', 'hyperlink'. It accepts the same type of value as toolbarItems property but the toolbar items will be placed insinde the Inline Toolbar instead.
+    /** Determines the Toolbar items list. Each item can be string pointing to the name of the item or an object that defines a custom item or adds aditional settings to an item. The name of the items are case insensitive. An object definition should contain a name attribute that refers to the name of the item when modifing an existing toolbar item. The name attribute determines the action of the item. If set to 'custom' it is possible to create a custom toolbar item. If name attribute is not set or not valid it is treated as a separator, no a toolbar item. The following items are supported by default by the Editor: SourceCode - shows the HTML/Preview Panel by hiding the input panel. Item type - 'Toggle button'.SplitMode - shows both input and HTML/Preview Panel by splitting the Editor content in two sections. Item type - 'Toggle button'FullScreen - fits the viewport with the Editor by expanding it over the page content. Item type - 'Toggle button'.Alignment - aligns the selected content. Item type - 'Drop down'.FontName - changes the font family of the selected content. Item type - 'drop-down'.FontSize - changes the font size of the selected content. Item type - 'drop-down'.Formats - changes the format of the current selection. Itme type - 'drop-down'.TableRows - allows to insert/remove a row into a selected table element. Item type - 'drop-down'.TableColumns - allows to insert/remove a column into a selected table element. Itme type - 'drop-down'.TableVAlign - sets the vertical alignment of a selected table cell. Item type - 'drop-down'.TableStyle - sets additional styling to a selected table inside the Editor. Item type - 'drop-down'.BackgroundColor - changes the background color of the current selection. Item type - 'color-input'.FontColor - changes the font color of the current selection. Item type = 'color-input'.Bold - sets the currently selected text as bold or not. Item type - 'button'.Italic - sets the currently selected text as italic. Item type - 'button'. Underline - sets the currently selected text as underlined. Itme type - 'button'.Strikethrough - set the currently selected text as strikethrough. Item type - 'button'.Delete - deletes the current selection. Item type - 'button'.Undo - undoes the last operation. Item type - 'button'.Redo - redoes the previous operation. Item type - 'button'.Indent - indents the current selection once. Item type - 'button'.Outdent - outdents the current selection once. Item type - 'button'.OpenLink - triggers a hyperlink. Item type - 'button'.EditLink - creates/edits the selected hyperlink. Item type - 'button'.CreateLink - creates/edits the selected hyperlink. Item type - 'button'.RemoveLink - removes the currently selected hyperlink. Item type - 'button'.Hyperlink - same as createLink, triggers a Dialog Window for link creation. Item type - 'button'.Cut - Cuts the currently selected text. Item type - 'button'.Copy - copies the currently selected text. Item type - 'button'Paste - pastes the currenly copied/cut text from the Clipboard. Item type = 'button' or 'drop-down' when advanced attribute is set to 'true'.Image - triggers a Dialog Window to insert/edit an image. Item type - 'button'.Video - triggers a Dialog Window to insert/edit a video. Item type - 'button'.LowerCase - changes the current selection to lower case. Item type - 'button'.UpperCase - changes the current selection to upper case. Item type - 'button'.Print - opens the browser print preview window. Item type - 'button'.Caption - insert/remove a caption when a table is selected. Item type - 'button'.ClearFormat - removes the formatting of the currntly selected text. Item type - 'button'.Table - triggers a Dialog Window to insert a table. Item type - 'button'.TableHeader - insert/remove a header row to the currently selected table. Item type - 'button'.OrderedList - insert/remove an order list. Item type = 'button'.UnorderedList - insert/remove an unordered list. Item type - 'button'.Subscript - changes the currently selected text to subscript. Item type - 'button'.Superscript - changes the currently selected text to superscript. Item type - 'button'.FindAndReplace - opens a dialog that allows to find and replace text inside the Editor's content section. Item type - 'button'.  The inlineToolbarItems attribute is applicable only to the following items: 'table', 'image', 'hyperlink'. It accepts the same type of value as toolbarItems property but the toolbar items will be placed insinde the Inline Toolbar instead.
     *	Property type: ToolbarItem[]
     */
     get toolbarItems() {
@@ -462,13 +506,24 @@ class Editor extends React.Component {
             this.nativeElement.value = value;
         }
     }
+    /** A function that can be used to completly customize the Editor dialog that is used to insert/edit tables/images/videos/hyperlinks. The function accepts two arguments: target - the target dialog that is about to be opened.item - the toolbar item object that trigger the dialog.
+    *	Property type: any
+    */
+    get windowCustomizationFunction() {
+        return this.nativeElement ? this.nativeElement.windowCustomizationFunction : undefined;
+    }
+    set windowCustomizationFunction(value) {
+        if (this.nativeElement) {
+            this.nativeElement.windowCustomizationFunction = value;
+        }
+    }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoLoad", "autoSave", "autoSaveInterval", "charCountFormatFunction", "contentFiltering", "contextMenu", "contextMenuDataSource", "dataExport", "disabled", "disableEditing", "disableSearchBar", "editMode", "enableHtmlEncode", "enableTabKey", "findAndReplaceTimeout", "hideToolbar", "hideInlineToolbar", "innerHTML", "inlineToolbarOffset", "iframeSettings", "locale", "maxCharCount", "messages", "pasteFormat", "placeholder", "required", "sanitized", "showCharCount", "splitModeRefreshTimeout", "theme", "toolbarItems", "toolbarMode", "toolbarRibbonConfig", "toolbarViewMode", "toolbarSticky", "unfocusable", "value"];
+        return ["animation", "autoLoad", "autoSave", "autoSaveInterval", "charCountFormatFunction", "contentFiltering", "contextMenu", "contextMenuDataSource", "dataExport", "disabled", "disableEditing", "disableSearchBar", "editMode", "enableHtmlEncode", "enableTabKey", "findAndReplaceTimeout", "hideToolbar", "hideInlineToolbar", "imageFormat", "innerHTML", "inlineToolbarOffset", "iframeSettings", "locale", "maxCharCount", "messages", "name", "pasteFormat", "placeholder", "removeStylesOnClearFormat", "required", "rightToLeft", "sanitized", "showCharCount", "splitModeRefreshTimeout", "theme", "toolbarItems", "toolbarMode", "toolbarRibbonConfig", "toolbarViewMode", "toolbarSticky", "unfocusable", "value", "windowCustomizationFunction"];
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onChange", "onActionStart", "onActionEnd", "onContextMenuItemClick", "onContextMenuOpen", "onContextMenuOpening", "onContextMenuClose", "onContextMenuClosing", "onResizeStart", "onResizeEnd", "onInlineToolbarOpen", "onInlineToolbarClose", "onDropDownToolbarOpen", "onDropDownToolbarClose", "onDialogOpen", "onDialogOpening", "onDialogClose", "onDialogClosing", "onImageUploadSuccess", "onImageUploadFailed", "onToobarItemClick", "onMessageClose", "onMessageOpen", "onCreate", "onReady"];
+        return ["onChange", "onChanging", "onActionStart", "onActionEnd", "onContextMenuItemClick", "onContextMenuOpen", "onContextMenuOpening", "onContextMenuClose", "onContextMenuClosing", "onResizeStart", "onResizeEnd", "onInlineToolbarOpen", "onInlineToolbarOpening", "onInlineToolbarClose", "onInlineToolbarClosing", "onDropDownToolbarOpen", "onDropDownToolbarOpening", "onDropDownToolbarClose", "onDropDownToolbarClosing", "onDialogOpen", "onDialogOpening", "onDialogClose", "onDialogClosing", "onImageUploadSuccess", "onImageUploadFailed", "onToobarItemClick", "onMessageClose", "onMessageOpen", "onCreate", "onReady"];
     }
     /** Blurs the content of the Editor.
     */
@@ -827,6 +882,25 @@ class Editor extends React.Component {
                 this.nativeElement.print();
             });
         }
+    }
+    /** Allows to update the settings of a single toolbar item. The method returns true if successful.
+    * @param {string | number} name. The name of the toolbar item or it's index inside the <b>toolbarItems</b> array.
+    * @param {any} settings. A settings object for the toolbar item. It should have the same definition as when defining a custom toolbar item. You can read more about it in the dedicated topic for the Editor Toolbar on the website.
+    * @returns {boolean | undefined}
+  */
+    updateToolbarItem(name, settings) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.updateToolbarItem(name, settings);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
     }
     componentDidRender(initialize) {
         const that = this;

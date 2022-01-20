@@ -97,7 +97,7 @@ window.rrule = { RRule:  pkg.default };
             }
         }
         /** Determines the context menu items that are visible when the Context Menu is opened.
-        *	Property type: any
+        *	Property type: any[]
         */
         get contextMenuDataSource() {
             return this.nativeElement ? this.nativeElement.contextMenuDataSource : undefined;
@@ -174,7 +174,7 @@ window.rrule = { RRule:  pkg.default };
             }
         }
         /** Determines the currently visible date for the Scheduler.
-        *	Property type: any
+        *	Property type: string | Date
         */
         get dateCurrent() {
             return this.nativeElement ? this.nativeElement.dateCurrent : undefined;
@@ -646,6 +646,17 @@ window.rrule = { RRule:  pkg.default };
                 this.nativeElement.legendPosition = value;
             }
         }
+        /** Determines the mouse wheel step. When this property is set to a positive number, the scroll step with mouse wheel or trackpad will depend on the property value.
+        *	Property type: number
+        */
+        get mouseWheelStep() {
+            return this.nativeElement ? this.nativeElement.mouseWheelStep : undefined;
+        }
+        set mouseWheelStep(value) {
+            if (this.nativeElement) {
+                this.nativeElement.mouseWheelStep = value;
+            }
+        }
         /** Determines weather or not horizontal scrollbar is shown.
         *	Property type: HorizontalScrollBarVisibility
         */
@@ -864,6 +875,39 @@ window.rrule = { RRule:  pkg.default };
         set showLegend(value) {
             if (this.nativeElement) {
                 this.nativeElement.showLegend = value;
+            }
+        }
+        /** Determines the name of the resource data item property that will be used for sorting the resource data defined as the resource.dataSource.
+        *	Property type: string
+        */
+        get sortBy() {
+            return this.nativeElement ? this.nativeElement.sortBy : undefined;
+        }
+        set sortBy(value) {
+            if (this.nativeElement) {
+                this.nativeElement.sortBy = value;
+            }
+        }
+        /** Allows to define a custom sorting function that will be used to sort the resource data. The sortFunction is used when sortOrder is set to custom.
+        *	Property type: any
+        */
+        get sortFunction() {
+            return this.nativeElement ? this.nativeElement.sortFunction : undefined;
+        }
+        set sortFunction(value) {
+            if (this.nativeElement) {
+                this.nativeElement.sortFunction = value;
+            }
+        }
+        /** Determines the sorting order of the resource data items. When set to custom, a custom sorting function has to be defined for the sortFunction property. The asc stands for 'ascending' while desc means 'descending' sorting order.
+        *	Property type: SchedulerSortOrder
+        */
+        get sortOrder() {
+            return this.nativeElement ? this.nativeElement.sortOrder : undefined;
+        }
+        set sortOrder(value) {
+            if (this.nativeElement) {
+                this.nativeElement.sortOrder = value;
             }
         }
         /** Determines the repeating delay of the repeat buttons inside the header of the element. Such buttons are the Date navigation buttons and the view scroll buttons.
@@ -1099,11 +1143,24 @@ window.rrule = { RRule:  pkg.default };
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["autoScrollStep", "colorScheme", "currentTimeIndicator", "currentTimeIndicatorInterval", "contextMenuDataSource", "contextMenuClipboardActions", "eventTemplate", "eventCollectorTemplate", "eventRenderMode", "eventTooltipTemplate", "cellTemplate", "dateCurrent", "dataExport", "dataSource", "dateSelectorFormatFunction", "dayFormat", "disabled", "disableAutoScroll", "disableDrag", "disableDrop", "disableResize", "disableSelection", "disableWindowEditor", "disableContextMenu", "disableEventMenu", "disableViewMenu", "disableDateMenu", "dragFeedbackFormatFunction", "dragOffset", "filter", "filterable", "filterMode", "events", "firstDayOfWeek", "footerTemplate", "groupByDate", "groupOrientation", "groupTemplate", "groups", "hourEnd", "hourStart", "hourFormat", "headerTemplate", "headerDatePosition", "headerNavigationStyle", "headerViewPosition", "hideAllDay", "hideNonworkingWeekdays", "hideOtherMonthDays", "hideTodayButton", "hideViewMenuCheckableItems", "hideWeekend", "legendLocation", "legendPosition", "horizontalScrollBarVisibility", "locale", "max", "maxEventsPerCell", "min", "messages", "minuteFormat", "monthFormat", "nonworkingDays", "nonworkingHours", "notificationInterval", "resizeHandlesVisibility", "resizeInterval", "resources", "restrictedDates", "restrictedHours", "rightToLeft", "scrollButtonsPosition", "shadeUntilCurrentTime", "showLegend", "spinButtonsDelay", "spinButtonsInitialDelay", "statuses", "theme", "timelineHeaderFormatFunction", "timelineDayScale", "timeRulerTicks", "timeZone", "timeZones", "tooltipDelay", "tooltipOffset", "verticalScrollBarVisibility", "view", "viewType", "views", "viewSelectorType", "weekdayFormat", "yearFormat", "unfocusable", "undoRedoSteps", "windowCustomizationFunction"];
+            return ["autoScrollStep", "colorScheme", "currentTimeIndicator", "currentTimeIndicatorInterval", "contextMenuDataSource", "contextMenuClipboardActions", "eventTemplate", "eventCollectorTemplate", "eventRenderMode", "eventTooltipTemplate", "cellTemplate", "dateCurrent", "dataExport", "dataSource", "dateSelectorFormatFunction", "dayFormat", "disabled", "disableAutoScroll", "disableDrag", "disableDrop", "disableResize", "disableSelection", "disableWindowEditor", "disableContextMenu", "disableEventMenu", "disableViewMenu", "disableDateMenu", "dragFeedbackFormatFunction", "dragOffset", "filter", "filterable", "filterMode", "events", "firstDayOfWeek", "footerTemplate", "groupByDate", "groupOrientation", "groupTemplate", "groups", "hourEnd", "hourStart", "hourFormat", "headerTemplate", "headerDatePosition", "headerNavigationStyle", "headerViewPosition", "hideAllDay", "hideNonworkingWeekdays", "hideOtherMonthDays", "hideTodayButton", "hideViewMenuCheckableItems", "hideWeekend", "legendLocation", "legendPosition", "mouseWheelStep", "horizontalScrollBarVisibility", "locale", "max", "maxEventsPerCell", "min", "messages", "minuteFormat", "monthFormat", "nonworkingDays", "nonworkingHours", "notificationInterval", "resizeHandlesVisibility", "resizeInterval", "resources", "restrictedDates", "restrictedHours", "rightToLeft", "scrollButtonsPosition", "shadeUntilCurrentTime", "showLegend", "sortBy", "sortFunction", "sortOrder", "spinButtonsDelay", "spinButtonsInitialDelay", "statuses", "theme", "timelineHeaderFormatFunction", "timelineDayScale", "timeRulerTicks", "timeZone", "timeZones", "tooltipDelay", "tooltipOffset", "verticalScrollBarVisibility", "view", "viewType", "views", "viewSelectorType", "weekdayFormat", "yearFormat", "unfocusable", "undoRedoSteps", "windowCustomizationFunction"];
         }
         // Gets the events of the React component.
         get eventListeners() {
-            return ["onBeginUpdate", "onEndUpdate", "onChange", "onItemChange", "onItemClick", "onItemInsert", "onItemRemove", "onItemUpdate", "onViewChange", "onViewChanging", "onEventShortcutKey", "onDateChange", "onDragStart", "onDragEnd", "onResizeStart", "onResizeEnd", "onEditDialogOpening", "onEditDialogOpen", "onEditDialogClose", "onEditDialogClosing", "onContextMenuOpening", "onContextMenuOpen", "onContextMenuClose", "onContextMenuClosing", "onEventMenuOpening", "onEventMenuOpen", "onEventMenuClose", "onEventMenuClosing", "onDateMenuOpen", "onDateMenuClose", "onViewMenuOpen", "onViewMenuClose", "onNotificationOpen", "onNotificationClose", "onCreate", "onReady"];
+            return ["onBeginUpdate", "onEndUpdate", "onChange", "onItemChange", "onItemChanging", "onItemClick", "onItemInsert", "onItemRemove", "onItemUpdate", "onViewChange", "onViewChanging", "onEventShortcutKey", "onDateChange", "onDragStart", "onDragEnd", "onResizeStart", "onResizeEnd", "onEditDialogOpening", "onEditDialogOpen", "onEditDialogClose", "onEditDialogClosing", "onContextMenuOpening", "onContextMenuOpen", "onContextMenuClose", "onContextMenuClosing", "onEventMenuOpening", "onEventMenuOpen", "onEventMenuClose", "onEventMenuClosing", "onDateMenuOpen", "onDateMenuClose", "onViewMenuOpen", "onViewMenuClose", "onNotificationOpen", "onNotificationClose", "onCreate", "onReady"];
+        }
+        /** Adds an event to the Scheduler. Accepts an event object of the following format (same as the dataSource format): { label?: string, dateStart: date, dateEnd: date, description?: string, id?: string | number, class?: string, backgroundColor?: string, color?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], allDay?: boolean, disableDrag?: boolean, disableResize?: boolean, repeat?: { repeatFreq: string, repeatInterval: number, repeatOn?: number | number[] | date, repeatEnd?: number | date, exceptions?: { date: date, dateStart?: date, dateEnd?: date, hidden?: boolean, backgroundColor?: string, status?: string, label?: string, description?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], disableDrag?: boolean, disableResize?: boolean }[] }, status?: string }
+        * @param {any} eventObj. An object describing a Scheduler event that is not already present in the element.
+        */
+        addEvent(eventObj) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.addEvent(eventObj);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.addEvent(eventObj);
+                });
+            }
         }
         /** Starts an update operation. This is appropriate when calling multiple methods or set multiple properties at once.
         */
@@ -1114,6 +1171,23 @@ window.rrule = { RRule:  pkg.default };
             else {
                 this.nativeElement.whenRendered(() => {
                     this.nativeElement.beginUpdate();
+                });
+            }
+        }
+        /** Creates an event and adds it to the Scheduler.
+        * @param {string} label. Event label.
+        * @param {string} value. Event value.
+        * @param {string} dateStart. Event date start.
+        * @param {string} dateEnd. Event date end.
+        * @param {boolean} allDay. Event all day. Set it to true to create all day event.
+        */
+        createEvent(label, value, dateStart, dateEnd, allDay) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.createEvent(label, value, dateStart, dateEnd, allDay);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.createEvent(label, value, dateStart, dateEnd, allDay);
                 });
             }
         }
@@ -1157,6 +1231,78 @@ window.rrule = { RRule:  pkg.default };
             }
         }
         /** Returns a JSON representation of the events inside the Scheduler.
+        * @returns {any}
+      */
+        getDataSource() {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.getDataSource();
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
+        /** Returns a JSON representation of the resources inside the Scheduler.
+        * @returns {any}
+      */
+        getResources() {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.getResources();
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
+        /** Gets a date from coordinates
+        * @param {number} x. X coordinate.
+        * @param {number} y. Y coordinate.
+        * @returns {string}
+      */
+        getDateFromCoordinates(x, y) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.getDateFromCoordinates(x, y);
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
+        /** Gets whether a cell is all day cell from coordinates
+        * @param {number} x. X coordinate.
+        * @param {number} y. Y coordinate.
+        * @returns {boolean}
+      */
+        getIsAllDayCellFromCoordinates(x, y) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.getIsAllDayCellFromCoordinates(x, y);
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
+        /** Returns the current state of the Scheduler. Includes the current dateCurernt, dataSource and timeZone properties.
         * @returns {any}
       */
         getState() {
@@ -1229,7 +1375,7 @@ window.rrule = { RRule:  pkg.default };
                 return result;
             });
         }
-        /** Inserts an event.
+        /** Inserts an event as object of the following format (same as the dataSource format): { label?: string, dateStart: date, dateEnd: date, description?: string, id?: string | number, class?: string, backgroundColor?: string, color?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], allDay?: boolean, disableDrag?: boolean, disableResize?: boolean, repeat?: { repeatFreq: string, repeatInterval: number, repeatOn?: number | number[] | date, repeatEnd?: number | date, exceptions?: { date: date, dateStart?: date, dateEnd?: date, hidden?: boolean, backgroundColor?: string, status?: string, label?: string, description?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], disableDrag?: boolean, disableResize?: boolean }[] }, status?: string }
         * @param {any} eventObj. An object describing a Scheduler event that is not already present in the element.
         * @param {number} index?. A number that represents the index to insert the event at. If not provided the event is inserted at the end of the list.
         */
@@ -1243,7 +1389,7 @@ window.rrule = { RRule:  pkg.default };
                 });
             }
         }
-        /** Updates an event.
+        /** Updates an event object of the following format (same as the dataSource format): { label?: string, dateStart: date, dateEnd: date, description?: string, id?: string | number, class?: string, backgroundColor?: string, color?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], allDay?: boolean, disableDrag?: boolean, disableResize?: boolean, repeat?: { repeatFreq: string, repeatInterval: number, repeatOn?: number | number[] | date, repeatEnd?: number | date, exceptions?: { date: date, dateStart?: date, dateEnd?: date, hidden?: boolean, backgroundColor?: string, status?: string, label?: string, description?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], disableDrag?: boolean, disableResize?: boolean }[] }, status?: string }
         * @param {any} index. A number that represents the index of an event or a Scheduler event object.
         * @param {any} eventObj. An object describing a Scheduler event. The properties of this object will be applied to the desired event.
         */
@@ -1257,7 +1403,7 @@ window.rrule = { RRule:  pkg.default };
                 });
             }
         }
-        /** Removes an event.
+        /** Removes an existing event.
         * @param {any} index. A number that represents the index of an event or the actual event object to be removed.
         */
         removeEvent(index) {
@@ -1267,6 +1413,67 @@ window.rrule = { RRule:  pkg.default };
             else {
                 this.nativeElement.whenRendered(() => {
                     this.nativeElement.removeEvent(index);
+                });
+            }
+        }
+        /** Returns an array of all exceptions of the target repeating event.
+        * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
+        * @returns {any}
+      */
+        getEventExceptions(eventObj) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.getEventExceptions(eventObj);
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
+        /** Adds an event exception to a repeating event. The exception occurences for a repeating event can be gathered via the following methods: occurencesoccurrencesBetweenoccurrenceAfteroccurrenceBefore.  Example usage: scheduler.addEventException(eventObj, { date: occuranceDate, dateStart: newDateStart, dateEnd: newDateEnd, label: 'Exception' });
+        * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
+        * @param {any} exceptionObj. An event object that describes an exception. Exception event objects must have a <b>date</b> attribute of type Date which indicates the date of occurence.
+        */
+        addEventException(eventObj, exceptionObj) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.addEventException(eventObj, exceptionObj);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.addEventException(eventObj, exceptionObj);
+                });
+            }
+        }
+        /** Updates an event exception of a repeating event. The exception occurences for a repeating event can be gathered via the following methods: occurencesoccurrencesBetweenoccurrenceAfteroccurrenceBefore.  Example usage: scheduler.updateEventException(eventObj, dateOfOccurance, { dateStart: newDateStart, dateEnd: newDateEnd, label: 'Updated Exception' });
+        * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
+        * @param {any} exceptionRef. The index, id, an occurence date of the exception or an object reference of an existing Scheduler repeating event exception.
+        * @param {any} exceptionObj. An event object that describes an exception. All attributes of an exception can be updated except the occurance date (the <b>date</b> attribute).
+        */
+        updateEventException(eventObj, exceptionRef, exceptionObj) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.updateEventException(eventObj, exceptionRef, exceptionObj);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.updateEventException(eventObj, exceptionRef, exceptionObj);
+                });
+            }
+        }
+        /** Removes an exception from a repeating event.
+        * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
+        * @param {any} index. The index, id, occurance date or an object reference of an event exception that belongs to the target repeating event.
+        */
+        removeEventException(eventObj, index) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.removeEventException(eventObj, index);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.removeEventException(eventObj, index);
                 });
             }
         }
@@ -1310,14 +1517,28 @@ window.rrule = { RRule:  pkg.default };
         /** Scrolls the Scheduler to a Date.
         * @param {Date} date. The date to scroll to.
         * @param {boolean} strictScroll?. Determines whether to scroll strictly to the date or not. This mean sthat the Scheduler wll scroll to the begining of the cell that corresponds to the target date.
+        * @param {boolean} autoScroll?. Calculates the scroll positions and element bounds, then adds an offset to scroll within the middle of the view.
         */
-        scrollToDate(date, strictScroll) {
+        scrollToDate(date, strictScroll, autoScroll) {
             if (this.nativeElement.isRendered) {
-                this.nativeElement.scrollToDate(date, strictScroll);
+                this.nativeElement.scrollToDate(date, strictScroll, autoScroll);
             }
             else {
                 this.nativeElement.whenRendered(() => {
-                    this.nativeElement.scrollToDate(date, strictScroll);
+                    this.nativeElement.scrollToDate(date, strictScroll, autoScroll);
+                });
+            }
+        }
+        /** Navigates the Scheduler to a Date.
+        * @param {Date} date. The date to navigate to.
+        */
+        navigateToDate(date) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.navigateToDate(date);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.navigateToDate(date);
                 });
             }
         }

@@ -1,0 +1,7 @@
+{
+    "main": "countryinput.umd.js",
+    "module": "countryinput.esm.js",
+	"typings": "countryinput.d.ts",
+    "name": "smart-webcomponents-react/countryinput",
+    "sideEffects": false
+  }

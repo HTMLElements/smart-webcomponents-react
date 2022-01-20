@@ -55,6 +55,17 @@ class TabItem extends React.Component {
             this.nativeElement.closeButtonHidden = value;
         }
     }
+    /** Disables the Tab item
+    *	Property type: boolean
+    */
+    get disabled() {
+        return this.nativeElement ? this.nativeElement.disabled : undefined;
+    }
+    set disabled(value) {
+        if (this.nativeElement) {
+            this.nativeElement.disabled = value;
+        }
+    }
     /** Tab item index
     *	Property type: number
     */
@@ -101,7 +112,7 @@ class TabItem extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["closeButtonHidden", "index", "selected", "label", "content", "labelSize"];
+        return ["closeButtonHidden", "disabled", "index", "selected", "label", "content", "labelSize"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -659,7 +670,7 @@ class Tabs extends React.Component {
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onChange", "onClose", "onClosing", "onDragEnd", "onDragStart", "onReorder", "onCreate", "onReady"];
+        return ["onAddNewTabClick", "onChange", "onClose", "onClosing", "onDragEnd", "onDragStart", "onReorder", "onCreate", "onReady"];
     }
     /** Collapses the content section.
     */
@@ -672,6 +683,42 @@ class Tabs extends React.Component {
                 this.nativeElement.collapse();
             });
         }
+    }
+    /** Returns the label of a Tab at given index.
+    * @param {number} index. The index of the tab.
+    * @returns {string}
+  */
+    getTabLabel(index) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getTabLabel(index);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the content of a Tab at given index.
+    * @param {number} index. The index of the tab.
+    * @returns {HTMLElement}
+  */
+    getTabContent(index) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getTabContent(index);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
     }
     /** Makes sure a tab is visible by scrolling to it.
     * @param {number} index. The index of the tab to scroll to.
@@ -697,6 +744,23 @@ class Tabs extends React.Component {
                 this.nativeElement.expand();
             });
         }
+    }
+    /** Returns an array of the TabItems inside the element.
+    * @returns {TabItem[]}
+  */
+    getTabs() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getTabs();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
     }
     /** Returns the offset of the tab item container (smart-tab-item element) from the edge of the Tabs (smart-tabs element) where the tab strip is positioned.
     * @param {number} index. The index of the tab item.

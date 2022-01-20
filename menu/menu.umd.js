@@ -838,6 +838,19 @@ require('../source/modules/smart.menu');
                 });
             }
         }
+        /** Clicks on an item programatically.
+        * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group or its id or numeric path.
+        */
+        clickItem(item) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.clickItem(item);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.clickItem(item);
+                });
+            }
+        }
         /** Closes the Menu when mode is 'dropDown'.
         */
         close() {

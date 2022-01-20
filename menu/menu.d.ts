@@ -267,6 +267,10 @@ export declare class Menu extends React.Component<React.HTMLAttributes<Element> 
     /** Clears all Menu items.
     */
     clear(): void;
+    /** Clicks on an item programatically.
+    * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group or its id or numeric path.
+    */
+    clickItem(item: HTMLElement | string): void;
     /** Closes the Menu when mode is 'dropDown'.
     */
     close(): void;

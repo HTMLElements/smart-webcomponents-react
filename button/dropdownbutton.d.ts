@@ -141,6 +141,11 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     */
     get placeholder(): string;
     set placeholder(value: string);
+    /** Determines the element's placeholder template, displayed in the element's action button container. You can pass 'string', 'function' or HTMLTemplateElement as a value.
+    *	Property type: any
+    */
+    get placeholderTemplate(): any;
+    set placeholderTemplate(value: any);
     /** Disables user interaction with the element.
     *	Property type: boolean
     */

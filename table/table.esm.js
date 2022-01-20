@@ -121,6 +121,17 @@ class Table extends React.Component {
             this.nativeElement.columnResize = value;
         }
     }
+    /** This property affects the table sizing, when the columnSizeMode is 'default'. When 'columnResizeNormalize' is false, the Table will add an additional TH element, if all table columns have the 'width' property set. This is done in order to maintain your width settings. Otherwise, when the property is set to true, the Table will auto-fill the remaining space similar to the layout of standard HTML Tables.
+    *	Property type: boolean
+    */
+    get columnResizeNormalize() {
+        return this.nativeElement ? this.nativeElement.columnResizeNormalize : undefined;
+    }
+    set columnResizeNormalize(value) {
+        if (this.nativeElement) {
+            this.nativeElement.columnResizeNormalize = value;
+        }
+    }
     /** Sets or gets whether when resizing a column, a feedback showing the new column width in px will be displayed.
     *	Property type: boolean
     */
@@ -352,7 +363,7 @@ class Table extends React.Component {
             this.nativeElement.freezeHeader = value;
         }
     }
-    /** Sets or gets the id of an HTML template element to be applied as additional column header(s).
+    /** Allows to customize the header of the element. The property accepts the id of an HTMLElement, HTMLTemplateElement, function or a string that will be parsed as HTML. When set to a function it contains one argument - the header element of the Table.
     *	Property type: boolean
     */
     get grouping() {
@@ -375,7 +386,7 @@ class Table extends React.Component {
         }
     }
     /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
-    *	Property type: string
+    *	Property type: string | HTMLElement | Function
     */
     get headerRow() {
         return this.nativeElement ? this.nativeElement.headerRow : undefined;
@@ -629,11 +640,11 @@ class Table extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoLoadState", "autoSaveState", "columnGroups", "columnMinWidth", "columnReorder", "columnResize", "columnResizeFeedback", "columns", "conditionalFormatting", "columnSizeMode", "conditionalFormattingButton", "deferredScrollDelay", "dataRowId", "dataSource", "dataSourceSettings", "dataTransform", "disabled", "editing", "editMode", "expandHierarchy", "filtering", "filterRow", "filterTemplate", "footerRow", "formulas", "freezeFooter", "freezeHeader", "grouping", "groupFormatFunction", "headerRow", "keyboardNavigation", "loadColumnStateBehavior", "locale", "messages", "onCellRender", "onColumnRender", "onInit", "pageSize", "pageIndex", "paging", "rightToLeft", "rowDetailTemplate", "selected", "selection", "selectionMode", "selectionByHierarchy", "sort", "sortMode", "stateSettings", "theme", "tooltip", "virtualization"];
+        return ["animation", "autoLoadState", "autoSaveState", "columnGroups", "columnMinWidth", "columnReorder", "columnResize", "columnResizeNormalize", "columnResizeFeedback", "columns", "conditionalFormatting", "columnSizeMode", "conditionalFormattingButton", "deferredScrollDelay", "dataRowId", "dataSource", "dataSourceSettings", "dataTransform", "disabled", "editing", "editMode", "expandHierarchy", "filtering", "filterRow", "filterTemplate", "footerRow", "formulas", "freezeFooter", "freezeHeader", "grouping", "groupFormatFunction", "headerRow", "keyboardNavigation", "loadColumnStateBehavior", "locale", "messages", "onCellRender", "onColumnRender", "onInit", "pageSize", "pageIndex", "paging", "rightToLeft", "rowDetailTemplate", "selected", "selection", "selectionMode", "selectionByHierarchy", "sort", "sortMode", "stateSettings", "theme", "tooltip", "virtualization"];
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onCellBeginEdit", "onCellClick", "onCellEndEdit", "onChange", "onCollapse", "onExpand", "onColumnClick", "onColumnResize", "onFilter", "onGroup", "onPage", "onRowBeginEdit", "onRowEndEdit", "onSort", "onCreate", "onReady"];
+        return ["onCellBeginEdit", "onCellClick", "onCellEndEdit", "onChange", "onCollapse", "onExpand", "onColumnClick", "onCloseColumnMenu", "onColumnResize", "onFilter", "onGroup", "onOpenColumnMenu", "onPage", "onRowBeginEdit", "onRowEndEdit", "onSort", "onCreate", "onReady"];
     }
     /** Adds a new row. When you invoke the method, pass a JSON object with the row's data.
     * @param {any} data. JSON object with the new row's data. Sample JSON: {firstName: 'Peter', lastName: 'Fuller'}.

@@ -267,6 +267,17 @@ require('../source/modules/smart.fileupload');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
+	    /** Gets the file upload value.
+	    *	Property type: any
+	    */
+	    get value() {
+	        return this.nativeElement ? this.nativeElement.value : undefined;
+	    }
+	    set value(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.value = value;
+	        }
+	    }
 	    /** Callback used to validate the files immediatelly after their selection. Retuns a boolean value. If the returned value is false, the file is removed from list and a 'validationError is fired.
 	    *	Property type: any
 	    */
@@ -280,7 +291,7 @@ require('../source/modules/smart.fileupload');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["accept", "animation", "appendTo", "autoUpload", "directory", "disabled", "dropZone", "hideFooter", "itemTemplate", "locale", "localizeFormatFunction", "messages", "multiple", "name", "readonly", "responseHandler", "rightToLeft", "setHeaders", "showProgress", "theme", "uploadUrl", "unfocusable", "validateFile"];
+	        return ["accept", "animation", "appendTo", "autoUpload", "directory", "disabled", "dropZone", "hideFooter", "itemTemplate", "locale", "localizeFormatFunction", "messages", "multiple", "name", "readonly", "responseHandler", "rightToLeft", "setHeaders", "showProgress", "theme", "uploadUrl", "unfocusable", "value", "validateFile"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {

@@ -1,5 +1,5 @@
 
-import '../source/modules/smart.input';
+import '../source/modules/smart.timeinput';
 
 import React from 'react';
 

@@ -2,7 +2,7 @@ import React from "react";
 import { TableProperties } from "./../index";
 import { Animation, TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings } from './../index';
 export { TableProperties } from "./../index";
-export { Animation, TableColumnDataType, TableColumnFreeze, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableDataSourceSettingsSanitizeHTML, TableDataSourceSettingsDataFieldDataType, TableDataSourceSettingsDataSourceType, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings, TableDataSourceSettingsDataField } from './../index';
+export { Animation, TableColumnDataType, TableColumnFreeze, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableDataSourceSettingsSanitizeHTML, TableDataSourceSettingsSanitizeHTMLRender, TableDataSourceSettingsDataFieldDataType, TableDataSourceSettingsDataSourceType, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings, TableDataSourceSettingsDataField } from './../index';
 export declare const Smart: any;
 export interface TableProps extends TableProperties {
     className?: string;
@@ -14,9 +14,11 @@ export interface TableProps extends TableProperties {
     onCollapse?: ((event?: Event) => void) | undefined;
     onExpand?: ((event?: Event) => void) | undefined;
     onColumnClick?: ((event?: Event) => void) | undefined;
+    onCloseColumnMenu?: ((event?: Event) => void) | undefined;
     onColumnResize?: ((event?: Event) => void) | undefined;
     onFilter?: ((event?: Event) => void) | undefined;
     onGroup?: ((event?: Event) => void) | undefined;
+    onOpenColumnMenu?: ((event?: Event) => void) | undefined;
     onPage?: ((event?: Event) => void) | undefined;
     onRowBeginEdit?: ((event?: Event) => void) | undefined;
     onRowEndEdit?: ((event?: Event) => void) | undefined;
@@ -67,6 +69,11 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     get columnResize(): boolean;
     set columnResize(value: boolean);
+    /** This property affects the table sizing, when the columnSizeMode is 'default'. When 'columnResizeNormalize' is false, the Table will add an additional TH element, if all table columns have the 'width' property set. This is done in order to maintain your width settings. Otherwise, when the property is set to true, the Table will auto-fill the remaining space similar to the layout of standard HTML Tables.
+    *	Property type: boolean
+    */
+    get columnResizeNormalize(): boolean;
+    set columnResizeNormalize(value: boolean);
     /** Sets or gets whether when resizing a column, a feedback showing the new column width in px will be displayed.
     *	Property type: boolean
     */
@@ -176,7 +183,7 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     get freezeHeader(): boolean;
     set freezeHeader(value: boolean);
-    /** Sets or gets the id of an HTML template element to be applied as additional column header(s).
+    /** Allows to customize the header of the element. The property accepts the id of an HTMLElement, HTMLTemplateElement, function or a string that will be parsed as HTML. When set to a function it contains one argument - the header element of the Table.
     *	Property type: boolean
     */
     get grouping(): boolean;
@@ -201,10 +208,10 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
         }): void;
     });
     /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
-    *	Property type: string
+    *	Property type: string | HTMLElement | Function
     */
-    get headerRow(): string;
-    set headerRow(value: string);
+    get headerRow(): string | HTMLElement | Function;
+    set headerRow(value: string | HTMLElement | Function);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: boolean
     */
@@ -383,6 +390,11 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     *   dataField - The data field of the cell's column.
     */
     onColumnClick?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a column menu is closed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField)
+    *   dataField - The data field of the column.
+    */
+    onCloseColumnMenu?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a column has been resized via dragging or double-click.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField, 	headerCellElement, 	width)
     *   dataField - The data field of the column.
@@ -404,6 +416,11 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     *   path - The group's path (only when collapsing/expanding). The path includes the path to the expanded/collapsed group starting from the root group. The indexes are joined with '.'. This parameter is available when the 'action' is 'expand' or 'collapse'.
     */
     onGroup?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a column menu is opened.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	dataField)
+    *   dataField - The data field of the column.
+    */
+    onOpenColumnMenu?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a paging-related action is made.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	action)
     *   action - The paging action. Possible actions: 'pageIndexChange', 'pageSizeChange'.

@@ -47,6 +47,28 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.autoCompleteDelay = value;
 	        }
 	    }
+	    /** Enables or disables the close buttons when multiple items are selected.
+	    *	Property type: boolean
+	    */
+	    get hideInputTagsCloseButton() {
+	        return this.nativeElement ? this.nativeElement.hideInputTagsCloseButton : undefined;
+	    }
+	    set hideInputTagsCloseButton(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.hideInputTagsCloseButton = value;
+	        }
+	    }
+	    /** Enables or disables whether when an item has a 'color' property set, the tag of that item will set automatically the background to that color.
+	    *	Property type: boolean
+	    */
+	    get colorItems() {
+	        return this.nativeElement ? this.nativeElement.colorItems : undefined;
+	    }
+	    set colorItems(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.colorItems = value;
+	        }
+	    }
 	    /** Determines the data source that will be loaded to the MutliInput. The dataSource can be an array of strings/numbers or objects where the attributes represent the properties of a List Item. For example label, value. It can also be a callback that returns an Array of items as previously described.
 	    *	Property type: any
 	    */
@@ -201,6 +223,17 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.placeholder = value;
 	        }
 	    }
+	    /** Enables or disables whether drop-down items are rendered as pills.
+	    *	Property type: boolean
+	    */
+	    get pills() {
+	        return this.nativeElement ? this.nativeElement.pills : undefined;
+	    }
+	    set pills(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.pills = value;
+	        }
+	    }
 	    /** Sets or gets the query that is used to filter the items. Query is used by the autoComplete operation. Empty string means that all items from the data source will be displayed and no filter query is applied.
 	    *	Property type: string | number
 	    */
@@ -254,6 +287,17 @@ require('../source/modules/smart.multicomboinput');
 	    set separator(value) {
 	        if (this.nativeElement) {
 	            this.nativeElement.separator = value;
+	        }
+	    }
+	    /** Determines whether only a single item can be selected.
+	    *	Property type: boolean
+	    */
+	    get singleSelect() {
+	        return this.nativeElement ? this.nativeElement.singleSelect : undefined;
+	    }
+	    set singleSelect(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.singleSelect = value;
 	        }
 	    }
 	    /** Determines whether an additional item is displayed as the first item in the options list, which allows to select/unselect all items.
@@ -346,7 +390,7 @@ require('../source/modules/smart.multicomboinput');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["animation", "autoCompleteDelay", "dataSource", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "query", "queryMode", "readonly", "rightToLeft", "separator", "selectAll", "sorted", "sortDirection", "inputTagsMode", "theme", "type", "unfocusable", "value"];
+	        return ["animation", "autoCompleteDelay", "hideInputTagsCloseButton", "colorItems", "dataSource", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "pills", "query", "queryMode", "readonly", "rightToLeft", "separator", "singleSelect", "selectAll", "sorted", "sortDirection", "inputTagsMode", "theme", "type", "unfocusable", "value"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {

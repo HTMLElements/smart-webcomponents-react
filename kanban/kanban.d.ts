@@ -1,8 +1,8 @@
 import React from "react";
 import { KanbanProperties } from "./../index";
-import { Animation, KanbanColumnEditMode, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanUser } from './../index';
+import { KanbanAddNewButtonDisplayMode, KanbanColumnEditMode, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanTaskSubTasks, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanPriority, KanbanUser } from './../index';
 export { KanbanProperties } from "./../index";
-export { Animation, KanbanColumnOrientation, KanbanColumnEditMode, KanbanDataSourcePriority, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanUser } from './../index';
+export { KanbanAddNewButtonDisplayMode, KanbanColumnOrientation, KanbanColumnEditMode, KanbanDataSourcePriority, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanTaskSubTasks, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanPriority, KanbanUser } from './../index';
 export { DataAdapter } from './../index';
 export declare const Smart: any;
 export interface KanbanProps extends KanbanProperties {
@@ -52,11 +52,21 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get allowColumnRemove(): boolean;
     set allowColumnRemove(value: boolean);
+    /** Enables or disables column hiding. When this property is set to true, users will be able to dynamically hide a column through the column actions menu. the 'columnActions' property should be true.
+    *	Property type: boolean
+    */
+    get allowColumnHide(): boolean;
+    set allowColumnHide(value: boolean);
     /** Toggles the visibility of the column buttons for adding tasks. A particular button can be disabled by setting addNewButton in the column's definition to false.
     *	Property type: boolean
     */
     get addNewButton(): boolean;
     set addNewButton(value: boolean);
+    /** Determines whether the add button is visible in the column header and/or after the tasks in the column.
+    *	Property type: KanbanAddNewButtonDisplayMode
+    */
+    get addNewButtonDisplayMode(): KanbanAddNewButtonDisplayMode;
+    set addNewButtonDisplayMode(value: KanbanAddNewButtonDisplayMode);
     /** Sets or gets whether a column with a button for adding new status columns to the Kanban will be displayed.
     *	Property type: boolean
     */
@@ -72,11 +82,6 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get allowDrop(): boolean;
     set allowDrop(value: boolean);
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
-    */
-    get animation(): Animation;
-    set animation(value: Animation);
     /** Enables or disables auto load state from the browser's localStorage. Information about tasks and their position and selected state, filtering, sorting, collapsed columns, as well as the values of the properties taskActions, taskComments, taskDue, taskPriority, taskProgress, taskTags, and taskUserIcon is loaded.
     *	Property type: boolean
     */
@@ -92,6 +97,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get collapsible(): boolean;
     set collapsible(value: boolean);
+    /** Displays colors in the column header, when the column's color property is set.
+    *	Property type: boolean
+    */
+    get columnColors(): boolean;
+    set columnColors(value: boolean);
     /** Describes the columns properties.
     *	Property type: KanbanColumn[]
     */
@@ -102,6 +112,16 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get columnActions(): boolean;
     set columnActions(value: boolean);
+    /** Determines whether task count information is displayed in column headers.
+    *	Property type: boolean
+    */
+    get columnSummary(): boolean;
+    set columnSummary(value: boolean);
+    /** Determines whether a column header has a template. You can pass 'string', 'function' or HTMLTemplateElement as a value.
+    *	Property type: any
+    */
+    get columnHeaderTemplate(): any;
+    set columnHeaderTemplate(value: any);
     /** Determines the column edit behavior. With the 'header' option, edit starts on double click on the column's label. In 'menu' mode, edit is allowed from the 'columnActions' menu. In 'headerAndMenu' option, column editing includes both options.
     *	Property type: KanbanColumnEditMode
     */
@@ -118,7 +138,7 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     get dataSource(): KanbanDataSource[];
     set dataSource(value: KanbanDataSource[]);
     /** Determines the the relation (mapping) between the Kanban's default fields (keywords) and the data fields from the data source. Not necessary if both match. Only some of the default mapping can be overwritten.
-    *	Property type: { checklist: string; color: string; comments: string; dueDate: string; id: string; priority: string; progress: string; startDate: string; status: string; swimlane: string; tags: string; text: string; userId: string; }
+    *	Property type: { checklist: string; color: string; comments: string; dueDate: string; id: string; priority: string; progress: string; startDate: string; status: string; swimlane: string; tags: string; text: string; userId: string; createdUserId: string; upDatedUserId: string; createdDate: Date; upDatedDate: Date;}
     */
     get dataSourceMap(): {
         checklist: string;
@@ -134,6 +154,10 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
         tags: string;
         text: string;
         userId: string;
+        createdUserId: string;
+        upDatedUserId: string;
+        createdDate: Date;
+        upDatedDate: Date;
     };
     set dataSourceMap(value: {
         checklist: string;
@@ -149,6 +173,10 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
         tags: string;
         text: string;
         userId: string;
+        createdUserId: string;
+        upDatedUserId: string;
+        createdDate: Date;
+        upDatedDate: Date;
     });
     /** Determines the offset of the drag feedback element from the mouse cursor when dragging tasks. The first member of the array is the horizontal offset and the second one - the vertical offset. If set to 'auto', the offset is based on the mouse position when the dragging started.
     *	Property type: boolean
@@ -195,6 +223,16 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get selectionMode(): KanbanSelectionMode;
     set selectionMode(value: KanbanSelectionMode);
+    /** Sets or gets whether the tasks history will be stored and displayed in the task dialog.
+    *	Property type: boolean
+    */
+    get storeHistory(): boolean;
+    set storeHistory(value: boolean);
+    /** Sets or gets the task history items that will be stored when storeHistory is enabled.
+    *	Property type: number
+    */
+    get storeHistoryItems(): number;
+    set storeHistoryItems(value: number);
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */
@@ -250,6 +288,26 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get taskProgress(): boolean;
     set taskProgress(value: boolean);
+    /** Sets the task custom fields displayed in the card. Each array item should have 'dataField', 'label' 'dataType' and optionally 'visible' properties. The 'dataField' determines the value, the label is displayed as title, 'dataType' is used for formatting and 'visible' determines whether the field will be displayed.
+    *	Property type: any
+    */
+    get taskCustomFields(): any;
+    set taskCustomFields(value: any);
+    /** The task's background color depends on the task's color property. By default the color is rendered within the task's left border.
+    *	Property type: boolean
+    */
+    get taskColorEntireSurface(): boolean;
+    set taskColorEntireSurface(value: boolean);
+    /** Displays an input in the task's card for adding dynamically a sub task. The 'taskSubTasks' property should be set to a value different than 'none'.
+    *	Property type: boolean
+    */
+    get taskSubTasksInput(): boolean;
+    set taskSubTasksInput(value: boolean);
+    /** Sets the rendering mode of sub tasks. 'none' - default value. Sub tasks are displayed only in the edit dialog. 'onePerRow' - all sub tasks are displayed in the task's card. 'onlyUnfinished' - only tasks which are not completed are displayed in the task's card.
+    *	Property type: KanbanTaskSubTasks
+    */
+    get taskSubTasks(): KanbanTaskSubTasks;
+    set taskSubTasks(value: KanbanTaskSubTasks);
     /** Toggles the visibility of task tags.
     *	Property type: boolean
     */
@@ -270,6 +328,16 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get theme(): string;
     set theme(value: string);
+    /** Determines whether the priority list (as defined by the priority property) will be shown when clicking the priority icon. Only applicable if editable privileges are enabled.
+    *	Property type: boolean
+    */
+    get priorityList(): boolean;
+    set priorityList(value: boolean);
+    /** Determines the priority Kanban tasks can be assigned to. Example: [{label: 'low', value: 'low'}, {label: 'high', value: 'high'}]
+    *	Property type: KanbanPriority[]
+    */
+    get priority(): KanbanPriority[];
+    set priority(value: KanbanPriority[]);
     /** Determines whether the user list (as defined by the users property) will be shown when clicking the user icon. Only applicable if editable privileges are enabled.
     *	Property type: boolean
     */
@@ -316,10 +384,10 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     onColumnReorder?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a column is updated.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	label, 	dataField, 	collapsed)
-    *   label - The column label.
-    *   dataField - The column data field.
-    *   collapsed - The column's collapsed state.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value, 	column)
+    *   oldValue - The column's old label.
+    *   value - The column's new label.
+    *   column - The column's data object with 'label', 'dataField' and 'collapsed' fields.
     */
     onColumnUpdate?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a column header is clicked.
@@ -430,6 +498,10 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     * @param {number | string} column. The index or dataField of the column to collapse
     */
     collapse(column: number | string): void;
+    /** Hides a Kanban column.
+    * @param {number | string} column. The index or dataField of the column to hide
+    */
+    hide(column: number | string): void;
     /** Creates a copy of a task in the same column.
     * @param {number | string | HTMLElement} task. The task's id or corresponding HTMLElement
     */
@@ -451,11 +523,16 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     expandAll(): void;
     /** Exports the Kanban's data.
     * @param {string} dataFormat. The file format to export to. Supported formats: 'csv', 'html', 'json', 'pdf', 'tsv', 'xlsx', 'xml'.
-    * @param {string} fileName?. The name of the file to export to
+    * @param {string} fileName. The name of the file to export to
     * @param {Function} callback?. A callback function to pass the exported data to (if fileName is not provided)
     * @returns {any}
   */
-    exportData(dataFormat: string, fileName?: string, callback?: Function): Promise<any>;
+    exportData(dataFormat: string, fileName: string, callback?: Function): Promise<any>;
+    /** Gets the data of a column. The returned value is a JSON object with the following fields: 'label', 'dataField', 'collapsed', 'collapsible', 'allowRemove', 'editable', 'reorder', 'orientation'.
+    * @param {string} dataField. The column's data field
+    * @returns {any}
+  */
+    getColumn(dataField: string): Promise<any>;
     /** Gets the Kanban's state.
     * @returns {{ collapsed: {}, dataSource: [], filtering: { filters: [], operator: string }, selection: { selected: [], selectionStart: number | string, selectionInColumn: string, swimlane: string }, sorting: { dataFields: [], dataTypes: [], orderBy: [] }, tabs: [], visibility: { taskActions: boolean, taskComments: boolean, taskDue: boolean, taskPriority: boolean, taskProgress: boolean, taskTags: boolean, taskUserIcon: boolean } }}
   */
@@ -524,6 +601,13 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     /** Saves the Kanban's state to the browser's localStorage.
     */
     saveState(): void;
+    /** Shows a Kanban column.
+    * @param {number | string} column. The index or dataField of the column to show
+    */
+    show(column: number | string): void;
+    /** Shows all Kanban columns.
+    */
+    showAllColumns(): void;
     /** Updates a task.
     * @param {number | string | HTMLElement} task. The task's id or corresponding HTMLElement
     * @param {{}} newData. The new data to visualize in the task.

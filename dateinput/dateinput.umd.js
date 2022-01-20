@@ -1,5 +1,5 @@
 
-require('../source/modules/smart.input');
+require('../source/modules/smart.dateinput');
 
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :

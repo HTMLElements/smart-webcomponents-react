@@ -1,5 +1,5 @@
 
-import '../source/modules/smart.input';
+import '../source/modules/smart.colorinput';
 
 import React from 'react';
 

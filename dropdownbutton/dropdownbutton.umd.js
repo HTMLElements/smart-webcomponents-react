@@ -303,6 +303,17 @@ require('../source/modules/smart.button');
                 this.nativeElement.placeholder = value;
             }
         }
+        /** Determines the element's placeholder template, displayed in the element's action button container. You can pass 'string', 'function' or HTMLTemplateElement as a value.
+        *	Property type: any
+        */
+        get placeholderTemplate() {
+            return this.nativeElement ? this.nativeElement.placeholderTemplate : undefined;
+        }
+        set placeholderTemplate(value) {
+            if (this.nativeElement) {
+                this.nativeElement.placeholderTemplate = value;
+            }
+        }
         /** Disables user interaction with the element.
         *	Property type: boolean
         */
@@ -382,7 +393,7 @@ require('../source/modules/smart.button');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["animation", "autoCloseDelay", "disabled", "dropDownAppendTo", "dropDownButtonPosition", "dropDownHeight", "dropDownMaxHeight", "dropDownMaxWidth", "dropDownMinHeight", "dropDownMinWidth", "dropDownOpenMode", "dropDownOverlay", "dropDownPlaceholder", "dropDownPosition", "dropDownWidth", "hint", "horizontalScrollBarVisibility", "label", "locale", "localizeFormatFunction", "messages", "opened", "placeholder", "readonly", "resizeIndicator", "resizeMode", "rightToLeft", "theme", "unfocusable", "verticalScrollBarVisibility"];
+            return ["animation", "autoCloseDelay", "disabled", "dropDownAppendTo", "dropDownButtonPosition", "dropDownHeight", "dropDownMaxHeight", "dropDownMaxWidth", "dropDownMinHeight", "dropDownMinWidth", "dropDownOpenMode", "dropDownOverlay", "dropDownPlaceholder", "dropDownPosition", "dropDownWidth", "hint", "horizontalScrollBarVisibility", "label", "locale", "localizeFormatFunction", "messages", "opened", "placeholder", "placeholderTemplate", "readonly", "resizeIndicator", "resizeMode", "rightToLeft", "theme", "unfocusable", "verticalScrollBarVisibility"];
         }
         // Gets the events of the React component.
         get eventListeners() {

@@ -264,7 +264,7 @@ class Grid extends React.Component {
             this.nativeElement.onCellUpdate = value;
         }
     }
-    /** Describes the paging settings.
+    /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
     *	Property type: {(cell: GridCell): void}
     */
     get onCellRender() {
@@ -275,7 +275,7 @@ class Grid extends React.Component {
             this.nativeElement.onCellRender = value;
         }
     }
-    /** Describes the pager settings.
+    /** Sets the grid users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
     *	Property type: {(): void}
     */
     get onBeforeInit() {
@@ -286,7 +286,7 @@ class Grid extends React.Component {
             this.nativeElement.onBeforeInit = value;
         }
     }
-    /** Sets the row details.
+    /** Describes the paging settings.
     *	Property type: {(): void}
     */
     get onInit() {
@@ -297,7 +297,7 @@ class Grid extends React.Component {
             this.nativeElement.onInit = value;
         }
     }
-    /** Sets the scroll mode settings.
+    /** Describes the pager settings.
     *	Property type: {(): void}
     */
     get onAfterInit() {
@@ -308,7 +308,7 @@ class Grid extends React.Component {
             this.nativeElement.onAfterInit = value;
         }
     }
-    /** Describes the column header settings.
+    /** Sets the row details.
     *	Property type: any
     */
     get onChartInit() {
@@ -319,7 +319,7 @@ class Grid extends React.Component {
             this.nativeElement.onChartInit = value;
         }
     }
-    /** Describes the summary row settings.
+    /** Sets the scroll mode settings.
     *	Property type: any
     */
     get onRender() {
@@ -330,7 +330,7 @@ class Grid extends React.Component {
             this.nativeElement.onRender = value;
         }
     }
-    /** Describes the settings for the group header.
+    /** Describes the column header settings.
     *	Property type: {(event: KeyboardEvent): void}
     */
     get onKey() {
@@ -341,7 +341,7 @@ class Grid extends React.Component {
             this.nativeElement.onKey = value;
         }
     }
-    /** Describes the header settings of the grid.
+    /** Describes the summary row settings.
     *	Property type: {(index: number, row: GridRow): void}
     */
     get onRowInit() {
@@ -352,7 +352,7 @@ class Grid extends React.Component {
             this.nativeElement.onRowInit = value;
         }
     }
-    /** Describes the footer settings of the grid.
+    /** Describes the settings for the group header.
     *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
     */
     get onRowDetailInit() {
@@ -363,7 +363,7 @@ class Grid extends React.Component {
             this.nativeElement.onRowDetailInit = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Describes the header settings of the grid.
     *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
     */
     get onRowDetailUpdated() {
@@ -374,7 +374,7 @@ class Grid extends React.Component {
             this.nativeElement.onRowDetailUpdated = value;
         }
     }
-    /** The rows property is used to describe all rows displayed in the grid.
+    /** Describes the footer settings of the grid.
     *	Property type: {(index: number, row: GridRow): void}
     */
     get onRowInserted() {
@@ -385,7 +385,7 @@ class Grid extends React.Component {
             this.nativeElement.onRowInserted = value;
         }
     }
-    /** Describes the selection settings.
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: {(index: number, row: GridRow): void}
     */
     get onRowRemoved() {
@@ -396,7 +396,7 @@ class Grid extends React.Component {
             this.nativeElement.onRowRemoved = value;
         }
     }
-    /** Describes sorting settings.
+    /** The rows property is used to describe all rows displayed in the grid.
     *	Property type: {(index: number, row: GridRow, oldValues: any[], values: any[], confirm: {(commit: boolean): void}): void}
     */
     get onRowUpdate() {
@@ -407,7 +407,7 @@ class Grid extends React.Component {
             this.nativeElement.onRowUpdate = value;
         }
     }
-    /** undefined
+    /** Describes the selection settings.
     *	Property type: {(index: number, row: GridRow): void}
     */
     get onRowUpdated() {
@@ -418,7 +418,7 @@ class Grid extends React.Component {
             this.nativeElement.onRowUpdated = value;
         }
     }
-    /** undefined
+    /** Describes sorting settings.
     *	Property type: {(index: number, column: GridColumn): void}
     */
     get onColumnInit() {
@@ -471,6 +471,28 @@ class Grid extends React.Component {
     set onCommand(value) {
         if (this.nativeElement) {
             this.nativeElement.onCommand = value;
+        }
+    }
+    /** undefined
+    *	Property type: string | number
+    */
+    get currentUser() {
+        return this.nativeElement ? this.nativeElement.currentUser : undefined;
+    }
+    set currentUser(value) {
+        if (this.nativeElement) {
+            this.nativeElement.currentUser = value;
+        }
+    }
+    /** undefined
+    *	Property type: any[]
+    */
+    get users() {
+        return this.nativeElement ? this.nativeElement.users : undefined;
+    }
+    set users(value) {
+        if (this.nativeElement) {
+            this.nativeElement.users = value;
         }
     }
     /** undefined
@@ -618,11 +640,11 @@ class Grid extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["appearance", "behavior", "layout", "locale", "clipboard", "columns", "columnMenu", "columnGroups", "conditionalFormatting", "charting", "checkBoxes", "dataExport", "dataSource", "dataSourceSettings", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onCommand", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "groupHeader", "header", "footer", "rightToLeft", "rows", "selection", "sorting"];
+        return ["appearance", "behavior", "layout", "locale", "clipboard", "columns", "columnMenu", "columnGroups", "conditionalFormatting", "charting", "checkBoxes", "dataExport", "dataSource", "dataSourceSettings", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onCommand", "currentUser", "users", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "groupHeader", "header", "footer", "rightToLeft", "rows", "selection", "sorting"];
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onBeginEdit", "onBatchChange", "onBatchCancel", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnDragging", "onColumnDragEnd", "onColumnReorder", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowReorder", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
+        return ["onBeginEdit", "onBatchChange", "onBatchCancel", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnDragging", "onColumnDragEnd", "onColumnReorder", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowReorder", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onOpenColumnDialog", "onCloseColumnDialog", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
     }
     /** Adds a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {any} data. row data matching the data source
@@ -688,6 +710,33 @@ class Grid extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.addFilter(dataField, filter, refreshFilters);
+            });
+        }
+    }
+    /** Groups the Grid by a data field. This method will add a group to the Grid when grouping is enabled.
+    * @param {string} dataField. column bound data field
+    */
+    addGroup(dataField) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.addGroup(dataField);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.addGroup(dataField);
+            });
+        }
+    }
+    /** Sorts the Grid by a data field. This method will add a sorting to the Grid when sorting is enabled.
+    * @param {string} dataField. column bound data field
+    * @param {string} sortOrder. column's sort order. Use 'asc' or 'desc'.
+    */
+    addSort(dataField, sortOrder) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.addSort(dataField, sortOrder);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.addSort(dataField, sortOrder);
             });
         }
     }
@@ -767,6 +816,30 @@ class Grid extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.clearFilter();
+            });
+        }
+    }
+    /** Clears all data groups. Refreshes the view and updates the DataGrid component.
+    */
+    clearGroups() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.clearGroups();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.clearGroups();
+            });
+        }
+    }
+    /** Clears all sorting. Refreshes the view and updates the DataGrid component.
+    */
+    clearSort() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.clearSort();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.clearSort();
             });
         }
     }
@@ -1540,6 +1613,44 @@ class Grid extends React.Component {
         }
     }
     /** Removes a column filter.
+    * @param {string} dataField. column bound data field
+    */
+    removeGroup(dataField) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.removeGroup(dataField);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.removeGroup(dataField);
+            });
+        }
+    }
+    /** Removes a group by data field. This method will remove a group to the Grid when grouping is enabled.
+    * @param {string} dataField. column bound data field
+    */
+    removeSort(dataField) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.removeSort(dataField);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.removeSort(dataField);
+            });
+        }
+    }
+    /** Removes a sorting by data field. This method will remove a sorting from a Grid column.
+    */
+    refreshSort() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.refreshSort();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.refreshSort();
+            });
+        }
+    }
+    /** Re-sorts the Grid by using the already applied column sortings and re-renders the Grid.
     */
     revertBatchEdit() {
         if (this.nativeElement.isRendered) {
@@ -1567,6 +1678,20 @@ class Grid extends React.Component {
         }
     }
     /** Reorders two DataGrid columns.
+    * @param {string} dataField. column bound data field
+    * @param {string | null} sortOrder. column's sort order. Use 'asc', 'desc' or null.
+    */
+    sortBy(dataField, sortOrder) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.sortBy(dataField, sortOrder);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.sortBy(dataField, sortOrder);
+            });
+        }
+    }
+    /** Sorts the Grid by a data field. This method will add or remove sorting, when sorting is enabled. To remove the sorting, use 'null' for the sortOrder parameter.
     * @param {string | number} dataField. The data field or column index of the first grid column.
     * @param {string | number} referenceDataField. The data field or column index of the second grid column.
     */

@@ -135,6 +135,11 @@ export declare class FileUpload extends React.Component<React.HTMLAttributes<Ele
     */
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
+    /** Gets the file upload value.
+    *	Property type: any
+    */
+    get value(): any;
+    set value(value: any);
     /** Callback used to validate the files immediatelly after their selection. Retuns a boolean value. If the returned value is false, the file is removed from list and a 'validationError is fired.
     *	Property type: any
     */

@@ -29,6 +29,16 @@ export declare class MultiComboInput extends React.Component<React.HTMLAttribute
     */
     get autoCompleteDelay(): number;
     set autoCompleteDelay(value: number);
+    /** Enables or disables the close buttons when multiple items are selected.
+    *	Property type: boolean
+    */
+    get hideInputTagsCloseButton(): boolean;
+    set hideInputTagsCloseButton(value: boolean);
+    /** Enables or disables whether when an item has a 'color' property set, the tag of that item will set automatically the background to that color.
+    *	Property type: boolean
+    */
+    get colorItems(): boolean;
+    set colorItems(value: boolean);
     /** Determines the data source that will be loaded to the MutliInput. The dataSource can be an array of strings/numbers or objects where the attributes represent the properties of a List Item. For example label, value. It can also be a callback that returns an Array of items as previously described.
     *	Property type: any
     */
@@ -99,6 +109,11 @@ export declare class MultiComboInput extends React.Component<React.HTMLAttribute
     */
     get placeholder(): string;
     set placeholder(value: string);
+    /** Enables or disables whether drop-down items are rendered as pills.
+    *	Property type: boolean
+    */
+    get pills(): boolean;
+    set pills(value: boolean);
     /** Sets or gets the query that is used to filter the items. Query is used by the autoComplete operation. Empty string means that all items from the data source will be displayed and no filter query is applied.
     *	Property type: string | number
     */
@@ -124,6 +139,11 @@ export declare class MultiComboInput extends React.Component<React.HTMLAttribute
     */
     get separator(): string;
     set separator(value: string);
+    /** Determines whether only a single item can be selected.
+    *	Property type: boolean
+    */
+    get singleSelect(): boolean;
+    set singleSelect(value: boolean);
     /** Determines whether an additional item is displayed as the first item in the options list, which allows to select/unselect all items.
     *	Property type: boolean
     */

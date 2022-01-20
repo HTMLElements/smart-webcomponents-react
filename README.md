@@ -1,10 +1,10 @@
 ﻿# [Smart UI for React JS](https://www.htmlelements.com/docs/react/)
 
-[![Price](https://img.shields.io/badge/price-COMMERCIAL-0098f7.svg)](https://jqwidgets.com/license/) 
+[![Price](https://img.shields.io/badge/price-COMMERCIAL-0098f7.svg)](https://jqwidgets.com/license/) | [![Build Status](https://www.travis-ci.com/HTMLElements/Team.svg?token=4VSAagStBB3xmHF2Epxz&branch=master)](https://www.travis-ci.com/HTMLElements/Team)
 
 You can view them online here: https://www.htmlelements.com/demos/.
 
-Enterprise-grade UI Components for React. Smart UI components will help you to build perfect looking web applications. Use the most feature-complete UI components for React and save your time for the business logic. Choose from more than 40 UI components including Grid, Chart, Gantt, Docking Layout, TreeGrid and more. Our product supports native React features 
+Enterprise-grade UI Components for React. Smart UI components will help you to build perfect looking web applications. Use the most feature-complete UI components for React and save your time for the business logic. Choose from more than 80 UI components including Grid, Pivot Table, Scheduler, Editor, Kanban, Chart, Gantt, Docking Layout, TreeGrid and more. Our product supports native React features 
 
 
 Smart for React is a commercial UI library designed and built for developing business applications with React. All Smart UI components in our React suite are built from the ground-up.

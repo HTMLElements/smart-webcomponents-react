@@ -1,8 +1,8 @@
 import React from "react";
 import { SchedulerProperties } from "./../index";
-import { SchedulerEventRenderMode, SchedulerDayFormat, FilterMode, SchedulerGroupOrientation, SchedulerHourFormat, SchedulerHeaderDatePosition, SchedulerHeaderNavigationStyle, SchedulerHeaderViewPosition, SchedulerLegendLocation, SchedulerLegendPosition, HorizontalScrollBarVisibility, MinuteFormat, MonthFormat, ResizeHandlesVisibility, SchedulerScrollButtonsPosition, SchedulerTimelineDayScale, SchedulerTimeZone, VerticalScrollBarVisibility, SchedulerViewType, SchedulerViews, SchedulerViewSelectorType, WeekDayFormat, YearFormat, SchedulerDataExport, SchedulerEvent, SchedulerResource, SchedulerStatuse } from './../index';
+import { SchedulerEventRenderMode, SchedulerDayFormat, FilterMode, SchedulerGroupOrientation, SchedulerHourFormat, SchedulerHeaderDatePosition, SchedulerHeaderNavigationStyle, SchedulerHeaderViewPosition, SchedulerLegendLocation, SchedulerLegendPosition, HorizontalScrollBarVisibility, MinuteFormat, MonthFormat, ResizeHandlesVisibility, SchedulerScrollButtonsPosition, SchedulerSortOrder, SchedulerTimelineDayScale, SchedulerTimeZone, VerticalScrollBarVisibility, SchedulerViewType, SchedulerViews, SchedulerViewSelectorType, WeekDayFormat, YearFormat, SchedulerDataExport, SchedulerEvent, SchedulerResource, SchedulerStatuse } from './../index';
 export { SchedulerProperties } from "./../index";
-export { SchedulerEventRenderMode, SchedulerRepeatFreq, SchedulerNotificationType, SchedulerDayFormat, FilterMode, SchedulerGroupOrientation, SchedulerHourFormat, SchedulerHeaderDatePosition, SchedulerHeaderNavigationStyle, SchedulerHeaderViewPosition, SchedulerLegendLocation, SchedulerLegendPosition, HorizontalScrollBarVisibility, MinuteFormat, MonthFormat, ResizeHandlesVisibility, SchedulerScrollButtonsPosition, SchedulerTimelineDayScale, SchedulerTimeZone, VerticalScrollBarVisibility, SchedulerViewType, SchedulerViews, SchedulerViewSelectorType, WeekDayFormat, YearFormat, SchedulerDataExport, SchedulerEvent, SchedulerEventRepeat, SchedulerNotification, SchedulerResource, SchedulerStatuse } from './../index';
+export { SchedulerEventRenderMode, SchedulerRepeatFreq, SchedulerNotificationType, SchedulerDayFormat, FilterMode, SchedulerGroupOrientation, SchedulerHourFormat, SchedulerHeaderDatePosition, SchedulerHeaderNavigationStyle, SchedulerHeaderViewPosition, SchedulerLegendLocation, SchedulerLegendPosition, HorizontalScrollBarVisibility, MinuteFormat, MonthFormat, ResizeHandlesVisibility, SchedulerResourceSortOrder, SchedulerScrollButtonsPosition, SchedulerSortOrder, SchedulerTimelineDayScale, SchedulerTimeZone, VerticalScrollBarVisibility, SchedulerViewType, SchedulerViews, SchedulerViewSelectorType, WeekDayFormat, YearFormat, SchedulerDataExport, SchedulerEvent, SchedulerEventRepeat, SchedulerNotification, SchedulerResource, SchedulerStatuse } from './../index';
 export { DataAdapter } from './../index';
 export declare const Smart: any;
 export interface SchedulerProps extends SchedulerProperties {
@@ -12,6 +12,7 @@ export interface SchedulerProps extends SchedulerProperties {
     onEndUpdate?: ((event?: Event) => void) | undefined;
     onChange?: ((event?: Event) => void) | undefined;
     onItemChange?: ((event?: Event) => void) | undefined;
+    onItemChanging?: ((event?: Event) => void) | undefined;
     onItemClick?: ((event?: Event) => void) | undefined;
     onItemInsert?: ((event?: Event) => void) | undefined;
     onItemRemove?: ((event?: Event) => void) | undefined;
@@ -74,10 +75,10 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     get currentTimeIndicatorInterval(): number;
     set currentTimeIndicatorInterval(value: number);
     /** Determines the context menu items that are visible when the Context Menu is opened.
-    *	Property type: any
+    *	Property type: any[]
     */
-    get contextMenuDataSource(): any;
-    set contextMenuDataSource(value: any);
+    get contextMenuDataSource(): any[];
+    set contextMenuDataSource(value: any[]);
     /** Determines whether the clipboard shortcuts for copy/paste/cut action of events are visible in the Scheduler context menu or not.
     *	Property type: boolean
     */
@@ -109,10 +110,10 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     get cellTemplate(): any;
     set cellTemplate(value: any);
     /** Determines the currently visible date for the Scheduler.
-    *	Property type: any
+    *	Property type: string | Date
     */
-    get dateCurrent(): any;
-    set dateCurrent(value: any);
+    get dateCurrent(): string | Date;
+    set dateCurrent(value: string | Date);
     /** Sets the Schedulers's Data Export options.
     *	Property type: SchedulerDataExport
     */
@@ -323,6 +324,11 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     */
     get legendPosition(): SchedulerLegendPosition;
     set legendPosition(value: SchedulerLegendPosition);
+    /** Determines the mouse wheel step. When this property is set to a positive number, the scroll step with mouse wheel or trackpad will depend on the property value.
+    *	Property type: number
+    */
+    get mouseWheelStep(): number;
+    set mouseWheelStep(value: number);
     /** Determines weather or not horizontal scrollbar is shown.
     *	Property type: HorizontalScrollBarVisibility
     */
@@ -423,6 +429,21 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     */
     get showLegend(): boolean;
     set showLegend(value: boolean);
+    /** Determines the name of the resource data item property that will be used for sorting the resource data defined as the resource.dataSource.
+    *	Property type: string
+    */
+    get sortBy(): string;
+    set sortBy(value: string);
+    /** Allows to define a custom sorting function that will be used to sort the resource data. The sortFunction is used when sortOrder is set to custom.
+    *	Property type: any
+    */
+    get sortFunction(): any;
+    set sortFunction(value: any);
+    /** Determines the sorting order of the resource data items. When set to custom, a custom sorting function has to be defined for the sortFunction property. The asc stands for 'ascending' while desc means 'descending' sorting order.
+    *	Property type: SchedulerSortOrder
+    */
+    get sortOrder(): SchedulerSortOrder;
+    set sortOrder(value: SchedulerSortOrder);
     /** Determines the repeating delay of the repeat buttons inside the header of the element. Such buttons are the Date navigation buttons and the view scroll buttons.
     *	Property type: number
     */
@@ -541,12 +562,18 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     *   oldValue - The previously selected Date.
     */
     onChange?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when an Event has been updated/inserted/removed/dragged/resized.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	type, 	item)
-    *   type - The type of change that is being done to the item.
+    /**  This event is triggered when an Event has been updated/inserted/removed/dragged/resized or an exception of a repeating event has been added/updated/removed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	type)
     *   item - An object that represents the actual item with it's attributes.
+    *   type - The type of change that is being done to the item.
     */
     onItemChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when an Event is going to be updated/inserted/removed. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	type)
+    *   item - An object that represents the actual item with it's attributes.
+    *   type - The type of change that is going to be made to the item (e.g. 'inserting', 'removing', 'updating', 'exceptionInserting', 'exceptionUpdating', 'exceptionRemoving').
+    */
+    onItemChanging?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when en event, event item or a context menu item is clicked.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	type, 	itemObj)
     *   item - The HTMLElement for the event.
@@ -628,31 +655,35 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     */
     onResizeEnd?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the user starts top open the event dialog window. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	item, 	type)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	item, 	type, 	eventObj)
     *   target - The dialog window that is opening.
     *   item - The event object that is going to be edited.
     *   type - The type of window that is going to open. Two window types are available, the dafault which is an empty string ( does not have a type) and 'confirm' which is displayed when clicked on a repeating event.
+    *   eventObj - The event object that is the target of the menu.
     */
     onEditDialogOpening?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the user opens the event dialog window.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	editors, 	item)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	editors, 	item, 	eventObj)
     *   target - The dialog window that is opened.
     *   editors - An object containing all event editors that are present inside the window. This property is undefined when the window is of type 'confirm', because confirm windows do not contain editors.
     *   item - The event object that is being edited.
+    *   eventObj - The event object that is the target of the menu.
     */
     onEditDialogOpen?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the user closes the event dialog window.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	editors, 	item)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	editors, 	item, 	eventObj)
     *   target - The dialog window that is closed.
     *   editors - An object containing all event editors that are present inside the window. This property is undefined when the window is of type 'confirm', because confirm windows do not contain editors.
     *   item - The event object that is being edited.
+    *   eventObj - The event object that is the target of the menu.
     */
     onEditDialogClose?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the user is about to close the event dialog window. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	item, 	type)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	item, 	type, 	eventObj)
     *   target - The dialog window that is closing.
     *   item - The event object that is edited.
     *   type - The type of window that is going to be closed. Two window types are available, the dafault which is an empty string ( does not have a type) and 'confirm' which is displayed when clicked on a repeating event.
+    *   eventObj - The event object that is the target of the menu.
     */
     onEditDialogClosing?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the user begins to open the context menu on a timeline cell or an event element. This event allows to cancel the operation by calling event.preventDefault() in the event handler function.
@@ -752,9 +783,21 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
+    /** Adds an event to the Scheduler. Accepts an event object of the following format (same as the dataSource format): { label?: string, dateStart: date, dateEnd: date, description?: string, id?: string | number, class?: string, backgroundColor?: string, color?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], allDay?: boolean, disableDrag?: boolean, disableResize?: boolean, repeat?: { repeatFreq: string, repeatInterval: number, repeatOn?: number | number[] | date, repeatEnd?: number | date, exceptions?: { date: date, dateStart?: date, dateEnd?: date, hidden?: boolean, backgroundColor?: string, status?: string, label?: string, description?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], disableDrag?: boolean, disableResize?: boolean }[] }, status?: string }
+    * @param {any} eventObj. An object describing a Scheduler event that is not already present in the element.
+    */
+    addEvent(eventObj: any): void;
     /** Starts an update operation. This is appropriate when calling multiple methods or set multiple properties at once.
     */
     beginUpdate(): void;
+    /** Creates an event and adds it to the Scheduler.
+    * @param {string} label. Event label.
+    * @param {string} value. Event value.
+    * @param {string} dateStart. Event date start.
+    * @param {string} dateEnd. Event date end.
+    * @param {boolean} allDay. Event all day. Set it to true to create all day event.
+    */
+    createEvent(label: string, value: string, dateStart: string, dateEnd: string, allDay: boolean): void;
     /** Ends the update operation. This method will resume the rendering and will refresh the element.
     */
     endUpdate(): void;
@@ -768,6 +811,26 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     */
     exportData(dataFormat: string, callback?: any): void;
     /** Returns a JSON representation of the events inside the Scheduler.
+    * @returns {any}
+  */
+    getDataSource(): Promise<any>;
+    /** Returns a JSON representation of the resources inside the Scheduler.
+    * @returns {any}
+  */
+    getResources(): Promise<any>;
+    /** Gets a date from coordinates
+    * @param {number} x. X coordinate.
+    * @param {number} y. Y coordinate.
+    * @returns {string}
+  */
+    getDateFromCoordinates(x: number, y: number): Promise<any>;
+    /** Gets whether a cell is all day cell from coordinates
+    * @param {number} x. X coordinate.
+    * @param {number} y. Y coordinate.
+    * @returns {boolean}
+  */
+    getIsAllDayCellFromCoordinates(x: number, y: number): Promise<any>;
+    /** Returns the current state of the Scheduler. Includes the current dateCurernt, dataSource and timeZone properties.
     * @returns {any}
   */
     getState(): Promise<any>;
@@ -787,20 +850,41 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     * @returns {boolean}
   */
     containsEvent(eventObj: any): Promise<any>;
-    /** Inserts an event.
+    /** Inserts an event as object of the following format (same as the dataSource format): { label?: string, dateStart: date, dateEnd: date, description?: string, id?: string | number, class?: string, backgroundColor?: string, color?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], allDay?: boolean, disableDrag?: boolean, disableResize?: boolean, repeat?: { repeatFreq: string, repeatInterval: number, repeatOn?: number | number[] | date, repeatEnd?: number | date, exceptions?: { date: date, dateStart?: date, dateEnd?: date, hidden?: boolean, backgroundColor?: string, status?: string, label?: string, description?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], disableDrag?: boolean, disableResize?: boolean }[] }, status?: string }
     * @param {any} eventObj. An object describing a Scheduler event that is not already present in the element.
     * @param {number} index?. A number that represents the index to insert the event at. If not provided the event is inserted at the end of the list.
     */
     insertEvent(eventObj: any, index?: number): void;
-    /** Updates an event.
+    /** Updates an event object of the following format (same as the dataSource format): { label?: string, dateStart: date, dateEnd: date, description?: string, id?: string | number, class?: string, backgroundColor?: string, color?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], allDay?: boolean, disableDrag?: boolean, disableResize?: boolean, repeat?: { repeatFreq: string, repeatInterval: number, repeatOn?: number | number[] | date, repeatEnd?: number | date, exceptions?: { date: date, dateStart?: date, dateEnd?: date, hidden?: boolean, backgroundColor?: string, status?: string, label?: string, description?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], disableDrag?: boolean, disableResize?: boolean }[] }, status?: string }
     * @param {any} index. A number that represents the index of an event or a Scheduler event object.
     * @param {any} eventObj. An object describing a Scheduler event. The properties of this object will be applied to the desired event.
     */
     updateEvent(index: any, eventObj: any): void;
-    /** Removes an event.
+    /** Removes an existing event.
     * @param {any} index. A number that represents the index of an event or the actual event object to be removed.
     */
     removeEvent(index: any): void;
+    /** Returns an array of all exceptions of the target repeating event.
+    * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
+    * @returns {any}
+  */
+    getEventExceptions(eventObj: any): Promise<any>;
+    /** Adds an event exception to a repeating event. The exception occurences for a repeating event can be gathered via the following methods: occurencesoccurrencesBetweenoccurrenceAfteroccurrenceBefore.  Example usage: scheduler.addEventException(eventObj, { date: occuranceDate, dateStart: newDateStart, dateEnd: newDateEnd, label: 'Exception' });
+    * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
+    * @param {any} exceptionObj. An event object that describes an exception. Exception event objects must have a <b>date</b> attribute of type Date which indicates the date of occurence.
+    */
+    addEventException(eventObj: any, exceptionObj: any): void;
+    /** Updates an event exception of a repeating event. The exception occurences for a repeating event can be gathered via the following methods: occurencesoccurrencesBetweenoccurrenceAfteroccurrenceBefore.  Example usage: scheduler.updateEventException(eventObj, dateOfOccurance, { dateStart: newDateStart, dateEnd: newDateEnd, label: 'Updated Exception' });
+    * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
+    * @param {any} exceptionRef. The index, id, an occurence date of the exception or an object reference of an existing Scheduler repeating event exception.
+    * @param {any} exceptionObj. An event object that describes an exception. All attributes of an exception can be updated except the occurance date (the <b>date</b> attribute).
+    */
+    updateEventException(eventObj: any, exceptionRef: any, exceptionObj: any): void;
+    /** Removes an exception from a repeating event.
+    * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
+    * @param {any} index. The index, id, occurance date or an object reference of an event exception that belongs to the target repeating event.
+    */
+    removeEventException(eventObj: any, index: any): void;
     /** Opens the popup Window for specific event Editing.
     * @param {any} index. A number that represents the index of a event or the actual event object to be edited.
     */
@@ -814,8 +898,13 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     /** Scrolls the Scheduler to a Date.
     * @param {Date} date. The date to scroll to.
     * @param {boolean} strictScroll?. Determines whether to scroll strictly to the date or not. This mean sthat the Scheduler wll scroll to the begining of the cell that corresponds to the target date.
+    * @param {boolean} autoScroll?. Calculates the scroll positions and element bounds, then adds an offset to scroll within the middle of the view.
     */
-    scrollToDate(date: Date, strictScroll?: boolean): void;
+    scrollToDate(date: Date, strictScroll?: boolean, autoScroll?: boolean): void;
+    /** Navigates the Scheduler to a Date.
+    * @param {Date} date. The date to navigate to.
+    */
+    navigateToDate(date: Date): void;
     /** Scrolls the Scheduler to an event.
     * @param {any} index. The index of a Scheduler event or the actual event object to scroll to.
     */

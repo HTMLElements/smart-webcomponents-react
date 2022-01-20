@@ -11,6 +11,7 @@ export declare const Smart: any;
 export interface TabsProps extends TabsProperties {
     className?: string;
     style?: React.CSSProperties;
+    onAddNewTabClick?: ((event?: Event) => void) | undefined;
     onChange?: ((event?: Event) => void) | undefined;
     onClose?: ((event?: Event) => void) | undefined;
     onClosing?: ((event?: Event) => void) | undefined;
@@ -169,23 +170,46 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
     get properties(): string[];
-    /**  This event is triggered when the tab selection is changed.
+    /**  This event is triggered when the addNewTab is enabled and is clicked.
     *  @param event. The custom event. 	*/
+    onAddNewTabClick?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the tab selection is changed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	index, 	oldIndex)
+    *   index - The tab's index.
+    *   oldIndex - The tab's old index.
+    */
     onChange?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a tab is closed.
-    *  @param event. The custom event. 	*/
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	index)
+    *   index - The tab's index.
+    */
     onClose?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a tab is about to be closed. The closing operation can be canceled by calling event.preventDefault() in the event handler function.
-    *  @param event. The custom event. 	*/
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	index)
+    *   index - The tab's index.
+    */
     onClosing?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a drag operation has ended.
-    *  @param event. The custom event. 	*/
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	left, 	top, 	index, 	label)
+    *   left - The tab's left position.
+    *   top - The tab's top position.
+    *   index - The tab's index.
+    *   label - The tab's label.
+    */
     onDragEnd?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a drag operation has started.
-    *  @param event. The custom event. 	*/
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	left, 	top, 	index, 	label)
+    *   left - The tab's left position.
+    *   top - The tab's top position.
+    *   index - The tab's index.
+    *   label - The tab's label.
+    */
     onDragStart?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when tabs have been reordered.
-    *  @param event. The custom event. 	*/
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	index, 	oldIndex)
+    *   index - The tab's index.
+    *   oldIndex - The tab's old index.
+    */
     onReorder?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
@@ -197,6 +221,16 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     /** Collapses the content section.
     */
     collapse(): void;
+    /** Returns the label of a Tab at given index.
+    * @param {number} index. The index of the tab.
+    * @returns {string}
+  */
+    getTabLabel(index: number): Promise<any>;
+    /** Returns the content of a Tab at given index.
+    * @param {number} index. The index of the tab.
+    * @returns {HTMLElement}
+  */
+    getTabContent(index: number): Promise<any>;
     /** Makes sure a tab is visible by scrolling to it.
     * @param {number} index. The index of the tab to scroll to.
     */
@@ -204,6 +238,10 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     /** Expands the content section.
     */
     expand(): void;
+    /** Returns an array of the TabItems inside the element.
+    * @returns {TabItem[]}
+  */
+    getTabs(): Promise<any>;
     /** Returns the offset of the tab item container (smart-tab-item element) from the edge of the Tabs (smart-tabs element) where the tab strip is positioned.
     * @param {number} index. The index of the tab item.
     * @returns {number}

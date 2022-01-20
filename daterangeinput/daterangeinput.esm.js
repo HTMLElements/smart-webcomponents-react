@@ -1,5 +1,5 @@
 
-import '../source/modules/smart.input';
+import '../source/modules/smart.daterangeinput';
 
 import React from 'react';
 

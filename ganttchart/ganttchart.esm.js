@@ -88,6 +88,17 @@ class GanttChart extends React.Component {
             this.nativeElement.autoScrollStep = value;
         }
     }
+    /** Enabled/Disables the colummn header menu. When enabled and the user hovers a column header, a drop down button will appear that triggers a column menu for quick actions like sorting, filtering, etc. The actions depend on the enabled Gantt features, for example the filtering action will be available only if filtering is enabled for the element.
+    *	Property type: boolean
+    */
+    get columnMenu() {
+        return this.nativeElement ? this.nativeElement.columnMenu : undefined;
+    }
+    set columnMenu(value) {
+        if (this.nativeElement) {
+            this.nativeElement.columnMenu = value;
+        }
+    }
     /** Determines whether the Table columns are resizable or not. When enabled it is possible to resize the columns from the header cells of the Table in both Task and Resource timelines.
     *	Property type: boolean
     */
@@ -110,6 +121,28 @@ class GanttChart extends React.Component {
             this.nativeElement.columnResizeFeedback = value;
         }
     }
+    /** Enables/Disables the current time indicator. Current time indicator shows the current time in the appropriate view cells.
+    *	Property type: boolean
+    */
+    get currentTimeIndicator() {
+        return this.nativeElement ? this.nativeElement.currentTimeIndicator : undefined;
+    }
+    set currentTimeIndicator(value) {
+        if (this.nativeElement) {
+            this.nativeElement.currentTimeIndicator = value;
+        }
+    }
+    /** Determines the refresh interval in seconds for the currentTimeIndicator.
+    *	Property type: number
+    */
+    get currentTimeIndicatorInterval() {
+        return this.nativeElement ? this.nativeElement.currentTimeIndicatorInterval : undefined;
+    }
+    set currentTimeIndicatorInterval(value) {
+        if (this.nativeElement) {
+            this.nativeElement.currentTimeIndicatorInterval = value;
+        }
+    }
     /** Sets the GanttChart's Data Export options.
     *	Property type: GanttChartDataExport
     */
@@ -121,7 +154,7 @@ class GanttChart extends React.Component {
             this.nativeElement.dataExport = value;
         }
     }
-    /** Determines the tasks that will be loaded inside the Timeline. Each item represents an object that should contain the following properties: label - the label of the TaskdateStart - the starting date of the Task. Should be a string representing a valid date.dateEnd - the ending date of the Task. Should be a string representing a valid date.type - determines the type of the task. Whether it's a simple task, a project or a milestone. Each type of task has specific behavior and additional attributes..  Additional properties: connections - an array of objects representing the connection between two tasks. Each connection (object) should have the following properties : target - a number representing the index of the target tasktype - a number representing the type of the connection. Four types of connections are available: 0 - is a connection of type Start-to-Start 1 - is a connection of type End-to-Start 2 - is a connection of type End-to-End3 - is a connection of type Start-to-End lag - a number that determines the delay between two connected auto scheduled tasks. Lag property can be a positive or a negative number. When negative it determines the overlap between two connected tasks. This property is used in conjuction with autoSchedule.duration - determines the duration of a Task in days, hours, minutes, seconds or miliseconds. Very usefull when the the dateEnd of a Task is unknown. The duration always shows the calendar time whether it is in days/hours or other.minDuration - sets the minimum duration of a task. maxDuration - sets the maximum duration of a task.minDateStart - determines the mininum date that a task can start from. Must be if type string and should represent a valid date.maxDateStart - determines the maximum date that a task can start from. Must be if type string and should represent a valid date.minDateEnd - determines the mininum date that a task can end. Must be if type string and should represent a valid date.maxDateEnd - determines the maximum date that a task can end. Must be if type string and should represent a valid date.progress - a number that determines the progress of a task ( from 0 to 100 ).disableDrag - a boolean property that disables the dragging of a task when set to true.disableResize - a boolean property that disables the resizing of a task when set to true.dragProject - a boolean that determines whether or not the whole project (along with the tasks) can be dragged while dragging the project task. Applicalbe only to Projects.synchronized - a boolean that if set the project task's start/end dates are automatically calculated based on the tasks. By default a synchronized project task can't be dragged alone. Applicable only to Project tasks.expanded - a boolean that determines if a project is expanded or not. If not all of it's sub-tasks are not visible. Only the project task itself is visible. By default no projects are expanded. Applicable only to project tasks..  GanttChart also accepts a DataAdapter instance as dataSource. You can read more about the dataAdapter here - https://www.htmlelements.com/docs/data-adapter/.
+    /** Determines the tasks that will be loaded inside the Timeline. Each item represents an object that should contain the following properties: label - the label of the TaskdateStart - the starting date of the Task. Should be a string representing a valid date.dateEnd - the ending date of the Task. Should be a string representing a valid date.type - determines the type of the task. Whether it's a simple task, a project or a milestone. Each type of task has specific behavior and additional attributes..  Additional properties: connections - an array of objects representing the connection between two tasks. Each connection (object) should have the following properties : target - a number representing the index of the target tasktype - a number representing the type of the connection. Four types of connections are available: 0 - is a connection of type Start-to-Start 1 - is a connection of type End-to-Start 2 - is a connection of type End-to-End3 - is a connection of type Start-to-End lag - a number that determines the delay between two connected auto scheduled tasks. Lag property can be a positive or a negative number. When negative it determines the overlap between two connected tasks. This property is used in conjuction with autoSchedule.duration - determines the duration of a Task in days, hours, minutes, seconds or miliseconds. Very usefull when the the dateEnd of a Task is unknown. The duration always shows the calendar time whether it is in days/hours or other.minDuration - sets the minimum duration of a task. maxDuration - sets the maximum duration of a task.minDateStart - determines the mininum date that a task can start from. Must be if type string and should represent a valid date.maxDateStart - determines the maximum date that a task can start from. Must be if type string and should represent a valid date.minDateEnd - determines the mininum date that a task can end. Must be if type string and should represent a valid date.maxDateEnd - determines the maximum date that a task can end. Must be if type string and should represent a valid date.progress - a number that determines the progress of a task ( from 0 to 100 ).overdue - a boolean that indicates whether the task's dateEnd has surpassed it's deadline date.disableDrag - a boolean property that disables the dragging of a task when set to true.disableResize - a boolean property that disables the resizing of a task when set to true.dragProject - a boolean that determines whether or not the whole project (along with the tasks) can be dragged while dragging the project task. Applicalbe only to Projects.segments - an array of objects that allows to devide a task into multiple segements. Each segment (except the first) can have a different starting date, duration and label.synchronized - a boolean that if set the project task's start/end dates are automatically calculated based on the tasks. By default a synchronized project task can't be dragged alone. Applicable only to Project tasks.expanded - a boolean that determines if a project is expanded or not. If not all of it's sub-tasks are not visible. Only the project task itself is visible. By default no projects are expanded. Applicable only to project tasks..GanttChart also accepts a DataAdapter instance as dataSource. You can read more about the dataAdapter here - https://www.htmlelements.com/docs/data-adapter/.
     *	Property type: any
     */
     get dataSource() {
@@ -163,6 +196,17 @@ class GanttChart extends React.Component {
     set dateStart(value) {
         if (this.nativeElement) {
             this.nativeElement.dateStart = value;
+        }
+    }
+    /** Determines the date markers that will be displayed inside the timeline. Date markers allow to mark and even label specific dates (including time) inside the GanttChart timeline.
+    *	Property type: GanttChartDateMarker[]
+    */
+    get dateMarkers() {
+        return this.nativeElement ? this.nativeElement.dateMarkers : undefined;
+    }
+    set dateMarkers(value) {
+        if (this.nativeElement) {
+            this.nativeElement.dateMarkers = value;
         }
     }
     /** Enables or disables the element.
@@ -231,6 +275,28 @@ class GanttChart extends React.Component {
             this.nativeElement.disableSelection = value;
         }
     }
+    /** Disables the task segment dragging.
+    *	Property type: boolean
+    */
+    get disableSegmentDrag() {
+        return this.nativeElement ? this.nativeElement.disableSegmentDrag : undefined;
+    }
+    set disableSegmentDrag(value) {
+        if (this.nativeElement) {
+            this.nativeElement.disableSegmentDrag = value;
+        }
+    }
+    /** Disables the task segment resizing.
+    *	Property type: boolean
+    */
+    get disableSegmentResize() {
+        return this.nativeElement ? this.nativeElement.disableSegmentResize : undefined;
+    }
+    set disableSegmentResize(value) {
+        if (this.nativeElement) {
+            this.nativeElement.disableSegmentResize = value;
+        }
+    }
     /** Disables the window editor for the GanttChart.
     *	Property type: boolean
     */
@@ -286,6 +352,17 @@ class GanttChart extends React.Component {
             this.nativeElement.headerTemplate = value;
         }
     }
+    /** Determines whether the dateMarkers are visible or not.
+    *	Property type: boolean
+    */
+    get hideDateMarkers() {
+        return this.nativeElement ? this.nativeElement.hideDateMarkers : undefined;
+    }
+    set hideDateMarkers(value) {
+        if (this.nativeElement) {
+            this.nativeElement.hideDateMarkers = value;
+        }
+    }
     /** By default the Timeline has a two level header - timeline details and timeline header. This property hides the header details container( the top container ).
     *	Property type: boolean
     */
@@ -295,6 +372,17 @@ class GanttChart extends React.Component {
     set hideTimelineHeaderDetails(value) {
         if (this.nativeElement) {
             this.nativeElement.hideTimelineHeaderDetails = value;
+        }
+    }
+    /** Shows the selection column of the Task/Resource Table. When applied a checkbox column is displayed that allows to select tasks/resources.
+    *	Property type: boolean
+    */
+    get showSelectionColumn() {
+        return this.nativeElement ? this.nativeElement.showSelectionColumn : undefined;
+    }
+    set showSelectionColumn(value) {
+        if (this.nativeElement) {
+            this.nativeElement.showSelectionColumn = value;
         }
     }
     /** Hides the Resource panel regardless of the resources availability By default the Resource panel is visible if resources are added to the GanttChart. This property allows to hide the Resource panel permanently.
@@ -451,7 +539,7 @@ class GanttChart extends React.Component {
             this.nativeElement.nonworkingHours = value;
         }
     }
-    /** A function that can be used to completly customize the popup Window that is used to interact width tasks by changing their properties. The function as three arguments: target - the target popup Window that is about to be opened.type - the type of the window. The type determines the purpose of the window. Three possible values: 'task' (task editing), 'confirm' ( confirmation window), 'connection' (used when deleting a connection between tasks). taskIndex - the index of the task that is being edited. It will be undefined if the type of the window is not 'task'.
+    /** A function that can be used to completly customize the popup Window that is used to interact width tasks by changing their properties. The function as three arguments: target - the target popup Window that is about to be opened.type - the type of the window. The type determines the purpose of the window. Three possible values: 'task' (task editing), 'confirm' ( confirmation window), 'connection' (used when deleting a connection between tasks). item - the connection/task object that is the target of the window.
     *	Property type: any
     */
     get popupWindowCustomizationFunction() {
@@ -460,6 +548,17 @@ class GanttChart extends React.Component {
     set popupWindowCustomizationFunction(value) {
         if (this.nativeElement) {
             this.nativeElement.popupWindowCustomizationFunction = value;
+        }
+    }
+    /** Determines which Tab items are visible inside the popup window. Three possible values are allowed: general - the general tab with task properties determines by the taskColumns property.dependency - the dependency tab which shows the connections to the task and allows to create/delete connections.segments - the segments tab which shows the segments of the task and allows to created/delete segments..
+    *	Property type: string[]
+    */
+    get popupWindowTabs() {
+        return this.nativeElement ? this.nativeElement.popupWindowTabs : undefined;
+    }
+    set popupWindowTabs(value) {
+        if (this.nativeElement) {
+            this.nativeElement.popupWindowTabs = value;
         }
     }
     /** A format function for the Timeline task progress label. The expected result from the function is a string. The label is hidden by default can be shown with the showProgressLabel property.
@@ -627,6 +726,28 @@ class GanttChart extends React.Component {
             this.nativeElement.selectedResourceIds = value;
         }
     }
+    /** Enables/Disables the current time shader. If enabled all cells that represent past time will be shaded.
+    *	Property type: boolean
+    */
+    get shadeUntilCurrentTime() {
+        return this.nativeElement ? this.nativeElement.shadeUntilCurrentTime : undefined;
+    }
+    set shadeUntilCurrentTime(value) {
+        if (this.nativeElement) {
+            this.nativeElement.shadeUntilCurrentTime = value;
+        }
+    }
+    /** Determines whether the baselnes of the tasks are visible or not. Baselines are defined via the 'planned' attribute on the task objects of the dataSource property.
+    *	Property type: boolean
+    */
+    get showBaseline() {
+        return this.nativeElement ? this.nativeElement.showBaseline : undefined;
+    }
+    set showBaseline(value) {
+        if (this.nativeElement) {
+            this.nativeElement.showBaseline = value;
+        }
+    }
     /** Shows the progress label inside the progress bars of the Timeline tasks.
     *	Property type: boolean
     */
@@ -650,6 +771,17 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines whether the GanttChart can be sorted by one, more then one or no columns.
+    *	Property type: { (dataSource: any, sortColumns: string[], directions: string[], defaultCompareFunctions: { (firstRecord: any, secondRecord: any): number }[]): void }
+    */
+    get sortFunction() {
+        return this.nativeElement ? this.nativeElement.sortFunction : undefined;
+    }
+    set sortFunction(value) {
+        if (this.nativeElement) {
+            this.nativeElement.sortFunction = value;
+        }
+    }
+    /** A getter that returns a flat structure as an array of all tasks inside the element.
     *	Property type: GanttChartSortMode
     */
     get sortMode() {
@@ -660,7 +792,7 @@ class GanttChart extends React.Component {
             this.nativeElement.sortMode = value;
         }
     }
-    /** A getter that returns a flat structure as an array of all tasks inside the element.
+    /** Deteremines the columns that will be visible in the Task Tree. Each entry in the value of this property must be of type Object.  It should contain the label and value keys. The value of label determines the column header label inside the Task Tree. The value of value determines the content of the cells in the column. It should reference a task attribute from the dataSource. By default, one column with all task labels is visible.  Additional properties: formatFunction - a function that allows to customize the content of each record in the column. The function accepts one argument - the actual label as string that is going to be inserted and must return some content. min - controls the min size of the column max - controls the max size of the column size - controls the actual size of the columncustomEditor - a callback that can be used to set a custom editor for the column when editing via the window. It accepts two arguments label - the label of the columnvalue - the value of the column. The callback must return the editor.setCustomEditorValue - a callback that is used to set the value of the custom editor.getCustomEditorValue - a callback that is used to get the value of the custom editor.
     *	Property type: GanttChartTask[]
     */
     get tasks() {
@@ -671,7 +803,7 @@ class GanttChart extends React.Component {
             this.nativeElement.tasks = value;
         }
     }
-    /** Deteremines the columns that will be visible in the Task Tree. Each entry in the value of this property must be of type Object.  It should contain the label and value keys. The value of label determines the column header label inside the Task Tree. The value of value determines the content of the cells in the column. It should reference a task attribute from the dataSource. By default, one column with all task labels is visible.  Additional properties: formatFunction - a function that allows to customize the content of each record in the column. The function accepts one argument - the actual label as string that is going to be inserted and must return some content. min - controls the min size of the column max - controls the max size of the column size - controls the actual size of the columncustomEditor - a callback that can be used to set a custom editor for the column when editing via the window. It accepts two arguments label - the label of the columnvalue - the value of the column. The callback must return the editor.setCustomEditorValue - a callback that is used to set the value of the custom editor.getCustomEditorValue - a callback that is used to get the value of the custom editor.
+    /** Determines whether the Task Table is filterable or not.
     *	Property type: GanttChartTaskColumn[]
     */
     get taskColumns() {
@@ -682,7 +814,7 @@ class GanttChart extends React.Component {
             this.nativeElement.taskColumns = value;
         }
     }
-    /** Determines whether the Task Table is filterable or not.
+    /** Determines the min size of the Task Panel. Used when Resource Panel is visible.
     *	Property type: boolean
     */
     get taskFiltering() {
@@ -693,7 +825,7 @@ class GanttChart extends React.Component {
             this.nativeElement.taskFiltering = value;
         }
     }
-    /** Determines the min size of the Task Panel. Used when Resource Panel is visible.
+    /** Determines the size of the Task Panel. Used when Resource Panel is visible.
     *	Property type: string | number
     */
     get taskPanelMin() {
@@ -704,7 +836,7 @@ class GanttChart extends React.Component {
             this.nativeElement.taskPanelMin = value;
         }
     }
-    /** Determines the size of the Task Panel. Used when Resource Panel is visible.
+    /** Determines the min width of the timeline.
     *	Property type: string | number
     */
     get taskPanelSize() {
@@ -715,7 +847,7 @@ class GanttChart extends React.Component {
             this.nativeElement.taskPanelSize = value;
         }
     }
-    /** Determines the min width of the timeline.
+    /** Determines the min width of the task table.
     *	Property type: string | number
     */
     get timelineMin() {
@@ -726,7 +858,7 @@ class GanttChart extends React.Component {
             this.nativeElement.timelineMin = value;
         }
     }
-    /** Determines the min width of the task table.
+    /** Determines the size(width) of the task table.
     *	Property type: string | number
     */
     get treeMin() {
@@ -737,7 +869,7 @@ class GanttChart extends React.Component {
             this.nativeElement.treeMin = value;
         }
     }
-    /** Determines the size(width) of the task table.
+    /** A format function for the Header of the Timeline. The function provides the following arguments: date - a Date object that represets the date for the current cell.type - a string that represents the type of date that the cell is showing, e.g. 'month', 'week', 'day', etc.isHeaderDetails - a boolean that indicates whether the current cell is part of the Header Details Container or not.value - a string that represents the default value for the cell provided by the element.
     *	Property type: string | number
     */
     get treeSize() {
@@ -748,7 +880,7 @@ class GanttChart extends React.Component {
             this.nativeElement.treeSize = value;
         }
     }
-    /** A format function for the Header of the Timeline. The function provides the following arguments: date - a Date object that represets the date for the current cell.type - a string that represents the type of date that the cell is showing, e.g. 'month', 'week', 'day', etc.isHeaderDetails - a boolean that indicates whether the current cell is part of the Header Details Container or not.value - a string that represents the default value for the cell provided by the element.
+    /** Determines whether the tooltips are enabled or not. Tooltips are available for timeline tasks, resources, connections, indicators and segments.
     *	Property type: any
     */
     get timelineHeaderFormatFunction() {
@@ -760,6 +892,17 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines weather or not vertical scrollbar is shown.
+    *	Property type: GanttChartTooltip
+    */
+    get tooltip() {
+        return this.nativeElement ? this.nativeElement.tooltip : undefined;
+    }
+    set tooltip(value) {
+        if (this.nativeElement) {
+            this.nativeElement.tooltip = value;
+        }
+    }
+    /** Determines the viewing date range of the timeline. Possible values: day - The timeline show the hours of the day.week - the timeline shows the days of the week.month - the timeline shows the days of the month.year - the timeline shows the months of the year.resource - displays the current tasks by grouping them according to the resources they have assigned. The unassigned tasks will be placed in a separate group called 'Unassigned'.  The timeline has a header section that contains the labels of each cell according to the date inside them. The header is splitted in two sections in order to give a more detailed information of the dates.
     *	Property type: VerticalScrollBarVisibility
     */
     get verticalScrollBarVisibility() {
@@ -770,7 +913,7 @@ class GanttChart extends React.Component {
             this.nativeElement.verticalScrollBarVisibility = value;
         }
     }
-    /** Determines the viewing date range of the timeline. Possible values: day - The timeline show the hours of the day.week - the timeline shows the days of the week.month - the timeline shows the days of the month.year - the timeline shows the months of the year.resource - displays the current tasks by grouping them according to the resources they have assigned. The unassigned tasks will be placed in a separate group called 'Unassigned'.  The timeline has a header section that contains the labels of each cell according to the date inside them. The header is splitted in two sections in order to give a more detailed information of the dates.
+    /** Determines the format of the dates inside the timeline header when they represent years.
     *	Property type: GanttChartView
     */
     get view() {
@@ -781,7 +924,7 @@ class GanttChart extends React.Component {
             this.nativeElement.view = value;
         }
     }
-    /** Determines the format of the dates inside the timeline header when they represent years.
+    /** Determines the format of the dates inside the timeline header when they represent weeks.
     *	Property type: YearFormat
     */
     get yearFormat() {
@@ -792,7 +935,7 @@ class GanttChart extends React.Component {
             this.nativeElement.yearFormat = value;
         }
     }
-    /** Determines the format of the dates inside the timeline header when they represent weeks.
+    /** Sets or gets the element's visual theme.
     *	Property type: WeekFormat
     */
     get weekFormat() {
@@ -803,7 +946,7 @@ class GanttChart extends React.Component {
             this.nativeElement.weekFormat = value;
         }
     }
-    /** Sets or gets the element's visual theme.
+    /** Sets or gets if the element can be focused.
     *	Property type: string
     */
     get theme() {
@@ -814,7 +957,7 @@ class GanttChart extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Sets or gets if the element can be focused.
+    /** undefined
     *	Property type: boolean
     */
     get unfocusable() {
@@ -827,7 +970,7 @@ class GanttChart extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["adjustToNonworkingTime", "autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "columnResize", "columnResizeFeedback", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableWindowEditor", "durationUnit", "filterRow", "groupByResources", "headerTemplate", "hideTimelineHeaderDetails", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "infiniteTimeline", "infiniteTimelineStep", "inverted", "keyboardNavigation", "locale", "max", "min", "messages", "monthFormat", "nonworkingDays", "nonworkingHours", "popupWindowCustomizationFunction", "progressLabelFormatFunction", "resources", "resourceColumns", "resourceFiltering", "resourceGroupFormatFunction", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedTaskIds", "selectedResourceIds", "showProgressLabel", "snapToNearest", "sortMode", "tasks", "taskColumns", "taskFiltering", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
+        return ["adjustToNonworkingTime", "autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "columnMenu", "columnResize", "columnResizeFeedback", "currentTimeIndicator", "currentTimeIndicatorInterval", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "dateMarkers", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableSegmentDrag", "disableSegmentResize", "disableWindowEditor", "durationUnit", "filterRow", "groupByResources", "headerTemplate", "hideDateMarkers", "hideTimelineHeaderDetails", "showSelectionColumn", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "infiniteTimeline", "infiniteTimelineStep", "inverted", "keyboardNavigation", "locale", "max", "min", "messages", "monthFormat", "nonworkingDays", "nonworkingHours", "popupWindowCustomizationFunction", "popupWindowTabs", "progressLabelFormatFunction", "resources", "resourceColumns", "resourceFiltering", "resourceGroupFormatFunction", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedTaskIds", "selectedResourceIds", "shadeUntilCurrentTime", "showBaseline", "showProgressLabel", "snapToNearest", "sortFunction", "sortMode", "tasks", "taskColumns", "taskFiltering", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "tooltip", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -1024,6 +1167,41 @@ class GanttChart extends React.Component {
                 this.nativeElement.exportData(dataFormat, callback);
             });
         }
+    }
+    /** Returns all existing connections. The connections are returned as objects that contain detailed information. Each object in the array has the following keys: 'id' - connection id, 'type' - connection type, 'startTaskId' - connection's start task id, 'endTaskId' - connection's end task id, 'startIndex' - connection's start task index, 'endIndex' - connection's end task index, 'lag' - lag time.
+    * @returns {any}
+  */
+    getConnections() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getConnections();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Returns the connection details for the target connection which includes: startTask, endTask, startTaskId, endTaskId and type of the corresponding connection. Connection types are described in detail under the `connectionEnd` event description in this document and in a dedicated topic available on the website.
+    * @param {string} connectionId. A connection id. Each connection has a unique id that is assigned when a connection is created.
+    * @returns {any}
+  */
+    getConnectionDetails(connectionId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getConnectionDetails(connectionId);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
     }
     /** Returns a JSON representation of all tasks inside the element along with their connections and settings.
     * @returns {any[]}
@@ -1288,6 +1466,23 @@ class GanttChart extends React.Component {
             return result;
         });
     }
+    /** Hides the tooltip if it's visible.
+    * @returns {any}
+  */
+    hideTooltip() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.hideTooltip();
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
     /** Depending on the nonworkingDays property, returns true or false whether the target date is on a working day or not.
     * @param {Date} date. A javascript Date object or a string/number which represents a valid JS Date.
     */
@@ -1357,6 +1552,20 @@ class GanttChart extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.removeTaskConnection(taskStart, taskEnd);
+            });
+        }
+    }
+    /** Shows the tooltip for a specific element.
+    * @param {HTMLElement} target. The HTMLElement that will be the target of the tooltip.
+    * @param {string} content?. Allows to set a custom content for the Tooltip.
+    */
+    showTooltip(target, content) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.showTooltip(target, content);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.showTooltip(target, content);
             });
         }
     }
