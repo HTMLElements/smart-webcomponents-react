@@ -260,7 +260,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Callback function() called when the grid has been rendered.
-        *	Property type: {(cell: GridCell, oldValue: any, value: any, confirm: {(commit: boolean): void}): void}
+        *	Property type: {(cells: GridCell[], oldValues: any[], values: any[], confirm: {(commit: boolean): void}): void}
         */
         get onCellUpdate() {
             return this.nativeElement ? this.nativeElement.onCellUpdate : undefined;
@@ -381,7 +381,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Describes the footer settings of the grid.
-        *	Property type: {(index: number, row: GridRow): void}
+        *	Property type: {(index: number[], row: GridRow[]): void}
         */
         get onRowInserted() {
             return this.nativeElement ? this.nativeElement.onRowInserted : undefined;
@@ -392,7 +392,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
-        *	Property type: {(index: number, row: GridRow): void}
+        *	Property type: {(indexes: number[], rows: GridRow[]): void}
         */
         get onRowRemoved() {
             return this.nativeElement ? this.nativeElement.onRowRemoved : undefined;
@@ -403,7 +403,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** The rows property is used to describe all rows displayed in the grid.
-        *	Property type: {(index: number, row: GridRow, oldValues: any[], values: any[], confirm: {(commit: boolean): void}): void}
+        *	Property type: {(index: number[], row: GridRow[], oldValues: any[], values: any[], confirm: {(commit: boolean): void}): void}
         */
         get onRowUpdate() {
             return this.nativeElement ? this.nativeElement.onRowUpdate : undefined;
@@ -414,7 +414,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Describes the selection settings.
-        *	Property type: {(index: number, row: GridRow): void}
+        *	Property type: {(index: number[], row: GridRow[]): void}
         */
         get onRowUpdated() {
             return this.nativeElement ? this.nativeElement.onRowUpdated : undefined;
@@ -650,7 +650,7 @@ require('../source/modules/smart.grid');
         }
         // Gets the events of the React component.
         get eventListeners() {
-            return ["onBeginEdit", "onBatchChange", "onBatchCancel", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnDragging", "onColumnDragEnd", "onColumnReorder", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowReorder", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onOpenColumnDialog", "onCloseColumnDialog", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
+            return ["onBeginEdit", "onBatchChange", "onBatchCancel", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnDragging", "onColumnDragEnd", "onColumnReorder", "onCommentAdd", "onCommentRemove", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowReorder", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onRowStarred", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onGroup", "onOpenColumnDialog", "onCloseColumnDialog", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
         }
         /** Adds a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
         * @param {any} data. row data matching the data source
@@ -685,6 +685,24 @@ require('../source/modules/smart.grid');
                 return result;
             });
         }
+        /** Adds a new column.
+        * @param {any} column. A Grid column object. See 'columns' property.
+        * @returns {boolean}
+      */
+        addNewColumn(column) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const getResultOnRender = () => {
+                    return new Promise(resolve => {
+                        this.nativeElement.whenRendered(() => {
+                            const result = this.nativeElement.addNewColumn(column);
+                            resolve(result);
+                        });
+                    });
+                };
+                const result = yield getResultOnRender();
+                return result;
+            });
+        }
         /** Adds a new unbound row to the top or bottom. Unbound rows are not part of the Grid's dataSource. They become part of the dataSource, after an unbound row is edited.
         * @param {number} count. The count of unbound rows.
         * @param {string} position?. 'near' or 'far'
@@ -705,9 +723,9 @@ require('../source/modules/smart.grid');
             });
         }
         /** Adds a filter to a column. This method will apply a filter to the Grid data.
-        * @param {string} dataField. column bound data field
-        * @param {string} filter. Filter expression like: 'startsWith B'
-        * @param {boolean} refreshFilters?.
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+        * @param {string} filter. Filter expression like: 'startsWith B'. Example 2: ['contains Andrew or contains Nancy'], Example 3:  ['quantity', '&lt;= 3 and &gt;= 8'].  Filter conditions which you can use in the expressions: '=', 'EQUAL','&lt;&gt;', 'NOT_EQUAL', '!=', '&lt;', 'LESS_THAN','&gt;', 'GREATER_THAN', '&lt;=', 'LESS_THAN_OR_EQUAL', '&gt;=', 'GREATER_THAN_OR_EQUAL','starts with', 'STARTS_WITH','ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS','DOES_NOT_CONTAIN', 'NULL','NOT_NULL'
+        * @param {boolean} refreshFilters?. Set this to false, if you will use multiple 'addFilter' calls. By doing this, you will avoid unnecessary renders.
         */
         addFilter(dataField, filter, refreshFilters) {
             if (this.nativeElement.isRendered) {
@@ -720,7 +738,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Groups the Grid by a data field. This method will add a group to the Grid when grouping is enabled.
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         */
         addGroup(dataField) {
             if (this.nativeElement.isRendered) {
@@ -733,7 +751,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Sorts the Grid by a data field. This method will add a sorting to the Grid when sorting is enabled.
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         * @param {string} sortOrder. column's sort order. Use 'asc' or 'desc'.
         */
         addSort(dataField, sortOrder) {
@@ -801,7 +819,7 @@ require('../source/modules/smart.grid');
         }
         /** Begins row, cell or column. This method allows you to programmatically start a cell, row or column editing. After calling it, an editor HTMLElement will be created and displayed in the Grid.
         * @param {string | number} rowId. row bound id
-        * @param {string} dataField?. column bound data field
+        * @param {string} dataField?. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         */
         beginEdit(rowId, dataField) {
             if (this.nativeElement.isRendered) {
@@ -977,7 +995,7 @@ require('../source/modules/smart.grid');
         }
         /** Scrolls to a row or cell. This method scrolls to a row or cell, when scrolling is necessary. If pagination is enabled, it will automatically change the page.
         * @param {string | number} rowId. row bound id
-        * @param {string} dataField?. column bound data field
+        * @param {string} dataField?. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         * @returns {boolean}
       */
         ensureVisible(rowId, dataField) {
@@ -1375,7 +1393,7 @@ require('../source/modules/smart.grid');
         }
         /** Gets a value of a cell.
         * @param {string | number} rowId. row bound id
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         * @returns {any}
       */
         getCellValue(rowId, dataField) {
@@ -1393,7 +1411,7 @@ require('../source/modules/smart.grid');
             });
         }
         /** Gets a value of a column.
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         * @param {string} propertyName. The property name.
         * @returns {any}
       */
@@ -1514,7 +1532,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Highlights a column. Highlights a Grid column.
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         */
         highlightColumn(dataField) {
             if (this.nativeElement.isRendered) {
@@ -1528,7 +1546,7 @@ require('../source/modules/smart.grid');
         }
         /** Highlights a cell. Calling the method a second time toggle the highlight state.
         * @param {string | number} rowId. row bound id
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         * @param {string} className?. CSS Class Name
         */
         highlightCell(rowId, dataField, className) {
@@ -1555,8 +1573,23 @@ require('../source/modules/smart.grid');
                 });
             }
         }
+        /** Inserts a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
+        * @param {any} data. row data matching the data source
+        * @param {number} index?. Determines the insert index. The default value is the last index.
+        * @param {any} callback?. Sets a callback function, which is called after the new row is added. The callback's argument is the new row.
+        */
+        insertRow(data, index, callback) {
+            if (this.nativeElement.isRendered) {
+                this.nativeElement.insertRow(data, index, callback);
+            }
+            else {
+                this.nativeElement.whenRendered(() => {
+                    this.nativeElement.insertRow(data, index, callback);
+                });
+            }
+        }
         /** Opens a column drop-down menu.
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         */
         openMenu(dataField) {
             if (this.nativeElement.isRendered) {
@@ -1605,8 +1638,8 @@ require('../source/modules/smart.grid');
             }
         }
         /** Refreshes the grid cells in view. The method is useful for live-updates of cell values.
-        * @param {string} dataField. column bound data field
-        * @param {boolean} refreshFilters?.
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+        * @param {boolean} refreshFilters?. Set this to false, if you need to make multiple removeFilter calls.
         */
         removeFilter(dataField, refreshFilters) {
             if (this.nativeElement.isRendered) {
@@ -1619,7 +1652,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Removes a column filter.
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         */
         removeGroup(dataField) {
             if (this.nativeElement.isRendered) {
@@ -1632,7 +1665,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Removes a group by data field. This method will remove a group to the Grid when grouping is enabled.
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         */
         removeSort(dataField) {
             if (this.nativeElement.isRendered) {
@@ -1684,7 +1717,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Reorders two DataGrid columns.
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         * @param {string | null} sortOrder. column's sort order. Use 'asc', 'desc' or null.
         */
         sortBy(dataField, sortOrder) {
@@ -1807,7 +1840,7 @@ require('../source/modules/smart.grid');
         }
         /** Selects multiple rows by their index.
         * @param {string | number} rowId. row bound id
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         * @param {string | number | Date | boolean} value. New Cell value.
         */
         setCellValue(rowId, dataField, value) {
@@ -1821,7 +1854,7 @@ require('../source/modules/smart.grid');
             }
         }
         /** Sets a new value to a cell.
-        * @param {string} dataField. column bound data field
+        * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         * @param {string} propertyName. The column property's name.
         * @param {any} value. The new property value.
         */
@@ -1906,7 +1939,7 @@ require('../source/modules/smart.grid');
         }
         /** Updates a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
         * @param {string | number} rowId. row bound id
-        * @param {string} dataField?. column bound data field
+        * @param {string} dataField?. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
         */
         unselect(rowId, dataField) {
             if (this.nativeElement.isRendered) {

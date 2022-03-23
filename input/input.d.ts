@@ -1,14 +1,16 @@
 import React from "react";
 import { InputProperties } from "./../index";
-import { Animation, DropDownButtonPosition, InputQueryMode } from './../index';
+import { DropDownButtonPosition, InputQueryMode } from './../index';
 export { InputProperties } from "./../index";
-export { Animation, DropDownButtonPosition, InputQueryMode } from './../index';
+export { DropDownButtonPosition, InputQueryMode } from './../index';
 export declare const Smart: any;
 export interface InputProps extends InputProperties {
     className?: string;
     style?: React.CSSProperties;
     onChange?: ((event?: Event) => void) | undefined;
     onChanging?: ((event?: Event) => void) | undefined;
+    onOpen?: ((event?: Event) => void) | undefined;
+    onClose?: ((event?: Event) => void) | undefined;
     onItemClick?: ((event?: Event) => void) | undefined;
     onCreate?: ((event?: Event) => void) | undefined;
     onReady?: ((event?: Event) => void) | undefined;
@@ -21,17 +23,12 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
-    */
-    get animation(): Animation;
-    set animation(value: Animation);
     /** Determines the delay before the drop down opens to show the matches from the auto complete operation. The delay is measured in miliseconds.
     *	Property type: number
     */
     get autoCompleteDelay(): number;
     set autoCompleteDelay(value: number);
-    /** Determines the data source that will be loaded to the Input. The dataSource can be an array of strings/numbers or objects where the attributes represent the properties of a List Item. For example label, value. It can also be a callback that returns an Array of items as previously described.
+    /** Determines the data source that will be loaded to the Input. The dataSource can be an array of strings/numbers or objects where the attributes represent the properties of a List Item. For example label, value. It can also be a callback that returns an Array of items as previously described. The data source item object may have the following fields: 'label' - string, 'value' - string or number, 'selected' - boolean, 'prefix' - string, 'suffix' - string, 'title' - string. The 'prefix' and 'suffix' add html before and after the label.
     *	Property type: any
     */
     get dataSource(): any;
@@ -136,6 +133,16 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     */
     get sortDirection(): string;
     set sortDirection(value: string);
+    /** Determines the selected index.
+    *	Property type: number
+    */
+    get selectedIndex(): number;
+    set selectedIndex(value: number);
+    /** Determines the selected value.
+    *	Property type: string | number
+    */
+    get selectedValue(): string | number;
+    set selectedValue(value: string | number);
     /** Determines the theme for the element. Themes define the look of the elements.
     *	Property type: string
     */
@@ -171,6 +178,12 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     *   value - The new value.
     */
     onChanging?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the popup is opened.
+    *  @param event. The custom event. 	*/
+    onOpen?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the popup is closed.
+    *  @param event. The custom event. 	*/
+    onClose?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the user clicks on an item from the popup list.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	label, 	value)
     *   item - The item that was clicked.
@@ -194,9 +207,23 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     /** Opens the drop down.
     */
     open(): void;
-    /** Selects the text inside the input or if it is readonly then the element is focused.
+    /** Focuses and selects the text inside the input or if it is readonly then the element is focused.
     */
     select(): void;
+    /** Selects an item by value. For example, if your data source is ['Item 1', 'Item 2', 'Item 3'], you can use 'Item 1' as an argument. If your data source is an object with label and value, pass the value when you call selectItem.
+    * @param {string | number} value. The item's value when the item is an object or string when the item is a string item.
+    */
+    selectItem(value: string | number): void;
+    /** Gets an item by value. For example, if your data source is ['Item 1', 'Item 2', 'Item 3'], you can use 'Item 1' as an argument. If your data source is an object with label and value, pass the value when you call selectItem.
+    * @param {string | number} value. The item's value when the item is an object or string when the item is a string item.
+    * @returns {any}
+  */
+    getItem(value: string | number): Promise<any>;
+    /** Gets the selected item. For example, if your data source is ['Item 1', 'Item 2', 'Item 3'] and the user selected the second item, the method returns 'Item 2'. If your data source is an object with label and value, the returned value would be the 'value'.
+    * @param {string | number} value. The item's value when the item is an object or string when the item is a string item.
+    * @returns {any}
+  */
+    getSelectedItem(value: string | number): Promise<any>;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

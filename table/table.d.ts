@@ -1,8 +1,8 @@
 import React from "react";
 import { TableProperties } from "./../index";
-import { Animation, TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings } from './../index';
+import { TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings } from './../index';
 export { TableProperties } from "./../index";
-export { Animation, TableColumnDataType, TableColumnFreeze, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableDataSourceSettingsSanitizeHTML, TableDataSourceSettingsSanitizeHTMLRender, TableDataSourceSettingsDataFieldDataType, TableDataSourceSettingsDataSourceType, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings, TableDataSourceSettingsDataField } from './../index';
+export { TableColumnDataType, TableColumnFreeze, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableDataSourceSettingsSanitizeHTML, TableDataSourceSettingsSanitizeHTMLRender, TableDataSourceSettingsDataFieldDataType, TableDataSourceSettingsDataSourceType, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings, TableDataSourceSettingsDataField } from './../index';
 export declare const Smart: any;
 export interface TableProps extends TableProperties {
     className?: string;
@@ -34,11 +34,6 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
-    */
-    get animation(): Animation;
-    set animation(value: Animation);
     /** Enables or disables auto load state from the browser's localStorage. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is loaded, based on the value of the stateSettings property.
     *	Property type: boolean
     */
@@ -89,6 +84,11 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     get conditionalFormatting(): TableConditionalFormatting[];
     set conditionalFormatting(value: TableConditionalFormatting[]);
+    /** Sets or gets the column menu. When you set this property to true, each column will have a column menu. From the column menu, you will be able to sort, filter, show or hide columns.
+    *	Property type: boolean
+    */
+    get columnMenu(): boolean;
+    set columnMenu(value: boolean);
     /** Sets or gets the column sizing behavior. In 'auto' mode Columns are automatically sized based on their content and the value of the columnMinWidth property, unless there is not enough space in the Table, in which case ellipses are shown. User-set static column width is still respected. In 'default' mode Columns are sized according to the rules of the standard HTML table element's table-layout: fixed. Custom width can also be applied to columns in this case by setting the column width property.
     *	Property type: TableColumnSizeMode
     */
@@ -153,11 +153,16 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     get filtering(): boolean;
     set filtering(value: boolean);
-    /** Sets or gets the id of an HTML template element to be applied as a custom filter template.
+    /** Sets or gets the Table's filter operator. It determines whether 'and' or 'or' is used when applying column filters - cellvalue1 && cellvalue2 vs cellvalue1 || cellvalue2
     *	Property type: boolean
     */
     get filterRow(): boolean;
     set filterRow(value: boolean);
+    /** Sets or gets the id of an HTML template element to be applied as a custom filter template.
+    *	Property type: boolean
+    */
+    get filterOperator(): boolean;
+    set filterOperator(value: boolean);
     /** Sets or gets the id of an HTML template element to be applied as footer row(s).
     *	Property type: string
     */
@@ -207,16 +212,21 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
             template?: any;
         }): void;
     });
-    /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
+    /** Sets or gets whether the checkboxes are displayed in the selection column.
     *	Property type: string | HTMLElement | Function
     */
     get headerRow(): string | HTMLElement | Function;
     set headerRow(value: string | HTMLElement | Function);
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
     *	Property type: boolean
     */
     get keyboardNavigation(): boolean;
     set keyboardNavigation(value: boolean);
+    /** Sets or gets the language. Used in conjunction with the property messages.
+    *	Property type: boolean
+    */
+    get hideSelectionColumn(): boolean;
+    set hideSelectionColumn(value: boolean);
     /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
     *	Property type: TableLoadColumnStateBehavior
     */

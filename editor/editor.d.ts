@@ -217,6 +217,11 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     */
     get showCharCount(): boolean;
     set showCharCount(value: boolean);
+    /** Determines whether the editor may be checked for spelling errors.
+    *	Property type: boolean
+    */
+    get spellCheck(): boolean;
+    set spellCheck(value: boolean);
     /** Determines the refresh interval for the Source Code/Preview Panel when Split Mode is enabled.
     *	Property type: number
     */

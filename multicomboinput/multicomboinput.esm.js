@@ -305,6 +305,17 @@ class MultiComboInput extends React.Component {
             this.nativeElement.selectAll = value;
         }
     }
+    /** Gets or sets an array of selected values.
+    *	Property type: any
+    */
+    get selectedValues() {
+        return this.nativeElement ? this.nativeElement.selectedValues : undefined;
+    }
+    set selectedValues(value) {
+        if (this.nativeElement) {
+            this.nativeElement.selectedValues = value;
+        }
+    }
     /** Determines whether the items are sorted alphabetically or not
     *	Property type: boolean
     */
@@ -384,7 +395,7 @@ class MultiComboInput extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoCompleteDelay", "hideInputTagsCloseButton", "colorItems", "dataSource", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "pills", "query", "queryMode", "readonly", "rightToLeft", "separator", "singleSelect", "selectAll", "sorted", "sortDirection", "inputTagsMode", "theme", "type", "unfocusable", "value"];
+        return ["animation", "autoCompleteDelay", "hideInputTagsCloseButton", "colorItems", "dataSource", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "pills", "query", "queryMode", "readonly", "rightToLeft", "separator", "singleSelect", "selectAll", "selectedValues", "sorted", "sortDirection", "inputTagsMode", "theme", "type", "unfocusable", "value"];
     }
     // Gets the events of the React component.
     get eventListeners() {

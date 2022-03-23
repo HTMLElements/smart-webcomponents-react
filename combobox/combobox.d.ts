@@ -1,8 +1,8 @@
 import React from "react";
 import { ComboBoxProperties } from "./../index";
-import { Animation, AutoComplete, DropDownButtonPosition, DropDownOpenMode, DropDownPosition, ComboBoxEscKeyMode, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ResizeMode, SelectionDisplayMode, ListSelectionMode, VerticalScrollBarVisibility } from './../index';
+import { AutoComplete, DropDownButtonPosition, DropDownOpenMode, DropDownPosition, ComboBoxEscKeyMode, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ResizeMode, SelectionDisplayMode, ListSelectionMode, VerticalScrollBarVisibility } from './../index';
 export { ComboBoxProperties } from "./../index";
-export { Animation, AutoComplete, DropDownButtonPosition, DropDownOpenMode, DropDownPosition, ComboBoxEscKeyMode, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ResizeMode, SelectionDisplayMode, ListSelectionMode, VerticalScrollBarVisibility } from './../index';
+export { AutoComplete, DropDownButtonPosition, DropDownOpenMode, DropDownPosition, ComboBoxEscKeyMode, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ResizeMode, SelectionDisplayMode, ListSelectionMode, VerticalScrollBarVisibility } from './../index';
 export { ListItem } from './listitem';
 export { ListItemProperties } from "./../index";
 export { ListItemsGroup } from './listitemsgroup';
@@ -33,11 +33,6 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
-    */
-    get animation(): Animation;
-    set animation(value: Animation);
     /** Used only when dropDownOpenMode is set to 'auto'. Determines the delay before the opened drop down closes if the pointer is not over the element.
     *	Property type: number
     */

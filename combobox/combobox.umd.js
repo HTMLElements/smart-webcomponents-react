@@ -406,17 +406,6 @@ require('../source/modules/smart.combobox');
             }
             return this._id;
         }
-        /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-        *	Property type: Animation
-        */
-        get animation() {
-            return this.nativeElement ? this.nativeElement.animation : undefined;
-        }
-        set animation(value) {
-            if (this.nativeElement) {
-                this.nativeElement.animation = value;
-            }
-        }
         /** Used only when dropDownOpenMode is set to 'auto'. Determines the delay before the opened drop down closes if the pointer is not over the element.
         *	Property type: number
         */
@@ -1112,7 +1101,7 @@ require('../source/modules/smart.combobox');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["animation", "autoCloseDelay", "autoComplete", "autoCompleteDelay", "autoOpenShortcutKey", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownButtonPosition", "dropDownHeight", "dropDownMaxHeight", "dropDownMaxWidth", "dropDownMinHeight", "dropDownMinWidth", "dropDownOpenMode", "dropDownOverlay", "dropDownPlaceholder", "dropDownPosition", "dropDownWidth", "escKeyMode", "filterable", "filterInputPlaceholder", "filterMode", "grouped", "groupMember", "hint", "horizontalScrollBarVisibility", "inputMember", "inputPurpose", "incrementalSearchDelay", "incrementalSearchMode", "itemHeight", "itemMeasureMode", "items", "itemTemplate", "label", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "readonly", "rightToLeft", "resizeIndicator", "resizeMode", "selectionDisplayMode", "selectedIndexes", "selectedValues", "selectionMode", "sorted", "sortDirection", "theme", "tokenTemplate", "unfocusable", "value", "valueMember", "verticalScrollBarVisibility", "virtualized"];
+            return ["autoCloseDelay", "autoComplete", "autoCompleteDelay", "autoOpenShortcutKey", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownButtonPosition", "dropDownHeight", "dropDownMaxHeight", "dropDownMaxWidth", "dropDownMinHeight", "dropDownMinWidth", "dropDownOpenMode", "dropDownOverlay", "dropDownPlaceholder", "dropDownPosition", "dropDownWidth", "escKeyMode", "filterable", "filterInputPlaceholder", "filterMode", "grouped", "groupMember", "hint", "horizontalScrollBarVisibility", "inputMember", "inputPurpose", "incrementalSearchDelay", "incrementalSearchMode", "itemHeight", "itemMeasureMode", "items", "itemTemplate", "label", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "readonly", "rightToLeft", "resizeIndicator", "resizeMode", "selectionDisplayMode", "selectedIndexes", "selectedValues", "selectionMode", "sorted", "sortDirection", "theme", "tokenTemplate", "unfocusable", "value", "valueMember", "verticalScrollBarVisibility", "virtualized"];
         }
         // Gets the events of the React component.
         get eventListeners() {

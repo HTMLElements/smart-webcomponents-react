@@ -655,7 +655,7 @@ class Kanban extends React.Component {
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onChange", "onClose", "onClosing", "onColumnAdd", "onColumnRemove", "onColumnReorder", "onColumnUpdate", "onColumnClick", "onColumnDoubleClick", "onDragEnd", "onDragging", "onDragStart", "onFilter", "onOpen", "onOpening", "onSort", "onTaskAdd", "onTaskRemove", "onCreate", "onReady"];
+        return ["onChange", "onClose", "onClosing", "onColumnAdd", "onColumnRemove", "onColumnReorder", "onColumnUpdate", "onColumnClick", "onColumnDoubleClick", "onColumnShow", "onColumnHide", "onColumnCollapse", "onColumnExpand", "onCommentAdd", "onCommentRemove", "onCommentUpdate", "onDragEnd", "onDragging", "onDragStart", "onFilter", "onOpen", "onOpening", "onSort", "onTaskAdd", "onTaskRemove", "onTaskUpdate", "onTaskClick", "onTaskDoubleClick", "onCreate", "onReady"];
     }
     /** Adds filtering
     * @param {string[]} filters. Filter information
@@ -758,6 +758,18 @@ class Kanban extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.collapse(column);
+            });
+        }
+    }
+    /** Clears the Kanban's selection.
+    */
+    clearSelection() {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.clearSelection();
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.clearSelection();
             });
         }
     }
@@ -872,6 +884,42 @@ class Kanban extends React.Component {
                 return new Promise(resolve => {
                     this.nativeElement.whenRendered(() => {
                         const result = this.nativeElement.getColumn(dataField);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the data of a task. The returned value is a JSON object with the following fields: 'checklist', 'id', 'color', 'comments', 'history', 'dueDate', 'startDate', 'priority', 'progress', 'status', 'swimlane', 'tags', 'text', 'description', 'userId', 'createdUserId', 'createdDate', 'updatedUserId', 'updatedDate'
+    * @param {number} id. The task's id
+    * @returns {any}
+  */
+    getTask(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getTask(id);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the selected ids. The returned value is an array. Each item in the array is the 'id' of a selected task.
+    * @param {number} id. The task's id
+    * @returns {any}
+  */
+    getSelectedTasks(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getSelectedTasks(id);
                         resolve(result);
                     });
                 });
@@ -1045,6 +1093,32 @@ class Kanban extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.showAllColumns();
+            });
+        }
+    }
+    /** Selects a task.
+    * @param {number | string} task. The task's id.
+    */
+    selectTask(task) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.selectTask(task);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.selectTask(task);
+            });
+        }
+    }
+    /** Unselects a task.
+    * @param {number | string} task. The task's id.
+    */
+    unselectTask(task) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.unselectTask(task);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.unselectTask(task);
             });
         }
     }

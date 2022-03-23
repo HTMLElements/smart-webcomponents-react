@@ -1,0 +1,7 @@
+{
+    "main": "barcode.umd.js",
+    "module": "barcode.esm.js",
+	"typings": "barcode.d.ts",
+    "name": "smart-webcomponents-react/barcode",
+    "sideEffects": false
+  }

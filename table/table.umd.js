@@ -50,17 +50,6 @@ require('../source/modules/smart.table');
             }
             return this._id;
         }
-        /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-        *	Property type: Animation
-        */
-        get animation() {
-            return this.nativeElement ? this.nativeElement.animation : undefined;
-        }
-        set animation(value) {
-            if (this.nativeElement) {
-                this.nativeElement.animation = value;
-            }
-        }
         /** Enables or disables auto load state from the browser's localStorage. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is loaded, based on the value of the stateSettings property.
         *	Property type: boolean
         */
@@ -169,6 +158,17 @@ require('../source/modules/smart.table');
         set conditionalFormatting(value) {
             if (this.nativeElement) {
                 this.nativeElement.conditionalFormatting = value;
+            }
+        }
+        /** Sets or gets the column menu. When you set this property to true, each column will have a column menu. From the column menu, you will be able to sort, filter, show or hide columns.
+        *	Property type: boolean
+        */
+        get columnMenu() {
+            return this.nativeElement ? this.nativeElement.columnMenu : undefined;
+        }
+        set columnMenu(value) {
+            if (this.nativeElement) {
+                this.nativeElement.columnMenu = value;
             }
         }
         /** Sets or gets the column sizing behavior. In 'auto' mode Columns are automatically sized based on their content and the value of the columnMinWidth property, unless there is not enough space in the Table, in which case ellipses are shown. User-set static column width is still respected. In 'default' mode Columns are sized according to the rules of the standard HTML table element's table-layout: fixed. Custom width can also be applied to columns in this case by setting the column width property.
@@ -303,7 +303,7 @@ require('../source/modules/smart.table');
                 this.nativeElement.filtering = value;
             }
         }
-        /** Sets or gets the id of an HTML template element to be applied as a custom filter template.
+        /** Sets or gets the Table's filter operator. It determines whether 'and' or 'or' is used when applying column filters - cellvalue1 && cellvalue2 vs cellvalue1 || cellvalue2
         *	Property type: boolean
         */
         get filterRow() {
@@ -312,6 +312,17 @@ require('../source/modules/smart.table');
         set filterRow(value) {
             if (this.nativeElement) {
                 this.nativeElement.filterRow = value;
+            }
+        }
+        /** Sets or gets the id of an HTML template element to be applied as a custom filter template.
+        *	Property type: boolean
+        */
+        get filterOperator() {
+            return this.nativeElement ? this.nativeElement.filterOperator : undefined;
+        }
+        set filterOperator(value) {
+            if (this.nativeElement) {
+                this.nativeElement.filterOperator = value;
             }
         }
         /** Sets or gets the id of an HTML template element to be applied as footer row(s).
@@ -391,7 +402,7 @@ require('../source/modules/smart.table');
                 this.nativeElement.groupFormatFunction = value;
             }
         }
-        /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
+        /** Sets or gets whether the checkboxes are displayed in the selection column.
         *	Property type: string | HTMLElement | Function
         */
         get headerRow() {
@@ -402,7 +413,7 @@ require('../source/modules/smart.table');
                 this.nativeElement.headerRow = value;
             }
         }
-        /** Sets or gets the language. Used in conjunction with the property messages.
+        /** Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'.
         *	Property type: boolean
         */
         get keyboardNavigation() {
@@ -411,6 +422,17 @@ require('../source/modules/smart.table');
         set keyboardNavigation(value) {
             if (this.nativeElement) {
                 this.nativeElement.keyboardNavigation = value;
+            }
+        }
+        /** Sets or gets the language. Used in conjunction with the property messages.
+        *	Property type: boolean
+        */
+        get hideSelectionColumn() {
+            return this.nativeElement ? this.nativeElement.hideSelectionColumn : undefined;
+        }
+        set hideSelectionColumn(value) {
+            if (this.nativeElement) {
+                this.nativeElement.hideSelectionColumn = value;
             }
         }
         /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
@@ -646,7 +668,7 @@ require('../source/modules/smart.table');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["animation", "autoLoadState", "autoSaveState", "columnGroups", "columnMinWidth", "columnReorder", "columnResize", "columnResizeNormalize", "columnResizeFeedback", "columns", "conditionalFormatting", "columnSizeMode", "conditionalFormattingButton", "deferredScrollDelay", "dataRowId", "dataSource", "dataSourceSettings", "dataTransform", "disabled", "editing", "editMode", "expandHierarchy", "filtering", "filterRow", "filterTemplate", "footerRow", "formulas", "freezeFooter", "freezeHeader", "grouping", "groupFormatFunction", "headerRow", "keyboardNavigation", "loadColumnStateBehavior", "locale", "messages", "onCellRender", "onColumnRender", "onInit", "pageSize", "pageIndex", "paging", "rightToLeft", "rowDetailTemplate", "selected", "selection", "selectionMode", "selectionByHierarchy", "sort", "sortMode", "stateSettings", "theme", "tooltip", "virtualization"];
+            return ["autoLoadState", "autoSaveState", "columnGroups", "columnMinWidth", "columnReorder", "columnResize", "columnResizeNormalize", "columnResizeFeedback", "columns", "conditionalFormatting", "columnMenu", "columnSizeMode", "conditionalFormattingButton", "deferredScrollDelay", "dataRowId", "dataSource", "dataSourceSettings", "dataTransform", "disabled", "editing", "editMode", "expandHierarchy", "filtering", "filterRow", "filterOperator", "filterTemplate", "footerRow", "formulas", "freezeFooter", "freezeHeader", "grouping", "groupFormatFunction", "headerRow", "keyboardNavigation", "hideSelectionColumn", "loadColumnStateBehavior", "locale", "messages", "onCellRender", "onColumnRender", "onInit", "pageSize", "pageIndex", "paging", "rightToLeft", "rowDetailTemplate", "selected", "selection", "selectionMode", "selectionByHierarchy", "sort", "sortMode", "stateSettings", "theme", "tooltip", "virtualization"];
         }
         // Gets the events of the React component.
         get eventListeners() {

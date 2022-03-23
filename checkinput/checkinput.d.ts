@@ -129,6 +129,11 @@ export declare class CheckInput extends React.Component<React.HTMLAttributes<Ele
     */
     get selectAll(): boolean;
     set selectAll(value: boolean);
+    /** Gets or sets an array of selected values.
+    *	Property type: any
+    */
+    get selectedValues(): any;
+    set selectedValues(value: any);
     /** Determines whether the items are sorted alphabetically or not
     *	Property type: boolean
     */

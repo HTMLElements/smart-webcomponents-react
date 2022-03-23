@@ -3,6 +3,31 @@ import '../source/modules/smart.input';
 
 import React from 'react';
 
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
 const Smart = window.Smart;
 /**
  Input specifies an input field where the user can enter data. Auto-complete options are displayed for easier input.
@@ -19,17 +44,6 @@ class Input extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
-    */
-    get animation() {
-        return this.nativeElement ? this.nativeElement.animation : undefined;
-    }
-    set animation(value) {
-        if (this.nativeElement) {
-            this.nativeElement.animation = value;
-        }
-    }
     /** Determines the delay before the drop down opens to show the matches from the auto complete operation. The delay is measured in miliseconds.
     *	Property type: number
     */
@@ -41,7 +55,7 @@ class Input extends React.Component {
             this.nativeElement.autoCompleteDelay = value;
         }
     }
-    /** Determines the data source that will be loaded to the Input. The dataSource can be an array of strings/numbers or objects where the attributes represent the properties of a List Item. For example label, value. It can also be a callback that returns an Array of items as previously described.
+    /** Determines the data source that will be loaded to the Input. The dataSource can be an array of strings/numbers or objects where the attributes represent the properties of a List Item. For example label, value. It can also be a callback that returns an Array of items as previously described. The data source item object may have the following fields: 'label' - string, 'value' - string or number, 'selected' - boolean, 'prefix' - string, 'suffix' - string, 'title' - string. The 'prefix' and 'suffix' add html before and after the label.
     *	Property type: any
     */
     get dataSource() {
@@ -272,6 +286,28 @@ class Input extends React.Component {
             this.nativeElement.sortDirection = value;
         }
     }
+    /** Determines the selected index.
+    *	Property type: number
+    */
+    get selectedIndex() {
+        return this.nativeElement ? this.nativeElement.selectedIndex : undefined;
+    }
+    set selectedIndex(value) {
+        if (this.nativeElement) {
+            this.nativeElement.selectedIndex = value;
+        }
+    }
+    /** Determines the selected value.
+    *	Property type: string | number
+    */
+    get selectedValue() {
+        return this.nativeElement ? this.nativeElement.selectedValue : undefined;
+    }
+    set selectedValue(value) {
+        if (this.nativeElement) {
+            this.nativeElement.selectedValue = value;
+        }
+    }
     /** Determines the theme for the element. Themes define the look of the elements.
     *	Property type: string
     */
@@ -318,11 +354,11 @@ class Input extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoCompleteDelay", "dataSource", "disabled", "dropDownClassList", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "query", "queryMode", "readonly", "rightToLeft", "sorted", "sortDirection", "theme", "type", "unfocusable", "value"];
+        return ["autoCompleteDelay", "dataSource", "disabled", "dropDownClassList", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "query", "queryMode", "readonly", "rightToLeft", "sorted", "sortDirection", "selectedIndex", "selectedValue", "theme", "type", "unfocusable", "value"];
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onChange", "onChanging", "onItemClick", "onCreate", "onReady"];
+        return ["onChange", "onChanging", "onOpen", "onClose", "onItemClick", "onCreate", "onReady"];
     }
     /** Closes the drop down.
     */
@@ -360,7 +396,7 @@ class Input extends React.Component {
             });
         }
     }
-    /** Selects the text inside the input or if it is readonly then the element is focused.
+    /** Focuses and selects the text inside the input or if it is readonly then the element is focused.
     */
     select() {
         if (this.nativeElement.isRendered) {
@@ -371,6 +407,55 @@ class Input extends React.Component {
                 this.nativeElement.select();
             });
         }
+    }
+    /** Selects an item by value. For example, if your data source is ['Item 1', 'Item 2', 'Item 3'], you can use 'Item 1' as an argument. If your data source is an object with label and value, pass the value when you call selectItem.
+    * @param {string | number} value. The item's value when the item is an object or string when the item is a string item.
+    */
+    selectItem(value) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.selectItem(value);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.selectItem(value);
+            });
+        }
+    }
+    /** Gets an item by value. For example, if your data source is ['Item 1', 'Item 2', 'Item 3'], you can use 'Item 1' as an argument. If your data source is an object with label and value, pass the value when you call selectItem.
+    * @param {string | number} value. The item's value when the item is an object or string when the item is a string item.
+    * @returns {any}
+  */
+    getItem(value) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getItem(value);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
+    }
+    /** Gets the selected item. For example, if your data source is ['Item 1', 'Item 2', 'Item 3'] and the user selected the second item, the method returns 'Item 2'. If your data source is an object with label and value, the returned value would be the 'value'.
+    * @param {string | number} value. The item's value when the item is an object or string when the item is a string item.
+    * @returns {any}
+  */
+    getSelectedItem(value) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getResultOnRender = () => {
+                return new Promise(resolve => {
+                    this.nativeElement.whenRendered(() => {
+                        const result = this.nativeElement.getSelectedItem(value);
+                        resolve(result);
+                    });
+                });
+            };
+            const result = yield getResultOnRender();
+            return result;
+        });
     }
     componentDidRender(initialize) {
         const that = this;

@@ -124,6 +124,11 @@ export declare class MultiInput extends React.Component<React.HTMLAttributes<Ele
     */
     get separator(): string;
     set separator(value: string);
+    /** Gets or sets an array of selected values.
+    *	Property type: any
+    */
+    get selectedValues(): any;
+    set selectedValues(value: any);
     /** Determines whether an additional item is displayed as the first item in the options list, which allows to select/unselect all items.
     *	Property type: boolean
     */

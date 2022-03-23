@@ -413,6 +413,17 @@ require('../source/modules/smart.editor');
                 this.nativeElement.showCharCount = value;
             }
         }
+        /** Determines whether the editor may be checked for spelling errors.
+        *	Property type: boolean
+        */
+        get spellCheck() {
+            return this.nativeElement ? this.nativeElement.spellCheck : undefined;
+        }
+        set spellCheck(value) {
+            if (this.nativeElement) {
+                this.nativeElement.spellCheck = value;
+            }
+        }
         /** Determines the refresh interval for the Source Code/Preview Panel when Split Mode is enabled.
         *	Property type: number
         */
@@ -525,7 +536,7 @@ require('../source/modules/smart.editor');
         }
         // Gets the properties of the React component.
         get properties() {
-            return ["animation", "autoLoad", "autoSave", "autoSaveInterval", "charCountFormatFunction", "contentFiltering", "contextMenu", "contextMenuDataSource", "dataExport", "disabled", "disableEditing", "disableSearchBar", "editMode", "enableHtmlEncode", "enableTabKey", "findAndReplaceTimeout", "hideToolbar", "hideInlineToolbar", "imageFormat", "innerHTML", "inlineToolbarOffset", "iframeSettings", "locale", "maxCharCount", "messages", "name", "pasteFormat", "placeholder", "removeStylesOnClearFormat", "required", "rightToLeft", "sanitized", "showCharCount", "splitModeRefreshTimeout", "theme", "toolbarItems", "toolbarMode", "toolbarRibbonConfig", "toolbarViewMode", "toolbarSticky", "unfocusable", "value", "windowCustomizationFunction"];
+            return ["animation", "autoLoad", "autoSave", "autoSaveInterval", "charCountFormatFunction", "contentFiltering", "contextMenu", "contextMenuDataSource", "dataExport", "disabled", "disableEditing", "disableSearchBar", "editMode", "enableHtmlEncode", "enableTabKey", "findAndReplaceTimeout", "hideToolbar", "hideInlineToolbar", "imageFormat", "innerHTML", "inlineToolbarOffset", "iframeSettings", "locale", "maxCharCount", "messages", "name", "pasteFormat", "placeholder", "removeStylesOnClearFormat", "required", "rightToLeft", "sanitized", "showCharCount", "spellCheck", "splitModeRefreshTimeout", "theme", "toolbarItems", "toolbarMode", "toolbarRibbonConfig", "toolbarViewMode", "toolbarSticky", "unfocusable", "value", "windowCustomizationFunction"];
         }
         // Gets the events of the React component.
         get eventListeners() {

@@ -256,6 +256,17 @@ require('../source/modules/smart.multiinput');
 	            this.nativeElement.separator = value;
 	        }
 	    }
+	    /** Gets or sets an array of selected values.
+	    *	Property type: any
+	    */
+	    get selectedValues() {
+	        return this.nativeElement ? this.nativeElement.selectedValues : undefined;
+	    }
+	    set selectedValues(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.selectedValues = value;
+	        }
+	    }
 	    /** Determines whether an additional item is displayed as the first item in the options list, which allows to select/unselect all items.
 	    *	Property type: boolean
 	    */
@@ -335,7 +346,7 @@ require('../source/modules/smart.multiinput');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["animation", "autoCompleteDelay", "dataSource", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "query", "queryMode", "readonly", "rightToLeft", "separator", "selectAll", "sorted", "sortDirection", "theme", "type", "unfocusable", "value"];
+	        return ["animation", "autoCompleteDelay", "dataSource", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "query", "queryMode", "readonly", "rightToLeft", "separator", "selectedValues", "selectAll", "sorted", "sortDirection", "theme", "type", "unfocusable", "value"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
