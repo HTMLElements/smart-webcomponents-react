@@ -59,10 +59,10 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     get alternationStart(): number;
     set alternationStart(value: number);
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Enables or disables auto sorting. If sorted is enabled, but autoSort is false, the element will not be re-sorted automatically.
     *	Property type: boolean
     */
@@ -99,10 +99,10 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     get dragOffset(): number[];
     set dragOffset(value: number[]);
     /** Determines what happens when an item is dropped.
-    *	Property type: ListBoxDropAction
+    *	Property type: ListBoxDropAction | string
     */
-    get dropAction(): ListBoxDropAction;
-    set dropAction(value: ListBoxDropAction);
+    get dropAction(): ListBoxDropAction | string;
+    set dropAction(value: ListBoxDropAction | string);
     /** Determines if list items can be edited or not. If enabled, items can be edited by double clicking on a target item ( that is not disabled ) or pressing the F2 key on the keyboard.
     *	Property type: boolean
     */
@@ -119,10 +119,10 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     get filterCallback(): any;
     set filterCallback(value: any);
     /** Determines the filtering mode.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
-    get filterMode(): FilterMode;
-    set filterMode(value: FilterMode);
+    get filterMode(): FilterMode | string;
+    set filterMode(value: FilterMode | string);
     /** Determines the placeholder for the filter input field.
     *	Property type: string
     */
@@ -139,30 +139,30 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     get groupMember(): string | null;
     set groupMember(value: string | null);
     /** Determines the visibility of the horizontal Scroll bar.
-    *	Property type: HorizontalScrollBarVisibility
+    *	Property type: HorizontalScrollBarVisibility | string
     */
-    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility;
-    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility);
+    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility | string;
+    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility | string);
     /** IncrementalSearchDelay property specifies the time-interval in milliseconds until the previous search query is cleared. The timer starts when the user stops typing. A new query can be started only when the delay has passed.
     *	Property type: number
     */
     get incrementalSearchDelay(): number;
     set incrementalSearchDelay(value: number);
     /** Sets ot gets the mode of the incremental search mode. Incremental search is enabled by default. Typing while the List box is focused starts the incremental search.
-    *	Property type: SearchMode
+    *	Property type: SearchMode | string
     */
-    get incrementalSearchMode(): SearchMode;
-    set incrementalSearchMode(value: SearchMode);
+    get incrementalSearchMode(): SearchMode | string;
+    set incrementalSearchMode(value: SearchMode | string);
     /** Sets the height for all list box items. Used only when virtualization is enabled.
     *	Property type: number
     */
     get itemHeight(): number;
     set itemHeight(value: number);
     /** Determines the item width measuring algorithm.
-    *	Property type: ListItemMeasureMode
+    *	Property type: ListItemMeasureMode | string
     */
-    get itemMeasureMode(): ListItemMeasureMode;
-    set itemMeasureMode(value: ListItemMeasureMode);
+    get itemMeasureMode(): ListItemMeasureMode | string;
+    set itemMeasureMode(value: ListItemMeasureMode | string);
     /** A getter that returns an array of all ListBox items.
     *	Property type: ListBoxItem[]
     */
@@ -179,10 +179,10 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     get loadingIndicatorPlaceholder(): string;
     set loadingIndicatorPlaceholder(value: string);
     /** Determines the position of the loading indicator.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
-    get loadingIndicatorPosition(): VerticalAlignment;
-    set loadingIndicatorPosition(value: VerticalAlignment);
+    get loadingIndicatorPosition(): VerticalAlignment | string;
+    set loadingIndicatorPosition(value: VerticalAlignment | string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -229,15 +229,15 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     get selectedValues(): string[];
     set selectedValues(value: string[]);
     /** Determines how many items can be selected depending on the selection mode.
-    *	Property type: ListSelectionMode
+    *	Property type: ListSelectionMode | string
     */
-    get selectionMode(): ListSelectionMode;
-    set selectionMode(value: ListSelectionMode);
+    get selectionMode(): ListSelectionMode | string;
+    set selectionMode(value: ListSelectionMode | string);
     /** Determines when listbox selection is achieved - on 'press' or 'release'.
-    *	Property type: ListBoxSelectionChangeAction
+    *	Property type: ListBoxSelectionChangeAction | string
     */
-    get selectionChangeAction(): ListBoxSelectionChangeAction;
-    set selectionChangeAction(value: ListBoxSelectionChangeAction);
+    get selectionChangeAction(): ListBoxSelectionChangeAction | string;
+    set selectionChangeAction(value: ListBoxSelectionChangeAction | string);
     /** Determines whether the items are sorted alphabetically or not
     *	Property type: boolean
     */
@@ -274,10 +274,10 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     get valueMember(): string;
     set valueMember(value: string);
     /** Determines the visibility of the vertical scroll bar.
-    *	Property type: VerticalScrollBarVisibility
+    *	Property type: VerticalScrollBarVisibility | string
     */
-    get verticalScrollBarVisibility(): VerticalScrollBarVisibility;
-    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility);
+    get verticalScrollBarVisibility(): VerticalScrollBarVisibility | string;
+    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility | string);
     /** Determines weather or not Virtualization is used for the ListBox. Virtualization allows a huge amount of items to be loaded to the List box while preserving the performance. For example a milion items can be loaded to the list box.
     *	Property type: boolean
     */
@@ -366,7 +366,7 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     * @param {Node} node. A ListItem element that should be added to the rest of the items as the last item.
     * @returns {Node}
   */
-    appendChild(node: Node): Promise<any>;
+    appendChild(node: Node): any;
     /** Removes all items from the listBox.
     */
     clearItems(): void;
@@ -381,11 +381,11 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     * @param {string} value. The value of an item from the listBox.
     * @returns {HTMLElement}
   */
-    getItem(value: string): Promise<any>;
+    getItem(value: string): any;
     /** Returns an array of ListBox items.
     * @returns {{label: string, value: string}[]}
   */
-    getItems(): Promise<any>;
+    getItems(): any;
     /** Inserts a new item at a specified index.
     * @param {number} index. The index where the item must be inserted.
     * @param {any} items. A single item/definition or an array of List Items/definitions of list items to be inserted. The format of the item definitions is the same as the format of the <strong>dataSource</strong> property.
@@ -396,7 +396,7 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     * @param {Node | null} referenceNode. A ListItem element that acts as the reference item before which a new item is about to be inserted. The referenceNode must be in the same list as the node.
     * @returns {Node}
   */
-    insertBefore(node: Node, referenceNode: Node | null): Promise<any>;
+    insertBefore(node: Node, referenceNode: Node | null): any;
     /** Removes an item at a specified index.
     * @param {number} index. The index of the removed item.
     */
@@ -405,7 +405,7 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     * @param {Node} node. A ListItem element that is part of the list of items inside the element.
     * @returns {Node}
   */
-    removeChild(node: Node): Promise<any>;
+    removeChild(node: Node): any;
     /** Selects an item from the listBox.
     * @param {string | number | HTMLElement} item. A string, representing the value of the item or an HTML Element referencing an item from the list.
     */

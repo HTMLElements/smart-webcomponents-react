@@ -26,7 +26,7 @@ require('../source/modules/smart.tooltip');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -59,7 +59,7 @@ require('../source/modules/smart.tooltip');
 	        }
 	    }
 	    /** Sets the position of the arrow.
-	    *	Property type: TooltipArrowDirection
+	    *	Property type: TooltipArrowDirection | string
 	    */
 	    get arrowDirection() {
 	        return this.nativeElement ? this.nativeElement.arrowDirection : undefined;
@@ -136,7 +136,7 @@ require('../source/modules/smart.tooltip');
 	        }
 	    }
 	    /** Sets or gets the way of triggering the tooltip.
-	    *	Property type: TooltipOpenMode
+	    *	Property type: TooltipOpenMode | string
 	    */
 	    get openMode() {
 	        return this.nativeElement ? this.nativeElement.openMode : undefined;
@@ -147,7 +147,7 @@ require('../source/modules/smart.tooltip');
 	        }
 	    }
 	    /** Gets or sets the position of the tooltip.
-	    *	Property type: TooltipPosition
+	    *	Property type: TooltipPosition | string
 	    */
 	    get position() {
 	        return this.nativeElement ? this.nativeElement.position : undefined;
@@ -302,7 +302,7 @@ require('../source/modules/smart.tooltip');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -329,6 +329,7 @@ require('../source/modules/smart.tooltip');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

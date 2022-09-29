@@ -48,7 +48,7 @@ require('../source/modules/smart.countryinput');
 	        }
 	    }
 	    /** Determines the position of the drop down button.
-	    *	Property type: DropDownButtonPosition
+	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
 	        return this.nativeElement ? this.nativeElement.dropDownButtonPosition : undefined;
@@ -258,7 +258,7 @@ require('../source/modules/smart.countryinput');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -285,6 +285,7 @@ require('../source/modules/smart.countryinput');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

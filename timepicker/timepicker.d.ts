@@ -20,10 +20,10 @@ export declare class TimePicker extends React.Component<React.HTMLAttributes<Ele
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets or gets whether after selecting hours, the element will automatically switch to minute selection.
     *	Property type: boolean
     */
@@ -45,10 +45,10 @@ export declare class TimePicker extends React.Component<React.HTMLAttributes<Ele
     get footerTemplate(): string | HTMLTemplateElement;
     set footerTemplate(value: string | HTMLTemplateElement);
     /** Determines the hour selection format.
-    *	Property type: TimePickerFormat
+    *	Property type: TimePickerFormat | string
     */
-    get format(): TimePickerFormat;
-    set format(value: TimePickerFormat);
+    get format(): TimePickerFormat | string;
+    set format(value: TimePickerFormat | string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -85,10 +85,10 @@ export declare class TimePicker extends React.Component<React.HTMLAttributes<Ele
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
     /** Determines the view that is currently being shown. By default the hours view is visible.
-    *	Property type: TimePickerSelection
+    *	Property type: TimePickerSelection | string
     */
-    get selection(): TimePickerSelection;
-    set selection(value: TimePickerSelection);
+    get selection(): TimePickerSelection | string;
+    set selection(value: TimePickerSelection | string);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */
@@ -105,10 +105,10 @@ export declare class TimePicker extends React.Component<React.HTMLAttributes<Ele
     get value(): any;
     set value(value: any);
     /** Determines whether the element is in landscape or portrait mode.
-    *	Property type: ViewLayout
+    *	Property type: ViewLayout | string
     */
-    get view(): ViewLayout;
-    set view(value: ViewLayout);
+    get view(): ViewLayout | string;
+    set view(value: ViewLayout | string);
     get properties(): string[];
     /**  This event is triggered when the value is changed.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value)

@@ -1,38 +1,19 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.barcode';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
  Barcodes encodes text value in a specific pattern.
 */
-class BarCode extends React.Component {
+class Barcode extends React.Component {
     constructor(props) {
         super(props);
         this.componentRef = React.createRef();
@@ -40,7 +21,7 @@ class BarCode extends React.Component {
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
-            this._id = 'BarCode' + Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+            this._id = 'Barcode' + Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
         }
         return this._id;
     }
@@ -58,23 +39,23 @@ class BarCode extends React.Component {
     /** Sets whether the barcode label is visible.
     *	Property type: boolean
     */
-    get disaplyLabel() {
-        return this.nativeElement ? this.nativeElement.disaplyLabel : undefined;
+    get displayLabel() {
+        return this.nativeElement ? this.nativeElement.displayLabel : undefined;
     }
-    set disaplyLabel(value) {
+    set displayLabel(value) {
         if (this.nativeElement) {
-            this.nativeElement.disaplyLabel = value;
+            this.nativeElement.displayLabel = value;
         }
     }
     /** Sets the color of the barcode label.
     *	Property type: string
     */
-    get labelCOlor() {
-        return this.nativeElement ? this.nativeElement.labelCOlor : undefined;
+    get labelColor() {
+        return this.nativeElement ? this.nativeElement.labelColor : undefined;
     }
-    set labelCOlor(value) {
+    set labelColor(value) {
         if (this.nativeElement) {
-            this.nativeElement.labelCOlor = value;
+            this.nativeElement.labelColor = value;
         }
     }
     /** Sets the font family of the barcode label.
@@ -122,7 +103,7 @@ class BarCode extends React.Component {
         }
     }
     /** Sets the position of the barcode label.
-    *	Property type: BarCodeLabelPosition
+    *	Property type: BarcodeLabelPosition | string
     */
     get labelPosition() {
         return this.nativeElement ? this.nativeElement.labelPosition : undefined;
@@ -166,7 +147,7 @@ class BarCode extends React.Component {
         }
     }
     /** Sets the rendering mode of the barcode.
-    *	Property type: BarCodeRenderAs
+    *	Property type: BarcodeRenderAs | string
     */
     get renderAs() {
         return this.nativeElement ? this.nativeElement.renderAs : undefined;
@@ -177,7 +158,7 @@ class BarCode extends React.Component {
         }
     }
     /** Sets the barcode type
-    *	Property type: BarCodeType
+    *	Property type: BarcodeType | string
     */
     get type() {
         return this.nativeElement ? this.nativeElement.type : undefined;
@@ -200,7 +181,7 @@ class BarCode extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["backgroundColor", "disaplyLabel", "labelCOlor", "labelFont", "labelFontSize", "labelMarginBottom", "labelMarginTop", "labelPosition", "lineColor", "lineHeight", "lineWidth", "renderAs", "type", "value"];
+        return ["backgroundColor", "displayLabel", "labelColor", "labelFont", "labelFontSize", "labelMarginBottom", "labelMarginTop", "labelPosition", "lineColor", "lineHeight", "lineWidth", "renderAs", "type", "value"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -225,53 +206,23 @@ class BarCode extends React.Component {
     * @returns {string}
   */
     getDataURL(format) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getDataURL(format);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getDataURL(format);
+        return result;
     }
     /** Gets the base64 string of the barcode
     * @param {string} format. The dataURL format of the string - svg, png, jpg
     * @returns {any}
   */
     getDataURLAsync(format) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getDataURLAsync(format);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getDataURLAsync(format);
+        return result;
     }
     /** Gets the validity of the barcode
     * @returns {boolean}
   */
     isValid() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.isValid();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.isValid();
+        return result;
     }
     componentDidRender(initialize) {
         const that = this;
@@ -296,7 +247,7 @@ class BarCode extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -323,6 +274,7 @@ class BarCode extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }
@@ -361,5 +313,5 @@ class BarCode extends React.Component {
     }
 }
 
-export default BarCode;
-export { Smart, BarCode };
+export default Barcode;
+export { Smart, Barcode };

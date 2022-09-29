@@ -26,7 +26,7 @@ require('../source/modules/smart.path');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -147,7 +147,7 @@ require('../source/modules/smart.path');
 	        }
 	    }
 	    /** Determines the vertical position of the dropDown. 'Auto' means its automatically determined depending on the viewport size.
-	    *	Property type: DropDownPosition
+	    *	Property type: DropDownPosition | string
 	    */
 	    get dropDownPosition() {
 	        return this.nativeElement ? this.nativeElement.dropDownPosition : undefined;
@@ -268,7 +268,7 @@ require('../source/modules/smart.path');
 	        }
 	    }
 	    /** Determines the format of the path. Follows specific operation system criteria by changing the drive,folder separators.
-	    *	Property type: PathFormat
+	    *	Property type: PathFormat | string
 	    */
 	    get pathFormat() {
 	        return this.nativeElement ? this.nativeElement.pathFormat : undefined;
@@ -434,7 +434,7 @@ require('../source/modules/smart.path');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -461,6 +461,7 @@ require('../source/modules/smart.path');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

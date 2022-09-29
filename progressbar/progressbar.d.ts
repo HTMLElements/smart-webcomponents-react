@@ -22,10 +22,10 @@ export declare class ProgressBar extends React.Component<React.HTMLAttributes<El
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Enables or disables the element.
     *	Property type: boolean
     */
@@ -76,10 +76,10 @@ export declare class ProgressBar extends React.Component<React.HTMLAttributes<El
     get min(): number;
     set min(value: number);
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
-    get orientation(): Orientation;
-    set orientation(value: Orientation);
+    get orientation(): Orientation | string;
+    set orientation(value: Orientation | string);
     /** Enables/Disabled the label for the Progress Bar.
     *	Property type: boolean
     */

@@ -90,10 +90,10 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     get columnMenu(): boolean;
     set columnMenu(value: boolean);
     /** Sets or gets the column sizing behavior. In 'auto' mode Columns are automatically sized based on their content and the value of the columnMinWidth property, unless there is not enough space in the Table, in which case ellipses are shown. User-set static column width is still respected. In 'default' mode Columns are sized according to the rules of the standard HTML table element's table-layout: fixed. Custom width can also be applied to columns in this case by setting the column width property.
-    *	Property type: TableColumnSizeMode
+    *	Property type: TableColumnSizeMode | string
     */
-    get columnSizeMode(): TableColumnSizeMode;
-    set columnSizeMode(value: TableColumnSizeMode);
+    get columnSizeMode(): TableColumnSizeMode | string;
+    set columnSizeMode(value: TableColumnSizeMode | string);
     /** Sets or gets whether the "Conditional Formatting" button appears in the Table's header (toolbar). Clicking this button opens a dialog with formatting options.
     *	Property type: boolean
     */
@@ -139,10 +139,10 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     get editing(): boolean;
     set editing(value: boolean);
     /** Sets or gets whether Row hierarchies are expanded by default, when created. Use this property when you want your groups to be expanded by default, when the Table is grouped or when you use the Table in tree mode.
-    *	Property type: TableEditMode
+    *	Property type: TableEditMode | string
     */
-    get editMode(): TableEditMode;
-    set editMode(value: TableEditMode);
+    get editMode(): TableEditMode | string;
+    set editMode(value: TableEditMode | string);
     /** Sets or gets whether the Table can be filtered. By default, the Table can be filtered by all string and numeric columns through a filter input in the header.
     *	Property type: boolean
     */
@@ -228,10 +228,10 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     get hideSelectionColumn(): boolean;
     set hideSelectionColumn(value: boolean);
     /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
-    *	Property type: TableLoadColumnStateBehavior
+    *	Property type: TableLoadColumnStateBehavior | string
     */
-    get loadColumnStateBehavior(): TableLoadColumnStateBehavior;
-    set loadColumnStateBehavior(value: TableLoadColumnStateBehavior);
+    get loadColumnStateBehavior(): TableLoadColumnStateBehavior | string;
+    set loadColumnStateBehavior(value: TableLoadColumnStateBehavior | string);
     /** Sets or gets the page size (when paging is enabled).
     *	Property type: string
     */
@@ -270,46 +270,64 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
         (): void;
     });
     /** Sets or gets an array of the Table's selected row's ids.
-    *	Property type: TablePageSize
+    *	Property type: { (): void }
     */
-    get pageSize(): TablePageSize;
-    set pageSize(value: TablePageSize);
+    get onLoad(): {
+        (): void;
+    };
+    set onLoad(value: {
+        (): void;
+    });
     /** Sets or gets whether row selection (via checkboxes) is enabled.
+    *	Property type: { (): void }
+    */
+    get onUpdateComplete(): {
+        (): void;
+    };
+    set onUpdateComplete(value: {
+        (): void;
+    });
+    /** Sets or gets the selection mode. Only applicable when selection is enabled.
+    *	Property type: TablePageSize | string
+    */
+    get pageSize(): TablePageSize | string;
+    set pageSize(value: TablePageSize | string);
+    /** Sets or gets whether row selection (via checkboxes) is hierarchical. When a parent row is selected, all sub rows are selected, too.
     *	Property type: number
     */
     get pageIndex(): number;
     set pageIndex(value: number);
-    /** Sets or gets the selection mode. Only applicable when selection is enabled.
+    /** Determines the sorting mode of the Table.
     *	Property type: boolean
     */
     get paging(): boolean;
     set paging(value: boolean);
-    /** Sets or gets whether row selection (via checkboxes) is hierarchical. When a parent row is selected, all sub rows are selected, too.
+    /** Sets or gets what settings of the Table's state can be saved (by autoSaveState or saveState) or loaded (by autoLoadState or loadState).
     *	Property type: boolean
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
-    /** Determines the sorting mode of the Table.
+    /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */
     get rowDetailTemplate(): string;
     set rowDetailTemplate(value: string);
-    /** Sets or gets what settings of the Table's state can be saved (by autoSaveState or saveState) or loaded (by autoLoadState or loadState).
+    /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
     *	Property type: any[]
     */
     get selected(): any[];
     set selected(value: any[]);
-    /** Determines the theme. Theme defines the look of the element
+    /** Enables or disables HTML virtualization. This functionality allows for only visible rows to be rendered, resulting in an increased Table performance.
     *	Property type: boolean
     */
     get selection(): boolean;
     set selection(value: boolean);
-    /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
-    *	Property type: TableSelectionMode
+    /** undefined
+    *	Property type: TableSelectionMode | string
     */
-    get selectionMode(): TableSelectionMode;
-    set selectionMode(value: TableSelectionMode);
-    /** Enables or disables HTML virtualization. This functionality allows for only visible rows to be rendered, resulting in an increased Table performance.
+    get selectionMode(): TableSelectionMode | string;
+    set selectionMode(value: TableSelectionMode | string);
+    /** undefined
     *	Property type: boolean
     */
     get selectionByHierarchy(): boolean;
@@ -328,10 +346,10 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
         }[]): void;
     });
     /** undefined
-    *	Property type: TableSortMode
+    *	Property type: TableSortMode | string
     */
-    get sortMode(): TableSortMode;
-    set sortMode(value: TableSortMode);
+    get sortMode(): TableSortMode | string;
+    set sortMode(value: TableSortMode | string);
     /** undefined
     *	Property type: string[]
     */
@@ -470,7 +488,7 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     addRow(data: any): void;
     /** Adds a filter to a specific column.
     * @param {string} dataField. The column's data field.
-    * @param {any} filter. FilterGroup object.
+    * @param {any} filter. FilterGroup object or a Filter expression. Filter expression like: 'startsWith B'. Example 2: ['contains Andrew or contains Nancy'], Example 3:  ['quantity', '&lt;= 3 and &gt;= 8'].  Filter conditions which you can use in the expressions: '=', 'EQUAL','&lt;&gt;', 'NOT_EQUAL', '!=', '&lt;', 'LESS_THAN','&gt;', 'GREATER_THAN', '&lt;=', 'LESS_THAN_OR_EQUAL', '&gt;=', 'GREATER_THAN_OR_EQUAL','starts with', 'STARTS_WITH','ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS','DOES_NOT_CONTAIN', 'NULL','NOT_NULL'
     */
     addFilter(dataField: string, filter: any): void;
     /** Groups by a column.
@@ -556,32 +574,32 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     * @param {Function} callback?. A callback function to pass the exported data to (if fileName is not provided)
     * @returns {any}
   */
-    exportData(dataFormat: string, fileName?: string, exportFiltered?: boolean, callback?: Function): Promise<any>;
+    exportData(dataFormat: string, fileName?: string, exportFiltered?: boolean, callback?: Function): any;
     /** Returns an array of selected row ids.
     * @returns {(string | number)[]}
   */
-    getSelection(): Promise<any>;
+    getSelection(): any;
     /** Returns the Table's state, containing information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns. It can then be stored or passed to the method loadState.
     * @returns {any}
   */
-    getState(): Promise<any>;
+    getState(): any;
     /** Returns the value of a cell.
     * @param {string | number} row. The id of the cell's row.
     * @param {string} dataField. The dataField of the cell's column.
     * @returns {any}
   */
-    getValue(row: string | number, dataField: string): Promise<any>;
+    getValue(row: string | number, dataField: string): any;
     /** Gets a column property.
     * @param {string} columnDataField. Column field name.
     * @param {string} propertyName. Column property name.
     * @returns {any}
   */
-    getColumnProperty(columnDataField: string, propertyName: string): Promise<any>;
+    getColumnProperty(columnDataField: string, propertyName: string): any;
     /** Checks whether a group is expanded and returns true or false. false is returned when the group index is undefined, too.
     * @param {string} index. The group's hierarchical index.
     * @returns {boolean}
   */
-    isGroupExpanded(index: string): Promise<any>;
+    isGroupExpanded(index: string): any;
     /** Loads the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is loaded, based on the value of the stateSettings property.
     * @param {any} state?. An object returned by one of the methods <strong>getState</strong> or <strong>saveState</strong>. If a state is not passed, the method tries to load the state from the browser's localStorage.
     */
@@ -608,7 +626,7 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     /** Saves the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is saved, based on the value of the stateSettings property.
     * @returns {any}
   */
-    saveState(): Promise<any>;
+    saveState(): any;
     /** Selects one or more rows.
     * @param {string | number | (string | number)[]} rowId. The id of the row (or an array of row ids) to select.
     */

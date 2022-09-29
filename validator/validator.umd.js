@@ -103,7 +103,7 @@ require('../source/modules/smart.validator');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -130,6 +130,7 @@ require('../source/modules/smart.validator');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

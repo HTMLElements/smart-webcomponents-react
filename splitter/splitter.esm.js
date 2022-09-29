@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.splitter';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -201,7 +182,7 @@ class SplitterItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -361,7 +342,7 @@ class SplitterBar extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -388,6 +369,7 @@ class SplitterBar extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$1.Render();
             if (that.onCreate) {
                 that.onCreate();
             }
@@ -443,7 +425,7 @@ class Splitter extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -454,7 +436,7 @@ class Splitter extends React.Component {
         }
     }
     /** Determines how the items are arranged inside the Splitter. Possible values:   end - all items will fit the size of the Splitter. When inserting a new item the space required for the item to fit will be deducted from it's neighbour. proportional - all items will fit the size of the Splitter. When inserting a new item the space required for it to fit will be the result from the proportional deduction of the size from the rest of the items inside the element. overflow - the items inside the Splitter will not fit it's size. Instead they overflow by taking the exact amount of space they need and a scrollbar is displayed in order to view the content.
-    *	Property type: SplitterAutoFitMode
+    *	Property type: SplitterAutoFitMode | string
     */
     get autoFitMode() {
         return this.nativeElement ? this.nativeElement.autoFitMode : undefined;
@@ -542,7 +524,7 @@ class Splitter extends React.Component {
         }
     }
     /** Sets or gets splitter's orientation.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
     get orientation() {
         return this.nativeElement ? this.nativeElement.orientation : undefined;
@@ -564,7 +546,7 @@ class Splitter extends React.Component {
         }
     }
     /** Determines the resize mode of the splitter. Possible values are:  - None - resizing is disabled.  - Adjacent - only the two adjacent items between the target splitter bar are being affected. This is the default behavior.  - End - only the first item( left or top according to the orientation) of the target Splitter bar and the last item are affected.  Proportional - all of the items positioned in the direction to which the splitter bar is dragged will be affected. For example, when a splitter bar is dragged to the right all the items positioned on it's the right side will be affected. The items will obtain a proportional size corresponding to their current size.
-    *	Property type: SplitterResizeMode
+    *	Property type: SplitterResizeMode | string
     */
     get resizeMode() {
         return this.nativeElement ? this.nativeElement.resizeMode : undefined;
@@ -682,18 +664,8 @@ class Splitter extends React.Component {
     * @returns {number}
   */
     hideBar(splitterBar) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.hideBar(splitterBar);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.hideBar(splitterBar);
+        return result;
     }
     /** Insert a new Splitter item at a given position.
     * @param {number} index. The index at which a new item will be inserted.
@@ -715,18 +687,8 @@ class Splitter extends React.Component {
     * @returns {Node}
   */
     insertBefore(newNode, referenceNode) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.insertBefore(newNode, referenceNode);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.insertBefore(newNode, referenceNode);
+        return result;
     }
     /** Locks a splitter item so it's size can't change.
     * @param {number} index. The index of a Splitter Bar or it's instance.
@@ -784,18 +746,8 @@ class Splitter extends React.Component {
     * @returns {Node}
   */
     removeChild(node) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.removeChild(node);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.removeChild(node);
+        return result;
     }
     /** Refreshes the Splitter
     */
@@ -885,7 +837,7 @@ class Splitter extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -912,6 +864,7 @@ class Splitter extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$2.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

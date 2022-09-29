@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.accordion';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class AccordionItem extends React.Component {
         return this._id;
     }
     /** Sets or gets header's arrow position. If the value is 'none' the arrow is not shown.
-    *	Property type: AccordionItemArrow
+    *	Property type: AccordionItemArrow | string
     */
     get arrow() {
         return this.nativeElement ? this.nativeElement.arrow : undefined;
@@ -94,7 +100,7 @@ class AccordionItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -176,7 +182,7 @@ class Accordion extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -220,7 +226,7 @@ class Accordion extends React.Component {
         }
     }
     /** Sets or gets the expand mode. Expand mode determines how the items will expand or collapse.
-    *	Property type: AccordionExpandMode
+    *	Property type: AccordionExpandMode | string
     */
     get expandMode() {
         return this.nativeElement ? this.nativeElement.expandMode : undefined;
@@ -416,7 +422,7 @@ class Accordion extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -443,6 +449,7 @@ class Accordion extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$1.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

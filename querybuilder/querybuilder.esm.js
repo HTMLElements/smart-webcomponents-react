@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.querybuilder';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -56,7 +37,7 @@ class QueryBuilder extends React.Component {
         }
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -67,7 +48,7 @@ class QueryBuilder extends React.Component {
         }
     }
     /** Determines when the value of the element is updated with the new changes.
-    *	Property type: QueryBuilderApplyMode
+    *	Property type: QueryBuilderApplyMode | string
     */
     get applyMode() {
         return this.nativeElement ? this.nativeElement.applyMode : undefined;
@@ -75,6 +56,17 @@ class QueryBuilder extends React.Component {
     set applyMode(value) {
         if (this.nativeElement) {
             this.nativeElement.applyMode = value;
+        }
+    }
+    /** When 'applyMode' is set to 'immediately', the default value is applied to the editor's value and the QueryBuilder's value is updated automatically.
+    *	Property type: boolean
+    */
+    get autoApplyValue() {
+        return this.nativeElement ? this.nativeElement.autoApplyValue : undefined;
+    }
+    set autoApplyValue(value) {
+        if (this.nativeElement) {
+            this.nativeElement.autoApplyValue = value;
         }
     }
     /** Determines whether QueryBuilder will automatically prompt the user to enter a condition value when a new condition is created. When 'applyMode' is set to 'immediately', the operation field is automatically populated if empty when the selected condition operator is changed. The input field prompts the user when the operation or operator of the condition is changed.
@@ -133,7 +125,7 @@ class QueryBuilder extends React.Component {
         }
     }
     /** Determines whether new fields can be dynamically added by typing in the field (property) box.
-    *	Property type: QueryBuilderFieldsMode
+    *	Property type: QueryBuilderFieldsMode | string
     */
     get fieldsMode() {
         return this.nativeElement ? this.nativeElement.fieldsMode : undefined;
@@ -354,28 +346,18 @@ class QueryBuilder extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["allowDrag", "animation", "applyMode", "autoPrompt", "customOperations", "disabled", "dropDownWidth", "fields", "fieldsMode", "formatStringDate", "formatStringDateTime", "getDynamicField", "icons", "locale", "localizeFormatFunction", "messages", "operatorPlaceholder", "propertyPlaceholder", "rightToLeft", "showIcons", "showFieldNameArrow", "theme", "unfocusable", "validateOnInput", "validationTimeout", "value", "valueFormatFunction", "valuePlaceholder"];
+        return ["allowDrag", "animation", "applyMode", "autoApplyValue", "autoPrompt", "customOperations", "disabled", "dropDownWidth", "fields", "fieldsMode", "formatStringDate", "formatStringDateTime", "getDynamicField", "icons", "locale", "localizeFormatFunction", "messages", "operatorPlaceholder", "propertyPlaceholder", "rightToLeft", "showIcons", "showFieldNameArrow", "theme", "unfocusable", "validateOnInput", "validationTimeout", "value", "valueFormatFunction", "valuePlaceholder"];
     }
     // Gets the events of the React component.
     get eventListeners() {
-        return ["onChange", "onDragEnd", "onDragging", "onDragStart", "onItemClick", "onPropertySelected", "onCreate", "onReady"];
+        return ["onChange", "onDragEnd", "onDragging", "onDragStart", "onItemClick", "onPropertySelected", "onValidationChange", "onCreate", "onReady"];
     }
     /** Converts the current value of the element to DynamicLINQ expression.
     * @returns {string}
   */
     getLinq() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getLinq();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getLinq();
+        return result;
     }
     componentDidRender(initialize) {
         const that = this;
@@ -400,7 +382,7 @@ class QueryBuilder extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -427,6 +409,7 @@ class QueryBuilder extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

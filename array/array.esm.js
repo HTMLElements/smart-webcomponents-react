@@ -1,38 +1,19 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.array';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
  Array is broadly used in Engineering applications and displays a Grid of values.
 */
-class Array$1 extends React.Component {
+class Array extends React.Component {
     constructor(props) {
         super(props);
         this.componentRef = React.createRef();
@@ -45,7 +26,7 @@ class Array$1 extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -56,7 +37,7 @@ class Array$1 extends React.Component {
         }
     }
     /** Sets or gets the indexing mode of the Array.
-    *	Property type: ArrayArrayIndexingMode
+    *	Property type: ArrayArrayIndexingMode | string
     */
     get arrayIndexingMode() {
         return this.nativeElement ? this.nativeElement.arrayIndexingMode : undefined;
@@ -309,7 +290,7 @@ class Array$1 extends React.Component {
         }
     }
     /** Sets or gets the data type and element widgets to be used in the Array.
-    *	Property type: ArrayType
+    *	Property type: ArrayType | string
     */
     get type() {
         return this.nativeElement ? this.nativeElement.type : undefined;
@@ -445,52 +426,22 @@ class Array$1 extends React.Component {
     * @returns {HTMLElement}
   */
     getElement(RowVisibleIndex, ColumnVisibleIndex) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getElement(RowVisibleIndex, ColumnVisibleIndex);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getElement(RowVisibleIndex, ColumnVisibleIndex);
+        return result;
     }
     /** Returns an object with the values of the Array element width and height.
     * @returns {any}
   */
     getElementSize() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getElementSize();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getElementSize();
+        return result;
     }
     /** Gets an array with the values of all indexers.
     * @returns {any[]}
   */
     getIndexerValue() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getIndexerValue();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getIndexerValue();
+        return result;
     }
     /** Returns an HTML element from the Array at the specified page coordinates and other information about this element.
     * @param {number} Pagexcoordinate.
@@ -498,18 +449,8 @@ class Array$1 extends React.Component {
     * @returns {any}
   */
     hitTest(Pagexcoordinate, Pageycoordinate) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.hitTest(Pagexcoordinate, Pageycoordinate);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.hitTest(Pagexcoordinate, Pageycoordinate);
+        return result;
     }
     /** Inserts a column in the value array before the specified column. The new column is filled with default values.
     * @param {number} Columnindex. Index of the column to add a new column before.
@@ -721,18 +662,8 @@ class Array$1 extends React.Component {
     * @returns {any[]}
   */
     val(Newvalue, Elementindexes) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.val(Newvalue, Elementindexes);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.val(Newvalue, Elementindexes);
+        return result;
     }
     componentDidRender(initialize) {
         const that = this;
@@ -757,7 +688,7 @@ class Array$1 extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -784,6 +715,7 @@ class Array$1 extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }
@@ -822,5 +754,5 @@ class Array$1 extends React.Component {
     }
 }
 
-export default Array$1;
-export { Smart, Array$1 as Array };
+export default Array;
+export { Smart, Array };

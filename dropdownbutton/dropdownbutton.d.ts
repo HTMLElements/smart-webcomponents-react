@@ -27,10 +27,10 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines the delay before the opened drop down closes when dropDownOpenMode is set to 'auto'.
     *	Property type: number
     */
@@ -47,10 +47,10 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     get dropDownAppendTo(): string;
     set dropDownAppendTo(value: string);
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Sets the height of the drop down. Default value of empty string means that CSS variables are used. This property should be used when the browser doesn't support CSS variables.
     *	Property type: string | number
     */
@@ -77,10 +77,10 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     get dropDownMinWidth(): string | number;
     set dropDownMinWidth(value: string | number);
     /** Determines how the drop down is going to open.
-    *	Property type: DropDownOpenMode
+    *	Property type: DropDownOpenMode | string
     */
-    get dropDownOpenMode(): DropDownOpenMode;
-    set dropDownOpenMode(value: DropDownOpenMode);
+    get dropDownOpenMode(): DropDownOpenMode | string;
+    set dropDownOpenMode(value: DropDownOpenMode | string);
     /** If this property is enabled, when the element's dropdown is opened, a transparent overlay is positioned between the dropdown and the rest of the document.
     *	Property type: boolean
     */
@@ -92,10 +92,10 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     get dropDownPlaceholder(): string;
     set dropDownPlaceholder(value: string);
     /** Determines the vertical position of the dropDown. 'Auto' means its automatically determined depending on the viewport size.
-    *	Property type: DropDownPosition
+    *	Property type: DropDownPosition | string
     */
-    get dropDownPosition(): DropDownPosition;
-    set dropDownPosition(value: DropDownPosition);
+    get dropDownPosition(): DropDownPosition | string;
+    set dropDownPosition(value: DropDownPosition | string);
     /** Sets the width of the drop down. Default value of empty string means that CSS variables are used. This property should be used when the browser doesn't support CSS variables.
     *	Property type: string | number
     */
@@ -107,10 +107,10 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     get hint(): string;
     set hint(value: string);
     /** Determines the visibility of the horizontal Scroll bar inside the drop down.
-    *	Property type: HorizontalScrollBarVisibility
+    *	Property type: HorizontalScrollBarVisibility | string
     */
-    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility;
-    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility);
+    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility | string;
+    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility | string);
     /** Sets a label above the element. The label is always visible.
     *	Property type: string
     */
@@ -157,10 +157,10 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     get resizeIndicator(): boolean;
     set resizeIndicator(value: boolean);
     /** Determines whether the dropDown can be resized or not. When resizing is enabled, a resize bar appears on the top/bottom side of the drop down.
-    *	Property type: ResizeMode
+    *	Property type: ResizeMode | string
     */
-    get resizeMode(): ResizeMode;
-    set resizeMode(value: ResizeMode);
+    get resizeMode(): ResizeMode | string;
+    set resizeMode(value: ResizeMode | string);
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */
@@ -177,10 +177,10 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
     /** Determines the visibility of the vertical scroll bar.
-    *	Property type: VerticalScrollBarVisibility
+    *	Property type: VerticalScrollBarVisibility | string
     */
-    get verticalScrollBarVisibility(): VerticalScrollBarVisibility;
-    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility);
+    get verticalScrollBarVisibility(): VerticalScrollBarVisibility | string;
+    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility | string);
     get properties(): string[];
     /**  This event is triggered when user clicks on the action button. The action button is visible when the placeholder is set.
     *  @param event. The custom event. 	*/
@@ -221,7 +221,7 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     * @param {Node} node. The node to be appended
     * @returns {Node}
   */
-    appendChild(node: Node): Promise<any>;
+    appendChild(node: Node): any;
     /** Closes the dropDown.
     */
     close(): void;
@@ -235,7 +235,7 @@ export declare class DropDownButton extends React.Component<React.HTMLAttributes
     * @param {Node} node. The node to remove.
     * @returns {Node}
   */
-    removeChild(node: Node): Promise<any>;
+    removeChild(node: Node): any;
     /** Scrolls the drop down to a specific position.
     * @param {number} top. Y axis coordinate
     * @param {number} left. X axis coordinate

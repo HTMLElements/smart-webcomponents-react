@@ -29,10 +29,10 @@ export declare class ListMenu extends React.Component<React.HTMLAttributes<Eleme
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines whether the element becomes focused on hover or not.
     *	Property type: boolean
     */
@@ -49,10 +49,10 @@ export declare class ListMenu extends React.Component<React.HTMLAttributes<Eleme
     get checkboxes(): boolean;
     set checkboxes(value: boolean);
     /** Sets the check mode of top-level ListMenu items(groups).
-    *	Property type: MenuCheckMode
+    *	Property type: MenuCheckMode | string
     */
-    get checkMode(): MenuCheckMode;
-    set checkMode(value: MenuCheckMode);
+    get checkMode(): MenuCheckMode | string;
+    set checkMode(value: MenuCheckMode | string);
     /** Determines the data source that will be loaded to the ListMenu. The data source represents an array of objects with the following properties: label - a string representing the text content of the item.value - the value of the item.shortcut - a string representing a shortuct for the item. It will be displayed inside the item.items - allows to define an array of sub menu items.
     *	Property type: any
     */
@@ -84,10 +84,10 @@ export declare class ListMenu extends React.Component<React.HTMLAttributes<Eleme
     get dropDownOverlay(): boolean;
     set dropDownOverlay(value: boolean);
     /** Sets or gets the opening direction of the ListMenu minimized dropdown.
-    *	Property type: MenuDropDownPosition
+    *	Property type: MenuDropDownPosition | string
     */
-    get dropDownPosition(): MenuDropDownPosition;
-    set dropDownPosition(value: MenuDropDownPosition);
+    get dropDownPosition(): MenuDropDownPosition | string;
+    set dropDownPosition(value: MenuDropDownPosition | string);
     /** Enables or disables scrolling using the mouse wheel through overflowing menu items.
     *	Property type: boolean
     */
@@ -109,10 +109,10 @@ export declare class ListMenu extends React.Component<React.HTMLAttributes<Eleme
     get filterMember(): string;
     set filterMember(value: string);
     /** Determines the filtering mode.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
-    get filterMode(): FilterMode;
-    set filterMode(value: FilterMode);
+    get filterMode(): FilterMode | string;
+    set filterMode(value: FilterMode | string);
     /** If enabled, the items will be grouped by their first letter and sorted.
     *	Property type: boolean
     */
@@ -129,10 +129,10 @@ export declare class ListMenu extends React.Component<React.HTMLAttributes<Eleme
     get loadingIndicatorPlaceholder(): string;
     set loadingIndicatorPlaceholder(value: string);
     /** Determines the position of the loading indicator inside the element.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
-    get loadingIndicatorPosition(): VerticalAlignment;
-    set loadingIndicatorPosition(value: VerticalAlignment);
+    get loadingIndicatorPosition(): VerticalAlignment | string;
+    set loadingIndicatorPosition(value: VerticalAlignment | string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -159,10 +159,10 @@ export declare class ListMenu extends React.Component<React.HTMLAttributes<Eleme
     get minimizeWidth(): number | null;
     set minimizeWidth(value: number | null);
     /** Sets or gets the ListMenu's scroll buttons behavior.
-    *	Property type: Overflow
+    *	Property type: Overflow | string
     */
-    get overflow(): Overflow;
-    set overflow(value: Overflow);
+    get overflow(): Overflow | string;
+    set overflow(value: Overflow | string);
     /** If the element is readonly, users cannot interact with it.
     *	Property type: boolean
     */
@@ -174,10 +174,10 @@ export declare class ListMenu extends React.Component<React.HTMLAttributes<Eleme
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
     /** Determines whether to use scrollbar or scrollButtons when content overflows an element's box.
-    *	Property type: ListMenuScrollMode
+    *	Property type: ListMenuScrollMode | string
     */
-    get scrollMode(): ListMenuScrollMode;
-    set scrollMode(value: ListMenuScrollMode);
+    get scrollMode(): ListMenuScrollMode | string;
+    set scrollMode(value: ListMenuScrollMode | string);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */
@@ -255,7 +255,7 @@ export declare class ListMenu extends React.Component<React.HTMLAttributes<Eleme
     * @param {string} id. The id or numeric path of an item
     * @returns {HTMLElement}
   */
-    getItem(id: string): Promise<any>;
+    getItem(id: string): any;
     /** Maximizes the List Menu.
     */
     maximize(): void;

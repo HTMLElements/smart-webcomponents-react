@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.button';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class RadioButton extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -42,7 +48,7 @@ class RadioButton extends React.Component {
         }
     }
     /** Sets or gets the part that toggles the element.
-    *	Property type: CheckMode
+    *	Property type: CheckMode | string
     */
     get checkMode() {
         return this.nativeElement ? this.nativeElement.checkMode : undefined;
@@ -53,7 +59,7 @@ class RadioButton extends React.Component {
         }
     }
     /** Sets the click mode of the radio button.
-    *	Property type: ClickMode
+    *	Property type: ClickMode | string
     */
     get clickMode() {
         return this.nativeElement ? this.nativeElement.clickMode : undefined;
@@ -226,7 +232,7 @@ class RadioButton extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -253,6 +259,7 @@ class RadioButton extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

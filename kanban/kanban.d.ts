@@ -2,7 +2,7 @@ import React from "react";
 import { KanbanProperties } from "./../index";
 import { KanbanAddNewButtonDisplayMode, KanbanColumnEditMode, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanTaskSubTasks, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanPriority, KanbanUser } from './../index';
 export { KanbanProperties } from "./../index";
-export { KanbanAddNewButtonDisplayMode, KanbanColumnOrientation, KanbanColumnEditMode, KanbanDataSourcePriority, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanTaskSubTasks, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanPriority, KanbanUser } from './../index';
+export { KanbanAddNewButtonDisplayMode, KanbanColumnOrientation, KanbanColumnEditMode, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanTaskSubTasks, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanPriority, KanbanUser } from './../index';
 export { DataAdapter } from './../index';
 export declare const Smart: any;
 export interface KanbanProps extends KanbanProperties {
@@ -31,6 +31,7 @@ export interface KanbanProps extends KanbanProperties {
     onOpen?: ((event?: Event) => void) | undefined;
     onOpening?: ((event?: Event) => void) | undefined;
     onSort?: ((event?: Event) => void) | undefined;
+    onTaskBeforeAdd?: ((event?: Event) => void) | undefined;
     onTaskAdd?: ((event?: Event) => void) | undefined;
     onTaskRemove?: ((event?: Event) => void) | undefined;
     onTaskUpdate?: ((event?: Event) => void) | undefined;
@@ -73,15 +74,20 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     get addNewButton(): boolean;
     set addNewButton(value: boolean);
     /** Determines whether the add button is visible in the column header and/or after the tasks in the column.
-    *	Property type: KanbanAddNewButtonDisplayMode
+    *	Property type: KanbanAddNewButtonDisplayMode | string
     */
-    get addNewButtonDisplayMode(): KanbanAddNewButtonDisplayMode;
-    set addNewButtonDisplayMode(value: KanbanAddNewButtonDisplayMode);
+    get addNewButtonDisplayMode(): KanbanAddNewButtonDisplayMode | string;
+    set addNewButtonDisplayMode(value: KanbanAddNewButtonDisplayMode | string);
     /** Sets or gets whether a column with a button for adding new status columns to the Kanban will be displayed.
     *	Property type: boolean
     */
     get addNewColumn(): boolean;
     set addNewColumn(value: boolean);
+    /** Sets the width of the add new column. The property is used, if the 'columnWidth' property is set, too. It specifies the width of the dynamic new column.
+    *	Property type: number | null
+    */
+    get addNewColumnWidth(): number | null;
+    set addNewColumnWidth(value: number | null);
     /** Allows the dragging of tasks.
     *	Property type: boolean
     */
@@ -92,6 +98,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get allowDrop(): boolean;
     set allowDrop(value: boolean);
+    /** This property changes the visual appeal of the Kanban columns and tasks. When set to true and the Kanban columns have their 'color' property set, the color is also applied to the tasks and edit dialog.
+    *	Property type: boolean
+    */
+    get applyColumnColorToTasks(): boolean;
+    set applyColumnColorToTasks(value: boolean);
     /** Enables or disables auto load state from the browser's localStorage. Information about tasks and their position and selected state, filtering, sorting, collapsed columns, as well as the values of the properties taskActions, taskComments, taskDue, taskPriority, taskProgress, taskTags, and taskUserIcon is loaded.
     *	Property type: boolean
     */
@@ -102,6 +113,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get autoSaveState(): boolean;
     set autoSaveState(value: boolean);
+    /** Automatically updates the columns height depending on the tasks inside the column. The effect of this property is observed when 'columnColorEntireSurface' is true.
+    *	Property type: boolean
+    */
+    get autoColumnHeight(): boolean;
+    set autoColumnHeight(value: boolean);
     /** Allows collapsing the card content.
     *	Property type: boolean
     */
@@ -112,6 +128,21 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get columnColors(): boolean;
     set columnColors(value: boolean);
+    /** Sets the Kanban columns width. When this property is set, the kanban columns width is set and a horizontal scrollbar may appear.
+    *	Property type: number | null
+    */
+    get columnWidth(): number | null;
+    set columnWidth(value: number | null);
+    /** Displays background in the Kanban column.
+    *	Property type: boolean
+    */
+    get columnColorEntireSurface(): boolean;
+    set columnColorEntireSurface(value: boolean);
+    /** Displays a column footer which shows the summary of the column.
+    *	Property type: boolean
+    */
+    get columnFooter(): boolean;
+    set columnFooter(value: boolean);
     /** Describes the columns properties.
     *	Property type: KanbanColumn[]
     */
@@ -133,15 +164,30 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     get columnHeaderTemplate(): any;
     set columnHeaderTemplate(value: any);
     /** Determines the column edit behavior. With the 'header' option, edit starts on double click on the column's label. In 'menu' mode, edit is allowed from the 'columnActions' menu. In 'headerAndMenu' option, column editing includes both options.
-    *	Property type: KanbanColumnEditMode
+    *	Property type: KanbanColumnEditMode | string
     */
-    get columnEditMode(): KanbanColumnEditMode;
-    set columnEditMode(value: KanbanColumnEditMode);
+    get columnEditMode(): KanbanColumnEditMode | string;
+    set columnEditMode(value: KanbanColumnEditMode | string);
     /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
     *	Property type: string | number
     */
     get currentUser(): string | number;
     set currentUser(value: string | number);
+    /** Sets or gets whether the default dialog for adding/removing tasks or comments is disabled.
+    *	Property type: boolean
+    */
+    get disableDialog(): boolean;
+    set disableDialog(value: boolean);
+    /** Sets or gets a customization function for the dialog. This function can be used to customize the dialog look or to replace it. The Kanban calls this function with 5 arguments - 'dialog', 'taskOrComment', 'editors', 'purpose' and 'type'. The dialog is the 'smart-window' instance used as a default Kanban dialog. 'taskOrComment' is object which could be Kanban task or comment. 'purpose' could be 'add' or 'edit' and 'type' could be 'task' or 'column' depending on the action.
+    *	Property type: any
+    */
+    get dialogCustomizationFunction(): any;
+    set dialogCustomizationFunction(value: any);
+    /** Sets or gets a function called when the dialog is rendered. The Kanban calls this function with 6 arguments - 'dialog', 'editors', 'labels', 'tabs', 'layout', 'taskOrComment'. The dialog is the 'smart-window' instance used as a default Kanban dialog. 'taskOrComment' is object which could be Kanban task or comment. 'editors', 'labels', 'tabs' and 'layout' are JSON objects with key which describes the element type and value which is HTML Element.
+    *	Property type: any
+    */
+    get dialogRendered(): any;
+    set dialogRendered(value: any);
     /** Determines the data source to be visualized in the kanban board.
     *	Property type: KanbanDataSource[]
     */
@@ -209,15 +255,15 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     get formatStringTime(): string;
     set formatStringTime(value: string);
     /** Sets or gets the header position. The header contains the Customize, Filter, Sort, and Search buttons.
-    *	Property type: KanbanHeaderPosition
+    *	Property type: KanbanHeaderPosition | string
     */
-    get headerPosition(): KanbanHeaderPosition;
-    set headerPosition(value: KanbanHeaderPosition);
+    get headerPosition(): KanbanHeaderPosition | string;
+    set headerPosition(value: KanbanHeaderPosition | string);
     /** Sets or gets the way column hierarchy is represented.
-    *	Property type: KanbanHierarchy
+    *	Property type: KanbanHierarchy | string
     */
-    get hierarchy(): KanbanHierarchy;
-    set hierarchy(value: KanbanHierarchy);
+    get hierarchy(): KanbanHierarchy | string;
+    set hierarchy(value: KanbanHierarchy | string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -228,11 +274,36 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get messages(): any;
     set messages(value: any);
-    /** Determines selection mode.
-    *	Property type: KanbanSelectionMode
+    /** Callback function which can be used for customizing the tasks rendering. The Kanban calls it with 2 arguments - task html element and task data.
+    *	Property type: any
     */
-    get selectionMode(): KanbanSelectionMode;
-    set selectionMode(value: KanbanSelectionMode);
+    get onTaskRender(): any;
+    set onTaskRender(value: any);
+    /** Callback function which can be used for customizing the filter items. The function is called with 1 argument - Array of items which will be displayed in the filter drop down. You can modify that array to remove or update items to filter by.
+    *	Property type: any
+    */
+    get onFilterPrepare(): any;
+    set onFilterPrepare(value: any);
+    /** Callback function which can be used for customizing the sort items. The function is called with 1 argument - Array of items which will be displayed in the sort drop down. You can modify that array to remove or update items to sort by.
+    *	Property type: any
+    */
+    get onSortPrepare(): any;
+    set onSortPrepare(value: any);
+    /** Callback function which can be used for customizing the column header rendering. The Kanban calls it with 3 arguments - column header html element and column data and column data field.
+    *	Property type: any
+    */
+    get onColumnHeaderRender(): any;
+    set onColumnHeaderRender(value: any);
+    /** Callback function which can be used for customizing the column footer rendering. The Kanban calls it with 3 arguments - column header html element and column data and column data field.
+    *	Property type: any
+    */
+    get onColumnFooterRender(): any;
+    set onColumnFooterRender(value: any);
+    /** Determines selection mode.
+    *	Property type: KanbanSelectionMode | string
+    */
+    get selectionMode(): KanbanSelectionMode | string;
+    set selectionMode(value: KanbanSelectionMode | string);
     /** Sets or gets whether the tasks history will be stored and displayed in the task dialog.
     *	Property type: boolean
     */
@@ -248,6 +319,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
+    /** Sets or gets whether the edit dialog is displayed in readonly mode. In that mode it shows only the task details, but the editing is disabled. However, if comments are enabled, you will be able to add comments in the dialog.
+    *	Property type: boolean
+    */
+    get readonly(): boolean;
+    set readonly(value: boolean);
     /** Describes the swimlanes in the kanban board. Sub-columns are not applicable when swimlanes are present.
     *	Property type: KanbanSwimlane[]
     */
@@ -273,6 +349,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get taskActions(): boolean;
     set taskActions(value: boolean);
+    /** Represents a callback function which is called when the task actions menu is created. The task actions element is passed as parameter and allows you to customize the menu. Example: (list) => { list.innerHTML = 'Custom Item'; list.onclick = () => { alert('clicked'); }}
+    *	Property type: any
+    */
+    get taskActionsRendered(): any;
+    set taskActionsRendered(value: any);
     /** Toggles the visibility of the task comments icon.
     *	Property type: boolean
     */
@@ -284,10 +365,10 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     get taskDue(): boolean;
     set taskDue(value: boolean);
     /** Sets or gets whether tasks can be shown in all levels of column hierarchy or only on leaf columns.
-    *	Property type: KanbanTaskPosition
+    *	Property type: KanbanTaskPosition | string
     */
-    get taskPosition(): KanbanTaskPosition;
-    set taskPosition(value: KanbanTaskPosition);
+    get taskPosition(): KanbanTaskPosition | string;
+    set taskPosition(value: KanbanTaskPosition | string);
     /** Toggles the visibility of the task priority icon (shown when priority is low or high).
     *	Property type: boolean
     */
@@ -298,7 +379,7 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get taskProgress(): boolean;
     set taskProgress(value: boolean);
-    /** Sets the task custom fields displayed in the card. Each array item should have 'dataField', 'label' 'dataType' and optionally 'visible' properties. The 'dataField' determines the value, the label is displayed as title, 'dataType' is used for formatting and 'visible' determines whether the field will be displayed.
+    /** Sets the task custom fields displayed in the card. Each array item should have 'dataField', 'label' 'dataType' and optionally 'visible', 'image' and 'cover' properties. The 'dataField' determines the value, the label is displayed as title, 'dataType' is used for formatting and 'visible' determines whether the field will be displayed. If your string represents an image either URL or Base64, set image: true. If you want to display that image as a cover image, set cover:true, too.
     *	Property type: any
     */
     get taskCustomFields(): any;
@@ -314,10 +395,10 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     get taskSubTasksInput(): boolean;
     set taskSubTasksInput(value: boolean);
     /** Sets the rendering mode of sub tasks. 'none' - default value. Sub tasks are displayed only in the edit dialog. 'onePerRow' - all sub tasks are displayed in the task's card. 'onlyUnfinished' - only tasks which are not completed are displayed in the task's card.
-    *	Property type: KanbanTaskSubTasks
+    *	Property type: KanbanTaskSubTasks | string
     */
-    get taskSubTasks(): KanbanTaskSubTasks;
-    set taskSubTasks(value: KanbanTaskSubTasks);
+    get taskSubTasks(): KanbanTaskSubTasks | string;
+    set taskSubTasks(value: KanbanTaskSubTasks | string);
     /** Toggles the visibility of task tags.
     *	Property type: boolean
     */
@@ -491,7 +572,7 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     /**  This event is triggered when the edit/prompt dialog is opened.
     *  @param event. The custom event. 	*/
     onOpen?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when the edit/prompt dialog is about to be opened. The opening operation can be canceled by calling event.preventDefault() in the event handler function.
+    /**  This event is triggered when the edit/prompt dialog is about to be opened. The opening operation can be canceled by calling event.preventDefault() in the event handler function. If you want to cancel the default Kanban dialog, call event.preventDefault();
     *  @param event. The custom event. 	Custom event was created with: event.detail(	comment, 	purpose, 	task)
     *   comment - The comment that is about to be removed (if applicable).
     *   purpose - The purpose of the dialog to be opened - <em>'edit'</em> or <em>'prompt'</em>.
@@ -501,7 +582,13 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     /**  This event is triggered when sorting has been applied.
     *  @param event. The custom event. 	*/
     onSort?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a new task is added.
+    /**  This event is triggered before a new task is added. You can use the event.detail.value and event.detail.id to customize the new Task before adding it to the Kanban. Example: kanban.onTaskBeforeAdd = (event) => { const data = event.detail.value; const id = event.detail.id; event.detail.id = 'BG12';}
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	value, 	id)
+    *   value - The task data that is added to the Kanban.
+    *   id - The task data id.
+    */
+    onTaskBeforeAdd?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when a new task is added. Example: kanban.onTaskAdd = (event) => { const data = event.detail.value; const id = event.detail.id; }
     *  @param event. The custom event. 	Custom event was created with: event.detail(	value, 	id)
     *   value - The task data that is added to the Kanban.
     *   id - The task data id.
@@ -539,14 +626,14 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
-    /** Adds filtering
-    * @param {string[]} filters. Filter information
-    * @param {string} operator?. Logical operator between the filters of different fields
+    /** Adds filtering. Example: const filterGroup = new Smart.FilterGroup(); const filterObject = filterGroup.createFilter('string', 'Italy', 'contains'); filterGroup.addFilter('and', filterObject); kanban.addFilter([['Country', filterGroup]]);
+    * @param {any} filters. Filter information. Example: kanban.addFilter([['Country', filterGroup]]);. Each array item is a sub array with two items - 'dataField' and 'filterGroup' object. The 'dataField' is any valid data field from the data source bound to the Kanban like 'dueDate', 'startDate' or custom fields like 'Country'. Filter conditions which you can use in the expressions: '=', 'EQUAL','&lt;&gt;', 'NOT_EQUAL', '!=', '&lt;', 'LESS_THAN','&gt;', 'GREATER_THAN', '&lt;=', 'LESS_THAN_OR_EQUAL', '&gt;=', 'GREATER_THAN_OR_EQUAL','starts with', 'STARTS_WITH','ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS','DOES_NOT_CONTAIN', 'NULL','NOT_NULL'
+    * @param {string} operator?. Logical operator between the filters of different fields. Possible values are: 'and', 'or'.
     */
-    addFilter(filters: string[], operator?: string): void;
-    /** Adds sorting
+    addFilter(filters: any, operator?: string): void;
+    /** Adds sorting. Example: kanban.addSort(['Country'], 'ascending');
     * @param {[] | string} dataFields. The data field(s) to sort by
-    * @param {[] | string} orderBy. The sort direction(s) to sort the data field(s) by
+    * @param {[] | string} orderBy. The sort direction(s) to sort the data field(s) by. Possible values are: 'ascending' and 'descending'.
     */
     addSort(dataFields: [] | string, orderBy: [] | string): void;
     /** Adds a task to a Kanban column. If no data is specified, an empty task is added to the first column.
@@ -589,7 +676,7 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     * @param {number | string | HTMLElement} task. The task's id or corresponding HTMLElement
     * @returns {HTMLElement}
   */
-    ensureVisible(task: number | string | HTMLElement): Promise<any>;
+    ensureVisible(task: number | string | HTMLElement): any;
     /** Expands a Kanban column.
     * @param {number | string} column. The index or dataField of the column to expand
     */
@@ -603,26 +690,26 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     * @param {Function} callback?. A callback function to pass the exported data to (if fileName is not provided)
     * @returns {any}
   */
-    exportData(dataFormat: string, fileName: string, callback?: Function): Promise<any>;
+    exportData(dataFormat: string, fileName: string, callback?: Function): any;
     /** Gets the data of a column. The returned value is a JSON object with the following fields: 'label', 'dataField', 'collapsed', 'collapsible', 'allowRemove', 'editable', 'reorder', 'orientation'.
     * @param {string} dataField. The column's data field
     * @returns {any}
   */
-    getColumn(dataField: string): Promise<any>;
+    getColumn(dataField: string): any;
     /** Gets the data of a task. The returned value is a JSON object with the following fields: 'checklist', 'id', 'color', 'comments', 'history', 'dueDate', 'startDate', 'priority', 'progress', 'status', 'swimlane', 'tags', 'text', 'description', 'userId', 'createdUserId', 'createdDate', 'updatedUserId', 'updatedDate'
     * @param {number} id. The task's id
     * @returns {any}
   */
-    getTask(id: number): Promise<any>;
+    getTask(id: number): any;
     /** Gets the selected ids. The returned value is an array. Each item in the array is the 'id' of a selected task.
     * @param {number} id. The task's id
     * @returns {any}
   */
-    getSelectedTasks(id: number): Promise<any>;
+    getSelectedTasks(id: number): any;
     /** Gets the Kanban's state.
     * @returns {{ collapsed: {}, dataSource: [], filtering: { filters: [], operator: string }, selection: { selected: [], selectionStart: number | string, selectionInColumn: string, swimlane: string }, sorting: { dataFields: [], dataTypes: [], orderBy: [] }, tabs: [], visibility: { taskActions: boolean, taskComments: boolean, taskDue: boolean, taskPriority: boolean, taskProgress: boolean, taskTags: boolean, taskUserIcon: boolean } }}
   */
-    getState(): Promise<any>;
+    getState(): any;
     /** Loads the Kanban's state.
     * @param {{ collapsed: {}, dataSource: [], filtering: { filters: [], operator: string }, selection: { selected: [], selectionStart?: number | string, selectionInColumn: string, swimlane: string }, sorting: { dataFields: [], dataTypes: [], orderBy: [] }, tabs: [], visibility: { taskActions: boolean, taskComments: boolean, taskDue: boolean, taskPriority: boolean, taskProgress: boolean, taskTags: boolean, taskUserIcon: boolean } }} state?. An object returned by one of the methods getState or saveState. If not passed, gets saved state from the browser's localStorage.
     */

@@ -23,15 +23,15 @@ export declare class ColorPanel extends React.Component<React.HTMLAttributes<Ele
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Specifies how the value is applied.
-    *	Property type: ColorApplyValueMode
+    *	Property type: ColorApplyValueMode | string
     */
-    get applyValueMode(): ColorApplyValueMode;
-    set applyValueMode(value: ColorApplyValueMode);
+    get applyValueMode(): ColorApplyValueMode | string;
+    set applyValueMode(value: ColorApplyValueMode | string);
     /** Defines the number of columns for the colors in displayModes 'grid', 'hexagonal' and 'spectrumGrid'.
     *	Property type: number
     */
@@ -43,10 +43,10 @@ export declare class ColorPanel extends React.Component<React.HTMLAttributes<Ele
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Determines the colors that will be displayed and their layout.
-    *	Property type: ColorDisplayMode
+    *	Property type: ColorDisplayMode | string
     */
-    get displayMode(): ColorDisplayMode;
-    set displayMode(value: ColorDisplayMode);
+    get displayMode(): ColorDisplayMode | string;
+    set displayMode(value: ColorDisplayMode | string);
     /** By default clicking on color panel's preview container returns the color value to it's previous state. 'disableUndo' prevents this functionality.
     *	Property type: boolean
     */
@@ -128,10 +128,10 @@ export declare class ColorPanel extends React.Component<React.HTMLAttributes<Ele
     get name(): string;
     set name(value: string);
     /** Determines what colors will be displayed in 'spectrumGrid', 'grid' and 'hexagonal' displayModes.
-    *	Property type: ColorPalette
+    *	Property type: ColorPalette | string
     */
-    get palette(): ColorPalette;
-    set palette(value: ColorPalette);
+    get palette(): ColorPalette | string;
+    set palette(value: ColorPalette | string);
     /** Defines an array of colors that form a custom palette. This palette can be used in displayModes 'grid' and 'spectrum grid' if the palette property is set to custom. The value of the property can be an array of strings or objects that contain valid colors ( HEX, RGBA, etc).
     *	Property type: any
     */
@@ -158,20 +158,20 @@ export declare class ColorPanel extends React.Component<React.HTMLAttributes<Ele
     get theme(): string;
     set theme(value: string);
     /** Determines how the tooltip displays the value of the color that is being hovered.
-    *	Property type: ColorTooltipDisplayMode
+    *	Property type: ColorTooltipDisplayMode | string
     */
-    get tooltipDisplayMode(): ColorTooltipDisplayMode;
-    set tooltipDisplayMode(value: ColorTooltipDisplayMode);
+    get tooltipDisplayMode(): ColorTooltipDisplayMode | string;
+    set tooltipDisplayMode(value: ColorTooltipDisplayMode | string);
     /** Represents the value of the selected color.
     *	Property type: string
     */
     get value(): string;
     set value(value: string);
     /** Determines the format of the color. Whether it's in HEX, RGB or RGBA. By default it shows the color depending on the displayMode.
-    *	Property type: ColorValueFormat
+    *	Property type: ColorValueFormat | string
     */
-    get valueFormat(): ColorValueFormat;
-    set valueFormat(value: ColorValueFormat);
+    get valueFormat(): ColorValueFormat | string;
+    set valueFormat(value: ColorValueFormat | string);
     /** Determines the value member for the color when the paletteColors consists of objects. Usefull in cases where the colors are loaded as objects in an array and the attribute that holds the color key is not named 'value'.
     *	Property type: string
     */

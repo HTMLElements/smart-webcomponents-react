@@ -22,25 +22,25 @@ export declare class RadioButton extends React.Component<React.HTMLAttributes<El
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets or gets the check state.
     *	Property type: boolean
     */
     get checked(): boolean;
     set checked(value: boolean);
     /** Sets or gets the part that toggles the element.
-    *	Property type: CheckMode
+    *	Property type: CheckMode | string
     */
-    get checkMode(): CheckMode;
-    set checkMode(value: CheckMode);
+    get checkMode(): CheckMode | string;
+    set checkMode(value: CheckMode | string);
     /** Sets the click mode of the radio button.
-    *	Property type: ClickMode
+    *	Property type: ClickMode | string
     */
-    get clickMode(): ClickMode;
-    set clickMode(value: ClickMode);
+    get clickMode(): ClickMode | string;
+    set clickMode(value: ClickMode | string);
     /** Enables or disables the ratio button.
     *	Property type: boolean
     */

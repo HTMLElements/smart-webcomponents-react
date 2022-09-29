@@ -22,10 +22,10 @@ export declare class FilterPanel extends React.Component<React.HTMLAttributes<El
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Defines which operation buttons will be shown in the filter panel
     *	Property type: string[]
     */
@@ -57,10 +57,10 @@ export declare class FilterPanel extends React.Component<React.HTMLAttributes<El
     get evaluateFilterExpression(): any;
     set evaluateFilterExpression(value: any);
     /** Defines which filter type is used.
-    *	Property type: FilterPanelFilterType
+    *	Property type: FilterPanelFilterType | string
     */
-    get filterType(): FilterPanelFilterType;
-    set filterType(value: FilterPanelFilterType);
+    get filterType(): FilterPanelFilterType | string;
+    set filterType(value: FilterPanelFilterType | string);
     /** Format string used in filterType 'Date'.
     *	Property type: string
     */
@@ -77,10 +77,10 @@ export declare class FilterPanel extends React.Component<React.HTMLAttributes<El
     get messages(): any;
     set messages(value: any);
     /** Desfines filter panel's  mode
-    *	Property type: FilterPanelMode
+    *	Property type: FilterPanelMode | string
     */
-    get mode(): FilterPanelMode;
-    set mode(value: FilterPanelMode);
+    get mode(): FilterPanelMode | string;
+    set mode(value: FilterPanelMode | string);
     /** If the element is readonly, users cannot interact with it.
     *	Property type: boolean
     */
@@ -129,7 +129,7 @@ export declare class FilterPanel extends React.Component<React.HTMLAttributes<El
     /** Gets the current filter state.
     * @returns {any}
   */
-    getState(): Promise<any>;
+    getState(): any;
     /** Loads a previously saved filter state.
     * @param {any} state. An object returned by the method getState.
     */

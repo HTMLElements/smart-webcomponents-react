@@ -39,10 +39,10 @@ export declare class TabLayoutItem extends React.Component<React.HTMLAttributes<
     get label(): string;
     set label(value: string);
     /** Determines the group orientation.
-    *	Property type: TabLayoutItemOrientation
+    *	Property type: TabLayoutItemOrientation | string
     */
-    get orientation(): TabLayoutItemOrientation;
-    set orientation(value: TabLayoutItemOrientation);
+    get orientation(): TabLayoutItemOrientation | string;
+    set orientation(value: TabLayoutItemOrientation | string);
     /** Determines the size of the item.
     *	Property type: any
     */

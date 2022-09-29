@@ -27,10 +27,10 @@ export declare class Path extends React.Component<React.HTMLAttributes<Element> 
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines the data source for the item that will be displayed inside the drop down.
     *	Property type: any
     */
@@ -82,10 +82,10 @@ export declare class Path extends React.Component<React.HTMLAttributes<Element> 
     get dropDownOverlay(): boolean;
     set dropDownOverlay(value: boolean);
     /** Determines the vertical position of the dropDown. 'Auto' means its automatically determined depending on the viewport size.
-    *	Property type: DropDownPosition
+    *	Property type: DropDownPosition | string
     */
-    get dropDownPosition(): DropDownPosition;
-    set dropDownPosition(value: DropDownPosition);
+    get dropDownPosition(): DropDownPosition | string;
+    set dropDownPosition(value: DropDownPosition | string);
     /** Sets the width of the drop down. Default value of empty string means that CSS variables are used. This property should be used when the browser doesn't support CSS variables.
     *	Property type: string | number
     */
@@ -137,10 +137,10 @@ export declare class Path extends React.Component<React.HTMLAttributes<Element> 
     get placeholder(): string;
     set placeholder(value: string);
     /** Determines the format of the path. Follows specific operation system criteria by changing the drive,folder separators.
-    *	Property type: PathFormat
+    *	Property type: PathFormat | string
     */
-    get pathFormat(): PathFormat;
-    set pathFormat(value: PathFormat);
+    get pathFormat(): PathFormat | string;
+    set pathFormat(value: PathFormat | string);
     /** Disables user interaction with the element.
     *	Property type: boolean
     */

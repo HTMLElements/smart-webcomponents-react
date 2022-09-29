@@ -29,10 +29,10 @@ export declare class MenuItemsGroup extends React.Component<React.HTMLAttributes
     get checked(): boolean;
     set checked(value: boolean);
     /**
-    *	Property type: MenuCheckMode
+    *	Property type: MenuCheckMode | string
     */
-    get checkMode(): MenuCheckMode;
-    set checkMode(value: MenuCheckMode);
+    get checkMode(): MenuCheckMode | string;
+    set checkMode(value: MenuCheckMode | string);
     /** Enables or disables element.
     *	Property type: boolean
     */

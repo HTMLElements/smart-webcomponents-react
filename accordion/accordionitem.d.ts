@@ -21,10 +21,10 @@ export declare class AccordionItem extends React.Component<React.HTMLAttributes<
     private componentRef;
     get id(): string;
     /** Sets or gets header's arrow position. If the value is 'none' the arrow is not shown.
-    *	Property type: AccordionItemArrow
+    *	Property type: AccordionItemArrow | string
     */
-    get arrow(): AccordionItemArrow;
-    set arrow(value: AccordionItemArrow);
+    get arrow(): AccordionItemArrow | string;
+    set arrow(value: AccordionItemArrow | string);
     /** Sets or gets the content if the item.
     *	Property type: boolean
     */

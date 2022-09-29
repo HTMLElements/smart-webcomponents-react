@@ -26,7 +26,7 @@ require('../source/modules/smart.colorinput');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -70,7 +70,7 @@ require('../source/modules/smart.colorinput');
 	        }
 	    }
 	    /** Determines the colors that will be displayed and their layout.
-	    *	Property type: ColorInputDisplayMode
+	    *	Property type: ColorInputDisplayMode | string
 	    */
 	    get displayMode() {
 	        return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -81,7 +81,7 @@ require('../source/modules/smart.colorinput');
 	        }
 	    }
 	    /** Determines the position of the drop down button.
-	    *	Property type: DropDownButtonPosition
+	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
 	        return this.nativeElement ? this.nativeElement.dropDownButtonPosition : undefined;
@@ -224,7 +224,7 @@ require('../source/modules/smart.colorinput');
 	        }
 	    }
 	    /** Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation.
-	    *	Property type: ColorQueryMode
+	    *	Property type: ColorQueryMode | string
 	    */
 	    get queryMode() {
 	        return this.nativeElement ? this.nativeElement.queryMode : undefined;
@@ -290,7 +290,7 @@ require('../source/modules/smart.colorinput');
 	        }
 	    }
 	    /** Determines what will be displayed inside the color picker's action section.
-	    *	Property type: ColorValueDisplayMode
+	    *	Property type: ColorValueDisplayMode | string
 	    */
 	    get valueDisplayMode() {
 	        return this.nativeElement ? this.nativeElement.valueDisplayMode : undefined;
@@ -301,7 +301,7 @@ require('../source/modules/smart.colorinput');
 	        }
 	    }
 	    /** Determines the format of the color. Whether it's in HEX, RGB or RGBA. By default it shows the color depending on the displayMode.
-	    *	Property type: ColorValueFormat
+	    *	Property type: ColorValueFormat | string
 	    */
 	    get valueFormat() {
 	        return this.nativeElement ? this.nativeElement.valueFormat : undefined;
@@ -378,7 +378,7 @@ require('../source/modules/smart.colorinput');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -405,6 +405,7 @@ require('../source/modules/smart.colorinput');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

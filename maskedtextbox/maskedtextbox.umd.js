@@ -26,7 +26,7 @@ require('../source/modules/smart.textbox');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -81,7 +81,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines whether literals and prompt characters are copied to the clipboard on cut/copy operations.
-	    *	Property type: MaskedTextBoxCutCopyMaskFormat
+	    *	Property type: MaskedTextBoxCutCopyMaskFormat | string
 	    */
 	    get cutCopyMaskFormat() {
 	        return this.nativeElement ? this.nativeElement.cutCopyMaskFormat : undefined;
@@ -103,7 +103,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Specifies the behavior on "Enter" key press. Default mode is "submit".
-	    *	Property type: EnterKeyBehavior
+	    *	Property type: EnterKeyBehavior | string
 	    */
 	    get enterKeyBehavior() {
 	        return this.nativeElement ? this.nativeElement.enterKeyBehavior : undefined;
@@ -345,7 +345,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines whether the value of the input should contain or not the prompt/literals of the mask.
-	    *	Property type: MaskedTextBoxTextMaskFormat
+	    *	Property type: MaskedTextBoxTextMaskFormat | string
 	    */
 	    get textMaskFormat() {
 	        return this.nativeElement ? this.nativeElement.textMaskFormat : undefined;
@@ -454,7 +454,7 @@ require('../source/modules/smart.textbox');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -481,6 +481,7 @@ require('../source/modules/smart.textbox');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

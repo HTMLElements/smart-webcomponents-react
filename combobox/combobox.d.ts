@@ -39,10 +39,10 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get autoCloseDelay(): number;
     set autoCloseDelay(value: number);
     /** Determines the autocomplete mode. Auto complete modes filter the items from the dataSource and show only those that match the input.
-    *	Property type: AutoComplete
+    *	Property type: AutoComplete | string
     */
-    get autoComplete(): AutoComplete;
-    set autoComplete(value: AutoComplete);
+    get autoComplete(): AutoComplete | string;
+    set autoComplete(value: AutoComplete | string);
     /** Determines the delay before the drop down opens to show the matches from the auto complete operation. The delay is measured in miliseconds.
     *	Property type: number
     */
@@ -79,10 +79,10 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get dropDownAppendTo(): string;
     set dropDownAppendTo(value: string);
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
     *	Property type: string | number
     */
@@ -109,10 +109,10 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get dropDownMinWidth(): string | number;
     set dropDownMinWidth(value: string | number);
     /** Determines how the drop down is going to open.
-    *	Property type: DropDownOpenMode
+    *	Property type: DropDownOpenMode | string
     */
-    get dropDownOpenMode(): DropDownOpenMode;
-    set dropDownOpenMode(value: DropDownOpenMode);
+    get dropDownOpenMode(): DropDownOpenMode | string;
+    set dropDownOpenMode(value: DropDownOpenMode | string);
     /** If this property is enabled, when the element's dropdown is opened, a transparent overlay is positioned between the dropdown and the rest of the document. The purpose of the overlay is to make sure that clicking anywhere outside the popup will will target the overlay and not the DOM.
     *	Property type: boolean
     */
@@ -124,20 +124,20 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get dropDownPlaceholder(): string;
     set dropDownPlaceholder(value: string);
     /** Determines the position of the drop down when opened.
-    *	Property type: DropDownPosition
+    *	Property type: DropDownPosition | string
     */
-    get dropDownPosition(): DropDownPosition;
-    set dropDownPosition(value: DropDownPosition);
+    get dropDownPosition(): DropDownPosition | string;
+    set dropDownPosition(value: DropDownPosition | string);
     /** Sets the width of the drop down. By default it's set to an empty string. In this case the width of the drop down is controlled by a CSS variable.
     *	Property type: string | number
     */
     get dropDownWidth(): string | number;
     set dropDownWidth(value: string | number);
     /** Determines the behavior of the element when Escape key is pressed.
-    *	Property type: ComboBoxEscKeyMode
+    *	Property type: ComboBoxEscKeyMode | string
     */
-    get escKeyMode(): ComboBoxEscKeyMode;
-    set escKeyMode(value: ComboBoxEscKeyMode);
+    get escKeyMode(): ComboBoxEscKeyMode | string;
+    set escKeyMode(value: ComboBoxEscKeyMode | string);
     /** Determines whether filtering is enabled.
     *	Property type: boolean
     */
@@ -149,10 +149,10 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get filterInputPlaceholder(): string;
     set filterInputPlaceholder(value: string);
     /** Determines the filtering mode of the Combo box.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
-    get filterMode(): FilterMode;
-    set filterMode(value: FilterMode);
+    get filterMode(): FilterMode | string;
+    set filterMode(value: FilterMode | string);
     /** If enabled, the items will be grouped by their first letter. Can't be applied if the dataSource already contains groups.
     *	Property type: boolean
     */
@@ -169,10 +169,10 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get hint(): string;
     set hint(value: string);
     /** Determines the visibility of the horizontal Scroll bar inside the drop down.
-    *	Property type: HorizontalScrollBarVisibility
+    *	Property type: HorizontalScrollBarVisibility | string
     */
-    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility;
-    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility);
+    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility | string;
+    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility | string);
     /** Represents the property name of a List item. Determines the value of the input when a ListItem is selected. Usefull in cases where the user wants to display for example the value of an item instead of it's label. By default the label is displayed in the input.
     *	Property type: string
     */
@@ -189,20 +189,20 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get incrementalSearchDelay(): number;
     set incrementalSearchDelay(value: number);
     /** Sets ot gets the mode of the incremental search mode. Incremental search is enabled by default. Typing while the drop down is focused starts the incremental search.
-    *	Property type: SearchMode
+    *	Property type: SearchMode | string
     */
-    get incrementalSearchMode(): SearchMode;
-    set incrementalSearchMode(value: SearchMode);
+    get incrementalSearchMode(): SearchMode | string;
+    set incrementalSearchMode(value: SearchMode | string);
     /** Sets the height for all list items. Used only when virtualization is enabled.
     *	Property type: number
     */
     get itemHeight(): number;
     set itemHeight(value: number);
     /** Determines the item width measuring algorithm.
-    *	Property type: ListItemMeasureMode
+    *	Property type: ListItemMeasureMode | string
     */
-    get itemMeasureMode(): ListItemMeasureMode;
-    set itemMeasureMode(value: ListItemMeasureMode);
+    get itemMeasureMode(): ListItemMeasureMode | string;
+    set itemMeasureMode(value: ListItemMeasureMode | string);
     /** A getter that returns an array of all List items inside the drop down.
     *	Property type: {label: string, value: string}[]
     */
@@ -230,10 +230,10 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get loadingIndicatorPlaceholder(): string;
     set loadingIndicatorPlaceholder(value: string);
     /** Determines the position of the loading indicator.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
-    get loadingIndicatorPosition(): VerticalAlignment;
-    set loadingIndicatorPosition(value: VerticalAlignment);
+    get loadingIndicatorPosition(): VerticalAlignment | string;
+    set loadingIndicatorPosition(value: VerticalAlignment | string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -254,6 +254,11 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     */
     get minLength(): number;
     set minLength(value: number);
+    /** Determines the maximum number of characters inside the input.
+    *	Property type: number
+    */
+    get maxLength(): number;
+    set maxLength(value: number);
     /** Sets or gets the name attribute for the element. Name is used when submiting HTML forms.
     *	Property type: string
     */
@@ -285,15 +290,15 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get resizeIndicator(): boolean;
     set resizeIndicator(value: boolean);
     /** Determines whether the dropDown can be resized or not. When resizing is enabled, a resize bar appears on the top/bottom side of the drop down.
-    *	Property type: ResizeMode
+    *	Property type: ResizeMode | string
     */
-    get resizeMode(): ResizeMode;
-    set resizeMode(value: ResizeMode);
+    get resizeMode(): ResizeMode | string;
+    set resizeMode(value: ResizeMode | string);
     /** Determines what will be displayed in the input.
-    *	Property type: SelectionDisplayMode
+    *	Property type: SelectionDisplayMode | string
     */
-    get selectionDisplayMode(): SelectionDisplayMode;
-    set selectionDisplayMode(value: SelectionDisplayMode);
+    get selectionDisplayMode(): SelectionDisplayMode | string;
+    set selectionDisplayMode(value: SelectionDisplayMode | string);
     /** Sets or gets the selected indexes. Selected indexes represents an array of the indexes of the items that should be selected.
     *	Property type: number[]
     */
@@ -305,10 +310,10 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get selectedValues(): string[];
     set selectedValues(value: string[]);
     /** Determines how many items can be selected.
-    *	Property type: ListSelectionMode
+    *	Property type: ListSelectionMode | string
     */
-    get selectionMode(): ListSelectionMode;
-    set selectionMode(value: ListSelectionMode);
+    get selectionMode(): ListSelectionMode | string;
+    set selectionMode(value: ListSelectionMode | string);
     /** Determines whether the items are sorted alphabetically or not
     *	Property type: boolean
     */
@@ -345,10 +350,10 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     get valueMember(): string;
     set valueMember(value: string);
     /** Determines the visibility of the vertical scroll bar.
-    *	Property type: VerticalScrollBarVisibility
+    *	Property type: VerticalScrollBarVisibility | string
     */
-    get verticalScrollBarVisibility(): VerticalScrollBarVisibility;
-    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility);
+    get verticalScrollBarVisibility(): VerticalScrollBarVisibility | string;
+    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility | string);
     /** Determines weather or not Virtualization is used for the Combo box. Virtualization allows a huge amount of items to be loaded to the List box while preserving the performance. For example a milion items can be loaded to the list box.
     *	Property type: boolean
     */
@@ -417,7 +422,7 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     * @param {Node} node. A ListItem element that should be added to the rest of the items as the last item.
     * @returns {Node}
   */
-    appendChild(node: Node): Promise<any>;
+    appendChild(node: Node): any;
     /** Removes all items from the drop down list.
     */
     clearItems(): void;
@@ -435,7 +440,7 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     * @param {string} value. The value of an item from the drop down list.
     * @returns {HTMLElement}
   */
-    getItem(value: string): Promise<any>;
+    getItem(value: string): any;
     /** Inserts a new item at a specified position.
     * @param {number} position. The position where the item must be inserted.
     * @param {any} item. Describes the properties of the item that will be inserted.
@@ -446,7 +451,7 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     * @param {Node | null} referenceNode. A ListItem element that acts as the reference item before which a new item is about to be inserted. The referenceNode must be in the same list as the node.
     * @returns {Node}
   */
-    insertBefore(node: Node, referenceNode: Node | null): Promise<any>;
+    insertBefore(node: Node, referenceNode: Node | null): any;
     /** Opens the dropDown list.
     */
     open(): void;
@@ -458,7 +463,7 @@ export declare class ComboBox extends React.Component<React.HTMLAttributes<Eleme
     * @param {Node} node. A ListItem element that is part of the list of items inside the element.
     * @returns {Node}
   */
-    removeChild(node: Node): Promise<any>;
+    removeChild(node: Node): any;
     /** Selects an item from the dropDown list.
     * @param {string | HTMLElement} item. A string, representing the value of the item or an HTML Element referencing an item from the list
     */

@@ -20,10 +20,10 @@ export declare class Rating extends React.Component<React.HTMLAttributes<Element
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Disables the interaction with the element.
     *	Property type: boolean
     */
@@ -91,7 +91,7 @@ export declare class Rating extends React.Component<React.HTMLAttributes<Element
     /** Get the value of the rating.
     * @returns {number}
   */
-    getValue(): Promise<any>;
+    getValue(): any;
     /** Sets the value of the rating.
     * @param {number} value. Sets the value of the rating
     */

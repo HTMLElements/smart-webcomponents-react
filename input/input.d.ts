@@ -44,10 +44,10 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     get dropDownClassList(): any;
     set dropDownClassList(value: any);
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
     *	Property type: string | number
     */
@@ -109,10 +109,10 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     get query(): string | number;
     set query(value: string | number);
     /** Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation.
-    *	Property type: InputQueryMode
+    *	Property type: InputQueryMode | string
     */
-    get queryMode(): InputQueryMode;
-    set queryMode(value: InputQueryMode);
+    get queryMode(): InputQueryMode | string;
+    set queryMode(value: InputQueryMode | string);
     /** Determines whether ot not the user can enter text inside the input. if dropDownButtonPosition is set to 'left' or 'right' then readonly determines whether the element acts as a ComboBox or a DropDownList if a dataSource is provided.
     *	Property type: boolean
     */
@@ -218,12 +218,12 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     * @param {string | number} value. The item's value when the item is an object or string when the item is a string item.
     * @returns {any}
   */
-    getItem(value: string | number): Promise<any>;
+    getItem(value: string | number): any;
     /** Gets the selected item. For example, if your data source is ['Item 1', 'Item 2', 'Item 3'] and the user selected the second item, the method returns 'Item 2'. If your data source is an object with label and value, the returned value would be the 'value'.
     * @param {string | number} value. The item's value when the item is an object or string when the item is a string item.
     * @returns {any}
   */
-    getSelectedItem(value: string | number): Promise<any>;
+    getSelectedItem(value: string | number): any;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

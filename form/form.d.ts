@@ -43,10 +43,10 @@ export declare class Form extends React.Component<React.HTMLAttributes<Element> 
     get onValueChanges(): any;
     set onValueChanges(value: any);
     /** Sets or Gets the labels position.
-    *	Property type: FormLabelPosition
+    *	Property type: FormLabelPosition | string
     */
-    get labelPosition(): FormLabelPosition;
-    set labelPosition(value: FormLabelPosition);
+    get labelPosition(): FormLabelPosition | string;
+    set labelPosition(value: FormLabelPosition | string);
     /** Makes the form readonly.
     *	Property type: boolean
     */
@@ -72,6 +72,11 @@ export declare class Form extends React.Component<React.HTMLAttributes<Element> 
     */
     get value(): any;
     set value(value: any);
+    /** Automatically validates the form when it is created.
+    *	Property type: boolean
+    */
+    get validateOnLoad(): boolean;
+    set validateOnLoad(value: boolean);
     get properties(): string[];
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
@@ -88,7 +93,7 @@ export declare class Form extends React.Component<React.HTMLAttributes<Element> 
     * @param {string} dataField. dataField of a FormControl or FormGroup
     * @returns {Control}
   */
-    getControl(dataField: string): Promise<any>;
+    getControl(dataField: string): any;
     /** Inserts a control to the Form.
     * @param {number} index. Control insert index
     * @param {any} controlOptions. Control options. The control options description is available in the <em>controls</em> property.

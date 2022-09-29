@@ -26,7 +26,7 @@ require('../source/modules/smart.colorpicker');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -59,7 +59,7 @@ require('../source/modules/smart.colorpicker');
 	        }
 	    }
 	    /** Specifies how the user applies the selected value. In 'instantly' mode the value is applied immediately when color is selected. In 'useButtons' mode are shown 'Ok' and 'Cancel' buttons at the botom of the colorpicker's drop down. Only click on 'OK' button applies the value.
-	    *	Property type: ColorApplyValueMode
+	    *	Property type: ColorApplyValueMode | string
 	    */
 	    get applyValueMode() {
 	        return this.nativeElement ? this.nativeElement.applyValueMode : undefined;
@@ -81,7 +81,7 @@ require('../source/modules/smart.colorpicker');
 	        }
 	    }
 	    /** Determines the colors that will be displayed and their layout.
-	    *	Property type: ColorDisplayMode
+	    *	Property type: ColorDisplayMode | string
 	    */
 	    get displayMode() {
 	        return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -125,7 +125,7 @@ require('../source/modules/smart.colorpicker');
 	        }
 	    }
 	    /** Determines how the drop down is going to open.
-	    *	Property type: DropDownOpenMode
+	    *	Property type: DropDownOpenMode | string
 	    */
 	    get dropDownOpenMode() {
 	        return this.nativeElement ? this.nativeElement.dropDownOpenMode : undefined;
@@ -136,7 +136,7 @@ require('../source/modules/smart.colorpicker');
 	        }
 	    }
 	    /** Determines the position of the drop down button.
-	    *	Property type: DropDownButtonPosition
+	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
 	        return this.nativeElement ? this.nativeElement.dropDownButtonPosition : undefined;
@@ -147,7 +147,7 @@ require('../source/modules/smart.colorpicker');
 	        }
 	    }
 	    /** Determines the vertical position of the dropDown. 'Auto' means its automatically determined depending on the viewport size.
-	    *	Property type: DropDownPosition
+	    *	Property type: DropDownPosition | string
 	    */
 	    get dropDownPosition() {
 	        return this.nativeElement ? this.nativeElement.dropDownPosition : undefined;
@@ -389,7 +389,7 @@ require('../source/modules/smart.colorpicker');
 	        }
 	    }
 	    /** Determines what colors will be displayed in 'spectrumGrid', 'grid' and 'hexagonal' displayModes.
-	    *	Property type: ColorPalette
+	    *	Property type: ColorPalette | string
 	    */
 	    get palette() {
 	        return this.nativeElement ? this.nativeElement.palette : undefined;
@@ -455,7 +455,7 @@ require('../source/modules/smart.colorpicker');
 	        }
 	    }
 	    /** Determines whether the dropDown can be resized or not. When resizing is enabled, a resize bar appears on the top/bottom side of the drop down.
-	    *	Property type: ResizeMode
+	    *	Property type: ResizeMode | string
 	    */
 	    get resizeMode() {
 	        return this.nativeElement ? this.nativeElement.resizeMode : undefined;
@@ -488,7 +488,7 @@ require('../source/modules/smart.colorpicker');
 	        }
 	    }
 	    /** Determines how the tooltip displays the value of the color that is being hovered.
-	    *	Property type: ColorTooltipDisplayMode
+	    *	Property type: ColorTooltipDisplayMode | string
 	    */
 	    get tooltipDisplayMode() {
 	        return this.nativeElement ? this.nativeElement.tooltipDisplayMode : undefined;
@@ -521,7 +521,7 @@ require('../source/modules/smart.colorpicker');
 	        }
 	    }
 	    /** Determines the format of the color. Whether it's in HEX, RGB or RGBA. By default it shows the color depending on the displayMode.
-	    *	Property type: ColorValueFormat
+	    *	Property type: ColorValueFormat | string
 	    */
 	    get valueFormat() {
 	        return this.nativeElement ? this.nativeElement.valueFormat : undefined;
@@ -532,7 +532,7 @@ require('../source/modules/smart.colorpicker');
 	        }
 	    }
 	    /** Determines which elements will be displayed in color picker's action section.
-	    *	Property type: ColorValueDisplayMode
+	    *	Property type: ColorValueDisplayMode | string
 	    */
 	    get valueDisplayMode() {
 	        return this.nativeElement ? this.nativeElement.valueDisplayMode : undefined;
@@ -597,7 +597,7 @@ require('../source/modules/smart.colorpicker');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -624,6 +624,7 @@ require('../source/modules/smart.colorpicker');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

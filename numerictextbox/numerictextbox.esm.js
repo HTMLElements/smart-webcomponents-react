@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.textbox';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -45,7 +26,7 @@ class NumericTextBox extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -122,7 +103,7 @@ class NumericTextBox extends React.Component {
         }
     }
     /** Sets or gets the input format of the widget. Setting this property dynamically can lead to precision loss.
-    *	Property type: NumericTextBoxInputFormat
+    *	Property type: NumericTextBoxInputFormat | string
     */
     get inputFormat() {
         return this.nativeElement ? this.nativeElement.inputFormat : undefined;
@@ -276,7 +257,7 @@ class NumericTextBox extends React.Component {
         }
     }
     /** Sets or gets the radix of the jqxNumericTextBox. The radix specifies the numeral system in which to display the widget's value. Applicable only when inputFormat is 'integer'.
-    *	Property type: NumericTextBoxRadix
+    *	Property type: NumericTextBoxRadix | string
     */
     get radix() {
         return this.nativeElement ? this.nativeElement.radix : undefined;
@@ -298,7 +279,7 @@ class NumericTextBox extends React.Component {
         }
     }
     /** Sets or gets the position of the radix display button of the jqxNumericTextBox.
-    *	Property type: NumericTextBoxDisplayPosition
+    *	Property type: NumericTextBoxDisplayPosition | string
     */
     get radixDisplayPosition() {
         return this.nativeElement ? this.nativeElement.radixDisplayPosition : undefined;
@@ -408,7 +389,7 @@ class NumericTextBox extends React.Component {
         }
     }
     /** Sets or gets the position of the spin buttons of the jqxNumericTextBox.
-    *	Property type: NumericTextBoxDisplayPosition
+    *	Property type: NumericTextBoxDisplayPosition | string
     */
     get spinButtonsPosition() {
         return this.nativeElement ? this.nativeElement.spinButtonsPosition : undefined;
@@ -463,7 +444,7 @@ class NumericTextBox extends React.Component {
         }
     }
     /** Sets the value's validation by min/max. If 'strict' is applied, the value is always validated by min and max. If 'interaction' is applied, programmatic value changes are not coerced to min/max and if min/max are changed, resulting in the current value being out of range, the value is not coerced, and no change event is fired.
-    *	Property type: Validation
+    *	Property type: Validation | string
     */
     get validation() {
         return this.nativeElement ? this.nativeElement.validation : undefined;
@@ -485,7 +466,7 @@ class NumericTextBox extends React.Component {
         }
     }
     /** Sets or gets the word length. Applicable only when inputFormat is 'integer'. If min and/or max are not set by default, they will be set automatically based on the specified word length.
-    *	Property type: WordLength
+    *	Property type: WordLength | string
     */
     get wordLength() {
         return this.nativeElement ? this.nativeElement.wordLength : undefined;
@@ -521,18 +502,8 @@ class NumericTextBox extends React.Component {
     * @returns {string}
   */
     val(value, suppressValidation) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.val(value, suppressValidation);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.val(value, suppressValidation);
+        return result;
     }
     componentDidRender(initialize) {
         const that = this;
@@ -557,7 +528,7 @@ class NumericTextBox extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -584,6 +555,7 @@ class NumericTextBox extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

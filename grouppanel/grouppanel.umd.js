@@ -26,7 +26,7 @@ require('../source/modules/smart.gridpanel');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -37,7 +37,7 @@ require('../source/modules/smart.gridpanel');
 	        }
 	    }
 	    /** Sets or gets the the position of the close button of group panel items.
-	    *	Property type: GroupPanelCloseButtonPosition
+	    *	Property type: GroupPanelCloseButtonPosition | string
 	    */
 	    get closeButtonPosition() {
 	        return this.nativeElement ? this.nativeElement.closeButtonPosition : undefined;
@@ -177,7 +177,7 @@ require('../source/modules/smart.gridpanel');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -204,6 +204,7 @@ require('../source/modules/smart.gridpanel');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

@@ -27,10 +27,10 @@ export declare class Accordion extends React.Component<React.HTMLAttributes<Elem
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines the data source that will be loaded to the Accordion.
     *	Property type: any
     */
@@ -47,10 +47,10 @@ export declare class Accordion extends React.Component<React.HTMLAttributes<Elem
     get expandedIndexes(): number[];
     set expandedIndexes(value: number[]);
     /** Sets or gets the expand mode. Expand mode determines how the items will expand or collapse.
-    *	Property type: AccordionExpandMode
+    *	Property type: AccordionExpandMode | string
     */
-    get expandMode(): AccordionExpandMode;
-    set expandMode(value: AccordionExpandMode);
+    get expandMode(): AccordionExpandMode | string;
+    set expandMode(value: AccordionExpandMode | string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */

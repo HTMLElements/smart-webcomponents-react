@@ -20,30 +20,30 @@ export declare class Sortable extends React.Component<React.HTMLAttributes<Eleme
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Enables or disables sorting.
     *	Property type: boolean
     */
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Sets or gets the way a sortable item can be dragged - by dragging the item itself ('item') or by dragging a handle that appears next to the item ('handle').
-    *	Property type: SortableDragMode
+    *	Property type: SortableDragMode | string
     */
-    get dragMode(): SortableDragMode;
-    set dragMode(value: SortableDragMode);
+    get dragMode(): SortableDragMode | string;
+    set dragMode(value: SortableDragMode | string);
     /** Sets or gets the the position of the drag handle relative to its respective sortable item. Applicable only when dragMode is 'handle'.
-    *	Property type: SortableHandlePosition
+    *	Property type: SortableHandlePosition | string
     */
-    get handlePosition(): SortableHandlePosition;
-    set handlePosition(value: SortableHandlePosition);
+    get handlePosition(): SortableHandlePosition | string;
+    set handlePosition(value: SortableHandlePosition | string);
     /** Sets or gets whether a sortable item's drag handle is always visible or is shown when the item is hovered. Applicable only when dragMode is 'handle'.
-    *	Property type: SortableHandleVisibility
+    *	Property type: SortableHandleVisibility | string
     */
-    get handleVisibility(): SortableHandleVisibility;
-    set handleVisibility(value: SortableHandleVisibility);
+    get handleVisibility(): SortableHandleVisibility | string;
+    set handleVisibility(value: SortableHandleVisibility | string);
     /** Sets or gets a selector to determine the sortable items by. By default, sortable items are all children of the smart-sortable custom element.
     *	Property type: string | null
     */
@@ -65,10 +65,10 @@ export declare class Sortable extends React.Component<React.HTMLAttributes<Eleme
     get messages(): any;
     set messages(value: any);
     /** Sets or gets the direction sortable items are stacked and can be dragged.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
-    get mode(): Orientation;
-    set mode(value: Orientation);
+    get mode(): Orientation | string;
+    set mode(value: Orientation | string);
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */

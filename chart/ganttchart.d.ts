@@ -102,10 +102,10 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     get dataSource(): any;
     set dataSource(value: any);
     /** Determines the format of the dates in the timeline header when they represent days.
-    *	Property type: GanttDayFormat
+    *	Property type: GanttDayFormat | string
     */
-    get dayFormat(): GanttDayFormat;
-    set dayFormat(value: GanttDayFormat);
+    get dayFormat(): GanttDayFormat | string;
+    set dayFormat(value: GanttDayFormat | string);
     /** Determines a specific end date for the Timeline. Usefull when the user wants custom ending date for the Timeline. If no date is set the end date of the timeline is automatically determined from the tasks.
     *	Property type: string | Date
     */
@@ -167,10 +167,10 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     get disableWindowEditor(): boolean;
     set disableWindowEditor(value: boolean);
     /** Determines in what unit is task duration property measured.
-    *	Property type: Duration
+    *	Property type: Duration | string
     */
-    get durationUnit(): Duration;
-    set durationUnit(value: Duration);
+    get durationUnit(): Duration | string;
+    set durationUnit(value: Duration | string);
     /** Determines whether a dedicated filter row is used for Table filtering instead of the default filter input. This property has no effect if filtering is not enabled.
     *	Property type: boolean
     */
@@ -207,15 +207,15 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     get hideResourcePanel(): boolean;
     set hideResourcePanel(value: boolean);
     /** Determines weather or not horizontal scrollbar is shown.
-    *	Property type: HorizontalScrollBarVisibility
+    *	Property type: HorizontalScrollBarVisibility | string
     */
-    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility;
-    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility);
+    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility | string;
+    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility | string);
     /** Determines the format of the dates inside the timeline header when they represent hours.
-    *	Property type: HourFormat
+    *	Property type: HourFormat | string
     */
-    get hourFormat(): HourFormat;
-    set hourFormat(value: HourFormat);
+    get hourFormat(): HourFormat | string;
+    set hourFormat(value: HourFormat | string);
     /** When enabled, scrolling to the end of the horizotal timeline, triggers the creation of additional to extend the time range. The number of cells to be added when the scrollbar reaches the end position is determined by the infiniteTimelineStep.
     *	Property type: boolean
     */
@@ -257,10 +257,10 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     get messages(): any;
     set messages(value: any);
     /** Determines the format of the dates the timeline header when they represent months.
-    *	Property type: MonthFormat
+    *	Property type: MonthFormat | string
     */
-    get monthFormat(): MonthFormat;
-    set monthFormat(value: MonthFormat);
+    get monthFormat(): MonthFormat | string;
+    set monthFormat(value: MonthFormat | string);
     /** Determines the nonworking days of the week from 0 to 6, where 0 is the first day of the week and 6 is the last day. Nonworking days will be displayed with colored cells inside the timeline and will not affect the dateEnd of the tasks unless the adjustToNonworkingTime property is enabled.
     *	Property type: number[]
     */
@@ -332,15 +332,15 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     get resourceTimelineFormatFunction(): any;
     set resourceTimelineFormatFunction(value: any);
     /** Determines how the capacity of the resources will be visualized inside the resource timeline. By default, the capacity is measured in hours depending on the view property of the element.
-    *	Property type: GanttChartResourceTimelineMode
+    *	Property type: GanttChartResourceTimelineMode | string
     */
-    get resourceTimelineMode(): GanttChartResourceTimelineMode;
-    set resourceTimelineMode(value: GanttChartResourceTimelineMode);
+    get resourceTimelineMode(): GanttChartResourceTimelineMode | string;
+    set resourceTimelineMode(value: GanttChartResourceTimelineMode | string);
     /** Determines how the resources will be displayed inside the resource Timeline.
-    *	Property type: GanttChartResourceTimelineView
+    *	Property type: GanttChartResourceTimelineView | string
     */
-    get resourceTimelineView(): GanttChartResourceTimelineView;
-    set resourceTimelineView(value: GanttChartResourceTimelineView);
+    get resourceTimelineView(): GanttChartResourceTimelineView | string;
+    set resourceTimelineView(value: GanttChartResourceTimelineView | string);
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */
@@ -390,10 +390,10 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
         }[]): void;
     });
     /** A getter that returns a flat structure as an array of all tasks inside the element.
-    *	Property type: GanttChartSortMode
+    *	Property type: GanttChartSortMode | string
     */
-    get sortMode(): GanttChartSortMode;
-    set sortMode(value: GanttChartSortMode);
+    get sortMode(): GanttChartSortMode | string;
+    set sortMode(value: GanttChartSortMode | string);
     /** Deteremines the columns that will be visible in the Task Tree. Each entry in the value of this property must be of type Object.  It should contain the label and value keys. The value of label determines the column header label inside the Task Tree. The value of value determines the content of the cells in the column. It should reference a task attribute from the dataSource. By default, one column with all task labels is visible.  Additional properties: formatFunction - a function that allows to customize the content of each record in the column. The function accepts one argument - the actual label as string that is going to be inserted and must return some content. min - controls the min size of the column max - controls the max size of the column size - controls the actual size of the columncustomEditor - a callback that can be used to set a custom editor for the column when editing via the window. It accepts two arguments label - the label of the columnvalue - the value of the column. The callback must return the editor.setCustomEditorValue - a callback that is used to set the value of the custom editor.getCustomEditorValue - a callback that is used to get the value of the custom editor.
     *	Property type: GanttChartTask[]
     */
@@ -445,25 +445,25 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     get tooltip(): GanttChartTooltip;
     set tooltip(value: GanttChartTooltip);
     /** Determines the viewing date range of the timeline. Possible values: day - The timeline show the hours of the day.week - the timeline shows the days of the week.month - the timeline shows the days of the month.year - the timeline shows the months of the year.resource - displays the current tasks by grouping them according to the resources they have assigned. The unassigned tasks will be placed in a separate group called 'Unassigned'.  The timeline has a header section that contains the labels of each cell according to the date inside them. The header is splitted in two sections in order to give a more detailed information of the dates.
-    *	Property type: VerticalScrollBarVisibility
+    *	Property type: VerticalScrollBarVisibility | string
     */
-    get verticalScrollBarVisibility(): VerticalScrollBarVisibility;
-    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility);
+    get verticalScrollBarVisibility(): VerticalScrollBarVisibility | string;
+    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility | string);
     /** Determines the format of the dates inside the timeline header when they represent years.
-    *	Property type: GanttChartView
+    *	Property type: GanttChartView | string
     */
-    get view(): GanttChartView;
-    set view(value: GanttChartView);
+    get view(): GanttChartView | string;
+    set view(value: GanttChartView | string);
     /** Determines the format of the dates inside the timeline header when they represent weeks.
-    *	Property type: YearFormat
+    *	Property type: YearFormat | string
     */
-    get yearFormat(): YearFormat;
-    set yearFormat(value: YearFormat);
+    get yearFormat(): YearFormat | string;
+    set yearFormat(value: YearFormat | string);
     /** Sets or gets the element's visual theme.
-    *	Property type: WeekFormat
+    *	Property type: WeekFormat | string
     */
-    get weekFormat(): WeekFormat;
-    set weekFormat(value: WeekFormat);
+    get weekFormat(): WeekFormat | string;
+    set weekFormat(value: WeekFormat | string);
     /** Sets or gets if the element can be focused.
     *	Property type: string
     */
@@ -733,84 +733,84 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     /** Returns all existing connections. The connections are returned as objects that contain detailed information. Each object in the array has the following keys: 'id' - connection id, 'type' - connection type, 'startTaskId' - connection's start task id, 'endTaskId' - connection's end task id, 'startIndex' - connection's start task index, 'endIndex' - connection's end task index, 'lag' - lag time.
     * @returns {any}
   */
-    getConnections(): Promise<any>;
+    getConnections(): any;
     /** Returns the connection details for the target connection which includes: startTask, endTask, startTaskId, endTaskId and type of the corresponding connection. Connection types are described in detail under the `connectionEnd` event description in this document and in a dedicated topic available on the website.
     * @param {string} connectionId. A connection id. Each connection has a unique id that is assigned when a connection is created.
     * @returns {any}
   */
-    getConnectionDetails(connectionId: string): Promise<any>;
+    getConnectionDetails(connectionId: string): any;
     /** Returns a JSON representation of all tasks inside the element along with their connections and settings.
     * @returns {any[]}
   */
-    getState(): Promise<any>;
+    getState(): any;
     /** Returns the Tree path of a task/resource. The tree path is used as task/resource id if no id is provided by the user.
     * @param {any} item. A GattChartTask/GanttChartResource item object.
     * @returns {string}
   */
-    getItemPath(item: any): Promise<any>;
+    getItemPath(item: any): any;
     /** Returns the task object that corresponds to the id/path.
     * @param {string | number} itemId. The id/path of a task.
     * @returns {any}
   */
-    getTask(itemId: string | number): Promise<any>;
+    getTask(itemId: string | number): any;
     /** Returns an array of all GanttChart tasks.
     * @returns {any[]}
   */
-    getTasks(): Promise<any>;
+    getTasks(): any;
     /** Returns the index of a task.
     * @param {any} task. A GattChartTask object.
     * @returns {number}
   */
-    getTaskIndex(task: any): Promise<any>;
+    getTaskIndex(task: any): any;
     /** Returns the connections definitions of a task.
     * @param {any} taskId. A GanttChartTask object or it's id.
     * @returns {any}
   */
-    getTaskConnections(taskId: any): Promise<any>;
+    getTaskConnections(taskId: any): any;
     /** Returns the Project of a task or undefined if it does not have one.
     * @param {any} task. A GantChartTask object.
     * @returns {any}
   */
-    getTaskProject(task: any): Promise<any>;
+    getTaskProject(task: any): any;
     /** Returns the resource object that corresponds to the id/path.
     * @param {string | number} itemId. The id/path of a resource.
     * @returns {any}
   */
-    getResource(itemId: string | number): Promise<any>;
+    getResource(itemId: string | number): any;
     /** Returns an array of all GanttChart resources.
     * @returns {any[]}
   */
-    getResources(): Promise<any>;
+    getResources(): any;
     /** Returns the index of a resource.
     * @param {any} resource. A GanttChartResource object.
     * @returns {number}
   */
-    getResourceIndex(resource: any): Promise<any>;
+    getResourceIndex(resource: any): any;
     /** Returns the tasks that are assigned to the resource.
     * @param {any} resource. A GanttChartResource object or it's id.
     * @returns {any}
   */
-    getResourceTasks(resource: any): Promise<any>;
+    getResourceTasks(resource: any): any;
     /** Returns the currently selected tasks/resource ids. If selection is disabled or no items are selected returns null.
     * @returns {any}
   */
-    getSelectedIds(): Promise<any>;
+    getSelectedIds(): any;
     /** Returns the currently selected tasks.
     * @returns {any}
   */
-    getSelectedTasks(): Promise<any>;
+    getSelectedTasks(): any;
     /** Returns the currently selected resources.
     * @returns {any}
   */
-    getSelectedResources(): Promise<any>;
+    getSelectedResources(): any;
     /** Returns the working hours of the day as numbers.
     * @returns {any}
   */
-    getWorkingHours(): Promise<any>;
+    getWorkingHours(): any;
     /** Hides the tooltip if it's visible.
     * @returns {any}
   */
-    hideTooltip(): Promise<any>;
+    hideTooltip(): any;
     /** Depending on the nonworkingDays property, returns true or false whether the target date is on a working day or not.
     * @param {Date} date. A javascript Date object or a string/number which represents a valid JS Date.
     */
@@ -828,7 +828,7 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     * @param {number} connectionType?. The type of the connection. A numeric value from 0 to 3.
     * @returns {any}
   */
-    removeConnection(startTaskIndex: number | string, taskEndIndex?: number, connectionType?: number): Promise<any>;
+    removeConnection(startTaskIndex: number | string, taskEndIndex?: number, connectionType?: number): any;
     /** Removes all connections of a task or between two tasks if the second argument is provided and valid.
     * @param {any} taskStart. The start task object or it's id.
     * @param {any} taskEnd?. The end task object or it's id.
@@ -849,7 +849,7 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     * @param {number} index?. The index where the new item should be inserted(e.g. 2). This index will determine the position of the newly inserted task.
     * @returns {string | number | undefined}
   */
-    insertTask(taskObject: any, project?: any, index?: number): Promise<any>;
+    insertTask(taskObject: any, project?: any, index?: number): any;
     /** Updates a task/project/milestone.
     * @param {any} taskId. A number or string that represents the id of a task/project(e.g. '0') or the object definition of the task/project.
     * @param {any} taskObject. An object describing a Gantt Chart task. The properties of this object will be applied to the desired task.

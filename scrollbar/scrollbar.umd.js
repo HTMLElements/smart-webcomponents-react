@@ -26,7 +26,7 @@ require('../source/modules/smart.scrollbar');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -92,7 +92,7 @@ require('../source/modules/smart.scrollbar');
 	        }
 	    }
 	    /** Sets or gets the type of used mechanical action. The mechanical action defines in which moment the value of the element will be updated.
-	    *	Property type: DragMechanicalAction
+	    *	Property type: DragMechanicalAction | string
 	    */
 	    get mechanicalAction() {
 	        return this.nativeElement ? this.nativeElement.mechanicalAction : undefined;
@@ -125,7 +125,7 @@ require('../source/modules/smart.scrollbar');
 	        }
 	    }
 	    /** Sets or gets the scrollbar's orientation
-	    *	Property type: Orientation
+	    *	Property type: Orientation | string
 	    */
 	    get orientation() {
 	        return this.nativeElement ? this.nativeElement.orientation : undefined;
@@ -255,7 +255,7 @@ require('../source/modules/smart.scrollbar');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -282,6 +282,7 @@ require('../source/modules/smart.scrollbar');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

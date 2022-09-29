@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.colorpanel';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class ColorPanel extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -31,7 +37,7 @@ class ColorPanel extends React.Component {
         }
     }
     /** Specifies how the value is applied.
-    *	Property type: ColorApplyValueMode
+    *	Property type: ColorApplyValueMode | string
     */
     get applyValueMode() {
         return this.nativeElement ? this.nativeElement.applyValueMode : undefined;
@@ -64,7 +70,7 @@ class ColorPanel extends React.Component {
         }
     }
     /** Determines the colors that will be displayed and their layout.
-    *	Property type: ColorDisplayMode
+    *	Property type: ColorDisplayMode | string
     */
     get displayMode() {
         return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -251,7 +257,7 @@ class ColorPanel extends React.Component {
         }
     }
     /** Determines what colors will be displayed in 'spectrumGrid', 'grid' and 'hexagonal' displayModes.
-    *	Property type: ColorPalette
+    *	Property type: ColorPalette | string
     */
     get palette() {
         return this.nativeElement ? this.nativeElement.palette : undefined;
@@ -317,7 +323,7 @@ class ColorPanel extends React.Component {
         }
     }
     /** Determines how the tooltip displays the value of the color that is being hovered.
-    *	Property type: ColorTooltipDisplayMode
+    *	Property type: ColorTooltipDisplayMode | string
     */
     get tooltipDisplayMode() {
         return this.nativeElement ? this.nativeElement.tooltipDisplayMode : undefined;
@@ -339,7 +345,7 @@ class ColorPanel extends React.Component {
         }
     }
     /** Determines the format of the color. Whether it's in HEX, RGB or RGBA. By default it shows the color depending on the displayMode.
-    *	Property type: ColorValueFormat
+    *	Property type: ColorValueFormat | string
     */
     get valueFormat() {
         return this.nativeElement ? this.nativeElement.valueFormat : undefined;
@@ -402,7 +408,7 @@ class ColorPanel extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -429,6 +435,7 @@ class ColorPanel extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

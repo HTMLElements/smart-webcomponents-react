@@ -21,10 +21,10 @@ export declare class Element extends React.Component<React.HTMLAttributes<Elemen
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Enables or disables the accordion. Disabled elements can not be interacted with.
     *	Property type: boolean
     */
@@ -76,10 +76,10 @@ export declare class Element extends React.Component<React.HTMLAttributes<Elemen
     get readonly(): boolean;
     set readonly(value: boolean);
     /** Determines if the element is readonly or not. If the element true, users cannot interact with it.
-    *	Property type: ElementRenderMode
+    *	Property type: ElementRenderMode | string
     */
-    get renderMode(): ElementRenderMode;
-    set renderMode(value: ElementRenderMode);
+    get renderMode(): ElementRenderMode | string;
+    set renderMode(value: ElementRenderMode | string);
     /** Determines whether the element is automatically rendered or is rendered after calling the render method.
     *	Property type: boolean
     */

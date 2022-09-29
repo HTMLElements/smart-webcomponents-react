@@ -19,15 +19,15 @@ export declare class FormControl extends React.Component<React.HTMLAttributes<El
     private componentRef;
     get id(): string;
     /** Gets or Sets the FormControl Action. This property is used when the 'controlType' is 'button' or 'submit'
-    *	Property type: FormControlAction
+    *	Property type: FormControlAction | string
     */
-    get action(): FormControlAction;
-    set action(value: FormControlAction);
+    get action(): FormControlAction | string;
+    set action(value: FormControlAction | string);
     /** Sets or Gets the alignment of the FormControl
-    *	Property type: FormControlAlign
+    *	Property type: FormControlAlign | string
     */
-    get align(): FormControlAlign;
-    set align(value: FormControlAlign);
+    get align(): FormControlAlign | string;
+    set align(value: FormControlAlign | string);
     /** HTML Content displayed after the Form Control
     *	Property type: any
     */
@@ -39,10 +39,10 @@ export declare class FormControl extends React.Component<React.HTMLAttributes<El
     get controlOptions(): any;
     set controlOptions(value: any);
     /** The type of the control.
-    *	Property type: FormControlControlType
+    *	Property type: FormControlControlType | string
     */
-    get controlType(): FormControlControlType;
-    set controlType(value: FormControlControlType);
+    get controlType(): FormControlControlType | string;
+    set controlType(value: FormControlControlType | string);
     /** Sets the Form Group columns.
     *	Property type: number
     */
@@ -84,20 +84,20 @@ export declare class FormControl extends React.Component<React.HTMLAttributes<El
     get label(): string;
     set label(value: string);
     /** Gets or Sets the Form control's label position.
-    *	Property type: FormControlLabelPosition
+    *	Property type: FormControlLabelPosition | string
     */
-    get labelPosition(): FormControlLabelPosition;
-    set labelPosition(value: FormControlLabelPosition);
+    get labelPosition(): FormControlLabelPosition | string;
+    set labelPosition(value: FormControlLabelPosition | string);
     /** Gets or Sets the offset between the label and the control.
     *	Property type: number
     */
     get labelOffset(): number;
     set labelOffset(value: number);
     /** FormGroup only(when controlType is set to 'group'). Gets or Sets whether the navigation buttons are displayed. The property has effect when the viewMode property is set.
-    *	Property type: FormControlAlign
+    *	Property type: FormControlAlign | string
     */
-    get labelAlign(): FormControlAlign;
-    set labelAlign(value: FormControlAlign);
+    get labelAlign(): FormControlAlign | string;
+    set labelAlign(value: FormControlAlign | string);
     /** FormGroup only(when controlType is set to 'group'). Gets or Sets the next button label.
     *	Property type: string
     */
@@ -159,10 +159,10 @@ export declare class FormControl extends React.Component<React.HTMLAttributes<El
     get validationRules(): [] | null;
     set validationRules(value: [] | null);
     /** FormGroup only(when controlType is set to 'group'). Gets or Sets the form'group view mode.
-    *	Property type: FormControlViewMode
+    *	Property type: FormControlViewMode | string
     */
-    get viewMode(): FormControlViewMode;
-    set viewMode(value: FormControlViewMode);
+    get viewMode(): FormControlViewMode | string;
+    set viewMode(value: FormControlViewMode | string);
     get properties(): string[];
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/

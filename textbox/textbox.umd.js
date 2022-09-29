@@ -48,7 +48,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /**
-	    *	Property type: ListItemDisplayMode
+	    *	Property type: ListItemDisplayMode | string
 	    */
 	    get displayMode() {
 	        return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -177,7 +177,7 @@ require('../source/modules/smart.textbox');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -300,7 +300,7 @@ require('../source/modules/smart.textbox');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -382,7 +382,7 @@ require('../source/modules/smart.textbox');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -404,7 +404,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines the autocomplete mode. Auto complete modes filter the items from the dataSource and show only those that match the input.
-	    *	Property type: AutoComplete
+	    *	Property type: AutoComplete | string
 	    */
 	    get autoComplete() {
 	        return this.nativeElement ? this.nativeElement.autoComplete : undefined;
@@ -470,7 +470,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines how the characters are displayed inside the input.
-	    *	Property type: TextBoxDisplayMode
+	    *	Property type: TextBoxDisplayMode | string
 	    */
 	    get displayMode() {
 	        return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -547,7 +547,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines how the drop down is going to open.
-	    *	Property type: DropDownOpenMode
+	    *	Property type: DropDownOpenMode | string
 	    */
 	    get dropDownOpenMode() {
 	        return this.nativeElement ? this.nativeElement.dropDownOpenMode : undefined;
@@ -580,7 +580,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines the position of the drop down when opened.
-	    *	Property type: DropDownPosition
+	    *	Property type: DropDownPosition | string
 	    */
 	    get dropDownPosition() {
 	        return this.nativeElement ? this.nativeElement.dropDownPosition : undefined;
@@ -602,7 +602,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines the behavior of the element when Escape key is pressed.
-	    *	Property type: EscKeyMode
+	    *	Property type: EscKeyMode | string
 	    */
 	    get escKeyMode() {
 	        return this.nativeElement ? this.nativeElement.escKeyMode : undefined;
@@ -613,7 +613,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Specifies the behavior of "Enter" key.
-	    *	Property type: EnterKeyBehavior
+	    *	Property type: EnterKeyBehavior | string
 	    */
 	    get enterKeyBehavior() {
 	        return this.nativeElement ? this.nativeElement.enterKeyBehavior : undefined;
@@ -646,7 +646,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines the visibility of the horizontal Scroll bar thats inside the drop down.
-	    *	Property type: HorizontalScrollBarVisibility
+	    *	Property type: HorizontalScrollBarVisibility | string
 	    */
 	    get horizontalScrollBarVisibility() {
 	        return this.nativeElement ? this.nativeElement.horizontalScrollBarVisibility : undefined;
@@ -690,7 +690,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines the item width measuring algorithm.
-	    *	Property type: ListItemMeasureMode
+	    *	Property type: ListItemMeasureMode | string
 	    */
 	    get itemMeasureMode() {
 	        return this.nativeElement ? this.nativeElement.itemMeasureMode : undefined;
@@ -745,7 +745,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines the position of the loading indicator.
-	    *	Property type: VerticalAlignment
+	    *	Property type: VerticalAlignment | string
 	    */
 	    get loadingIndicatorPosition() {
 	        return this.nativeElement ? this.nativeElement.loadingIndicatorPosition : undefined;
@@ -943,7 +943,7 @@ require('../source/modules/smart.textbox');
 	        }
 	    }
 	    /** Determines the visibility of the vertical scroll bar that's inside the drop down.
-	    *	Property type: VerticalScrollBarVisibility
+	    *	Property type: VerticalScrollBarVisibility | string
 	    */
 	    get verticalScrollBarVisibility() {
 	        return this.nativeElement ? this.nativeElement.verticalScrollBarVisibility : undefined;
@@ -1020,7 +1020,7 @@ require('../source/modules/smart.textbox');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -1047,6 +1047,7 @@ require('../source/modules/smart.textbox');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart$2.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

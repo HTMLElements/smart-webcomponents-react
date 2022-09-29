@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.numberinput';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class NumberInput extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -217,28 +223,18 @@ class NumberInput extends React.Component {
     /** Returns the value in the desired format.
     * @param {string | number} value. The value to be formatted by the method.
     * @param {any} format?. The object that contains the formatting properties. The argument should contain Intl.NumberFormat valid properties. For example, { style: 'currency', currency: 'EUR' }
-    */
+    * @returns {string}
+  */
     getFormattedValue(value, format) {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.getFormattedValue(value, format);
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.getFormattedValue(value, format);
-            });
-        }
+        const result = this.nativeElement.getFormattedValue(value, format);
+        return result;
     }
     /** Returns the number of the input.
-    */
+    * @returns {number}
+  */
     getValue() {
-        if (this.nativeElement.isRendered) {
-            this.nativeElement.getValue();
-        }
-        else {
-            this.nativeElement.whenRendered(() => {
-                this.nativeElement.getValue();
-            });
-        }
+        const result = this.nativeElement.getValue();
+        return result;
     }
     /** Selects the text inside the input or if it is readonly then the element is focused.
     */
@@ -288,7 +284,7 @@ class NumberInput extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -315,6 +311,7 @@ class NumberInput extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

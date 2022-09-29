@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.countryinput';
 
 import React from 'react';
@@ -42,7 +48,7 @@ class CountryInput extends React.Component {
         }
     }
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
     get dropDownButtonPosition() {
         return this.nativeElement ? this.nativeElement.dropDownButtonPosition : undefined;
@@ -252,7 +258,7 @@ class CountryInput extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -279,6 +285,7 @@ class CountryInput extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

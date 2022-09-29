@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.path';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class Path extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -141,7 +147,7 @@ class Path extends React.Component {
         }
     }
     /** Determines the vertical position of the dropDown. 'Auto' means its automatically determined depending on the viewport size.
-    *	Property type: DropDownPosition
+    *	Property type: DropDownPosition | string
     */
     get dropDownPosition() {
         return this.nativeElement ? this.nativeElement.dropDownPosition : undefined;
@@ -262,7 +268,7 @@ class Path extends React.Component {
         }
     }
     /** Determines the format of the path. Follows specific operation system criteria by changing the drive,folder separators.
-    *	Property type: PathFormat
+    *	Property type: PathFormat | string
     */
     get pathFormat() {
         return this.nativeElement ? this.nativeElement.pathFormat : undefined;
@@ -428,7 +434,7 @@ class Path extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -455,6 +461,7 @@ class Path extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

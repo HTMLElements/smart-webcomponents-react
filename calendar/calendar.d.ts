@@ -26,25 +26,25 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Applies new animation settings when it is enabled. Properties:startSpeed - Determines the initial speed of the animation.easeThreshold - Determines the point at which the animation starts to slow down - the "ease effect".step - Determines the step ( scrolling interval ) at which the animation will run. stepEaseSize - Coefficient that is used to calculated the new step once the threshold has been passed. resetThreshold - Determines the threshold for animation reset. When it's reached the animation will start over.
     *	Property type: any
     */
     get animationSettings(): any;
     set animationSettings(value: any);
     /** Determines the date controls inside the header of the Calendar.
-    *	Property type: CalendarMode
+    *	Property type: CalendarMode | string
     */
-    get calendarMode(): CalendarMode;
-    set calendarMode(value: CalendarMode);
+    get calendarMode(): CalendarMode | string;
+    set calendarMode(value: CalendarMode | string);
     /** Determines the format of the day names located above the days inside the calendar.
-    *	Property type: DayFormat
+    *	Property type: DayFormat | string
     */
-    get dayNameFormat(): DayFormat;
-    set dayNameFormat(value: DayFormat);
+    get dayNameFormat(): DayFormat | string;
+    set dayNameFormat(value: DayFormat | string);
     /**  A callback that can be used to customize the format of the month name when calendarMode is set to 'default'.
     *	Property type: any
     */
@@ -61,15 +61,15 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     get disableAutoNavigation(): boolean;
     set disableAutoNavigation(value: boolean);
     /** Determines the date view of the calendar when calendarMode is set to 'default'
-    *	Property type: CalendarDisplayMode
+    *	Property type: CalendarDisplayMode | string
     */
-    get displayMode(): CalendarDisplayMode;
-    set displayMode(value: CalendarDisplayMode);
+    get displayMode(): CalendarDisplayMode | string;
+    set displayMode(value: CalendarDisplayMode | string);
     /** Determines the type of the month/year view when calendarMode is set to Default.
-    *	Property type: CalendarDisplayModeView
+    *	Property type: CalendarDisplayModeView | string
     */
-    get displayModeView(): CalendarDisplayModeView;
-    set displayModeView(value: CalendarDisplayModeView);
+    get displayModeView(): CalendarDisplayModeView | string;
+    set displayModeView(value: CalendarDisplayModeView | string);
     /** Determines the height of the month's drop down inside the Calendar.
     *	Property type: string | number
     */
@@ -151,10 +151,10 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     get months(): number;
     set months(value: number);
     /** Determines the format of the month names in the header when DisplayMode is set to Default or when Months property is greater than 1.
-    *	Property type: MonthFormat
+    *	Property type: MonthFormat | string
     */
-    get monthNameFormat(): MonthFormat;
-    set monthNameFormat(value: MonthFormat);
+    get monthNameFormat(): MonthFormat | string;
+    set monthNameFormat(value: MonthFormat | string);
     /** Sets or gets the name attribute for the element. Name is used when submiting HTML forms.
     *	Property type: string
     */
@@ -176,25 +176,25 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
     /**  Determines the direction of the navigation buttons located in the header and the animation.
-    *	Property type: ViewLayout
+    *	Property type: ViewLayout | string
     */
-    get scrollButtonsNavigationMode(): ViewLayout;
-    set scrollButtonsNavigationMode(value: ViewLayout);
+    get scrollButtonsNavigationMode(): ViewLayout | string;
+    set scrollButtonsNavigationMode(value: ViewLayout | string);
     /**  Determines the position of the navigation buttons located inside the header.
-    *	Property type: LayoutPosition
+    *	Property type: LayoutPosition | string
     */
-    get scrollButtonsPosition(): LayoutPosition;
-    set scrollButtonsPosition(value: LayoutPosition);
+    get scrollButtonsPosition(): LayoutPosition | string;
+    set scrollButtonsPosition(value: LayoutPosition | string);
     /** Sets the dates that will be selected. Selected dates are styled differently than the rest. The dates can be Date objects or strings in a valid date format.
     *	Property type: string[] | Date[]
     */
     get selectedDates(): string[] | Date[];
     set selectedDates(value: string[] | Date[]);
     /** Determines the date selection mode.
-    *	Property type: CalendarSelectionMode
+    *	Property type: CalendarSelectionMode | string
     */
-    get selectionMode(): CalendarSelectionMode;
-    set selectionMode(value: CalendarSelectionMode);
+    get selectionMode(): CalendarSelectionMode | string;
+    set selectionMode(value: CalendarSelectionMode | string);
     /** Sets the delay between clicks of the date navigation buttons located in the header of the Calendar.
     *	Property type: number
     */
@@ -236,10 +236,10 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     get tooltipOffset(): number[][];
     set tooltipOffset(value: number[][]);
     /** Sets the position of the tooltip.
-    *	Property type: TooltipPosition
+    *	Property type: TooltipPosition | string
     */
-    get tooltipPosition(): TooltipPosition;
-    set tooltipPosition(value: TooltipPosition);
+    get tooltipPosition(): TooltipPosition | string;
+    set tooltipPosition(value: TooltipPosition | string);
     /** Sets a template for the tooltip's content. Accepts the id of an HTMLTEmplate element inside the DOM or it's reference.
     *	Property type: any
     */
@@ -251,10 +251,10 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
     /** Determines the orientation of the Calendar.
-    *	Property type: ViewLayout
+    *	Property type: ViewLayout | string
     */
-    get view(): ViewLayout;
-    set view(value: ViewLayout);
+    get view(): ViewLayout | string;
+    set view(value: ViewLayout | string);
     /** Determines the visible sections of the Calendar. The view sections are : title, header, footer. Multiple sections can be applied at the same time. By default only the 'header' section is visible.
     *	Property type: string[]
     */
@@ -271,10 +271,10 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     get weeks(): number;
     set weeks(value: number);
     /** Determines the year format in the header when DisplayMode is set to Default or when Months property is greater than 1.
-    *	Property type: YearFormat
+    *	Property type: YearFormat | string
     */
-    get yearFormat(): YearFormat;
-    set yearFormat(value: YearFormat);
+    get yearFormat(): YearFormat | string;
+    set yearFormat(value: YearFormat | string);
     get properties(): string[];
     /**  This event is triggered when a new date has been selected/unselected.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	value)
@@ -328,7 +328,7 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     * @param {number | Date | string} step. The argument can be the following: <ul><li> number -  representing the number of months to scroll. Can be negavtive. If negative it will scroll backwards.</li><li> Date - a date object representing the Date to navigate to.</li><li> string - a string representing a valid Date, e.g. "2020-10-1" </li></ul>
     * @returns {boolean}
   */
-    navigate(step: number | Date | string): Promise<any>;
+    navigate(step: number | Date | string): any;
     /** Selects or Unselects a date.
     * @param {Date | string} date. The date to be selected or unselected. The date can be a Date object or a string in valid date format.
     */
@@ -336,7 +336,7 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     /** Selects today's date.
     * @returns {Date}
   */
-    today(): Promise<any>;
+    today(): any;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

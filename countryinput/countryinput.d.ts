@@ -32,10 +32,10 @@ export declare class CountryInput extends React.Component<React.HTMLAttributes<E
     get dropDownClassList(): any;
     set dropDownClassList(value: any);
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
     *	Property type: string | number
     */

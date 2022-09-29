@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.editor';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -45,7 +26,7 @@ class Editor extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -111,7 +92,7 @@ class Editor extends React.Component {
         }
     }
     /** Determines the context menu for the Editor. The context menu is triggered when the user right clicks on the content area of the Editor.
-    *	Property type: EditorContextMenu
+    *	Property type: EditorContextMenu | string
     */
     get contextMenu() {
         return this.nativeElement ? this.nativeElement.contextMenu : undefined;
@@ -177,7 +158,7 @@ class Editor extends React.Component {
         }
     }
     /** Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode.
-    *	Property type: EditMode
+    *	Property type: EditMode | string
     */
     get editMode() {
         return this.nativeElement ? this.nativeElement.editMode : undefined;
@@ -243,7 +224,7 @@ class Editor extends React.Component {
         }
     }
     /** Determines the file format of the image/video that are uploaded from local storage. By default images/videos are stroed as base64.
-    *	Property type: EditorImageFormat
+    *	Property type: EditorImageFormat | string
     */
     get imageFormat() {
         return this.nativeElement ? this.nativeElement.imageFormat : undefined;
@@ -331,7 +312,7 @@ class Editor extends React.Component {
         }
     }
     /** Determines the format of the content that will be pasted inside the Editor.
-    *	Property type: PasteFormat
+    *	Property type: PasteFormat | string
     */
     get pasteFormat() {
         return this.nativeElement ? this.nativeElement.pasteFormat : undefined;
@@ -452,7 +433,7 @@ class Editor extends React.Component {
         }
     }
     /** Determines the toolbar mode of the Editor. The main toolbar of the Editor can appear as a Ribbon or as a Menu.
-    *	Property type: ToolbarMode
+    *	Property type: ToolbarMode | string
     */
     get toolbarMode() {
         return this.nativeElement ? this.nativeElement.toolbarMode : undefined;
@@ -474,7 +455,7 @@ class Editor extends React.Component {
         }
     }
     /** Determines the format of the content that will be pasted inside the Editor.
-    *	Property type: ToolbarViewMode
+    *	Property type: ToolbarViewMode | string
     */
     get toolbarViewMode() {
         return this.nativeElement ? this.nativeElement.toolbarViewMode : undefined;
@@ -616,18 +597,8 @@ class Editor extends React.Component {
     * @returns {boolean}
   */
     executeCommand(commandName, value) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.executeCommand(commandName, value);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.executeCommand(commandName, value);
+        return result;
     }
     /** Focuses the content of the Editor.
     */
@@ -645,69 +616,29 @@ class Editor extends React.Component {
     * @returns {number}
   */
     getCharCount() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getCharCount();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getCharCount();
+        return result;
     }
     /** Returns the current selection range. By default the result is an object of type Range, but if the editMode property is set to 'markdown' the returned value is an object indicating the start/end indexes of the current selection.
     * @returns {any}
   */
     getSelectionRange() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getSelectionRange();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getSelectionRange();
+        return result;
     }
     /** Returns the content of the Editor as HTML. When editMode is set to 'markdown' the markdown is parsed and returned as HTML.
     * @returns {string}
   */
     getHTML() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getHTML();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getHTML();
+        return result;
     }
     /** Returns the content of the Editor as text.
     * @returns {string}
   */
     getText() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getText();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getText();
+        return result;
     }
     /** Hides a specific message or all messages if no argument is provided.
     * @param {HTMLElement | string | number} item?. Hides a specific message. The argument can be a DOM reference to a specific item, it's index or it's id. If the argument is not provided then all messages will be closed.
@@ -740,18 +671,8 @@ class Editor extends React.Component {
     * @returns {HTMLElement | undefined}
   */
     showMessage(message, settings) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.showMessage(message, settings);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.showMessage(message, settings);
+        return result;
     }
     /** Selects the text inside Editor's content.
     */
@@ -900,18 +821,8 @@ class Editor extends React.Component {
     * @returns {boolean | undefined}
   */
     updateToolbarItem(name, settings) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.updateToolbarItem(name, settings);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.updateToolbarItem(name, settings);
+        return result;
     }
     componentDidRender(initialize) {
         const that = this;
@@ -936,7 +847,7 @@ class Editor extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -963,6 +874,7 @@ class Editor extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

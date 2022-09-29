@@ -20,10 +20,10 @@ export declare class MultiComboInput extends React.Component<React.HTMLAttribute
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines the delay before the drop down opens to show the matches from the auto complete operation. The delay is measured in miliseconds.
     *	Property type: number
     */
@@ -50,10 +50,10 @@ export declare class MultiComboInput extends React.Component<React.HTMLAttribute
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
     *	Property type: string | number
     */
@@ -120,10 +120,10 @@ export declare class MultiComboInput extends React.Component<React.HTMLAttribute
     get query(): string | number;
     set query(value: string | number);
     /** Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation.
-    *	Property type: MultiComboInputQueryMode
+    *	Property type: MultiComboInputQueryMode | string
     */
-    get queryMode(): MultiComboInputQueryMode;
-    set queryMode(value: MultiComboInputQueryMode);
+    get queryMode(): MultiComboInputQueryMode | string;
+    set queryMode(value: MultiComboInputQueryMode | string);
     /** Determines whether ot not the user can enter text inside the input. if dropDownButtonPosition is set to 'left' or 'right' then readonly determines whether the element acts as a ComboBox or a DropDownList if a dataSource is provided.
     *	Property type: boolean
     */
@@ -165,10 +165,10 @@ export declare class MultiComboInput extends React.Component<React.HTMLAttribute
     get sortDirection(): string;
     set sortDirection(value: string);
     /** Determines whether the input field will contain tags for each selected item from the popup or just one that shows the number of selected items.
-    *	Property type: MultiComboInputInputTagsMode
+    *	Property type: MultiComboInputInputTagsMode | string
     */
-    get inputTagsMode(): MultiComboInputInputTagsMode;
-    set inputTagsMode(value: MultiComboInputInputTagsMode);
+    get inputTagsMode(): MultiComboInputInputTagsMode | string;
+    set inputTagsMode(value: MultiComboInputInputTagsMode | string);
     /** Determines the theme for the element. Themes define the look of the elements.
     *	Property type: string
     */

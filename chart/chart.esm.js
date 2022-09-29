@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.chart';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -45,7 +26,7 @@ class Chart extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'.
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -133,7 +114,7 @@ class Chart extends React.Component {
         }
     }
     /** Sets the chart's color pallete. jqxChart suppports 32 color schemes from 'scheme01' to 'scheme32'.
-    *	Property type: ChartColorScheme
+    *	Property type: ChartColorScheme | string
     */
     get colorScheme() {
         return this.nativeElement ? this.nativeElement.colorScheme : undefined;
@@ -331,7 +312,7 @@ class Chart extends React.Component {
         }
     }
     /** Determines the rendering engine used to display the chart. When the property is set to an empty string, jqxChart will automatically select an optimal rendering engine depending on the browser capabilities.
-    *	Property type: ChartRenderEngine
+    *	Property type: ChartRenderEngine | string
     */
     get renderEngine() {
         return this.nativeElement ? this.nativeElement.renderEngine : undefined;
@@ -533,18 +514,8 @@ class Chart extends React.Component {
     * @returns {any[]}
   */
     getColorScheme(schemeName) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getColorScheme(schemeName);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getColorScheme(schemeName);
+        return result;
     }
     /** Gets the rendered coordinates of a data point element.
     * @param {number} groupIndex. Series group index.
@@ -553,18 +524,8 @@ class Chart extends React.Component {
     * @returns {{ x: number, y: number, width: number, height: number, center: number, centerOffset: number, innerRadius: number, outerRadius: number, selectedRadiusChange: number, fromAngle: number, toAngle: number, radius: number }}
   */
     getItemCoord(groupIndex, serieIndex, itemIndex) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItemCoord(groupIndex, serieIndex, itemIndex);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItemCoord(groupIndex, serieIndex, itemIndex);
+        return result;
     }
     /** Gets the number of rendered items in a specific serie.
     * @param {number} groupIndex. Series group index.
@@ -572,54 +533,24 @@ class Chart extends React.Component {
     * @returns {number}
   */
     getItemsCount(groupIndex, serieIndex) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItemsCount(groupIndex, serieIndex);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItemsCount(groupIndex, serieIndex);
+        return result;
     }
     /** Gets the rendered coordinates and values of the valueAxis labels.
     * @param {number} groupIndex. Series group index.
     * @returns {any}
   */
     getValueAxisLabels(groupIndex) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getValueAxisLabels(groupIndex);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getValueAxisLabels(groupIndex);
+        return result;
     }
     /** Gets the rendered rectangle coordinates of the valueAxis of specific serie group.
     * @param {number} groupIndex. Series group index.
     * @returns {DOMRect}
   */
     getValueAxisRect(groupIndex) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getValueAxisRect(groupIndex);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getValueAxisRect(groupIndex);
+        return result;
     }
     /** Gets the valueAxis (vertical axis)'s value.
     * @param {number} offset. Vertical offset.
@@ -627,54 +558,24 @@ class Chart extends React.Component {
     * @returns {any}
   */
     getValueAxisValue(offset, groupIndex) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getValueAxisValue(offset, groupIndex);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getValueAxisValue(offset, groupIndex);
+        return result;
     }
     /** Gets the rendered coordinates and values of the xAxis labels.
     * @param {number} groupIndex. Series group index.
     * @returns {any}
   */
     getXAxisLabels(groupIndex) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getXAxisLabels(groupIndex);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getXAxisLabels(groupIndex);
+        return result;
     }
     /** Gets the rendered rectangle coordinates of the x-Axis of specific serie group.
     * @param {number} groupIndex. Series group index.
     * @returns {DOMRect}
   */
     getXAxisRect(groupIndex) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getXAxisRect(groupIndex);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getXAxisRect(groupIndex);
+        return result;
     }
     /** Gets the xAxis (horizontal axis)'s value.
     * @param {number} offset. Horizontal offset.
@@ -682,18 +583,8 @@ class Chart extends React.Component {
     * @returns {any}
   */
     getXAxisValue(offset, groupIndex) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getXAxisValue(offset, groupIndex);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getXAxisValue(offset, groupIndex);
+        return result;
     }
     /** Hides a chart serie. The result of calling this function is same as the user unchecking the legend box of a chart serie.
     * @param {number} groupIndex. Series group index.
@@ -867,7 +758,7 @@ class Chart extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -894,6 +785,7 @@ class Chart extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

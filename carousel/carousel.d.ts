@@ -23,10 +23,10 @@ export declare class Carousel extends React.Component<React.HTMLAttributes<Eleme
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** The items switch automatically if set to true or to a custom number(representing the timeout in milliseconds). This property works if slideShow property is enabled.
     *	Property type: boolean
     */
@@ -53,10 +53,10 @@ export declare class Carousel extends React.Component<React.HTMLAttributes<Eleme
     get disableItemClick(): boolean;
     set disableItemClick(value: boolean);
     /** Determines the display mode.
-    *	Property type: CarouselDisplayMode
+    *	Property type: CarouselDisplayMode | string
     */
-    get displayMode(): CarouselDisplayMode;
-    set displayMode(value: CarouselDisplayMode);
+    get displayMode(): CarouselDisplayMode | string;
+    set displayMode(value: CarouselDisplayMode | string);
     /** Hides the navigation buttons.
     *	Property type: boolean
     */

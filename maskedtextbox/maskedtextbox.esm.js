@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.textbox';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class MaskedTextBox extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -75,7 +81,7 @@ class MaskedTextBox extends React.Component {
         }
     }
     /** Determines whether literals and prompt characters are copied to the clipboard on cut/copy operations.
-    *	Property type: MaskedTextBoxCutCopyMaskFormat
+    *	Property type: MaskedTextBoxCutCopyMaskFormat | string
     */
     get cutCopyMaskFormat() {
         return this.nativeElement ? this.nativeElement.cutCopyMaskFormat : undefined;
@@ -97,7 +103,7 @@ class MaskedTextBox extends React.Component {
         }
     }
     /** Specifies the behavior on "Enter" key press. Default mode is "submit".
-    *	Property type: EnterKeyBehavior
+    *	Property type: EnterKeyBehavior | string
     */
     get enterKeyBehavior() {
         return this.nativeElement ? this.nativeElement.enterKeyBehavior : undefined;
@@ -339,7 +345,7 @@ class MaskedTextBox extends React.Component {
         }
     }
     /** Determines whether the value of the input should contain or not the prompt/literals of the mask.
-    *	Property type: MaskedTextBoxTextMaskFormat
+    *	Property type: MaskedTextBoxTextMaskFormat | string
     */
     get textMaskFormat() {
         return this.nativeElement ? this.nativeElement.textMaskFormat : undefined;
@@ -448,7 +454,7 @@ class MaskedTextBox extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -475,6 +481,7 @@ class MaskedTextBox extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

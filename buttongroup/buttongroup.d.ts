@@ -20,20 +20,20 @@ export declare class ButtonGroup extends React.Component<React.HTMLAttributes<El
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines the buttons configuration. The dataSource can be an array of strings/numbers or objects where the attributes represent the properties of a List Item. For example label, value. It can also be a callback that returns an Array of items as previously described.
     *	Property type: any
     */
     get dataSource(): any;
     set dataSource(value: any);
     /** Determines the selection mode for the element.
-    *	Property type: ButtonGroupSelectionMode
+    *	Property type: ButtonGroupSelectionMode | string
     */
-    get selectionMode(): ButtonGroupSelectionMode;
-    set selectionMode(value: ButtonGroupSelectionMode);
+    get selectionMode(): ButtonGroupSelectionMode | string;
+    set selectionMode(value: ButtonGroupSelectionMode | string);
     /** Enables or disables the element.
     *	Property type: boolean
     */

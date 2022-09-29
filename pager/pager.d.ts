@@ -21,15 +21,15 @@ export declare class Pager extends React.Component<React.HTMLAttributes<Element>
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Handles pager's elipsis. Ellipsis buttons are displayed as indicators and additional help to navigate between pages.
-    *	Property type: PagerAutoEllipsis
+    *	Property type: PagerAutoEllipsis | string
     */
-    get autoEllipsis(): PagerAutoEllipsis;
-    set autoEllipsis(value: PagerAutoEllipsis);
+    get autoEllipsis(): PagerAutoEllipsis | string;
+    set autoEllipsis(value: PagerAutoEllipsis | string);
     /** Enables or disables the pager.
     *	Property type: boolean
     */
@@ -51,10 +51,10 @@ export declare class Pager extends React.Component<React.HTMLAttributes<Element>
     get messages(): any;
     set messages(value: any);
     /** Handles the position of the navigation buttons.
-    *	Property type: LayoutPosition
+    *	Property type: LayoutPosition | string
     */
-    get navigationButtonsPosition(): LayoutPosition;
-    set navigationButtonsPosition(value: LayoutPosition);
+    get navigationButtonsPosition(): LayoutPosition | string;
+    set navigationButtonsPosition(value: LayoutPosition | string);
     /** Gets/sets current page index.
     *	Property type: number
     */

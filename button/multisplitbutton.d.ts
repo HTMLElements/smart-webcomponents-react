@@ -32,10 +32,10 @@ export declare class MultiSplitButton extends React.Component<React.HTMLAttribut
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines a data source used to generate element's permanently visible buttons.
     *	Property type: string[]
     */
@@ -67,35 +67,35 @@ export declare class MultiSplitButton extends React.Component<React.HTMLAttribut
     get dropDownAppendTo(): string;
     set dropDownAppendTo(value: string);
     /** Determines position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Defines how element's drop down behaves. In 'none' mode drop down never opens. In 'dropDownButton' mode drop down is opened only via elelent's drop down button. In 'auto' mode drop down is opened on click on the whole top section.
-    *	Property type: DropDownOpenMode
+    *	Property type: DropDownOpenMode | string
     */
-    get dropDownOpenMode(): DropDownOpenMode;
-    set dropDownOpenMode(value: DropDownOpenMode);
+    get dropDownOpenMode(): DropDownOpenMode | string;
+    set dropDownOpenMode(value: DropDownOpenMode | string);
     /** If this property is enabled, when the element's dropdown is opened, a transparent overlay is positioned between the dropdown and the rest of the document.
     *	Property type: boolean
     */
     get dropDownOverlay(): boolean;
     set dropDownOverlay(value: boolean);
     /** Determines the vertical position of the dropDown list. 'Auto' means its automatically determined depending on the viewport size.
-    *	Property type: DropDownPosition
+    *	Property type: DropDownPosition | string
     */
-    get dropDownPosition(): DropDownPosition;
-    set dropDownPosition(value: DropDownPosition);
+    get dropDownPosition(): DropDownPosition | string;
+    set dropDownPosition(value: DropDownPosition | string);
     /** Determines whether the Filtering is enabled.
     *	Property type: boolean
     */
     get filterable(): boolean;
     set filterable(value: boolean);
     /** Determines the filtering for the drop down list mode.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
-    get filterMode(): FilterMode;
-    set filterMode(value: FilterMode);
+    get filterMode(): FilterMode | string;
+    set filterMode(value: FilterMode | string);
     /** Determines the placeholder for the drop down list filter input field.
     *	Property type: string
     */
@@ -117,10 +117,10 @@ export declare class MultiSplitButton extends React.Component<React.HTMLAttribut
     get incrementalSearchDelay(): number;
     set incrementalSearchDelay(value: number);
     /** Sets ot gets the mode of the incremental search mode.
-    *	Property type: SearchMode
+    *	Property type: SearchMode | string
     */
-    get incrementalSearchMode(): SearchMode;
-    set incrementalSearchMode(value: SearchMode);
+    get incrementalSearchMode(): SearchMode | string;
+    set incrementalSearchMode(value: SearchMode | string);
     /** Determines the height of the items.
     *	Property type: number | null
     */
@@ -137,10 +137,10 @@ export declare class MultiSplitButton extends React.Component<React.HTMLAttribut
     get loadingIndicatorPlaceholder(): string;
     set loadingIndicatorPlaceholder(value: string);
     /** The position of the loading indicator.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
-    get loadingIndicatorPosition(): VerticalAlignment;
-    set loadingIndicatorPosition(value: VerticalAlignment);
+    get loadingIndicatorPosition(): VerticalAlignment | string;
+    set loadingIndicatorPosition(value: VerticalAlignment | string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -177,10 +177,10 @@ export declare class MultiSplitButton extends React.Component<React.HTMLAttribut
     get selectedValues(): string[];
     set selectedValues(value: string[]);
     /** Determines how many items can be selected.
-    *	Property type: MultiSplitButtonSelectionMode
+    *	Property type: MultiSplitButtonSelectionMode | string
     */
-    get selectionMode(): MultiSplitButtonSelectionMode;
-    set selectionMode(value: MultiSplitButtonSelectionMode);
+    get selectionMode(): MultiSplitButtonSelectionMode | string;
+    set selectionMode(value: MultiSplitButtonSelectionMode | string);
     /** Determines whether the items in the dropDown are sorted alphabetically or not
     *	Property type: boolean
     */
@@ -262,11 +262,11 @@ export declare class MultiSplitButton extends React.Component<React.HTMLAttribut
     * @param {string} value. The value of an item from the drop down list or a button.
     * @returns {HTMLElement}
   */
-    getItem(value: string): Promise<any>;
+    getItem(value: string): any;
     /** Returns an array with the items from the split button's dropDown list.
     * @returns {any[]}
   */
-    items(): Promise<any>;
+    items(): any;
     /** Inserts a new item at a specified position in the drop down list.
     * @param {number} position. The position where the item must be inserted.
     * @param {any} value. The value of the new item.

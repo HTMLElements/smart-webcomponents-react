@@ -21,10 +21,10 @@ export declare class PasswordTextBox extends React.Component<React.HTMLAttribute
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Specifies that the element should be focused when the page is loaded.
     *	Property type: boolean
     */
@@ -36,10 +36,10 @@ export declare class PasswordTextBox extends React.Component<React.HTMLAttribute
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Specifies the behavior on "Enter" key press. Default mode is "submit".
-    *	Property type: EnterKeyBehavior
+    *	Property type: EnterKeyBehavior | string
     */
-    get enterKeyBehavior(): EnterKeyBehavior;
-    set enterKeyBehavior(value: EnterKeyBehavior);
+    get enterKeyBehavior(): EnterKeyBehavior | string;
+    set enterKeyBehavior(value: EnterKeyBehavior | string);
     /** The form that the element is associated with (its "form owner"). The value of the attribute must be the ID of a form element in the same document.
     *	Property type: string
     */
@@ -136,10 +136,10 @@ export declare class PasswordTextBox extends React.Component<React.HTMLAttribute
     get tooltipDelay(): number;
     set tooltipDelay(value: number);
     /** Determines the position of the tooltip.
-    *	Property type: PasswordTextBoxTooltipPosition
+    *	Property type: PasswordTextBoxTooltipPosition | string
     */
-    get tooltipPosition(): PasswordTextBoxTooltipPosition;
-    set tooltipPosition(value: PasswordTextBoxTooltipPosition);
+    get tooltipPosition(): PasswordTextBoxTooltipPosition | string;
+    set tooltipPosition(value: PasswordTextBoxTooltipPosition | string);
     /** Sets a custom template for the content of the tooltip.
     *	Property type: string
     */

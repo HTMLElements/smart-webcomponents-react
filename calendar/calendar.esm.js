@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.calendar';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -45,7 +26,7 @@ class Calendar extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -67,7 +48,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the date controls inside the header of the Calendar.
-    *	Property type: CalendarMode
+    *	Property type: CalendarMode | string
     */
     get calendarMode() {
         return this.nativeElement ? this.nativeElement.calendarMode : undefined;
@@ -78,7 +59,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the format of the day names located above the days inside the calendar.
-    *	Property type: DayFormat
+    *	Property type: DayFormat | string
     */
     get dayNameFormat() {
         return this.nativeElement ? this.nativeElement.dayNameFormat : undefined;
@@ -122,7 +103,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the date view of the calendar when calendarMode is set to 'default'
-    *	Property type: CalendarDisplayMode
+    *	Property type: CalendarDisplayMode | string
     */
     get displayMode() {
         return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -133,7 +114,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the type of the month/year view when calendarMode is set to Default.
-    *	Property type: CalendarDisplayModeView
+    *	Property type: CalendarDisplayModeView | string
     */
     get displayModeView() {
         return this.nativeElement ? this.nativeElement.displayModeView : undefined;
@@ -320,7 +301,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the format of the month names in the header when DisplayMode is set to Default or when Months property is greater than 1.
-    *	Property type: MonthFormat
+    *	Property type: MonthFormat | string
     */
     get monthNameFormat() {
         return this.nativeElement ? this.nativeElement.monthNameFormat : undefined;
@@ -375,7 +356,7 @@ class Calendar extends React.Component {
         }
     }
     /**  Determines the direction of the navigation buttons located in the header and the animation.
-    *	Property type: ViewLayout
+    *	Property type: ViewLayout | string
     */
     get scrollButtonsNavigationMode() {
         return this.nativeElement ? this.nativeElement.scrollButtonsNavigationMode : undefined;
@@ -386,7 +367,7 @@ class Calendar extends React.Component {
         }
     }
     /**  Determines the position of the navigation buttons located inside the header.
-    *	Property type: LayoutPosition
+    *	Property type: LayoutPosition | string
     */
     get scrollButtonsPosition() {
         return this.nativeElement ? this.nativeElement.scrollButtonsPosition : undefined;
@@ -408,7 +389,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the date selection mode.
-    *	Property type: CalendarSelectionMode
+    *	Property type: CalendarSelectionMode | string
     */
     get selectionMode() {
         return this.nativeElement ? this.nativeElement.selectionMode : undefined;
@@ -507,7 +488,7 @@ class Calendar extends React.Component {
         }
     }
     /** Sets the position of the tooltip.
-    *	Property type: TooltipPosition
+    *	Property type: TooltipPosition | string
     */
     get tooltipPosition() {
         return this.nativeElement ? this.nativeElement.tooltipPosition : undefined;
@@ -540,7 +521,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the orientation of the Calendar.
-    *	Property type: ViewLayout
+    *	Property type: ViewLayout | string
     */
     get view() {
         return this.nativeElement ? this.nativeElement.view : undefined;
@@ -584,7 +565,7 @@ class Calendar extends React.Component {
         }
     }
     /** Determines the year format in the header when DisplayMode is set to Default or when Months property is greater than 1.
-    *	Property type: YearFormat
+    *	Property type: YearFormat | string
     */
     get yearFormat() {
         return this.nativeElement ? this.nativeElement.yearFormat : undefined;
@@ -619,18 +600,8 @@ class Calendar extends React.Component {
     * @returns {boolean}
   */
     navigate(step) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.navigate(step);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.navigate(step);
+        return result;
     }
     /** Selects or Unselects a date.
     * @param {Date | string} date. The date to be selected or unselected. The date can be a Date object or a string in valid date format.
@@ -649,18 +620,8 @@ class Calendar extends React.Component {
     * @returns {Date}
   */
     today() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.today();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.today();
+        return result;
     }
     componentDidRender(initialize) {
         const that = this;
@@ -685,7 +646,7 @@ class Calendar extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -712,6 +673,7 @@ class Calendar extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

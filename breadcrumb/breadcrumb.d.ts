@@ -39,10 +39,10 @@ export declare class Breadcrumb extends React.Component<React.HTMLAttributes<Ele
     get allowDrop(): boolean;
     set allowDrop(value: boolean);
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Show/Hide the close button of breadcrumb items.
     *	Property type: boolean
     */

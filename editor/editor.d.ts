@@ -47,10 +47,10 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Automatically loads the last saved state of the editor (from local storage) on element initialization. An id must be provided in order to load a previously saved state.
     *	Property type: boolean
     */
@@ -77,10 +77,10 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     get contentFiltering(): EditorContentFiltering;
     set contentFiltering(value: EditorContentFiltering);
     /** Determines the context menu for the Editor. The context menu is triggered when the user right clicks on the content area of the Editor.
-    *	Property type: EditorContextMenu
+    *	Property type: EditorContextMenu | string
     */
-    get contextMenu(): EditorContextMenu;
-    set contextMenu(value: EditorContextMenu);
+    get contextMenu(): EditorContextMenu | string;
+    set contextMenu(value: EditorContextMenu | string);
     /** Allows to customize default the context menu of the Editor. The property accepts an array of items which can be strings that represent the value of the item, or objects of the following format: { label: string, value: string }, where the label will be displayed and the value will be action value for the item. The property also accepts a function that must return an array of items with the following format function (target: HTMLElement, type: string, defaultItems: string[]) { return defaultItems } and the following arguments: target - the element that is the target of the context menu.type - the type of context menu ( whether it's a table, image, link or other)defaultItems - an array of strings which represent the default items for the context menu.
     *	Property type: string[] | { label: string, value: 'string' }[] | Function | null
     */
@@ -113,10 +113,10 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     get disableSearchBar(): boolean;
     set disableSearchBar(value: boolean);
     /** Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode.
-    *	Property type: EditMode
+    *	Property type: EditMode | string
     */
-    get editMode(): EditMode;
-    set editMode(value: EditMode);
+    get editMode(): EditMode | string;
+    set editMode(value: EditMode | string);
     /** Determines whether the value returned from getHTML method and Source Code view are encoded or not.
     *	Property type: boolean
     */
@@ -143,10 +143,10 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     get hideInlineToolbar(): boolean;
     set hideInlineToolbar(value: boolean);
     /** Determines the file format of the image/video that are uploaded from local storage. By default images/videos are stroed as base64.
-    *	Property type: EditorImageFormat
+    *	Property type: EditorImageFormat | string
     */
-    get imageFormat(): EditorImageFormat;
-    set imageFormat(value: EditorImageFormat);
+    get imageFormat(): EditorImageFormat | string;
+    set imageFormat(value: EditorImageFormat | string);
     /** Sets the content of the Editor as HTML. Allows to insert text and HTML.
     *	Property type: string
     */
@@ -183,10 +183,10 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     get name(): string | null;
     set name(value: string | null);
     /** Determines the format of the content that will be pasted inside the Editor.
-    *	Property type: PasteFormat
+    *	Property type: PasteFormat | string
     */
-    get pasteFormat(): PasteFormat;
-    set pasteFormat(value: PasteFormat);
+    get pasteFormat(): PasteFormat | string;
+    set pasteFormat(value: PasteFormat | string);
     /** Determines the placeholder that will be shown when there's no content inside the Editor.
     *	Property type: string
     */
@@ -238,10 +238,10 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     get toolbarItems(): ToolbarItem[];
     set toolbarItems(value: ToolbarItem[]);
     /** Determines the toolbar mode of the Editor. The main toolbar of the Editor can appear as a Ribbon or as a Menu.
-    *	Property type: ToolbarMode
+    *	Property type: ToolbarMode | string
     */
-    get toolbarMode(): ToolbarMode;
-    set toolbarMode(value: ToolbarMode);
+    get toolbarMode(): ToolbarMode | string;
+    set toolbarMode(value: ToolbarMode | string);
     /** Allows to configure the SingleLineRibbon appearance by changing the order and items of the groups.
     *	Property type: { name: string, groups: { name: string, items: string[] }[] }[]
     */
@@ -260,10 +260,10 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
         }[];
     }[]);
     /** Determines the format of the content that will be pasted inside the Editor.
-    *	Property type: ToolbarViewMode
+    *	Property type: ToolbarViewMode | string
     */
-    get toolbarViewMode(): ToolbarViewMode;
-    set toolbarViewMode(value: ToolbarViewMode);
+    get toolbarViewMode(): ToolbarViewMode | string;
+    set toolbarViewMode(value: ToolbarViewMode | string);
     /** Sticks the Toolbar to the top of the window and stays there while scrolling.
     *	Property type: boolean
     */
@@ -412,7 +412,7 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     */
     onDialogClosing?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the uploading of an image/video is successful.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	item, 	filename, 	type, 	size, 	index, 	status)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	item, 	filename, 	type, 	size, 	index, 	status, 	serverResponse)
     *   target - The file upload element that is the target of the operation.
     *   item - The toolbar item that is the target of the operation.
     *   filename - The name of the uploaded file.
@@ -420,10 +420,11 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     *   size - The size of the uploaded file.
     *   index - The index of the uploaded file.
     *   status - The status of the uploaded file. Whether there was an error or success.
+    *   serverResponse - The response of the remote server.
     */
     onImageUploadSuccess?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the uploading of an image/video is unsuccessful.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	item, 	filename, 	type, 	size, 	index, 	status)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	item, 	filename, 	type, 	size, 	index, 	status, 	serverResponse)
     *   target - The file upload element that is the target of the operation.
     *   item - The toolbar item that is the target of the operation.
     *   filename - The name of the canceled file.
@@ -431,6 +432,7 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     *   size - The size of the canceled file.
     *   index - The index of the canceled file.
     *   status - The status of the uploaded file. Whether there was an error or success.
+    *   serverResponse - The response of the remote server.
     */
     onImageUploadFailed?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a Toolbar item is clicked.
@@ -481,26 +483,26 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     * @param {string | number} value?. The value for the command. Some commands require a value to be passed, others do not.
     * @returns {boolean}
   */
-    executeCommand(commandName: string, value?: string | number): Promise<any>;
+    executeCommand(commandName: string, value?: string | number): any;
     /** Focuses the content of the Editor.
     */
     focus(): void;
     /** Returns the number of characters inside the Editor's content.
     * @returns {number}
   */
-    getCharCount(): Promise<any>;
+    getCharCount(): any;
     /** Returns the current selection range. By default the result is an object of type Range, but if the editMode property is set to 'markdown' the returned value is an object indicating the start/end indexes of the current selection.
     * @returns {any}
   */
-    getSelectionRange(): Promise<any>;
+    getSelectionRange(): any;
     /** Returns the content of the Editor as HTML. When editMode is set to 'markdown' the markdown is parsed and returned as HTML.
     * @returns {string}
   */
-    getHTML(): Promise<any>;
+    getHTML(): any;
     /** Returns the content of the Editor as text.
     * @returns {string}
   */
-    getText(): Promise<any>;
+    getText(): any;
     /** Hides a specific message or all messages if no argument is provided.
     * @param {HTMLElement | string | number} item?. Hides a specific message. The argument can be a DOM reference to a specific item, it's index or it's id. If the argument is not provided then all messages will be closed.
     */
@@ -513,7 +515,7 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     * @param {any} settings?. Additional settings that can be applied to the Toast element that handles the messages. This parameter should contain only valid Toast properties and values.
     * @returns {HTMLElement | undefined}
   */
-    showMessage(message: string, settings?: any): Promise<any>;
+    showMessage(message: string, settings?: any): any;
     /** Selects the text inside Editor's content.
     */
     selectAll(): void;
@@ -561,7 +563,7 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     * @param {any} settings. A settings object for the toolbar item. It should have the same definition as when defining a custom toolbar item. You can read more about it in the dedicated topic for the Editor Toolbar on the website.
     * @returns {boolean | undefined}
   */
-    updateToolbarItem(name: string | number, settings: any): Promise<any>;
+    updateToolbarItem(name: string | number, settings: any): any;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

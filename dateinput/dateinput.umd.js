@@ -25,17 +25,6 @@ require('../source/modules/smart.dateinput');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
-	    */
-	    get animation() {
-	        return this.nativeElement ? this.nativeElement.animation : undefined;
-	    }
-	    set animation(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.animation = value;
-	        }
-	    }
 	    /** Determines whether the calendar button pop-up will be closed automatically when date or time is selected through it.
 	    *	Property type: boolean
 	    */
@@ -59,7 +48,7 @@ require('../source/modules/smart.dateinput');
 	        }
 	    }
 	    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. Intl.DateTimeFormat is used to format date strings in JavaScript. By default the date format is 'numeric'. The default value is: { day: 'numeric', month: 'numeric', year: 'numeric' }
-	    *	Property type: DateTimeFormat
+	    *	Property type: any
 	    */
 	    get dateTimeFormat() {
 	        return this.nativeElement ? this.nativeElement.dateTimeFormat : undefined;
@@ -81,7 +70,7 @@ require('../source/modules/smart.dateinput');
 	        }
 	    }
 	    /** Determines the position of the drop down button.
-	    *	Property type: DropDownButtonPosition
+	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
 	        return this.nativeElement ? this.nativeElement.dropDownButtonPosition : undefined;
@@ -111,6 +100,17 @@ require('../source/modules/smart.dateinput');
 	    set dropDownWidth(value) {
 	        if (this.nativeElement) {
 	            this.nativeElement.dropDownWidth = value;
+	        }
+	    }
+	    /** Sets the format string. When this property is set, the dateTimeFormat property will be disabled and the formatting will use the value of the formatString. Built-in Date formats:// short date pattern'd' - 'M/d/yyyy',// long date pattern'D' - 'dddd, MMMM dd, yyyy',// short time pattern't' - 'h:mm tt',// long time pattern'T' - 'h:mm:ss tt',// long date, short time pattern'f' - 'dddd, MMMM dd, yyyy h:mm tt',// long date, long time pattern'F' - 'dddd, MMMM dd, yyyy h:mm:ss tt',// month/day pattern'M' - 'MMMM dd',// month/year pattern'Y' - 'yyyy MMMM',// S is a sortable format that does not vary by culture'S' - 'yyyy'-'MM'-'dd'T'HH':'mm':'ss'Date format strings:'d'-the day of the month;'dd'-the day of the month'ddd'-the abbreviated name of the day of the week'dddd'- the full name of the day of the week'h'-the hour, using a 12-hour clock from 1 to 12'hh'-the hour, using a 12-hour clock from 01 to 12'H'-the hour, using a 24-hour clock from 0 to 23'HH'- the hour, using a 24-hour clock from 00 to 23'm'-the minute, from 0 through 59'mm'-the minutes,from 00 though59'M'- the month, from 1 through 12'MM'- the month, from 01 through 12'MMM'-the abbreviated name of the month'MMMM'-the full name of the month's'-the second, from 0 through 59'ss'-the second, from 00 through 59't'- the first character of the AM/PM designator'tt'-the AM/PM designator'y'- the year, from 0 to 99'yy'- the year, from 00 to 99'yyy'-the year, with a minimum of three digits'yyyy'-the year as a four-digit number;'yyyyy'-the year as a four-digit number.
+	    *	Property type: string
+	    */
+	    get formatString() {
+	        return this.nativeElement ? this.nativeElement.formatString : undefined;
+	    }
+	    set formatString(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.formatString = value;
 	        }
 	    }
 	    /** Sets the purpose of the input and what, if any, permission the user agent has to provide automated assistance in filling out the element's input when in a form, as well as guidance to the browser as to the type of information expected in the element. This value corresponds to the standard HTML autocomplete attribute and can be set to values such as 'on', 'name', 'organization', 'street-address', etc.
@@ -269,7 +269,7 @@ require('../source/modules/smart.dateinput');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["animation", "autoClose", "autoCloseDelay", "dateTimeFormat", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "opened", "placeholder", "readonly", "rightToLeft", "theme", "unfocusable", "value"];
+	        return ["autoClose", "autoCloseDelay", "dateTimeFormat", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "formatString", "inputPurpose", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "opened", "placeholder", "readonly", "rightToLeft", "theme", "unfocusable", "value"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
@@ -373,7 +373,7 @@ require('../source/modules/smart.dateinput');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -400,6 +400,7 @@ require('../source/modules/smart.dateinput');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

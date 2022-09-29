@@ -24,10 +24,10 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Applies new animation settings to the calendar pop-up when it is enabled. Properties:startSpeed - Determines the initial speed of the animation.easeThreshold - Determines the point at which the animation starts to slow down - the "ease effect".step - Determines the step ( scrolling interval ) at which the animation will run. stepEaseSize - Coefficient that is used to calculated the new step once the threshold has been passed. resetThreshold - Determines the threshold for animation reset. When it's reached the animation will start over.
     *	Property type: any
     */
@@ -49,20 +49,20 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     get calendarButton(): boolean;
     set calendarButton(value: boolean);
     /** Determines the position of the calendar button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get calendarButtonPosition(): DropDownButtonPosition;
-    set calendarButtonPosition(value: DropDownButtonPosition);
+    get calendarButtonPosition(): DropDownButtonPosition | string;
+    set calendarButtonPosition(value: DropDownButtonPosition | string);
     /** Determines the header mode of the calendar pop-up.
-    *	Property type: CalendarMode
+    *	Property type: CalendarMode | string
     */
-    get calendarMode(): CalendarMode;
-    set calendarMode(value: CalendarMode);
+    get calendarMode(): CalendarMode | string;
+    set calendarMode(value: CalendarMode | string);
     /** Sets or gets the format of calendar pop-up's day names.
-    *	Property type: DayFormat
+    *	Property type: DayFormat | string
     */
-    get dayNameFormat(): DayFormat;
-    set dayNameFormat(value: DayFormat);
+    get dayNameFormat(): DayFormat | string;
+    set dayNameFormat(value: DayFormat | string);
     /** Enables or disables the element.
     *	Property type: boolean
     */
@@ -74,40 +74,40 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     get disableAutoNavigation(): boolean;
     set disableAutoNavigation(value: boolean);
     /** Determines the time zone to display the value in.
-    *	Property type: DateTimePickerDisplayKind
+    *	Property type: DateTimePickerDisplayKind | string
     */
-    get displayKind(): DateTimePickerDisplayKind;
-    set displayKind(value: DateTimePickerDisplayKind);
+    get displayKind(): DateTimePickerDisplayKind | string;
+    set displayKind(value: DateTimePickerDisplayKind | string);
     /** Determines the type of the month/year view in the calendar pop-up when calendarMode is set to Default.
-    *	Property type: CalendarDisplayModeView
+    *	Property type: CalendarDisplayModeView | string
     */
-    get displayModeView(): CalendarDisplayModeView;
-    set displayModeView(value: CalendarDisplayModeView);
+    get displayModeView(): CalendarDisplayModeView | string;
+    set displayModeView(value: CalendarDisplayModeView | string);
     /** Sets custom container to append the pop-up to. By default, it is in the DateTimePicker. The value of the property can be an HTML element or the id of an HTML element.
     *	Property type: string
     */
     get dropDownAppendTo(): string;
     set dropDownAppendTo(value: string);
     /** Sets or gets the pop-up display mode (what components appear in it, and its behaviour).
-    *	Property type: DateTimePickerDropDownDisplayMode
+    *	Property type: DateTimePickerDropDownDisplayMode | string
     */
-    get dropDownDisplayMode(): DateTimePickerDropDownDisplayMode;
-    set dropDownDisplayMode(value: DateTimePickerDropDownDisplayMode);
+    get dropDownDisplayMode(): DateTimePickerDropDownDisplayMode | string;
+    set dropDownDisplayMode(value: DateTimePickerDropDownDisplayMode | string);
     /** If this property is enabled, when the element's dropdown is opened, a transparent overlay is positioned between the dropdown and the rest of the document.
     *	Property type: boolean
     */
     get dropDownOverlay(): boolean;
     set dropDownOverlay(value: boolean);
     /** Determines the pop-up position when opened.
-    *	Property type: DropDownPosition
+    *	Property type: DropDownPosition | string
     */
-    get dropDownPosition(): DropDownPosition;
-    set dropDownPosition(value: DropDownPosition);
+    get dropDownPosition(): DropDownPosition | string;
+    set dropDownPosition(value: DropDownPosition | string);
     /** Determines how the the value can be edited inside the input.
-    *	Property type: DateTimePickerEditMode
+    *	Property type: DateTimePickerEditMode | string
     */
-    get editMode(): DateTimePickerEditMode;
-    set editMode(value: DateTimePickerEditMode);
+    get editMode(): DateTimePickerEditMode | string;
+    set editMode(value: DateTimePickerEditMode | string);
     /** Determines whether the value can be incremented/decremented with the mouse wheel when the mouse is over the input.
     *	Property type: boolean
     */
@@ -128,7 +128,7 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     */
     get footer(): boolean;
     set footer(value: boolean);
-    /** Determines the pattern that is used to display the value in.
+    /** Determines the pattern that is used to display the value in. Built-in Date formats:// short date pattern'd' - 'M/d/yyyy',// long date pattern'D' - 'dddd, MMMM dd, yyyy',// short time pattern't' - 'h:mm tt',// long time pattern'T' - 'h:mm:ss tt',// long date, short time pattern'f' - 'dddd, MMMM dd, yyyy h:mm tt',// long date, long time pattern'F' - 'dddd, MMMM dd, yyyy h:mm:ss tt',// month/day pattern'M' - 'MMMM dd',// month/year pattern'Y' - 'yyyy MMMM',// S is a sortable format that does not vary by culture'S' - 'yyyy'-'MM'-'dd'T'HH':'mm':'ss'Date format strings:'d'-the day of the month;'dd'-the day of the month'ddd'-the abbreviated name of the day of the week'dddd'- the full name of the day of the week'h'-the hour, using a 12-hour clock from 1 to 12'hh'-the hour, using a 12-hour clock from 01 to 12'H'-the hour, using a 24-hour clock from 0 to 23'HH'- the hour, using a 24-hour clock from 00 to 23'm'-the minute, from 0 through 59'mm'-the minutes,from 00 though59'M'- the month, from 1 through 12'MM'- the month, from 01 through 12'MMM'-the abbreviated name of the month'MMMM'-the full name of the month's'-the second, from 0 through 59'ss'-the second, from 00 through 59't'- the first character of the AM/PM designator'tt'-the AM/PM designator'y'- the year, from 0 to 99'yy'- the year, from 00 to 99'yyy'-the year, with a minimum of three digits'yyyy'-the year as a four-digit number;'yyyyy'-the year as a four-digit number.
     *	Property type: string
     */
     get formatString(): string;
@@ -254,10 +254,10 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     get spinButtonsInitialDelay(): number;
     set spinButtonsInitialDelay(value: number);
     /** Sets or gets the position of the spin buttons.
-    *	Property type: DateTimePickerSpinButtonsPosition
+    *	Property type: DateTimePickerSpinButtonsPosition | string
     */
-    get spinButtonsPosition(): DateTimePickerSpinButtonsPosition;
-    set spinButtonsPosition(value: DateTimePickerSpinButtonsPosition);
+    get spinButtonsPosition(): DateTimePickerSpinButtonsPosition | string;
+    set spinButtonsPosition(value: DateTimePickerSpinButtonsPosition | string);
     /** Sets or gets the element's visual theme.
     *	Property type: string
     */
@@ -274,10 +274,10 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     get tooltipDelay(): number;
     set tooltipDelay(value: number);
     /** Sets the position of the tooltip in the calendar pop-up.
-    *	Property type: TooltipPosition
+    *	Property type: TooltipPosition | string
     */
-    get tooltipPosition(): TooltipPosition;
-    set tooltipPosition(value: TooltipPosition);
+    get tooltipPosition(): TooltipPosition | string;
+    set tooltipPosition(value: TooltipPosition | string);
     /** Sets a template for the content of the calendar pop-up's tooltip. Accepts the id of or a reference to an HTMLTemplateElement.
     *	Property type: string | HTMLTemplateElement
     */
@@ -289,10 +289,10 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
     /** Determines the validation mechanism for the value by min/max.
-    *	Property type: Validation
+    *	Property type: Validation | string
     */
-    get validation(): Validation;
-    set validation(value: Validation);
+    get validation(): Validation | string;
+    set validation(value: Validation | string);
     /** Sets or gets the value. The value represents the current date/time that is set to the element as a DateTime object.
     *	Property type: any
     */
@@ -351,6 +351,14 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     /** Selects the text inside the input.
     */
     select(): void;
+    /** Gets a Date object.
+    * @returns {Date}
+  */
+    getDate(): any;
+    /** Sets the date of the DateTimePicker.
+    * @param {Date} date. The date object to be set.
+    */
+    setDate(date: Date): void;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

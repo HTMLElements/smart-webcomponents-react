@@ -26,7 +26,7 @@ require('../source/modules/smart.carousel');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -92,7 +92,7 @@ require('../source/modules/smart.carousel');
 	        }
 	    }
 	    /** Determines the display mode.
-	    *	Property type: CarouselDisplayMode
+	    *	Property type: CarouselDisplayMode | string
 	    */
 	    get displayMode() {
 	        return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -381,7 +381,7 @@ require('../source/modules/smart.carousel');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -408,6 +408,7 @@ require('../source/modules/smart.carousel');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

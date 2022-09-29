@@ -26,10 +26,10 @@ export declare class Toast extends React.Component<React.HTMLAttributes<Element>
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Specifies the container where new openned toast items will be displayed. The value can be an HTMLElement or element's id. This property is in relation with modal(lower priority than modal) and position(higher priority than position) properties.
     *	Property type: string
     */
@@ -91,10 +91,10 @@ export declare class Toast extends React.Component<React.HTMLAttributes<Element>
     get modal(): boolean;
     set modal(value: boolean);
     /** Sets the part of the browser window where the toast will be positioned. The position property is disregarded if appendTo or modal are set.
-    *	Property type: ToastPosition
+    *	Property type: ToastPosition | string
     */
-    get position(): ToastPosition;
-    set position(value: ToastPosition);
+    get position(): ToastPosition | string;
+    set position(value: ToastPosition | string);
     /** If the element is readonly, users cannot interact with it.
     *	Property type: boolean
     */
@@ -116,10 +116,10 @@ export declare class Toast extends React.Component<React.HTMLAttributes<Element>
     get theme(): string;
     set theme(value: string);
     /** Sets speciffic CSS settings and icon to the toast items.
-    *	Property type: ToastType | null
+    *	Property type: ToastType | null | string
     */
-    get type(): ToastType | null;
-    set type(value: ToastType | null);
+    get type(): ToastType | null | string;
+    set type(value: ToastType | null | string);
     /** If is set to true, the element cannot be focused.
     *	Property type: boolean
     */
@@ -174,7 +174,7 @@ export declare class Toast extends React.Component<React.HTMLAttributes<Element>
     * @param {string} iconType?. The icon name for the toast item. If not set, the type property determines the icon type that will be used.
     * @returns {HTMLElement}
   */
-    open(value?: HTMLElement | string, iconType?: string): Promise<any>;
+    open(value?: HTMLElement | string, iconType?: string): any;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

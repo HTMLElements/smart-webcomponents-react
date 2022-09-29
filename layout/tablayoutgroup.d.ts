@@ -39,15 +39,15 @@ export declare class TabLayoutGroup extends React.Component<React.HTMLAttributes
     get label(): string;
     set label(value: string);
     /** Determines the group orientation.
-    *	Property type: TabLayoutGroupOrientation
+    *	Property type: TabLayoutGroupOrientation | string
     */
-    get orientation(): TabLayoutGroupOrientation;
-    set orientation(value: TabLayoutGroupOrientation);
+    get orientation(): TabLayoutGroupOrientation | string;
+    set orientation(value: TabLayoutGroupOrientation | string);
     /** Determines the position of the tab items group.
-    *	Property type: TabLayoutGroupPosition
+    *	Property type: TabLayoutGroupPosition | string
     */
-    get position(): TabLayoutGroupPosition;
-    set position(value: TabLayoutGroupPosition);
+    get position(): TabLayoutGroupPosition | string;
+    set position(value: TabLayoutGroupPosition | string);
     /** Determines the size of the item.
     *	Property type: any
     */

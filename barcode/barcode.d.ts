@@ -1,10 +1,10 @@
 import React from "react";
-import { BarCodeProperties } from "./../index";
-import { BarCodeLabelPosition, BarCodeRenderAs, BarCodeType } from './../index';
-export { BarCodeProperties } from "./../index";
-export { BarCodeLabelPosition, BarCodeRenderAs, BarCodeType } from './../index';
+import { BarcodeProperties } from "./../index";
+import { BarcodeLabelPosition, BarcodeRenderAs, BarcodeType } from './../index';
+export { BarcodeProperties } from "./../index";
+export { BarcodeLabelPosition, BarcodeRenderAs, BarcodeType } from './../index';
 export declare const Smart: any;
-export interface BarCodeProps extends BarCodeProperties {
+export interface BarcodeProps extends BarcodeProperties {
     className?: string;
     style?: React.CSSProperties;
     onInvalid?: ((event?: Event) => void) | undefined;
@@ -14,7 +14,7 @@ export interface BarCodeProps extends BarCodeProperties {
 /**
  Barcodes encodes text value in a specific pattern.
 */
-export declare class BarCode extends React.Component<React.HTMLAttributes<Element> & BarCodeProps, any> {
+export declare class Barcode extends React.Component<React.HTMLAttributes<Element> & BarcodeProps, any> {
     private _id;
     private nativeElement;
     private componentRef;
@@ -27,13 +27,13 @@ export declare class BarCode extends React.Component<React.HTMLAttributes<Elemen
     /** Sets whether the barcode label is visible.
     *	Property type: boolean
     */
-    get disaplyLabel(): boolean;
-    set disaplyLabel(value: boolean);
+    get displayLabel(): boolean;
+    set displayLabel(value: boolean);
     /** Sets the color of the barcode label.
     *	Property type: string
     */
-    get labelCOlor(): string;
-    set labelCOlor(value: string);
+    get labelColor(): string;
+    set labelColor(value: string);
     /** Sets the font family of the barcode label.
     *	Property type: string
     */
@@ -55,10 +55,10 @@ export declare class BarCode extends React.Component<React.HTMLAttributes<Elemen
     get labelMarginTop(): number;
     set labelMarginTop(value: number);
     /** Sets the position of the barcode label.
-    *	Property type: BarCodeLabelPosition
+    *	Property type: BarcodeLabelPosition | string
     */
-    get labelPosition(): BarCodeLabelPosition;
-    set labelPosition(value: BarCodeLabelPosition);
+    get labelPosition(): BarcodeLabelPosition | string;
+    set labelPosition(value: BarcodeLabelPosition | string);
     /** Sets the color of the barcode lines.
     *	Property type: string
     */
@@ -75,15 +75,15 @@ export declare class BarCode extends React.Component<React.HTMLAttributes<Elemen
     get lineWidth(): number;
     set lineWidth(value: number);
     /** Sets the rendering mode of the barcode.
-    *	Property type: BarCodeRenderAs
+    *	Property type: BarcodeRenderAs | string
     */
-    get renderAs(): BarCodeRenderAs;
-    set renderAs(value: BarCodeRenderAs);
+    get renderAs(): BarcodeRenderAs | string;
+    set renderAs(value: BarcodeRenderAs | string);
     /** Sets the barcode type
-    *	Property type: BarCodeType
+    *	Property type: BarcodeType | string
     */
-    get type(): BarCodeType;
-    set type(value: BarCodeType);
+    get type(): BarcodeType | string;
+    set type(value: BarcodeType | string);
     /** Sets or gets the value of the barcode.
     *	Property type: string
     */
@@ -91,9 +91,11 @@ export declare class BarCode extends React.Component<React.HTMLAttributes<Elemen
     set value(value: string);
     get properties(): string[];
     /**  This event is triggered when the value of the barcode is invalid.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	value, 	invalidCharacters)
-    *   value - the invalid value of the barcode.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	invalidCharacters, 	lengthValidity, 	patternValidity, 	value)
     *   invalidCharacters - An array indicating the invalid characters.
+    *   lengthValidity - A boolean indicating the length validity.
+    *   patternValidity - A boolean indicating the pattern validity.
+    *   value - the invalid value of the barcode.
     */
     onInvalid?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
@@ -112,16 +114,16 @@ export declare class BarCode extends React.Component<React.HTMLAttributes<Elemen
     * @param {string} format. The dataURL format of the string - svg, png, jpg
     * @returns {string}
   */
-    getDataURL(format: string): Promise<any>;
+    getDataURL(format: string): any;
     /** Gets the base64 string of the barcode
     * @param {string} format. The dataURL format of the string - svg, png, jpg
     * @returns {any}
   */
-    getDataURLAsync(format: string): Promise<any>;
+    getDataURLAsync(format: string): any;
     /** Gets the validity of the barcode
     * @returns {boolean}
   */
-    isValid(): Promise<any>;
+    isValid(): any;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;
@@ -131,4 +133,4 @@ export declare class BarCode extends React.Component<React.HTMLAttributes<Elemen
         ref: any;
     }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
-export default BarCode;
+export default Barcode;

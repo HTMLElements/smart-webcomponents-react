@@ -26,7 +26,7 @@ require('../source/modules/smart.button');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -37,7 +37,7 @@ require('../source/modules/smart.button');
 	        }
 	    }
 	    /** Sets the click mode of the switch button. This property is active only when switchMode is 'click'. press - the state of the switch is changed on mousedownrelease - the state of the switch is changed on mouseuppressAndRelease - the state of the switch is changed on mousedown and reverted to the original on mouseup.
-	    *	Property type: ClickMode
+	    *	Property type: ClickMode | string
 	    */
 	    get clickMode() {
 	        return this.nativeElement ? this.nativeElement.clickMode : undefined;
@@ -158,7 +158,7 @@ require('../source/modules/smart.button');
 	        }
 	    }
 	    /** Sets the orientation of the switch
-	    *	Property type: Orientation
+	    *	Property type: Orientation | string
 	    */
 	    get orientation() {
 	        return this.nativeElement ? this.nativeElement.orientation : undefined;
@@ -202,7 +202,7 @@ require('../source/modules/smart.button');
 	        }
 	    }
 	    /** Sets the switchMode of the element. default - dragging the thumb or clicking inside the track can change the state of the element. click - clicking inside the track changes the state of the element. drag - dragging the thumb changes the state of the element.none - the state of the element can only be changed via the API
-	    *	Property type: SwitchButtonSwitchMode
+	    *	Property type: SwitchButtonSwitchMode | string
 	    */
 	    get switchMode() {
 	        return this.nativeElement ? this.nativeElement.switchMode : undefined;
@@ -276,7 +276,7 @@ require('../source/modules/smart.button');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -303,6 +303,7 @@ require('../source/modules/smart.button');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

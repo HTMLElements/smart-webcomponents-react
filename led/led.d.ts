@@ -20,20 +20,20 @@ export declare class Led extends React.Component<React.HTMLAttributes<Element> &
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets or gets the check state.
     *	Property type: boolean
     */
     get checked(): boolean;
     set checked(value: boolean);
     /** Determines when the element fires a click event.
-    *	Property type: ClickMode
+    *	Property type: ClickMode | string
     */
-    get clickMode(): ClickMode;
-    set clickMode(value: ClickMode);
+    get clickMode(): ClickMode | string;
+    set clickMode(value: ClickMode | string);
     /** Enables or disables the LED.
     *	Property type: boolean
     */
@@ -95,10 +95,10 @@ export declare class Led extends React.Component<React.HTMLAttributes<Element> &
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
     /** Sets the shape of LED.
-    *	Property type: LedShape
+    *	Property type: LedShape | string
     */
-    get shape(): LedShape;
-    set shape(value: LedShape);
+    get shape(): LedShape | string;
+    set shape(value: LedShape | string);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */

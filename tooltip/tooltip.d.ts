@@ -23,10 +23,10 @@ export declare class Tooltip extends React.Component<React.HTMLAttributes<Elemen
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines how to align the tooltip.
     *	Property type: string
     */
@@ -38,10 +38,10 @@ export declare class Tooltip extends React.Component<React.HTMLAttributes<Elemen
     get arrow(): boolean;
     set arrow(value: boolean);
     /** Sets the position of the arrow.
-    *	Property type: TooltipArrowDirection
+    *	Property type: TooltipArrowDirection | string
     */
-    get arrowDirection(): TooltipArrowDirection;
-    set arrowDirection(value: TooltipArrowDirection);
+    get arrowDirection(): TooltipArrowDirection | string;
+    set arrowDirection(value: TooltipArrowDirection | string);
     /** Gets or sets whether a tooltip's arrow will be shown.
     *	Property type: number
     */
@@ -73,15 +73,15 @@ export declare class Tooltip extends React.Component<React.HTMLAttributes<Elemen
     get messages(): any;
     set messages(value: any);
     /** Sets or gets the way of triggering the tooltip.
-    *	Property type: TooltipOpenMode
+    *	Property type: TooltipOpenMode | string
     */
-    get openMode(): TooltipOpenMode;
-    set openMode(value: TooltipOpenMode);
+    get openMode(): TooltipOpenMode | string;
+    set openMode(value: TooltipOpenMode | string);
     /** Gets or sets the position of the tooltip.
-    *	Property type: TooltipPosition
+    *	Property type: TooltipPosition | string
     */
-    get position(): TooltipPosition;
-    set position(value: TooltipPosition);
+    get position(): TooltipPosition | string;
+    set position(value: TooltipPosition | string);
     /** Sets the element which triggers the tooltip.
     *	Property type: string | HTMLElement
     */

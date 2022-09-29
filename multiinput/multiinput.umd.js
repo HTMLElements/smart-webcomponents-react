@@ -26,7 +26,7 @@ require('../source/modules/smart.multiinput');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -70,7 +70,7 @@ require('../source/modules/smart.multiinput');
 	        }
 	    }
 	    /** Determines the position of the drop down button.
-	    *	Property type: DropDownButtonPosition
+	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
 	        return this.nativeElement ? this.nativeElement.dropDownButtonPosition : undefined;
@@ -213,7 +213,7 @@ require('../source/modules/smart.multiinput');
 	        }
 	    }
 	    /** Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation.
-	    *	Property type: MultiInputQueryMode
+	    *	Property type: MultiInputQueryMode | string
 	    */
 	    get queryMode() {
 	        return this.nativeElement ? this.nativeElement.queryMode : undefined;
@@ -423,7 +423,7 @@ require('../source/modules/smart.multiinput');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -450,6 +450,7 @@ require('../source/modules/smart.multiinput');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

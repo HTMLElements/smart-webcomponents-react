@@ -31,10 +31,10 @@ export declare class ColorPicker extends React.Component<React.HTMLAttributes<El
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** This property allows editting of colors via the input inside the element's action section. Accepts values in all supported types. This property works when 'valueDisplayMode' is set to default or colorCode.
     *	Property type: boolean
     */
@@ -46,20 +46,20 @@ export declare class ColorPicker extends React.Component<React.HTMLAttributes<El
     get autoCloseDelay(): number;
     set autoCloseDelay(value: number);
     /** Specifies how the user applies the selected value. In 'instantly' mode the value is applied immediately when color is selected. In 'useButtons' mode are shown 'Ok' and 'Cancel' buttons at the botom of the colorpicker's drop down. Only click on 'OK' button applies the value.
-    *	Property type: ColorApplyValueMode
+    *	Property type: ColorApplyValueMode | string
     */
-    get applyValueMode(): ColorApplyValueMode;
-    set applyValueMode(value: ColorApplyValueMode);
+    get applyValueMode(): ColorApplyValueMode | string;
+    set applyValueMode(value: ColorApplyValueMode | string);
     /** Defines the number of columns for the colors in displayModes 'grid', 'hexagonal' and 'spectrumGrid'.
     *	Property type: number
     */
     get columnCount(): number;
     set columnCount(value: number);
     /** Determines the colors that will be displayed and their layout.
-    *	Property type: ColorDisplayMode
+    *	Property type: ColorDisplayMode | string
     */
-    get displayMode(): ColorDisplayMode;
-    set displayMode(value: ColorDisplayMode);
+    get displayMode(): ColorDisplayMode | string;
+    set displayMode(value: ColorDisplayMode | string);
     /** Enables or disables the element.
     *	Property type: boolean
     */
@@ -76,20 +76,20 @@ export declare class ColorPicker extends React.Component<React.HTMLAttributes<El
     get dropDownAppendTo(): string;
     set dropDownAppendTo(value: string);
     /** Determines how the drop down is going to open.
-    *	Property type: DropDownOpenMode
+    *	Property type: DropDownOpenMode | string
     */
-    get dropDownOpenMode(): DropDownOpenMode;
-    set dropDownOpenMode(value: DropDownOpenMode);
+    get dropDownOpenMode(): DropDownOpenMode | string;
+    set dropDownOpenMode(value: DropDownOpenMode | string);
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Determines the vertical position of the dropDown. 'Auto' means its automatically determined depending on the viewport size.
-    *	Property type: DropDownPosition
+    *	Property type: DropDownPosition | string
     */
-    get dropDownPosition(): DropDownPosition;
-    set dropDownPosition(value: DropDownPosition);
+    get dropDownPosition(): DropDownPosition | string;
+    set dropDownPosition(value: DropDownPosition | string);
     /** Sets the height of the drop down. Default value of null means that CSS variables are used. This property should be used when the browser doesn not support CSS variables.
     *	Property type: string
     */
@@ -196,10 +196,10 @@ export declare class ColorPicker extends React.Component<React.HTMLAttributes<El
     get opened(): boolean;
     set opened(value: boolean);
     /** Determines what colors will be displayed in 'spectrumGrid', 'grid' and 'hexagonal' displayModes.
-    *	Property type: ColorPalette
+    *	Property type: ColorPalette | string
     */
-    get palette(): ColorPalette;
-    set palette(value: ColorPalette);
+    get palette(): ColorPalette | string;
+    set palette(value: ColorPalette | string);
     /** Defines an array of colors that form a custom palette. This palette can be used in displayModes 'grid' and 'spectrum grid' if the palette property is set to custom. The value of the property can be an array of strings or objects that contain valid colors ( HEX, RGBA, etc).
     *	Property type: {name: string, value: string}[] | string[] | null
     */
@@ -232,10 +232,10 @@ export declare class ColorPicker extends React.Component<React.HTMLAttributes<El
     get resizeIndicator(): boolean;
     set resizeIndicator(value: boolean);
     /** Determines whether the dropDown can be resized or not. When resizing is enabled, a resize bar appears on the top/bottom side of the drop down.
-    *	Property type: ResizeMode
+    *	Property type: ResizeMode | string
     */
-    get resizeMode(): ResizeMode;
-    set resizeMode(value: ResizeMode);
+    get resizeMode(): ResizeMode | string;
+    set resizeMode(value: ResizeMode | string);
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */
@@ -247,10 +247,10 @@ export declare class ColorPicker extends React.Component<React.HTMLAttributes<El
     get theme(): string;
     set theme(value: string);
     /** Determines how the tooltip displays the value of the color that is being hovered.
-    *	Property type: ColorTooltipDisplayMode
+    *	Property type: ColorTooltipDisplayMode | string
     */
-    get tooltipDisplayMode(): ColorTooltipDisplayMode;
-    set tooltipDisplayMode(value: ColorTooltipDisplayMode);
+    get tooltipDisplayMode(): ColorTooltipDisplayMode | string;
+    set tooltipDisplayMode(value: ColorTooltipDisplayMode | string);
     /** If is set to true, the element cannot be focused.
     *	Property type: boolean
     */
@@ -262,15 +262,15 @@ export declare class ColorPicker extends React.Component<React.HTMLAttributes<El
     get value(): string;
     set value(value: string);
     /** Determines the format of the color. Whether it's in HEX, RGB or RGBA. By default it shows the color depending on the displayMode.
-    *	Property type: ColorValueFormat
+    *	Property type: ColorValueFormat | string
     */
-    get valueFormat(): ColorValueFormat;
-    set valueFormat(value: ColorValueFormat);
+    get valueFormat(): ColorValueFormat | string;
+    set valueFormat(value: ColorValueFormat | string);
     /** Determines which elements will be displayed in color picker's action section.
-    *	Property type: ColorValueDisplayMode
+    *	Property type: ColorValueDisplayMode | string
     */
-    get valueDisplayMode(): ColorValueDisplayMode;
-    set valueDisplayMode(value: ColorValueDisplayMode);
+    get valueDisplayMode(): ColorValueDisplayMode | string;
+    set valueDisplayMode(value: ColorValueDisplayMode | string);
     get properties(): string[];
     /**  This event is triggered when user clicks on the action button. 'Ok' button is visible only when applyValueMode is set to useButtons.
     *  @param event. The custom event. 	*/

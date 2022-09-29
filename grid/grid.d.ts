@@ -1,8 +1,8 @@
 import React from "react";
 import { GridProperties } from "./../index";
-import { Scrolling, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnGroup, GridConditionalFormatting, GridCharting, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridEditing, GridFiltering, GridGrouping, GridPaging, GridPager, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSorting } from './../index';
+import { Scrolling, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridContextMenu, GridColumnMenu, GridColumnGroup, GridConditionalFormatting, GridCharting, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridEditing, GridFiltering, GridGrouping, GridUploadSettings, GridPaging, GridPager, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSorting } from './../index';
 export { GridProperties } from "./../index";
-export { GridAppearanceAutoGenerateRowLabelMode, GridAppearanceAutoGenerateColumnLabelMode, GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnFilterMenuMode, GridColumnSortOrder, GridConditionalFormattingCondition, GridDataExportPageOrientation, GridDataSourceSettingsSanitizeHTML, GridDataSourceSettingsDataFieldDataType, GridDataSourceSettingsDataSourceType, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridEditingAddNewRowDisplayMode, GridFilteringFilterRowApplyMode, GridFilteringFilterMenuMode, GridGroupingExpandMode, GridGroupingRenderMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridColumnMenu, GridColumnMenuDataSource, GridCommand, GridColumnGroup, GridConditionalFormatting, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridDataSourceSettingsDataField, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridEditingAddNewColumn, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
+export { GridAppearanceAutoGenerateRowLabelMode, GridAppearanceAutoGenerateColumnLabelMode, GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnFilterMenuMode, GridColumnSortOrder, GridConditionalFormattingCondition, GridDataExportPageOrientation, GridDataSourceSettingsSanitizeHTML, GridDataSourceSettingsDataFieldDataType, GridDataSourceSettingsDataSourceType, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridEditingAddNewRowDisplayMode, GridFilteringFilterRowApplyMode, GridFilteringFilterMenuMode, GridGroupingExpandMode, GridGroupingRenderMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridSortingCommandKey, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridContextMenu, GridContextMenuDataSource, GridCommand, GridColumnMenu, GridColumnMenuDataSource, GridColumnGroup, GridConditionalFormatting, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridDataSourceSettingsDataField, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridEditingAddNewColumn, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridUploadSettings, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
 export { DataAdapter, Chart } from './../index';
 export declare const Smart: any;
 export interface GridProps extends GridProperties {
@@ -21,6 +21,7 @@ export interface GridProps extends GridProperties {
     onColumnReorder?: ((event?: Event) => void) | undefined;
     onCommentAdd?: ((event?: Event) => void) | undefined;
     onCommentRemove?: ((event?: Event) => void) | undefined;
+    onContextMenuItemClick?: ((event?: Event) => void) | undefined;
     onRowDragStart?: ((event?: Event) => void) | undefined;
     onRowDragging?: ((event?: Event) => void) | undefined;
     onRowDragEnd?: ((event?: Event) => void) | undefined;
@@ -92,6 +93,11 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
         label: string;
         dataField: string;
     }[] | string[] | number | GridColumn[]);
+    /** Context Menu is the drop-down menu displayed after right-clicking a Grid row. It allows you to delete row, edit cell or row depending on the edit mode. The 'contextMenuItemCustom' dataSource option allows you to add custom menu item to the context menu. You can replace the context menu by using the 'selector' property and setting it to ID of a Smart.Menu component.
+    *	Property type: GridContextMenu
+    */
+    get contextMenu(): GridContextMenu;
+    set contextMenu(value: GridContextMenu);
     /** Column Menu is the drop-down menu displayed after clicking the column header's drop-down button, which is displayed when you hover the column header. It allows you to customize column settings. For example: Sort, Filter or Group the Grid by the current column.
     *	Property type: GridColumnMenu
     */
@@ -174,7 +180,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
             (commit: boolean): void;
         }): void;
     });
-    /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
+    /** Callback function() called when the grid has been rendered for first time and bindings are completed. The component is ready.
     *	Property type: {(cell: GridCell): void}
     */
     get onCellRender(): {
@@ -183,7 +189,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onCellRender(value: {
         (cell: GridCell): void;
     });
-    /** Sets the grid users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
+    /** Sets or gets the rows  CSS class rules. Different CSS class names are conditionally applied. Example: rowCSSRules: { 'cell-class-1': settings =&gt; settings.data.quantity === 5, 'cell-class-2': settings =&gt; settings.data.quantity &lt; 5, 'cell-class-3': settings =&gt; settings.data.quantity &gt; 5 }.  The settings object contains the following properties: index, data, row, api.
     *	Property type: {(): void}
     */
     get onBeforeInit(): {
@@ -192,7 +198,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onBeforeInit(value: {
         (): void;
     });
-    /** Describes the paging settings.
+    /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
     *	Property type: {(): void}
     */
     get onInit(): {
@@ -201,7 +207,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onInit(value: {
         (): void;
     });
-    /** Describes the pager settings.
+    /** Sets the grid users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
     *	Property type: {(): void}
     */
     get onAfterInit(): {
@@ -210,17 +216,22 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onAfterInit(value: {
         (): void;
     });
-    /** Sets the row details.
+    /** Sets the grid's image upload settings for the image columns.
     *	Property type: any
     */
     get onChartInit(): any;
     set onChartInit(value: any);
-    /** Sets the scroll mode settings.
+    /** Describes the paging settings.
     *	Property type: any
     */
     get onRender(): any;
     set onRender(value: any);
-    /** Describes the column header settings.
+    /** Describes the pager settings.
+    *	Property type: any
+    */
+    get onLoad(): any;
+    set onLoad(value: any);
+    /** Sets the row details.
     *	Property type: {(event: KeyboardEvent): void}
     */
     get onKey(): {
@@ -229,7 +240,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onKey(value: {
         (event: KeyboardEvent): void;
     });
-    /** Describes the summary row settings.
+    /** Sets the scroll mode settings.
     *	Property type: {(index: number, row: GridRow): void}
     */
     get onRowInit(): {
@@ -238,7 +249,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowInit(value: {
         (index: number, row: GridRow): void;
     });
-    /** Describes the settings for the group header.
+    /** Describes the column header settings.
     *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
     */
     get onRowDetailInit(): {
@@ -247,7 +258,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowDetailInit(value: {
         (index: number, row: GridRow, details: HTMLElement): void;
     });
-    /** Describes the header settings of the grid.
+    /** Describes the summary row settings.
     *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
     */
     get onRowDetailUpdated(): {
@@ -255,6 +266,24 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     };
     set onRowDetailUpdated(value: {
         (index: number, row: GridRow, details: HTMLElement): void;
+    });
+    /** Describes the settings for the group header.
+    *	Property type: {(index: number, row: GridRow, history: any[]): void}
+    */
+    get onRowHistory(): {
+        (index: number, row: GridRow, history: any[]): void;
+    };
+    set onRowHistory(value: {
+        (index: number, row: GridRow, history: any[]): void;
+    });
+    /** Describes the header settings of the grid.
+    *	Property type: {(index: number, row: GridRow, history: any[]): void}
+    */
+    get onRowStyle(): {
+        (index: number, row: GridRow, history: any[]): void;
+    };
+    set onRowStyle(value: {
+        (index: number, row: GridRow, history: any[]): void;
     });
     /** Describes the footer settings of the grid.
     *	Property type: {(index: number[], row: GridRow[]): void}
@@ -297,6 +326,24 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
         (index: number[], row: GridRow[]): void;
     });
     /** Describes sorting settings.
+    *	Property type: {(index: number, data: any, row: GridRow[]): void}
+    */
+    get onRowClass(): {
+        (index: number, data: any, row: GridRow[]): void;
+    };
+    set onRowClass(value: {
+        (index: number, data: any, row: GridRow[]): void;
+    });
+    /** undefined
+    *	Property type: {(index: number, dataField: string, cellValue: any, data: any, row: GridRow[]): void}
+    */
+    get onCellClass(): {
+        (index: number, dataField: string, cellValue: any, data: any, row: GridRow[]): void;
+    };
+    set onCellClass(value: {
+        (index: number, dataField: string, cellValue: any, data: any, row: GridRow[]): void;
+    });
+    /** undefined
     *	Property type: {(index: number, column: GridColumn): void}
     */
     get onColumnInit(): {
@@ -333,6 +380,15 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
         (index: number, column: GridColumn): void;
     });
     /** undefined
+    *	Property type: {(dataField: string, cloneColumnDataField: string, index: number, duplicateCells: boolean): void}
+    */
+    get onColumnClone(): {
+        (dataField: string, cloneColumnDataField: string, index: number, duplicateCells: boolean): void;
+    };
+    set onColumnClone(value: {
+        (dataField: string, cloneColumnDataField: string, index: number, duplicateCells: boolean): void;
+    });
+    /** undefined
     *	Property type: {(name: string, command: any, details: GridCell, event: Event | KeyboardEvent | PointerEvent, handled: boolean): void}
     */
     get onCommand(): {
@@ -341,6 +397,11 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onCommand(value: {
         (name: string, command: any, details: GridCell, event: Event | KeyboardEvent | PointerEvent, handled: boolean): void;
     });
+    /** undefined
+    *	Property type: any
+    */
+    get rowCSSRules(): any;
+    set rowCSSRules(value: any);
     /** undefined
     *	Property type: string | number
     */
@@ -351,6 +412,11 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     get users(): any[];
     set users(value: any[]);
+    /** undefined
+    *	Property type: GridUploadSettings
+    */
+    get uploadSettings(): GridUploadSettings;
+    set uploadSettings(value: GridUploadSettings);
     /** undefined
     *	Property type: GridPaging
     */
@@ -367,10 +433,10 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     get rowDetail(): GridRowDetail;
     set rowDetail(value: GridRowDetail);
     /** undefined
-    *	Property type: Scrolling
+    *	Property type: Scrolling | string
     */
-    get scrolling(): Scrolling;
-    set scrolling(value: Scrolling);
+    get scrolling(): Scrolling | string;
+    set scrolling(value: Scrolling | string);
     /** undefined
     *	Property type: GridColumnHeader
     */
@@ -417,13 +483,15 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     get sorting(): GridSorting;
     set sorting(value: GridSorting);
     get properties(): string[];
-    /**  This event is triggered, when the edit begins.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	dataField, 	row, 	column, 	cell)
+    /**  This event is triggered, when the edit begins. After the event occurs, editing starts. If you need to prevent the editing for specific cells, rows or columns, you can call event.preventDefault();.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	dataField, 	row, 	column, 	cell, 	data, 	value)
     *   id - The edited row id.
     *   dataField - The edited column data field.
     *   row - The edited row.
     *   column - The edited column.
     *   cell - The edited cell.
+    *   data - The edited row's data.
+    *   value - The edited cell's value.
     */
     onBeginEdit?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the Grid's header toolbar is displayed and the 'OK' button of a header dropdown is clicked. For example, when you open the columns customize panel, reorder columns and click the 'OK' button.
@@ -514,6 +582,13 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     *   comment - The comment object. The comment object has 'text: string', 'id: string', 'userId: string | number', and 'time: date' fields. The 'text' is the comment's text. 'id' is the comment's unique id, 'userId' is the user's id who entered the comment and 'time' is a javascript date object.
     */
     onCommentRemove?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when the user clicks on a context menu item.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	dataField, 	command)
+    *   id - The row's id.
+    *   dataField - The column's data field.
+    *   command - Command function.
+    */
+    onContextMenuItemClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user starts a row drag.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	id, 	index, 	originalEvent)
     *   row - The row.
@@ -624,12 +699,14 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     onCellDoubleClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the edit ends.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	dataField, 	row, 	column, 	cell)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	dataField, 	row, 	column, 	cell, 	data, 	value)
     *   id - The edited row id.
     *   dataField - The edited column data field.
     *   row - The edited row.
     *   column - The edited column.
     *   cell - The edited cell.
+    *   data - The edited row's data.
+    *   value - The edited cell's value.
     */
     onEndEdit?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when a filter is added or removed.
@@ -673,9 +750,13 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     *  @param event. The custom event. 	*/
     onPage?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when a sorting column is added or removed.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	columns, 	data)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	columns, 	data, 	sortDataFields, 	sortDataTypes, 	sortOrders, 	sortIndexes)
     *   columns - Array of columns.
     *   data - Array of {dataField: string, sortOrder: string, sortIndex: number}. <em>dataField</em> is the column's data field. <em>sortOrder</em> is 'asc' or 'desc', <em>sortIndex</em> is the index of the column in multi column sorting.
+    *   sortDataFields - Array of column data fields.
+    *   sortDataTypes - Array of column data types. The values in the array would be 'string', 'date', 'boolean' or 'number'.
+    *   sortOrders - Array of column orders. The values in the array would be 'asc' or 'desc'.
+    *   sortIndexes - Array of column sort indexes. When multiple sorting is applied the sort index is an important parameter as it specifies the priority of sorting.
     */
     onSort?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user reaches the bottom of the grid.
@@ -694,26 +775,28 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     /** Adds a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {any} data. row data matching the data source
     * @param {boolean} insertAtBottom?. Determines whether to add the new row to the bottom or top of the collection. The default value is 'true'
-    * @param {any} callback?. Sets a callback function, which is called after the new row is added. The callback's argument is the new row.
+    * @param {{(row: GridRow): void}} callback?. Sets a callback function, which is called after the new row is added. The callback's argument is the new row.
     */
-    addRow(data: any, insertAtBottom?: boolean, callback?: any): void;
+    addRow(data: any, insertAtBottom?: boolean, callback?: {
+        (row: GridRow): void;
+    }): void;
     /** Adds a new row and puts it into edit mode. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string} position?. 'near' or 'far'
     * @returns {boolean}
   */
-    addNewRow(position?: string): Promise<any>;
+    addNewRow(position?: string): any;
     /** Adds a new column.
     * @param {any} column. A Grid column object. See 'columns' property.
     * @returns {boolean}
   */
-    addNewColumn(column: any): Promise<any>;
+    addNewColumn(column: any): any;
     /** Adds a new unbound row to the top or bottom. Unbound rows are not part of the Grid's dataSource. They become part of the dataSource, after an unbound row is edited.
     * @param {number} count. The count of unbound rows.
     * @param {string} position?. 'near' or 'far'
     * @returns {boolean}
   */
-    addUnboundRow(count: number, position?: string): Promise<any>;
-    /** Adds a filter to a column. This method will apply a filter to the Grid data.
+    addUnboundRow(count: number, position?: string): any;
+    /** Adds a filter to a column. This method will apply a filter to the Grid data. Example for adding multiple filters to a column: grid.addFilter('lastName', ['CONTAINS "burke"', 'or', 'CONTAINS "peterson"']). Example for adding single filter to a column: grid.addFilter('lastName', 'CONTAINS "burke"'). Example for adding numeric filter:  grid.addFilter('quantity', '&lt;= 5')
     * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
     * @param {string} filter. Filter expression like: 'startsWith B'. Example 2: ['contains Andrew or contains Nancy'], Example 3:  ['quantity', '&lt;= 3 and &gt;= 8'].  Filter conditions which you can use in the expressions: '=', 'EQUAL','&lt;&gt;', 'NOT_EQUAL', '!=', '&lt;', 'LESS_THAN','&gt;', 'GREATER_THAN', '&lt;=', 'LESS_THAN_OR_EQUAL', '&gt;=', 'GREATER_THAN_OR_EQUAL','starts with', 'STARTS_WITH','ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS','DOES_NOT_CONTAIN', 'NULL','NOT_NULL'
     * @param {boolean} refreshFilters?. Set this to false, if you will use multiple 'addFilter' calls. By doing this, you will avoid unnecessary renders.
@@ -734,10 +817,14 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     /** Auto-sizes grid columns. This method will update the width of all Grid columns.
     */
     autoSizeColumns(): void;
+    /** Auto-sizes grid column. This method will update the width of a Grid column by measuring the cells and column header label width.
+    * @param {string} dataField?. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+    */
+    autoSizeColumn(dataField?: string): void;
     /** This method returns true, if all rows in the Grid are selected.
     * @returns {boolean}
   */
-    areAllRowsSelected(): Promise<any>;
+    areAllRowsSelected(): any;
     /** Starts an update operation. This is appropriate when calling multiple methods or set multiple properties at once.
     */
     beginUpdate(): void;
@@ -788,15 +875,17 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     createChart(type: string, dataSource?: any): void;
     /** Delete a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string | number} rowId. row bound id
-    * @param {any} callback?. Sets a callback function, which is called after the row is deleted. The callback's argument is the deleted row.
+    * @param {{(row: GridRow): void}} callback?. Sets a callback function, which is called after the row is deleted. The callback's argument is the deleted row.
     */
-    deleteRow(rowId: string | number, callback?: any): void;
+    deleteRow(rowId: string | number, callback?: {
+        (row: GridRow): void;
+    }): void;
     /** Scrolls to a row or cell. This method scrolls to a row or cell, when scrolling is necessary. If pagination is enabled, it will automatically change the page.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
     * @returns {boolean}
   */
-    ensureVisible(rowId: string | number, dataField?: string): Promise<any>;
+    ensureVisible(rowId: string | number, dataField?: string): any;
     /** Ends the editing. This method confirms all changes and closes the opened cell editor(s).
     */
     endEdit(): void;
@@ -804,10 +893,14 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     * @param {boolean} refresh?. The flag that control the calls of the refresh method.
     */
     endUpdate(refresh?: boolean): void;
-    /** Expands a TreeGrid or Grouping row.
+    /** Expands a TreeGrid or Grouping row. For example, if you want to expand the first group, then its second sub grup, then the first sub sub group, you can use: grid.expandRow('0.1.0');
     * @param {string | number} rowId. row bound id
     */
     expandRow(rowId: string | number): void;
+    /** Expands rows to a given group level. For example 'grid.expandRowsToGroupLevel(1);' means that all groups at the root level will be expanded.
+    * @param {number} level. row group level
+    */
+    expandRowsToGroupLevel(level: number): void;
     /** Expands all TreeGrid or Grouping rows.
     */
     expandAllRows(): void;
@@ -815,6 +908,18 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     * @param {string} Dataformat. 'xlsx', 'pdf', 'json', 'xml', 'csv', 'tsv', 'html', 'png', 'jpeg'.
     */
     exportData(Dataformat: string): void;
+    /** Finds entries by using a query and returns an array of row ids. Example: const rows = grid.find('nancy'); returns all rows that have 'nancy' value. Example 2: const rows = grid.find('nancy, davolio'); returns all rows that have 'nancy' and 'davolio' values in the same row. Example 3: const rows = grid.find(5, 'quantity', '>'); returns all rows where the value of the 'quantity' field is > 5.
+    * @param {string} query. Search query
+    * @param {string} dataField?. Column data field.
+    * @param {string} condition?. Conditions which you can use in the expressions: '=', 'EQUAL','&lt;&gt;', 'NOT_EQUAL', '!=', '&lt;', 'LESS_THAN','&gt;', 'GREATER_THAN', '&lt;=', 'LESS_THAN_OR_EQUAL', '&gt;=', 'GREATER_THAN_OR_EQUAL','starts with', 'STARTS_WITH','ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS','DOES_NOT_CONTAIN', 'NULL','NOT_NULL'
+    * @returns {any[]}
+  */
+    find(query: string, dataField?: string, condition?: string): any;
+    /** Finds entries by using a query and returns an array of cells. Each cell in the array is also an array in this format: [id, dataField, value]. Example: const cells = grid.findCells('nancy'); returns all cells that have 'nancy' value. Example 2: const cells = grid.findCells('nancy, davolio'); returns all cells that have 'nancy' and 'davolio' values.
+    * @param {string} query. Search query. You can enter multiple search strings, by using ','. Example: 'nancy, davolio'
+    * @returns {any[]}
+  */
+    findCells(query: string): any;
     /** Navigates to a page, when paging is enabled.
     * @param {number} index. page index
     */
@@ -831,102 +936,142 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     /** Navigates to the last page, when grid paging is enabled.
     */
     lastPage(): void;
+    /** Focuses and selects a cell or row. The keyboard navigation starts from the focused cell or row. Any previously applied selection will be cleared after calling this method.
+    * @param {string | number} rowId. row bound id
+    * @param {string} dataField?. column bound data field
+    */
+    focusAndSelect(rowId: string | number, dataField?: string): void;
+    /** Iterates through each row in the grid and calls the callback for each row. This is similar to the forEach method on a JavaScript array. This is called for each row, ignoring grouping, filtering or sorting applied in the Grid.
+    * @param {any} rowCallback. Callback function with a row object as parameter. Example: grid.forEachRow((row) => { console.log(row.id) });
+    */
+    forEachRow(rowCallback: any): void;
+    /** Similar to forEachRow. Iterates through each row in the grid and calls the callback for each row. This method takes into account filtering and sorting applied to the Grid.
+    * @param {any} rowCallback. Callback function with a row object as parameter. Example: grid.forEachRow((row) => { console.log(row.id) });
+    */
+    forEachRowAfterFilterAndSort(rowCallback: any): void;
     /** Gets the maximum position of the vertical scrollbar. You can use this method in combination with the setVerticalScrollValue to apply a new scroll position.
     * @returns {number}
   */
-    getVerticalScrollMax(): Promise<any>;
+    getVerticalScrollMax(): any;
     /** Gets the position of the vertical scrollbar.
     * @returns {number}
   */
-    getVerticalScrollValue(): Promise<any>;
+    getVerticalScrollValue(): any;
     /** Gets the maximum position of the horizontal scrollbar. You can use this method in combination with the setHorizontalScrollValue to apply a new scroll position.
     * @returns {number}
   */
-    getHorizontalScrollMax(): Promise<any>;
+    getHorizontalScrollMax(): any;
     /** Gets the position of the horizontal scrollbar.
     * @returns {number}
   */
-    getHorizontalScrollValue(): Promise<any>;
+    getHorizontalScrollValue(): any;
     /** Gets the columns array. Each item in the array contains the column properties which are dynamically set by the user interaction and the columns initialization data properties such as: 'label', 'dataField', 'dataType', 'visible'.
     * @returns {any}
   */
-    getColumns(): Promise<any>;
+    getColumns(): any;
+    /** Gets the editing cell(s), when the grid is editing.
+    * @returns {any[]}
+  */
+    getEditCells(): any;
     /** Gets the groups array.
     * @returns {any[]}
   */
-    getGroups(): Promise<any>;
+    getGroups(): any;
     /** Gets an array of columns with applied sorting. Each member in the array is with column's data field used as a key and 'sortOrder' and 'sortIndex' as a value.
     * @returns {{[dataField: string]: { sortOrder: string, sortIndex: number }}}
   */
-    getSortedColumns(): Promise<any>;
+    getSortedColumns(): any;
     /** Gets the selection.
     * @returns {any}
   */
-    getSelection(): Promise<any>;
+    getSelection(): any;
+    /** Gets an Array where each item is an Array of row id and row data. If the Grid is used in virtual mode, the row data parameter is empty object, because the data is loaded on demand.
+    * @returns {any[]}
+  */
+    getSelectedRows(): any;
     /** Gets the selected row ids.
     * @returns {any[]}
   */
-    getSelectedRows(): Promise<any>;
+    getSelectedRowIds(): any;
+    /** Gets the selected row indexes.
+    * @returns {any[]}
+  */
+    getSelectedRowIndexes(): any;
     /** Gets the selected cells. The method returns an array of cell. Each cell is an array with row id, column data field and cell value.
     * @returns {any[]}
   */
-    getSelectedCells(): Promise<any>;
+    getSelectedCells(): any;
     /** Gets an array of columns with applied filters.
     * @returns {any}
   */
-    getFilteredColumns(): Promise<any>;
+    getFilteredColumns(): any;
     /** Gets an array of rows, which are visible and match the applied filter.
     * @returns {any}
   */
-    getVisibleRows(): Promise<any>;
+    getVisibleRows(): any;
     /** Gets the result of the getVisibleRows or the rows hierarchy, when the Grid is in TreeGrid/Grouping mode.
     * @returns {any}
   */
-    getViewRows(): Promise<any>;
+    getViewRows(): any;
     /** Gets a JSON object with the following fields: 'sort', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'.
     * @returns {any}
   */
-    getState(): Promise<any>;
+    getState(): any;
     /** Gets the changes from the batch edit.
     * @returns {{ upDated: [{ id: string, dataField: string, oldValue: Object, newValue: Object }], deleted: [{id: string, data: Object}], added: [{id: string, data: Object}] }}
   */
-    getBatchEditChanges(): Promise<any>;
+    getBatchEditChanges(): any;
     /** Gets a value of a cell.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
     * @returns {any}
   */
-    getCellValue(rowId: string | number, dataField: string): Promise<any>;
+    getCellValue(rowId: string | number, dataField: string): any;
+    /** Gets a column. Returns a Grid column object.
+    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+    * @returns {GridColumn}
+  */
+    getColumn(dataField: string): any;
     /** Gets a value of a column.
     * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
     * @param {string} propertyName. The property name.
     * @returns {any}
   */
-    getColumnProperty(dataField: string, propertyName: string): Promise<any>;
+    getColumnProperty(dataField: string, propertyName: string): any;
     /** Gets a value of a row.
     * @param {string | number} rowId. row bound id
     * @param {string} propertyName. The property name.
     * @returns {any}
   */
-    getRowProperty(rowId: string | number, propertyName: string): Promise<any>;
+    getRowProperty(rowId: string | number, propertyName: string): any;
+    /** Gets a row. Returns a Grid row object.
+    * @param {string | number} rowId. row bound id
+    * @returns {GridRow}
+  */
+    getRow(rowId: string | number): any;
+    /** Gets a row by its index. Returns a Grid row object.
+    * @param {number} rowIndex. row bound index
+    * @returns {GridRow}
+  */
+    getRowByIndex(rowIndex: number): any;
     /** Gets the Data source data associated to the row.
     * @param {string | number} rowId. row bound id
     * @returns {any}
   */
-    getRowData(rowId: string | number): Promise<any>;
-    /** Gets the Row's id.
+    getRowData(rowId: string | number): any;
+    /** Gets the Row's id by a row index.
     * @param {number} rowIndex. row index
-    * @returns {any}
+    * @returns {string | number}
   */
-    getRowId(rowIndex: number): Promise<any>;
+    getRowId(rowIndex: number): any;
     /** Gets whether a column's drop-down menu is opened.
     * @returns {boolean}
   */
-    hasMenu(): Promise<any>;
+    hasMenu(): any;
     /** This method returns true, if any rows in the Grid are selected.
     * @returns {boolean}
   */
-    hasSelectedRows(): Promise<any>;
+    hasSelectedRows(): any;
     /** Hides the Details of a Row, when row details are enabled.
     * @param {string | number} rowId. row bound id
     */
@@ -949,13 +1094,20 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     /** Inserts a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {any} data. row data matching the data source
     * @param {number} index?. Determines the insert index. The default value is the last index.
-    * @param {any} callback?. Sets a callback function, which is called after the new row is added. The callback's argument is the new row.
+    * @param {{(row: GridRow): void}} callback?. Sets a callback function, which is called after the new row is added. The callback's argument is the new row.
     */
-    insertRow(data: any, index?: number, callback?: any): void;
+    insertRow(data: any, index?: number, callback?: {
+        (row: GridRow): void;
+    }): void;
     /** Opens a column drop-down menu.
     * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
     */
     openMenu(dataField: string): void;
+    /** Opens a context menu. Note that context menu should be enabled.
+    * @param {number} left. Left Position.
+    * @param {number} top. Top Position.
+    */
+    openContextMenu(left: number, top: number): void;
     /** Prints the Grid data. The method uses the options of the dataExport property. When printed, the Grid will not display any scrollbars so all rows and columns will be displayed. The grid will auto resize width and height to fit all contents. To customize the printing options, you can use  the dataExport property.
     */
     print(): void;
@@ -1032,12 +1184,31 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     selectRowsByIndex(rowIndex: number[]): void;
     /** Selects multiple rows by their index.
+    * @param {string} query. Search query
+    * @param {string} dataField?. Column data field.
+    * @param {string} condition?. Conditions which you can use in the expressions: '=', 'EQUAL','&lt;&gt;', 'NOT_EQUAL', '!=', '&lt;', 'LESS_THAN','&gt;', 'GREATER_THAN', '&lt;=', 'LESS_THAN_OR_EQUAL', '&gt;=', 'GREATER_THAN_OR_EQUAL','starts with', 'STARTS_WITH','ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS','DOES_NOT_CONTAIN', 'NULL','NOT_NULL'
+    */
+    selectRowsByQuery(query: string, dataField?: string, condition?: string): void;
+    /** Selects rows by using a query. Example: grid.selectRowsByQuery('nancy'); selects all rows that have 'nancy' value. Example 2: grid.selectRowsByQuery('nancy, davolio'); selects all rows that have 'nancy' and 'davolio' values in the same row. Example 3: grid.selectRowsByQuery(5, 'quantity', '>'); selects all rows where the value of the 'quantity' field is > 5.
+    * @param {(string | number)[]} rowIds. Array of row ids
+    * @param {string[]} dataFields. Array of data fields.
+    */
+    selectCells(rowIds: (string | number)[], dataFields: string[]): void;
+    /** Selects multiple cells by their ids and dataFields. Example: grid.selectCells([0, 1, 2], ['firstName', 'quantity', 'date']); - selects the 'firstName', 'quantity' and 'date' cells from the first, second and third rows.
+    * @param {string} query. Search query
+    */
+    selectCellsByQuery(query: string): void;
+    /** Selects cells by using a query. Example: grid.selectCellsByQuery('nancy'); selects all cells that have 'nancy' value. Example 2: grid.selectCellsByQuery('nancy, davolio'); selects all cells that have 'nancy' and 'davolio' values in the same row.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
     * @param {string | number | Date | boolean} value. New Cell value.
     */
     setCellValue(rowId: string | number, dataField: string, value: string | number | Date | boolean): void;
     /** Sets a new value to a cell.
+    * @param {GridColumn[]} columns. Columns array.
+    */
+    setColumns(columns: GridColumn[]): void;
+    /** Sets new columns to the Grid. The grid will redraw all the column headers, and then redraw all of the rows. By using 'setColumns', the grid will compare the new columns passed as argument to the method with existing columns. The Grid will automatically create new columns, keep old columns if they already exist and remove columns which are not in the 'setColumns' method argument. The benefit of that is that the state of the column like(sort, filter, width or other) will be kept, if the column exsits after the new columns are applied.
     * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
     * @param {string} propertyName. The column property's name.
     * @param {any} value. The new property value.
@@ -1050,6 +1221,33 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     setRowProperty(rowId: string | number, propertyName: string, value: any): void;
     /** Sets a property to a row.
+    * @param {string | number} rowId. row bound id
+    * @param {{background?: string, color?: string, fontSize?: string, fontFamily?: string, textDecoration?: string, fontStyle?: string, fontWeight?: string}} rowStyle. The row style object. The object may have one or all of the following properties: 'background', 'color', 'fontSize', 'fontFamily', 'textDecoration', 'fontStyle', 'fontWeight'.
+    */
+    setRowStyle(rowId: string | number, rowStyle: {
+        background?: string;
+        color?: string;
+        fontSize?: string;
+        fontFamily?: string;
+        textDecoration?: string;
+        fontStyle?: string;
+        fontWeight?: string;
+    }): void;
+    /** Sets a style to a row.
+    * @param {string | number} rowId. row bound id
+    * @param {string} dataField. Column bound field name.
+    * @param {{background?: string, color?: string, fontSize?: string, fontFamily?: string, textDecoration?: string, fontStyle?: string, fontWeight?: string}} rowStyle. The cell style object. The object may have one or all of the following properties: 'background', 'color', 'fontSize', 'fontFamily', 'textDecoration', 'fontStyle', 'fontWeight'.
+    */
+    setCellStyle(rowId: string | number, dataField: string, rowStyle: {
+        background?: string;
+        color?: string;
+        fontSize?: string;
+        fontFamily?: string;
+        textDecoration?: string;
+        fontStyle?: string;
+        fontWeight?: string;
+    }): void;
+    /** Sets a style to a row.
     * @param {number} value. The new scroll position
     */
     setVerticalScrollValue(value: number): void;
@@ -1064,9 +1262,11 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     /** Shows the Details of a Row, when row details are enabled.
     * @param {string | number} rowId. row bound id
     * @param {any} data. row data matching the data source
-    * @param {any} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
+    * @param {{(row: GridRow): void}} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
     */
-    updateRow(rowId: string | number, data: any, callback?: any): void;
+    updateRow(rowId: string | number, data: any, callback?: {
+        (row: GridRow): void;
+    }): void;
     /** Updates a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
     * @param {string | number} rowId. row bound id
     * @param {string} dataField?. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.

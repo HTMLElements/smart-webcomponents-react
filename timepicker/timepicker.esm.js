@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.timepicker';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class TimePicker extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -75,7 +81,7 @@ class TimePicker extends React.Component {
         }
     }
     /** Determines the hour selection format.
-    *	Property type: TimePickerFormat
+    *	Property type: TimePickerFormat | string
     */
     get format() {
         return this.nativeElement ? this.nativeElement.format : undefined;
@@ -163,7 +169,7 @@ class TimePicker extends React.Component {
         }
     }
     /** Determines the view that is currently being shown. By default the hours view is visible.
-    *	Property type: TimePickerSelection
+    *	Property type: TimePickerSelection | string
     */
     get selection() {
         return this.nativeElement ? this.nativeElement.selection : undefined;
@@ -207,7 +213,7 @@ class TimePicker extends React.Component {
         }
     }
     /** Determines whether the element is in landscape or portrait mode.
-    *	Property type: ViewLayout
+    *	Property type: ViewLayout | string
     */
     get view() {
         return this.nativeElement ? this.nativeElement.view : undefined;
@@ -274,7 +280,7 @@ class TimePicker extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -301,6 +307,7 @@ class TimePicker extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

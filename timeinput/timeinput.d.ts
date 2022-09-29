@@ -20,10 +20,10 @@ export declare class TimeInput extends React.Component<React.HTMLAttributes<Elem
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines the format of the time displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is 'numeric'.
     *	Property type: TimeFormat
     */
@@ -35,10 +35,10 @@ export declare class TimeInput extends React.Component<React.HTMLAttributes<Elem
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Sets the height of the drop down. By default it's set to 'auto'.
     *	Property type: string | number
     */

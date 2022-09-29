@@ -20,10 +20,10 @@ export declare class NumberInput extends React.Component<React.HTMLAttributes<El
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Enables or disables the element.
     *	Property type: boolean
     */
@@ -123,11 +123,13 @@ export declare class NumberInput extends React.Component<React.HTMLAttributes<El
     /** Returns the value in the desired format.
     * @param {string | number} value. The value to be formatted by the method.
     * @param {any} format?. The object that contains the formatting properties. The argument should contain Intl.NumberFormat valid properties. For example, { style: 'currency', currency: 'EUR' }
-    */
-    getFormattedValue(value: string | number, format?: any): void;
+    * @returns {string}
+  */
+    getFormattedValue(value: string | number, format?: any): any;
     /** Returns the number of the input.
-    */
-    getValue(): void;
+    * @returns {number}
+  */
+    getValue(): any;
     /** Selects the text inside the input or if it is readonly then the element is focused.
     */
     select(): void;

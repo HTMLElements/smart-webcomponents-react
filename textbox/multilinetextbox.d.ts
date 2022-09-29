@@ -24,20 +24,20 @@ export declare class MultilineTextBox extends React.Component<React.HTMLAttribut
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines whether and how the value should be automatically capitalized as it is entered/edited by the user.
-    *	Property type: MultilineTextBoxAutoCapitalize
+    *	Property type: MultilineTextBoxAutoCapitalize | string
     */
-    get autoCapitalize(): MultilineTextBoxAutoCapitalize;
-    set autoCapitalize(value: MultilineTextBoxAutoCapitalize);
+    get autoCapitalize(): MultilineTextBoxAutoCapitalize | string;
+    set autoCapitalize(value: MultilineTextBoxAutoCapitalize | string);
     /** Determines whether the value of the control can be automatically completed by the browser.
-    *	Property type: MultiLineTextBoxAutoComplete
+    *	Property type: MultiLineTextBoxAutoComplete | string
     */
-    get autoComplete(): MultiLineTextBoxAutoComplete;
-    set autoComplete(value: MultiLineTextBoxAutoComplete);
+    get autoComplete(): MultiLineTextBoxAutoComplete | string;
+    set autoComplete(value: MultiLineTextBoxAutoComplete | string);
     /** Determines whether element will auto expand when the input overflows vertically.
     *	Property type: boolean
     */
@@ -59,15 +59,15 @@ export declare class MultilineTextBox extends React.Component<React.HTMLAttribut
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Specifies how the characters are displayed inside the input.
-    *	Property type: TextBoxDisplayMode
+    *	Property type: TextBoxDisplayMode | string
     */
-    get displayMode(): TextBoxDisplayMode;
-    set displayMode(value: TextBoxDisplayMode);
+    get displayMode(): TextBoxDisplayMode | string;
+    set displayMode(value: TextBoxDisplayMode | string);
     /** Determines the behavior on "Enter" key.
-    *	Property type: MultilineTextBoxEnterKeyBehavior
+    *	Property type: MultilineTextBoxEnterKeyBehavior | string
     */
-    get enterKeyBehavior(): MultilineTextBoxEnterKeyBehavior;
-    set enterKeyBehavior(value: MultilineTextBoxEnterKeyBehavior);
+    get enterKeyBehavior(): MultilineTextBoxEnterKeyBehavior | string;
+    set enterKeyBehavior(value: MultilineTextBoxEnterKeyBehavior | string);
     /** The form element that the element is associated with (its "form owner"). The value of the attribute must be the ID of a form element in the same document.
     *	Property type: string
     */
@@ -79,10 +79,10 @@ export declare class MultilineTextBox extends React.Component<React.HTMLAttribut
     get hint(): any;
     set hint(value: any);
     /** Controls horizontal scrollbar's visibility.
-    *	Property type: HorizontalScrollBarVisibility
+    *	Property type: HorizontalScrollBarVisibility | string
     */
-    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility;
-    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility);
+    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility | string;
+    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility | string);
     /** Sets the purpose of the input and what, if any, permission the user agent has to provide automated assistance in filling out the element's input when in a form, as well as guidance to the browser as to the type of information expected in the element. This value corresponds to the standard HTML autocomplete attribute and can be set to values such as 'on', 'name', 'organization', 'street-address', etc.
     *	Property type: string
     */
@@ -189,15 +189,15 @@ export declare class MultilineTextBox extends React.Component<React.HTMLAttribut
     get value(): string;
     set value(value: string);
     /** Controls vertical scrollbar's visibility.
-    *	Property type: VerticalScrollBarVisibility
+    *	Property type: VerticalScrollBarVisibility | string
     */
-    get verticalScrollBarVisibility(): VerticalScrollBarVisibility;
-    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility);
+    get verticalScrollBarVisibility(): VerticalScrollBarVisibility | string;
+    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility | string);
     /** Indicates how the control wraps text.
-    *	Property type: MultilineTextBoxWrap
+    *	Property type: MultilineTextBoxWrap | string
     */
-    get wrap(): MultilineTextBoxWrap;
-    set wrap(value: MultilineTextBoxWrap);
+    get wrap(): MultilineTextBoxWrap | string;
+    set wrap(value: MultilineTextBoxWrap | string);
     get properties(): string[];
     /**  This event is triggered when the value of the text box is changed.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value, 	type)
@@ -223,7 +223,7 @@ export declare class MultilineTextBox extends React.Component<React.HTMLAttribut
     * @param {string} displayMode. If <b>displayMode</b> is set to 'escaped', the value returned from the method contains escaped special characters.
     * @returns {string}
   */
-    selection(displayMode: string): Promise<any>;
+    selection(displayMode: string): any;
     /** Selects a certain part of the input text. If no arguments are specified the whole text will be selected.
     * @param {any} rangeFrom?. Determines the start index of the text selection.
     * @param {any} rangeTo?. Determines the end index of the text selection.

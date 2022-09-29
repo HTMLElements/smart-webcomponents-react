@@ -40,15 +40,15 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     get allowToggle(): boolean;
     set allowToggle(value: boolean);
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets or gets the close button mode.
-    *	Property type: TabsCloseButtonMode
+    *	Property type: TabsCloseButtonMode | string
     */
-    get closeButtonMode(): TabsCloseButtonMode;
-    set closeButtonMode(value: TabsCloseButtonMode);
+    get closeButtonMode(): TabsCloseButtonMode | string;
+    set closeButtonMode(value: TabsCloseButtonMode | string);
     /** Sets or gets whether close buttons are displayed.
     *	Property type: boolean
     */
@@ -100,10 +100,10 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     get name(): string;
     set name(value: string);
     /** Sets or gets the Tabs scroll buttons behavior. Applicable only when tabLayout is 'scroll'.
-    *	Property type: Overflow
+    *	Property type: Overflow | string
     */
-    get overflow(): Overflow;
-    set overflow(value: Overflow);
+    get overflow(): Overflow | string;
+    set overflow(value: Overflow | string);
     /** Disables user interaction with the element.
     *	Property type: boolean
     */
@@ -125,40 +125,40 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
     /** Sets or gets the position of the scroll buttons.
-    *	Property type: LayoutPosition
+    *	Property type: LayoutPosition | string
     */
-    get scrollButtonsPosition(): LayoutPosition;
-    set scrollButtonsPosition(value: LayoutPosition);
+    get scrollButtonsPosition(): LayoutPosition | string;
+    set scrollButtonsPosition(value: LayoutPosition | string);
     /** Sets or gets the behavior when scrolling the tab strip via the scroll buttons.
-    *	Property type: TabsScrollMode
+    *	Property type: TabsScrollMode | string
     */
-    get scrollMode(): TabsScrollMode;
-    set scrollMode(value: TabsScrollMode);
+    get scrollMode(): TabsScrollMode | string;
+    set scrollMode(value: TabsScrollMode | string);
     /** Sets or gets which tab is selected.
     *	Property type: number | null
     */
     get selectedIndex(): number | null;
     set selectedIndex(value: number | null);
     /** Determines the way the user can switch between tabs.
-    *	Property type: TabSelectionMode
+    *	Property type: TabSelectionMode | string
     */
-    get selectionMode(): TabSelectionMode;
-    set selectionMode(value: TabSelectionMode);
+    get selectionMode(): TabSelectionMode | string;
+    set selectionMode(value: TabSelectionMode | string);
     /** Applies one of four behaviors when the element is not wide enough to display all tab labels.
-    *	Property type: TabsTabLayout
+    *	Property type: TabsTabLayout | string
     */
-    get tabLayout(): TabsTabLayout;
-    set tabLayout(value: TabsTabLayout);
+    get tabLayout(): TabsTabLayout | string;
+    set tabLayout(value: TabsTabLayout | string);
     /** Sets or gets where the tab strip is positioned.
-    *	Property type: TabPosition
+    *	Property type: TabPosition | string
     */
-    get tabPosition(): TabPosition;
-    set tabPosition(value: TabPosition);
+    get tabPosition(): TabPosition | string;
+    set tabPosition(value: TabPosition | string);
     /** Sets or gets the orientation of the text in the tabs.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
-    get tabTextOrientation(): Orientation;
-    set tabTextOrientation(value: Orientation);
+    get tabTextOrientation(): Orientation | string;
+    set tabTextOrientation(value: Orientation | string);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */
@@ -225,12 +225,12 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     * @param {number} index. The index of the tab.
     * @returns {string}
   */
-    getTabLabel(index: number): Promise<any>;
+    getTabLabel(index: number): any;
     /** Returns the content of a Tab at given index.
     * @param {number} index. The index of the tab.
     * @returns {HTMLElement}
   */
-    getTabContent(index: number): Promise<any>;
+    getTabContent(index: number): any;
     /** Makes sure a tab is visible by scrolling to it.
     * @param {number} index. The index of the tab to scroll to.
     */
@@ -241,12 +241,12 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     /** Returns an array of the TabItems inside the element.
     * @returns {TabItem[]}
   */
-    getTabs(): Promise<any>;
+    getTabs(): any;
     /** Returns the offset of the tab item container (smart-tab-item element) from the edge of the Tabs (smart-tabs element) where the tab strip is positioned.
     * @param {number} index. The index of the tab item.
     * @returns {number}
   */
-    getOffsetFromEdgeOfElement(index: number): Promise<any>;
+    getOffsetFromEdgeOfElement(index: number): any;
     /** Inserts a new tab and an associated content section.
     * @param {number} index. The index to insert a new tab at.
     * @param {any} details. An Object with the fields "label", "labelSize", "content" and "group".

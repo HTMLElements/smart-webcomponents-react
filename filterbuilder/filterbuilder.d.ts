@@ -29,10 +29,10 @@ export declare class FilterBuilder extends React.Component<React.HTMLAttributes<
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Adds more operations, that can be used in the filter bilder's conditions structure.
     *	Property type: {name: string, caption: string, icon: string}[]
     */
@@ -211,7 +211,7 @@ export declare class FilterBuilder extends React.Component<React.HTMLAttributes<
     * @param {boolean} useLabels?. Controls the way of string representation. In mode without labels the value object is stringified only.
     * @returns {string}
   */
-    toString(useLabels?: boolean): Promise<any>;
+    toString(useLabels?: boolean): any;
     /** Updates condition.
     * @param {string | HTMLElement} item. A string, representing the id of the item or an HTML Element referencing targeted condition.
     * @param {any[]} data. An array, representing condition. Condition's element's role is related to their position in the condition's array. At index 0 - field name, index 1 - condition's opertor, index 2 - condition's value.

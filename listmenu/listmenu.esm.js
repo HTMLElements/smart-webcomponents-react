@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.listmenu';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -152,7 +133,7 @@ class MenuItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -256,7 +237,7 @@ class MenuItemsGroup extends React.Component {
         }
     }
     /**
-    *	Property type: MenuCheckMode
+    *	Property type: MenuCheckMode | string
     */
     get checkMode() {
         return this.nativeElement ? this.nativeElement.checkMode : undefined;
@@ -374,7 +355,7 @@ class MenuItemsGroup extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -456,7 +437,7 @@ class ListMenu extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -500,7 +481,7 @@ class ListMenu extends React.Component {
         }
     }
     /** Sets the check mode of top-level ListMenu items(groups).
-    *	Property type: MenuCheckMode
+    *	Property type: MenuCheckMode | string
     */
     get checkMode() {
         return this.nativeElement ? this.nativeElement.checkMode : undefined;
@@ -577,7 +558,7 @@ class ListMenu extends React.Component {
         }
     }
     /** Sets or gets the opening direction of the ListMenu minimized dropdown.
-    *	Property type: MenuDropDownPosition
+    *	Property type: MenuDropDownPosition | string
     */
     get dropDownPosition() {
         return this.nativeElement ? this.nativeElement.dropDownPosition : undefined;
@@ -632,7 +613,7 @@ class ListMenu extends React.Component {
         }
     }
     /** Determines the filtering mode.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
     get filterMode() {
         return this.nativeElement ? this.nativeElement.filterMode : undefined;
@@ -676,7 +657,7 @@ class ListMenu extends React.Component {
         }
     }
     /** Determines the position of the loading indicator inside the element.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
     get loadingIndicatorPosition() {
         return this.nativeElement ? this.nativeElement.loadingIndicatorPosition : undefined;
@@ -742,7 +723,7 @@ class ListMenu extends React.Component {
         }
     }
     /** Sets or gets the ListMenu's scroll buttons behavior.
-    *	Property type: Overflow
+    *	Property type: Overflow | string
     */
     get overflow() {
         return this.nativeElement ? this.nativeElement.overflow : undefined;
@@ -775,7 +756,7 @@ class ListMenu extends React.Component {
         }
     }
     /** Determines whether to use scrollbar or scrollButtons when content overflows an element's box.
-    *	Property type: ListMenuScrollMode
+    *	Property type: ListMenuScrollMode | string
     */
     get scrollMode() {
         return this.nativeElement ? this.nativeElement.scrollMode : undefined;
@@ -884,18 +865,8 @@ class ListMenu extends React.Component {
     * @returns {HTMLElement}
   */
     getItem(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItem(id);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItem(id);
+        return result;
     }
     /** Maximizes the List Menu.
     */
@@ -970,7 +941,7 @@ class ListMenu extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -997,6 +968,7 @@ class ListMenu extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$2.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

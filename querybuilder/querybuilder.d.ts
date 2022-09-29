@@ -13,6 +13,7 @@ export interface QueryBuilderProps extends QueryBuilderProperties {
     onDragStart?: ((event?: Event) => void) | undefined;
     onItemClick?: ((event?: Event) => void) | undefined;
     onPropertySelected?: ((event?: Event) => void) | undefined;
+    onValidationChange?: ((event?: Event) => void) | undefined;
     onCreate?: ((event?: Event) => void) | undefined;
     onReady?: ((event?: Event) => void) | undefined;
 }
@@ -30,15 +31,20 @@ export declare class QueryBuilder extends React.Component<React.HTMLAttributes<E
     get allowDrag(): boolean;
     set allowDrag(value: boolean);
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines when the value of the element is updated with the new changes.
-    *	Property type: QueryBuilderApplyMode
+    *	Property type: QueryBuilderApplyMode | string
     */
-    get applyMode(): QueryBuilderApplyMode;
-    set applyMode(value: QueryBuilderApplyMode);
+    get applyMode(): QueryBuilderApplyMode | string;
+    set applyMode(value: QueryBuilderApplyMode | string);
+    /** When 'applyMode' is set to 'immediately', the default value is applied to the editor's value and the QueryBuilder's value is updated automatically.
+    *	Property type: boolean
+    */
+    get autoApplyValue(): boolean;
+    set autoApplyValue(value: boolean);
     /** Determines whether QueryBuilder will automatically prompt the user to enter a condition value when a new condition is created. When 'applyMode' is set to 'immediately', the operation field is automatically populated if empty when the selected condition operator is changed. The input field prompts the user when the operation or operator of the condition is changed.
     *	Property type: boolean
     */
@@ -65,10 +71,10 @@ export declare class QueryBuilder extends React.Component<React.HTMLAttributes<E
     get fields(): QueryBuilderField[];
     set fields(value: QueryBuilderField[]);
     /** Determines whether new fields can be dynamically added by typing in the field (property) box.
-    *	Property type: QueryBuilderFieldsMode
+    *	Property type: QueryBuilderFieldsMode | string
     */
-    get fieldsMode(): QueryBuilderFieldsMode;
-    set fieldsMode(value: QueryBuilderFieldsMode);
+    get fieldsMode(): QueryBuilderFieldsMode | string;
+    set fieldsMode(value: QueryBuilderFieldsMode | string);
     /** Sets or gets the format string of the editor of fields with type 'date'.
     *	Property type: string
     */
@@ -208,6 +214,12 @@ export declare class QueryBuilder extends React.Component<React.HTMLAttributes<E
     *   value - The value of the selected property.
     */
     onPropertySelected?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the component validates the input values. This happens when you input a new value and focus another component.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	newValue)
+    *   oldValue - Old validation status.
+    *   newValue - New validation status.
+    */
+    onValidationChange?: ((event?: Event) => void) | undefined;
     /**  This event occurs, when the React component is created.
     *  @param event. The custom event. 	*/
     onCreate?: ((event?: Event) => void) | undefined;
@@ -218,7 +230,7 @@ export declare class QueryBuilder extends React.Component<React.HTMLAttributes<E
     /** Converts the current value of the element to DynamicLINQ expression.
     * @returns {string}
   */
-    getLinq(): Promise<any>;
+    getLinq(): any;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

@@ -25,15 +25,15 @@ export declare class Array extends React.Component<React.HTMLAttributes<Element>
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets or gets the indexing mode of the Array.
-    *	Property type: ArrayArrayIndexingMode
+    *	Property type: ArrayArrayIndexingMode | string
     */
-    get arrayIndexingMode(): ArrayArrayIndexingMode;
-    set arrayIndexingMode(value: ArrayArrayIndexingMode);
+    get arrayIndexingMode(): ArrayArrayIndexingMode | string;
+    set arrayIndexingMode(value: ArrayArrayIndexingMode | string);
     /** A callback function that is called when the width, height or disabled properties of an inner element need to be updated. Applicable only when type is 'custom'.
     *	Property type: any
     */
@@ -145,10 +145,10 @@ export declare class Array extends React.Component<React.HTMLAttributes<Element>
     get theme(): string;
     set theme(value: string);
     /** Sets or gets the data type and element widgets to be used in the Array.
-    *	Property type: ArrayType
+    *	Property type: ArrayType | string
     */
-    get type(): ArrayType;
-    set type(value: ArrayType);
+    get type(): ArrayType | string;
+    set type(value: ArrayType | string);
     /** If is set to true, the element cannot be focused.
     *	Property type: boolean
     */
@@ -217,21 +217,21 @@ export declare class Array extends React.Component<React.HTMLAttributes<Element>
     * @param {number} ColumnVisibleIndex. The visible index of the column (x coordinate) of the element.
     * @returns {HTMLElement}
   */
-    getElement(RowVisibleIndex: number, ColumnVisibleIndex: number): Promise<any>;
+    getElement(RowVisibleIndex: number, ColumnVisibleIndex: number): any;
     /** Returns an object with the values of the Array element width and height.
     * @returns {any}
   */
-    getElementSize(): Promise<any>;
+    getElementSize(): any;
     /** Gets an array with the values of all indexers.
     * @returns {any[]}
   */
-    getIndexerValue(): Promise<any>;
+    getIndexerValue(): any;
     /** Returns an HTML element from the Array at the specified page coordinates and other information about this element.
     * @param {number} Pagexcoordinate.
     * @param {number} Pageycoordinate.
     * @returns {any}
   */
-    hitTest(Pagexcoordinate: number, Pageycoordinate: number): Promise<any>;
+    hitTest(Pagexcoordinate: number, Pageycoordinate: number): any;
     /** Inserts a column in the value array before the specified column. The new column is filled with default values.
     * @param {number} Columnindex. Index of the column to add a new column before.
     */
@@ -297,7 +297,7 @@ export declare class Array extends React.Component<React.HTMLAttributes<Element>
     * @param {number | number[]} Elementindexes?. If this parameter is passed, only the value of the array member with the provided dimension indexes is set. Dimension indexes that are not passed are considered to be 0.
     * @returns {any[]}
   */
-    val(Newvalue?: any, Elementindexes?: number | number[]): Promise<any>;
+    val(Newvalue?: any, Elementindexes?: number | number[]): any;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

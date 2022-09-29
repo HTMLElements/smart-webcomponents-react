@@ -33,10 +33,10 @@ export declare class Menu extends React.Component<React.HTMLAttributes<Element> 
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines delay (in milliseconds) before a Menu dropdown is closed when leaving the Menu with the mouse. Applicable only when selectionMode is 'mouseenter'.
     *	Property type: number
     */
@@ -58,15 +58,15 @@ export declare class Menu extends React.Component<React.HTMLAttributes<Element> 
     get checkboxes(): boolean;
     set checkboxes(value: boolean);
     /** Sets the check mode of top-level Menu items (immediate children of the Menu). checkMode can be set to 'checkbox', 'radioButton', or a comma-separated list containing 'checkbox', 'radioButton', or 'none' (e.g. 'checkbox, radioButton, none, checkbox'). When set to a list, each value in the list is applied to groups of Menu items separated by an item with separator (item after the one with separator is the start of a new checkMode context). Sublevels are controlled by setting checkMode to the respective smart-menu-items-group.
-    *	Property type: MenuCheckMode
+    *	Property type: MenuCheckMode | string
     */
-    get checkMode(): MenuCheckMode;
-    set checkMode(value: MenuCheckMode);
+    get checkMode(): MenuCheckMode | string;
+    set checkMode(value: MenuCheckMode | string);
     /** Sets the document event which closes any open Menu drop downs (or the Menu itself when mode is 'dropDown').
-    *	Property type: MenuCloseAction
+    *	Property type: MenuCloseAction | string
     */
-    get closeAction(): MenuCloseAction;
-    set closeAction(value: MenuCloseAction);
+    get closeAction(): MenuCloseAction | string;
+    set closeAction(value: MenuCloseAction | string);
     /** Determines the data source that will be loaded to the Menu. The data source represents an array of objects with the following properties: label - a string representing the text content of the item.value - the value of the item.shortcut - a string representing a shortuct for the item. It will be displayed inside the item.items - allows to define an array of sub menu items.
     *	Property type: any
     */
@@ -93,10 +93,10 @@ export declare class Menu extends React.Component<React.HTMLAttributes<Element> 
     get dropDownOverlay(): boolean;
     set dropDownOverlay(value: boolean);
     /** Determines the opening direction of Menu dropdowns.
-    *	Property type: MenuDropDownPosition
+    *	Property type: MenuDropDownPosition | string
     */
-    get dropDownPosition(): MenuDropDownPosition;
-    set dropDownPosition(value: MenuDropDownPosition);
+    get dropDownPosition(): MenuDropDownPosition | string;
+    set dropDownPosition(value: MenuDropDownPosition | string);
     /** A getter that returns an array of all Menu items.
     *	Property type: any
     */
@@ -133,20 +133,20 @@ export declare class Menu extends React.Component<React.HTMLAttributes<Element> 
     get minimizeWidth(): number;
     set minimizeWidth(value: number);
     /** Determines the menu's display mode.
-    *	Property type: MenuMode
+    *	Property type: MenuMode | string
     */
-    get mode(): MenuMode;
-    set mode(value: MenuMode);
+    get mode(): MenuMode | string;
+    set mode(value: MenuMode | string);
     /** Opens or closes thte menu when it's in 'dropDown' mode.
     *	Property type: boolean
     */
     get opened(): boolean;
     set opened(value: boolean);
     /** Sets or gets the menu's scroll buttons behavior. Applicable only when dropDownAppendTo is not null.
-    *	Property type: Overflow
+    *	Property type: Overflow | string
     */
-    get overflow(): Overflow;
-    set overflow(value: Overflow);
+    get overflow(): Overflow | string;
+    set overflow(value: Overflow | string);
     /** If set to true, prevents the closing of the Menu or its dropdowns when Menu items are checked/unchecked.
     *	Property type: boolean
     */
@@ -163,10 +163,10 @@ export declare class Menu extends React.Component<React.HTMLAttributes<Element> 
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
     /** Determines the menu's selection mode.
-    *	Property type: MenuSelectionMode
+    *	Property type: MenuSelectionMode | string
     */
-    get selectionMode(): MenuSelectionMode;
-    set selectionMode(value: MenuSelectionMode);
+    get selectionMode(): MenuSelectionMode | string;
+    set selectionMode(value: MenuSelectionMode | string);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */
@@ -288,7 +288,7 @@ export declare class Menu extends React.Component<React.HTMLAttributes<Element> 
     * @param {string} id. The id or numeric path of an item
     * @returns {HTMLElement}
   */
-    getItem(id: string): Promise<any>;
+    getItem(id: string): any;
     /** Maximizes the Menu.
     */
     maximize(): void;

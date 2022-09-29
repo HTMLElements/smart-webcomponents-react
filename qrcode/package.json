@@ -1,0 +1,7 @@
+{
+    "main": "qrcode.umd.js",
+    "module": "qrcode.esm.js",
+	"typings": "qrcode.d.ts",
+    "name": "smart-webcomponents-react/qrcode",
+    "sideEffects": false
+  }

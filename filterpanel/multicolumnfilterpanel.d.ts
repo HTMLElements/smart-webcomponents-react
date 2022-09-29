@@ -23,15 +23,15 @@ export declare class MultiColumnFilterPanel extends React.Component<React.HTMLAt
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets or gets the position of the close button of multi column filter panel items.
-    *	Property type: MultiColumnFilterPanelCloseButtonPosition
+    *	Property type: MultiColumnFilterPanelCloseButtonPosition | string
     */
-    get closeButtonPosition(): MultiColumnFilterPanelCloseButtonPosition;
-    set closeButtonPosition(value: MultiColumnFilterPanelCloseButtonPosition);
+    get closeButtonPosition(): MultiColumnFilterPanelCloseButtonPosition | string;
+    set closeButtonPosition(value: MultiColumnFilterPanelCloseButtonPosition | string);
     /** Determines the data source that will be loaded to the multi column filter panel.Each member of the dataSource array is an object with the following fields:dataField - the dataField of the column to be grouped.dataType - the data type of the column to be grouped.groupIndex - the group order of columns. If this value is -1, the grouping will not be applied by this column initially.label - the column label to be displayed in the column selection input.icon - a specific class to be applied to the respective item in the column selection input.sortDirection - the sort direction to be applied when grouping. Possible values: 'ascending' and 'descending'.
     *	Property type: {label: string, dataField: string, dataType: string, sortDirection: string, groupIndex: number}[]
     */
@@ -85,10 +85,10 @@ export declare class MultiColumnFilterPanel extends React.Component<React.HTMLAt
     get messages(): any;
     set messages(value: any);
     /** Determines the logical operator between the items.
-    *	Property type: MultiColumnFilterPanelOperator
+    *	Property type: MultiColumnFilterPanelOperator | string
     */
-    get operator(): MultiColumnFilterPanelOperator;
-    set operator(value: MultiColumnFilterPanelOperator);
+    get operator(): MultiColumnFilterPanelOperator | string;
+    set operator(value: MultiColumnFilterPanelOperator | string);
     /** If the element is readonly, users cannot interact with it.
     *	Property type: boolean
     */

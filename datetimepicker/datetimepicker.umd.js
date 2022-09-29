@@ -26,7 +26,7 @@ require('../source/modules/smart.datetimepicker');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -81,7 +81,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Determines the position of the calendar button.
-	    *	Property type: DropDownButtonPosition
+	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get calendarButtonPosition() {
 	        return this.nativeElement ? this.nativeElement.calendarButtonPosition : undefined;
@@ -92,7 +92,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Determines the header mode of the calendar pop-up.
-	    *	Property type: CalendarMode
+	    *	Property type: CalendarMode | string
 	    */
 	    get calendarMode() {
 	        return this.nativeElement ? this.nativeElement.calendarMode : undefined;
@@ -103,7 +103,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Sets or gets the format of calendar pop-up's day names.
-	    *	Property type: DayFormat
+	    *	Property type: DayFormat | string
 	    */
 	    get dayNameFormat() {
 	        return this.nativeElement ? this.nativeElement.dayNameFormat : undefined;
@@ -136,7 +136,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Determines the time zone to display the value in.
-	    *	Property type: DateTimePickerDisplayKind
+	    *	Property type: DateTimePickerDisplayKind | string
 	    */
 	    get displayKind() {
 	        return this.nativeElement ? this.nativeElement.displayKind : undefined;
@@ -147,7 +147,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Determines the type of the month/year view in the calendar pop-up when calendarMode is set to Default.
-	    *	Property type: CalendarDisplayModeView
+	    *	Property type: CalendarDisplayModeView | string
 	    */
 	    get displayModeView() {
 	        return this.nativeElement ? this.nativeElement.displayModeView : undefined;
@@ -169,7 +169,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Sets or gets the pop-up display mode (what components appear in it, and its behaviour).
-	    *	Property type: DateTimePickerDropDownDisplayMode
+	    *	Property type: DateTimePickerDropDownDisplayMode | string
 	    */
 	    get dropDownDisplayMode() {
 	        return this.nativeElement ? this.nativeElement.dropDownDisplayMode : undefined;
@@ -191,7 +191,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Determines the pop-up position when opened.
-	    *	Property type: DropDownPosition
+	    *	Property type: DropDownPosition | string
 	    */
 	    get dropDownPosition() {
 	        return this.nativeElement ? this.nativeElement.dropDownPosition : undefined;
@@ -202,7 +202,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Determines how the the value can be edited inside the input.
-	    *	Property type: DateTimePickerEditMode
+	    *	Property type: DateTimePickerEditMode | string
 	    */
 	    get editMode() {
 	        return this.nativeElement ? this.nativeElement.editMode : undefined;
@@ -256,7 +256,7 @@ require('../source/modules/smart.datetimepicker');
 	            this.nativeElement.footer = value;
 	        }
 	    }
-	    /** Determines the pattern that is used to display the value in.
+	    /** Determines the pattern that is used to display the value in. Built-in Date formats:// short date pattern'd' - 'M/d/yyyy',// long date pattern'D' - 'dddd, MMMM dd, yyyy',// short time pattern't' - 'h:mm tt',// long time pattern'T' - 'h:mm:ss tt',// long date, short time pattern'f' - 'dddd, MMMM dd, yyyy h:mm tt',// long date, long time pattern'F' - 'dddd, MMMM dd, yyyy h:mm:ss tt',// month/day pattern'M' - 'MMMM dd',// month/year pattern'Y' - 'yyyy MMMM',// S is a sortable format that does not vary by culture'S' - 'yyyy'-'MM'-'dd'T'HH':'mm':'ss'Date format strings:'d'-the day of the month;'dd'-the day of the month'ddd'-the abbreviated name of the day of the week'dddd'- the full name of the day of the week'h'-the hour, using a 12-hour clock from 1 to 12'hh'-the hour, using a 12-hour clock from 01 to 12'H'-the hour, using a 24-hour clock from 0 to 23'HH'- the hour, using a 24-hour clock from 00 to 23'm'-the minute, from 0 through 59'mm'-the minutes,from 00 though59'M'- the month, from 1 through 12'MM'- the month, from 01 through 12'MMM'-the abbreviated name of the month'MMMM'-the full name of the month's'-the second, from 0 through 59'ss'-the second, from 00 through 59't'- the first character of the AM/PM designator'tt'-the AM/PM designator'y'- the year, from 0 to 99'yy'- the year, from 00 to 99'yyy'-the year, with a minimum of three digits'yyyy'-the year as a four-digit number;'yyyyy'-the year as a four-digit number.
 	    *	Property type: string
 	    */
 	    get formatString() {
@@ -532,7 +532,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Sets or gets the position of the spin buttons.
-	    *	Property type: DateTimePickerSpinButtonsPosition
+	    *	Property type: DateTimePickerSpinButtonsPosition | string
 	    */
 	    get spinButtonsPosition() {
 	        return this.nativeElement ? this.nativeElement.spinButtonsPosition : undefined;
@@ -576,7 +576,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Sets the position of the tooltip in the calendar pop-up.
-	    *	Property type: TooltipPosition
+	    *	Property type: TooltipPosition | string
 	    */
 	    get tooltipPosition() {
 	        return this.nativeElement ? this.nativeElement.tooltipPosition : undefined;
@@ -609,7 +609,7 @@ require('../source/modules/smart.datetimepicker');
 	        }
 	    }
 	    /** Determines the validation mechanism for the value by min/max.
-	    *	Property type: Validation
+	    *	Property type: Validation | string
 	    */
 	    get validation() {
 	        return this.nativeElement ? this.nativeElement.validation : undefined;
@@ -719,6 +719,26 @@ require('../source/modules/smart.datetimepicker');
 	            });
 	        }
 	    }
+	    /** Gets a Date object.
+	    * @returns {Date}
+	  */
+	    getDate() {
+	        const result = this.nativeElement.getDate();
+	        return result;
+	    }
+	    /** Sets the date of the DateTimePicker.
+	    * @param {Date} date. The date object to be set.
+	    */
+	    setDate(date) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.setDate(date);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.setDate(date);
+	            });
+	        }
+	    }
 	    componentDidRender(initialize) {
 	        const that = this;
 	        const props = {};
@@ -742,7 +762,7 @@ require('../source/modules/smart.datetimepicker');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -769,6 +789,7 @@ require('../source/modules/smart.datetimepicker');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

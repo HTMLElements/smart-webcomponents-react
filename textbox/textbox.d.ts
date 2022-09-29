@@ -25,20 +25,20 @@ export declare class TextBox extends React.Component<React.HTMLAttributes<Elemen
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines whether the text box will be focused on page load or not.
     *	Property type: boolean
     */
     get autoFocus(): boolean;
     set autoFocus(value: boolean);
     /** Determines the autocomplete mode. Auto complete modes filter the items from the dataSource and show only those that match the input.
-    *	Property type: AutoComplete
+    *	Property type: AutoComplete | string
     */
-    get autoComplete(): AutoComplete;
-    set autoComplete(value: AutoComplete);
+    get autoComplete(): AutoComplete | string;
+    set autoComplete(value: AutoComplete | string);
     /** Determines the delay before the drop down opens to show the matches from the auto complete operation.
     *	Property type: number
     */
@@ -65,10 +65,10 @@ export declare class TextBox extends React.Component<React.HTMLAttributes<Elemen
     get displayMember(): string;
     set displayMember(value: string);
     /** Determines how the characters are displayed inside the input.
-    *	Property type: TextBoxDisplayMode
+    *	Property type: TextBoxDisplayMode | string
     */
-    get displayMode(): TextBoxDisplayMode;
-    set displayMode(value: TextBoxDisplayMode);
+    get displayMode(): TextBoxDisplayMode | string;
+    set displayMode(value: TextBoxDisplayMode | string);
     /** Determines the drop down parent. The drop down can be removed from the body of the element and continue to work in another container. This is usefull when one of the parents of the element doesn't allow overflowing, by settings this property to 'body' the drop down will be appended to the DOM and the drop down will open/close as usual. dropDownAppendTo can be a string representing the id of an HTML element on the page or a direct reference to that element. Reseting it back to null will take the drop down back to it's original place.
     *	Property type: any
     */
@@ -100,10 +100,10 @@ export declare class TextBox extends React.Component<React.HTMLAttributes<Elemen
     get dropDownMinWidth(): string | number;
     set dropDownMinWidth(value: string | number);
     /** Determines how the drop down is going to open.
-    *	Property type: DropDownOpenMode
+    *	Property type: DropDownOpenMode | string
     */
-    get dropDownOpenMode(): DropDownOpenMode;
-    set dropDownOpenMode(value: DropDownOpenMode);
+    get dropDownOpenMode(): DropDownOpenMode | string;
+    set dropDownOpenMode(value: DropDownOpenMode | string);
     /** If this property is enabled, when the element's dropdown is opened, a transparent overlay is positioned between the dropdown and the rest of the document. The purpose of the overlay is to make sure that clicking anywhere outside the drop down will will target the overlay and not the DOM.
     *	Property type: boolean
     */
@@ -115,25 +115,25 @@ export declare class TextBox extends React.Component<React.HTMLAttributes<Elemen
     get dropDownPlaceholder(): string;
     set dropDownPlaceholder(value: string);
     /** Determines the position of the drop down when opened.
-    *	Property type: DropDownPosition
+    *	Property type: DropDownPosition | string
     */
-    get dropDownPosition(): DropDownPosition;
-    set dropDownPosition(value: DropDownPosition);
+    get dropDownPosition(): DropDownPosition | string;
+    set dropDownPosition(value: DropDownPosition | string);
     /** Sets the width of the drop down. By default it's set to an empty string. In this case the width of the drop down is controlled by a CSS variable.
     *	Property type: string | number
     */
     get dropDownWidth(): string | number;
     set dropDownWidth(value: string | number);
     /** Determines the behavior of the element when Escape key is pressed.
-    *	Property type: EscKeyMode
+    *	Property type: EscKeyMode | string
     */
-    get escKeyMode(): EscKeyMode;
-    set escKeyMode(value: EscKeyMode);
+    get escKeyMode(): EscKeyMode | string;
+    set escKeyMode(value: EscKeyMode | string);
     /** Specifies the behavior of "Enter" key.
-    *	Property type: EnterKeyBehavior
+    *	Property type: EnterKeyBehavior | string
     */
-    get enterKeyBehavior(): EnterKeyBehavior;
-    set enterKeyBehavior(value: EnterKeyBehavior);
+    get enterKeyBehavior(): EnterKeyBehavior | string;
+    set enterKeyBehavior(value: EnterKeyBehavior | string);
     /** The form element that the element is associated with (its "form owner"). The value of the attribute must be the ID of a form element in the same document.
     *	Property type: string
     */
@@ -145,10 +145,10 @@ export declare class TextBox extends React.Component<React.HTMLAttributes<Elemen
     get hint(): any;
     set hint(value: any);
     /** Determines the visibility of the horizontal Scroll bar thats inside the drop down.
-    *	Property type: HorizontalScrollBarVisibility
+    *	Property type: HorizontalScrollBarVisibility | string
     */
-    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility;
-    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility);
+    get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility | string;
+    set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility | string);
     /** Represents the property name of a List item. Determines the value of the input when a ListItem is selected. Usefull in cases where the user wants to display for example the value of an item instead of it's label. By default the label is displayed in the input.
     *	Property type: string
     */
@@ -165,10 +165,10 @@ export declare class TextBox extends React.Component<React.HTMLAttributes<Elemen
     get itemHeight(): number | null;
     set itemHeight(value: number | null);
     /** Determines the item width measuring algorithm.
-    *	Property type: ListItemMeasureMode
+    *	Property type: ListItemMeasureMode | string
     */
-    get itemMeasureMode(): ListItemMeasureMode;
-    set itemMeasureMode(value: ListItemMeasureMode);
+    get itemMeasureMode(): ListItemMeasureMode | string;
+    set itemMeasureMode(value: ListItemMeasureMode | string);
     /** A getter that returns an array of all List items inside the drop down.
     *	Property type: any
     */
@@ -190,10 +190,10 @@ export declare class TextBox extends React.Component<React.HTMLAttributes<Elemen
     get loadingIndicatorPlaceholder(): string;
     set loadingIndicatorPlaceholder(value: string);
     /** Determines the position of the loading indicator.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
-    get loadingIndicatorPosition(): VerticalAlignment;
-    set loadingIndicatorPosition(value: VerticalAlignment);
+    get loadingIndicatorPosition(): VerticalAlignment | string;
+    set loadingIndicatorPosition(value: VerticalAlignment | string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -280,10 +280,10 @@ export declare class TextBox extends React.Component<React.HTMLAttributes<Elemen
     get valueMember(): string;
     set valueMember(value: string);
     /** Determines the visibility of the vertical scroll bar that's inside the drop down.
-    *	Property type: VerticalScrollBarVisibility
+    *	Property type: VerticalScrollBarVisibility | string
     */
-    get verticalScrollBarVisibility(): VerticalScrollBarVisibility;
-    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility);
+    get verticalScrollBarVisibility(): VerticalScrollBarVisibility | string;
+    set verticalScrollBarVisibility(value: VerticalScrollBarVisibility | string);
     get properties(): string[];
     /**  This event is triggered when the value of the Text Box is changed. This happens on blur and if 'Enter' is pressed.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value, 	type)

@@ -1,32 +1,13 @@
 
-import '../source/modules/smart.multilinewindow';
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
+import '../source/modules/smart.window';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -56,7 +37,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -67,7 +48,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Determines whether and how the value should be automatically capitalized as it is entered/edited by the user. Applicable only to MultilinePromptWindow.
-    *	Property type: WindowAutoCapitalize
+    *	Property type: WindowAutoCapitalize | string
     */
     get autoCapitalize() {
         return this.nativeElement ? this.nativeElement.autoCapitalize : undefined;
@@ -176,8 +157,30 @@ class MultilineWindow extends React.Component {
             this.nativeElement.disableSnap = value;
         }
     }
+    /** By default the window is closing after the 'Escape' key is pressed. Set this property to true, if you want to disable that.
+    *	Property type: boolean
+    */
+    get disableEscape() {
+        return this.nativeElement ? this.nativeElement.disableEscape : undefined;
+    }
+    set disableEscape(value) {
+        if (this.nativeElement) {
+            this.nativeElement.disableEscape = value;
+        }
+    }
+    /** By default the window is handling keyboard keys like 'Arrows', 'Escape', etc. Set this property to true, if you want to disable that.
+    *	Property type: boolean
+    */
+    get disableKeyboard() {
+        return this.nativeElement ? this.nativeElement.disableKeyboard : undefined;
+    }
+    set disableKeyboard(value) {
+        if (this.nativeElement) {
+            this.nativeElement.disableKeyboard = value;
+        }
+    }
     /** Determines how the characters are displayed inside the input. Applicable to Prompt Window.
-    *	Property type: WindowDisplayMode
+    *	Property type: WindowDisplayMode | string
     */
     get displayMode() {
         return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -188,7 +191,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Applicable to TabsWindow when docked inside a DockingLayout Custom Element.  Determines where the window(it's tab items as well) can be dropped inside the DockingLayout.  The property is an array that accepts multiple positions. Note: Positions with prefix 'layout-' are applied to the Tab item children of the TabsWidnow owner that is being dragged. The rest of the positions indicate the allowed drop position inside the hovered target(TabsWindow). Used only by jqxDockingLayout custom elements. Determines the possible drop position inside the DockingLayout. The following values are allowed.
-    *	Property type: WindowDropPosition
+    *	Property type: WindowDropPosition | string
     */
     get dropPosition() {
         return this.nativeElement ? this.nativeElement.dropPosition : undefined;
@@ -210,7 +213,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Determines the position of the footer of the window element.
-    *	Property type: WindowFooterPosition
+    *	Property type: WindowFooterPosition | string
     */
     get footerPosition() {
         return this.nativeElement ? this.nativeElement.footerPosition : undefined;
@@ -254,7 +257,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Determines the position of the header of the window element.
-    *	Property type: TabPosition
+    *	Property type: TabPosition | string
     */
     get headerPosition() {
         return this.nativeElement ? this.nativeElement.headerPosition : undefined;
@@ -518,7 +521,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Determines the resizing mode of the window.  Several modes are available:   none - resizing is disabled.  vertical - vertical resizing is allowed.  horizontal - horizontal resizing is allowed. both - horizontal and vertical resizing is allowed. top - the window can only be resized from the top side. bottom - the window is resizable only from the bottom side. left - the window can be resized only from the left side. right - the window can be resized only from the right side.
-    *	Property type: WindowResizeMode
+    *	Property type: WindowResizeMode | string
     */
     get resizeMode() {
         return this.nativeElement ? this.nativeElement.resizeMode : undefined;
@@ -584,7 +587,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Determines the way the user can switch between tabs. Applicable only to TabsWindow.
-    *	Property type: TabSelectionMode
+    *	Property type: TabSelectionMode | string
     */
     get selectionMode() {
         return this.nativeElement ? this.nativeElement.selectionMode : undefined;
@@ -672,7 +675,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Determines if the close button is visible on select or always. Applicable only to TabsWindow.
-    *	Property type: WindowTabCloseButtonMode
+    *	Property type: WindowTabCloseButtonMode | string
     */
     get tabCloseButtonMode() {
         return this.nativeElement ? this.nativeElement.tabCloseButtonMode : undefined;
@@ -683,7 +686,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Sets or gets the Tabs scroll buttons behavior. Applicable only when tabLayout is 'scroll'. Applicable only to TabsWindow.
-    *	Property type: Overflow
+    *	Property type: Overflow | string
     */
     get tabOverflow() {
         return this.nativeElement ? this.nativeElement.tabOverflow : undefined;
@@ -694,7 +697,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Detetmines Tab Strip is positioned of the TabsWindow. Applicable only to TabsWindow.
-    *	Property type: TabPosition
+    *	Property type: TabPosition | string
     */
     get tabPosition() {
         return this.nativeElement ? this.nativeElement.tabPosition : undefined;
@@ -705,7 +708,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Sets or gets the position of the scroll buttons inside the Tab header of the TabsWindow. Applicable only to TabsWindow.
-    *	Property type: LayoutPosition
+    *	Property type: LayoutPosition | string
     */
     get tabScrollButtonsPosition() {
         return this.nativeElement ? this.nativeElement.tabScrollButtonsPosition : undefined;
@@ -716,7 +719,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Sets or gets the orientation of the text in the tabs labels of the TabsWindow. Applicable only to TabsWindow.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
     get tabTextOrientation() {
         return this.nativeElement ? this.nativeElement.tabTextOrientation : undefined;
@@ -771,7 +774,7 @@ class MultilineWindow extends React.Component {
         }
     }
     /** Indicates how the input wraps text. Applicable only to MultilinePromptWindow.
-    *	Property type: WindowWrap
+    *	Property type: WindowWrap | string
     */
     get wrap() {
         return this.nativeElement ? this.nativeElement.wrap : undefined;
@@ -783,7 +786,7 @@ class MultilineWindow extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["addNewTab", "animation", "autoCapitalize", "autoExpand", "cancelLabel", "completeLabel", "confirmLabel", "collapsed", "closeOnMaskClick", "dataSource", "disabled", "disableSnap", "displayMode", "dropPosition", "formatFunction", "footerPosition", "footerTemplate", "headerButtons", "headerTemplate", "headerPosition", "hint", "indeterminate", "inverted", "label", "liveResize", "layout", "locale", "locked", "localizeFormatFunction", "maximized", "messages", "modal", "max", "min", "minimized", "maxLength", "minLength", "opened", "pinned", "placeholder", "promptLabel", "readonly", "resizeIndicator", "resizeMode", "rightToLeft", "required", "requiredMessage", "selectAllOnFocus", "selectedIndex", "selectionMode", "selectionEnd", "selectionStart", "showProgressValue", "siblings", "size", "spellCheck", "tabCloseButtons", "tabCloseButtonMode", "tabOverflow", "tabPosition", "tabScrollButtonsPosition", "tabTextOrientation", "theme", "unfocusable", "value", "windowParent", "wrap"];
+        return ["addNewTab", "animation", "autoCapitalize", "autoExpand", "cancelLabel", "completeLabel", "confirmLabel", "collapsed", "closeOnMaskClick", "dataSource", "disabled", "disableSnap", "disableEscape", "disableKeyboard", "displayMode", "dropPosition", "formatFunction", "footerPosition", "footerTemplate", "headerButtons", "headerTemplate", "headerPosition", "hint", "indeterminate", "inverted", "label", "liveResize", "layout", "locale", "locked", "localizeFormatFunction", "maximized", "messages", "modal", "max", "min", "minimized", "maxLength", "minLength", "opened", "pinned", "placeholder", "promptLabel", "readonly", "resizeIndicator", "resizeMode", "rightToLeft", "required", "requiredMessage", "selectAllOnFocus", "selectedIndex", "selectionMode", "selectionEnd", "selectionStart", "showProgressValue", "siblings", "size", "spellCheck", "tabCloseButtons", "tabCloseButtonMode", "tabOverflow", "tabPosition", "tabScrollButtonsPosition", "tabTextOrientation", "theme", "unfocusable", "value", "windowParent", "wrap"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -794,18 +797,8 @@ class MultilineWindow extends React.Component {
     * @returns {Node}
   */
     appendChild(node) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.appendChild(node);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.appendChild(node);
+        return result;
     }
     /** Sets the window to the top level so the user can interact with it.
     */
@@ -847,18 +840,8 @@ class MultilineWindow extends React.Component {
     * @returns {HTMLElement}
   */
     collapse() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.collapse();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.collapse();
+        return result;
     }
     /** Makes sure a tab item is visible by scrolling to it. Applicable only to TabsWindow.
     * @param {number} index. The index of the tab to scroll to.
@@ -877,18 +860,8 @@ class MultilineWindow extends React.Component {
     * @returns {any[]}
   */
     expand() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.expand();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.expand();
+        return result;
     }
     /** Inserts a new tab and an associated content section. Applicable only to TabsWindow.
     * @param {number} index. The index to insert a new tab at.
@@ -910,49 +883,22 @@ class MultilineWindow extends React.Component {
     * @returns {Node}
   */
     insertBefore(newNode, referenceNode) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.insertBefore(newNode, referenceNode);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.insertBefore(newNode, referenceNode);
+        return result;
     }
-    /** Removes a tab and its associated content section. Applicable only to TabsWindow.
-    * @param {number} index. The index of the tab to remove.
+    /** Moves the window to a new position
+    * @param {string | number} left. Left position. For example: '100px'.
+    * @param {string | number} top. Top position. For example: '100px'.
     */
-    removeAt(index) {
+    move(left, top) {
         if (this.nativeElement.isRendered) {
-            this.nativeElement.removeAt(index);
+            this.nativeElement.move(left, top);
         }
         else {
             this.nativeElement.whenRendered(() => {
-                this.nativeElement.removeAt(index);
+                this.nativeElement.move(left, top);
             });
         }
-    }
-    /** Removes a child "smart-tab-item" node. Applicable only to TabsWindow.
-    * @param {Node} node. The "jqx-tab-item" node to remove.
-    * @returns {Node}
-  */
-    removeChild(node) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.removeChild(node);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
     }
     /** Maximizes the window to fill the area.
     */
@@ -1002,6 +948,27 @@ class MultilineWindow extends React.Component {
             });
         }
     }
+    /** Removes a tab and its associated content section. Applicable only to TabsWindow.
+    * @param {number} index. The index of the tab to remove.
+    */
+    removeAt(index) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.removeAt(index);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.removeAt(index);
+            });
+        }
+    }
+    /** Removes a child "smart-tab-item" node. Applicable only to TabsWindow.
+    * @param {Node} node. The "jqx-tab-item" node to remove.
+    * @returns {Node}
+  */
+    removeChild(node) {
+        const result = this.nativeElement.removeChild(node);
+        return result;
+    }
     /** Restores the window to it's previous size before maximization/minimization.
     */
     restore() {
@@ -1039,7 +1006,33 @@ class MultilineWindow extends React.Component {
             });
         }
     }
-    /** Updates a tab and its associated content section.  Applicalbe only to TabsWindow elements.
+    /** Updates the header label.
+    * @param {string} label. The new label of the Header.
+    */
+    updateLabel(label) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.updateLabel(label);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.updateLabel(label);
+            });
+        }
+    }
+    /** Updates the content.
+    * @param {string | HTMLElement} content. The new content of the window.
+    */
+    updateContent(content) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.updateContent(content);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.updateContent(content);
+            });
+        }
+    }
+    /** Updates a TAB in TAB Window and its associated content section.  Applies only to TabsWindow elements.
     * @param {number} index. The index of the tab to update.
     * @param {string} label. The new label of the tab. The value can be the id of an HTMLTemplateElement
     * @param {string | HTMLElement} content. The new content of the tab.
@@ -1077,7 +1070,7 @@ class MultilineWindow extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -1104,6 +1097,7 @@ class MultilineWindow extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

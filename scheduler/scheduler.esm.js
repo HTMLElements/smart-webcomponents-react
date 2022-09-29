@@ -1,34 +1,15 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.scheduler';
 
 import * as pkg from '../common/rrule.min.js';
 window.rrule = { RRule:  pkg.default };
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -55,6 +36,17 @@ class Scheduler extends React.Component {
     set autoScrollStep(value) {
         if (this.nativeElement) {
             this.nativeElement.autoScrollStep = value;
+        }
+    }
+    /** Determines whether the all day cells in Day and Week views automatically change their height depending on the events count in these cells.
+    *	Property type: boolean
+    */
+    get autoHeightAllDayCells() {
+        return this.nativeElement ? this.nativeElement.autoHeightAllDayCells : undefined;
+    }
+    set autoHeightAllDayCells(value) {
+        if (this.nativeElement) {
+            this.nativeElement.autoHeightAllDayCells = value;
         }
     }
     /** Determines the color scheme for the event background selector in the event window editor.
@@ -135,7 +127,7 @@ class Scheduler extends React.Component {
         }
     }
     /**  Determines how the events inside the Scheduler are rendered.classic - the events are arranged next to each other and try to fit inside the cells.modern - the events obey the CSS property that determines their size and if there's not enough space inside the cell for all events to appear, an event collector is created to hold the rest of the events. On mobile phones only collectors are created.
-    *	Property type: SchedulerEventRenderMode
+    *	Property type: SchedulerEventRenderMode | string
     */
     get eventRenderMode() {
         return this.nativeElement ? this.nativeElement.eventRenderMode : undefined;
@@ -212,7 +204,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the day format of the dates in the timeline.
-    *	Property type: SchedulerDayFormat
+    *	Property type: SchedulerDayFormat | string
     */
     get dayFormat() {
         return this.nativeElement ? this.nativeElement.dayFormat : undefined;
@@ -388,7 +380,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the filter mode.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
     get filterMode() {
         return this.nativeElement ? this.nativeElement.filterMode : undefined;
@@ -443,7 +435,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the grouping orientation.
-    *	Property type: SchedulerGroupOrientation
+    *	Property type: SchedulerGroupOrientation | string
     */
     get groupOrientation() {
         return this.nativeElement ? this.nativeElement.groupOrientation : undefined;
@@ -498,7 +490,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the formatting of hours inside the element.
-    *	Property type: SchedulerHourFormat
+    *	Property type: SchedulerHourFormat | string
     */
     get hourFormat() {
         return this.nativeElement ? this.nativeElement.hourFormat : undefined;
@@ -520,7 +512,7 @@ class Scheduler extends React.Component {
         }
     }
     /**  Determines the position of the Date selector inside the Header of the element.
-    *	Property type: SchedulerHeaderDatePosition
+    *	Property type: SchedulerHeaderDatePosition | string
     */
     get headerDatePosition() {
         return this.nativeElement ? this.nativeElement.headerDatePosition : undefined;
@@ -531,7 +523,7 @@ class Scheduler extends React.Component {
         }
     }
     /**  Determines the styling of the Header navigation controls.
-    *	Property type: SchedulerHeaderNavigationStyle
+    *	Property type: SchedulerHeaderNavigationStyle | string
     */
     get headerNavigationStyle() {
         return this.nativeElement ? this.nativeElement.headerNavigationStyle : undefined;
@@ -542,7 +534,7 @@ class Scheduler extends React.Component {
         }
     }
     /**  Determines the position of the view selector control inside the Header of the element.
-    *	Property type: SchedulerHeaderViewPosition
+    *	Property type: SchedulerHeaderViewPosition | string
     */
     get headerViewPosition() {
         return this.nativeElement ? this.nativeElement.headerViewPosition : undefined;
@@ -619,7 +611,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the location of the legend inside the Scheduler. By default the location is inside the footer but it can also reside in the header.
-    *	Property type: SchedulerLegendLocation
+    *	Property type: SchedulerLegendLocation | string
     */
     get legendLocation() {
         return this.nativeElement ? this.nativeElement.legendLocation : undefined;
@@ -630,7 +622,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the position of the legend. By default it's positioned to the near side but setting it to 'far' will change that.
-    *	Property type: SchedulerLegendPosition
+    *	Property type: SchedulerLegendPosition | string
     */
     get legendPosition() {
         return this.nativeElement ? this.nativeElement.legendPosition : undefined;
@@ -652,7 +644,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines weather or not horizontal scrollbar is shown.
-    *	Property type: HorizontalScrollBarVisibility
+    *	Property type: HorizontalScrollBarVisibility | string
     */
     get horizontalScrollBarVisibility() {
         return this.nativeElement ? this.nativeElement.horizontalScrollBarVisibility : undefined;
@@ -718,7 +710,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the minute formatting inside the Scheduler.
-    *	Property type: MinuteFormat
+    *	Property type: MinuteFormat | string
     */
     get minuteFormat() {
         return this.nativeElement ? this.nativeElement.minuteFormat : undefined;
@@ -729,7 +721,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the month name formatting inside the Scheduler.
-    *	Property type: MonthFormat
+    *	Property type: MonthFormat | string
     */
     get monthFormat() {
         return this.nativeElement ? this.nativeElement.monthFormat : undefined;
@@ -773,7 +765,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the visibility of the resize handles.
-    *	Property type: ResizeHandlesVisibility
+    *	Property type: ResizeHandlesVisibility | string
     */
     get resizeHandlesVisibility() {
         return this.nativeElement ? this.nativeElement.resizeHandlesVisibility : undefined;
@@ -839,7 +831,7 @@ class Scheduler extends React.Component {
         }
     }
     /**  Determines the position of the date navigation navigation buttons inside the header of the element.
-    *	Property type: SchedulerScrollButtonsPosition
+    *	Property type: SchedulerScrollButtonsPosition | string
     */
     get scrollButtonsPosition() {
         return this.nativeElement ? this.nativeElement.scrollButtonsPosition : undefined;
@@ -894,7 +886,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the sorting order of the resource data items. When set to custom, a custom sorting function has to be defined for the sortFunction property. The asc stands for 'ascending' while desc means 'descending' sorting order.
-    *	Property type: SchedulerSortOrder
+    *	Property type: SchedulerSortOrder | string
     */
     get sortOrder() {
         return this.nativeElement ? this.nativeElement.sortOrder : undefined;
@@ -960,7 +952,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the date scale for the timeline cells.
-    *	Property type: SchedulerTimelineDayScale
+    *	Property type: SchedulerTimelineDayScale | string
     */
     get timelineDayScale() {
         return this.nativeElement ? this.nativeElement.timelineDayScale : undefined;
@@ -982,7 +974,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the timeZone for the element. By default if the local time zone is used if the property is not set.
-    *	Property type: SchedulerTimeZone
+    *	Property type: SchedulerTimeZone | string
     */
     get timeZone() {
         return this.nativeElement ? this.nativeElement.timeZone : undefined;
@@ -1026,7 +1018,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines weather or not vertical scrollbar is shown.
-    *	Property type: VerticalScrollBarVisibility
+    *	Property type: VerticalScrollBarVisibility | string
     */
     get verticalScrollBarVisibility() {
         return this.nativeElement ? this.nativeElement.verticalScrollBarVisibility : undefined;
@@ -1048,7 +1040,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Indicates the current Scheduler viewType. Custom views must contain a valid type property that corresponds to one of the view types. This property should not be set.
-    *	Property type: SchedulerViewType
+    *	Property type: SchedulerViewType | string
     */
     get viewType() {
         return this.nativeElement ? this.nativeElement.viewType : undefined;
@@ -1059,7 +1051,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the viewing date range of the timeline. The property should be set to an array of strings or view objects. When you set it to a string, you should use any of the following: 'day', 'week', 'month', 'agenda', 'timelineDay', 'timelineWeek', 'timelineMonth'. Custom views can be defined as objects instead of strings. The view object should contain the following properties: label - the label for the view.value - the value for the view. The value is the unique identifier for the view.type - the type of view. The type should be one of the default allowed values for a view.hideWeekend - an Optional property that allows to hide the weekend only for this specific view.hideNonworkingWeekdays - an Optional property that allows to hide the nonwrking weekdays for this specific view.shortcutKey - an Optional property that allows to set a custom shortcut key for the view.hideHours - an Optional property applicable only to timelineWeek view that allows to hide the hour cells and only show the day cells.
-    *	Property type: SchedulerViews
+    *	Property type: SchedulerViews | string
     */
     get views() {
         return this.nativeElement ? this.nativeElement.views : undefined;
@@ -1070,7 +1062,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines type of the view selector located in the header of the element.
-    *	Property type: SchedulerViewSelectorType
+    *	Property type: SchedulerViewSelectorType | string
     */
     get viewSelectorType() {
         return this.nativeElement ? this.nativeElement.viewSelectorType : undefined;
@@ -1080,8 +1072,19 @@ class Scheduler extends React.Component {
             this.nativeElement.viewSelectorType = value;
         }
     }
+    /** Determines the Start Date rule. The Week and TimelineWeek views start by default from the current date taking into account the firstDayOfWeek property. When this property is set to 'dateCurrent', these views will start from the value of the 'dateCurrent'.
+    *	Property type: SchedulerViewStartDay | string
+    */
+    get viewStartDay() {
+        return this.nativeElement ? this.nativeElement.viewStartDay : undefined;
+    }
+    set viewStartDay(value) {
+        if (this.nativeElement) {
+            this.nativeElement.viewStartDay = value;
+        }
+    }
     /** Determines the format of the week days inside the element.
-    *	Property type: WeekDayFormat
+    *	Property type: WeekDayFormat | string
     */
     get weekdayFormat() {
         return this.nativeElement ? this.nativeElement.weekdayFormat : undefined;
@@ -1092,7 +1095,7 @@ class Scheduler extends React.Component {
         }
     }
     /** Determines the format of the dates inside the timeline header when they represent years.
-    *	Property type: YearFormat
+    *	Property type: YearFormat | string
     */
     get yearFormat() {
         return this.nativeElement ? this.nativeElement.yearFormat : undefined;
@@ -1137,7 +1140,7 @@ class Scheduler extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["autoScrollStep", "colorScheme", "currentTimeIndicator", "currentTimeIndicatorInterval", "contextMenuDataSource", "contextMenuClipboardActions", "eventTemplate", "eventCollectorTemplate", "eventRenderMode", "eventTooltipTemplate", "cellTemplate", "dateCurrent", "dataExport", "dataSource", "dateSelectorFormatFunction", "dayFormat", "disabled", "disableAutoScroll", "disableDrag", "disableDrop", "disableResize", "disableSelection", "disableWindowEditor", "disableContextMenu", "disableEventMenu", "disableViewMenu", "disableDateMenu", "dragFeedbackFormatFunction", "dragOffset", "filter", "filterable", "filterMode", "events", "firstDayOfWeek", "footerTemplate", "groupByDate", "groupOrientation", "groupTemplate", "groups", "hourEnd", "hourStart", "hourFormat", "headerTemplate", "headerDatePosition", "headerNavigationStyle", "headerViewPosition", "hideAllDay", "hideNonworkingWeekdays", "hideOtherMonthDays", "hideTodayButton", "hideViewMenuCheckableItems", "hideWeekend", "legendLocation", "legendPosition", "mouseWheelStep", "horizontalScrollBarVisibility", "locale", "max", "maxEventsPerCell", "min", "messages", "minuteFormat", "monthFormat", "nonworkingDays", "nonworkingHours", "notificationInterval", "resizeHandlesVisibility", "resizeInterval", "resources", "restrictedDates", "restrictedHours", "rightToLeft", "scrollButtonsPosition", "shadeUntilCurrentTime", "showLegend", "sortBy", "sortFunction", "sortOrder", "spinButtonsDelay", "spinButtonsInitialDelay", "statuses", "theme", "timelineHeaderFormatFunction", "timelineDayScale", "timeRulerTicks", "timeZone", "timeZones", "tooltipDelay", "tooltipOffset", "verticalScrollBarVisibility", "view", "viewType", "views", "viewSelectorType", "weekdayFormat", "yearFormat", "unfocusable", "undoRedoSteps", "windowCustomizationFunction"];
+        return ["autoScrollStep", "autoHeightAllDayCells", "colorScheme", "currentTimeIndicator", "currentTimeIndicatorInterval", "contextMenuDataSource", "contextMenuClipboardActions", "eventTemplate", "eventCollectorTemplate", "eventRenderMode", "eventTooltipTemplate", "cellTemplate", "dateCurrent", "dataExport", "dataSource", "dateSelectorFormatFunction", "dayFormat", "disabled", "disableAutoScroll", "disableDrag", "disableDrop", "disableResize", "disableSelection", "disableWindowEditor", "disableContextMenu", "disableEventMenu", "disableViewMenu", "disableDateMenu", "dragFeedbackFormatFunction", "dragOffset", "filter", "filterable", "filterMode", "events", "firstDayOfWeek", "footerTemplate", "groupByDate", "groupOrientation", "groupTemplate", "groups", "hourEnd", "hourStart", "hourFormat", "headerTemplate", "headerDatePosition", "headerNavigationStyle", "headerViewPosition", "hideAllDay", "hideNonworkingWeekdays", "hideOtherMonthDays", "hideTodayButton", "hideViewMenuCheckableItems", "hideWeekend", "legendLocation", "legendPosition", "mouseWheelStep", "horizontalScrollBarVisibility", "locale", "max", "maxEventsPerCell", "min", "messages", "minuteFormat", "monthFormat", "nonworkingDays", "nonworkingHours", "notificationInterval", "resizeHandlesVisibility", "resizeInterval", "resources", "restrictedDates", "restrictedHours", "rightToLeft", "scrollButtonsPosition", "shadeUntilCurrentTime", "showLegend", "sortBy", "sortFunction", "sortOrder", "spinButtonsDelay", "spinButtonsInitialDelay", "statuses", "theme", "timelineHeaderFormatFunction", "timelineDayScale", "timeRulerTicks", "timeZone", "timeZones", "tooltipDelay", "tooltipOffset", "verticalScrollBarVisibility", "view", "viewType", "views", "viewSelectorType", "viewStartDay", "weekdayFormat", "yearFormat", "unfocusable", "undoRedoSteps", "windowCustomizationFunction"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -1153,6 +1156,24 @@ class Scheduler extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.addEvent(eventObj);
+            });
+        }
+    }
+    /** Adds a new view. Example: scheduler.addView('week', 'My View', 'myView', false, false, 10); scheduler.setView('myView');
+    * @param {string} type. The view type.
+    * @param {string} label. The view's label displayed in the header.
+    * @param {string} value. The view's value used to identify the view.
+    * @param {boolean} hideWeekend. Determines whether to hide the weekend.
+    * @param {boolean} hideNonworkingWeekdays. Determines whether to hide the non working days.
+    * @param {number} additionalDays. Determines whether to add additional days to the view.
+    */
+    addView(type, label, value, hideWeekend, hideNonworkingWeekdays, additionalDays) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.addView(type, label, value, hideWeekend, hideNonworkingWeekdays, additionalDays);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.addView(type, label, value, hideWeekend, hideNonworkingWeekdays, additionalDays);
             });
         }
     }
@@ -1197,6 +1218,13 @@ class Scheduler extends React.Component {
             });
         }
     }
+    /** Returns an array of the start and end view dates.
+    * @returns {Date[]}
+  */
+    getViewDates() {
+        const result = this.nativeElement.getViewDates();
+        return result;
+    }
     /** Refereshes the Scheduler by recalculating the Scrollbars.
     * @param {boolean} fullRefresh?. If set the Scheduler will be re-rendered completely.
     */
@@ -1228,35 +1256,15 @@ class Scheduler extends React.Component {
     * @returns {any}
   */
     getDataSource() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getDataSource();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getDataSource();
+        return result;
     }
     /** Returns a JSON representation of the resources inside the Scheduler.
     * @returns {any}
   */
     getResources() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getResources();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getResources();
+        return result;
     }
     /** Gets a date from coordinates
     * @param {number} x. X coordinate.
@@ -1264,18 +1272,8 @@ class Scheduler extends React.Component {
     * @returns {string}
   */
     getDateFromCoordinates(x, y) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getDateFromCoordinates(x, y);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getDateFromCoordinates(x, y);
+        return result;
     }
     /** Gets whether a cell is all day cell from coordinates
     * @param {number} x. X coordinate.
@@ -1283,35 +1281,15 @@ class Scheduler extends React.Component {
     * @returns {boolean}
   */
     getIsAllDayCellFromCoordinates(x, y) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getIsAllDayCellFromCoordinates(x, y);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getIsAllDayCellFromCoordinates(x, y);
+        return result;
     }
     /** Returns the current state of the Scheduler. Includes the current dateCurernt, dataSource and timeZone properties.
     * @returns {any}
   */
     getState() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getState();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getState();
+        return result;
     }
     /** Removes a previously saved state of the element form LocalStorage according to it's id. Requires an id to be set to the element.
     */
@@ -1351,23 +1329,26 @@ class Scheduler extends React.Component {
             });
         }
     }
+    /** Sets the Scheduler's view. Example: scheduler.addView('week', 'My View', 'myView', false, false, 10); scheduler.setView('myView');
+    * @param {string} view?. The view's value. For example: 'day'.
+    */
+    setView(view) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setView(view);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setView(view);
+            });
+        }
+    }
     /** Checks whether the Scheduler contains the event.
     * @param {any} eventObj. A Scheduler event object.
     * @returns {boolean}
   */
     containsEvent(eventObj) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.containsEvent(eventObj);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.containsEvent(eventObj);
+        return result;
     }
     /** Inserts an event as object of the following format (same as the dataSource format): { label?: string, dateStart: date, dateEnd: date, description?: string, id?: string | number, class?: string, backgroundColor?: string, color?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], allDay?: boolean, disableDrag?: boolean, disableResize?: boolean, repeat?: { repeatFreq: string, repeatInterval: number, repeatOn?: number | number[] | date, repeatEnd?: number | date, exceptions?: { date: date, dateStart?: date, dateEnd?: date, hidden?: boolean, backgroundColor?: string, status?: string, label?: string, description?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], disableDrag?: boolean, disableResize?: boolean }[] }, status?: string }
     * @param {any} eventObj. An object describing a Scheduler event that is not already present in the element.
@@ -1415,18 +1396,8 @@ class Scheduler extends React.Component {
     * @returns {any}
   */
     getEventExceptions(eventObj) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getEventExceptions(eventObj);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getEventExceptions(eventObj);
+        return result;
     }
     /** Adds an event exception to a repeating event. The exception occurences for a repeating event can be gathered via the following methods: occurencesoccurrencesBetweenoccurrenceAfteroccurrenceBefore.  Example usage: scheduler.addEventException(eventObj, { date: occuranceDate, dateStart: newDateStart, dateEnd: newDateEnd, label: 'Exception' });
     * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
@@ -1637,18 +1608,8 @@ class Scheduler extends React.Component {
     * @returns {any}
   */
     getCellDateRange(cell) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getCellDateRange(cell);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getCellDateRange(cell);
+        return result;
     }
     /** Opens the tooltip(event menu) for an event.
     * @param {any} eventObj. A Scheduler event object or it's index.
@@ -1680,141 +1641,61 @@ class Scheduler extends React.Component {
     * @returns {boolean}
   */
     isDateRestricted(date) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.isDateRestricted(date);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.isDateRestricted(date);
+        return result;
     }
     /** Returns true or false whether the hour is restricted or not.
     * @param {number | Date} hour. A number that represents an hour ( 0 to 23 ) or a Date object.
     * @returns {boolean}
   */
     isHourRestricted(hour) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.isHourRestricted(hour);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.isHourRestricted(hour);
+        return result;
     }
     /** Returns true or false whether the event is restricted or not.
     * @param {any} eventObj. A Scheduler event  object or a direct event HTMLElement instance.
     * @returns {boolean}
   */
     isEventRestricted(eventObj) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.isEventRestricted(eventObj);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.isEventRestricted(eventObj);
+        return result;
     }
     /** Deletes the current undo/redo history.
     * @returns {boolean}
   */
     deleteUndoRedoHistory() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.deleteUndoRedoHistory();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.deleteUndoRedoHistory();
+        return result;
     }
     /** Indicates whether it is possible to redo an action.
     * @returns {boolean}
   */
     canRedo() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.canRedo();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.canRedo();
+        return result;
     }
     /** Indicates whether it is possbile to undo an action.
     * @returns {boolean}
   */
     canUndo() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.canUndo();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.canUndo();
+        return result;
     }
     /** Redo the next event modification.
     * @param {number} step?. A step to redo to.
     * @returns {boolean}
   */
     redo(step) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.redo(step);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.redo(step);
+        return result;
     }
     /** Undo the last event modification.
     * @param {number} step?. A step to undo to.
     * @returns {boolean}
   */
     undo(step) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.undo(step);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.undo(step);
+        return result;
     }
     componentDidRender(initialize) {
         const that = this;
@@ -1839,7 +1720,7 @@ class Scheduler extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -1866,6 +1747,7 @@ class Scheduler extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

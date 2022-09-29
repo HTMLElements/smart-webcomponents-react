@@ -25,10 +25,10 @@ export declare class DockingLayout extends React.Component<React.HTMLAttributes<
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** A getter that returns an array of all DockingLayout items that are auto hidden inside the element.
     *	Property type: any
     */
@@ -115,10 +115,10 @@ export declare class DockingLayout extends React.Component<React.HTMLAttributes<
     get resizeStep(): number;
     set resizeStep(value: number);
     /** Determines the snap mode. Two modes are available:   simple - allows dragging of a single tab item inside or outside the layout. A semi-transparent highlighter is used to indicate the possible locations where the dragged item can be dropped. The user has to drop the dragged item inside one of the possible drop zones indicated by the highlighter. advanced - allows dragging of a whole TabsWindow with items or a single tab item. Uses a Visual Studio style feedback that indicates the possible drop locations. The user has to drop the target over one of the icons inside the feedback.   The feedback/highlighter is displayed when the dragging of an item begins.
-    *	Property type: DockingLayoutSnapMode
+    *	Property type: DockingLayoutSnapMode | string
     */
-    get snapMode(): DockingLayoutSnapMode;
-    set snapMode(value: DockingLayoutSnapMode);
+    get snapMode(): DockingLayoutSnapMode | string;
+    set snapMode(value: DockingLayoutSnapMode | string);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */
@@ -183,7 +183,7 @@ export declare class DockingLayout extends React.Component<React.HTMLAttributes<
     * @param {string | number | Node} node. An autohidden "jqx-tabs-window" item instance or a new "jqx-tabs-window" instance.
     * @returns {Node}
   */
-    dock(node: string | number | Node): Promise<any>;
+    dock(node: string | number | Node): any;
     /** Inserts a new TabsWindow into the DockingLayout or creates a TabsWindow instance from an object passed as the second argument. The new item is inserted before the target item which corresponds to the index passed as the first argument to the method.
     * @param {number | HTMLElement | string} index. The index to insert a new TabsWindow at.
     * @param {any} item. An instance of a TabsWindow or an Object with the fields "label", "items" and other additional.
@@ -250,30 +250,36 @@ export declare class DockingLayout extends React.Component<React.HTMLAttributes<
     * @param {any} tabsWindow. An instance of a TabsWindow or an Object with the fields "label", "items" and other additional.
     */
     insertOutsideTargetGroupRight(index: number | HTMLElement | string, tabsWindow: any): void;
+    /** Inserts a new TabsWindow. The window is in floating mode and is undocked.
+    * @param {any} item. An instance of a TabsWindow or an Object with the fields "label", "items" and other additional.
+    * @param {number | string} left?. The left position of the new window. You can use number, px or %. For example: '10px'.
+    * @param {number | string} top?. The top position of the new window. You can use number, px or %. For example: '10px'.
+    */
+    insertFloatingWindow(item: any, left?: number | string, top?: number | string): void;
     /** The method returns an array of all autohidden items.
     * @param {string} orientation?. Determines which auto hidden items to return ( vertical or horizontal ). If not set the method will return all autohidden items. Possible values: 'vertical', 'horizontal'.
     * @returns {any[]}
   */
-    getAutoHideItems(orientation?: string): Promise<any>;
+    getAutoHideItems(orientation?: string): any;
     /** The method returns the index of a target item.
     * @param {HTMLElement} node. Returns the index of the target item.
     * @returns {number}
   */
-    getIndex(node: HTMLElement): Promise<any>;
+    getIndex(node: HTMLElement): any;
     /** Returns an array of objects representing the current structure of the element. Each object represents a Layout item with it's settings and hierarchy.
     * @param {boolean} noInstances?. Determines if the returned array will contain HTML references or not. When saving to localStorage the resulted array should not contain any HTMLElement references.
     * @returns {any[]}
   */
-    getState(noInstances?: boolean): Promise<any>;
+    getState(noInstances?: boolean): any;
     /** Returns the Splitter parent of a Layout item
     * @param {HTMLElement} item?. DockingLayout item
     * @returns {HTMLElement}
   */
-    getItemGroupElement(item?: HTMLElement): Promise<any>;
+    getItemGroupElement(item?: HTMLElement): any;
     /** Returns a JSON array of objects representing the current structure of the element. Ready to be persisted to LocalStorage.
     * @returns {any[]}
   */
-    getJSONStructure(): Promise<any>;
+    getJSONStructure(): any;
     /** Loads a previously saved state of the element. If no state is provided as an argument the method will do a localStorage lookup.
     * @param {any[]} state?. An array of objects that represents a cached state of the DockingLayout. The result of calling the 'saveState' method.
     */
@@ -289,7 +295,7 @@ export declare class DockingLayout extends React.Component<React.HTMLAttributes<
     * @param {Node} node. The "jqx-tabs-window" node to remove.
     * @returns {Node}
   */
-    removeChild(node: Node): Promise<any>;
+    removeChild(node: Node): any;
     /** Saves the current state of the DockingLayout to LocalStorage. The state includes the hierarchy and size of the items.
     */
     saveState(): void;

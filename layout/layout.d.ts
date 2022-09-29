@@ -35,10 +35,10 @@ export declare class Layout extends React.Component<React.HTMLAttributes<Element
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines the options that will be available for selection inside the context menu.
     *	Property type: any
     */
@@ -65,10 +65,10 @@ export declare class Layout extends React.Component<React.HTMLAttributes<Element
     get messages(): any;
     set messages(value: any);
     /** Sets or gets Layout's main orientation. The orientation is applied to all Splitters inside the Layout unless they have their orientation explicitly set in the dataSource.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
-    get orientation(): Orientation;
-    set orientation(value: Orientation);
+    get orientation(): Orientation | string;
+    set orientation(value: Orientation | string);
     /** If the element is readonly, users cannot interact with it.
     *	Property type: boolean
     */

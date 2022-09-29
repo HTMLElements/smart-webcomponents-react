@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.slider';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -45,7 +26,7 @@ class Slider extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -166,7 +147,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets or gets the widget's label visibility.
-    *	Property type: LabelsVisibility
+    *	Property type: LabelsVisibility | string
     */
     get labelsVisibility() {
         return this.nativeElement ? this.nativeElement.labelsVisibility : undefined;
@@ -221,7 +202,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets or gets the type of used mechanical action.
-    *	Property type: DragMechanicalAction
+    *	Property type: DragMechanicalAction | string
     */
     get mechanicalAction() {
         return this.nativeElement ? this.nativeElement.mechanicalAction : undefined;
@@ -254,7 +235,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets or gets whether the widget works with numbers or dates.
-    *	Property type: ScaleMode
+    *	Property type: ScaleMode | string
     */
     get mode() {
         return this.nativeElement ? this.nativeElement.mode : undefined;
@@ -276,7 +257,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets the orientation of the widget.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
     get orientation() {
         return this.nativeElement ? this.nativeElement.orientation : undefined;
@@ -331,7 +312,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets the position of the widget's scales.
-    *	Property type: ScalePosition
+    *	Property type: ScalePosition | string
     */
     get scalePosition() {
         return this.nativeElement ? this.nativeElement.scalePosition : undefined;
@@ -342,7 +323,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets the type of the slider's scale.
-    *	Property type: ScaleType
+    *	Property type: ScaleType | string
     */
     get scaleType() {
         return this.nativeElement ? this.nativeElement.scaleType : undefined;
@@ -430,7 +411,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets or gets the position of the thumb label.
-    *	Property type: Position
+    *	Property type: Position | string
     */
     get thumbLabelPosition() {
         return this.nativeElement ? this.nativeElement.thumbLabelPosition : undefined;
@@ -441,7 +422,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets or gets the position of the ticks in jqxSlider widget.
-    *	Property type: TicksPosition
+    *	Property type: TicksPosition | string
     */
     get ticksPosition() {
         return this.nativeElement ? this.nativeElement.ticksPosition : undefined;
@@ -452,7 +433,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets or gets the visibility of the ticks.
-    *	Property type: TicksVisibility
+    *	Property type: TicksVisibility | string
     */
     get ticksVisibility() {
         return this.nativeElement ? this.nativeElement.ticksVisibility : undefined;
@@ -463,7 +444,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets or gets the position of the tooltip in jqxSlider widget.
-    *	Property type: Position
+    *	Property type: Position | string
     */
     get tooltipPosition() {
         return this.nativeElement ? this.nativeElement.tooltipPosition : undefined;
@@ -496,7 +477,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets the value's validation by min/max. If 'strict' is applied, the value is always validated by min and max. If 'interaction' is applied, programmatic value changes are not coerced to min/max and if min/max are changed, resulting in the current value being out of range, the value is not coerced, and no change event is fired.
-    *	Property type: Validation
+    *	Property type: Validation | string
     */
     get validation() {
         return this.nativeElement ? this.nativeElement.validation : undefined;
@@ -529,7 +510,7 @@ class Slider extends React.Component {
         }
     }
     /** Sets or gets the word length. Applicable only when scaleType is 'integer'.
-    *	Property type: WordLength
+    *	Property type: WordLength | string
     */
     get wordLength() {
         return this.nativeElement ? this.nativeElement.wordLength : undefined;
@@ -563,36 +544,16 @@ class Slider extends React.Component {
     * @returns {any}
   */
     getOptimalSize() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getOptimalSize();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getOptimalSize();
+        return result;
     }
     /** Get/set the value of the slider.
     * @param {string | number | number[] | string[]} value?. The value to be set. If no parameter is passed, returns the displayed value of the slider.
     * @returns {string}
   */
     val(value) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.val(value);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.val(value);
+        return result;
     }
     componentDidRender(initialize) {
         const that = this;
@@ -617,7 +578,7 @@ class Slider extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -644,6 +605,7 @@ class Slider extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

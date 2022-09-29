@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.carousel';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class Carousel extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -86,7 +92,7 @@ class Carousel extends React.Component {
         }
     }
     /** Determines the display mode.
-    *	Property type: CarouselDisplayMode
+    *	Property type: CarouselDisplayMode | string
     */
     get displayMode() {
         return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -375,7 +381,7 @@ class Carousel extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -402,6 +408,7 @@ class Carousel extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

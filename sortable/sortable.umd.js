@@ -26,7 +26,7 @@ require('../source/modules/smart.sortable');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -48,7 +48,7 @@ require('../source/modules/smart.sortable');
 	        }
 	    }
 	    /** Sets or gets the way a sortable item can be dragged - by dragging the item itself ('item') or by dragging a handle that appears next to the item ('handle').
-	    *	Property type: SortableDragMode
+	    *	Property type: SortableDragMode | string
 	    */
 	    get dragMode() {
 	        return this.nativeElement ? this.nativeElement.dragMode : undefined;
@@ -59,7 +59,7 @@ require('../source/modules/smart.sortable');
 	        }
 	    }
 	    /** Sets or gets the the position of the drag handle relative to its respective sortable item. Applicable only when dragMode is 'handle'.
-	    *	Property type: SortableHandlePosition
+	    *	Property type: SortableHandlePosition | string
 	    */
 	    get handlePosition() {
 	        return this.nativeElement ? this.nativeElement.handlePosition : undefined;
@@ -70,7 +70,7 @@ require('../source/modules/smart.sortable');
 	        }
 	    }
 	    /** Sets or gets whether a sortable item's drag handle is always visible or is shown when the item is hovered. Applicable only when dragMode is 'handle'.
-	    *	Property type: SortableHandleVisibility
+	    *	Property type: SortableHandleVisibility | string
 	    */
 	    get handleVisibility() {
 	        return this.nativeElement ? this.nativeElement.handleVisibility : undefined;
@@ -125,7 +125,7 @@ require('../source/modules/smart.sortable');
 	        }
 	    }
 	    /** Sets or gets the direction sortable items are stacked and can be dragged.
-	    *	Property type: Orientation
+	    *	Property type: Orientation | string
 	    */
 	    get mode() {
 	        return this.nativeElement ? this.nativeElement.mode : undefined;
@@ -203,7 +203,7 @@ require('../source/modules/smart.sortable');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -230,6 +230,7 @@ require('../source/modules/smart.sortable');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

@@ -26,7 +26,7 @@ require('../source/modules/smart.led');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -48,7 +48,7 @@ require('../source/modules/smart.led');
 	        }
 	    }
 	    /** Determines when the element fires a click event.
-	    *	Property type: ClickMode
+	    *	Property type: ClickMode | string
 	    */
 	    get clickMode() {
 	        return this.nativeElement ? this.nativeElement.clickMode : undefined;
@@ -191,7 +191,7 @@ require('../source/modules/smart.led');
 	        }
 	    }
 	    /** Sets the shape of LED.
-	    *	Property type: LedShape
+	    *	Property type: LedShape | string
 	    */
 	    get shape() {
 	        return this.nativeElement ? this.nativeElement.shape : undefined;
@@ -287,7 +287,7 @@ require('../source/modules/smart.led');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -314,6 +314,7 @@ require('../source/modules/smart.led');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

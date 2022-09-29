@@ -45,10 +45,10 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     get allowDrop(): boolean;
     set allowDrop(value: boolean);
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Automatically hides the tree's toggle element (arrow) on mouseleave and shows it on mouseenter.
     *	Property type: boolean
     */
@@ -105,15 +105,20 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     get editable(): boolean;
     set editable(value: boolean);
     /** Determines the expand behavior of TreeItemsGroups in the Tree.
-    *	Property type: TreeExpandMode
+    *	Property type: TreeExpandMode | string
     */
-    get expandMode(): TreeExpandMode;
-    set expandMode(value: TreeExpandMode);
+    get expandMode(): TreeExpandMode | string;
+    set expandMode(value: TreeExpandMode | string);
     /** Enables or disables filtering. Shows or hides filter input.
     *	Property type: boolean
     */
     get filterable(): boolean;
     set filterable(value: boolean);
+    /** Applies a filter only after the 'Enter' key is pressed.
+    *	Property type: boolean
+    */
+    get filterOnEnter(): boolean;
+    set filterOnEnter(value: boolean);
     /** Sets custom text for placeholder in the filter input.
     *	Property type: string
     */
@@ -125,10 +130,10 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     get filterMember(): string;
     set filterMember(value: string);
     /** Sets filter mode.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
-    get filterMode(): FilterMode;
-    set filterMode(value: FilterMode);
+    get filterMode(): FilterMode | string;
+    set filterMode(value: FilterMode | string);
     /** Sets or gets whether the tree checkboxes have three states - checked, unchecked and indeterminate. Whorks on selectionMode: 'checkBox'
     *	Property type: boolean
     */
@@ -145,10 +150,10 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     get loadingIndicatorPlaceholder(): string;
     set loadingIndicatorPlaceholder(value: string);
     /** Sets the position of the loading indicator.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
-    get loadingIndicatorPosition(): VerticalAlignment;
-    set loadingIndicatorPosition(value: VerticalAlignment);
+    get loadingIndicatorPosition(): VerticalAlignment | string;
+    set loadingIndicatorPosition(value: VerticalAlignment | string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -165,10 +170,10 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     get messages(): any;
     set messages(value: any);
     /** Specifies what should happen with the scrollbar (or scroll buttons in scrollMode: 'scrollButtons') if content overflows the element's box.
-    *	Property type: Overflow
+    *	Property type: Overflow | string
     */
-    get overflow(): Overflow;
-    set overflow(value: Overflow);
+    get overflow(): Overflow | string;
+    set overflow(value: Overflow | string);
     /** If the element is readonly, users cannot interact with it.
     *	Property type: boolean
     */
@@ -180,30 +185,30 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
     /** Determines whether to use scrollbar or scrollButtons when content overflows an element's box.
-    *	Property type: TreeScrollMode
+    *	Property type: TreeScrollMode | string
     */
-    get scrollMode(): TreeScrollMode;
-    set scrollMode(value: TreeScrollMode);
+    get scrollMode(): TreeScrollMode | string;
+    set scrollMode(value: TreeScrollMode | string);
     /** An array with indexes (paths) of the selected items.
     *	Property type: string[]
     */
     get selectedIndexes(): string[];
     set selectedIndexes(value: string[]);
     /** Determines the way selected items are highlighted.
-    *	Property type: TreeSelectionDisplayMode
+    *	Property type: TreeSelectionDisplayMode | string
     */
-    get selectionDisplayMode(): TreeSelectionDisplayMode;
-    set selectionDisplayMode(value: TreeSelectionDisplayMode);
+    get selectionDisplayMode(): TreeSelectionDisplayMode | string;
+    set selectionDisplayMode(value: TreeSelectionDisplayMode | string);
     /** Determines selection mode.
-    *	Property type: TreeSelectionMode
+    *	Property type: TreeSelectionMode | string
     */
-    get selectionMode(): TreeSelectionMode;
-    set selectionMode(value: TreeSelectionMode);
+    get selectionMode(): TreeSelectionMode | string;
+    set selectionMode(value: TreeSelectionMode | string);
     /** Determines whether smart-tree-items-groups can be selected.
-    *	Property type: TreeSelectionTarget
+    *	Property type: TreeSelectionTarget | string
     */
-    get selectionTarget(): TreeSelectionTarget;
-    set selectionTarget(value: TreeSelectionTarget);
+    get selectionTarget(): TreeSelectionTarget | string;
+    set selectionTarget(value: TreeSelectionTarget | string);
     /** Shows or hides lines, displaying the relation between elements in group.
     *	Property type: boolean
     */
@@ -220,10 +225,10 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     get sort(): any;
     set sort(value: any);
     /** Determines sort direction - ascending or descending.
-    *	Property type: TreeSortDirection
+    *	Property type: TreeSortDirection | string
     */
-    get sortDirection(): TreeSortDirection;
-    set sortDirection(value: TreeSortDirection);
+    get sortDirection(): TreeSortDirection | string;
+    set sortDirection(value: TreeSortDirection | string);
     /** Enables or disables sorting.
     *	Property type: boolean
     */
@@ -235,15 +240,15 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     get theme(): string;
     set theme(value: string);
     /** Determines togle element (arrow) position.
-    *	Property type: Position
+    *	Property type: Position | string
     */
-    get toggleElementPosition(): Position;
-    set toggleElementPosition(value: Position);
+    get toggleElementPosition(): Position | string;
+    set toggleElementPosition(value: Position | string);
     /** Determines the way to toggle smart-tree-items-groups.
-    *	Property type: TreeToggleMode
+    *	Property type: TreeToggleMode | string
     */
-    get toggleMode(): TreeToggleMode;
-    set toggleMode(value: TreeToggleMode);
+    get toggleMode(): TreeToggleMode | string;
+    set toggleMode(value: TreeToggleMode | string);
     /** Sets or gets if the element can be focused.
     *	Property type: boolean
     */
@@ -394,11 +399,15 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     * @param {string} id. The id or numeric path of an item.
     * @returns {HTMLElement}
   */
-    getItem(id: string): Promise<any>;
+    getItem(id: string): any;
+    /** Gets the selected values. If value is not defined, returns the selected labels.
+    * @returns {string[]}
+  */
+    getSelectedValues(): any;
     /** Returns SmartTree's state
     * @returns {any}
   */
-    getState(): Promise<any>;
+    getState(): any;
     /** Inserts an item at the given position.
     * @param {any} item. A jqx-tree-item/jqx-tree-items-group (or an Object to create an item from) to add to the Tree. If an Object is passed, the available fields are <strong>tagName</strong> (<em>'jqx-tree-item'</em> - default - or <em>'jqx-tree-items-group'</em>), <strong>disabled</strong>, <strong>expanded</strong> (only if <strong>tagName</strong> is <em>'jqx-tree-items-group'</em>), <strong>(items)</strong> (only if <strong>tagName</strong> is <em>'jqx-tree-items-group'</em>), <strong>(label)</strong>, <strong>separator</strong>, <strong>shortcut</strong> (only if <strong>tagName</strong> is <em>'jqx-tree-item'</em>), and <strong>(value)</strong>. (items), (label), and (value) have to correspond to the values of <strong>itemsMember</strong>, <strong>displayMember</strong>, and <strong>valueMember</strong> respectively.
     * @param {string} path?. The path to insert the item at.
@@ -423,15 +432,23 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     /** Saves the Tree's state.
     * @returns {any}
   */
-    saveState(): Promise<any>;
-    /** Selects an item.
+    saveState(): any;
+    /** Selects an item by its index or by HTMLElement id.
     * @param {HTMLElement | string} item. The jqx-tree-item/jqx-tree-items-group (or its id or numeric path) to remove.
     */
     select(item: HTMLElement | string): void;
-    /** Unselects an item.
+    /** Selects an item or items by values.
+    * @param {string | string[]} items. The jqx-tree-item/jqx-tree-items-group values or labels, if values are not defined.
+    */
+    setSelectedValues(items: string | string[]): void;
+    /** Unselects an item by its index or by HTMLElement id.
     * @param {HTMLElement | string} item. The jqx-tree-item/jqx-tree-items-group (or its id or numeric path) to remove.
     */
     unselect(item: HTMLElement | string): void;
+    /** Unselects an item or items by values.
+    * @param {string | string[]} items. The jqx-tree-item/jqx-tree-items-group values or labels, if values are not defined.
+    */
+    unselectValues(items: string | string[]): void;
     /** Updates an item.
     * @param {HTMLElement | string} item. jqx-tree-item/jqx-tree-items-group (or its id or numeric path).
     * @param {any} newItem. An object with updated properties.

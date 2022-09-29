@@ -20,15 +20,15 @@ export declare class RepeatButton extends React.Component<React.HTMLAttributes<E
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets the click mode of the button.
-    *	Property type: ClickMode
+    *	Property type: ClickMode | string
     */
-    get clickMode(): ClickMode;
-    set clickMode(value: ClickMode);
+    get clickMode(): ClickMode | string;
+    set clickMode(value: ClickMode | string);
     /** Sets the delay between repeats in miliseconds.
     *	Property type: number
     */

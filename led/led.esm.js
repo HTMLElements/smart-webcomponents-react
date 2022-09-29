@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.led';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class Led extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -42,7 +48,7 @@ class Led extends React.Component {
         }
     }
     /** Determines when the element fires a click event.
-    *	Property type: ClickMode
+    *	Property type: ClickMode | string
     */
     get clickMode() {
         return this.nativeElement ? this.nativeElement.clickMode : undefined;
@@ -185,7 +191,7 @@ class Led extends React.Component {
         }
     }
     /** Sets the shape of LED.
-    *	Property type: LedShape
+    *	Property type: LedShape | string
     */
     get shape() {
         return this.nativeElement ? this.nativeElement.shape : undefined;
@@ -281,7 +287,7 @@ class Led extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -308,6 +314,7 @@ class Led extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

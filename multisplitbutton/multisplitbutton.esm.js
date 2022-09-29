@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.multisplitbutton';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -67,7 +48,7 @@ class ListItem extends React.Component {
         }
     }
     /**
-    *	Property type: ListItemDisplayMode
+    *	Property type: ListItemDisplayMode | string
     */
     get displayMode() {
         return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -196,7 +177,7 @@ class ListItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -319,7 +300,7 @@ class ListItemsGroup extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -401,7 +382,7 @@ class MultiSplitButton extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -478,7 +459,7 @@ class MultiSplitButton extends React.Component {
         }
     }
     /** Determines position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
     get dropDownButtonPosition() {
         return this.nativeElement ? this.nativeElement.dropDownButtonPosition : undefined;
@@ -489,7 +470,7 @@ class MultiSplitButton extends React.Component {
         }
     }
     /** Defines how element's drop down behaves. In 'none' mode drop down never opens. In 'dropDownButton' mode drop down is opened only via elelent's drop down button. In 'auto' mode drop down is opened on click on the whole top section.
-    *	Property type: DropDownOpenMode
+    *	Property type: DropDownOpenMode | string
     */
     get dropDownOpenMode() {
         return this.nativeElement ? this.nativeElement.dropDownOpenMode : undefined;
@@ -511,7 +492,7 @@ class MultiSplitButton extends React.Component {
         }
     }
     /** Determines the vertical position of the dropDown list. 'Auto' means its automatically determined depending on the viewport size.
-    *	Property type: DropDownPosition
+    *	Property type: DropDownPosition | string
     */
     get dropDownPosition() {
         return this.nativeElement ? this.nativeElement.dropDownPosition : undefined;
@@ -533,7 +514,7 @@ class MultiSplitButton extends React.Component {
         }
     }
     /** Determines the filtering for the drop down list mode.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
     get filterMode() {
         return this.nativeElement ? this.nativeElement.filterMode : undefined;
@@ -588,7 +569,7 @@ class MultiSplitButton extends React.Component {
         }
     }
     /** Sets ot gets the mode of the incremental search mode.
-    *	Property type: SearchMode
+    *	Property type: SearchMode | string
     */
     get incrementalSearchMode() {
         return this.nativeElement ? this.nativeElement.incrementalSearchMode : undefined;
@@ -632,7 +613,7 @@ class MultiSplitButton extends React.Component {
         }
     }
     /** The position of the loading indicator.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
     get loadingIndicatorPosition() {
         return this.nativeElement ? this.nativeElement.loadingIndicatorPosition : undefined;
@@ -720,7 +701,7 @@ class MultiSplitButton extends React.Component {
         }
     }
     /** Determines how many items can be selected.
-    *	Property type: MultiSplitButtonSelectionMode
+    *	Property type: MultiSplitButtonSelectionMode | string
     */
     get selectionMode() {
         return this.nativeElement ? this.nativeElement.selectionMode : undefined;
@@ -810,35 +791,15 @@ class MultiSplitButton extends React.Component {
     * @returns {HTMLElement}
   */
     getItem(value) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItem(value);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItem(value);
+        return result;
     }
     /** Returns an array with the items from the split button's dropDown list.
     * @returns {any[]}
   */
     items() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.items();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.items();
+        return result;
     }
     /** Inserts a new item at a specified position in the drop down list.
     * @param {number} position. The position where the item must be inserted.
@@ -916,7 +877,7 @@ class MultiSplitButton extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -943,6 +904,7 @@ class MultiSplitButton extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$2.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

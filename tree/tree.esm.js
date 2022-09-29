@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.tree';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -163,7 +144,7 @@ class TreeItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -363,7 +344,7 @@ class TreeItemsGroup extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -467,7 +448,7 @@ class Tree extends React.Component {
         }
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -599,7 +580,7 @@ class Tree extends React.Component {
         }
     }
     /** Determines the expand behavior of TreeItemsGroups in the Tree.
-    *	Property type: TreeExpandMode
+    *	Property type: TreeExpandMode | string
     */
     get expandMode() {
         return this.nativeElement ? this.nativeElement.expandMode : undefined;
@@ -618,6 +599,17 @@ class Tree extends React.Component {
     set filterable(value) {
         if (this.nativeElement) {
             this.nativeElement.filterable = value;
+        }
+    }
+    /** Applies a filter only after the 'Enter' key is pressed.
+    *	Property type: boolean
+    */
+    get filterOnEnter() {
+        return this.nativeElement ? this.nativeElement.filterOnEnter : undefined;
+    }
+    set filterOnEnter(value) {
+        if (this.nativeElement) {
+            this.nativeElement.filterOnEnter = value;
         }
     }
     /** Sets custom text for placeholder in the filter input.
@@ -643,7 +635,7 @@ class Tree extends React.Component {
         }
     }
     /** Sets filter mode.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
     get filterMode() {
         return this.nativeElement ? this.nativeElement.filterMode : undefined;
@@ -687,7 +679,7 @@ class Tree extends React.Component {
         }
     }
     /** Sets the position of the loading indicator.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
     get loadingIndicatorPosition() {
         return this.nativeElement ? this.nativeElement.loadingIndicatorPosition : undefined;
@@ -731,7 +723,7 @@ class Tree extends React.Component {
         }
     }
     /** Specifies what should happen with the scrollbar (or scroll buttons in scrollMode: 'scrollButtons') if content overflows the element's box.
-    *	Property type: Overflow
+    *	Property type: Overflow | string
     */
     get overflow() {
         return this.nativeElement ? this.nativeElement.overflow : undefined;
@@ -764,7 +756,7 @@ class Tree extends React.Component {
         }
     }
     /** Determines whether to use scrollbar or scrollButtons when content overflows an element's box.
-    *	Property type: TreeScrollMode
+    *	Property type: TreeScrollMode | string
     */
     get scrollMode() {
         return this.nativeElement ? this.nativeElement.scrollMode : undefined;
@@ -786,7 +778,7 @@ class Tree extends React.Component {
         }
     }
     /** Determines the way selected items are highlighted.
-    *	Property type: TreeSelectionDisplayMode
+    *	Property type: TreeSelectionDisplayMode | string
     */
     get selectionDisplayMode() {
         return this.nativeElement ? this.nativeElement.selectionDisplayMode : undefined;
@@ -797,7 +789,7 @@ class Tree extends React.Component {
         }
     }
     /** Determines selection mode.
-    *	Property type: TreeSelectionMode
+    *	Property type: TreeSelectionMode | string
     */
     get selectionMode() {
         return this.nativeElement ? this.nativeElement.selectionMode : undefined;
@@ -808,7 +800,7 @@ class Tree extends React.Component {
         }
     }
     /** Determines whether smart-tree-items-groups can be selected.
-    *	Property type: TreeSelectionTarget
+    *	Property type: TreeSelectionTarget | string
     */
     get selectionTarget() {
         return this.nativeElement ? this.nativeElement.selectionTarget : undefined;
@@ -852,7 +844,7 @@ class Tree extends React.Component {
         }
     }
     /** Determines sort direction - ascending or descending.
-    *	Property type: TreeSortDirection
+    *	Property type: TreeSortDirection | string
     */
     get sortDirection() {
         return this.nativeElement ? this.nativeElement.sortDirection : undefined;
@@ -885,7 +877,7 @@ class Tree extends React.Component {
         }
     }
     /** Determines togle element (arrow) position.
-    *	Property type: Position
+    *	Property type: Position | string
     */
     get toggleElementPosition() {
         return this.nativeElement ? this.nativeElement.toggleElementPosition : undefined;
@@ -896,7 +888,7 @@ class Tree extends React.Component {
         }
     }
     /** Determines the way to toggle smart-tree-items-groups.
-    *	Property type: TreeToggleMode
+    *	Property type: TreeToggleMode | string
     */
     get toggleMode() {
         return this.nativeElement ? this.nativeElement.toggleMode : undefined;
@@ -930,7 +922,7 @@ class Tree extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["allowDrag", "allowDrop", "animation", "autoHideToggleElement", "autoLoadState", "autoSaveState", "autoSort", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dragFeedbackFormatFunction", "dragOffset", "editable", "expandMode", "filterable", "filterInputPlaceholder", "filterMember", "filterMode", "hasThreeStates", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "overflow", "readonly", "rightToLeft", "scrollMode", "selectedIndexes", "selectionDisplayMode", "selectionMode", "selectionTarget", "showLines", "showRootLines", "sort", "sortDirection", "sorted", "theme", "toggleElementPosition", "toggleMode", "unfocusable", "valueMember"];
+        return ["allowDrag", "allowDrop", "animation", "autoHideToggleElement", "autoLoadState", "autoSaveState", "autoSort", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dragFeedbackFormatFunction", "dragOffset", "editable", "expandMode", "filterable", "filterOnEnter", "filterInputPlaceholder", "filterMember", "filterMode", "hasThreeStates", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "overflow", "readonly", "rightToLeft", "scrollMode", "selectedIndexes", "selectionDisplayMode", "selectionMode", "selectionTarget", "showLines", "showRootLines", "sort", "sortDirection", "sorted", "theme", "toggleElementPosition", "toggleMode", "unfocusable", "valueMember"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -1075,35 +1067,22 @@ class Tree extends React.Component {
     * @returns {HTMLElement}
   */
     getItem(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItem(id);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItem(id);
+        return result;
+    }
+    /** Gets the selected values. If value is not defined, returns the selected labels.
+    * @returns {string[]}
+  */
+    getSelectedValues() {
+        const result = this.nativeElement.getSelectedValues();
+        return result;
     }
     /** Returns SmartTree's state
     * @returns {any}
   */
     getState() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getState();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getState();
+        return result;
     }
     /** Inserts an item at the given position.
     * @param {any} item. A jqx-tree-item/jqx-tree-items-group (or an Object to create an item from) to add to the Tree. If an Object is passed, the available fields are <strong>tagName</strong> (<em>'jqx-tree-item'</em> - default - or <em>'jqx-tree-items-group'</em>), <strong>disabled</strong>, <strong>expanded</strong> (only if <strong>tagName</strong> is <em>'jqx-tree-items-group'</em>), <strong>(items)</strong> (only if <strong>tagName</strong> is <em>'jqx-tree-items-group'</em>), <strong>(label)</strong>, <strong>separator</strong>, <strong>shortcut</strong> (only if <strong>tagName</strong> is <em>'jqx-tree-item'</em>), and <strong>(value)</strong>. (items), (label), and (value) have to correspond to the values of <strong>itemsMember</strong>, <strong>displayMember</strong>, and <strong>valueMember</strong> respectively.
@@ -1175,20 +1154,10 @@ class Tree extends React.Component {
     * @returns {any}
   */
     saveState() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.saveState();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.saveState();
+        return result;
     }
-    /** Selects an item.
+    /** Selects an item by its index or by HTMLElement id.
     * @param {HTMLElement | string} item. The jqx-tree-item/jqx-tree-items-group (or its id or numeric path) to remove.
     */
     select(item) {
@@ -1201,7 +1170,20 @@ class Tree extends React.Component {
             });
         }
     }
-    /** Unselects an item.
+    /** Selects an item or items by values.
+    * @param {string | string[]} items. The jqx-tree-item/jqx-tree-items-group values or labels, if values are not defined.
+    */
+    setSelectedValues(items) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setSelectedValues(items);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setSelectedValues(items);
+            });
+        }
+    }
+    /** Unselects an item by its index or by HTMLElement id.
     * @param {HTMLElement | string} item. The jqx-tree-item/jqx-tree-items-group (or its id or numeric path) to remove.
     */
     unselect(item) {
@@ -1211,6 +1193,19 @@ class Tree extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.unselect(item);
+            });
+        }
+    }
+    /** Unselects an item or items by values.
+    * @param {string | string[]} items. The jqx-tree-item/jqx-tree-items-group values or labels, if values are not defined.
+    */
+    unselectValues(items) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.unselectValues(items);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.unselectValues(items);
             });
         }
     }
@@ -1251,7 +1246,7 @@ class Tree extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -1278,6 +1273,7 @@ class Tree extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$2.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

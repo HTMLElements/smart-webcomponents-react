@@ -23,10 +23,10 @@ export declare class Card extends React.Component<React.HTMLAttributes<Element> 
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** A callback function, used to add event handlers and other custom logic related to the content inside the card element.
     *	Property type: any
     */

@@ -20,10 +20,10 @@ export declare class ScrollBar extends React.Component<React.HTMLAttributes<Elem
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Enables or disables the element.
     *	Property type: boolean
     */
@@ -50,10 +50,10 @@ export declare class ScrollBar extends React.Component<React.HTMLAttributes<Elem
     get max(): number;
     set max(value: number);
     /** Sets or gets the type of used mechanical action. The mechanical action defines in which moment the value of the element will be updated.
-    *	Property type: DragMechanicalAction
+    *	Property type: DragMechanicalAction | string
     */
-    get mechanicalAction(): DragMechanicalAction;
-    set mechanicalAction(value: DragMechanicalAction);
+    get mechanicalAction(): DragMechanicalAction | string;
+    set mechanicalAction(value: DragMechanicalAction | string);
     /** Sets an object with string values, related to the different states of passwords strength.
     *	Property type: any
     */
@@ -65,10 +65,10 @@ export declare class ScrollBar extends React.Component<React.HTMLAttributes<Elem
     get min(): number;
     set min(value: number);
     /** Sets or gets the scrollbar's orientation
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
-    get orientation(): Orientation;
-    set orientation(value: Orientation);
+    get orientation(): Orientation | string;
+    set orientation(value: Orientation | string);
     /** If the element is readonly, users cannot interact with it.
     *	Property type: boolean
     */

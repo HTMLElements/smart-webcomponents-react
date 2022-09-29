@@ -26,10 +26,10 @@ export declare class NumericTextBox extends React.Component<React.HTMLAttributes
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets or gets the char to use as the decimal separator in numeric values.
     *	Property type: string
     */
@@ -61,10 +61,10 @@ export declare class NumericTextBox extends React.Component<React.HTMLAttributes
     get hint(): string;
     set hint(value: string);
     /** Sets or gets the input format of the widget. Setting this property dynamically can lead to precision loss.
-    *	Property type: NumericTextBoxInputFormat
+    *	Property type: NumericTextBoxInputFormat | string
     */
-    get inputFormat(): NumericTextBoxInputFormat;
-    set inputFormat(value: NumericTextBoxInputFormat);
+    get inputFormat(): NumericTextBoxInputFormat | string;
+    set inputFormat(value: NumericTextBoxInputFormat | string);
     /** Sets a label above the element.
     *	Property type: string
     */
@@ -131,20 +131,20 @@ export declare class NumericTextBox extends React.Component<React.HTMLAttributes
     get precisionDigits(): number;
     set precisionDigits(value: number);
     /** Sets or gets the radix of the jqxNumericTextBox. The radix specifies the numeral system in which to display the widget's value. Applicable only when inputFormat is 'integer'.
-    *	Property type: NumericTextBoxRadix
+    *	Property type: NumericTextBoxRadix | string
     */
-    get radix(): NumericTextBoxRadix;
-    set radix(value: NumericTextBoxRadix);
+    get radix(): NumericTextBoxRadix | string;
+    set radix(value: NumericTextBoxRadix | string);
     /** Enables or disables the radix display button of the jqxNumericTextBox. Applicable only when inputFormat is 'integer'.
     *	Property type: boolean
     */
     get radixDisplay(): boolean;
     set radixDisplay(value: boolean);
     /** Sets or gets the position of the radix display button of the jqxNumericTextBox.
-    *	Property type: NumericTextBoxDisplayPosition
+    *	Property type: NumericTextBoxDisplayPosition | string
     */
-    get radixDisplayPosition(): NumericTextBoxDisplayPosition;
-    set radixDisplayPosition(value: NumericTextBoxDisplayPosition);
+    get radixDisplayPosition(): NumericTextBoxDisplayPosition | string;
+    set radixDisplayPosition(value: NumericTextBoxDisplayPosition | string);
     /** Sets or gets the readonly state of the jqxNumericTextBox.
     *	Property type: boolean
     */
@@ -191,10 +191,10 @@ export declare class NumericTextBox extends React.Component<React.HTMLAttributes
     get spinButtonsInitialDelay(): number;
     set spinButtonsInitialDelay(value: number);
     /** Sets or gets the position of the spin buttons of the jqxNumericTextBox.
-    *	Property type: NumericTextBoxDisplayPosition
+    *	Property type: NumericTextBoxDisplayPosition | string
     */
-    get spinButtonsPosition(): NumericTextBoxDisplayPosition;
-    set spinButtonsPosition(value: NumericTextBoxDisplayPosition);
+    get spinButtonsPosition(): NumericTextBoxDisplayPosition | string;
+    set spinButtonsPosition(value: NumericTextBoxDisplayPosition | string);
     /** Sets or gets the increase/decrease step.
     *	Property type: number | string
     */
@@ -216,20 +216,20 @@ export declare class NumericTextBox extends React.Component<React.HTMLAttributes
     get unit(): string;
     set unit(value: string);
     /** Sets the value's validation by min/max. If 'strict' is applied, the value is always validated by min and max. If 'interaction' is applied, programmatic value changes are not coerced to min/max and if min/max are changed, resulting in the current value being out of range, the value is not coerced, and no change event is fired.
-    *	Property type: Validation
+    *	Property type: Validation | string
     */
-    get validation(): Validation;
-    set validation(value: Validation);
+    get validation(): Validation | string;
+    set validation(value: Validation | string);
     /** Sets or gets the value of the jqxNumericTextBox widget.
     *	Property type: any
     */
     get value(): any;
     set value(value: any);
     /** Sets or gets the word length. Applicable only when inputFormat is 'integer'. If min and/or max are not set by default, they will be set automatically based on the specified word length.
-    *	Property type: WordLength
+    *	Property type: WordLength | string
     */
-    get wordLength(): WordLength;
-    set wordLength(value: WordLength);
+    get wordLength(): WordLength | string;
+    set wordLength(value: WordLength | string);
     get properties(): string[];
     /**  This event is triggered when the value is changed.
     *  @param event. The custom event. 	*/
@@ -267,7 +267,7 @@ export declare class NumericTextBox extends React.Component<React.HTMLAttributes
     * @param {boolean} suppressValidation?. If <em>true</em> is passed, the passed value will be set to the jqxNumericTextBox without validation.
     * @returns {string}
   */
-    val(value?: string | number, suppressValidation?: boolean): Promise<any>;
+    val(value?: string | number, suppressValidation?: boolean): any;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

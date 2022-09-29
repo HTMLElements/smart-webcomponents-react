@@ -39,10 +39,10 @@ export declare class LayoutGroup extends React.Component<React.HTMLAttributes<El
     get label(): string;
     set label(value: string);
     /** Determines the group orientation.
-    *	Property type: LayoutGroupOrientation
+    *	Property type: LayoutGroupOrientation | string
     */
-    get orientation(): LayoutGroupOrientation;
-    set orientation(value: LayoutGroupOrientation);
+    get orientation(): LayoutGroupOrientation | string;
+    set orientation(value: LayoutGroupOrientation | string);
     /** Determines the size of the item.
     *	Property type: any
     */

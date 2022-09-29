@@ -27,15 +27,15 @@ export declare class Splitter extends React.Component<React.HTMLAttributes<Eleme
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines how the items are arranged inside the Splitter. Possible values:   end - all items will fit the size of the Splitter. When inserting a new item the space required for the item to fit will be deducted from it's neighbour. proportional - all items will fit the size of the Splitter. When inserting a new item the space required for it to fit will be the result from the proportional deduction of the size from the rest of the items inside the element. overflow - the items inside the Splitter will not fit it's size. Instead they overflow by taking the exact amount of space they need and a scrollbar is displayed in order to view the content.
-    *	Property type: SplitterAutoFitMode
+    *	Property type: SplitterAutoFitMode | string
     */
-    get autoFitMode(): SplitterAutoFitMode;
-    set autoFitMode(value: SplitterAutoFitMode);
+    get autoFitMode(): SplitterAutoFitMode | string;
+    set autoFitMode(value: SplitterAutoFitMode | string);
     /** Enables or disables the element.
     *	Property type: boolean
     */
@@ -72,20 +72,20 @@ export declare class Splitter extends React.Component<React.HTMLAttributes<Eleme
     get messages(): any;
     set messages(value: any);
     /** Sets or gets splitter's orientation.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
-    get orientation(): Orientation;
-    set orientation(value: Orientation);
+    get orientation(): Orientation | string;
+    set orientation(value: Orientation | string);
     /** If the element is readonly, users cannot interact with it.
     *	Property type: boolean
     */
     get readonly(): boolean;
     set readonly(value: boolean);
     /** Determines the resize mode of the splitter. Possible values are:  - None - resizing is disabled.  - Adjacent - only the two adjacent items between the target splitter bar are being affected. This is the default behavior.  - End - only the first item( left or top according to the orientation) of the target Splitter bar and the last item are affected.  Proportional - all of the items positioned in the direction to which the splitter bar is dragged will be affected. For example, when a splitter bar is dragged to the right all the items positioned on it's the right side will be affected. The items will obtain a proportional size corresponding to their current size.
-    *	Property type: SplitterResizeMode
+    *	Property type: SplitterResizeMode | string
     */
-    get resizeMode(): SplitterResizeMode;
-    set resizeMode(value: SplitterResizeMode);
+    get resizeMode(): SplitterResizeMode | string;
+    set resizeMode(value: SplitterResizeMode | string);
     /** Determines the resize step during reisizing
     *	Property type: number
     */
@@ -148,7 +148,7 @@ export declare class Splitter extends React.Component<React.HTMLAttributes<Eleme
     * @param {number} splitterBar. A JQX.SplitterBar instance.
     * @returns {number}
   */
-    hideBar(splitterBar: number): Promise<any>;
+    hideBar(splitterBar: number): any;
     /** Insert a new Splitter item at a given position.
     * @param {number} index. The index at which a new item will be inserted.
     * @param {any} details. An Object or string used as content if the splitter item.
@@ -159,7 +159,7 @@ export declare class Splitter extends React.Component<React.HTMLAttributes<Eleme
     * @param {Node | null} referenceNode?. The "jqx-splitter-item" node before which newNode is inserted.
     * @returns {Node}
   */
-    insertBefore(newNode: Node, referenceNode?: Node | null): Promise<any>;
+    insertBefore(newNode: Node, referenceNode?: Node | null): any;
     /** Locks a splitter item so it's size can't change.
     * @param {number} index. The index of a Splitter Bar or it's instance.
     */
@@ -179,7 +179,7 @@ export declare class Splitter extends React.Component<React.HTMLAttributes<Eleme
     * @param {Node} node. The "jqx-splitter-item" node to remove.
     * @returns {Node}
   */
-    removeChild(node: Node): Promise<any>;
+    removeChild(node: Node): any;
     /** Refreshes the Splitter
     */
     refresh(): void;

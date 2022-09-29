@@ -32,10 +32,10 @@ export declare class PhoneInput extends React.Component<React.HTMLAttributes<Ele
     get dropDownClassList(): any;
     set dropDownClassList(value: any);
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
     *	Property type: string | number
     */
@@ -140,20 +140,20 @@ export declare class PhoneInput extends React.Component<React.HTMLAttributes<Ele
     * @param {boolean} isInternational?. When you use 'false', the national phone number will be returned and the international phone number, when you use 'true' as parameter.
     * @returns {string}
   */
-    getNumber(isInternational?: boolean): Promise<any>;
+    getNumber(isInternational?: boolean): any;
     /** Returns an item by its country dial code. The item is an object with 'label', 'value', 'iso2' and 'dialCode' properties.
     * @param {string} dialCode?. Returns the national or international phone number
     * @returns {any}
   */
-    getItemByDialCode(dialCode?: string): Promise<any>;
+    getItemByDialCode(dialCode?: string): any;
     /** Returns the selected item. The item is an object with 'label', 'value', 'iso2' and 'dialCode' properties.
     * @returns {any}
   */
-    getSelectedItem(): Promise<any>;
+    getSelectedItem(): any;
     /** Returns true or false depending on whether the entered phone number is valid.
     * @returns {boolean}
   */
-    isValidNumber(): Promise<any>;
+    isValidNumber(): any;
     /** Validates the entered phone number.
     */
     validate(): void;

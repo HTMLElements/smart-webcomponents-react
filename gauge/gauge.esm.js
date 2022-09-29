@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.gauge';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -45,7 +26,7 @@ class Gauge extends React.Component {
         return this._id;
     }
     /** Determines the type of gauge's indicator.
-    *	Property type: GaugeAnalogDisplayType
+    *	Property type: GaugeAnalogDisplayType | string
     */
     get analogDisplayType() {
         return this.nativeElement ? this.nativeElement.analogDisplayType : undefined;
@@ -56,7 +37,7 @@ class Gauge extends React.Component {
         }
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -144,7 +125,7 @@ class Gauge extends React.Component {
         }
     }
     /** Sets the position of the digital display inside the element.
-    *	Property type: GaugeDigitalDisplayPosition
+    *	Property type: GaugeDigitalDisplayPosition | string
     */
     get digitalDisplayPosition() {
         return this.nativeElement ? this.nativeElement.digitalDisplayPosition : undefined;
@@ -221,7 +202,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines the visibility of the labels inside the element.
-    *	Property type: LabelsVisibility
+    *	Property type: LabelsVisibility | string
     */
     get labelsVisibility() {
         return this.nativeElement ? this.nativeElement.labelsVisibility : undefined;
@@ -276,7 +257,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines when the value of the element is updated.
-    *	Property type: DragMechanicalAction
+    *	Property type: DragMechanicalAction | string
     */
     get mechanicalAction() {
         return this.nativeElement ? this.nativeElement.mechanicalAction : undefined;
@@ -309,7 +290,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines whether the element works with numbers or dates.
-    *	Property type: ScaleMode
+    *	Property type: ScaleMode | string
     */
     get mode() {
         return this.nativeElement ? this.nativeElement.mode : undefined;
@@ -331,7 +312,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines the position of the needle when analogDisplayType is 'needle'.
-    *	Property type: GaugeNeedlePosition
+    *	Property type: GaugeNeedlePosition | string
     */
     get needlePosition() {
         return this.nativeElement ? this.nativeElement.needlePosition : undefined;
@@ -386,7 +367,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines the position of the scale in the element.
-    *	Property type: GaugeScalePosition
+    *	Property type: GaugeScalePosition | string
     */
     get scalePosition() {
         return this.nativeElement ? this.nativeElement.scalePosition : undefined;
@@ -397,7 +378,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines the type of the gauge's value and scale.
-    *	Property type: ScaleType
+    *	Property type: ScaleType | string
     */
     get scaleType() {
         return this.nativeElement ? this.nativeElement.scaleType : undefined;
@@ -452,7 +433,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines how the Gauge will size.
-    *	Property type: GaugeSizeMode
+    *	Property type: GaugeSizeMode | string
     */
     get sizeMode() {
         return this.nativeElement ? this.nativeElement.sizeMode : undefined;
@@ -485,7 +466,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines the position of the ticks in the Gauge.
-    *	Property type: TicksPosition
+    *	Property type: TicksPosition | string
     */
     get ticksPosition() {
         return this.nativeElement ? this.nativeElement.ticksPosition : undefined;
@@ -496,7 +477,7 @@ class Gauge extends React.Component {
         }
     }
     /** Determines the visibility of the ticks.
-    *	Property type: TicksVisibility
+    *	Property type: TicksVisibility | string
     */
     get ticksVisibility() {
         return this.nativeElement ? this.nativeElement.ticksVisibility : undefined;
@@ -529,7 +510,7 @@ class Gauge extends React.Component {
         }
     }
     /** Sets the value's validation by min/max.
-    *	Property type: Validation
+    *	Property type: Validation | string
     */
     get validation() {
         return this.nativeElement ? this.nativeElement.validation : undefined;
@@ -551,7 +532,7 @@ class Gauge extends React.Component {
         }
     }
     /** Sets or gets the word length. Applicable only when scaleType is 'integer'.
-    *	Property type: WordLength
+    *	Property type: WordLength | string
     */
     get wordLength() {
         return this.nativeElement ? this.nativeElement.wordLength : undefined;
@@ -585,36 +566,16 @@ class Gauge extends React.Component {
     * @returns {any}
   */
     getOptimalSize() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getOptimalSize();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getOptimalSize();
+        return result;
     }
     /** Get/set the value of the gauge.
     * @param {string | number | Date} value?. The value to be set. If no parameter is passed, returns the current value of the gauge. The value can be a date only when <b>scaleType</b> is 'date'.
     * @returns {string}
   */
     val(value) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.val(value);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.val(value);
+        return result;
     }
     componentDidRender(initialize) {
         const that = this;
@@ -639,7 +600,7 @@ class Gauge extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -666,6 +627,7 @@ class Gauge extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

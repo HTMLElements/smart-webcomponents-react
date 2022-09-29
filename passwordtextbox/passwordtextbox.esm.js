@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.textbox';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class PasswordTextBox extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -53,7 +59,7 @@ class PasswordTextBox extends React.Component {
         }
     }
     /** Specifies the behavior on "Enter" key press. Default mode is "submit".
-    *	Property type: EnterKeyBehavior
+    *	Property type: EnterKeyBehavior | string
     */
     get enterKeyBehavior() {
         return this.nativeElement ? this.nativeElement.enterKeyBehavior : undefined;
@@ -273,7 +279,7 @@ class PasswordTextBox extends React.Component {
         }
     }
     /** Determines the position of the tooltip.
-    *	Property type: PasswordTextBoxTooltipPosition
+    *	Property type: PasswordTextBoxTooltipPosition | string
     */
     get tooltipPosition() {
         return this.nativeElement ? this.nativeElement.tooltipPosition : undefined;
@@ -371,7 +377,7 @@ class PasswordTextBox extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -398,6 +404,7 @@ class PasswordTextBox extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

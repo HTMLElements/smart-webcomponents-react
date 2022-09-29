@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.checkinput';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class CheckInput extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -64,7 +70,7 @@ class CheckInput extends React.Component {
         }
     }
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
     get dropDownButtonPosition() {
         return this.nativeElement ? this.nativeElement.dropDownButtonPosition : undefined;
@@ -207,7 +213,7 @@ class CheckInput extends React.Component {
         }
     }
     /** Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation.
-    *	Property type: CheckInputQueryMode
+    *	Property type: CheckInputQueryMode | string
     */
     get queryMode() {
         return this.nativeElement ? this.nativeElement.queryMode : undefined;
@@ -417,7 +423,7 @@ class CheckInput extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -444,6 +450,7 @@ class CheckInput extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

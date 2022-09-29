@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.menu';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -152,7 +133,7 @@ class MenuItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -256,7 +237,7 @@ class MenuItemsGroup extends React.Component {
         }
     }
     /**
-    *	Property type: MenuCheckMode
+    *	Property type: MenuCheckMode | string
     */
     get checkMode() {
         return this.nativeElement ? this.nativeElement.checkMode : undefined;
@@ -374,7 +355,7 @@ class MenuItemsGroup extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -456,7 +437,7 @@ class Menu extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -511,7 +492,7 @@ class Menu extends React.Component {
         }
     }
     /** Sets the check mode of top-level Menu items (immediate children of the Menu). checkMode can be set to 'checkbox', 'radioButton', or a comma-separated list containing 'checkbox', 'radioButton', or 'none' (e.g. 'checkbox, radioButton, none, checkbox'). When set to a list, each value in the list is applied to groups of Menu items separated by an item with separator (item after the one with separator is the start of a new checkMode context). Sublevels are controlled by setting checkMode to the respective smart-menu-items-group.
-    *	Property type: MenuCheckMode
+    *	Property type: MenuCheckMode | string
     */
     get checkMode() {
         return this.nativeElement ? this.nativeElement.checkMode : undefined;
@@ -522,7 +503,7 @@ class Menu extends React.Component {
         }
     }
     /** Sets the document event which closes any open Menu drop downs (or the Menu itself when mode is 'dropDown').
-    *	Property type: MenuCloseAction
+    *	Property type: MenuCloseAction | string
     */
     get closeAction() {
         return this.nativeElement ? this.nativeElement.closeAction : undefined;
@@ -588,7 +569,7 @@ class Menu extends React.Component {
         }
     }
     /** Determines the opening direction of Menu dropdowns.
-    *	Property type: MenuDropDownPosition
+    *	Property type: MenuDropDownPosition | string
     */
     get dropDownPosition() {
         return this.nativeElement ? this.nativeElement.dropDownPosition : undefined;
@@ -676,7 +657,7 @@ class Menu extends React.Component {
         }
     }
     /** Determines the menu's display mode.
-    *	Property type: MenuMode
+    *	Property type: MenuMode | string
     */
     get mode() {
         return this.nativeElement ? this.nativeElement.mode : undefined;
@@ -698,7 +679,7 @@ class Menu extends React.Component {
         }
     }
     /** Sets or gets the menu's scroll buttons behavior. Applicable only when dropDownAppendTo is not null.
-    *	Property type: Overflow
+    *	Property type: Overflow | string
     */
     get overflow() {
         return this.nativeElement ? this.nativeElement.overflow : undefined;
@@ -742,7 +723,7 @@ class Menu extends React.Component {
         }
     }
     /** Determines the menu's selection mode.
-    *	Property type: MenuSelectionMode
+    *	Property type: MenuSelectionMode | string
     */
     get selectionMode() {
         return this.nativeElement ? this.nativeElement.selectionMode : undefined;
@@ -890,18 +871,8 @@ class Menu extends React.Component {
     * @returns {HTMLElement}
   */
     getItem(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItem(id);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItem(id);
+        return result;
     }
     /** Maximizes the Menu.
     */
@@ -990,7 +961,7 @@ class Menu extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -1017,6 +988,7 @@ class Menu extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$2.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

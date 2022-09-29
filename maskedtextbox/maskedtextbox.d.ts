@@ -22,10 +22,10 @@ export declare class MaskedTextBox extends React.Component<React.HTMLAttributes<
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines whether promptChar can be entered as valid input by the user.
     *	Property type: boolean
     */
@@ -47,20 +47,20 @@ export declare class MaskedTextBox extends React.Component<React.HTMLAttributes<
     get autoShowMask(): boolean;
     set autoShowMask(value: boolean);
     /** Determines whether literals and prompt characters are copied to the clipboard on cut/copy operations.
-    *	Property type: MaskedTextBoxCutCopyMaskFormat
+    *	Property type: MaskedTextBoxCutCopyMaskFormat | string
     */
-    get cutCopyMaskFormat(): MaskedTextBoxCutCopyMaskFormat;
-    set cutCopyMaskFormat(value: MaskedTextBoxCutCopyMaskFormat);
+    get cutCopyMaskFormat(): MaskedTextBoxCutCopyMaskFormat | string;
+    set cutCopyMaskFormat(value: MaskedTextBoxCutCopyMaskFormat | string);
     /** Enables or disables the element.
     *	Property type: boolean
     */
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Specifies the behavior on "Enter" key press. Default mode is "submit".
-    *	Property type: EnterKeyBehavior
+    *	Property type: EnterKeyBehavior | string
     */
-    get enterKeyBehavior(): EnterKeyBehavior;
-    set enterKeyBehavior(value: EnterKeyBehavior);
+    get enterKeyBehavior(): EnterKeyBehavior | string;
+    set enterKeyBehavior(value: EnterKeyBehavior | string);
     /** Determines whether the prompt character in the input mask is hidden when the masked text box isn't focused anymore.
     *	Property type: boolean
     */
@@ -167,10 +167,10 @@ export declare class MaskedTextBox extends React.Component<React.HTMLAttributes<
     get selectAllOnFocus(): boolean;
     set selectAllOnFocus(value: boolean);
     /** Determines whether the value of the input should contain or not the prompt/literals of the mask.
-    *	Property type: MaskedTextBoxTextMaskFormat
+    *	Property type: MaskedTextBoxTextMaskFormat | string
     */
-    get textMaskFormat(): MaskedTextBoxTextMaskFormat;
-    set textMaskFormat(value: MaskedTextBoxTextMaskFormat);
+    get textMaskFormat(): MaskedTextBoxTextMaskFormat | string;
+    set textMaskFormat(value: MaskedTextBoxTextMaskFormat | string);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */

@@ -39,10 +39,10 @@ export declare class FormGroup extends React.Component<React.HTMLAttributes<Elem
     get onValueChanges(): any;
     set onValueChanges(value: any);
     /** Sets or Gets the labels position.
-    *	Property type: FormGroupLabelPosition
+    *	Property type: FormGroupLabelPosition | string
     */
-    get labelPosition(): FormGroupLabelPosition;
-    set labelPosition(value: FormGroupLabelPosition);
+    get labelPosition(): FormGroupLabelPosition | string;
+    set labelPosition(value: FormGroupLabelPosition | string);
     /** Makes the form readonly.
     *	Property type: boolean
     */
@@ -79,7 +79,7 @@ export declare class FormGroup extends React.Component<React.HTMLAttributes<Elem
     * @param {string} dataField. dataField of a FormControl or FormGroup
     * @returns {Control}
   */
-    getControl(dataField: string): Promise<any>;
+    getControl(dataField: string): any;
     /** Inserts a control to the Form.
     * @param {number} index. Control insert index
     * @param {any} controlOptions. Control options. The control options description is available in the <em>controls</em> property.

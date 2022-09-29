@@ -39,20 +39,20 @@ export declare class CardView extends React.Component<React.HTMLAttributes<Eleme
     get allowDrag(): boolean;
     set allowDrag(value: boolean);
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Describes the height for each card.
     *	Property type: number | null
     */
     get cardHeight(): number | null;
     set cardHeight(value: number | null);
     /** Describes the orientation of the card cells.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
-    get cellOrientation(): Orientation;
-    set cellOrientation(value: Orientation);
+    get cellOrientation(): Orientation | string;
+    set cellOrientation(value: Orientation | string);
     /** Allows collapsing the card content.
     *	Property type: boolean
     */
@@ -69,10 +69,10 @@ export declare class CardView extends React.Component<React.HTMLAttributes<Eleme
     get coverField(): string;
     set coverField(value: string);
     /** Describes the cover image fit property.
-    *	Property type: CardViewCoverMode
+    *	Property type: CardViewCoverMode | string
     */
-    get coverMode(): CardViewCoverMode;
-    set coverMode(value: CardViewCoverMode);
+    get coverMode(): CardViewCoverMode | string;
+    set coverMode(value: CardViewCoverMode | string);
     /** Determines the data source for the item that will be displayed inside the card.
     *	Property type: any
     */
@@ -89,10 +89,10 @@ export declare class CardView extends React.Component<React.HTMLAttributes<Eleme
     get editable(): boolean;
     set editable(value: boolean);
     /** Sets or gets the header position. The header contains the Customize, Filter, Sort, and Search buttons.
-    *	Property type: CardViewHeaderPosition
+    *	Property type: CardViewHeaderPosition | string
     */
-    get headerPosition(): CardViewHeaderPosition;
-    set headerPosition(value: CardViewHeaderPosition);
+    get headerPosition(): CardViewHeaderPosition | string;
+    set headerPosition(value: CardViewHeaderPosition | string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -114,10 +114,10 @@ export declare class CardView extends React.Component<React.HTMLAttributes<Eleme
     get theme(): string;
     set theme(value: string);
     /** Describes the scrolling behavior of the element.
-    *	Property type: Scrolling
+    *	Property type: Scrolling | string
     */
-    get scrolling(): Scrolling;
-    set scrolling(value: Scrolling);
+    get scrolling(): Scrolling | string;
+    set scrolling(value: Scrolling | string);
     /** Describes which data field to be set as title.
     *	Property type: string
     */
@@ -191,7 +191,7 @@ export declare class CardView extends React.Component<React.HTMLAttributes<Eleme
     * @param {number | string} recordId. The id of the record to scroll to
     * @returns {HTMLElement}
   */
-    ensureVisible(recordId: number | string): Promise<any>;
+    ensureVisible(recordId: number | string): any;
     /** Opens the "Customize cards" header panel (drop down)
     */
     openCustomizePanel(): void;

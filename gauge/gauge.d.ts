@@ -20,15 +20,15 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     private componentRef;
     get id(): string;
     /** Determines the type of gauge's indicator.
-    *	Property type: GaugeAnalogDisplayType
+    *	Property type: GaugeAnalogDisplayType | string
     */
-    get analogDisplayType(): GaugeAnalogDisplayType;
-    set analogDisplayType(value: GaugeAnalogDisplayType);
+    get analogDisplayType(): GaugeAnalogDisplayType | string;
+    set analogDisplayType(value: GaugeAnalogDisplayType | string);
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets or gets gauge's animation duration. Applicable only when animation is not 'none'.
     *	Property type: number
     */
@@ -65,10 +65,10 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get digitalDisplay(): boolean;
     set digitalDisplay(value: boolean);
     /** Sets the position of the digital display inside the element.
-    *	Property type: GaugeDigitalDisplayPosition
+    *	Property type: GaugeDigitalDisplayPosition | string
     */
-    get digitalDisplayPosition(): GaugeDigitalDisplayPosition;
-    set digitalDisplayPosition(value: GaugeDigitalDisplayPosition);
+    get digitalDisplayPosition(): GaugeDigitalDisplayPosition | string;
+    set digitalDisplayPosition(value: GaugeDigitalDisplayPosition | string);
     /** Enables or disables the element.
     *	Property type: boolean
     */
@@ -100,10 +100,10 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get labelFormatFunction(): any;
     set labelFormatFunction(value: any);
     /** Determines the visibility of the labels inside the element.
-    *	Property type: LabelsVisibility
+    *	Property type: LabelsVisibility | string
     */
-    get labelsVisibility(): LabelsVisibility;
-    set labelsVisibility(value: LabelsVisibility);
+    get labelsVisibility(): LabelsVisibility | string;
+    set labelsVisibility(value: LabelsVisibility | string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -125,10 +125,10 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get max(): number;
     set max(value: number);
     /** Determines when the value of the element is updated.
-    *	Property type: DragMechanicalAction
+    *	Property type: DragMechanicalAction | string
     */
-    get mechanicalAction(): DragMechanicalAction;
-    set mechanicalAction(value: DragMechanicalAction);
+    get mechanicalAction(): DragMechanicalAction | string;
+    set mechanicalAction(value: DragMechanicalAction | string);
     /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
     *	Property type: any
     */
@@ -140,20 +140,20 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get min(): number;
     set min(value: number);
     /** Determines whether the element works with numbers or dates.
-    *	Property type: ScaleMode
+    *	Property type: ScaleMode | string
     */
-    get mode(): ScaleMode;
-    set mode(value: ScaleMode);
+    get mode(): ScaleMode | string;
+    set mode(value: ScaleMode | string);
     /** Sets or gets the element's name, which is used as a reference when the data is submitted.
     *	Property type: string
     */
     get name(): string;
     set name(value: string);
     /** Determines the position of the needle when analogDisplayType is 'needle'.
-    *	Property type: GaugeNeedlePosition
+    *	Property type: GaugeNeedlePosition | string
     */
-    get needlePosition(): GaugeNeedlePosition;
-    set needlePosition(value: GaugeNeedlePosition);
+    get needlePosition(): GaugeNeedlePosition | string;
+    set needlePosition(value: GaugeNeedlePosition | string);
     /** Determines the number of digits after the decimal point. Applicable only when scaleType is 'floatingPoint'.
     *	Property type: number
     */
@@ -183,15 +183,15 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
     /** Determines the position of the scale in the element.
-    *	Property type: GaugeScalePosition
+    *	Property type: GaugeScalePosition | string
     */
-    get scalePosition(): GaugeScalePosition;
-    set scalePosition(value: GaugeScalePosition);
+    get scalePosition(): GaugeScalePosition | string;
+    set scalePosition(value: GaugeScalePosition | string);
     /** Determines the type of the gauge's value and scale.
-    *	Property type: ScaleType
+    *	Property type: ScaleType | string
     */
-    get scaleType(): ScaleType;
-    set scaleType(value: ScaleType);
+    get scaleType(): ScaleType | string;
+    set scaleType(value: ScaleType | string);
     /** Enables or disables scientific notation.
     *	Property type: boolean
     */
@@ -213,10 +213,10 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get significantDigits(): number | null;
     set significantDigits(value: number | null);
     /** Determines how the Gauge will size.
-    *	Property type: GaugeSizeMode
+    *	Property type: GaugeSizeMode | string
     */
-    get sizeMode(): GaugeSizeMode;
-    set sizeMode(value: GaugeSizeMode);
+    get sizeMode(): GaugeSizeMode | string;
+    set sizeMode(value: GaugeSizeMode | string);
     /** Sets or gets gauge's start angle. This property specifies the beggining of the gauge's scale and is measured in degrees.
     *	Property type: number
     */
@@ -228,15 +228,15 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get theme(): string;
     set theme(value: string);
     /** Determines the position of the ticks in the Gauge.
-    *	Property type: TicksPosition
+    *	Property type: TicksPosition | string
     */
-    get ticksPosition(): TicksPosition;
-    set ticksPosition(value: TicksPosition);
+    get ticksPosition(): TicksPosition | string;
+    set ticksPosition(value: TicksPosition | string);
     /** Determines the visibility of the ticks.
-    *	Property type: TicksVisibility
+    *	Property type: TicksVisibility | string
     */
-    get ticksVisibility(): TicksVisibility;
-    set ticksVisibility(value: TicksVisibility);
+    get ticksVisibility(): TicksVisibility | string;
+    set ticksVisibility(value: TicksVisibility | string);
     /** Sets or gets if the element can be focused.
     *	Property type: boolean
     */
@@ -248,20 +248,20 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     get unit(): string;
     set unit(value: string);
     /** Sets the value's validation by min/max.
-    *	Property type: Validation
+    *	Property type: Validation | string
     */
-    get validation(): Validation;
-    set validation(value: Validation);
+    get validation(): Validation | string;
+    set validation(value: Validation | string);
     /** Sets or gets the value of the element. The value can be a date only when scaleType is 'date'.
     *	Property type: string | number | Date
     */
     get value(): string | number | Date;
     set value(value: string | number | Date);
     /** Sets or gets the word length. Applicable only when scaleType is 'integer'.
-    *	Property type: WordLength
+    *	Property type: WordLength | string
     */
-    get wordLength(): WordLength;
-    set wordLength(value: WordLength);
+    get wordLength(): WordLength | string;
+    set wordLength(value: WordLength | string);
     get properties(): string[];
     /**  This event is triggered when the value of the element is changed.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value)
@@ -282,12 +282,12 @@ export declare class Gauge extends React.Component<React.HTMLAttributes<Element>
     /** Gets the optimal size of the element (the current width and the height based on the plotted internal elements).
     * @returns {any}
   */
-    getOptimalSize(): Promise<any>;
+    getOptimalSize(): any;
     /** Get/set the value of the gauge.
     * @param {string | number | Date} value?. The value to be set. If no parameter is passed, returns the current value of the gauge. The value can be a date only when <b>scaleType</b> is 'date'.
     * @returns {string}
   */
-    val(value?: string | number | Date): Promise<any>;
+    val(value?: string | number | Date): any;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.tabs';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -141,7 +122,7 @@ class TabItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -275,7 +256,7 @@ class TabItemsGroup extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -379,7 +360,7 @@ class Tabs extends React.Component {
         }
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -390,7 +371,7 @@ class Tabs extends React.Component {
         }
     }
     /** Sets or gets the close button mode.
-    *	Property type: TabsCloseButtonMode
+    *	Property type: TabsCloseButtonMode | string
     */
     get closeButtonMode() {
         return this.nativeElement ? this.nativeElement.closeButtonMode : undefined;
@@ -511,7 +492,7 @@ class Tabs extends React.Component {
         }
     }
     /** Sets or gets the Tabs scroll buttons behavior. Applicable only when tabLayout is 'scroll'.
-    *	Property type: Overflow
+    *	Property type: Overflow | string
     */
     get overflow() {
         return this.nativeElement ? this.nativeElement.overflow : undefined;
@@ -566,7 +547,7 @@ class Tabs extends React.Component {
         }
     }
     /** Sets or gets the position of the scroll buttons.
-    *	Property type: LayoutPosition
+    *	Property type: LayoutPosition | string
     */
     get scrollButtonsPosition() {
         return this.nativeElement ? this.nativeElement.scrollButtonsPosition : undefined;
@@ -577,7 +558,7 @@ class Tabs extends React.Component {
         }
     }
     /** Sets or gets the behavior when scrolling the tab strip via the scroll buttons.
-    *	Property type: TabsScrollMode
+    *	Property type: TabsScrollMode | string
     */
     get scrollMode() {
         return this.nativeElement ? this.nativeElement.scrollMode : undefined;
@@ -599,7 +580,7 @@ class Tabs extends React.Component {
         }
     }
     /** Determines the way the user can switch between tabs.
-    *	Property type: TabSelectionMode
+    *	Property type: TabSelectionMode | string
     */
     get selectionMode() {
         return this.nativeElement ? this.nativeElement.selectionMode : undefined;
@@ -610,7 +591,7 @@ class Tabs extends React.Component {
         }
     }
     /** Applies one of four behaviors when the element is not wide enough to display all tab labels.
-    *	Property type: TabsTabLayout
+    *	Property type: TabsTabLayout | string
     */
     get tabLayout() {
         return this.nativeElement ? this.nativeElement.tabLayout : undefined;
@@ -621,7 +602,7 @@ class Tabs extends React.Component {
         }
     }
     /** Sets or gets where the tab strip is positioned.
-    *	Property type: TabPosition
+    *	Property type: TabPosition | string
     */
     get tabPosition() {
         return this.nativeElement ? this.nativeElement.tabPosition : undefined;
@@ -632,7 +613,7 @@ class Tabs extends React.Component {
         }
     }
     /** Sets or gets the orientation of the text in the tabs.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
     get tabTextOrientation() {
         return this.nativeElement ? this.nativeElement.tabTextOrientation : undefined;
@@ -689,36 +670,16 @@ class Tabs extends React.Component {
     * @returns {string}
   */
     getTabLabel(index) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTabLabel(index);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getTabLabel(index);
+        return result;
     }
     /** Returns the content of a Tab at given index.
     * @param {number} index. The index of the tab.
     * @returns {HTMLElement}
   */
     getTabContent(index) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTabContent(index);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getTabContent(index);
+        return result;
     }
     /** Makes sure a tab is visible by scrolling to it.
     * @param {number} index. The index of the tab to scroll to.
@@ -749,36 +710,16 @@ class Tabs extends React.Component {
     * @returns {TabItem[]}
   */
     getTabs() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTabs();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getTabs();
+        return result;
     }
     /** Returns the offset of the tab item container (smart-tab-item element) from the edge of the Tabs (smart-tabs element) where the tab strip is positioned.
     * @param {number} index. The index of the tab item.
     * @returns {number}
   */
     getOffsetFromEdgeOfElement(index) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getOffsetFromEdgeOfElement(index);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getOffsetFromEdgeOfElement(index);
+        return result;
     }
     /** Inserts a new tab and an associated content section.
     * @param {number} index. The index to insert a new tab at.
@@ -870,7 +811,7 @@ class Tabs extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -897,6 +838,7 @@ class Tabs extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$2.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

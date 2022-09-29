@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.ganttchart';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -166,7 +147,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines the format of the dates in the timeline header when they represent days.
-    *	Property type: GanttDayFormat
+    *	Property type: GanttDayFormat | string
     */
     get dayFormat() {
         return this.nativeElement ? this.nativeElement.dayFormat : undefined;
@@ -309,7 +290,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines in what unit is task duration property measured.
-    *	Property type: Duration
+    *	Property type: Duration | string
     */
     get durationUnit() {
         return this.nativeElement ? this.nativeElement.durationUnit : undefined;
@@ -397,7 +378,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines weather or not horizontal scrollbar is shown.
-    *	Property type: HorizontalScrollBarVisibility
+    *	Property type: HorizontalScrollBarVisibility | string
     */
     get horizontalScrollBarVisibility() {
         return this.nativeElement ? this.nativeElement.horizontalScrollBarVisibility : undefined;
@@ -408,7 +389,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines the format of the dates inside the timeline header when they represent hours.
-    *	Property type: HourFormat
+    *	Property type: HourFormat | string
     */
     get hourFormat() {
         return this.nativeElement ? this.nativeElement.hourFormat : undefined;
@@ -507,7 +488,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines the format of the dates the timeline header when they represent months.
-    *	Property type: MonthFormat
+    *	Property type: MonthFormat | string
     */
     get monthFormat() {
         return this.nativeElement ? this.nativeElement.monthFormat : undefined;
@@ -672,7 +653,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines how the capacity of the resources will be visualized inside the resource timeline. By default, the capacity is measured in hours depending on the view property of the element.
-    *	Property type: GanttChartResourceTimelineMode
+    *	Property type: GanttChartResourceTimelineMode | string
     */
     get resourceTimelineMode() {
         return this.nativeElement ? this.nativeElement.resourceTimelineMode : undefined;
@@ -683,7 +664,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines how the resources will be displayed inside the resource Timeline.
-    *	Property type: GanttChartResourceTimelineView
+    *	Property type: GanttChartResourceTimelineView | string
     */
     get resourceTimelineView() {
         return this.nativeElement ? this.nativeElement.resourceTimelineView : undefined;
@@ -782,7 +763,7 @@ class GanttChart extends React.Component {
         }
     }
     /** A getter that returns a flat structure as an array of all tasks inside the element.
-    *	Property type: GanttChartSortMode
+    *	Property type: GanttChartSortMode | string
     */
     get sortMode() {
         return this.nativeElement ? this.nativeElement.sortMode : undefined;
@@ -903,7 +884,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines the viewing date range of the timeline. Possible values: day - The timeline show the hours of the day.week - the timeline shows the days of the week.month - the timeline shows the days of the month.year - the timeline shows the months of the year.resource - displays the current tasks by grouping them according to the resources they have assigned. The unassigned tasks will be placed in a separate group called 'Unassigned'.  The timeline has a header section that contains the labels of each cell according to the date inside them. The header is splitted in two sections in order to give a more detailed information of the dates.
-    *	Property type: VerticalScrollBarVisibility
+    *	Property type: VerticalScrollBarVisibility | string
     */
     get verticalScrollBarVisibility() {
         return this.nativeElement ? this.nativeElement.verticalScrollBarVisibility : undefined;
@@ -914,7 +895,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines the format of the dates inside the timeline header when they represent years.
-    *	Property type: GanttChartView
+    *	Property type: GanttChartView | string
     */
     get view() {
         return this.nativeElement ? this.nativeElement.view : undefined;
@@ -925,7 +906,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Determines the format of the dates inside the timeline header when they represent weeks.
-    *	Property type: YearFormat
+    *	Property type: YearFormat | string
     */
     get yearFormat() {
         return this.nativeElement ? this.nativeElement.yearFormat : undefined;
@@ -936,7 +917,7 @@ class GanttChart extends React.Component {
         }
     }
     /** Sets or gets the element's visual theme.
-    *	Property type: WeekFormat
+    *	Property type: WeekFormat | string
     */
     get weekFormat() {
         return this.nativeElement ? this.nativeElement.weekFormat : undefined;
@@ -1172,316 +1153,136 @@ class GanttChart extends React.Component {
     * @returns {any}
   */
     getConnections() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getConnections();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getConnections();
+        return result;
     }
     /** Returns the connection details for the target connection which includes: startTask, endTask, startTaskId, endTaskId and type of the corresponding connection. Connection types are described in detail under the `connectionEnd` event description in this document and in a dedicated topic available on the website.
     * @param {string} connectionId. A connection id. Each connection has a unique id that is assigned when a connection is created.
     * @returns {any}
   */
     getConnectionDetails(connectionId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getConnectionDetails(connectionId);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getConnectionDetails(connectionId);
+        return result;
     }
     /** Returns a JSON representation of all tasks inside the element along with their connections and settings.
     * @returns {any[]}
   */
     getState() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getState();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getState();
+        return result;
     }
     /** Returns the Tree path of a task/resource. The tree path is used as task/resource id if no id is provided by the user.
     * @param {any} item. A GattChartTask/GanttChartResource item object.
     * @returns {string}
   */
     getItemPath(item) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItemPath(item);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItemPath(item);
+        return result;
     }
     /** Returns the task object that corresponds to the id/path.
     * @param {string | number} itemId. The id/path of a task.
     * @returns {any}
   */
     getTask(itemId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTask(itemId);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getTask(itemId);
+        return result;
     }
     /** Returns an array of all GanttChart tasks.
     * @returns {any[]}
   */
     getTasks() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTasks();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getTasks();
+        return result;
     }
     /** Returns the index of a task.
     * @param {any} task. A GattChartTask object.
     * @returns {number}
   */
     getTaskIndex(task) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTaskIndex(task);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getTaskIndex(task);
+        return result;
     }
     /** Returns the connections definitions of a task.
     * @param {any} taskId. A GanttChartTask object or it's id.
     * @returns {any}
   */
     getTaskConnections(taskId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTaskConnections(taskId);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getTaskConnections(taskId);
+        return result;
     }
     /** Returns the Project of a task or undefined if it does not have one.
     * @param {any} task. A GantChartTask object.
     * @returns {any}
   */
     getTaskProject(task) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getTaskProject(task);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getTaskProject(task);
+        return result;
     }
     /** Returns the resource object that corresponds to the id/path.
     * @param {string | number} itemId. The id/path of a resource.
     * @returns {any}
   */
     getResource(itemId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getResource(itemId);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getResource(itemId);
+        return result;
     }
     /** Returns an array of all GanttChart resources.
     * @returns {any[]}
   */
     getResources() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getResources();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getResources();
+        return result;
     }
     /** Returns the index of a resource.
     * @param {any} resource. A GanttChartResource object.
     * @returns {number}
   */
     getResourceIndex(resource) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getResourceIndex(resource);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getResourceIndex(resource);
+        return result;
     }
     /** Returns the tasks that are assigned to the resource.
     * @param {any} resource. A GanttChartResource object or it's id.
     * @returns {any}
   */
     getResourceTasks(resource) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getResourceTasks(resource);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getResourceTasks(resource);
+        return result;
     }
     /** Returns the currently selected tasks/resource ids. If selection is disabled or no items are selected returns null.
     * @returns {any}
   */
     getSelectedIds() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getSelectedIds();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getSelectedIds();
+        return result;
     }
     /** Returns the currently selected tasks.
     * @returns {any}
   */
     getSelectedTasks() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getSelectedTasks();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getSelectedTasks();
+        return result;
     }
     /** Returns the currently selected resources.
     * @returns {any}
   */
     getSelectedResources() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getSelectedResources();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getSelectedResources();
+        return result;
     }
     /** Returns the working hours of the day as numbers.
     * @returns {any}
   */
     getWorkingHours() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getWorkingHours();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getWorkingHours();
+        return result;
     }
     /** Hides the tooltip if it's visible.
     * @returns {any}
   */
     hideTooltip() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.hideTooltip();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.hideTooltip();
+        return result;
     }
     /** Depending on the nonworkingDays property, returns true or false whether the target date is on a working day or not.
     * @param {Date} date. A javascript Date object or a string/number which represents a valid JS Date.
@@ -1528,18 +1329,8 @@ class GanttChart extends React.Component {
     * @returns {any}
   */
     removeConnection(startTaskIndex, taskEndIndex, connectionType) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.removeConnection(startTaskIndex, taskEndIndex, connectionType);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.removeConnection(startTaskIndex, taskEndIndex, connectionType);
+        return result;
     }
     /** Removes all connections of a task or between two tasks if the second argument is provided and valid.
     * @param {any} taskStart. The start task object or it's id.
@@ -1589,18 +1380,8 @@ class GanttChart extends React.Component {
     * @returns {string | number | undefined}
   */
     insertTask(taskObject, project, index) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.insertTask(taskObject, project, index);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.insertTask(taskObject, project, index);
+        return result;
     }
     /** Updates a task/project/milestone.
     * @param {any} taskId. A number or string that represents the id of a task/project(e.g. '0') or the object definition of the task/project.
@@ -1821,7 +1602,7 @@ class GanttChart extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -1848,6 +1629,7 @@ class GanttChart extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

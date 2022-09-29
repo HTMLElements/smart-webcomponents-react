@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.pager';
 
 import React from 'react';
@@ -20,7 +26,7 @@ class Pager extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -31,7 +37,7 @@ class Pager extends React.Component {
         }
     }
     /** Handles pager's elipsis. Ellipsis buttons are displayed as indicators and additional help to navigate between pages.
-    *	Property type: PagerAutoEllipsis
+    *	Property type: PagerAutoEllipsis | string
     */
     get autoEllipsis() {
         return this.nativeElement ? this.nativeElement.autoEllipsis : undefined;
@@ -86,7 +92,7 @@ class Pager extends React.Component {
         }
     }
     /** Handles the position of the navigation buttons.
-    *	Property type: LayoutPosition
+    *	Property type: LayoutPosition | string
     */
     get navigationButtonsPosition() {
         return this.nativeElement ? this.nativeElement.navigationButtonsPosition : undefined;
@@ -375,7 +381,7 @@ class Pager extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -402,6 +408,7 @@ class Pager extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

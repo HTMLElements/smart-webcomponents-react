@@ -31,10 +31,10 @@ export declare class FileUpload extends React.Component<React.HTMLAttributes<Ele
     get accept(): string | null;
     set accept(value: string | null);
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Appends the list with selected files to a new custom container specified by the user. If the value of the property is a string it must represent a valid id of an HTML element inside the DOM that will be used as the new container for the uploaded files list.
     *	Property type: string
     */
@@ -163,12 +163,13 @@ export declare class FileUpload extends React.Component<React.HTMLAttributes<Ele
     */
     onUploadCanceled?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when a file upload operation is completed.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	filename, 	type, 	size, 	index, 	status)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	filename, 	type, 	size, 	index, 	status, 	serverResponse)
     *   filename - The name of the canceled file.
     *   type - The type of the canceled file.
     *   size - The size of the canceled file.
     *   index - The index of the canceled file.
     *   status - The status of the uploaded file. Whether there was an error or success.
+    *   serverResponse - The response of the remote server.
     */
     onUploadCompleted?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when during the file upload process something happens and upload fails.

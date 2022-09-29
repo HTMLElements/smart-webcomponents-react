@@ -23,10 +23,10 @@ export declare class CustomizationDialog extends React.Component<React.HTMLAttri
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Array with filtered fields and their settings.
     *	Property type: any
     */

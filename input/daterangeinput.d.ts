@@ -20,10 +20,10 @@ export declare class DateRangeInput extends React.Component<React.HTMLAttributes
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. By default the date format is determined by the 'locale' property. Intl.DateTimeFormat is used to format date strings in JavaScript
     *	Property type: DateRangeFormat
     */
@@ -35,10 +35,10 @@ export declare class DateRangeInput extends React.Component<React.HTMLAttributes
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
     *	Property type: string | number
     */
@@ -145,10 +145,10 @@ export declare class DateRangeInput extends React.Component<React.HTMLAttributes
     get value(): any;
     set value(value: any);
     /** Determines the value type returned from the `value` property.
-    *	Property type: DateRangeInputValueType
+    *	Property type: DateRangeInputValueType | string
     */
-    get valueType(): DateRangeInputValueType;
-    set valueType(value: DateRangeInputValueType);
+    get valueType(): DateRangeInputValueType | string;
+    set valueType(value: DateRangeInputValueType | string);
     get properties(): string[];
     /**  This event is triggered when the selection is changed.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	label, 	oldLabel, 	oldValue, 	value)

@@ -1,4 +1,10 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.layout';
 
 import React from 'react';
@@ -116,7 +122,7 @@ class LayoutItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -242,7 +248,7 @@ class LayoutGroup extends React.Component {
         }
     }
     /** Determines the group orientation.
-    *	Property type: LayoutGroupOrientation
+    *	Property type: LayoutGroupOrientation | string
     */
     get orientation() {
         return this.nativeElement ? this.nativeElement.orientation : undefined;
@@ -305,7 +311,7 @@ class LayoutGroup extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -332,6 +338,7 @@ class LayoutGroup extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$1.Render();
             if (that.onCreate) {
                 that.onCreate();
             }
@@ -431,7 +438,7 @@ class TabLayoutItem extends React.Component {
         }
     }
     /** Determines the group orientation.
-    *	Property type: TabLayoutItemOrientation
+    *	Property type: TabLayoutItemOrientation | string
     */
     get orientation() {
         return this.nativeElement ? this.nativeElement.orientation : undefined;
@@ -494,7 +501,7 @@ class TabLayoutItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -620,7 +627,7 @@ class TabLayoutGroup extends React.Component {
         }
     }
     /** Determines the group orientation.
-    *	Property type: TabLayoutGroupOrientation
+    *	Property type: TabLayoutGroupOrientation | string
     */
     get orientation() {
         return this.nativeElement ? this.nativeElement.orientation : undefined;
@@ -631,7 +638,7 @@ class TabLayoutGroup extends React.Component {
         }
     }
     /** Determines the position of the tab items group.
-    *	Property type: TabLayoutGroupPosition
+    *	Property type: TabLayoutGroupPosition | string
     */
     get position() {
         return this.nativeElement ? this.nativeElement.position : undefined;
@@ -694,7 +701,7 @@ class TabLayoutGroup extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -776,7 +783,7 @@ class Layout extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -842,7 +849,7 @@ class Layout extends React.Component {
         }
     }
     /** Sets or gets Layout's main orientation. The orientation is applied to all Splitters inside the Layout unless they have their orientation explicitly set in the dataSource.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
     get orientation() {
         return this.nativeElement ? this.nativeElement.orientation : undefined;
@@ -1002,7 +1009,7 @@ class Layout extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -1029,6 +1036,7 @@ class Layout extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$4.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

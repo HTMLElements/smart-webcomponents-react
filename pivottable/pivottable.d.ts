@@ -28,10 +28,10 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets or gets whether the reordering of columns is enabled.
     *	Property type: boolean
     */
@@ -48,10 +48,10 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     get columnTotals(): boolean;
     set columnTotals(value: boolean);
     /** Sets or gets the position of total columns (shown when columnTotals is enabled).
-    *	Property type: PivotTableColumnTotalsPosition
+    *	Property type: PivotTableColumnTotalsPosition | string
     */
-    get columnTotalsPosition(): PivotTableColumnTotalsPosition;
-    set columnTotalsPosition(value: PivotTableColumnTotalsPosition);
+    get columnTotalsPosition(): PivotTableColumnTotalsPosition | string;
+    set columnTotalsPosition(value: PivotTableColumnTotalsPosition | string);
     /** Sets or gets details about conditional formatting to be applied to the PivotTable's cells.
     *	Property type: PivotTableConditionalFormatting[]
     */
@@ -73,10 +73,10 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     get designer(): boolean;
     set designer(value: boolean);
     /** Sets or gets the position of the PivotTable's designer (shown when designer is enabled).
-    *	Property type: PivotTableDesignerPosition
+    *	Property type: PivotTableDesignerPosition | string
     */
-    get designerPosition(): PivotTableDesignerPosition;
-    set designerPosition(value: PivotTableDesignerPosition);
+    get designerPosition(): PivotTableDesignerPosition | string;
+    set designerPosition(value: PivotTableDesignerPosition | string);
     /** Disables the interaction with the element.
     *	Property type: boolean
     */
@@ -88,10 +88,10 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     get drillDown(): boolean;
     set drillDown(value: boolean);
     /** If set, shows an export button in the drill down dialog.
-    *	Property type: PivotTableDrillDownDataExport
+    *	Property type: PivotTableDrillDownDataExport | string
     */
-    get drillDownDataExport(): PivotTableDrillDownDataExport;
-    set drillDownDataExport(value: PivotTableDrillDownDataExport);
+    get drillDownDataExport(): PivotTableDrillDownDataExport | string;
+    set drillDownDataExport(value: PivotTableDrillDownDataExport | string);
     /** Sets or gets the drill down table export file name.
     *	Property type: string
     */
@@ -140,10 +140,10 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     get grandTotal(): boolean;
     set grandTotal(value: boolean);
     /** Sets or gets whether navigation with the keyboard is enabled in the PivotTable.
-    *	Property type: PivotTableGroupLayout
+    *	Property type: PivotTableGroupLayout | string
     */
-    get groupLayout(): PivotTableGroupLayout;
-    set groupLayout(value: PivotTableGroupLayout);
+    get groupLayout(): PivotTableGroupLayout | string;
+    set groupLayout(value: PivotTableGroupLayout | string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: boolean
     */
@@ -232,25 +232,25 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     get rowTotals(): boolean;
     set rowTotals(value: boolean);
     /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
-    *	Property type: PivotTableRowTotalsPosition
+    *	Property type: PivotTableRowTotalsPosition | string
     */
-    get rowTotalsPosition(): PivotTableRowTotalsPosition;
-    set rowTotalsPosition(value: PivotTableRowTotalsPosition);
+    get rowTotalsPosition(): PivotTableRowTotalsPosition | string;
+    set rowTotalsPosition(value: PivotTableRowTotalsPosition | string);
     /** undefined
     *	Property type: boolean
     */
     get selection(): boolean;
     set selection(value: boolean);
     /** undefined
-    *	Property type: PivotTableSelectionMode
+    *	Property type: PivotTableSelectionMode | string
     */
-    get selectionMode(): PivotTableSelectionMode;
-    set selectionMode(value: PivotTableSelectionMode);
+    get selectionMode(): PivotTableSelectionMode | string;
+    set selectionMode(value: PivotTableSelectionMode | string);
     /** undefined
-    *	Property type: PivotTableSortMode
+    *	Property type: PivotTableSortMode | string
     */
-    get sortMode(): PivotTableSortMode;
-    set sortMode(value: PivotTableSortMode);
+    get sortMode(): PivotTableSortMode | string;
+    set sortMode(value: PivotTableSortMode | string);
     /** undefined
     *	Property type: string
     */
@@ -356,15 +356,15 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     * @param {Function} callback?. A callback function to pass the exported data to (if fileName is not provided)
     * @returns {any}
   */
-    exportData(dataFormat: string, fileName: string, callback?: Function): Promise<any>;
+    exportData(dataFormat: string, fileName: string, callback?: Function): any;
     /** Returns the current dynamic pivot columns.
     * @returns {any}
   */
-    getDynamicColumns(): Promise<any>;
+    getDynamicColumns(): any;
     /** Returns an array of selected row ids (when selectionMode is 'many' or 'extended') or an array of selected cell details (when selectionMode is 'cell').
     * @returns {(string | number)[] | { dataField: string, rowId: string | number }[]}
   */
-    getSelection(): Promise<any>;
+    getSelection(): any;
     /** Refreshes the PivotTable.
     */
     refresh(): void;

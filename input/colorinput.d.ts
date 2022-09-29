@@ -20,10 +20,10 @@ export declare class ColorInput extends React.Component<React.HTMLAttributes<Ele
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines the delay before the drop down opens to show the matches from the auto complete operation. The delay is measured in miliseconds.
     *	Property type: number
     */
@@ -40,15 +40,15 @@ export declare class ColorInput extends React.Component<React.HTMLAttributes<Ele
     get disabled(): boolean;
     set disabled(value: boolean);
     /** Determines the colors that will be displayed and their layout.
-    *	Property type: ColorInputDisplayMode
+    *	Property type: ColorInputDisplayMode | string
     */
-    get displayMode(): ColorInputDisplayMode;
-    set displayMode(value: ColorInputDisplayMode);
+    get displayMode(): ColorInputDisplayMode | string;
+    set displayMode(value: ColorInputDisplayMode | string);
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
-    get dropDownButtonPosition(): DropDownButtonPosition;
-    set dropDownButtonPosition(value: DropDownButtonPosition);
+    get dropDownButtonPosition(): DropDownButtonPosition | string;
+    set dropDownButtonPosition(value: DropDownButtonPosition | string);
     /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
     *	Property type: string | number
     */
@@ -110,10 +110,10 @@ export declare class ColorInput extends React.Component<React.HTMLAttributes<Ele
     get query(): string | number;
     set query(value: string | number);
     /** Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation.
-    *	Property type: ColorQueryMode
+    *	Property type: ColorQueryMode | string
     */
-    get queryMode(): ColorQueryMode;
-    set queryMode(value: ColorQueryMode);
+    get queryMode(): ColorQueryMode | string;
+    set queryMode(value: ColorQueryMode | string);
     /** Determines whether the user can enter text inside the input or not. Determines whether the element acts as a ComboBox or a DropDownList if a dataSource is provided.
     *	Property type: boolean
     */
@@ -140,15 +140,15 @@ export declare class ColorInput extends React.Component<React.HTMLAttributes<Ele
     get value(): string;
     set value(value: string);
     /** Determines what will be displayed inside the color picker's action section.
-    *	Property type: ColorValueDisplayMode
+    *	Property type: ColorValueDisplayMode | string
     */
-    get valueDisplayMode(): ColorValueDisplayMode;
-    set valueDisplayMode(value: ColorValueDisplayMode);
+    get valueDisplayMode(): ColorValueDisplayMode | string;
+    set valueDisplayMode(value: ColorValueDisplayMode | string);
     /** Determines the format of the color. Whether it's in HEX, RGB or RGBA. By default it shows the color depending on the displayMode.
-    *	Property type: ColorValueFormat
+    *	Property type: ColorValueFormat | string
     */
-    get valueFormat(): ColorValueFormat;
-    set valueFormat(value: ColorValueFormat);
+    get valueFormat(): ColorValueFormat | string;
+    set valueFormat(value: ColorValueFormat | string);
     get properties(): string[];
     /**  This event is triggered when the selection is changed.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	label, 	oldLabel, 	oldValue, 	value)

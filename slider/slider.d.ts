@@ -20,10 +20,10 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** With the coerce property true and clicking the track, the thumb and value are moved and set to the nearest value allowed by the interval property.
     *	Property type: boolean
     */
@@ -75,10 +75,10 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     get labelFormatFunction(): any;
     set labelFormatFunction(value: any);
     /** Sets or gets the widget's label visibility.
-    *	Property type: LabelsVisibility
+    *	Property type: LabelsVisibility | string
     */
-    get labelsVisibility(): LabelsVisibility;
-    set labelsVisibility(value: LabelsVisibility);
+    get labelsVisibility(): LabelsVisibility | string;
+    set labelsVisibility(value: LabelsVisibility | string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -100,10 +100,10 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     get max(): string | number;
     set max(value: string | number);
     /** Sets or gets the type of used mechanical action.
-    *	Property type: DragMechanicalAction
+    *	Property type: DragMechanicalAction | string
     */
-    get mechanicalAction(): DragMechanicalAction;
-    set mechanicalAction(value: DragMechanicalAction);
+    get mechanicalAction(): DragMechanicalAction | string;
+    set mechanicalAction(value: DragMechanicalAction | string);
     /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
     *	Property type: any
     */
@@ -115,20 +115,20 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     get min(): string | number;
     set min(value: string | number);
     /** Sets or gets whether the widget works with numbers or dates.
-    *	Property type: ScaleMode
+    *	Property type: ScaleMode | string
     */
-    get mode(): ScaleMode;
-    set mode(value: ScaleMode);
+    get mode(): ScaleMode | string;
+    set mode(value: ScaleMode | string);
     /** Sets or gets the element's name, which is used as a reference when the data is submitted.
     *	Property type: string
     */
     get name(): string;
     set name(value: string);
     /** Sets the orientation of the widget.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
-    get orientation(): Orientation;
-    set orientation(value: Orientation);
+    get orientation(): Orientation | string;
+    set orientation(value: Orientation | string);
     /** Determines the number of digits after the decimal point. Applicable only when scaleType is 'integer'.
     *	Property type: number
     */
@@ -150,15 +150,15 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
     /** Sets the position of the widget's scales.
-    *	Property type: ScalePosition
+    *	Property type: ScalePosition | string
     */
-    get scalePosition(): ScalePosition;
-    set scalePosition(value: ScalePosition);
+    get scalePosition(): ScalePosition | string;
+    set scalePosition(value: ScalePosition | string);
     /** Sets the type of the slider's scale.
-    *	Property type: ScaleType
+    *	Property type: ScaleType | string
     */
-    get scaleType(): ScaleType;
-    set scaleType(value: ScaleType);
+    get scaleType(): ScaleType | string;
+    set scaleType(value: ScaleType | string);
     /** Enables or disables scientific notation.
     *	Property type: boolean
     */
@@ -195,25 +195,25 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     get theme(): string;
     set theme(value: string);
     /** Sets or gets the position of the thumb label.
-    *	Property type: Position
+    *	Property type: Position | string
     */
-    get thumbLabelPosition(): Position;
-    set thumbLabelPosition(value: Position);
+    get thumbLabelPosition(): Position | string;
+    set thumbLabelPosition(value: Position | string);
     /** Sets or gets the position of the ticks in jqxSlider widget.
-    *	Property type: TicksPosition
+    *	Property type: TicksPosition | string
     */
-    get ticksPosition(): TicksPosition;
-    set ticksPosition(value: TicksPosition);
+    get ticksPosition(): TicksPosition | string;
+    set ticksPosition(value: TicksPosition | string);
     /** Sets or gets the visibility of the ticks.
-    *	Property type: TicksVisibility
+    *	Property type: TicksVisibility | string
     */
-    get ticksVisibility(): TicksVisibility;
-    set ticksVisibility(value: TicksVisibility);
+    get ticksVisibility(): TicksVisibility | string;
+    set ticksVisibility(value: TicksVisibility | string);
     /** Sets or gets the position of the tooltip in jqxSlider widget.
-    *	Property type: Position
+    *	Property type: Position | string
     */
-    get tooltipPosition(): Position;
-    set tooltipPosition(value: Position);
+    get tooltipPosition(): Position | string;
+    set tooltipPosition(value: Position | string);
     /** Sets or gets if the element can be focused.
     *	Property type: boolean
     */
@@ -225,10 +225,10 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     get unit(): string;
     set unit(value: string);
     /** Sets the value's validation by min/max. If 'strict' is applied, the value is always validated by min and max. If 'interaction' is applied, programmatic value changes are not coerced to min/max and if min/max are changed, resulting in the current value being out of range, the value is not coerced, and no change event is fired.
-    *	Property type: Validation
+    *	Property type: Validation | string
     */
-    get validation(): Validation;
-    set validation(value: Validation);
+    get validation(): Validation | string;
+    set validation(value: Validation | string);
     /** Sets or gets the value of the jqxSlider widget. The property is used when the rangeSlider property is set to false.
     *	Property type: any
     */
@@ -240,10 +240,10 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     get values(): number[];
     set values(value: number[]);
     /** Sets or gets the word length. Applicable only when scaleType is 'integer'.
-    *	Property type: WordLength
+    *	Property type: WordLength | string
     */
-    get wordLength(): WordLength;
-    set wordLength(value: WordLength);
+    get wordLength(): WordLength | string;
+    set wordLength(value: WordLength | string);
     get properties(): string[];
     /**  This event is triggered when the value of the slider is changed.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	value, 	oldValue)
@@ -264,12 +264,12 @@ export declare class Slider extends React.Component<React.HTMLAttributes<Element
     /** Gets the optimal size of the widget.
     * @returns {any}
   */
-    getOptimalSize(): Promise<any>;
+    getOptimalSize(): any;
     /** Get/set the value of the slider.
     * @param {string | number | number[] | string[]} value?. The value to be set. If no parameter is passed, returns the displayed value of the slider.
     * @returns {string}
   */
-    val(value?: string | number | number[] | string[]): Promise<any>;
+    val(value?: string | number | number[] | string[]): any;
     constructor(props: any);
     componentDidRender(initialize: boolean): void;
     componentDidMount(): void;

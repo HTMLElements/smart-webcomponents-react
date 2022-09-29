@@ -26,7 +26,7 @@ require('../source/modules/smart.accordion');
 	        return this._id;
 	    }
 	    /** Sets or gets header's arrow position. If the value is 'none' the arrow is not shown.
-	    *	Property type: AccordionItemArrow
+	    *	Property type: AccordionItemArrow | string
 	    */
 	    get arrow() {
 	        return this.nativeElement ? this.nativeElement.arrow : undefined;
@@ -100,7 +100,7 @@ require('../source/modules/smart.accordion');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -182,7 +182,7 @@ require('../source/modules/smart.accordion');
 	        return this._id;
 	    }
 	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-	    *	Property type: Animation
+	    *	Property type: Animation | string
 	    */
 	    get animation() {
 	        return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -226,7 +226,7 @@ require('../source/modules/smart.accordion');
 	        }
 	    }
 	    /** Sets or gets the expand mode. Expand mode determines how the items will expand or collapse.
-	    *	Property type: AccordionExpandMode
+	    *	Property type: AccordionExpandMode | string
 	    */
 	    get expandMode() {
 	        return this.nativeElement ? this.nativeElement.expandMode : undefined;
@@ -422,7 +422,7 @@ require('../source/modules/smart.accordion');
 	            that.nativeElement = this.componentRef.current;
 	        }
 	        for (let prop in props) {
-	            if (prop === 'class') {
+	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -449,6 +449,7 @@ require('../source/modules/smart.accordion');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
+	            Smart$1.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }

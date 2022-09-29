@@ -37,15 +37,15 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     get addNewTab(): boolean;
     set addNewTab(value: boolean);
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines whether and how the value should be automatically capitalized as it is entered/edited by the user. Applicable only to MultilinePromptWindow.
-    *	Property type: WindowAutoCapitalize
+    *	Property type: WindowAutoCapitalize | string
     */
-    get autoCapitalize(): WindowAutoCapitalize;
-    set autoCapitalize(value: WindowAutoCapitalize);
+    get autoCapitalize(): WindowAutoCapitalize | string;
+    set autoCapitalize(value: WindowAutoCapitalize | string);
     /** Determines whether element will auto expand when the input overflows vertically. Applicable only to MultilinePromptWindow.
     *	Property type: boolean
     */
@@ -97,26 +97,36 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     */
     get disableSnap(): boolean;
     set disableSnap(value: boolean);
+    /** By default the window is closing after the 'Escape' key is pressed. Set this property to true, if you want to disable that.
+    *	Property type: boolean
+    */
+    get disableEscape(): boolean;
+    set disableEscape(value: boolean);
+    /** By default the window is handling keyboard keys like 'Arrows', 'Escape', etc. Set this property to true, if you want to disable that.
+    *	Property type: boolean
+    */
+    get disableKeyboard(): boolean;
+    set disableKeyboard(value: boolean);
     /** Determines how the characters are displayed inside the input. Applicable to Prompt Window.
-    *	Property type: WindowDisplayMode
+    *	Property type: WindowDisplayMode | string
     */
-    get displayMode(): WindowDisplayMode;
-    set displayMode(value: WindowDisplayMode);
+    get displayMode(): WindowDisplayMode | string;
+    set displayMode(value: WindowDisplayMode | string);
     /** Applicable to TabsWindow when docked inside a DockingLayout Custom Element.  Determines where the window(it's tab items as well) can be dropped inside the DockingLayout.  The property is an array that accepts multiple positions. Note: Positions with prefix 'layout-' are applied to the Tab item children of the TabsWidnow owner that is being dragged. The rest of the positions indicate the allowed drop position inside the hovered target(TabsWindow). Used only by jqxDockingLayout custom elements. Determines the possible drop position inside the DockingLayout. The following values are allowed.
-    *	Property type: WindowDropPosition
+    *	Property type: WindowDropPosition | string
     */
-    get dropPosition(): WindowDropPosition;
-    set dropPosition(value: WindowDropPosition);
+    get dropPosition(): WindowDropPosition | string;
+    set dropPosition(value: WindowDropPosition | string);
     /** A callback function defining the new format for the label of the Progress Bar. Applicable only to ProgressWindow.
     *	Property type: any
     */
     get formatFunction(): any;
     set formatFunction(value: any);
     /** Determines the position of the footer of the window element.
-    *	Property type: WindowFooterPosition
+    *	Property type: WindowFooterPosition | string
     */
-    get footerPosition(): WindowFooterPosition;
-    set footerPosition(value: WindowFooterPosition);
+    get footerPosition(): WindowFooterPosition | string;
+    set footerPosition(value: WindowFooterPosition | string);
     /** Determines the template for the Dialog section of the window. By default footerTemplate is null.
     *	Property type: any
     */
@@ -133,10 +143,10 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     get headerTemplate(): any;
     set headerTemplate(value: any);
     /** Determines the position of the header of the window element.
-    *	Property type: TabPosition
+    *	Property type: TabPosition | string
     */
-    get headerPosition(): TabPosition;
-    set headerPosition(value: TabPosition);
+    get headerPosition(): TabPosition | string;
+    set headerPosition(value: TabPosition | string);
     /** Sets additional helper text below the text box. The hint is visible only when the text box is focued. Applicable to Prompt Window.
     *	Property type: any
     */
@@ -253,10 +263,10 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     get resizeIndicator(): boolean;
     set resizeIndicator(value: boolean);
     /** Determines the resizing mode of the window.  Several modes are available:   none - resizing is disabled.  vertical - vertical resizing is allowed.  horizontal - horizontal resizing is allowed. both - horizontal and vertical resizing is allowed. top - the window can only be resized from the top side. bottom - the window is resizable only from the bottom side. left - the window can be resized only from the left side. right - the window can be resized only from the right side.
-    *	Property type: WindowResizeMode
+    *	Property type: WindowResizeMode | string
     */
-    get resizeMode(): WindowResizeMode;
-    set resizeMode(value: WindowResizeMode);
+    get resizeMode(): WindowResizeMode | string;
+    set resizeMode(value: WindowResizeMode | string);
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */
@@ -283,10 +293,10 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     get selectedIndex(): number | null;
     set selectedIndex(value: number | null);
     /** Determines the way the user can switch between tabs. Applicable only to TabsWindow.
-    *	Property type: TabSelectionMode
+    *	Property type: TabSelectionMode | string
     */
-    get selectionMode(): TabSelectionMode;
-    set selectionMode(value: TabSelectionMode);
+    get selectionMode(): TabSelectionMode | string;
+    set selectionMode(value: TabSelectionMode | string);
     /** Indicates the index of the last character in the current selection. Applicable only to MultilinePromptWindow.
     *	Property type: number
     */
@@ -323,30 +333,30 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     get tabCloseButtons(): boolean;
     set tabCloseButtons(value: boolean);
     /** Determines if the close button is visible on select or always. Applicable only to TabsWindow.
-    *	Property type: WindowTabCloseButtonMode
+    *	Property type: WindowTabCloseButtonMode | string
     */
-    get tabCloseButtonMode(): WindowTabCloseButtonMode;
-    set tabCloseButtonMode(value: WindowTabCloseButtonMode);
+    get tabCloseButtonMode(): WindowTabCloseButtonMode | string;
+    set tabCloseButtonMode(value: WindowTabCloseButtonMode | string);
     /** Sets or gets the Tabs scroll buttons behavior. Applicable only when tabLayout is 'scroll'. Applicable only to TabsWindow.
-    *	Property type: Overflow
+    *	Property type: Overflow | string
     */
-    get tabOverflow(): Overflow;
-    set tabOverflow(value: Overflow);
+    get tabOverflow(): Overflow | string;
+    set tabOverflow(value: Overflow | string);
     /** Detetmines Tab Strip is positioned of the TabsWindow. Applicable only to TabsWindow.
-    *	Property type: TabPosition
+    *	Property type: TabPosition | string
     */
-    get tabPosition(): TabPosition;
-    set tabPosition(value: TabPosition);
+    get tabPosition(): TabPosition | string;
+    set tabPosition(value: TabPosition | string);
     /** Sets or gets the position of the scroll buttons inside the Tab header of the TabsWindow. Applicable only to TabsWindow.
-    *	Property type: LayoutPosition
+    *	Property type: LayoutPosition | string
     */
-    get tabScrollButtonsPosition(): LayoutPosition;
-    set tabScrollButtonsPosition(value: LayoutPosition);
+    get tabScrollButtonsPosition(): LayoutPosition | string;
+    set tabScrollButtonsPosition(value: LayoutPosition | string);
     /** Sets or gets the orientation of the text in the tabs labels of the TabsWindow. Applicable only to TabsWindow.
-    *	Property type: Orientation
+    *	Property type: Orientation | string
     */
-    get tabTextOrientation(): Orientation;
-    set tabTextOrientation(value: Orientation);
+    get tabTextOrientation(): Orientation | string;
+    set tabTextOrientation(value: Orientation | string);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */
@@ -368,10 +378,10 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     get windowParent(): any;
     set windowParent(value: any);
     /** Indicates how the input wraps text. Applicable only to MultilinePromptWindow.
-    *	Property type: WindowWrap
+    *	Property type: WindowWrap | string
     */
-    get wrap(): WindowWrap;
-    set wrap(value: WindowWrap);
+    get wrap(): WindowWrap | string;
+    set wrap(value: WindowWrap | string);
     get properties(): string[];
     /**  This event is triggered just before the window starts opening.
     *  @param event. The custom event. 	*/
@@ -423,7 +433,7 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     * @param {Node} node. A TabItem element that should be added to the rest of the items as the last item.
     * @returns {Node}
   */
-    appendChild(node: Node): Promise<any>;
+    appendChild(node: Node): any;
     /** Sets the window to the top level so the user can interact with it.
     */
     bringToFront(): void;
@@ -436,7 +446,7 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     /** Collapses the window.
     * @returns {HTMLElement}
   */
-    collapse(): Promise<any>;
+    collapse(): any;
     /** Makes sure a tab item is visible by scrolling to it. Applicable only to TabsWindow.
     * @param {number} index. The index of the tab to scroll to.
     */
@@ -444,7 +454,7 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     /** Expands the window after being collapsed.
     * @returns {any[]}
   */
-    expand(): Promise<any>;
+    expand(): any;
     /** Inserts a new tab and an associated content section. Applicable only to TabsWindow.
     * @param {number} index. The index to insert a new tab at.
     * @param {any} details. An Object with the fields "label", "labelSize", "content" and "group".
@@ -455,16 +465,12 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     * @param {Node | null} referenceNode?. The "jqx-tab-item" node before which newNode is inserted.
     * @returns {Node}
   */
-    insertBefore(newNode: Node, referenceNode?: Node | null): Promise<any>;
-    /** Removes a tab and its associated content section. Applicable only to TabsWindow.
-    * @param {number} index. The index of the tab to remove.
+    insertBefore(newNode: Node, referenceNode?: Node | null): any;
+    /** Moves the window to a new position
+    * @param {string | number} left. Left position. For example: '100px'.
+    * @param {string | number} top. Top position. For example: '100px'.
     */
-    removeAt(index: number): void;
-    /** Removes a child "smart-tab-item" node. Applicable only to TabsWindow.
-    * @param {Node} node. The "jqx-tab-item" node to remove.
-    * @returns {Node}
-  */
-    removeChild(node: Node): Promise<any>;
+    move(left: string | number, top: string | number): void;
     /** Maximizes the window to fill the area.
     */
     maximize(): void;
@@ -477,6 +483,15 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     /** Pins the window. Disables window dragging.
     */
     pin(): void;
+    /** Removes a tab and its associated content section. Applicable only to TabsWindow.
+    * @param {number} index. The index of the tab to remove.
+    */
+    removeAt(index: number): void;
+    /** Removes a child "smart-tab-item" node. Applicable only to TabsWindow.
+    * @param {Node} node. The "jqx-tab-item" node to remove.
+    * @returns {Node}
+  */
+    removeChild(node: Node): any;
     /** Restores the window to it's previous size before maximization/minimization.
     */
     restore(): void;
@@ -487,7 +502,15 @@ export declare class ProgressWindow extends React.Component<React.HTMLAttributes
     /** Unpins the window. Enables window dragging.
     */
     unpin(): void;
-    /** Updates a tab and its associated content section.  Applicalbe only to TabsWindow elements.
+    /** Updates the header label.
+    * @param {string} label. The new label of the Header.
+    */
+    updateLabel(label: string): void;
+    /** Updates the content.
+    * @param {string | HTMLElement} content. The new content of the window.
+    */
+    updateContent(content: string | HTMLElement): void;
+    /** Updates a TAB in TAB Window and its associated content section.  Applies only to TabsWindow elements.
     * @param {number} index. The index of the tab to update.
     * @param {string} label. The new label of the tab. The value can be the id of an HTMLTemplateElement
     * @param {string | HTMLElement} content. The new content of the tab.

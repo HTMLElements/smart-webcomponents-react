@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.dockinglayout';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -45,7 +26,7 @@ class DockingLayout extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -243,7 +224,7 @@ class DockingLayout extends React.Component {
         }
     }
     /** Determines the snap mode. Two modes are available:   simple - allows dragging of a single tab item inside or outside the layout. A semi-transparent highlighter is used to indicate the possible locations where the dragged item can be dropped. The user has to drop the dragged item inside one of the possible drop zones indicated by the highlighter. advanced - allows dragging of a whole TabsWindow with items or a single tab item. Uses a Visual Studio style feedback that indicates the possible drop locations. The user has to drop the target over one of the icons inside the feedback.   The feedback/highlighter is displayed when the dragging of an item begins.
-    *	Property type: DockingLayoutSnapMode
+    *	Property type: DockingLayoutSnapMode | string
     */
     get snapMode() {
         return this.nativeElement ? this.nativeElement.snapMode : undefined;
@@ -363,18 +344,8 @@ class DockingLayout extends React.Component {
     * @returns {Node}
   */
     dock(node) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.dock(node);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.dock(node);
+        return result;
     }
     /** Inserts a new TabsWindow into the DockingLayout or creates a TabsWindow instance from an object passed as the second argument. The new item is inserted before the target item which corresponds to the index passed as the first argument to the method.
     * @param {number | HTMLElement | string} index. The index to insert a new TabsWindow at.
@@ -568,94 +539,59 @@ class DockingLayout extends React.Component {
             });
         }
     }
+    /** Inserts a new TabsWindow. The window is in floating mode and is undocked.
+    * @param {any} item. An instance of a TabsWindow or an Object with the fields "label", "items" and other additional.
+    * @param {number | string} left?. The left position of the new window. You can use number, px or %. For example: '10px'.
+    * @param {number | string} top?. The top position of the new window. You can use number, px or %. For example: '10px'.
+    */
+    insertFloatingWindow(item, left, top) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.insertFloatingWindow(item, left, top);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.insertFloatingWindow(item, left, top);
+            });
+        }
+    }
     /** The method returns an array of all autohidden items.
     * @param {string} orientation?. Determines which auto hidden items to return ( vertical or horizontal ). If not set the method will return all autohidden items. Possible values: 'vertical', 'horizontal'.
     * @returns {any[]}
   */
     getAutoHideItems(orientation) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getAutoHideItems(orientation);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getAutoHideItems(orientation);
+        return result;
     }
     /** The method returns the index of a target item.
     * @param {HTMLElement} node. Returns the index of the target item.
     * @returns {number}
   */
     getIndex(node) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getIndex(node);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getIndex(node);
+        return result;
     }
     /** Returns an array of objects representing the current structure of the element. Each object represents a Layout item with it's settings and hierarchy.
     * @param {boolean} noInstances?. Determines if the returned array will contain HTML references or not. When saving to localStorage the resulted array should not contain any HTMLElement references.
     * @returns {any[]}
   */
     getState(noInstances) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getState(noInstances);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getState(noInstances);
+        return result;
     }
     /** Returns the Splitter parent of a Layout item
     * @param {HTMLElement} item?. DockingLayout item
     * @returns {HTMLElement}
   */
     getItemGroupElement(item) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItemGroupElement(item);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItemGroupElement(item);
+        return result;
     }
     /** Returns a JSON array of objects representing the current structure of the element. Ready to be persisted to LocalStorage.
     * @returns {any[]}
   */
     getJSONStructure() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getJSONStructure();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getJSONStructure();
+        return result;
     }
     /** Loads a previously saved state of the element. If no state is provided as an argument the method will do a localStorage lookup.
     * @param {any[]} state?. An array of objects that represents a cached state of the DockingLayout. The result of calling the 'saveState' method.
@@ -700,18 +636,8 @@ class DockingLayout extends React.Component {
     * @returns {Node}
   */
     removeChild(node) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.removeChild(node);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.removeChild(node);
+        return result;
     }
     /** Saves the current state of the DockingLayout to LocalStorage. The state includes the hierarchy and size of the items.
     */
@@ -775,7 +701,7 @@ class DockingLayout extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -802,6 +728,7 @@ class DockingLayout extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

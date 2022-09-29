@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.pivottable';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -45,7 +26,7 @@ class PivotTable extends React.Component {
         return this._id;
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -89,7 +70,7 @@ class PivotTable extends React.Component {
         }
     }
     /** Sets or gets the position of total columns (shown when columnTotals is enabled).
-    *	Property type: PivotTableColumnTotalsPosition
+    *	Property type: PivotTableColumnTotalsPosition | string
     */
     get columnTotalsPosition() {
         return this.nativeElement ? this.nativeElement.columnTotalsPosition : undefined;
@@ -144,7 +125,7 @@ class PivotTable extends React.Component {
         }
     }
     /** Sets or gets the position of the PivotTable's designer (shown when designer is enabled).
-    *	Property type: PivotTableDesignerPosition
+    *	Property type: PivotTableDesignerPosition | string
     */
     get designerPosition() {
         return this.nativeElement ? this.nativeElement.designerPosition : undefined;
@@ -177,7 +158,7 @@ class PivotTable extends React.Component {
         }
     }
     /** If set, shows an export button in the drill down dialog.
-    *	Property type: PivotTableDrillDownDataExport
+    *	Property type: PivotTableDrillDownDataExport | string
     */
     get drillDownDataExport() {
         return this.nativeElement ? this.nativeElement.drillDownDataExport : undefined;
@@ -265,7 +246,7 @@ class PivotTable extends React.Component {
         }
     }
     /** Sets or gets whether navigation with the keyboard is enabled in the PivotTable.
-    *	Property type: PivotTableGroupLayout
+    *	Property type: PivotTableGroupLayout | string
     */
     get groupLayout() {
         return this.nativeElement ? this.nativeElement.groupLayout : undefined;
@@ -419,7 +400,7 @@ class PivotTable extends React.Component {
         }
     }
     /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
-    *	Property type: PivotTableRowTotalsPosition
+    *	Property type: PivotTableRowTotalsPosition | string
     */
     get rowTotalsPosition() {
         return this.nativeElement ? this.nativeElement.rowTotalsPosition : undefined;
@@ -441,7 +422,7 @@ class PivotTable extends React.Component {
         }
     }
     /** undefined
-    *	Property type: PivotTableSelectionMode
+    *	Property type: PivotTableSelectionMode | string
     */
     get selectionMode() {
         return this.nativeElement ? this.nativeElement.selectionMode : undefined;
@@ -452,7 +433,7 @@ class PivotTable extends React.Component {
         }
     }
     /** undefined
-    *	Property type: PivotTableSortMode
+    *	Property type: PivotTableSortMode | string
     */
     get sortMode() {
         return this.nativeElement ? this.nativeElement.sortMode : undefined;
@@ -610,52 +591,22 @@ class PivotTable extends React.Component {
     * @returns {any}
   */
     exportData(dataFormat, fileName, callback) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.exportData(dataFormat, fileName, callback);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.exportData(dataFormat, fileName, callback);
+        return result;
     }
     /** Returns the current dynamic pivot columns.
     * @returns {any}
   */
     getDynamicColumns() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getDynamicColumns();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getDynamicColumns();
+        return result;
     }
     /** Returns an array of selected row ids (when selectionMode is 'many' or 'extended') or an array of selected cell details (when selectionMode is 'cell').
     * @returns {(string | number)[] | { dataField: string, rowId: string | number }[]}
   */
     getSelection() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getSelection();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getSelection();
+        return result;
     }
     /** Refreshes the PivotTable.
     */
@@ -747,7 +698,7 @@ class PivotTable extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -774,6 +725,7 @@ class PivotTable extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

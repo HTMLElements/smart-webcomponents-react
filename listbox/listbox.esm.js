@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.listbox';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -67,7 +48,7 @@ class ListItem extends React.Component {
         }
     }
     /**
-    *	Property type: ListItemDisplayMode
+    *	Property type: ListItemDisplayMode | string
     */
     get displayMode() {
         return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -196,7 +177,7 @@ class ListItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -319,7 +300,7 @@ class ListItemsGroup extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -456,7 +437,7 @@ class ListBox extends React.Component {
         }
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
     get animation() {
         return this.nativeElement ? this.nativeElement.animation : undefined;
@@ -544,7 +525,7 @@ class ListBox extends React.Component {
         }
     }
     /** Determines what happens when an item is dropped.
-    *	Property type: ListBoxDropAction
+    *	Property type: ListBoxDropAction | string
     */
     get dropAction() {
         return this.nativeElement ? this.nativeElement.dropAction : undefined;
@@ -588,7 +569,7 @@ class ListBox extends React.Component {
         }
     }
     /** Determines the filtering mode.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
     get filterMode() {
         return this.nativeElement ? this.nativeElement.filterMode : undefined;
@@ -632,7 +613,7 @@ class ListBox extends React.Component {
         }
     }
     /** Determines the visibility of the horizontal Scroll bar.
-    *	Property type: HorizontalScrollBarVisibility
+    *	Property type: HorizontalScrollBarVisibility | string
     */
     get horizontalScrollBarVisibility() {
         return this.nativeElement ? this.nativeElement.horizontalScrollBarVisibility : undefined;
@@ -654,7 +635,7 @@ class ListBox extends React.Component {
         }
     }
     /** Sets ot gets the mode of the incremental search mode. Incremental search is enabled by default. Typing while the List box is focused starts the incremental search.
-    *	Property type: SearchMode
+    *	Property type: SearchMode | string
     */
     get incrementalSearchMode() {
         return this.nativeElement ? this.nativeElement.incrementalSearchMode : undefined;
@@ -676,7 +657,7 @@ class ListBox extends React.Component {
         }
     }
     /** Determines the item width measuring algorithm.
-    *	Property type: ListItemMeasureMode
+    *	Property type: ListItemMeasureMode | string
     */
     get itemMeasureMode() {
         return this.nativeElement ? this.nativeElement.itemMeasureMode : undefined;
@@ -720,7 +701,7 @@ class ListBox extends React.Component {
         }
     }
     /** Determines the position of the loading indicator.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
     get loadingIndicatorPosition() {
         return this.nativeElement ? this.nativeElement.loadingIndicatorPosition : undefined;
@@ -830,7 +811,7 @@ class ListBox extends React.Component {
         }
     }
     /** Determines how many items can be selected depending on the selection mode.
-    *	Property type: ListSelectionMode
+    *	Property type: ListSelectionMode | string
     */
     get selectionMode() {
         return this.nativeElement ? this.nativeElement.selectionMode : undefined;
@@ -841,7 +822,7 @@ class ListBox extends React.Component {
         }
     }
     /** Determines when listbox selection is achieved - on 'press' or 'release'.
-    *	Property type: ListBoxSelectionChangeAction
+    *	Property type: ListBoxSelectionChangeAction | string
     */
     get selectionChangeAction() {
         return this.nativeElement ? this.nativeElement.selectionChangeAction : undefined;
@@ -929,7 +910,7 @@ class ListBox extends React.Component {
         }
     }
     /** Determines the visibility of the vertical scroll bar.
-    *	Property type: VerticalScrollBarVisibility
+    *	Property type: VerticalScrollBarVisibility | string
     */
     get verticalScrollBarVisibility() {
         return this.nativeElement ? this.nativeElement.verticalScrollBarVisibility : undefined;
@@ -963,18 +944,8 @@ class ListBox extends React.Component {
     * @returns {Node}
   */
     appendChild(node) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.appendChild(node);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.appendChild(node);
+        return result;
     }
     /** Removes all items from the listBox.
     */
@@ -1018,35 +989,15 @@ class ListBox extends React.Component {
     * @returns {HTMLElement}
   */
     getItem(value) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItem(value);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItem(value);
+        return result;
     }
     /** Returns an array of ListBox items.
     * @returns {{label: string, value: string}[]}
   */
     getItems() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItems();
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItems();
+        return result;
     }
     /** Inserts a new item at a specified index.
     * @param {number} index. The index where the item must be inserted.
@@ -1068,18 +1019,8 @@ class ListBox extends React.Component {
     * @returns {Node}
   */
     insertBefore(node, referenceNode) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.insertBefore(node, referenceNode);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.insertBefore(node, referenceNode);
+        return result;
     }
     /** Removes an item at a specified index.
     * @param {number} index. The index of the removed item.
@@ -1099,18 +1040,8 @@ class ListBox extends React.Component {
     * @returns {Node}
   */
     removeChild(node) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.removeChild(node);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.removeChild(node);
+        return result;
     }
     /** Selects an item from the listBox.
     * @param {string | number | HTMLElement} item. A string, representing the value of the item or an HTML Element referencing an item from the list.
@@ -1175,7 +1106,7 @@ class ListBox extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -1202,6 +1133,7 @@ class ListBox extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$2.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

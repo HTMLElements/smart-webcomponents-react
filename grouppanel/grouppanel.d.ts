@@ -23,15 +23,15 @@ export declare class GroupPanel extends React.Component<React.HTMLAttributes<Ele
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Sets or gets the the position of the close button of group panel items.
-    *	Property type: GroupPanelCloseButtonPosition
+    *	Property type: GroupPanelCloseButtonPosition | string
     */
-    get closeButtonPosition(): GroupPanelCloseButtonPosition;
-    set closeButtonPosition(value: GroupPanelCloseButtonPosition);
+    get closeButtonPosition(): GroupPanelCloseButtonPosition | string;
+    set closeButtonPosition(value: GroupPanelCloseButtonPosition | string);
     /** Determines the data source that will be loaded to the group panel.Each member of the dataSource array is an object with the following fields:dataField - the dataField of the column to be grouped.dataType - the data type of the column to be grouped.groupIndex - the group order of columns. If this value is -1, the grouping will not be applied by this column initially.label - the column label to be displayed in the column selection input.icon - a specific class to be applied to the respective item in the column selection input.sortDirection - the sort direction to be applied when grouping. Possible values: 'ascending' and 'descending'.
     *	Property type: {label: string, dataField: string, dataType: string, sortDirection: string, groupIndex: number}[]
     */

@@ -1,32 +1,13 @@
 
+if (!window['Smart']) {
+	window['Smart'] = { RenderMode: 'manual' };
+}
+else {
+	window['Smart'].RenderMode = 'manual';
+}	
 import '../source/modules/smart.combobox';
 
 import React from 'react';
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
 
 const Smart = window.Smart;
 /**
@@ -67,7 +48,7 @@ class ListItem extends React.Component {
         }
     }
     /**
-    *	Property type: ListItemDisplayMode
+    *	Property type: ListItemDisplayMode | string
     */
     get displayMode() {
         return this.nativeElement ? this.nativeElement.displayMode : undefined;
@@ -196,7 +177,7 @@ class ListItem extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -319,7 +300,7 @@ class ListItemsGroup extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -412,7 +393,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines the autocomplete mode. Auto complete modes filter the items from the dataSource and show only those that match the input.
-    *	Property type: AutoComplete
+    *	Property type: AutoComplete | string
     */
     get autoComplete() {
         return this.nativeElement ? this.nativeElement.autoComplete : undefined;
@@ -500,7 +481,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines the position of the drop down button.
-    *	Property type: DropDownButtonPosition
+    *	Property type: DropDownButtonPosition | string
     */
     get dropDownButtonPosition() {
         return this.nativeElement ? this.nativeElement.dropDownButtonPosition : undefined;
@@ -566,7 +547,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines how the drop down is going to open.
-    *	Property type: DropDownOpenMode
+    *	Property type: DropDownOpenMode | string
     */
     get dropDownOpenMode() {
         return this.nativeElement ? this.nativeElement.dropDownOpenMode : undefined;
@@ -599,7 +580,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines the position of the drop down when opened.
-    *	Property type: DropDownPosition
+    *	Property type: DropDownPosition | string
     */
     get dropDownPosition() {
         return this.nativeElement ? this.nativeElement.dropDownPosition : undefined;
@@ -621,7 +602,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines the behavior of the element when Escape key is pressed.
-    *	Property type: ComboBoxEscKeyMode
+    *	Property type: ComboBoxEscKeyMode | string
     */
     get escKeyMode() {
         return this.nativeElement ? this.nativeElement.escKeyMode : undefined;
@@ -654,7 +635,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines the filtering mode of the Combo box.
-    *	Property type: FilterMode
+    *	Property type: FilterMode | string
     */
     get filterMode() {
         return this.nativeElement ? this.nativeElement.filterMode : undefined;
@@ -698,7 +679,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines the visibility of the horizontal Scroll bar inside the drop down.
-    *	Property type: HorizontalScrollBarVisibility
+    *	Property type: HorizontalScrollBarVisibility | string
     */
     get horizontalScrollBarVisibility() {
         return this.nativeElement ? this.nativeElement.horizontalScrollBarVisibility : undefined;
@@ -742,7 +723,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Sets ot gets the mode of the incremental search mode. Incremental search is enabled by default. Typing while the drop down is focused starts the incremental search.
-    *	Property type: SearchMode
+    *	Property type: SearchMode | string
     */
     get incrementalSearchMode() {
         return this.nativeElement ? this.nativeElement.incrementalSearchMode : undefined;
@@ -764,7 +745,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines the item width measuring algorithm.
-    *	Property type: ListItemMeasureMode
+    *	Property type: ListItemMeasureMode | string
     */
     get itemMeasureMode() {
         return this.nativeElement ? this.nativeElement.itemMeasureMode : undefined;
@@ -819,7 +800,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines the position of the loading indicator.
-    *	Property type: VerticalAlignment
+    *	Property type: VerticalAlignment | string
     */
     get loadingIndicatorPosition() {
         return this.nativeElement ? this.nativeElement.loadingIndicatorPosition : undefined;
@@ -871,6 +852,17 @@ class ComboBox extends React.Component {
     set minLength(value) {
         if (this.nativeElement) {
             this.nativeElement.minLength = value;
+        }
+    }
+    /** Determines the maximum number of characters inside the input.
+    *	Property type: number
+    */
+    get maxLength() {
+        return this.nativeElement ? this.nativeElement.maxLength : undefined;
+    }
+    set maxLength(value) {
+        if (this.nativeElement) {
+            this.nativeElement.maxLength = value;
         }
     }
     /** Sets or gets the name attribute for the element. Name is used when submiting HTML forms.
@@ -940,7 +932,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines whether the dropDown can be resized or not. When resizing is enabled, a resize bar appears on the top/bottom side of the drop down.
-    *	Property type: ResizeMode
+    *	Property type: ResizeMode | string
     */
     get resizeMode() {
         return this.nativeElement ? this.nativeElement.resizeMode : undefined;
@@ -951,7 +943,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines what will be displayed in the input.
-    *	Property type: SelectionDisplayMode
+    *	Property type: SelectionDisplayMode | string
     */
     get selectionDisplayMode() {
         return this.nativeElement ? this.nativeElement.selectionDisplayMode : undefined;
@@ -984,7 +976,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines how many items can be selected.
-    *	Property type: ListSelectionMode
+    *	Property type: ListSelectionMode | string
     */
     get selectionMode() {
         return this.nativeElement ? this.nativeElement.selectionMode : undefined;
@@ -1072,7 +1064,7 @@ class ComboBox extends React.Component {
         }
     }
     /** Determines the visibility of the vertical scroll bar.
-    *	Property type: VerticalScrollBarVisibility
+    *	Property type: VerticalScrollBarVisibility | string
     */
     get verticalScrollBarVisibility() {
         return this.nativeElement ? this.nativeElement.verticalScrollBarVisibility : undefined;
@@ -1095,7 +1087,7 @@ class ComboBox extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["autoCloseDelay", "autoComplete", "autoCompleteDelay", "autoOpenShortcutKey", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownButtonPosition", "dropDownHeight", "dropDownMaxHeight", "dropDownMaxWidth", "dropDownMinHeight", "dropDownMinWidth", "dropDownOpenMode", "dropDownOverlay", "dropDownPlaceholder", "dropDownPosition", "dropDownWidth", "escKeyMode", "filterable", "filterInputPlaceholder", "filterMode", "grouped", "groupMember", "hint", "horizontalScrollBarVisibility", "inputMember", "inputPurpose", "incrementalSearchDelay", "incrementalSearchMode", "itemHeight", "itemMeasureMode", "items", "itemTemplate", "label", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "readonly", "rightToLeft", "resizeIndicator", "resizeMode", "selectionDisplayMode", "selectedIndexes", "selectedValues", "selectionMode", "sorted", "sortDirection", "theme", "tokenTemplate", "unfocusable", "value", "valueMember", "verticalScrollBarVisibility", "virtualized"];
+        return ["autoCloseDelay", "autoComplete", "autoCompleteDelay", "autoOpenShortcutKey", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dropDownAppendTo", "dropDownButtonPosition", "dropDownHeight", "dropDownMaxHeight", "dropDownMaxWidth", "dropDownMinHeight", "dropDownMinWidth", "dropDownOpenMode", "dropDownOverlay", "dropDownPlaceholder", "dropDownPosition", "dropDownWidth", "escKeyMode", "filterable", "filterInputPlaceholder", "filterMode", "grouped", "groupMember", "hint", "horizontalScrollBarVisibility", "inputMember", "inputPurpose", "incrementalSearchDelay", "incrementalSearchMode", "itemHeight", "itemMeasureMode", "items", "itemTemplate", "label", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "minLength", "maxLength", "name", "opened", "placeholder", "readonly", "rightToLeft", "resizeIndicator", "resizeMode", "selectionDisplayMode", "selectedIndexes", "selectedValues", "selectionMode", "sorted", "sortDirection", "theme", "tokenTemplate", "unfocusable", "value", "valueMember", "verticalScrollBarVisibility", "virtualized"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -1106,18 +1098,8 @@ class ComboBox extends React.Component {
     * @returns {Node}
   */
     appendChild(node) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.appendChild(node);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.appendChild(node);
+        return result;
     }
     /** Removes all items from the drop down list.
     */
@@ -1173,18 +1155,8 @@ class ComboBox extends React.Component {
     * @returns {HTMLElement}
   */
     getItem(value) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.getItem(value);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.getItem(value);
+        return result;
     }
     /** Inserts a new item at a specified position.
     * @param {number} position. The position where the item must be inserted.
@@ -1206,18 +1178,8 @@ class ComboBox extends React.Component {
     * @returns {Node}
   */
     insertBefore(node, referenceNode) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.insertBefore(node, referenceNode);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.insertBefore(node, referenceNode);
+        return result;
     }
     /** Opens the dropDown list.
     */
@@ -1249,18 +1211,8 @@ class ComboBox extends React.Component {
     * @returns {Node}
   */
     removeChild(node) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const getResultOnRender = () => {
-                return new Promise(resolve => {
-                    this.nativeElement.whenRendered(() => {
-                        const result = this.nativeElement.removeChild(node);
-                        resolve(result);
-                    });
-                });
-            };
-            const result = yield getResultOnRender();
-            return result;
-        });
+        const result = this.nativeElement.removeChild(node);
+        return result;
     }
     /** Selects an item from the dropDown list.
     * @param {string | HTMLElement} item. A string, representing the value of the item or an HTML Element referencing an item from the list
@@ -1325,7 +1277,7 @@ class ComboBox extends React.Component {
             that.nativeElement = this.componentRef.current;
         }
         for (let prop in props) {
-            if (prop === 'class') {
+            if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
@@ -1352,6 +1304,7 @@ class ComboBox extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
+            Smart$2.Render();
             if (that.onCreate) {
                 that.onCreate();
             }

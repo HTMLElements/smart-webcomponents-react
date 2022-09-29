@@ -30,10 +30,10 @@ export declare class Chart extends React.Component<React.HTMLAttributes<Element>
     private componentRef;
     get id(): string;
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'.
-    *	Property type: Animation
+    *	Property type: Animation | string
     */
-    get animation(): Animation;
-    set animation(value: Animation);
+    get animation(): Animation | string;
+    set animation(value: Animation | string);
     /** Determines the animation duration in milliseconds. The value must be between 0 and 5000. If it is outside of this range jqxChart will reset it to the default value.
     *	Property type: number
     */
@@ -70,10 +70,10 @@ export declare class Chart extends React.Component<React.HTMLAttributes<Element>
     get clip(): boolean;
     set clip(value: boolean);
     /** Sets the chart's color pallete. jqxChart suppports 32 color schemes from 'scheme01' to 'scheme32'.
-    *	Property type: ChartColorScheme
+    *	Property type: ChartColorScheme | string
     */
-    get colorScheme(): ChartColorScheme;
-    set colorScheme(value: ChartColorScheme);
+    get colorScheme(): ChartColorScheme | string;
+    set colorScheme(value: ChartColorScheme | string);
     /** Enables or disables overlapping of the column series.
     *	Property type: boolean
     */
@@ -160,10 +160,10 @@ export declare class Chart extends React.Component<React.HTMLAttributes<Element>
     get padding(): Padding;
     set padding(value: Padding);
     /** Determines the rendering engine used to display the chart. When the property is set to an empty string, jqxChart will automatically select an optimal rendering engine depending on the browser capabilities.
-    *	Property type: ChartRenderEngine
+    *	Property type: ChartRenderEngine | string
     */
-    get renderEngine(): ChartRenderEngine;
-    set renderEngine(value: ChartRenderEngine);
+    get renderEngine(): ChartRenderEngine | string;
+    set renderEngine(value: ChartRenderEngine | string);
     /** Sets or gets a value indicating whether the Chart's layout is mirrored.
     *	Property type: boolean
     */
@@ -293,52 +293,52 @@ export declare class Chart extends React.Component<React.HTMLAttributes<Element>
     * @param {string} schemeName. The name of the color scheme.
     * @returns {any[]}
   */
-    getColorScheme(schemeName: string): Promise<any>;
+    getColorScheme(schemeName: string): any;
     /** Gets the rendered coordinates of a data point element.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @param {number} itemIndex. Item (data point) index.
     * @returns {{ x: number, y: number, width: number, height: number, center: number, centerOffset: number, innerRadius: number, outerRadius: number, selectedRadiusChange: number, fromAngle: number, toAngle: number, radius: number }}
   */
-    getItemCoord(groupIndex: number, serieIndex: number, itemIndex: number): Promise<any>;
+    getItemCoord(groupIndex: number, serieIndex: number, itemIndex: number): any;
     /** Gets the number of rendered items in a specific serie.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @returns {number}
   */
-    getItemsCount(groupIndex: number, serieIndex: number): Promise<any>;
+    getItemsCount(groupIndex: number, serieIndex: number): any;
     /** Gets the rendered coordinates and values of the valueAxis labels.
     * @param {number} groupIndex. Series group index.
     * @returns {any}
   */
-    getValueAxisLabels(groupIndex: number): Promise<any>;
+    getValueAxisLabels(groupIndex: number): any;
     /** Gets the rendered rectangle coordinates of the valueAxis of specific serie group.
     * @param {number} groupIndex. Series group index.
     * @returns {DOMRect}
   */
-    getValueAxisRect(groupIndex: number): Promise<any>;
+    getValueAxisRect(groupIndex: number): any;
     /** Gets the valueAxis (vertical axis)'s value.
     * @param {number} offset. Vertical offset.
     * @param {number} groupIndex. Series group index.
     * @returns {any}
   */
-    getValueAxisValue(offset: number, groupIndex: number): Promise<any>;
+    getValueAxisValue(offset: number, groupIndex: number): any;
     /** Gets the rendered coordinates and values of the xAxis labels.
     * @param {number} groupIndex. Series group index.
     * @returns {any}
   */
-    getXAxisLabels(groupIndex: number): Promise<any>;
+    getXAxisLabels(groupIndex: number): any;
     /** Gets the rendered rectangle coordinates of the x-Axis of specific serie group.
     * @param {number} groupIndex. Series group index.
     * @returns {DOMRect}
   */
-    getXAxisRect(groupIndex: number): Promise<any>;
+    getXAxisRect(groupIndex: number): any;
     /** Gets the xAxis (horizontal axis)'s value.
     * @param {number} offset. Horizontal offset.
     * @param {number} groupIndex. Series group index.
     * @returns {any}
   */
-    getXAxisValue(offset: number, groupIndex: number): Promise<any>;
+    getXAxisValue(offset: number, groupIndex: number): any;
     /** Hides a chart serie. The result of calling this function is same as the user unchecking the legend box of a chart serie.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
