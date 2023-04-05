@@ -1,0 +1,18 @@
+html, body {
+  padding: 10px;
+}
+
+body {
+  min-height: 700px;
+}
+
+smart-grid {
+  width: calc(100% - 350px);
+
+}
+
+@media only screen and (max-width: 600px) {
+  smart-grid {
+    width: 100%;
+  }
+}

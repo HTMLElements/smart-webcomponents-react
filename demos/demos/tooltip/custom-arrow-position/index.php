@@ -1,0 +1,10 @@
+<?php
+	$description = 'Smart Tooltip for React Custom-arrow-position example. React Tooltip UI.';
+	$keywords = 'Tooltip';
+	$title = 'Smart Tooltip for React | Tooltip | Smart UI for React';
+	$path = isset($isRoot) ? '../../../' : '../../../../demos/';
+	$base = '../../../../demos/';
+	$infobase = '../../../../demos/';
+	$demo = '../../../../demos/tooltip/custom-arrow-position';
+?>
+<?php include($path . 'single-demo-template.php'); ?>

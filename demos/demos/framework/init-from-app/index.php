@@ -1,0 +1,10 @@
+<?php
+	$description = 'Smart Framework for React Init-from-app example. React Framework UI.';
+	$keywords = 'Framework';
+	$title = 'Smart Framework for React | Framework | Smart UI for React';
+	$path = isset($isRoot) ? '../../../' : '../../../../demos/';
+	$base = '../../../../demos/';
+	$infobase = '../../../../demos/';
+	$demo = '../../../../demos/framework/init-from-app';
+?>
+<?php include($path . 'single-demo-template.php'); ?>
