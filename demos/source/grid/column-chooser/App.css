@@ -1,0 +1,34 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
+
+html, body {
+	padding: 10px;
+}
+
+smart-grid {
+	width: 100%;
+	height: auto;
+}
+
+smart-menu {
+	height: auto !important;
+	width: 150px;
+}
+
+body {
+	height: 1000px;
+}
+
+.heading {
+	margin-top: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.icon {
+	font-family: "FontAwesome";
+	width: 32px;
+	height: 100%;
+	display: flex;
+	font-size: 20px;
+	justify-content: center;
+	align-items: center;
+}
