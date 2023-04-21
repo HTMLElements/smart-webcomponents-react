@@ -23,42 +23,60 @@ export declare class FormGroup extends React.Component<React.HTMLAttributes<Elem
     */
     get columns(): number;
     set columns(value: number);
+    /** Sets the Form control data field. The control's inner input's name is set to the dataField value and in the FormGroup it is accessible through the dataField value.
+    *	Property type: string
+    */
+    get dataField(): string;
+    set dataField(value: string);
+    /** Gets or Sets the Form control's label.
+    *	Property type: string
+    */
+    get label(): string;
+    set label(value: string);
     /**
     *	Property type: Control[]
     */
     get controls(): Control[];
     set controls(value: Control[]);
-    /** Callback function for handling status changes
-    *	Property type: any
-    */
-    get onStatusChanges(): any;
-    set onStatusChanges(value: any);
-    /** Callback function for handling value changes
-    *	Property type: any
-    */
-    get onValueChanges(): any;
-    set onValueChanges(value: any);
     /** Sets or Gets the labels position.
+    *	Property type: {(value: string): void}
+    */
+    get onStatusChanges(): {
+        (value: string): void;
+    };
+    set onStatusChanges(value: {
+        (value: string): void;
+    });
+    /** Makes the form readonly.
+    *	Property type: {(value: any): void}
+    */
+    get onValueChanges(): {
+        (value: any): void;
+    };
+    set onValueChanges(value: {
+        (value: any): void;
+    });
+    /** Shows / hides the colon after the labels.
     *	Property type: FormGroupLabelPosition | string
     */
     get labelPosition(): FormGroupLabelPosition | string;
     set labelPosition(value: FormGroupLabelPosition | string);
-    /** Makes the form readonly.
+    /** Shows / hides validation summary.
     *	Property type: boolean
     */
     get readonly(): boolean;
     set readonly(value: boolean);
-    /** Shows / hides the colon after the labels.
+    /** Gets or Sets the Form value.
     *	Property type: boolean
     */
     get showColonAfterLabel(): boolean;
     set showColonAfterLabel(value: boolean);
-    /** Shows / hides validation summary.
+    /** undefined
     *	Property type: boolean
     */
     get showSummary(): boolean;
     set showSummary(value: boolean);
-    /** Gets or Sets the Form value.
+    /** undefined
     *	Property type: any
     */
     get value(): any;

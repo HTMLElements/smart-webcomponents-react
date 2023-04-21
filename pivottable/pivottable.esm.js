@@ -289,7 +289,7 @@ class PivotTable extends React.Component {
             this.nativeElement.keyboardNavigation = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or gets the page size (when paging is enabled).
     *	Property type: string
     */
     get locale() {
@@ -300,7 +300,7 @@ class PivotTable extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Sets or gets whether sorting by row (when a row group cell is clicked) is enabled. When columnTotals is also enabled, sorting is applied per "column group"; otherwise - for all columns.
+    /** Sets or gets the current (zero-based) page index (when paging is enabled).
     *	Property type: any
     */
     get messages() {
@@ -311,7 +311,7 @@ class PivotTable extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets whether row summaries are displayed in the row headers. Example: Peterson(40) vs Peterson, when rowSummary is set to false.
+    /** Sets or gets whether paging is enabled.
     *	Property type: number
     */
     get nullDefaultValue() {
@@ -322,7 +322,7 @@ class PivotTable extends React.Component {
             this.nativeElement.nullDefaultValue = value;
         }
     }
-    /** Sets or gets whether to show row total columns for each summary column.
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: { (data: any, dynamicColumn: any, value: any, cell: HTMLTableCellElement): void }
     */
     get onCellRender() {
@@ -333,7 +333,7 @@ class PivotTable extends React.Component {
             this.nativeElement.onCellRender = value;
         }
     }
-    /** Sets or gets the position of row total columns (shown when rowTotals is enabled).
+    /** Sets or gets whether sorting by row (when a row group cell is clicked) is enabled. When columnTotals is also enabled, sorting is applied per "column group"; otherwise - for all columns.
     *	Property type: { (settings: { text: string, cell: HTMLTableCellElement, column: PivotTableColumn, fullDefinition: any }): void }
     */
     get onColumnRender() {
@@ -344,7 +344,7 @@ class PivotTable extends React.Component {
             this.nativeElement.onColumnRender = value;
         }
     }
-    /** Sets or gets whether row selection (via checkboxes) is enabled.
+    /** Sets or gets whether row summaries are displayed in the row headers. Example: Peterson(40) vs Peterson, when rowSummary is set to false.
     *	Property type: { (): void }
     */
     get onInit() {
@@ -353,6 +353,39 @@ class PivotTable extends React.Component {
     set onInit(value) {
         if (this.nativeElement) {
             this.nativeElement.onInit = value;
+        }
+    }
+    /** Sets or gets whether to show row total columns for each summary column.
+    *	Property type: PivotTablePageSize | string
+    */
+    get pageSize() {
+        return this.nativeElement ? this.nativeElement.pageSize : undefined;
+    }
+    set pageSize(value) {
+        if (this.nativeElement) {
+            this.nativeElement.pageSize = value;
+        }
+    }
+    /** Sets or gets the position of row total columns (shown when rowTotals is enabled).
+    *	Property type: number
+    */
+    get pageIndex() {
+        return this.nativeElement ? this.nativeElement.pageIndex : undefined;
+    }
+    set pageIndex(value) {
+        if (this.nativeElement) {
+            this.nativeElement.pageIndex = value;
+        }
+    }
+    /** Sets or gets whether row selection (via checkboxes) is enabled.
+    *	Property type: boolean
+    */
+    get paging() {
+        return this.nativeElement ? this.nativeElement.paging : undefined;
+    }
+    set paging(value) {
+        if (this.nativeElement) {
+            this.nativeElement.paging = value;
         }
     }
     /** Sets or gets the selection mode. Only applicable when selection is enabled.
@@ -478,7 +511,7 @@ class PivotTable extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "columnReorder", "columns", "columnTotals", "columnTotalsPosition", "conditionalFormatting", "dataSource", "defaultSortByRowGroups", "designer", "designerPosition", "disabled", "drillDown", "drillDownDataExport", "drillDownDataExportName", "drillDownTableInit", "drillDownCustomAction", "enableSortByRowGroups", "freezeHeader", "getDefaultSummaryFunction", "grandTotal", "groupLayout", "hideCellSelectionTooltip", "hideEmptyRows", "keyboardNavigation", "locale", "messages", "nullDefaultValue", "onCellRender", "onColumnRender", "onInit", "rightToLeft", "rowSort", "rowSummary", "rowTotals", "rowTotalsPosition", "selection", "selectionMode", "sortMode", "theme", "toolbar", "tooltip"];
+        return ["animation", "columnReorder", "columns", "columnTotals", "columnTotalsPosition", "conditionalFormatting", "dataSource", "defaultSortByRowGroups", "designer", "designerPosition", "disabled", "drillDown", "drillDownDataExport", "drillDownDataExportName", "drillDownTableInit", "drillDownCustomAction", "enableSortByRowGroups", "freezeHeader", "getDefaultSummaryFunction", "grandTotal", "groupLayout", "hideCellSelectionTooltip", "hideEmptyRows", "keyboardNavigation", "locale", "messages", "nullDefaultValue", "onCellRender", "onColumnRender", "onInit", "pageSize", "pageIndex", "paging", "rightToLeft", "rowSort", "rowSummary", "rowTotals", "rowTotalsPosition", "selection", "selectionMode", "sortMode", "theme", "toolbar", "tooltip"];
     }
     // Gets the events of the React component.
     get eventListeners() {

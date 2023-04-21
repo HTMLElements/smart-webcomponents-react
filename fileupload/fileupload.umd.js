@@ -267,6 +267,17 @@ require('../source/modules/smart.fileupload');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
+	    /** Sets or gets the remove URL. This property corresponds to the form's action attribute. For example, the removeUrl property can point to a PHP file, which handles the remove operation on the server-side.
+	    *	Property type: string
+	    */
+	    get removeUrl() {
+	        return this.nativeElement ? this.nativeElement.removeUrl : undefined;
+	    }
+	    set removeUrl(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.removeUrl = value;
+	        }
+	    }
 	    /** Gets the file upload value.
 	    *	Property type: any
 	    */
@@ -291,7 +302,7 @@ require('../source/modules/smart.fileupload');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["accept", "animation", "appendTo", "autoUpload", "directory", "disabled", "dropZone", "hideFooter", "itemTemplate", "locale", "localizeFormatFunction", "messages", "multiple", "name", "readonly", "responseHandler", "rightToLeft", "setHeaders", "showProgress", "theme", "uploadUrl", "unfocusable", "value", "validateFile"];
+	        return ["accept", "animation", "appendTo", "autoUpload", "directory", "disabled", "dropZone", "hideFooter", "itemTemplate", "locale", "localizeFormatFunction", "messages", "multiple", "name", "readonly", "responseHandler", "rightToLeft", "setHeaders", "showProgress", "theme", "uploadUrl", "unfocusable", "removeUrl", "value", "validateFile"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {

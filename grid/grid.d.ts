@@ -1,8 +1,8 @@
 import React from "react";
 import { GridProperties } from "./../index";
-import { Scrolling, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridContextMenu, GridColumnMenu, GridColumnGroup, GridConditionalFormatting, GridCharting, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridEditing, GridFiltering, GridGrouping, GridUploadSettings, GridPaging, GridPager, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSorting } from './../index';
+import { Scrolling, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridContextMenu, GridColumnMenu, GridColumnGroup, GridConditionalFormatting, GridCharting, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridEditing, GridFiltering, GridGrouping, GridUploadSettings, GridPaging, GridPager, GridRowDetail, GridColumnHeader, GridSummaryRow, GridStateSettings, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSorting } from './../index';
 export { GridProperties } from "./../index";
-export { GridAppearanceAutoGenerateRowLabelMode, GridAppearanceAutoGenerateColumnLabelMode, GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnFilterMenuMode, GridColumnSortOrder, GridConditionalFormattingCondition, GridDataExportPageOrientation, GridDataSourceSettingsSanitizeHTML, GridDataSourceSettingsDataFieldDataType, GridDataSourceSettingsDataSourceType, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridEditingAddNewRowDisplayMode, GridFilteringFilterRowApplyMode, GridFilteringFilterMenuMode, GridGroupingExpandMode, GridGroupingRenderMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridSortingCommandKey, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridContextMenu, GridContextMenuDataSource, GridCommand, GridColumnMenu, GridColumnMenuDataSource, GridColumnGroup, GridConditionalFormatting, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridDataSourceSettingsDataField, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridEditingAddNewColumn, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridUploadSettings, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridSummaryRow, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
+export { GridAppearanceAutoGenerateRowLabelMode, GridAppearanceAutoGenerateColumnLabelMode, GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnFilterMenuMode, GridColumnSortOrder, GridConditionalFormattingCondition, GridDataExportPageOrientation, GridDataSourceSettingsSanitizeHTML, GridDataSourceSettingsDataFieldDataType, GridDataSourceSettingsDataSourceType, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridEditingAddNewRowDisplayMode, GridFilteringFilterRowApplyMode, GridFilteringFilterMenuMode, GridGroupingExpandMode, GridGroupingRenderMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridSortingCommandKey, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridContextMenu, GridContextMenuDataSource, GridCommand, GridColumnMenu, GridColumnMenuDataSource, GridColumnGroup, GridConditionalFormatting, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridDataSourceSettingsDataField, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridEditingAddNewColumn, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridUploadSettings, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridSummaryRow, GridStateSettings, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
 export { DataAdapter, Chart } from './../index';
 export declare const Smart: any;
 export interface GridProps extends GridProperties {
@@ -216,7 +216,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onAfterInit(value: {
         (): void;
     });
-    /** Sets the grid's image upload settings for the image columns.
+    /** Sets the grid's image and filter upload settings for the image and attachment columns.
     *	Property type: any
     */
     get onChartInit(): any;
@@ -267,7 +267,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowDetailUpdated(value: {
         (index: number, row: GridRow, details: HTMLElement): void;
     });
-    /** Describes the settings for the group header.
+    /** Sets the grid's state settings.
     *	Property type: {(index: number, row: GridRow, history: any[]): void}
     */
     get onRowHistory(): {
@@ -276,7 +276,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowHistory(value: {
         (index: number, row: GridRow, history: any[]): void;
     });
-    /** Describes the header settings of the grid.
+    /** Describes the settings for the group header.
     *	Property type: {(index: number, row: GridRow, history: any[]): void}
     */
     get onRowStyle(): {
@@ -285,7 +285,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowStyle(value: {
         (index: number, row: GridRow, history: any[]): void;
     });
-    /** Describes the footer settings of the grid.
+    /** Describes the header settings of the grid.
     *	Property type: {(index: number[], row: GridRow[]): void}
     */
     get onRowInserted(): {
@@ -294,7 +294,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowInserted(value: {
         (index: number[], row: GridRow[]): void;
     });
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Describes the footer settings of the grid.
     *	Property type: {(indexes: number[], rows: GridRow[]): void}
     */
     get onRowRemoved(): {
@@ -303,7 +303,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowRemoved(value: {
         (indexes: number[], rows: GridRow[]): void;
     });
-    /** The rows property is used to describe all rows displayed in the grid.
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: {(index: number[], row: GridRow[], oldValues: any[], values: any[], confirm: {(commit: boolean): void}): void}
     */
     get onRowUpdate(): {
@@ -316,7 +316,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
             (commit: boolean): void;
         }): void;
     });
-    /** Describes the selection settings.
+    /** The rows property is used to describe all rows displayed in the grid.
     *	Property type: {(index: number[], row: GridRow[]): void}
     */
     get onRowUpdated(): {
@@ -325,7 +325,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowUpdated(value: {
         (index: number[], row: GridRow[]): void;
     });
-    /** Describes sorting settings.
+    /** Describes the selection settings.
     *	Property type: {(index: number, data: any, row: GridRow[]): void}
     */
     get onRowClass(): {
@@ -334,7 +334,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowClass(value: {
         (index: number, data: any, row: GridRow[]): void;
     });
-    /** undefined
+    /** Describes sorting settings.
     *	Property type: {(index: number, dataField: string, cellValue: any, data: any, row: GridRow[]): void}
     */
     get onCellClass(): {
@@ -447,6 +447,11 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     get summaryRow(): GridSummaryRow;
     set summaryRow(value: GridSummaryRow);
+    /** undefined
+    *	Property type: GridStateSettings
+    */
+    get stateSettings(): GridStateSettings;
+    set stateSettings(value: GridStateSettings);
     /** undefined
     *	Property type: GridGroupHeader
     */
@@ -1013,10 +1018,23 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     * @returns {any}
   */
     getViewRows(): any;
-    /** Gets a JSON object with the following fields: 'sort', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'.
+    /** Gets a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
     * @returns {any}
   */
     getState(): any;
+    /** Saves the Grid state and returns a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
+    * @param {string} name?. state name
+    * @returns {any}
+  */
+    saveState(name?: string): any;
+    /** Loads a previously saved Grid state. You can pass a state name when there is a state which was previously saved with the saveState(stateName) method call or a state object returned by the saveState or getState method calls. The state object is required to be a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
+    * @param {any} state. state name or state object
+    * @returns {any}
+  */
+    loadState(state: any): any;
+    /** Resets the Grid state.
+    */
+    resetState(): void;
     /** Gets the changes from the batch edit.
     * @returns {{ upDated: [{ id: string, dataField: string, oldValue: Object, newValue: Object }], deleted: [{id: string, data: Object}], added: [{id: string, data: Object}] }}
   */

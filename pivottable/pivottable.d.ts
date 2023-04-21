@@ -1,8 +1,8 @@
 import React from "react";
 import { PivotTableProperties } from "./../index";
-import { Animation, PivotTableColumnTotalsPosition, PivotTableDesignerPosition, PivotTableDrillDownDataExport, PivotTableGroupLayout, PivotTableRowTotalsPosition, PivotTableSelectionMode, PivotTableSortMode, PivotTableColumn, PivotTableConditionalFormatting } from './../index';
+import { Animation, PivotTableColumnTotalsPosition, PivotTableDesignerPosition, PivotTableDrillDownDataExport, PivotTableGroupLayout, PivotTablePageSize, PivotTableRowTotalsPosition, PivotTableSelectionMode, PivotTableSortMode, PivotTableColumn, PivotTableConditionalFormatting } from './../index';
 export { PivotTableProperties } from "./../index";
-export { Animation, PivotTableColumnAlign, PivotTableColumnDataType, PivotTableColumnSummary, PivotTableColumnTotalsPosition, PivotTableConditionalFormattingCondition, PivotTableConditionalFormattingFontFamily, PivotTableConditionalFormattingFontSize, PivotTableDesignerPosition, PivotTableDrillDownDataExport, PivotTableGroupLayout, PivotTableRowTotalsPosition, PivotTableSelectionMode, PivotTableSortMode, PivotTableColumn, PivotTableConditionalFormatting } from './../index';
+export { Animation, PivotTableColumnAlign, PivotTableColumnDataType, PivotTableColumnSummary, PivotTableColumnTotalsPosition, PivotTableConditionalFormattingCondition, PivotTableConditionalFormattingFontFamily, PivotTableConditionalFormattingFontSize, PivotTableDesignerPosition, PivotTableDrillDownDataExport, PivotTableGroupLayout, PivotTablePageSize, PivotTableRowTotalsPosition, PivotTableSelectionMode, PivotTableSortMode, PivotTableColumn, PivotTableConditionalFormatting } from './../index';
 export declare const Smart: any;
 export interface PivotTableProps extends PivotTableProperties {
     className?: string;
@@ -159,22 +159,22 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     */
     get keyboardNavigation(): boolean;
     set keyboardNavigation(value: boolean);
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or gets the page size (when paging is enabled).
     *	Property type: string
     */
     get locale(): string;
     set locale(value: string);
-    /** Sets or gets whether sorting by row (when a row group cell is clicked) is enabled. When columnTotals is also enabled, sorting is applied per "column group"; otherwise - for all columns.
+    /** Sets or gets the current (zero-based) page index (when paging is enabled).
     *	Property type: any
     */
     get messages(): any;
     set messages(value: any);
-    /** Sets or gets whether row summaries are displayed in the row headers. Example: Peterson(40) vs Peterson, when rowSummary is set to false.
+    /** Sets or gets whether paging is enabled.
     *	Property type: number
     */
     get nullDefaultValue(): number;
     set nullDefaultValue(value: number);
-    /** Sets or gets whether to show row total columns for each summary column.
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: { (data: any, dynamicColumn: any, value: any, cell: HTMLTableCellElement): void }
     */
     get onCellRender(): {
@@ -183,7 +183,7 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     set onCellRender(value: {
         (data: any, dynamicColumn: any, value: any, cell: HTMLTableCellElement): void;
     });
-    /** Sets or gets the position of row total columns (shown when rowTotals is enabled).
+    /** Sets or gets whether sorting by row (when a row group cell is clicked) is enabled. When columnTotals is also enabled, sorting is applied per "column group"; otherwise - for all columns.
     *	Property type: { (settings: { text: string, cell: HTMLTableCellElement, column: PivotTableColumn, fullDefinition: any }): void }
     */
     get onColumnRender(): {
@@ -202,7 +202,7 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
             fullDefinition: any;
         }): void;
     });
-    /** Sets or gets whether row selection (via checkboxes) is enabled.
+    /** Sets or gets whether row summaries are displayed in the row headers. Example: Peterson(40) vs Peterson, when rowSummary is set to false.
     *	Property type: { (): void }
     */
     get onInit(): {
@@ -211,6 +211,21 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     set onInit(value: {
         (): void;
     });
+    /** Sets or gets whether to show row total columns for each summary column.
+    *	Property type: PivotTablePageSize | string
+    */
+    get pageSize(): PivotTablePageSize | string;
+    set pageSize(value: PivotTablePageSize | string);
+    /** Sets or gets the position of row total columns (shown when rowTotals is enabled).
+    *	Property type: number
+    */
+    get pageIndex(): number;
+    set pageIndex(value: number);
+    /** Sets or gets whether row selection (via checkboxes) is enabled.
+    *	Property type: boolean
+    */
+    get paging(): boolean;
+    set paging(value: boolean);
     /** Sets or gets the selection mode. Only applicable when selection is enabled.
     *	Property type: boolean
     */

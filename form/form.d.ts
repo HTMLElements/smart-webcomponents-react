@@ -32,47 +32,55 @@ export declare class Form extends React.Component<React.HTMLAttributes<Element> 
     */
     get controls(): Control[];
     set controls(value: Control[]);
-    /** Callback function for handling status changes
-    *	Property type: any
-    */
-    get onStatusChanges(): any;
-    set onStatusChanges(value: any);
-    /** Callback function for handling value changes
-    *	Property type: any
-    */
-    get onValueChanges(): any;
-    set onValueChanges(value: any);
     /** Sets or Gets the labels position.
+    *	Property type: {(value: string): void}
+    */
+    get onStatusChanges(): {
+        (value: string): void;
+    };
+    set onStatusChanges(value: {
+        (value: string): void;
+    });
+    /** Makes the form readonly.
+    *	Property type: {(value: any): void}
+    */
+    get onValueChanges(): {
+        (value: any): void;
+    };
+    set onValueChanges(value: {
+        (value: any): void;
+    });
+    /** Shows / hides the colon after the labels.
     *	Property type: FormLabelPosition | string
     */
     get labelPosition(): FormLabelPosition | string;
     set labelPosition(value: FormLabelPosition | string);
-    /** Makes the form readonly.
+    /** Shows / hides validation summary.
     *	Property type: boolean
     */
     get readonly(): boolean;
     set readonly(value: boolean);
-    /** Shows / hides the colon after the labels.
+    /** Gets the Form's state. Each member in the state has { dirty, untouched, disabled } properties.
     *	Property type: boolean
     */
     get showColonAfterLabel(): boolean;
     set showColonAfterLabel(value: boolean);
-    /** Shows / hides validation summary.
+    /** Gets or Sets the Form value.
     *	Property type: boolean
     */
     get showSummary(): boolean;
     set showSummary(value: boolean);
-    /** Gets the Form's state. Each member in the state has { dirty, untouched, disabled } properties.
+    /** Automatically validates the form when it is created.
     *	Property type: any
     */
     get state(): any;
     set state(value: any);
-    /** Gets or Sets the Form value.
+    /** undefined
     *	Property type: any
     */
     get value(): any;
     set value(value: any);
-    /** Automatically validates the form when it is created.
+    /** undefined
     *	Property type: boolean
     */
     get validateOnLoad(): boolean;

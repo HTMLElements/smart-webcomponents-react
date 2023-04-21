@@ -1,0 +1,7 @@
+{
+    "main": "threedchart.umd.js",
+    "module": "threedchart.esm.js",
+	"typings": "threedchart.d.ts",
+    "name": "smart-webcomponents-react/threedchart",
+    "sideEffects": false
+  }

@@ -135,6 +135,11 @@ export declare class FileUpload extends React.Component<React.HTMLAttributes<Ele
     */
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
+    /** Sets or gets the remove URL. This property corresponds to the form's action attribute. For example, the removeUrl property can point to a PHP file, which handles the remove operation on the server-side.
+    *	Property type: string
+    */
+    get removeUrl(): string;
+    set removeUrl(value: string);
     /** Gets the file upload value.
     *	Property type: any
     */

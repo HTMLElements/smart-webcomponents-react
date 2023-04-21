@@ -71,6 +71,11 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     */
     get charCountFormatFunction(): any;
     set charCountFormatFunction(value: any);
+    /** Sets or gets whether files will be automatically uploaded after selection.
+    *	Property type: boolean
+    */
+    get autoUpload(): boolean;
+    set autoUpload(value: boolean);
     /** Determines the content filtering settings.
     *	Property type: EditorContentFiltering
     */
@@ -227,6 +232,16 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     */
     get splitModeRefreshTimeout(): number;
     set splitModeRefreshTimeout(value: number);
+    /** Sets or gets the upload URL. This property corresponds to the upload form's action attribute. For example, the uploadUrl property can point to a PHP file, which handles the upload operation on the server-side.
+    *	Property type: string
+    */
+    get uploadUrl(): string;
+    set uploadUrl(value: string);
+    /** Sets or gets the remove URL. This property corresponds to the form's action attribute. For example, the removeUrl property can point to a PHP file, which handles the remove operation on the server-side.
+    *	Property type: string
+    */
+    get removeUrl(): string;
+    set removeUrl(value: string);
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */

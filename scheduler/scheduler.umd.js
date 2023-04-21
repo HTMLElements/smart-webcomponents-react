@@ -49,6 +49,17 @@ window.rrule = { RRule:  pkg.default };
 	            this.nativeElement.autoHeightAllDayCells = value;
 	        }
 	    }
+	    /** Defines an array of objects with start and end fields, where start and end are Date objects. For example: [{  'start': '2022-10-25T12:00.000Z', 'end': '2022-10-25T13:00.000Z' }].
+	    *	Property type: any
+	    */
+	    get available() {
+	        return this.nativeElement ? this.nativeElement.available : undefined;
+	    }
+	    set available(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.available = value;
+	        }
+	    }
 	    /** Determines the color scheme for the event background selector in the event window editor.
 	    *	Property type: string[]
 	    */
@@ -632,6 +643,28 @@ window.rrule = { RRule:  pkg.default };
 	            this.nativeElement.legendPosition = value;
 	        }
 	    }
+	    /** Determines the layout of the legend items.
+	    *	Property type: SchedulerLegendLayout | string
+	    */
+	    get legendLayout() {
+	        return this.nativeElement ? this.nativeElement.legendLayout : undefined;
+	    }
+	    set legendLayout(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.legendLayout = value;
+	        }
+	    }
+	    /** Determines the number of items when the legend switches automatically from horizontal list to menu.
+	    *	Property type: number
+	    */
+	    get legendLayoutMenuBreakpoint() {
+	        return this.nativeElement ? this.nativeElement.legendLayoutMenuBreakpoint : undefined;
+	    }
+	    set legendLayoutMenuBreakpoint(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.legendLayoutMenuBreakpoint = value;
+	        }
+	    }
 	    /** Determines the mouse wheel step. When this property is set to a positive number, the scroll step with mouse wheel or trackpad will depend on the property value.
 	    *	Property type: number
 	    */
@@ -817,6 +850,17 @@ window.rrule = { RRule:  pkg.default };
 	    set restrictedHours(value) {
 	        if (this.nativeElement) {
 	            this.nativeElement.restrictedHours = value;
+	        }
+	    }
+	    /** Defines an array of dates and hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed. Each array item is an Object and requires 2 fields - date and hours. For example: { date: new Date(2022, 10, 1), hours: [[0, 6], 12, [20, 23]] }. The hours define a range of restricted hours similartly to the restricted hours property, the date defines a date where the restricted hours will be applied.
+	    *	Property type: any
+	    */
+	    get restricted() {
+	        return this.nativeElement ? this.nativeElement.restricted : undefined;
+	    }
+	    set restricted(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.restricted = value;
 	        }
 	    }
 	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
@@ -1140,7 +1184,7 @@ window.rrule = { RRule:  pkg.default };
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["autoScrollStep", "autoHeightAllDayCells", "colorScheme", "currentTimeIndicator", "currentTimeIndicatorInterval", "contextMenuDataSource", "contextMenuClipboardActions", "eventTemplate", "eventCollectorTemplate", "eventRenderMode", "eventTooltipTemplate", "cellTemplate", "dateCurrent", "dataExport", "dataSource", "dateSelectorFormatFunction", "dayFormat", "disabled", "disableAutoScroll", "disableDrag", "disableDrop", "disableResize", "disableSelection", "disableWindowEditor", "disableContextMenu", "disableEventMenu", "disableViewMenu", "disableDateMenu", "dragFeedbackFormatFunction", "dragOffset", "filter", "filterable", "filterMode", "events", "firstDayOfWeek", "footerTemplate", "groupByDate", "groupOrientation", "groupTemplate", "groups", "hourEnd", "hourStart", "hourFormat", "headerTemplate", "headerDatePosition", "headerNavigationStyle", "headerViewPosition", "hideAllDay", "hideNonworkingWeekdays", "hideOtherMonthDays", "hideTodayButton", "hideViewMenuCheckableItems", "hideWeekend", "legendLocation", "legendPosition", "mouseWheelStep", "horizontalScrollBarVisibility", "locale", "max", "maxEventsPerCell", "min", "messages", "minuteFormat", "monthFormat", "nonworkingDays", "nonworkingHours", "notificationInterval", "resizeHandlesVisibility", "resizeInterval", "resources", "restrictedDates", "restrictedHours", "rightToLeft", "scrollButtonsPosition", "shadeUntilCurrentTime", "showLegend", "sortBy", "sortFunction", "sortOrder", "spinButtonsDelay", "spinButtonsInitialDelay", "statuses", "theme", "timelineHeaderFormatFunction", "timelineDayScale", "timeRulerTicks", "timeZone", "timeZones", "tooltipDelay", "tooltipOffset", "verticalScrollBarVisibility", "view", "viewType", "views", "viewSelectorType", "viewStartDay", "weekdayFormat", "yearFormat", "unfocusable", "undoRedoSteps", "windowCustomizationFunction"];
+	        return ["autoScrollStep", "autoHeightAllDayCells", "available", "colorScheme", "currentTimeIndicator", "currentTimeIndicatorInterval", "contextMenuDataSource", "contextMenuClipboardActions", "eventTemplate", "eventCollectorTemplate", "eventRenderMode", "eventTooltipTemplate", "cellTemplate", "dateCurrent", "dataExport", "dataSource", "dateSelectorFormatFunction", "dayFormat", "disabled", "disableAutoScroll", "disableDrag", "disableDrop", "disableResize", "disableSelection", "disableWindowEditor", "disableContextMenu", "disableEventMenu", "disableViewMenu", "disableDateMenu", "dragFeedbackFormatFunction", "dragOffset", "filter", "filterable", "filterMode", "events", "firstDayOfWeek", "footerTemplate", "groupByDate", "groupOrientation", "groupTemplate", "groups", "hourEnd", "hourStart", "hourFormat", "headerTemplate", "headerDatePosition", "headerNavigationStyle", "headerViewPosition", "hideAllDay", "hideNonworkingWeekdays", "hideOtherMonthDays", "hideTodayButton", "hideViewMenuCheckableItems", "hideWeekend", "legendLocation", "legendPosition", "legendLayout", "legendLayoutMenuBreakpoint", "mouseWheelStep", "horizontalScrollBarVisibility", "locale", "max", "maxEventsPerCell", "min", "messages", "minuteFormat", "monthFormat", "nonworkingDays", "nonworkingHours", "notificationInterval", "resizeHandlesVisibility", "resizeInterval", "resources", "restrictedDates", "restrictedHours", "restricted", "rightToLeft", "scrollButtonsPosition", "shadeUntilCurrentTime", "showLegend", "sortBy", "sortFunction", "sortOrder", "spinButtonsDelay", "spinButtonsInitialDelay", "statuses", "theme", "timelineHeaderFormatFunction", "timelineDayScale", "timeRulerTicks", "timeZone", "timeZones", "tooltipDelay", "tooltipOffset", "verticalScrollBarVisibility", "view", "viewType", "views", "viewSelectorType", "viewStartDay", "weekdayFormat", "yearFormat", "unfocusable", "undoRedoSteps", "windowCustomizationFunction"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {

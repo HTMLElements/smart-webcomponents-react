@@ -300,7 +300,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onAfterInit = value;
 	        }
 	    }
-	    /** Sets the grid's image upload settings for the image columns.
+	    /** Sets the grid's image and filter upload settings for the image and attachment columns.
 	    *	Property type: any
 	    */
 	    get onChartInit() {
@@ -377,7 +377,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowDetailUpdated = value;
 	        }
 	    }
-	    /** Describes the settings for the group header.
+	    /** Sets the grid's state settings.
 	    *	Property type: {(index: number, row: GridRow, history: any[]): void}
 	    */
 	    get onRowHistory() {
@@ -388,7 +388,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowHistory = value;
 	        }
 	    }
-	    /** Describes the header settings of the grid.
+	    /** Describes the settings for the group header.
 	    *	Property type: {(index: number, row: GridRow, history: any[]): void}
 	    */
 	    get onRowStyle() {
@@ -399,7 +399,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowStyle = value;
 	        }
 	    }
-	    /** Describes the footer settings of the grid.
+	    /** Describes the header settings of the grid.
 	    *	Property type: {(index: number[], row: GridRow[]): void}
 	    */
 	    get onRowInserted() {
@@ -410,7 +410,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowInserted = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Describes the footer settings of the grid.
 	    *	Property type: {(indexes: number[], rows: GridRow[]): void}
 	    */
 	    get onRowRemoved() {
@@ -421,7 +421,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowRemoved = value;
 	        }
 	    }
-	    /** The rows property is used to describe all rows displayed in the grid.
+	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
 	    *	Property type: {(index: number[], row: GridRow[], oldValues: any[], values: any[], confirm: {(commit: boolean): void}): void}
 	    */
 	    get onRowUpdate() {
@@ -432,7 +432,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowUpdate = value;
 	        }
 	    }
-	    /** Describes the selection settings.
+	    /** The rows property is used to describe all rows displayed in the grid.
 	    *	Property type: {(index: number[], row: GridRow[]): void}
 	    */
 	    get onRowUpdated() {
@@ -443,7 +443,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowUpdated = value;
 	        }
 	    }
-	    /** Describes sorting settings.
+	    /** Describes the selection settings.
 	    *	Property type: {(index: number, data: any, row: GridRow[]): void}
 	    */
 	    get onRowClass() {
@@ -454,7 +454,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowClass = value;
 	        }
 	    }
-	    /** undefined
+	    /** Describes sorting settings.
 	    *	Property type: {(index: number, dataField: string, cellValue: any, data: any, row: GridRow[]): void}
 	    */
 	    get onCellClass() {
@@ -642,6 +642,17 @@ require('../source/modules/smart.grid');
 	        }
 	    }
 	    /** undefined
+	    *	Property type: GridStateSettings
+	    */
+	    get stateSettings() {
+	        return this.nativeElement ? this.nativeElement.stateSettings : undefined;
+	    }
+	    set stateSettings(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.stateSettings = value;
+	        }
+	    }
+	    /** undefined
 	    *	Property type: GridGroupHeader
 	    */
 	    get groupHeader() {
@@ -720,7 +731,7 @@ require('../source/modules/smart.grid');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["appearance", "behavior", "layout", "locale", "clipboard", "columns", "contextMenu", "columnMenu", "columnGroups", "conditionalFormatting", "charting", "checkBoxes", "dataExport", "dataSource", "dataSourceSettings", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onLoad", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowHistory", "onRowStyle", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onRowClass", "onCellClass", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onColumnClone", "onCommand", "rowCSSRules", "currentUser", "users", "uploadSettings", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "groupHeader", "header", "footer", "rightToLeft", "rows", "selection", "sorting"];
+	        return ["appearance", "behavior", "layout", "locale", "clipboard", "columns", "contextMenu", "columnMenu", "columnGroups", "conditionalFormatting", "charting", "checkBoxes", "dataExport", "dataSource", "dataSourceSettings", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onLoad", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowHistory", "onRowStyle", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onRowClass", "onCellClass", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onColumnClone", "onCommand", "rowCSSRules", "currentUser", "users", "uploadSettings", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "stateSettings", "groupHeader", "header", "footer", "rightToLeft", "rows", "selection", "sorting"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
@@ -1356,12 +1367,40 @@ require('../source/modules/smart.grid');
 	        const result = this.nativeElement.getViewRows();
 	        return result;
 	    }
-	    /** Gets a JSON object with the following fields: 'sort', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'.
+	    /** Gets a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
 	    * @returns {any}
 	  */
 	    getState() {
 	        const result = this.nativeElement.getState();
 	        return result;
+	    }
+	    /** Saves the Grid state and returns a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
+	    * @param {string} name?. state name
+	    * @returns {any}
+	  */
+	    saveState(name) {
+	        const result = this.nativeElement.saveState(name);
+	        return result;
+	    }
+	    /** Loads a previously saved Grid state. You can pass a state name when there is a state which was previously saved with the saveState(stateName) method call or a state object returned by the saveState or getState method calls. The state object is required to be a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
+	    * @param {any} state. state name or state object
+	    * @returns {any}
+	  */
+	    loadState(state) {
+	        const result = this.nativeElement.loadState(state);
+	        return result;
+	    }
+	    /** Resets the Grid state.
+	    */
+	    resetState() {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.resetState();
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.resetState();
+	            });
+	        }
 	    }
 	    /** Gets the changes from the batch edit.
 	    * @returns {{ upDated: [{ id: string, dataField: string, oldValue: Object, newValue: Object }], deleted: [{id: string, data: Object}], added: [{id: string, data: Object}] }}

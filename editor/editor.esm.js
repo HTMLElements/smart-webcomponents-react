@@ -80,6 +80,17 @@ class Editor extends React.Component {
             this.nativeElement.charCountFormatFunction = value;
         }
     }
+    /** Sets or gets whether files will be automatically uploaded after selection.
+    *	Property type: boolean
+    */
+    get autoUpload() {
+        return this.nativeElement ? this.nativeElement.autoUpload : undefined;
+    }
+    set autoUpload(value) {
+        if (this.nativeElement) {
+            this.nativeElement.autoUpload = value;
+        }
+    }
     /** Determines the content filtering settings.
     *	Property type: EditorContentFiltering
     */
@@ -410,6 +421,28 @@ class Editor extends React.Component {
             this.nativeElement.splitModeRefreshTimeout = value;
         }
     }
+    /** Sets or gets the upload URL. This property corresponds to the upload form's action attribute. For example, the uploadUrl property can point to a PHP file, which handles the upload operation on the server-side.
+    *	Property type: string
+    */
+    get uploadUrl() {
+        return this.nativeElement ? this.nativeElement.uploadUrl : undefined;
+    }
+    set uploadUrl(value) {
+        if (this.nativeElement) {
+            this.nativeElement.uploadUrl = value;
+        }
+    }
+    /** Sets or gets the remove URL. This property corresponds to the form's action attribute. For example, the removeUrl property can point to a PHP file, which handles the remove operation on the server-side.
+    *	Property type: string
+    */
+    get removeUrl() {
+        return this.nativeElement ? this.nativeElement.removeUrl : undefined;
+    }
+    set removeUrl(value) {
+        if (this.nativeElement) {
+            this.nativeElement.removeUrl = value;
+        }
+    }
     /** Determines the theme. Theme defines the look of the element
     *	Property type: string
     */
@@ -511,7 +544,7 @@ class Editor extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoLoad", "autoSave", "autoSaveInterval", "charCountFormatFunction", "contentFiltering", "contextMenu", "contextMenuDataSource", "dataExport", "disabled", "disableEditing", "disableSearchBar", "editMode", "enableHtmlEncode", "enableTabKey", "findAndReplaceTimeout", "hideToolbar", "hideInlineToolbar", "imageFormat", "innerHTML", "inlineToolbarOffset", "iframeSettings", "locale", "maxCharCount", "messages", "name", "pasteFormat", "placeholder", "removeStylesOnClearFormat", "required", "rightToLeft", "sanitized", "showCharCount", "spellCheck", "splitModeRefreshTimeout", "theme", "toolbarItems", "toolbarMode", "toolbarRibbonConfig", "toolbarViewMode", "toolbarSticky", "unfocusable", "value", "windowCustomizationFunction"];
+        return ["animation", "autoLoad", "autoSave", "autoSaveInterval", "charCountFormatFunction", "autoUpload", "contentFiltering", "contextMenu", "contextMenuDataSource", "dataExport", "disabled", "disableEditing", "disableSearchBar", "editMode", "enableHtmlEncode", "enableTabKey", "findAndReplaceTimeout", "hideToolbar", "hideInlineToolbar", "imageFormat", "innerHTML", "inlineToolbarOffset", "iframeSettings", "locale", "maxCharCount", "messages", "name", "pasteFormat", "placeholder", "removeStylesOnClearFormat", "required", "rightToLeft", "sanitized", "showCharCount", "spellCheck", "splitModeRefreshTimeout", "uploadUrl", "removeUrl", "theme", "toolbarItems", "toolbarMode", "toolbarRibbonConfig", "toolbarViewMode", "toolbarSticky", "unfocusable", "value", "windowCustomizationFunction"];
     }
     // Gets the events of the React component.
     get eventListeners() {

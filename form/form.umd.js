@@ -467,6 +467,28 @@ require('../source/modules/smart.form');
 	            this.nativeElement.columns = value;
 	        }
 	    }
+	    /** Sets the Form control data field. The control's inner input's name is set to the dataField value and in the FormGroup it is accessible through the dataField value.
+	    *	Property type: string
+	    */
+	    get dataField() {
+	        return this.nativeElement ? this.nativeElement.dataField : undefined;
+	    }
+	    set dataField(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.dataField = value;
+	        }
+	    }
+	    /** Gets or Sets the Form control's label.
+	    *	Property type: string
+	    */
+	    get label() {
+	        return this.nativeElement ? this.nativeElement.label : undefined;
+	    }
+	    set label(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.label = value;
+	        }
+	    }
 	    /**
 	    *	Property type: Control[]
 	    */
@@ -478,8 +500,8 @@ require('../source/modules/smart.form');
 	            this.nativeElement.controls = value;
 	        }
 	    }
-	    /** Callback function for handling status changes
-	    *	Property type: any
+	    /** Sets or Gets the labels position.
+	    *	Property type: {(value: string): void}
 	    */
 	    get onStatusChanges() {
 	        return this.nativeElement ? this.nativeElement.onStatusChanges : undefined;
@@ -489,8 +511,8 @@ require('../source/modules/smart.form');
 	            this.nativeElement.onStatusChanges = value;
 	        }
 	    }
-	    /** Callback function for handling value changes
-	    *	Property type: any
+	    /** Makes the form readonly.
+	    *	Property type: {(value: any): void}
 	    */
 	    get onValueChanges() {
 	        return this.nativeElement ? this.nativeElement.onValueChanges : undefined;
@@ -500,7 +522,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.onValueChanges = value;
 	        }
 	    }
-	    /** Sets or Gets the labels position.
+	    /** Shows / hides the colon after the labels.
 	    *	Property type: FormGroupLabelPosition | string
 	    */
 	    get labelPosition() {
@@ -511,7 +533,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.labelPosition = value;
 	        }
 	    }
-	    /** Makes the form readonly.
+	    /** Shows / hides validation summary.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -522,7 +544,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Shows / hides the colon after the labels.
+	    /** Gets or Sets the Form value.
 	    *	Property type: boolean
 	    */
 	    get showColonAfterLabel() {
@@ -533,7 +555,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.showColonAfterLabel = value;
 	        }
 	    }
-	    /** Shows / hides validation summary.
+	    /** undefined
 	    *	Property type: boolean
 	    */
 	    get showSummary() {
@@ -544,7 +566,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.showSummary = value;
 	        }
 	    }
-	    /** Gets or Sets the Form value.
+	    /** undefined
 	    *	Property type: any
 	    */
 	    get value() {
@@ -557,7 +579,7 @@ require('../source/modules/smart.form');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["columns", "controls", "onStatusChanges", "onValueChanges", "labelPosition", "readonly", "showColonAfterLabel", "showSummary", "value"];
+	        return ["columns", "dataField", "label", "controls", "onStatusChanges", "onValueChanges", "labelPosition", "readonly", "showColonAfterLabel", "showSummary", "value"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
@@ -737,8 +759,8 @@ require('../source/modules/smart.form');
 	            this.nativeElement.controls = value;
 	        }
 	    }
-	    /** Callback function for handling status changes
-	    *	Property type: any
+	    /** Sets or Gets the labels position.
+	    *	Property type: {(value: string): void}
 	    */
 	    get onStatusChanges() {
 	        return this.nativeElement ? this.nativeElement.onStatusChanges : undefined;
@@ -748,8 +770,8 @@ require('../source/modules/smart.form');
 	            this.nativeElement.onStatusChanges = value;
 	        }
 	    }
-	    /** Callback function for handling value changes
-	    *	Property type: any
+	    /** Makes the form readonly.
+	    *	Property type: {(value: any): void}
 	    */
 	    get onValueChanges() {
 	        return this.nativeElement ? this.nativeElement.onValueChanges : undefined;
@@ -759,7 +781,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.onValueChanges = value;
 	        }
 	    }
-	    /** Sets or Gets the labels position.
+	    /** Shows / hides the colon after the labels.
 	    *	Property type: FormLabelPosition | string
 	    */
 	    get labelPosition() {
@@ -770,7 +792,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.labelPosition = value;
 	        }
 	    }
-	    /** Makes the form readonly.
+	    /** Shows / hides validation summary.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -781,7 +803,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Shows / hides the colon after the labels.
+	    /** Gets the Form's state. Each member in the state has { dirty, untouched, disabled } properties.
 	    *	Property type: boolean
 	    */
 	    get showColonAfterLabel() {
@@ -792,7 +814,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.showColonAfterLabel = value;
 	        }
 	    }
-	    /** Shows / hides validation summary.
+	    /** Gets or Sets the Form value.
 	    *	Property type: boolean
 	    */
 	    get showSummary() {
@@ -803,7 +825,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.showSummary = value;
 	        }
 	    }
-	    /** Gets the Form's state. Each member in the state has { dirty, untouched, disabled } properties.
+	    /** Automatically validates the form when it is created.
 	    *	Property type: any
 	    */
 	    get state() {
@@ -814,7 +836,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.state = value;
 	        }
 	    }
-	    /** Gets or Sets the Form value.
+	    /** undefined
 	    *	Property type: any
 	    */
 	    get value() {
@@ -825,7 +847,7 @@ require('../source/modules/smart.form');
 	            this.nativeElement.value = value;
 	        }
 	    }
-	    /** Automatically validates the form when it is created.
+	    /** undefined
 	    *	Property type: boolean
 	    */
 	    get validateOnLoad() {
