@@ -16,7 +16,9 @@ const App = () => {
 	];
 
 	const initEditor = () => {
-		editorRef.current.expandToolbar();
+	  if (editorRef.current) {
+		editorRef.current.expandToolbar?.(); // optional chaining
+	  }
 	};
 
 	return (
