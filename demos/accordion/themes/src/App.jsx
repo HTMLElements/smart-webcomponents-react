@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import React, { useState, useEffect } from 'react';
 import { Accordion, AccordionItem } from 'smart-webcomponents-react/accordion';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';

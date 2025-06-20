@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { createRoot } from 'react-dom/client'
 
 import { Editor } from 'smart-webcomponents-react/editor';

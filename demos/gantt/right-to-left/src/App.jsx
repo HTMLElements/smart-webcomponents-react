@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { useEffect, useRef } from "react";
 
 import { CheckBox } from 'smart-webcomponents-react/checkbox';

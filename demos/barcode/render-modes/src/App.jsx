@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import React, { useState, useRef, useEffect } from "react";
 import { Barcode } from 'smart-webcomponents-react/barcode';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';

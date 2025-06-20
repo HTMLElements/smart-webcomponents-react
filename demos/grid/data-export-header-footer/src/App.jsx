@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import React, { useState, useRef, useEffect } from "react";
 import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
 import { Grid } from 'smart-webcomponents-react/grid';

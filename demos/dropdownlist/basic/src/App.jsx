@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { DropDownList, ListItem } from 'smart-webcomponents-react/dropdownlist';

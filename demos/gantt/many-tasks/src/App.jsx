@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { useEffect, useState } from "react";
 
 import { GanttChart } from 'smart-webcomponents-react/ganttchart';

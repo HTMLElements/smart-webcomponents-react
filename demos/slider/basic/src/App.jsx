@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import React, {useRef} from "react";
 import ReactDOM from 'react-dom/client';
 import { Slider } from 'smart-webcomponents-react/slider';

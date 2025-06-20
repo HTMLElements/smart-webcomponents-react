@@ -1,0 +1,10 @@
+smart-grid {
+	width: calc(100% - 350px);
+	height:auto;
+}
+
+@media only screen and (max-width: 700px) {
+	smart-grid {
+		width: 100%;
+	}
+}

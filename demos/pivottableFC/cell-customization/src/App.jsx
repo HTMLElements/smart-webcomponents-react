@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { useRef, useEffect } from "react";
 
 import { PivotTable } from 'smart-webcomponents-react/pivottable';

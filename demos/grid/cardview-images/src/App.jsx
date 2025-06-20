@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { Grid } from 'smart-webcomponents-react/grid';
 
 

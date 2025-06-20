@@ -1,0 +1,12 @@
+html,
+body {
+  padding: 10px;
+}
+
+body {
+  min-height: 700px;
+}
+
+smart-grid {
+  height: auto;
+}

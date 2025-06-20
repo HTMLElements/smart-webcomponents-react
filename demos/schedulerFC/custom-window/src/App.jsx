@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { useRef } from "react";
 import { createRoot } from 'react-dom/client';
 

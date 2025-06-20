@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { CardView } from 'smart-webcomponents-react/cardview';
 
 export default function App() {

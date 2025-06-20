@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { Grid, Smart } from 'smart-webcomponents-react/grid';
 import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
 

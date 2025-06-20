@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { useRef } from 'react';
 import { Tree, TreeItem, TreeItemsGroup } from 'smart-webcomponents-react/tree';
 import { Scheduler } from 'smart-webcomponents-react/scheduler';

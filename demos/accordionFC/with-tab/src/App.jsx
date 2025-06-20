@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import React from "react";
 import { Accordion, AccordionItem } from 'smart-webcomponents-react/accordion';
 import { Tabs, TabItem } from 'smart-webcomponents-react/tabs';

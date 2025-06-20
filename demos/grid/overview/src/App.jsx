@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { Smart, Grid } from 'smart-webcomponents-react/grid';
 import { GetData } from './common/data'
 

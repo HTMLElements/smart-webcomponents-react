@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { PivotTable } from 'smart-webcomponents-react/pivottable';
 import { GetData } from './common/data';
 

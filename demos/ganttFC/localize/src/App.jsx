@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { useRef } from "react";
 import { DropDownList, ListItem } from 'smart-webcomponents-react/dropdownlist';
 import { GanttChart } from 'smart-webcomponents-react/ganttchart';

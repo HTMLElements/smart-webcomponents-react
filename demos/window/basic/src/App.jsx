@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import React,  { useState, useRef, useEffect } from "react";
 import ReactDOM from 'react-dom/client';
 import { Window } from 'smart-webcomponents-react/window';

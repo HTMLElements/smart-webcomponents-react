@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import React from "react";
 import { Breadcrumb } from 'smart-webcomponents-react/breadcrumb';
 

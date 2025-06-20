@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { createRoot } from 'react-dom/client';
 import { Grid } from 'smart-webcomponents-react/grid';
 import { CheckBox } from 'smart-webcomponents-react/checkbox';

@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import React, { useRef } from "react";
 import { Barcode } from 'smart-webcomponents-react/barcode';
 import { Button } from 'smart-webcomponents-react/button';

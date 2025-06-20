@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { Kanban } from 'smart-webcomponents-react/kanban';
 
 export default function App() {

@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import React from "react";
 import ReactDOM, { createRoot } from 'react-dom/client';
 import { Scheduler } from 'smart-webcomponents-react/scheduler';

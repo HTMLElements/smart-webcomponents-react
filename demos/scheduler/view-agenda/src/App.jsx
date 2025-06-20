@@ -1,4 +1,5 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
 import { Scheduler } from 'smart-webcomponents-react/scheduler';
 
 export default function App() {
