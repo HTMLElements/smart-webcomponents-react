@@ -7,7 +7,8 @@ export { TreeItem } from './treeitem';
 export { TreeItemProperties } from "./../index";
 export { TreeItemsGroup } from './treeitemsgroup';
 export { TreeItemsGroupProperties } from "./../index";
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface TreeProps extends TreeProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -19,6 +20,9 @@ export interface TreeProps extends TreeProperties {
     onDragStart?: ((event?: Event) => void) | undefined;
     onExpand?: ((event?: Event) => void) | undefined;
     onExpanding?: ((event?: Event) => void) | undefined;
+    onFilterChange?: ((event?: Event) => void) | undefined;
+    onOpen?: ((event?: Event) => void) | undefined;
+    onClose?: ((event?: Event) => void) | undefined;
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
     onScrollTopReached?: ((event?: Event) => void) | undefined;
     onSwipeleft?: ((event?: Event) => void) | undefined;
@@ -99,6 +103,21 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     */
     get dragOffset(): number[];
     set dragOffset(value: number[]);
+    /**
+    *	Property type: boolean
+    */
+    get dropDownMode(): boolean;
+    set dropDownMode(value: boolean);
+    /** Sets the width of the Tree when displayed in a drop-down mode.
+    *	Property type: number
+    */
+    get dropDownWidth(): number;
+    set dropDownWidth(value: number);
+    /** Sets the height of the Tree when displayed in a drop-down mode.
+    *	Property type: number
+    */
+    get dropDownHeight(): number;
+    set dropDownHeight(value: number);
     /** Enables or disables item's editting. An edit operation can be initiated by double-clicking a tree item or pressing F2 while an item is selected.
     *	Property type: boolean
     */
@@ -154,6 +173,11 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     */
     get loadingIndicatorPosition(): VerticalAlignment | string;
     set loadingIndicatorPosition(value: VerticalAlignment | string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -332,6 +356,17 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     *   children - the children of the jqx-tree-items-group to be expanded
     */
     onExpanding?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when selection in jqx-tree is changed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	value)
+    *   value - The filter input value.
+    */
+    onFilterChange?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the dropdown is opened.
+    *  @param event. The custom event. 	*/
+    onOpen?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered when the dropdown is closed.
+    *  @param event. The custom event. 	*/
+    onClose?: ((event?: Event) => void) | undefined;
     /**  This event is triggered when the Tree has been scrolled to the bottom.
     *  @param event. The custom event. 	*/
     onScrollBottomReached?: ((event?: Event) => void) | undefined;
@@ -378,6 +413,12 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     * @param {boolean} animation?. If set to false, disables collapse animation even if animation is enabled for the element.
     */
     collapseItem(item: HTMLElement | string, animation?: boolean): void;
+    /** Closes the dropdown when the Tree is in dropdown mode.
+    */
+    closeDropDown(): void;
+    /** Opens the dropdown when the Tree is in dropdown mode.
+    */
+    openDropDown(): void;
     /** Makes sure an item is visible by scrolling to it.
     * @param {HTMLElement | string} item. The id or numeric path of an item
     */
@@ -400,6 +441,10 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     * @returns {HTMLElement}
   */
     getItem(id: string): any;
+    /** Gets the applied filter.
+    * @returns {string}
+  */
+    getFilter(): any;
     /** Gets the selected values. If value is not defined, returns the selected labels.
     * @returns {string[]}
   */
@@ -461,6 +506,7 @@ export declare class Tree extends React.Component<React.HTMLAttributes<Element> 
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Tree;

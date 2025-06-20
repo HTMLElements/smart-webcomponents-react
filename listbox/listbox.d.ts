@@ -7,7 +7,8 @@ export { ListItem } from './listitem';
 export { ListItemProperties } from "./../index";
 export { ListItemsGroup } from './listitemsgroup';
 export { ListItemsGroupProperties } from "./../index";
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface ListBoxProps extends ListBoxProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -183,6 +184,11 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     */
     get loadingIndicatorPosition(): VerticalAlignment | string;
     set loadingIndicatorPosition(value: VerticalAlignment | string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -367,12 +373,19 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     * @returns {Node}
   */
     appendChild(node: Node): any;
+    /** Adds a new item(s).
+    * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
+    */
+    add(item: any): void;
     /** Removes all items from the listBox.
     */
     clearItems(): void;
     /** Unselects all items.
     */
     clearSelection(): void;
+    /** Performs a data bind. This can be used to refresh the data source.
+    */
+    dataBind(): void;
     /** Ensures the target item is visible by scrolling to it.
     * @param {HTMLElement | string} item. A list item or value of the desired item to be visible.
     */
@@ -426,6 +439,7 @@ export declare class ListBox extends React.Component<React.HTMLAttributes<Elemen
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default ListBox;

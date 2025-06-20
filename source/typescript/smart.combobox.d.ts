@@ -197,6 +197,11 @@ export interface ComboBoxProperties {
    */
   loadingIndicatorPosition?: VerticalAlignment | string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -410,6 +415,11 @@ export interface ComboBox extends BaseElement, ComboBoxProperties {
    */
   appendChild<T extends Node>(node: Node): T;
   /**
+   * Adds a new item(s).
+   * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
+   */
+  add(item: any): void;
+  /**
    * Removes all items from the drop down list.
    */
   clearItems(): void;
@@ -421,6 +431,10 @@ export interface ComboBox extends BaseElement, ComboBoxProperties {
    * Closes the dropDown list.
    */
   close(): void;
+  /**
+   * Performs a data bind. This can be used to refresh the data source.
+   */
+  dataBind(): void;
   /**
    * Ensures the desired item is visible by scrolling to it.
    * @param {HTMLElement | string} item. A list item or value of the desired item to be visible.
@@ -435,7 +449,7 @@ export interface ComboBox extends BaseElement, ComboBoxProperties {
   /**
    * Inserts a new item at a specified position.
    * @param {number} position. The position where the item must be inserted.
-   * @param {any} item. Describes the properties of the item that will be inserted.
+   * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
    */
   insert(position: number, item: any): void;
   /**

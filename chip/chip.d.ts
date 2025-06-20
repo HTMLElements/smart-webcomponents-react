@@ -3,7 +3,8 @@ import { ChipProperties } from "./../index";
 import { Animation } from './../index';
 export { ChipProperties } from "./../index";
 export { Animation } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface ChipProps extends ChipProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -44,6 +45,11 @@ export declare class Chip extends React.Component<React.HTMLAttributes<Element> 
     */
     get itemTemplate(): any;
     set itemTemplate(value: any);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -107,6 +113,7 @@ export declare class Chip extends React.Component<React.HTMLAttributes<Element> 
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Chip;

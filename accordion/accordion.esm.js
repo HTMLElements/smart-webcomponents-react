@@ -1,23 +1,28 @@
 
-if (!window['Smart']) {
-	window['Smart'] = { RenderMode: 'manual' };
+"use client";
+
+import '../source/modules/smart.accordion'
+
+if(typeof window !== 'undefined') {	
+	if (!window['Smart']) {
+		window['Smart'] = { RenderMode: 'manual' };
+	}
+	else {
+		window['Smart'].RenderMode = 'manual';
+	}	
+	//require('../source/modules/smart.accordion');
 }
-else {
-	window['Smart'].RenderMode = 'manual';
-}	
-import '../source/modules/smart.accordion';
-
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-const Smart = window.Smart;
+let Smart$1;
+if (typeof window !== "undefined") {
+    Smart$1 = window.Smart;
+}
 /**
  Single item in an Accordion view.
 */
 class AccordionItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -77,11 +82,29 @@ class AccordionItem extends React.Component {
     get eventListeners() {
         return ["onCollapse", "onExpand", "onCreate", "onReady"];
     }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -98,10 +121,27 @@ class AccordionItem extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -119,7 +159,17 @@ class AccordionItem extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -161,19 +211,18 @@ class AccordionItem extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-accordion-item", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-accordion-item", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-const Smart$1 = window.Smart;
+let Smart;
+if (typeof window !== "undefined") {
+    Smart = window.Smart;
+}
 /**
  Accordion organizes content within collapsable items.
 */
 class Accordion extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -234,6 +283,17 @@ class Accordion extends React.Component {
     set expandMode(value) {
         if (this.nativeElement) {
             this.nativeElement.expandMode = value;
+        }
+    }
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey() {
+        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+    }
+    set unlockKey(value) {
+        if (this.nativeElement) {
+            this.nativeElement.unlockKey = value;
         }
     }
     /** Sets or gets the language. Used in conjunction with the property messages.
@@ -326,7 +386,7 @@ class Accordion extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "dataSource", "disabled", "expandedIndexes", "expandMode", "locale", "localizeFormatFunction", "messages", "readonly", "reorder", "rightToLeft", "theme", "unfocusable"];
+        return ["animation", "dataSource", "disabled", "expandedIndexes", "expandMode", "unlockKey", "locale", "localizeFormatFunction", "messages", "readonly", "reorder", "rightToLeft", "theme", "unfocusable"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -399,11 +459,29 @@ class Accordion extends React.Component {
             });
         }
     }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -420,10 +498,27 @@ class Accordion extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -441,7 +536,17 @@ class Accordion extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -449,7 +554,7 @@ class Accordion extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
-            Smart$1.Render();
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }
@@ -484,9 +589,8 @@ class Accordion extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-accordion", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-accordion", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-export default Accordion;
-export { Smart$1 as Smart, Accordion, AccordionItem };
+export { Accordion, AccordionItem, Smart, Accordion as default };

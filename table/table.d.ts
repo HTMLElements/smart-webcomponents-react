@@ -1,9 +1,10 @@
 import React from "react";
 import { TableProperties } from "./../index";
-import { TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings } from './../index';
+import { TableColumnSizeMode, TableEditMode, TableLoadColumnStateBehavior, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings } from './../index';
 export { TableProperties } from "./../index";
-export { TableColumnDataType, TableColumnFreeze, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableDataSourceSettingsSanitizeHTML, TableDataSourceSettingsSanitizeHTMLRender, TableDataSourceSettingsDataFieldDataType, TableDataSourceSettingsDataSourceType, TableEditMode, TableLoadColumnStateBehavior, TablePageSize, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings, TableDataSourceSettingsDataField } from './../index';
-export declare const Smart: any;
+export { TableColumnDataType, TableColumnFreeze, TableConditionalFormattingCondition, TableConditionalFormattingFontFamily, TableConditionalFormattingFontSize, TableColumnSizeMode, TableDataSourceSettingsSanitizeHTML, TableDataSourceSettingsSanitizeHTMLRender, TableDataSourceSettingsDataFieldDataType, TableDataSourceSettingsDataSourceType, TableEditMode, TableLoadColumnStateBehavior, TableSelectionMode, TableSortMode, TableColumnGroup, TableColumn, TableConditionalFormatting, TableDataSourceSettings, TableDataSourceSettingsDataField } from './../index';
+declare let Smart: any;
+export { Smart };
 export interface TableProps extends TableProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -222,16 +223,21 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     */
     get keyboardNavigation(): boolean;
     set keyboardNavigation(value: boolean);
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or gets the unlockKey which unlocks the product.
     *	Property type: boolean
     */
     get hideSelectionColumn(): boolean;
     set hideSelectionColumn(value: boolean);
-    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
+    /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: TableLoadColumnStateBehavior | string
     */
     get loadColumnStateBehavior(): TableLoadColumnStateBehavior | string;
     set loadColumnStateBehavior(value: TableLoadColumnStateBehavior | string);
+    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the page size (when paging is enabled).
     *	Property type: string
     */
@@ -269,7 +275,7 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     set onInit(value: {
         (): void;
     });
-    /** Sets or gets an array of the Table's selected row's ids.
+    /** Sets or gets a callback function with 3 arguments - column, filterConditions, filterInputTemplateString. The function should return the new filter input.
     *	Property type: { (): void }
     */
     get onLoad(): {
@@ -278,7 +284,7 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     set onLoad(value: {
         (): void;
     });
-    /** Sets or gets whether row selection (via checkboxes) is enabled.
+    /** Sets or gets an array of the Table's selected row's ids.
     *	Property type: { (): void }
     */
     get onUpdateComplete(): {
@@ -287,31 +293,36 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     set onUpdateComplete(value: {
         (): void;
     });
-    /** Sets or gets the selection mode. Only applicable when selection is enabled.
-    *	Property type: TablePageSize | string
+    /** Sets or gets whether row selection (via checkboxes) is enabled.
+    *	Property type: number
     */
-    get pageSize(): TablePageSize | string;
-    set pageSize(value: TablePageSize | string);
-    /** Sets or gets whether row selection (via checkboxes) is hierarchical. When a parent row is selected, all sub rows are selected, too.
+    get pageSize(): number;
+    set pageSize(value: number);
+    /** Sets or gets the selection mode. Only applicable when selection is enabled.
     *	Property type: number
     */
     get pageIndex(): number;
     set pageIndex(value: number);
-    /** Determines the sorting mode of the Table.
+    /** Sets or gets whether row selection (via checkboxes) is hierarchical. When a parent row is selected, all sub rows are selected, too.
     *	Property type: boolean
     */
     get paging(): boolean;
     set paging(value: boolean);
-    /** Sets or gets what settings of the Table's state can be saved (by autoSaveState or saveState) or loaded (by autoLoadState or loadState).
+    /** Determines the sorting mode of the Table.
     *	Property type: boolean
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
-    /** Determines the theme. Theme defines the look of the element
+    /** Sets or gets what settings of the Table's state can be saved (by autoSaveState or saveState) or loaded (by autoLoadState or loadState).
     *	Property type: string
     */
     get rowDetailTemplate(): string;
     set rowDetailTemplate(value: string);
+    /** Determines the theme. Theme defines the look of the element
+    *	Property type: any
+    */
+    get onFilterRowInput(): any;
+    set onFilterRowInput(value: any);
     /** Sets or gets whether when hovering a cell with truncated content, a tooltip with the full content will be shown.
     *	Property type: any[]
     */
@@ -623,6 +634,9 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     * @param {string | number} row. The id of the cell's row.
     */
     removeRow(row: string | number): void;
+    /** Resets the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is cleared, based on the value of the stateSettings property.
+    */
+    resetState(): void;
     /** Saves the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is saved, based on the value of the stateSettings property.
     * @returns {any}
   */
@@ -664,6 +678,7 @@ export declare class Table extends React.Component<React.HTMLAttributes<Element>
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Table;

@@ -1,23 +1,28 @@
 
-if (!window['Smart']) {
-	window['Smart'] = { RenderMode: 'manual' };
+"use client";
+
+import '../source/modules/smart.textarea'
+
+if(typeof window !== 'undefined') {	
+	if (!window['Smart']) {
+		window['Smart'] = { RenderMode: 'manual' };
+	}
+	else {
+		window['Smart'].RenderMode = 'manual';
+	}	
+	//require('../source/modules/smart.textarea');
 }
-else {
-	window['Smart'].RenderMode = 'manual';
-}	
-import '../source/modules/smart.textarea';
-
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-const Smart = window.Smart;
+let Smart;
+if (typeof window !== "undefined") {
+    Smart = window.Smart;
+}
 /**
  TextArea specifies a textarea field where the user can enter data. Auto-complete options are displayed for easier input.
 */
 class TextArea extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -122,6 +127,17 @@ class TextArea extends React.Component {
     set items(value) {
         if (this.nativeElement) {
             this.nativeElement.items = value;
+        }
+    }
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey() {
+        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+    }
+    set unlockKey(value) {
+        if (this.nativeElement) {
+            this.nativeElement.unlockKey = value;
         }
     }
     /** Sets or gets the language. Used in conjunction with the property messages.
@@ -234,6 +250,17 @@ class TextArea extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
+    /** Determines whether ot not the user can resize the Textarea.
+    *	Property type: TextAreaResize | string
+    */
+    get resize() {
+        return this.nativeElement ? this.nativeElement.resize : undefined;
+    }
+    set resize(value) {
+        if (this.nativeElement) {
+            this.nativeElement.resize = value;
+        }
+    }
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */
@@ -243,6 +270,17 @@ class TextArea extends React.Component {
     set rightToLeft(value) {
         if (this.nativeElement) {
             this.nativeElement.rightToLeft = value;
+        }
+    }
+    /** Enables or disables the rich text formatting.
+    *	Property type: boolean
+    */
+    get richText() {
+        return this.nativeElement ? this.nativeElement.richText : undefined;
+    }
+    set richText(value) {
+        if (this.nativeElement) {
+            this.nativeElement.richText = value;
         }
     }
     /** Determines whether the items are sorted alphabetically or not
@@ -300,6 +338,17 @@ class TextArea extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
+    /** Sets the TextArea users. Expects an array of objects. Each object should have an id and name properties. When you press the 'at' key, you can enter an user from a dropdown.
+    *	Property type: any[]
+    */
+    get users() {
+        return this.nativeElement ? this.nativeElement.users : undefined;
+    }
+    set users(value) {
+        if (this.nativeElement) {
+            this.nativeElement.users = value;
+        }
+    }
     /** Sets or gets the value of the element.
     *	Property type: string
     */
@@ -313,7 +362,7 @@ class TextArea extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoCompleteDelay", "dataSource", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "query", "queryMode", "readonly", "rightToLeft", "sorted", "sortDirection", "theme", "type", "unfocusable", "value"];
+        return ["animation", "autoCompleteDelay", "dataSource", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "inputPurpose", "items", "unlockKey", "locale", "localizeFormatFunction", "messages", "minLength", "name", "opened", "placeholder", "query", "queryMode", "readonly", "resize", "rightToLeft", "richText", "sorted", "sortDirection", "theme", "type", "unfocusable", "users", "value"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -343,6 +392,13 @@ class TextArea extends React.Component {
             });
         }
     }
+    /** Returns an array of users mentioned in the Textarea's value.
+    * @returns {any[]}
+  */
+    getMentions() {
+        const result = this.nativeElement.getMentions();
+        return result;
+    }
     /** Opens the drop down.
     */
     open() {
@@ -367,11 +423,29 @@ class TextArea extends React.Component {
             });
         }
     }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -388,10 +462,27 @@ class TextArea extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -409,7 +500,17 @@ class TextArea extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -452,9 +553,8 @@ class TextArea extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-text-area", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-text-area", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-export default TextArea;
-export { Smart, TextArea };
+export { Smart, TextArea, TextArea as default };

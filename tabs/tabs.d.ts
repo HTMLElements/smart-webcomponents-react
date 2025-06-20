@@ -7,7 +7,8 @@ export { TabItem } from './tabitem';
 export { TabItemProperties } from "./../index";
 export { TabItemsGroup } from './tabitemsgroup';
 export { TabItemsGroupProperties } from "./../index";
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface TabsProps extends TabsProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -79,6 +80,11 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     */
     get enableMouseWheelAction(): boolean;
     set enableMouseWheelAction(value: boolean);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -239,7 +245,7 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     */
     expand(): void;
     /** Returns an array of the TabItems inside the element.
-    * @returns {TabItem[]}
+    * @returns {any}
   */
     getTabs(): any;
     /** Returns the offset of the tab item container (smart-tab-item element) from the edge of the Tabs (smart-tabs element) where the tab strip is positioned.
@@ -276,6 +282,7 @@ export declare class Tabs extends React.Component<React.HTMLAttributes<Element> 
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Tabs;

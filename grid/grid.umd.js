@@ -2,22 +2,19 @@
 require('../source/modules/smart.grid');
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
-	(factory((global.grid = {}),global.React));
-}(this, (function (exports,React) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom/client')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom/client'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.grid = {}, global.React, global.ReactDOM));
+})(this, (function (exports, React, ReactDOM) { 'use strict';
 
-	React = React && React.hasOwnProperty('default') ? React['default'] : React;
-
-	const Smart = window.Smart;
+	exports.Smart = void 0;
+	if (typeof window !== "undefined") {
+	    exports.Smart = window.Smart;
+	}
 	/**
 	 Data Grid UI Component that covers everything from paging, sorting, grouping, filtering, and editing to row and column virtualization, right-to-left layout, export to Excel and PDF and Accessibility.
 	*/
 	class Grid extends React.Component {
-	    constructor(props) {
-	        super(props);
-	        this.componentRef = React.createRef();
-	    }
 	    // Gets the id of the React component.
 	    get id() {
 	        if (!this._id) {
@@ -36,6 +33,17 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.appearance = value;
 	        }
 	    }
+	    /** An object containing settings related to the grid's AI integration.
+	    *	Property type: GridAi
+	    */
+	    get ai() {
+	        return this.nativeElement ? this.nativeElement.ai : undefined;
+	    }
+	    set ai(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.ai = value;
+	        }
+	    }
 	    /** An object containing settings related to the grid's behavior.
 	    *	Property type: GridBehavior
 	    */
@@ -47,26 +55,26 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.behavior = value;
 	        }
 	    }
-	    /** An object containing settings related to the grid's layout.
-	    *	Property type: GridLayout
+	    /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
+	    *	Property type: string | number
 	    */
-	    get layout() {
-	        return this.nativeElement ? this.nativeElement.layout : undefined;
+	    get currentUser() {
+	        return this.nativeElement ? this.nativeElement.currentUser : undefined;
 	    }
-	    set layout(value) {
+	    set currentUser(value) {
 	        if (this.nativeElement) {
-	            this.nativeElement.layout = value;
+	            this.nativeElement.currentUser = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
-	    *	Property type: string
+	    /** Describes the column header settings.
+	    *	Property type: GridColumnHeader
 	    */
-	    get locale() {
-	        return this.nativeElement ? this.nativeElement.locale : undefined;
+	    get columnHeader() {
+	        return this.nativeElement ? this.nativeElement.columnHeader : undefined;
 	    }
-	    set locale(value) {
+	    set columnHeader(value) {
 	        if (this.nativeElement) {
-	            this.nativeElement.locale = value;
+	            this.nativeElement.columnHeader = value;
 	        }
 	    }
 	    /** The clipboard property is used to enable/disable clipboard operations with Ctrl+C, Ctrl+X and Ctrl+V keyboard navigations..
@@ -122,6 +130,17 @@ require('../source/modules/smart.grid');
 	    set columnGroups(value) {
 	        if (this.nativeElement) {
 	            this.nativeElement.columnGroups = value;
+	        }
+	    }
+	    /**
+	    *	Property type: boolean
+	    */
+	    get dropDownMode() {
+	        return this.nativeElement ? this.nativeElement.dropDownMode : undefined;
+	    }
+	    set dropDownMode(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.dropDownMode = value;
 	        }
 	    }
 	    /** Sets or gets details about conditional formatting to be applied to the Grid's cells.
@@ -212,6 +231,28 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.filtering = value;
 	        }
 	    }
+	    /** Describes the footer settings of the grid.
+	    *	Property type: GridFooter
+	    */
+	    get footer() {
+	        return this.nativeElement ? this.nativeElement.footer : undefined;
+	    }
+	    set footer(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.footer = value;
+	        }
+	    }
+	    /** Sets or gets whether Excel-like formulas can be passed as cell values. Formulas are always preceded by the = sign and are re-evaluated when cell values are changed. This feature depends on the third-party free plug-in formula-parser (the file formula-parser.min.js has to be referenced).
+	    *	Property type: boolean
+	    */
+	    get formulas() {
+	        return this.nativeElement ? this.nativeElement.formulas : undefined;
+	    }
+	    set formulas(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.formulas = value;
+	        }
+	    }
 	    /** Describes the grid's grouping settings.
 	    *	Property type: GridGrouping
 	    */
@@ -221,6 +262,72 @@ require('../source/modules/smart.grid');
 	    set grouping(value) {
 	        if (this.nativeElement) {
 	            this.nativeElement.grouping = value;
+	        }
+	    }
+	    /** Describes the settings for the group header.
+	    *	Property type: GridGroupHeader
+	    */
+	    get groupHeader() {
+	        return this.nativeElement ? this.nativeElement.groupHeader : undefined;
+	    }
+	    set groupHeader(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.groupHeader = value;
+	        }
+	    }
+	    /** Describes the header settings of the grid.
+	    *	Property type: GridHeader
+	    */
+	    get header() {
+	        return this.nativeElement ? this.nativeElement.header : undefined;
+	    }
+	    set header(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.header = value;
+	        }
+	    }
+	    /** An object containing settings related to the grid's layout.
+	    *	Property type: GridLayout
+	    */
+	    get layout() {
+	        return this.nativeElement ? this.nativeElement.layout : undefined;
+	    }
+	    set layout(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.layout = value;
+	        }
+	    }
+	    /** Sets or gets the unlockKey which unlocks the product.
+	    *	Property type: string
+	    */
+	    get unlockKey() {
+	        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+	    }
+	    set unlockKey(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.unlockKey = value;
+	        }
+	    }
+	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    *	Property type: string
+	    */
+	    get locale() {
+	        return this.nativeElement ? this.nativeElement.locale : undefined;
+	    }
+	    set locale(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.locale = value;
+	        }
+	    }
+	    /** Keys handling. You can define a key like "Enter": "Tab" or set a function as a value. When the key is pressed, it will be mapped to the other key, action such as 'copy', 'copyPrev', 'copyNext' or 'delete' or just a function defined in your document.
+	    *	Property type: any
+	    */
+	    get keys() {
+	        return this.nativeElement ? this.nativeElement.keys : undefined;
+	    }
+	    set keys(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.keys = value;
 	        }
 	    }
 	    /** Sets the messages values.
@@ -267,6 +374,39 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onCellRender = value;
 	        }
 	    }
+	    /** Describes the paging settings.
+	    *	Property type: {(id: string, dataField: string, value: any): boolean}
+	    */
+	    get onCellBeginEdit() {
+	        return this.nativeElement ? this.nativeElement.onCellBeginEdit : undefined;
+	    }
+	    set onCellBeginEdit(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.onCellBeginEdit = value;
+	        }
+	    }
+	    /** Describes the pager settings.
+	    *	Property type: {(id: string, dataField: string, value: any, oldValue: any, data: any): void}
+	    */
+	    get onCellEditRequest() {
+	        return this.nativeElement ? this.nativeElement.onCellEditRequest : undefined;
+	    }
+	    set onCellEditRequest(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.onCellEditRequest = value;
+	        }
+	    }
+	    /** Sets the row details.
+	    *	Property type: {(id: string, dataField: string, value: any): boolean}
+	    */
+	    get onCellValueChanged() {
+	        return this.nativeElement ? this.nativeElement.onCellValueChanged : undefined;
+	    }
+	    set onCellValueChanged(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.onCellValueChanged = value;
+	        }
+	    }
 	    /** Sets or gets the rows  CSS class rules. Different CSS class names are conditionally applied. Example: rowCSSRules: { 'cell-class-1': settings =&gt; settings.data.quantity === 5, 'cell-class-2': settings =&gt; settings.data.quantity &lt; 5, 'cell-class-3': settings =&gt; settings.data.quantity &gt; 5 }.  The settings object contains the following properties: index, data, row, api.
 	    *	Property type: {(): void}
 	    */
@@ -278,7 +418,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onBeforeInit = value;
 	        }
 	    }
-	    /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
+	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
 	    *	Property type: {(): void}
 	    */
 	    get onInit() {
@@ -289,7 +429,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onInit = value;
 	        }
 	    }
-	    /** Sets the grid users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
+	    /** The rows property is used to describe all rows displayed in the grid.
 	    *	Property type: {(): void}
 	    */
 	    get onAfterInit() {
@@ -300,7 +440,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onAfterInit = value;
 	        }
 	    }
-	    /** Sets the grid's image and filter upload settings for the image and attachment columns.
+	    /** Sets the scroll mode settings.
 	    *	Property type: any
 	    */
 	    get onChartInit() {
@@ -311,7 +451,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onChartInit = value;
 	        }
 	    }
-	    /** Describes the paging settings.
+	    /** Describes the summary row settings.
 	    *	Property type: any
 	    */
 	    get onRender() {
@@ -322,7 +462,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRender = value;
 	        }
 	    }
-	    /** Describes the pager settings.
+	    /** Sets the grid's state settings.
 	    *	Property type: any
 	    */
 	    get onLoad() {
@@ -333,7 +473,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onLoad = value;
 	        }
 	    }
-	    /** Sets the row details.
+	    /** Describes the selection settings.
 	    *	Property type: {(event: KeyboardEvent): void}
 	    */
 	    get onKey() {
@@ -344,7 +484,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onKey = value;
 	        }
 	    }
-	    /** Sets the scroll mode settings.
+	    /** Describes sorting settings.
 	    *	Property type: {(index: number, row: GridRow): void}
 	    */
 	    get onRowInit() {
@@ -355,7 +495,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowInit = value;
 	        }
 	    }
-	    /** Describes the column header settings.
+	    /** Sets the grid users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
 	    *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
 	    */
 	    get onRowDetailInit() {
@@ -366,7 +506,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowDetailInit = value;
 	        }
 	    }
-	    /** Describes the summary row settings.
+	    /** Sets the grid's image and filter upload settings for the image and attachment columns.
 	    *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
 	    */
 	    get onRowDetailUpdated() {
@@ -377,7 +517,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowDetailUpdated = value;
 	        }
 	    }
-	    /** Sets the grid's state settings.
+	    /** Sets the current data view. The possible values are 'grid', 'kanban' and 'card'.
 	    *	Property type: {(index: number, row: GridRow, history: any[]): void}
 	    */
 	    get onRowHistory() {
@@ -388,7 +528,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowHistory = value;
 	        }
 	    }
-	    /** Describes the settings for the group header.
+	    /** undefined
 	    *	Property type: {(index: number, row: GridRow, history: any[]): void}
 	    */
 	    get onRowStyle() {
@@ -399,7 +539,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowStyle = value;
 	        }
 	    }
-	    /** Describes the header settings of the grid.
+	    /** undefined
 	    *	Property type: {(index: number[], row: GridRow[]): void}
 	    */
 	    get onRowInserted() {
@@ -410,7 +550,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowInserted = value;
 	        }
 	    }
-	    /** Describes the footer settings of the grid.
+	    /** undefined
 	    *	Property type: {(indexes: number[], rows: GridRow[]): void}
 	    */
 	    get onRowRemoved() {
@@ -421,7 +561,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowRemoved = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** undefined
 	    *	Property type: {(index: number[], row: GridRow[], oldValues: any[], values: any[], confirm: {(commit: boolean): void}): void}
 	    */
 	    get onRowUpdate() {
@@ -432,7 +572,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowUpdate = value;
 	        }
 	    }
-	    /** The rows property is used to describe all rows displayed in the grid.
+	    /** undefined
 	    *	Property type: {(index: number[], row: GridRow[]): void}
 	    */
 	    get onRowUpdated() {
@@ -443,7 +583,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowUpdated = value;
 	        }
 	    }
-	    /** Describes the selection settings.
+	    /** undefined
 	    *	Property type: {(index: number, data: any, row: GridRow[]): void}
 	    */
 	    get onRowClass() {
@@ -454,7 +594,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowClass = value;
 	        }
 	    }
-	    /** Describes sorting settings.
+	    /** undefined
 	    *	Property type: {(index: number, dataField: string, cellValue: any, data: any, row: GridRow[]): void}
 	    */
 	    get onCellClass() {
@@ -532,50 +672,6 @@ require('../source/modules/smart.grid');
 	        }
 	    }
 	    /** undefined
-	    *	Property type: any
-	    */
-	    get rowCSSRules() {
-	        return this.nativeElement ? this.nativeElement.rowCSSRules : undefined;
-	    }
-	    set rowCSSRules(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.rowCSSRules = value;
-	        }
-	    }
-	    /** undefined
-	    *	Property type: string | number
-	    */
-	    get currentUser() {
-	        return this.nativeElement ? this.nativeElement.currentUser : undefined;
-	    }
-	    set currentUser(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.currentUser = value;
-	        }
-	    }
-	    /** undefined
-	    *	Property type: any[]
-	    */
-	    get users() {
-	        return this.nativeElement ? this.nativeElement.users : undefined;
-	    }
-	    set users(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.users = value;
-	        }
-	    }
-	    /** undefined
-	    *	Property type: GridUploadSettings
-	    */
-	    get uploadSettings() {
-	        return this.nativeElement ? this.nativeElement.uploadSettings : undefined;
-	    }
-	    set uploadSettings(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.uploadSettings = value;
-	        }
-	    }
-	    /** undefined
 	    *	Property type: GridPaging
 	    */
 	    get paging() {
@@ -609,80 +705,14 @@ require('../source/modules/smart.grid');
 	        }
 	    }
 	    /** undefined
-	    *	Property type: Scrolling | string
+	    *	Property type: any
 	    */
-	    get scrolling() {
-	        return this.nativeElement ? this.nativeElement.scrolling : undefined;
+	    get rowCSSRules() {
+	        return this.nativeElement ? this.nativeElement.rowCSSRules : undefined;
 	    }
-	    set scrolling(value) {
+	    set rowCSSRules(value) {
 	        if (this.nativeElement) {
-	            this.nativeElement.scrolling = value;
-	        }
-	    }
-	    /** undefined
-	    *	Property type: GridColumnHeader
-	    */
-	    get columnHeader() {
-	        return this.nativeElement ? this.nativeElement.columnHeader : undefined;
-	    }
-	    set columnHeader(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.columnHeader = value;
-	        }
-	    }
-	    /** undefined
-	    *	Property type: GridSummaryRow
-	    */
-	    get summaryRow() {
-	        return this.nativeElement ? this.nativeElement.summaryRow : undefined;
-	    }
-	    set summaryRow(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.summaryRow = value;
-	        }
-	    }
-	    /** undefined
-	    *	Property type: GridStateSettings
-	    */
-	    get stateSettings() {
-	        return this.nativeElement ? this.nativeElement.stateSettings : undefined;
-	    }
-	    set stateSettings(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.stateSettings = value;
-	        }
-	    }
-	    /** undefined
-	    *	Property type: GridGroupHeader
-	    */
-	    get groupHeader() {
-	        return this.nativeElement ? this.nativeElement.groupHeader : undefined;
-	    }
-	    set groupHeader(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.groupHeader = value;
-	        }
-	    }
-	    /** undefined
-	    *	Property type: GridHeader
-	    */
-	    get header() {
-	        return this.nativeElement ? this.nativeElement.header : undefined;
-	    }
-	    set header(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.header = value;
-	        }
-	    }
-	    /** undefined
-	    *	Property type: GridFooter
-	    */
-	    get footer() {
-	        return this.nativeElement ? this.nativeElement.footer : undefined;
-	    }
-	    set footer(value) {
-	        if (this.nativeElement) {
-	            this.nativeElement.footer = value;
+	            this.nativeElement.rowCSSRules = value;
 	        }
 	    }
 	    /** undefined
@@ -708,6 +738,39 @@ require('../source/modules/smart.grid');
 	        }
 	    }
 	    /** undefined
+	    *	Property type: Scrolling | string
+	    */
+	    get scrolling() {
+	        return this.nativeElement ? this.nativeElement.scrolling : undefined;
+	    }
+	    set scrolling(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.scrolling = value;
+	        }
+	    }
+	    /** undefined
+	    *	Property type: GridSummaryRow
+	    */
+	    get summaryRow() {
+	        return this.nativeElement ? this.nativeElement.summaryRow : undefined;
+	    }
+	    set summaryRow(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.summaryRow = value;
+	        }
+	    }
+	    /** undefined
+	    *	Property type: GridStateSettings
+	    */
+	    get stateSettings() {
+	        return this.nativeElement ? this.nativeElement.stateSettings : undefined;
+	    }
+	    set stateSettings(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.stateSettings = value;
+	        }
+	    }
+	    /** undefined
 	    *	Property type: GridSelection
 	    */
 	    get selection() {
@@ -729,13 +792,46 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.sorting = value;
 	        }
 	    }
+	    /** undefined
+	    *	Property type: any[]
+	    */
+	    get users() {
+	        return this.nativeElement ? this.nativeElement.users : undefined;
+	    }
+	    set users(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.users = value;
+	        }
+	    }
+	    /** undefined
+	    *	Property type: GridUploadSettings
+	    */
+	    get uploadSettings() {
+	        return this.nativeElement ? this.nativeElement.uploadSettings : undefined;
+	    }
+	    set uploadSettings(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.uploadSettings = value;
+	        }
+	    }
+	    /** undefined
+	    *	Property type: string
+	    */
+	    get view() {
+	        return this.nativeElement ? this.nativeElement.view : undefined;
+	    }
+	    set view(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.view = value;
+	        }
+	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["appearance", "behavior", "layout", "locale", "clipboard", "columns", "contextMenu", "columnMenu", "columnGroups", "conditionalFormatting", "charting", "checkBoxes", "dataExport", "dataSource", "dataSourceSettings", "editing", "filtering", "grouping", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onLoad", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowHistory", "onRowStyle", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onRowClass", "onCellClass", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onColumnClone", "onCommand", "rowCSSRules", "currentUser", "users", "uploadSettings", "paging", "pager", "rowDetail", "scrolling", "columnHeader", "summaryRow", "stateSettings", "groupHeader", "header", "footer", "rightToLeft", "rows", "selection", "sorting"];
+	        return ["appearance", "ai", "behavior", "currentUser", "columnHeader", "clipboard", "columns", "contextMenu", "columnMenu", "columnGroups", "dropDownMode", "conditionalFormatting", "charting", "checkBoxes", "dataExport", "dataSource", "dataSourceSettings", "editing", "filtering", "footer", "formulas", "grouping", "groupHeader", "header", "layout", "unlockKey", "locale", "keys", "messages", "onCellValue", "onCellUpdate", "onCellRender", "onCellBeginEdit", "onCellEditRequest", "onCellValueChanged", "onBeforeInit", "onInit", "onAfterInit", "onChartInit", "onRender", "onLoad", "onKey", "onRowInit", "onRowDetailInit", "onRowDetailUpdated", "onRowHistory", "onRowStyle", "onRowInserted", "onRowRemoved", "onRowUpdate", "onRowUpdated", "onRowClass", "onCellClass", "onColumnInit", "onColumnInserted", "onColumnRemoved", "onColumnUpdated", "onColumnClone", "onCommand", "paging", "pager", "rowDetail", "rowCSSRules", "rightToLeft", "rows", "scrolling", "summaryRow", "stateSettings", "selection", "sorting", "users", "uploadSettings", "view"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
-	        return ["onBeginEdit", "onBatchChange", "onBatchCancel", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnDragging", "onColumnDragEnd", "onColumnReorder", "onCommentAdd", "onCommentRemove", "onContextMenuItemClick", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowReorder", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onRowStarred", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onGroup", "onOpenColumnDialog", "onCloseColumnDialog", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
+	        return ["onBeginEdit", "onBatchChange", "onBatchCancel", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnChange", "onColumnDragging", "onColumnDragEnd", "onColumnReorder", "onCommentAdd", "onCommentRemove", "onContextMenuItemClick", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowReorder", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onRowStarred", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onGroup", "onOpenColumnDialog", "onCloseColumnDialog", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
 	    }
 	    /** Adds a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
 	    * @param {any} data. row data matching the data source
@@ -1125,14 +1221,16 @@ require('../source/modules/smart.grid');
 	    }
 	    /** Exports the Grid data to .XLSX, .PDF, .JSON, .XML, .CSV, .TSV, .HTML, .JPEG or .PNG. The method uses the options of the dataExport property.
 	    * @param {string} Dataformat. 'xlsx', 'pdf', 'json', 'xml', 'csv', 'tsv', 'html', 'png', 'jpeg'.
+	    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer to the Smart Export Documentation.
+	    * @param {any} dataCallback?. A callback that allows to change the exported data.
 	    */
-	    exportData(Dataformat) {
+	    exportData(Dataformat, callback, dataCallback) {
 	        if (this.nativeElement.isRendered) {
-	            this.nativeElement.exportData(Dataformat);
+	            this.nativeElement.exportData(Dataformat, callback, dataCallback);
 	        }
 	        else {
 	            this.nativeElement.whenRendered(() => {
-	                this.nativeElement.exportData(Dataformat);
+	                this.nativeElement.exportData(Dataformat, callback, dataCallback);
 	            });
 	        }
 	    }
@@ -1153,6 +1251,20 @@ require('../source/modules/smart.grid');
 	    findCells(query) {
 	        const result = this.nativeElement.findCells(query);
 	        return result;
+	    }
+	    /** Filter by all columns. This method works like a global filter and applies a filter to all grid columns.
+	    * @param {string} query. Filter query to filter by.
+	    * @param {string} dataType?. Optionally filter by a specific data type like 'string', 'boolean', 'date', 'number'.
+	    */
+	    filterBy(query, dataType) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.filterBy(query, dataType);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.filterBy(query, dataType);
+	            });
+	        }
 	    }
 	    /** Navigates to a page, when paging is enabled.
 	    * @param {number} index. page index
@@ -1325,6 +1437,13 @@ require('../source/modules/smart.grid');
 	        const result = this.nativeElement.getSelectedRows();
 	        return result;
 	    }
+	    /** Gets an Array where each item contains the row data.
+	    * @returns {any[]}
+	  */
+	    getSelectedRowsData() {
+	        const result = this.nativeElement.getSelectedRowsData();
+	        return result;
+	    }
 	    /** Gets the selected row ids.
 	    * @returns {any[]}
 	  */
@@ -1373,34 +1492,6 @@ require('../source/modules/smart.grid');
 	    getState() {
 	        const result = this.nativeElement.getState();
 	        return result;
-	    }
-	    /** Saves the Grid state and returns a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
-	    * @param {string} name?. state name
-	    * @returns {any}
-	  */
-	    saveState(name) {
-	        const result = this.nativeElement.saveState(name);
-	        return result;
-	    }
-	    /** Loads a previously saved Grid state. You can pass a state name when there is a state which was previously saved with the saveState(stateName) method call or a state object returned by the saveState or getState method calls. The state object is required to be a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
-	    * @param {any} state. state name or state object
-	    * @returns {any}
-	  */
-	    loadState(state) {
-	        const result = this.nativeElement.loadState(state);
-	        return result;
-	    }
-	    /** Resets the Grid state.
-	    */
-	    resetState() {
-	        if (this.nativeElement.isRendered) {
-	            this.nativeElement.resetState();
-	        }
-	        else {
-	            this.nativeElement.whenRendered(() => {
-	                this.nativeElement.resetState();
-	            });
-	        }
 	    }
 	    /** Gets the changes from the batch edit.
 	    * @returns {{ upDated: [{ id: string, dataField: string, oldValue: Object, newValue: Object }], deleted: [{id: string, data: Object}], added: [{id: string, data: Object}] }}
@@ -1560,6 +1651,14 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
+	    /** Loads a previously saved Grid state. You can pass a state name when there is a state which was previously saved with the saveState(stateName) method call or a state object returned by the saveState or getState method calls. The state object is required to be a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
+	    * @param {any} state. state name or state object
+	    * @returns {any}
+	  */
+	    loadState(state) {
+	        const result = this.nativeElement.loadState(state);
+	        return result;
+	    }
 	    /** Opens a column drop-down menu.
 	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
 	    */
@@ -1584,6 +1683,30 @@ require('../source/modules/smart.grid');
 	        else {
 	            this.nativeElement.whenRendered(() => {
 	                this.nativeElement.openContextMenu(left, top);
+	            });
+	        }
+	    }
+	    /** Opens the Grid when the 'dropDownMode' property is true.
+	    */
+	    openDropDown() {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.openDropDown();
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.openDropDown();
+	            });
+	        }
+	    }
+	    /** Closes the Grid when the 'dropDownMode' property is true.
+	    */
+	    closeDropDown() {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.closeDropDown();
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.closeDropDown();
 	            });
 	        }
 	    }
@@ -1624,6 +1747,18 @@ require('../source/modules/smart.grid');
 	        }
 	    }
 	    /** Refreshes the grid cells in view. The method is useful for live-updates of cell values.
+	    */
+	    resetState() {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.resetState();
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.resetState();
+	            });
+	        }
+	    }
+	    /** Resets the Grid state.
 	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
 	    * @param {boolean} refreshFilters?. Set this to false, if you need to make multiple removeFilter calls.
 	    */
@@ -1703,6 +1838,14 @@ require('../source/modules/smart.grid');
 	        }
 	    }
 	    /** Reorders two DataGrid columns.
+	    * @param {string} name?. state name
+	    * @returns {any}
+	  */
+	    saveState(name) {
+	        const result = this.nativeElement.saveState(name);
+	        return result;
+	    }
+	    /** Saves the Grid state and returns a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
 	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
 	    * @param {string | null} sortOrder. column's sort order. Use 'asc', 'desc' or null.
 	    */
@@ -1954,6 +2097,19 @@ require('../source/modules/smart.grid');
 	        }
 	    }
 	    /** Sets a style to a row.
+	    * @param {string} label. The label to be displayed in the dropdown button.
+	    */
+	    setDropDownLabel(label) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.setDropDownLabel(label);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.setDropDownLabel(label);
+	            });
+	        }
+	    }
+	    /** Sets the label of the Grid when the 'dropDownMode' property is true.
 	    * @param {number} value. The new scroll position
 	    */
 	    setVerticalScrollValue(value) {
@@ -1980,6 +2136,33 @@ require('../source/modules/smart.grid');
 	        }
 	    }
 	    /** Sets the position of the horizontal scrollbar. You can use this method in combination with the getHorizontalScrollValue and getHorizontalScrollMax.
+	    */
+	    closeSidePanel() {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.closeSidePanel();
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.closeSidePanel();
+	            });
+	        }
+	    }
+	    /** Closes the Grid's side panel.
+	    * @param {any} content. This is the content which will be displayed in the side panel. It can be String, HTML Element, HTML Template Element or Component
+	    * @param {number} width?. This is the width of the side panel
+	    * @param {any} callback?. Function called when the panel is opened. It can be used for dynamically showing content and initializing it.
+	    */
+	    showSidePanel(content, width, callback) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.showSidePanel(content, width, callback);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.showSidePanel(content, width, callback);
+	            });
+	        }
+	    }
+	    /** Shows the side panel of the Grid.
 	    * @param {string | number} rowId. row bound id
 	    */
 	    showDetail(rowId) {
@@ -1993,6 +2176,21 @@ require('../source/modules/smart.grid');
 	        }
 	    }
 	    /** Shows the Details of a Row, when row details are enabled.
+	    * @param {string | number} rowId. row bound id
+	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    * @param {string} value. The message to be shown below the cell
+	    */
+	    showCellMessage(rowId, dataField, value) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.showCellMessage(rowId, dataField, value);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.showCellMessage(rowId, dataField, value);
+	            });
+	        }
+	    }
+	    /** Shows an overlay message below a cell. This method can be used for onboarding tips or in scenarios when you want to display custom messages to the user.
 	    * @param {string | number} rowId. row bound id
 	    * @param {any} data. row data matching the data source
 	    * @param {{(row: GridRow): void}} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
@@ -2059,11 +2257,29 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
+	    constructor(props) {
+	        super(props);
+	        this.componentRef = React.createRef();
+	    }
 	    componentDidRender(initialize) {
 	        const that = this;
 	        const props = {};
 	        const events = {};
 	        let styles = null;
+	        const stringifyCircularJSON = (obj) => {
+	            const seen = new WeakSet();
+	            return JSON.stringify(obj, (k, v) => {
+	                if (v !== null && typeof v === 'object') {
+	                    if (seen.has(v))
+	                        return;
+	                    seen.add(v);
+	                }
+	                if (k === 'Smart') {
+	                    return v;
+	                }
+	                return v;
+	            });
+	        };
 	        for (let prop in that.props) {
 	            if (prop === 'children') {
 	                continue;
@@ -2080,10 +2296,27 @@ require('../source/modules/smart.grid');
 	        }
 	        if (initialize) {
 	            that.nativeElement = this.componentRef.current;
+	            that.nativeElement.React = React;
+	            that.nativeElement.ReactDOM = ReactDOM;
+	            if (that.nativeElement && !that.nativeElement.isCompleted) {
+	                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+	            }
+	        }
+	        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+	            //	return;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
+	                if (that.nativeElement._classNames) {
+	                    const oldClassNames = that.nativeElement._classNames;
+	                    for (let className in oldClassNames) {
+	                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+	                            that.nativeElement.classList.remove(oldClassNames[className]);
+	                        }
+	                    }
+	                }
+	                that.nativeElement._classNames = classNames;
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
 	                        that.nativeElement.classList.add(classNames[className]);
@@ -2101,7 +2334,17 @@ require('../source/modules/smart.grid');
 	                    that.nativeElement.setAttribute(prop, '');
 	                }
 	                const normalizedProp = normalizeProp(prop);
-	                that.nativeElement[normalizedProp] = props[prop];
+	                if (that.nativeElement[normalizedProp] === undefined) {
+	                    that.nativeElement.setAttribute(prop, props[prop]);
+	                }
+	                if (props[prop] !== undefined) {
+	                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+	                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+	                            continue;
+	                        }
+	                    }
+	                    that.nativeElement[normalizedProp] = props[prop];
+	                }
 	            }
 	        }
 	        for (let eventName in events) {
@@ -2109,7 +2352,7 @@ require('../source/modules/smart.grid');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
-	            Smart.Render();
+	            exports.Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }
@@ -2144,14 +2387,13 @@ require('../source/modules/smart.grid');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-grid", { ref: this.componentRef }, this.props.children));
+	        return (React.createElement("smart-grid", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
 	    }
 	}
 
-	exports.Smart = Smart;
 	exports.Grid = Grid;
 	exports.default = Grid;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));

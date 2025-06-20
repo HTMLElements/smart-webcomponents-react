@@ -3,7 +3,8 @@ import { ChartProperties } from "./../index";
 import { Animation, ChartColorScheme, ChartRenderEngine, ChartLocalization, Padding, ChartSeriesGroup, ChartValueAxis, ChartXAxis } from './../index';
 export { ChartProperties } from "./../index";
 export { Animation, ChartColorScheme, ChartRenderEngine, HorizontalAlignment, ChartRotationPoint, VerticalAlignment, ChartAnnotationType, ChartUnselectMode, Orientation, ChartSeriesGroupSerieEmptyPointsDisplay, ChartSymbolType, ChartType, AxisPosition, ChartBaseUnit, ChartXAxisType, ChartLocalization, Padding, ChartSeriesGroup, ChartAnnotation, Offset, ChartAnnotationText, ChartBand, ChartFormatSettings, ChartSeriesGroupSerie, ChartLabels, ChartValueAxis, ChartLines, ChartLine, ChartTitle, ChartXAxis, ChartRangeSelector } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface ChartProps extends ChartProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -139,6 +140,11 @@ export declare class Chart extends React.Component<React.HTMLAttributes<Element>
     */
     get legendLayout(): any;
     set legendLayout(value: any);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -396,6 +402,7 @@ export declare class Chart extends React.Component<React.HTMLAttributes<Element>
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Chart;

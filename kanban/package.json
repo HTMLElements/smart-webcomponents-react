@@ -3,5 +3,5 @@
     "module": "kanban.esm.js",
 	"typings": "kanban.d.ts",
     "name": "smart-webcomponents-react/kanban",
-    "sideEffects": false
+    "sideEffects": true
   }

@@ -4,7 +4,8 @@ import { SchedulerEventRenderMode, SchedulerDayFormat, FilterMode, SchedulerGrou
 export { SchedulerProperties } from "./../index";
 export { SchedulerEventRenderMode, SchedulerRepeatFreq, SchedulerNotificationType, SchedulerDayFormat, FilterMode, SchedulerGroupOrientation, SchedulerHourFormat, SchedulerHeaderDatePosition, SchedulerHeaderNavigationStyle, SchedulerHeaderViewPosition, SchedulerLegendLocation, SchedulerLegendPosition, SchedulerLegendLayout, HorizontalScrollBarVisibility, MinuteFormat, MonthFormat, ResizeHandlesVisibility, SchedulerResourceSortOrder, SchedulerScrollButtonsPosition, SchedulerSortOrder, SchedulerTimelineDayScale, SchedulerTimeZone, VerticalScrollBarVisibility, SchedulerViewType, SchedulerViews, SchedulerViewSelectorType, SchedulerViewStartDay, WeekDayFormat, YearFormat, SchedulerDataExport, SchedulerEvent, SchedulerEventRepeat, SchedulerNotification, SchedulerResource, SchedulerStatuse } from './../index';
 export { DataAdapter } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface SchedulerProps extends SchedulerProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -75,6 +76,11 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     */
     get colorScheme(): string[];
     set colorScheme(value: string[]);
+    /** Determines the current time of the Scheduler to use for the current time indicator functionality. By default the current time is Today.
+    *	Property type: string | Date
+    */
+    get currentTime(): string | Date;
+    set currentTime(value: string | Date);
     /** Enables/Disables the current time indicator. Current time indicator shows the current time in the appropriate view cells.
     *	Property type: boolean
     */
@@ -355,6 +361,11 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     */
     get horizontalScrollBarVisibility(): HorizontalScrollBarVisibility | string;
     set horizontalScrollBarVisibility(value: HorizontalScrollBarVisibility | string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /**  Determines the language of the Scheduler.
     *	Property type: string
     */
@@ -430,7 +441,7 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     */
     get restrictedHours(): any;
     set restrictedHours(value: any);
-    /** Defines an array of dates and hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed. Each array item is an Object and requires 2 fields - date and hours. For example: { date: new Date(2022, 10, 1), hours: [[0, 6], 12, [20, 23]] }. The hours define a range of restricted hours similartly to the restricted hours property, the date defines a date where the restricted hours will be applied.
+    /** Defines an array of dates and hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed. Each array item is an Object and requires 2 fields - date and hours. For example: { date: new Date(2023, 10, 1), hours: [[0, 6], 12, [20, 23]] }. The hours define a range of restricted hours similartly to the restricted hours property, the date defines a date where the restricted hours will be applied.
     *	Property type: any
     */
     get restricted(): any;
@@ -858,9 +869,10 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     refresh(fullRefresh?: boolean): void;
     /** Exports the events from the Scheduler.
     * @param {string} dataFormat. Determines the format of the exported file. The following values are available: <ul><li><b>pdf</b></li><li><b>xlsx</b></li><li><b>html</b></li><li><b>iCal</b></li></ul>
-    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer ro the Smart Export Documentation.
+    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer to the Smart Export Documentation.
+    * @param {any} dataCallback?. A callback that allows to change the exported data.
     */
-    exportData(dataFormat: string, callback?: any): void;
+    exportData(dataFormat: string, callback?: any, dataCallback?: any): void;
     /** Returns a JSON representation of the events inside the Scheduler.
     * @returns {any}
   */
@@ -1049,6 +1061,7 @@ export declare class Scheduler extends React.Component<React.HTMLAttributes<Elem
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Scheduler;

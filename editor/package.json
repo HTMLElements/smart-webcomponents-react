@@ -3,5 +3,5 @@
     "module": "editor.esm.js",
 	"typings": "editor.d.ts",
     "name": "smart-webcomponents-react/editor",
-    "sideEffects": false
+    "sideEffects": true
   }

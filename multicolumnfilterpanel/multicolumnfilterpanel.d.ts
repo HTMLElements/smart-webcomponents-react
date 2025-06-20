@@ -3,7 +3,8 @@ import { MultiColumnFilterPanelProperties } from "./../index";
 import { Animation, MultiColumnFilterPanelCloseButtonPosition, MultiColumnFilterPanelOperator } from './../index';
 export { MultiColumnFilterPanelProperties } from "./../index";
 export { Animation, MultiColumnFilterPanelCloseButtonPosition, MultiColumnFilterPanelOperator } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface MultiColumnFilterPanelProps extends MultiColumnFilterPanelProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -64,6 +65,11 @@ export declare class MultiColumnFilterPanel extends React.Component<React.HTMLAt
     */
     get editorPlaceholder(): string;
     set editorPlaceholder(value: string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -136,6 +142,7 @@ export declare class MultiColumnFilterPanel extends React.Component<React.HTMLAt
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default MultiColumnFilterPanel;

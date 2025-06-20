@@ -3,5 +3,5 @@
     "module": "carousel.esm.js",
 	"typings": "carousel.d.ts",
     "name": "smart-webcomponents-react/carousel",
-    "sideEffects": false
+    "sideEffects": true
   }

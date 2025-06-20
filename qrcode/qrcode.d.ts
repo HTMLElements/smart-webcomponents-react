@@ -3,7 +3,8 @@ import { QRcodeProperties } from "./../index";
 import { QRcodeLabelPosition, QRcodeRenderAs } from './../index';
 export { QRcodeProperties } from "./../index";
 export { QRcodeLabelPosition, QRcodeRenderAs } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface QRcodeProps extends QRcodeProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -39,6 +40,11 @@ export declare class QRcode extends React.Component<React.HTMLAttributes<Element
     */
     get errorLevel(): string;
     set errorLevel(value: string);
+    /** Sets color to the transparent parts of the embedded image. Background remains transparent if set to empty string.
+    *	Property type: string
+    */
+    get imageBackgroundColor(): string;
+    set imageBackgroundColor(value: string);
     /** Sets the height of the embedded image.
     *	Property type: number
     */
@@ -99,6 +105,16 @@ export declare class QRcode extends React.Component<React.HTMLAttributes<Element
     */
     get value(): string;
     set value(value: string);
+    /** Sets or gets the width of the QR Code. If the width is set to 0, the width of the QR Code is calculated automatically.
+    *	Property type: number
+    */
+    get width(): number;
+    set width(value: number);
+    /** Sets or gets the height of the QR Code. If the height is set to 0, the height of the QR Code is calculated automatically.
+    *	Property type: number
+    */
+    get height(): number;
+    set height(value: number);
     get properties(): string[];
     /**  This event is triggered when the value of the QR Code is invalid.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	invalidCharacters, 	lengthValidity, 	patternValidity, 	value)
@@ -141,6 +157,7 @@ export declare class QRcode extends React.Component<React.HTMLAttributes<Element
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default QRcode;

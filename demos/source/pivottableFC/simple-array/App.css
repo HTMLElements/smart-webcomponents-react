@@ -1,7 +1,0 @@
-#pivotTable {
-    --smart-table-group-count-display: none;
-}
-
-#pivotTable thead>tr:nth-child(3) .total-arrow {
-    display: none;
-}

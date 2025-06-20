@@ -3,7 +3,8 @@ import { SortableProperties } from "./../index";
 import { Animation, SortableDragMode, SortableHandlePosition, SortableHandleVisibility, Orientation } from './../index';
 export { SortableProperties } from "./../index";
 export { Animation, SortableDragMode, SortableHandlePosition, SortableHandleVisibility, Orientation } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface SortableProps extends SortableProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -49,6 +50,11 @@ export declare class Sortable extends React.Component<React.HTMLAttributes<Eleme
     */
     get items(): string | null;
     set items(value: string | null);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -100,6 +106,7 @@ export declare class Sortable extends React.Component<React.HTMLAttributes<Eleme
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Sortable;

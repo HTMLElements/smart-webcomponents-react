@@ -1,23 +1,28 @@
 
-if (!window['Smart']) {
-	window['Smart'] = { RenderMode: 'manual' };
+"use client";
+
+import '../source/modules/smart.cardview'
+
+if(typeof window !== 'undefined') {	
+	if (!window['Smart']) {
+		window['Smart'] = { RenderMode: 'manual' };
+	}
+	else {
+		window['Smart'].RenderMode = 'manual';
+	}	
+	//require('../source/modules/smart.cardview');
 }
-else {
-	window['Smart'].RenderMode = 'manual';
-}	
-import '../source/modules/smart.cardview';
-
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-const Smart = window.Smart;
+let Smart;
+if (typeof window !== "undefined") {
+    Smart = window.Smart;
+}
 /**
  CardView creates Card-based layout. Supports Filtering, Sorting, Grouping, Editing and UI Virtualization.
 */
 class CardView extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -168,6 +173,17 @@ class CardView extends React.Component {
             this.nativeElement.headerPosition = value;
         }
     }
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey() {
+        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+    }
+    set unlockKey(value) {
+        if (this.nativeElement) {
+            this.nativeElement.unlockKey = value;
+        }
+    }
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -236,7 +252,7 @@ class CardView extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["addNewButton", "allowDrag", "animation", "cardHeight", "cellOrientation", "collapsible", "columns", "coverField", "coverMode", "dataSource", "dataSourceSettings", "editable", "headerPosition", "locale", "messages", "rightToLeft", "theme", "scrolling", "titleField"];
+        return ["addNewButton", "allowDrag", "animation", "cardHeight", "cellOrientation", "collapsible", "columns", "coverField", "coverMode", "dataSource", "dataSourceSettings", "editable", "headerPosition", "unlockKey", "locale", "messages", "rightToLeft", "theme", "scrolling", "titleField"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -428,11 +444,29 @@ class CardView extends React.Component {
             });
         }
     }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -449,10 +483,27 @@ class CardView extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -470,7 +521,17 @@ class CardView extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -513,9 +574,8 @@ class CardView extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-card-view", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-card-view", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-export default CardView;
-export { Smart, CardView };
+export { CardView, Smart, CardView as default };

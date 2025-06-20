@@ -1,23 +1,28 @@
 
-if (!window['Smart']) {
-	window['Smart'] = { RenderMode: 'manual' };
+"use client";
+
+import '../source/modules/smart.qrcode'
+
+if(typeof window !== 'undefined') {	
+	if (!window['Smart']) {
+		window['Smart'] = { RenderMode: 'manual' };
+	}
+	else {
+		window['Smart'].RenderMode = 'manual';
+	}	
+	//require('../source/modules/smart.qrcode');
 }
-else {
-	window['Smart'].RenderMode = 'manual';
-}	
-import '../source/modules/smart.qrcode';
-
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-const Smart = window.Smart;
+let Smart;
+if (typeof window !== "undefined") {
+    Smart = window.Smart;
+}
 /**
  QR Codes encode text values in a two-dimensional pattern.
 */
 class QRcode extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -67,6 +72,17 @@ class QRcode extends React.Component {
     set errorLevel(value) {
         if (this.nativeElement) {
             this.nativeElement.errorLevel = value;
+        }
+    }
+    /** Sets color to the transparent parts of the embedded image. Background remains transparent if set to empty string.
+    *	Property type: string
+    */
+    get imageBackgroundColor() {
+        return this.nativeElement ? this.nativeElement.imageBackgroundColor : undefined;
+    }
+    set imageBackgroundColor(value) {
+        if (this.nativeElement) {
+            this.nativeElement.imageBackgroundColor = value;
         }
     }
     /** Sets the height of the embedded image.
@@ -201,9 +217,31 @@ class QRcode extends React.Component {
             this.nativeElement.value = value;
         }
     }
+    /** Sets or gets the width of the QR Code. If the width is set to 0, the width of the QR Code is calculated automatically.
+    *	Property type: number
+    */
+    get width() {
+        return this.nativeElement ? this.nativeElement.width : undefined;
+    }
+    set width(value) {
+        if (this.nativeElement) {
+            this.nativeElement.width = value;
+        }
+    }
+    /** Sets or gets the height of the QR Code. If the height is set to 0, the height of the QR Code is calculated automatically.
+    *	Property type: number
+    */
+    get height() {
+        return this.nativeElement ? this.nativeElement.height : undefined;
+    }
+    set height(value) {
+        if (this.nativeElement) {
+            this.nativeElement.height = value;
+        }
+    }
     // Gets the properties of the React component.
     get properties() {
-        return ["backgroundColor", "displayLabel", "embedImage", "errorLevel", "imageHeight", "imageWidth", "labelColor", "labelFont", "labelFontSize", "labelMarginBottom", "labelMarginTop", "labelPosition", "lineColor", "squareWidth", "renderAs", "value"];
+        return ["backgroundColor", "displayLabel", "embedImage", "errorLevel", "imageBackgroundColor", "imageHeight", "imageWidth", "labelColor", "labelFont", "labelFontSize", "labelMarginBottom", "labelMarginTop", "labelPosition", "lineColor", "squareWidth", "renderAs", "value", "width", "height"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -246,11 +284,29 @@ class QRcode extends React.Component {
         const result = this.nativeElement.isValid();
         return result;
     }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -267,10 +323,27 @@ class QRcode extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -288,7 +361,17 @@ class QRcode extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -331,9 +414,8 @@ class QRcode extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-qrcode", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-qrcode", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-export default QRcode;
-export { Smart, QRcode };
+export { QRcode, Smart, QRcode as default };

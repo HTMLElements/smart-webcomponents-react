@@ -3,5 +3,5 @@
     "module": "multilinewindow.esm.js",
 	"typings": "multilinewindow.d.ts",
     "name": "smart-webcomponents-react/multilinewindow",
-    "sideEffects": false
+    "sideEffects": true
   }

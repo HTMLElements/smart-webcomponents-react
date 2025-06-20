@@ -3,7 +3,8 @@ import { FilterPanelProperties } from "./../index";
 import { Animation, FilterPanelFilterType, FilterPanelMode } from './../index';
 export { FilterPanelProperties } from "./../index";
 export { Animation, FilterPanelFilterType, FilterPanelMode } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface FilterPanelProps extends FilterPanelProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -66,6 +67,11 @@ export declare class FilterPanel extends React.Component<React.HTMLAttributes<El
     */
     get formatString(): string;
     set formatString(value: string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -141,6 +147,7 @@ export declare class FilterPanel extends React.Component<React.HTMLAttributes<El
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default FilterPanel;

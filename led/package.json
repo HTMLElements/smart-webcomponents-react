@@ -3,5 +3,5 @@
     "module": "led.esm.js",
 	"typings": "led.d.ts",
     "name": "smart-webcomponents-react/led",
-    "sideEffects": false
+    "sideEffects": true
   }

@@ -152,6 +152,11 @@ export interface ListBoxProperties {
    */
   loadingIndicatorPosition?: VerticalAlignment | string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -364,6 +369,11 @@ export interface ListBox extends BaseElement, ListBoxProperties {
    */
   appendChild<T extends Node>(node: Node): T;
   /**
+   * Adds a new item(s).
+   * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
+   */
+  add(item: any): void;
+  /**
    * Removes all items from the listBox.
    */
   clearItems(): void;
@@ -371,6 +381,10 @@ export interface ListBox extends BaseElement, ListBoxProperties {
    * Unselects all items.
    */
   clearSelection(): void;
+  /**
+   * Performs a data bind. This can be used to refresh the data source.
+   */
+  dataBind(): void;
   /**
    * Ensures the target item is visible by scrolling to it.
    * @param {HTMLElement | string} item. A list item or value of the desired item to be visible.

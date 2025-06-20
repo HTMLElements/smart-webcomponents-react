@@ -2,11 +2,6 @@ import  {BaseElement, Animation} from "./smart.element"
 
 export interface DropDownListProperties {
   /**
-   * Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-   * Default value: advanced
-   */
-  animation?: Animation | string;
-  /**
    * Used only when dropDownOpenMode is set to 'auto'. Determines the delay before the opened drop down closes if the pointer is not over the element.
    * Default value: 100
    */
@@ -107,6 +102,11 @@ export interface DropDownListProperties {
    */
   filterMode?: FilterMode | string;
   /**
+   * A callback that should return a condition that will be used for custom item filtering. Used in conjunction with filterMode 'custom'
+   * Default value: null
+   */
+  filterCallback?: any;
+  /**
    * If enabled, the items will be grouped by their first letter. Can't be applied if the dataSource already contains groups.
    * Default value: false
    */
@@ -176,6 +176,11 @@ export interface DropDownListProperties {
    * Default value: center
    */
   loadingIndicatorPosition?: VerticalAlignment | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -384,6 +389,11 @@ export interface DropDownList extends BaseElement, DropDownListProperties {
    */
   appendChild<T extends Node>(node: Node): T;
   /**
+   * Adds a new item(s).
+   * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
+   */
+  add(item: any): void;
+  /**
    * Removes all items from the drop down list.
    */
   clearItems(): void;
@@ -395,6 +405,10 @@ export interface DropDownList extends BaseElement, DropDownListProperties {
    * Closes the dropDown list.
    */
   close(): void;
+  /**
+   * Performs a data bind. This can be used to refresh the data source.
+   */
+  dataBind(): void;
   /**
    * Ensures the desired item is visible by scrolling to it.
    * @param {HTMLElement | string} item. A list item or value of the desired item to be visible.

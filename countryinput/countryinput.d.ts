@@ -3,7 +3,8 @@ import { CountryInputProperties } from "./../index";
 import { DropDownButtonPosition } from './../index';
 export { CountryInputProperties } from "./../index";
 export { DropDownButtonPosition } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface CountryInputProps extends CountryInputProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -139,6 +140,7 @@ export declare class CountryInput extends React.Component<React.HTMLAttributes<E
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default CountryInput;

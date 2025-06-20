@@ -3,7 +3,8 @@ import { ThreeDChartProperties } from "./../index";
 import { Animation, ThreeDChartColorScheme, ThreeDChartLegendIndex, ThreeDChartSelectionMode, ThreeDChartCameraPosition, ThreeDChartSeriesGroup, ThreeDChartFormatSettings, ThreeDChartPadding, ThreeDChartValueAxis, ThreeDChartXAxis, ThreeDChartZAxis } from './../index';
 export { ThreeDChartProperties } from "./../index";
 export { Animation, ThreeDChartColorScheme, ThreeDChartLegendIndex, ThreeDChartSelectionMode, ThreeDChartSymbolType, ThreeDChartType, ThreeDChartRangeSelectorSerieType, ThreeDChartXAxisType, ThreeDChartCameraPosition, ThreeDChartSeriesGroup, ThreeDChartBand, ThreeDChartFormatSettings, ThreeDChartSeriesGroupSerie, ThreeDChartLabels, ThreeDChartOffset, ThreeDChartPadding, ThreeDChartValueAxis, ThreeDChartLines, ThreeDChartXAxis, ThreeDChartRangeSelector, ThreeDChartZAxis } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface ThreeDChartProps extends ThreeDChartProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -144,6 +145,11 @@ export declare class ThreeDChart extends React.Component<React.HTMLAttributes<El
     */
     get lightColor(): string;
     set lightColor(value: string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -444,6 +450,7 @@ export declare class ThreeDChart extends React.Component<React.HTMLAttributes<El
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default ThreeDChart;

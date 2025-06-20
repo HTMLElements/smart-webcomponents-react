@@ -52,6 +52,11 @@ export interface KanbanProperties {
    */
   allowDrop?: boolean;
   /**
+   * Allows the dropping of tasks placeholder. When you drag a task over another task it will make an empty space for the task.
+   * Default value: false
+   */
+  allowDropPlaceholder?: boolean;
+  /**
    * This property changes the visual appeal of the Kanban columns and tasks. When set to true and the Kanban columns have their 'color' property set, the color is also applied to the tasks and edit dialog.
    * Default value: false
    */
@@ -162,6 +167,11 @@ export interface KanbanProperties {
    */
   editable?: boolean;
   /**
+   * Determines the edit behavior. It could be either singleClick or doubleClick. The dialog edit window is by default opened when user double clicks on a Kanban task.
+   * Default value: doubleClick
+   */
+  editMode?: KanbanEditMode | string;
+  /**
    * Sets or gets the format string of the "Due date" label and the "Start date" and "Due date" editors.
    * Default value: "d"
    */
@@ -181,6 +191,11 @@ export interface KanbanProperties {
    * Default value: columns
    */
   hierarchy?: KanbanHierarchy | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the locale. Used in conjunction with the property messages.
    * Default value: "en"
@@ -672,10 +687,10 @@ export interface Kanban extends BaseElement, KanbanProperties {
    */
   getSelectedTasks(id: number): any;
   /**
-   * Gets the Kanban's state.
-   * @returns 
+   * Gets the Kanban's state. Returns an object with the following type: { collapsed: {}, dataSource: [], filtering: { filters: [], operator: string }, selection: { selected: [], selectionStart?: number | string, selectionInColumn: string, swimlane: string }, sorting: { dataFields: [], dataTypes: [], orderBy: [] }, tabs: [], visibility: { taskActions: boolean, taskComments: boolean, taskDue: boolean, taskPriority: boolean, taskProgress: boolean, taskTags: boolean, taskUserIcon: boolean } } 
+   * @returns {any}
    */
-  getState(): { collapsed: {}, dataSource: [], filtering: { filters: [], operator: string }, selection: { selected: [], selectionStart: number | string, selectionInColumn: string, swimlane: string }, sorting: { dataFields: [], dataTypes: [], orderBy: [] }, tabs: [], visibility: { taskActions: boolean, taskComments: boolean, taskDue: boolean, taskPriority: boolean, taskProgress: boolean, taskTags: boolean, taskUserIcon: boolean } };
+  getState(): any;
   /**
    * Loads the Kanban's state.
    * @param  state?. An object returned by one of the methods getState or saveState. If not passed, gets saved state from the browser's localStorage.
@@ -986,6 +1001,8 @@ export declare type KanbanAddNewButtonDisplayMode = 'top' | 'bottom' | 'both';
 export declare type KanbanColumnOrientation = 'vertical' | 'horizontal';
 /**Determines the column edit behavior. With the 'header' option, edit starts on double click on the column's label. In 'menu' mode, edit is allowed from the 'columnActions' menu. In 'headerAndMenu' option, column editing includes both options. */
 export declare type KanbanColumnEditMode = 'header' | 'menu' | 'headerAndMenu';
+/**Determines the edit behavior. It could be either singleClick or doubleClick. The dialog edit window is by default opened when user double clicks on a Kanban task. */
+export declare type KanbanEditMode = 'doubleClick' | 'singleClick';
 /**Sets or gets the header position. The header contains the Customize, Filter, Sort, and Search buttons. */
 export declare type KanbanHeaderPosition = 'none' | 'top' | 'bottom';
 /**Sets or gets the way column hierarchy is represented. */

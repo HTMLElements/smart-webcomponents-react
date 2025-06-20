@@ -3,7 +3,8 @@ import { TooltipProperties } from "./../index";
 import { Animation, TooltipArrowDirection, TooltipOpenMode, TooltipPosition } from './../index';
 export { TooltipProperties } from "./../index";
 export { Animation, TooltipArrowDirection, TooltipOpenMode, TooltipPosition } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface TooltipProps extends TooltipProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -57,6 +58,11 @@ export declare class Tooltip extends React.Component<React.HTMLAttributes<Elemen
     */
     get offset(): number[];
     set offset(value: number[]);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -151,6 +157,7 @@ export declare class Tooltip extends React.Component<React.HTMLAttributes<Elemen
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Tooltip;

@@ -3,5 +3,5 @@
     "module": "threedchart.esm.js",
 	"typings": "threedchart.d.ts",
     "name": "smart-webcomponents-react/threedchart",
-    "sideEffects": false
+    "sideEffects": true
   }

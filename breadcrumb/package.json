@@ -3,5 +3,5 @@
     "module": "breadcrumb.esm.js",
 	"typings": "breadcrumb.d.ts",
     "name": "smart-webcomponents-react/breadcrumb",
-    "sideEffects": false
+    "sideEffects": true
   }

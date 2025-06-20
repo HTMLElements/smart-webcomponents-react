@@ -1,8 +1,0 @@
-img {
-    width: 160px;
-}
-@media only screen and (max-width: 500px) {
-	img {
-		width: 50px;
-	}
-}

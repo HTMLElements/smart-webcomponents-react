@@ -139,6 +139,11 @@ export interface TabsProperties {
    */
   enableMouseWheelAction?: boolean;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the locale. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -327,9 +332,9 @@ export interface Tabs extends BaseElement, TabsProperties {
   expand(): void;
   /**
    * Returns an array of the TabItems inside the element.
-   * @returns {TabItem[]}
+   * @returns {any}
    */
-  getTabs(): TabItem[];
+  getTabs(): any;
   /**
    * Returns the offset of the tab item container (smart-tab-item element) from the edge of the Tabs (smart-tabs element) where the tab strip is positioned.
    * @param {number} index. The index of the tab item.

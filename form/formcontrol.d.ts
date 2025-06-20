@@ -3,7 +3,8 @@ import { FormControlProperties } from "./../index";
 import { FormControlAction, FormControlAlign, FormControlControlType, FormControlLabelPosition, FormControlViewMode } from './../index';
 export { FormControlProperties } from "./../index";
 export { FormControlAction, FormControlAlign, FormControlControlType, FormControlLabelPosition, FormControlViewMode } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface FormControlProps extends FormControlProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -178,6 +179,7 @@ export declare class FormControl extends React.Component<React.HTMLAttributes<El
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default FormControl;

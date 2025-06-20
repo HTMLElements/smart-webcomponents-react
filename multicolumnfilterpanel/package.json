@@ -3,5 +3,5 @@
     "module": "multicolumnfilterpanel.esm.js",
 	"typings": "multicolumnfilterpanel.d.ts",
     "name": "smart-webcomponents-react/multicolumnfilterpanel",
-    "sideEffects": false
+    "sideEffects": true
   }

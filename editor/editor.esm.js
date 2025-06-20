@@ -1,29 +1,45 @@
 
-if (!window['Smart']) {
-	window['Smart'] = { RenderMode: 'manual' };
+"use client";
+
+import '../source/modules/smart.editor'
+
+if(typeof window !== 'undefined') {	
+	if (!window['Smart']) {
+		window['Smart'] = { RenderMode: 'manual' };
+	}
+	else {
+		window['Smart'].RenderMode = 'manual';
+	}	
+	//require('../source/modules/smart.editor');
 }
-else {
-	window['Smart'].RenderMode = 'manual';
-}	
-import '../source/modules/smart.editor';
-
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-const Smart = window.Smart;
+let Smart;
+if (typeof window !== "undefined") {
+    Smart = window.Smart;
+}
 /**
  jqxEditor represents an advanced HTML text editor which can simplify web content creation or be a replacement of your HTML/Markdown Text Areas.
 */
 class Editor extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
             this._id = 'Editor' + Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
         }
         return this._id;
+    }
+    /** An object containing settings related to the grid's AI integration.
+    *	Property type: EditorAi
+    */
+    get ai() {
+        return this.nativeElement ? this.nativeElement.ai : undefined;
+    }
+    set ai(value) {
+        if (this.nativeElement) {
+            this.nativeElement.ai = value;
+        }
     }
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
     *	Property type: Animation | string
@@ -34,6 +50,17 @@ class Editor extends React.Component {
     set animation(value) {
         if (this.nativeElement) {
             this.nativeElement.animation = value;
+        }
+    }
+    /** Automatically formats text as you type—bullets, checkboxes, headings, code blocks
+    *	Property type: boolean
+    */
+    get autoFormatting() {
+        return this.nativeElement ? this.nativeElement.autoFormatting : undefined;
+    }
+    set autoFormatting(value) {
+        if (this.nativeElement) {
+            this.nativeElement.autoFormatting = value;
         }
     }
     /** Automatically loads the last saved state of the editor (from local storage) on element initialization. An id must be provided in order to load a previously saved state.
@@ -168,7 +195,7 @@ class Editor extends React.Component {
             this.nativeElement.disableSearchBar = value;
         }
     }
-    /** Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode.
+    /** Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. The 'blockHtml' edit mode creates DIV tags when you hit enter and also includes built-in commands for data input. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode.
     *	Property type: EditMode | string
     */
     get editMode() {
@@ -245,6 +272,28 @@ class Editor extends React.Component {
             this.nativeElement.imageFormat = value;
         }
     }
+    /** Automatically sets the width of an image when pasted from clipboard.
+    *	Property type: number
+    */
+    get imagePasteWidth() {
+        return this.nativeElement ? this.nativeElement.imagePasteWidth : undefined;
+    }
+    set imagePasteWidth(value) {
+        if (this.nativeElement) {
+            this.nativeElement.imagePasteWidth = value;
+        }
+    }
+    /** Automatically sets the height of an image when pasted from clipboard.
+    *	Property type: number
+    */
+    get imagePasteHeight() {
+        return this.nativeElement ? this.nativeElement.imagePasteHeight : undefined;
+    }
+    set imagePasteHeight(value) {
+        if (this.nativeElement) {
+            this.nativeElement.imagePasteHeight = value;
+        }
+    }
     /** Sets the content of the Editor as HTML. Allows to insert text and HTML.
     *	Property type: string
     */
@@ -276,6 +325,17 @@ class Editor extends React.Component {
     set iframeSettings(value) {
         if (this.nativeElement) {
             this.nativeElement.iframeSettings = value;
+        }
+    }
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey() {
+        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+    }
+    set unlockKey(value) {
+        if (this.nativeElement) {
+            this.nativeElement.unlockKey = value;
         }
     }
     /** Sets or gets the language. Used in conjunction with the property messages.
@@ -421,6 +481,39 @@ class Editor extends React.Component {
             this.nativeElement.splitModeRefreshTimeout = value;
         }
     }
+    /** Sets the editor users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
+    *	Property type: any[]
+    */
+    get users() {
+        return this.nativeElement ? this.nativeElement.users : undefined;
+    }
+    set users(value) {
+        if (this.nativeElement) {
+            this.nativeElement.users = value;
+        }
+    }
+    /** Enables the editor pages feature.
+    *	Property type: boolean
+    */
+    get enablePages() {
+        return this.nativeElement ? this.nativeElement.enablePages : undefined;
+    }
+    set enablePages(value) {
+        if (this.nativeElement) {
+            this.nativeElement.enablePages = value;
+        }
+    }
+    /** Sets the editor pages. Expects an array with 'label' and 'innerHTML' properties.
+    *	Property type: any[]
+    */
+    get pages() {
+        return this.nativeElement ? this.nativeElement.pages : undefined;
+    }
+    set pages(value) {
+        if (this.nativeElement) {
+            this.nativeElement.pages = value;
+        }
+    }
     /** Sets or gets the upload URL. This property corresponds to the upload form's action attribute. For example, the uploadUrl property can point to a PHP file, which handles the upload operation on the server-side.
     *	Property type: string
     */
@@ -544,11 +637,24 @@ class Editor extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoLoad", "autoSave", "autoSaveInterval", "charCountFormatFunction", "autoUpload", "contentFiltering", "contextMenu", "contextMenuDataSource", "dataExport", "disabled", "disableEditing", "disableSearchBar", "editMode", "enableHtmlEncode", "enableTabKey", "findAndReplaceTimeout", "hideToolbar", "hideInlineToolbar", "imageFormat", "innerHTML", "inlineToolbarOffset", "iframeSettings", "locale", "maxCharCount", "messages", "name", "pasteFormat", "placeholder", "removeStylesOnClearFormat", "required", "rightToLeft", "sanitized", "showCharCount", "spellCheck", "splitModeRefreshTimeout", "uploadUrl", "removeUrl", "theme", "toolbarItems", "toolbarMode", "toolbarRibbonConfig", "toolbarViewMode", "toolbarSticky", "unfocusable", "value", "windowCustomizationFunction"];
+        return ["ai", "animation", "autoFormatting", "autoLoad", "autoSave", "autoSaveInterval", "charCountFormatFunction", "autoUpload", "contentFiltering", "contextMenu", "contextMenuDataSource", "dataExport", "disabled", "disableEditing", "disableSearchBar", "editMode", "enableHtmlEncode", "enableTabKey", "findAndReplaceTimeout", "hideToolbar", "hideInlineToolbar", "imageFormat", "imagePasteWidth", "imagePasteHeight", "innerHTML", "inlineToolbarOffset", "iframeSettings", "unlockKey", "locale", "maxCharCount", "messages", "name", "pasteFormat", "placeholder", "removeStylesOnClearFormat", "required", "rightToLeft", "sanitized", "showCharCount", "spellCheck", "splitModeRefreshTimeout", "users", "enablePages", "pages", "uploadUrl", "removeUrl", "theme", "toolbarItems", "toolbarMode", "toolbarRibbonConfig", "toolbarViewMode", "toolbarSticky", "unfocusable", "value", "windowCustomizationFunction"];
     }
     // Gets the events of the React component.
     get eventListeners() {
         return ["onChange", "onChanging", "onActionStart", "onActionEnd", "onContextMenuItemClick", "onContextMenuOpen", "onContextMenuOpening", "onContextMenuClose", "onContextMenuClosing", "onResizeStart", "onResizeEnd", "onInlineToolbarOpen", "onInlineToolbarOpening", "onInlineToolbarClose", "onInlineToolbarClosing", "onDropDownToolbarOpen", "onDropDownToolbarOpening", "onDropDownToolbarClose", "onDropDownToolbarClosing", "onDialogOpen", "onDialogOpening", "onDialogClose", "onDialogClosing", "onImageUploadSuccess", "onImageUploadFailed", "onToobarItemClick", "onMessageClose", "onMessageOpen", "onCreate", "onReady"];
+    }
+    /** Adds a new Toolbar item. Example: editor.addToolbarItem({ name: &#039;customButton2&#039;, width: 100, template: &#039;&lt;smart-button&gt;Button2&lt;/smart-button&gt;&#039; })
+    * @param {any} itemName. The toolbar item to be added
+    */
+    addToolbarItem(itemName) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.addToolbarItem(itemName);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.addToolbarItem(itemName);
+            });
+        }
     }
     /** Blurs the content of the Editor.
     */
@@ -698,6 +804,20 @@ class Editor extends React.Component {
             });
         }
     }
+    /** Inserts a new Toolbar item. Example: editor.insertToolbarItem({ name: &#039;customButton2&#039;, width: 100, template: &#039;&lt;smart-button&gt;Button2&lt;/smart-button&gt;&#039; })
+    * @param {any} itemName. The toolbar item to be added
+    * @param {number} index. The toolbar item's index
+    */
+    insertToolbarItem(itemName, index) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.insertToolbarItem(itemName, index);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.insertToolbarItem(itemName, index);
+            });
+        }
+    }
     /** Shows a custom message inside the Editor.
     * @param {string} message. The text message to be displayed.
     * @param {any} settings?. Additional settings that can be applied to the Toast element that handles the messages. This parameter should contain only valid Toast properties and values.
@@ -795,6 +915,19 @@ class Editor extends React.Component {
             });
         }
     }
+    /** Removes a Toolbar item. Example: editor.removeToolbarItem(0)
+    * @param {number} index. The toolbar item's index
+    */
+    removeToolbarItem(index) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.removeToolbarItem(index);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.removeToolbarItem(index);
+            });
+        }
+    }
     /** Sets Editor into Full Screen Mode. If enabled the Editor is positioned above the page content and fills the screen.
     * @param {boolean} value?. Determines whether to enter or leave split mode. By default the argument is not passed and the mode is toggled.
     */
@@ -857,11 +990,29 @@ class Editor extends React.Component {
         const result = this.nativeElement.updateToolbarItem(name, settings);
         return result;
     }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -878,10 +1029,27 @@ class Editor extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -899,7 +1067,17 @@ class Editor extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -942,9 +1120,8 @@ class Editor extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-editor", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-editor", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-export default Editor;
-export { Smart, Editor };
+export { Editor, Smart, Editor as default };

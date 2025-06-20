@@ -3,5 +3,5 @@
     "module": "customizationdialog.esm.js",
 	"typings": "customizationdialog.d.ts",
     "name": "smart-webcomponents-react/customizationdialog",
-    "sideEffects": false
+    "sideEffects": true
   }

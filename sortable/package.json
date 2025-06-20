@@ -3,5 +3,5 @@
     "module": "sortable.esm.js",
 	"typings": "sortable.d.ts",
     "name": "smart-webcomponents-react/sortable",
-    "sideEffects": false
+    "sideEffects": true
   }

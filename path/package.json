@@ -3,5 +3,5 @@
     "module": "path.esm.js",
 	"typings": "path.d.ts",
     "name": "smart-webcomponents-react/path",
-    "sideEffects": false
+    "sideEffects": true
   }

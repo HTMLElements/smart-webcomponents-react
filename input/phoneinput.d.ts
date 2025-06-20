@@ -3,7 +3,8 @@ import { PhoneInputProperties } from "./../index";
 import { DropDownButtonPosition } from './../index';
 export { PhoneInputProperties } from "./../index";
 export { DropDownButtonPosition } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface PhoneInputProps extends PhoneInputProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -51,6 +52,11 @@ export declare class PhoneInput extends React.Component<React.HTMLAttributes<Ele
     */
     get messages(): any;
     set messages(value: any);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the name attribute for the element. Name is used when submiting data inside an HTML form.
     *	Property type: string
     */
@@ -170,6 +176,7 @@ export declare class PhoneInput extends React.Component<React.HTMLAttributes<Ele
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default PhoneInput;

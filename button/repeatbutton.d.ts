@@ -3,7 +3,8 @@ import { RepeatButtonProperties } from "./../index";
 import { Animation, ClickMode } from './../index';
 export { RepeatButtonProperties } from "./../index";
 export { Animation, ClickMode } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface RepeatButtonProps extends RepeatButtonProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -49,6 +50,11 @@ export declare class RepeatButton extends React.Component<React.HTMLAttributes<E
     */
     get innerHTML(): string;
     set innerHTML(value: string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -107,6 +113,7 @@ export declare class RepeatButton extends React.Component<React.HTMLAttributes<E
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default RepeatButton;

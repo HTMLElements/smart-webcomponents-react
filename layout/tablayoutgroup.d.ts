@@ -3,7 +3,8 @@ import { TabLayoutGroupProperties } from "./../index";
 import { TabLayoutGroupOrientation, TabLayoutGroupPosition } from './../index';
 export { TabLayoutGroupProperties } from "./../index";
 export { TabLayoutGroupOrientation, TabLayoutGroupPosition } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface TabLayoutGroupProps extends TabLayoutGroupProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -73,6 +74,7 @@ export declare class TabLayoutGroup extends React.Component<React.HTMLAttributes
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default TabLayoutGroup;

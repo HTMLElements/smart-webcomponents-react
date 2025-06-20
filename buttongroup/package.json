@@ -3,5 +3,5 @@
     "module": "buttongroup.esm.js",
 	"typings": "buttongroup.d.ts",
     "name": "smart-webcomponents-react/buttongroup",
-    "sideEffects": false
+    "sideEffects": true
   }

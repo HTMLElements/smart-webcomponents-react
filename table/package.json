@@ -3,5 +3,5 @@
     "module": "table.esm.js",
 	"typings": "table.d.ts",
     "name": "smart-webcomponents-react/table",
-    "sideEffects": false
+    "sideEffects": true
   }

@@ -3,7 +3,8 @@ import { PivotTableProperties } from "./../index";
 import { Animation, PivotTableColumnTotalsPosition, PivotTableDesignerPosition, PivotTableDrillDownDataExport, PivotTableGroupLayout, PivotTablePageSize, PivotTableRowTotalsPosition, PivotTableSelectionMode, PivotTableSortMode, PivotTableColumn, PivotTableConditionalFormatting } from './../index';
 export { PivotTableProperties } from "./../index";
 export { Animation, PivotTableColumnAlign, PivotTableColumnDataType, PivotTableColumnSummary, PivotTableColumnTotalsPosition, PivotTableConditionalFormattingCondition, PivotTableConditionalFormattingFontFamily, PivotTableConditionalFormattingFontSize, PivotTableDesignerPosition, PivotTableDrillDownDataExport, PivotTableGroupLayout, PivotTablePageSize, PivotTableRowTotalsPosition, PivotTableSelectionMode, PivotTableSortMode, PivotTableColumn, PivotTableConditionalFormatting } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface PivotTableProps extends PivotTableProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -144,21 +145,26 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     */
     get groupLayout(): PivotTableGroupLayout | string;
     set groupLayout(value: PivotTableGroupLayout | string);
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or gets the unlockKey which unlocks the product.
     *	Property type: boolean
     */
     get hideCellSelectionTooltip(): boolean;
     set hideCellSelectionTooltip(value: boolean);
-    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
+    /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: boolean
     */
     get hideEmptyRows(): boolean;
     set hideEmptyRows(value: boolean);
-    /** Sets or gets what value is shown in cells that do not have aggregated data to display. By default (null), such cells are empty.
+    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
     *	Property type: boolean
     */
     get keyboardNavigation(): boolean;
     set keyboardNavigation(value: boolean);
+    /** Sets or gets what value is shown in cells that do not have aggregated data to display. By default (null), such cells are empty.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the page size (when paging is enabled).
     *	Property type: string
     */
@@ -409,6 +415,7 @@ export declare class PivotTable extends React.Component<React.HTMLAttributes<Ele
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default PivotTable;

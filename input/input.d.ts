@@ -1,9 +1,10 @@
 import React from "react";
 import { InputProperties } from "./../index";
-import { DropDownButtonPosition, InputQueryMode } from './../index';
+import { DropDownButtonPosition, DropDownOpenPosition, InputQueryMode } from './../index';
 export { InputProperties } from "./../index";
-export { DropDownButtonPosition, InputQueryMode } from './../index';
-export declare const Smart: any;
+export { DropDownButtonPosition, DropDownOpenPosition, InputQueryMode } from './../index';
+declare let Smart: any;
+export { Smart };
 export interface InputProps extends InputProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -48,6 +49,11 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     */
     get dropDownButtonPosition(): DropDownButtonPosition | string;
     set dropDownButtonPosition(value: DropDownButtonPosition | string);
+    /** Determines the position of the drop down when opened.
+    *	Property type: DropDownOpenPosition | string
+    */
+    get dropDownOpenPosition(): DropDownOpenPosition | string;
+    set dropDownOpenPosition(value: DropDownOpenPosition | string);
     /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
     *	Property type: string | number
     */
@@ -68,6 +74,11 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     */
     get items(): number;
     set items(value: number);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -231,6 +242,7 @@ export declare class Input extends React.Component<React.HTMLAttributes<Element>
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Input;

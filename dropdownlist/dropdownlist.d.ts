@@ -1,13 +1,14 @@
 import React from "react";
 import { DropDownListProperties } from "./../index";
-import { Animation, DropDownButtonPosition, DropDownOpenMode, DropDownPosition, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ResizeMode, SelectionDisplayMode, ListSelectionMode, VerticalScrollBarVisibility } from './../index';
+import { DropDownButtonPosition, DropDownOpenMode, DropDownPosition, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ResizeMode, SelectionDisplayMode, ListSelectionMode, VerticalScrollBarVisibility } from './../index';
 export { DropDownListProperties } from "./../index";
-export { Animation, DropDownButtonPosition, DropDownOpenMode, DropDownPosition, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ResizeMode, SelectionDisplayMode, ListSelectionMode, VerticalScrollBarVisibility } from './../index';
+export { DropDownButtonPosition, DropDownOpenMode, DropDownPosition, FilterMode, HorizontalScrollBarVisibility, SearchMode, ListItemMeasureMode, VerticalAlignment, ResizeMode, SelectionDisplayMode, ListSelectionMode, VerticalScrollBarVisibility } from './../index';
 export { ListItem } from './listitem';
 export { ListItemProperties } from "./../index";
 export { ListItemsGroup } from './listitemsgroup';
 export { ListItemsGroupProperties } from "./../index";
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface DropDownListProps extends DropDownListProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -34,11 +35,6 @@ export declare class DropDownList extends React.Component<React.HTMLAttributes<E
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-    *	Property type: Animation | string
-    */
-    get animation(): Animation | string;
-    set animation(value: Animation | string);
     /** Used only when dropDownOpenMode is set to 'auto'. Determines the delay before the opened drop down closes if the pointer is not over the element.
     *	Property type: number
     */
@@ -139,6 +135,11 @@ export declare class DropDownList extends React.Component<React.HTMLAttributes<E
     */
     get filterMode(): FilterMode | string;
     set filterMode(value: FilterMode | string);
+    /** A callback that should return a condition that will be used for custom item filtering. Used in conjunction with filterMode 'custom'
+    *	Property type: any
+    */
+    get filterCallback(): any;
+    set filterCallback(value: any);
     /** If enabled, the items will be grouped by their first letter. Can't be applied if the dataSource already contains groups.
     *	Property type: boolean
     */
@@ -209,6 +210,11 @@ export declare class DropDownList extends React.Component<React.HTMLAttributes<E
     */
     get loadingIndicatorPosition(): VerticalAlignment | string;
     set loadingIndicatorPosition(value: VerticalAlignment | string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -391,6 +397,10 @@ export declare class DropDownList extends React.Component<React.HTMLAttributes<E
     * @returns {Node}
   */
     appendChild(node: Node): any;
+    /** Adds a new item(s).
+    * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
+    */
+    add(item: any): void;
     /** Removes all items from the drop down list.
     */
     clearItems(): void;
@@ -400,6 +410,9 @@ export declare class DropDownList extends React.Component<React.HTMLAttributes<E
     /** Closes the dropDown list.
     */
     close(): void;
+    /** Performs a data bind. This can be used to refresh the data source.
+    */
+    dataBind(): void;
     /** Ensures the desired item is visible by scrolling to it.
     * @param {HTMLElement | string} item. A list item or value of the desired item to be visible.
     */
@@ -452,6 +465,7 @@ export declare class DropDownList extends React.Component<React.HTMLAttributes<E
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default DropDownList;

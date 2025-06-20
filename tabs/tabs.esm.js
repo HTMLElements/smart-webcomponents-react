@@ -1,23 +1,28 @@
 
-if (!window['Smart']) {
-	window['Smart'] = { RenderMode: 'manual' };
+"use client";
+
+import '../source/modules/smart.tabs'
+
+if(typeof window !== 'undefined') {	
+	if (!window['Smart']) {
+		window['Smart'] = { RenderMode: 'manual' };
+	}
+	else {
+		window['Smart'].RenderMode = 'manual';
+	}	
+	//require('../source/modules/smart.tabs');
 }
-else {
-	window['Smart'].RenderMode = 'manual';
-}	
-import '../source/modules/smart.tabs';
-
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-const Smart = window.Smart;
+let Smart$2;
+if (typeof window !== "undefined") {
+    Smart$2 = window.Smart;
+}
 /**
  Defines a tab item.
 */
 class TabItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -99,11 +104,29 @@ class TabItem extends React.Component {
     get eventListeners() {
         return ["onCreate", "onReady"];
     }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -120,10 +143,27 @@ class TabItem extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -141,7 +181,17 @@ class TabItem extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -183,19 +233,18 @@ class TabItem extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-tab-item", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-tab-item", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-const Smart$1 = window.Smart;
+let Smart$1;
+if (typeof window !== "undefined") {
+    Smart$1 = window.Smart;
+}
 /**
  Defines a group of tab items.
 */
 class TabItemsGroup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -233,11 +282,29 @@ class TabItemsGroup extends React.Component {
     get eventListeners() {
         return ["onCreate", "onReady"];
     }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -254,10 +321,27 @@ class TabItemsGroup extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -275,7 +359,17 @@ class TabItemsGroup extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -317,19 +411,18 @@ class TabItemsGroup extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-tab-items-group", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-tab-items-group", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-const Smart$2 = window.Smart;
+let Smart;
+if (typeof window !== "undefined") {
+    Smart = window.Smart;
+}
 /**
  Tabs organize content across different screens, data sets, and other interactions. Tabs can be paired with components like top app bars. Tabs can be displayed horizontally or vertically.
 */
 class Tabs extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -445,6 +538,17 @@ class Tabs extends React.Component {
     set enableMouseWheelAction(value) {
         if (this.nativeElement) {
             this.nativeElement.enableMouseWheelAction = value;
+        }
+    }
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey() {
+        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+    }
+    set unlockKey(value) {
+        if (this.nativeElement) {
+            this.nativeElement.unlockKey = value;
         }
     }
     /** Sets or gets the locale. Used in conjunction with the property messages.
@@ -647,7 +751,7 @@ class Tabs extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["addNewTab", "allowToggle", "animation", "closeButtonMode", "closeButtons", "collapsed", "collapsible", "dataSource", "disabled", "enableMouseWheelAction", "locale", "localizeFormatFunction", "messages", "name", "overflow", "readonly", "reorder", "resize", "rightToLeft", "scrollButtonsPosition", "scrollMode", "selectedIndex", "selectionMode", "tabLayout", "tabPosition", "tabTextOrientation", "theme", "unfocusable"];
+        return ["addNewTab", "allowToggle", "animation", "closeButtonMode", "closeButtons", "collapsed", "collapsible", "dataSource", "disabled", "enableMouseWheelAction", "unlockKey", "locale", "localizeFormatFunction", "messages", "name", "overflow", "readonly", "reorder", "resize", "rightToLeft", "scrollButtonsPosition", "scrollMode", "selectedIndex", "selectionMode", "tabLayout", "tabPosition", "tabTextOrientation", "theme", "unfocusable"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -707,7 +811,7 @@ class Tabs extends React.Component {
         }
     }
     /** Returns an array of the TabItems inside the element.
-    * @returns {TabItem[]}
+    * @returns {any}
   */
     getTabs() {
         const result = this.nativeElement.getTabs();
@@ -788,11 +892,29 @@ class Tabs extends React.Component {
             });
         }
     }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -809,10 +931,27 @@ class Tabs extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -830,7 +969,17 @@ class Tabs extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -838,7 +987,7 @@ class Tabs extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
-            Smart$2.Render();
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }
@@ -873,9 +1022,8 @@ class Tabs extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-tabs", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-tabs", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-export default Tabs;
-export { Smart$2 as Smart, Tabs, TabItem, TabItemsGroup };
+export { Smart, TabItem, TabItemsGroup, Tabs, Tabs as default };

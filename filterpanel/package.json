@@ -3,5 +3,5 @@
     "module": "filterpanel.esm.js",
 	"typings": "filterpanel.d.ts",
     "name": "smart-webcomponents-react/filterpanel",
-    "sideEffects": false
+    "sideEffects": true
   }

@@ -3,5 +3,5 @@
     "module": "colorpanel.esm.js",
 	"typings": "colorpanel.d.ts",
     "name": "smart-webcomponents-react/colorpanel",
-    "sideEffects": false
+    "sideEffects": true
   }

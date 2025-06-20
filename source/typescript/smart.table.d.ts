@@ -182,6 +182,11 @@ export interface TableProperties {
    */
   loadColumnStateBehavior?: TableLoadColumnStateBehavior | string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -275,7 +280,7 @@ export interface TableProperties {
    * Sets or gets the page size (when paging is enabled).
    * Default value: 10
    */
-  pageSize?: TablePageSize | string;
+  pageSize?: number;
   /**
    * Sets or gets the current (zero-based) page index (when paging is enabled).
    * Default value: 0
@@ -296,6 +301,11 @@ export interface TableProperties {
    * Default value: "null"
    */
   rowDetailTemplate?: string;
+  /**
+   * Sets or gets a callback function with 3 arguments - column, filterConditions, filterInputTemplateString. The function should return the new filter input.
+   * Default value: null
+   */
+  onFilterRowInput?: any;
   /**
    * Sets or gets an array of the Table's selected row's ids.
    * Default value: 
@@ -651,6 +661,10 @@ export interface Table extends BaseElement, TableProperties {
    * @param {string | number} row. The id of the cell's row.
    */
   removeRow(row: string | number): void;
+  /**
+   * Resets the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is cleared, based on the value of the <strong>stateSettings</strong> property.
+   */
+  resetState(): void;
   /**
    * Saves the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is saved, based on the value of the <strong>stateSettings</strong> property.
    * @returns {any}
@@ -1009,8 +1023,6 @@ export declare type TableDataSourceSettingsDataSourceType = 'array' | 'json' | '
 export declare type TableEditMode = 'cell' | 'row';
 /**Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'. */
 export declare type TableLoadColumnStateBehavior = 'implementationOnly' | 'intersection' | 'stateOnly';
-/**Sets or gets the page size (when paging is enabled). */
-export declare type TablePageSize = '10' | '25' | '50';
 /**Sets or gets the selection mode. Only applicable when selection is enabled. */
 export declare type TableSelectionMode = 'one' | 'many' | 'extended';
 /**Determines the sorting mode of the Table. */

@@ -3,5 +3,5 @@
     "module": "gauge.esm.js",
 	"typings": "gauge.d.ts",
     "name": "smart-webcomponents-react/gauge",
-    "sideEffects": false
+    "sideEffects": true
   }

@@ -1,9 +1,10 @@
 import React from "react";
 import { TextAreaProperties } from "./../index";
-import { Animation, DropDownButtonPosition, TextAreaQueryMode } from './../index';
+import { Animation, DropDownButtonPosition, TextAreaQueryMode, TextAreaResize } from './../index';
 export { TextAreaProperties } from "./../index";
-export { Animation, DropDownButtonPosition, TextAreaQueryMode } from './../index';
-export declare const Smart: any;
+export { Animation, DropDownButtonPosition, TextAreaQueryMode, TextAreaResize } from './../index';
+declare let Smart: any;
+export { Smart };
 export interface TextAreaProps extends TextAreaProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -65,6 +66,11 @@ export declare class TextArea extends React.Component<React.HTMLAttributes<Eleme
     */
     get items(): number;
     set items(value: number);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -115,11 +121,21 @@ export declare class TextArea extends React.Component<React.HTMLAttributes<Eleme
     */
     get readonly(): boolean;
     set readonly(value: boolean);
+    /** Determines whether ot not the user can resize the Textarea.
+    *	Property type: TextAreaResize | string
+    */
+    get resize(): TextAreaResize | string;
+    set resize(value: TextAreaResize | string);
     /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: boolean
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
+    /** Enables or disables the rich text formatting.
+    *	Property type: boolean
+    */
+    get richText(): boolean;
+    set richText(value: boolean);
     /** Determines whether the items are sorted alphabetically or not
     *	Property type: boolean
     */
@@ -145,6 +161,11 @@ export declare class TextArea extends React.Component<React.HTMLAttributes<Eleme
     */
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
+    /** Sets the TextArea users. Expects an array of objects. Each object should have an id and name properties. When you press the 'at' key, you can enter an user from a dropdown.
+    *	Property type: any[]
+    */
+    get users(): any[];
+    set users(value: any[]);
     /** Sets or gets the value of the element.
     *	Property type: string
     */
@@ -178,6 +199,10 @@ export declare class TextArea extends React.Component<React.HTMLAttributes<Eleme
     /** Ensures that the active ( selected ) item is always visible.
     */
     ensureVisible(): void;
+    /** Returns an array of users mentioned in the Textarea's value.
+    * @returns {any[]}
+  */
+    getMentions(): any;
     /** Opens the drop down.
     */
     open(): void;
@@ -191,6 +216,7 @@ export declare class TextArea extends React.Component<React.HTMLAttributes<Eleme
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default TextArea;

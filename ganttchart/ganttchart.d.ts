@@ -1,9 +1,10 @@
 import React from "react";
 import { GanttChartProperties } from "./../index";
-import { GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDateMarker, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskColumn, GanttChartTooltip } from './../index';
+import { GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, MonthScale, QuarterFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSelectionMode, GanttChartSortMode, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDateMarker, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskColumn, GanttChartTooltip } from './../index';
 export { GanttChartProperties } from "./../index";
-export { GanttChartDataExportItemType, GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSortMode, GanttChartTaskType, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDateMarker, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskIndicator, GanttChartTaskPlanned, GanttChartTaskSegment, GanttChartTaskColumn, GanttChartTooltip } from './../index';
-export declare const Smart: any;
+export { GanttChartDataExportItemType, GanttDayFormat, Duration, HorizontalScrollBarVisibility, HourFormat, MonthFormat, MonthScale, QuarterFormat, GanttChartResourceTimelineMode, GanttChartResourceTimelineView, GanttChartSelectionMode, GanttChartSortMode, GanttChartTaskType, VerticalScrollBarVisibility, GanttChartView, YearFormat, WeekFormat, GanttChartDataExport, GanttChartDateMarker, GanttChartResource, GanttChartResourceColumn, GanttChartTask, GanttChartTaskIndicator, GanttChartTaskPlanned, GanttChartTaskSegment, GanttChartTaskColumn, GanttChartTooltip } from './../index';
+declare let Smart: any;
+export { Smart };
 export interface GanttChartProps extends GanttChartProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -81,6 +82,11 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get columnResizeFeedback(): boolean;
     set columnResizeFeedback(value: boolean);
+    /** Gantt's current time. By default it is the today's date.
+    *	Property type: string | Date
+    */
+    get currentTime(): string | Date;
+    set currentTime(value: string | Date);
     /** Enables/Disables the current time indicator. Current time indicator shows the current time in the appropriate view cells.
     *	Property type: boolean
     */
@@ -176,6 +182,11 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get filterRow(): boolean;
     set filterRow(value: boolean);
+    /** Determines the view start day. Sunday is 0, Monday is 1, Saturday is 6. By default it's Sunday.
+    *	Property type: number
+    */
+    get firstDayOfWeek(): number;
+    set firstDayOfWeek(value: number);
     /** Groups the tasks inside the Task timeline according to the resources they are assigned to. Unassigned tasks are placed in a default group labeled 'Unassigned'.
     *	Property type: boolean
     */
@@ -191,16 +202,21 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get hideDateMarkers(): boolean;
     set hideDateMarkers(value: boolean);
-    /** By default the Timeline has a two level header - timeline details and timeline header. This property hides the header details container( the top container ).
+    /** By default the Timeline has a three level header - timeline details, timeline second details and timeline header. This property hides the header container( the bottom container ).
+    *	Property type: boolean
+    */
+    get hideTimelineHeader(): boolean;
+    set hideTimelineHeader(value: boolean);
+    /** By default the Timeline has a three level header - timeline details, timeline second details and timeline header. This property hides the header details container( the top container ).
     *	Property type: boolean
     */
     get hideTimelineHeaderDetails(): boolean;
     set hideTimelineHeaderDetails(value: boolean);
-    /** Shows the selection column of the Task/Resource Table. When applied a checkbox column is displayed that allows to select tasks/resources.
+    /** By default the Timeline has a three level header - timeline details and timeline header. This property hides the second header details container( the middle container ).
     *	Property type: boolean
     */
-    get showSelectionColumn(): boolean;
-    set showSelectionColumn(value: boolean);
+    get hideTimelineSecondHeaderDetails(): boolean;
+    set hideTimelineSecondHeaderDetails(value: boolean);
     /** Hides the Resource panel regardless of the resources availability By default the Resource panel is visible if resources are added to the GanttChart. This property allows to hide the Resource panel permanently.
     *	Property type: boolean
     */
@@ -236,6 +252,11 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get keyboardNavigation(): boolean;
     set keyboardNavigation(value: boolean);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /**  Determines the language of the GanttChart.
     *	Property type: string
     */
@@ -261,6 +282,11 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get monthFormat(): MonthFormat | string;
     set monthFormat(value: MonthFormat | string);
+    /** Determines the scale in Month view.
+    *	Property type: MonthScale | string
+    */
+    get monthScale(): MonthScale | string;
+    set monthScale(value: MonthScale | string);
     /** Determines the nonworking days of the week from 0 to 6, where 0 is the first day of the week and 6 is the last day. Nonworking days will be displayed with colored cells inside the timeline and will not affect the dateEnd of the tasks unless the adjustToNonworkingTime property is enabled.
     *	Property type: number[]
     */
@@ -271,6 +297,21 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get nonworkingHours(): number[] | number[][];
     set nonworkingHours(value: number[] | number[][]);
+    /** A function that can be used to completly customize the task element. The function has five arguments: task - the task object.segment - the task current segment object. If the task has only one segment, the task object is passed again.taskElement - the task's html element.segmentElement - the task's segment html element.labelElement - the task's segment label html element.
+    *	Property type: any
+    */
+    get onTaskRender(): any;
+    set onTaskRender(value: any);
+    /** A function that can be used to completly customize the task element. The function has two arguments: task - the task object.taskElement - the task's html element.
+    *	Property type: any
+    */
+    get taskFormatFunction(): any;
+    set taskFormatFunction(value: any);
+    /** A function that can be used to completly customize the tooltip. The function has three arguments: tooltipObject - the tooltip object.event - the event that triggered the tooltip.content - the tooltip's label element.
+    *	Property type: any
+    */
+    get tooltipFormatFunction(): any;
+    set tooltipFormatFunction(value: any);
     /** A function that can be used to completly customize the popup Window that is used to interact width tasks by changing their properties. The function as three arguments: target - the target popup Window that is about to be opened.type - the type of the window. The type determines the purpose of the window. Three possible values: 'task' (task editing), 'confirm' ( confirmation window), 'connection' (used when deleting a connection between tasks). item - the connection/task object that is the target of the window.
     *	Property type: any
     */
@@ -286,6 +327,11 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get progressLabelFormatFunction(): any;
     set progressLabelFormatFunction(value: any);
+    /** Determines the format of the dates the timeline header when they represent quarters.
+    *	Property type: QuarterFormat | string
+    */
+    get quarterFormat(): QuarterFormat | string;
+    set quarterFormat(value: QuarterFormat | string);
     /** A getter that returns a flat structure as an array of all resources inside the element.
     *	Property type: GanttChartResource[]
     */
@@ -356,11 +402,21 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     */
     get selectedResourceIds(): number[] | string[];
     set selectedResourceIds(value: number[] | string[]);
+    /** Sets or gets the selection mode. Only applicable when selection is enabled.
+    *	Property type: GanttChartSelectionMode | string
+    */
+    get selectionMode(): GanttChartSelectionMode | string;
+    set selectionMode(value: GanttChartSelectionMode | string);
     /** Enables/Disables the current time shader. If enabled all cells that represent past time will be shaded.
     *	Property type: boolean
     */
     get shadeUntilCurrentTime(): boolean;
     set shadeUntilCurrentTime(value: boolean);
+    /** Shows the selection column of the Task/Resource Table. When applied a checkbox column is displayed that allows to select tasks/resources.
+    *	Property type: boolean
+    */
+    get showSelectionColumn(): boolean;
+    set showSelectionColumn(value: boolean);
     /** Determines whether the baselnes of the tasks are visible or not. Baselines are defined via the 'planned' attribute on the task objects of the dataSource property.
     *	Property type: boolean
     */
@@ -839,6 +895,10 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     * @param {string} content?. Allows to set a custom content for the Tooltip.
     */
     showTooltip(target: HTMLElement, content?: string): void;
+    /** Scrolls to a date.
+    * @param {Date} date. The date to scroll to.
+    */
+    scrollToDate(date: Date): void;
     /** Saves the current settings of the element to LocalStorage. Requires an id to be set to the element.
     * @param {any[]} state?. An Array containing a valid structure of Gantt Chart tasks.
     */
@@ -924,6 +984,7 @@ export declare class GanttChart extends React.Component<React.HTMLAttributes<Ele
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default GanttChart;

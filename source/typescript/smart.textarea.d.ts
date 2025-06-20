@@ -47,6 +47,11 @@ export interface TextAreaProperties {
    */
   items?: number;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -109,10 +114,20 @@ export interface TextAreaProperties {
    */
   readonly?: boolean;
   /**
+   * Determines whether ot not the user can resize the Textarea.
+   * Default value: none
+   */
+  resize?: TextAreaResize | string;
+  /**
    * Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
    * Default value: false
    */
   rightToLeft?: boolean;
+  /**
+   * Enables or disables the rich text formatting.
+   * Default value: false
+   */
+  richText?: boolean;
   /**
    * Determines whether the items are sorted alphabetically or not
    * Default value: false
@@ -138,6 +153,11 @@ export interface TextAreaProperties {
    * Default value: false
    */
   unfocusable?: boolean;
+  /**
+   * Sets the TextArea users. Expects an array of objects. Each object should have an id and name properties. When you press the 'at' key, you can enter an user from a dropdown.
+   * Default value: []
+   */
+  users?: any[];
   /**
    * Sets or gets the value of the element.
    * Default value: ""
@@ -176,6 +196,11 @@ export interface TextArea extends BaseElement, TextAreaProperties {
    */
   ensureVisible(): void;
   /**
+   * Returns an array of users mentioned in the Textarea's value.
+   * @returns {any[]}
+   */
+  getMentions(): any[];
+  /**
    * Opens the drop down.
    */
   open(): void;
@@ -199,3 +224,5 @@ declare global {
 export declare type DropDownButtonPosition = 'none' | 'left' | 'right';
 /**Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation. */
 export declare type TextAreaQueryMode = 'contains' | 'containsIgnoreCase' | 'doesNotContain' | 'doesNotContainIgnoreCase' | 'equals' | 'equalsIgnoreCase' | 'startsWith' | 'startsWithIgnoreCase' | 'endsWith' | 'endsWithIgnoreCase';
+/**Determines whether ot not the user can resize the Textarea. */
+export declare type TextAreaResize = 'none' | 'horizontal' | 'vertical' | 'both';

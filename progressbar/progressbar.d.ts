@@ -5,7 +5,8 @@ export { ProgressBarProperties } from "./../index";
 export { Animation, Orientation } from './../index';
 export { CircularProgressBar } from './circularprogressbar';
 export { CircularProgressBarProperties } from "./../index";
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface ProgressBarProps extends ProgressBarProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -41,7 +42,7 @@ export declare class ProgressBar extends React.Component<React.HTMLAttributes<El
     */
     get inverted(): boolean;
     set inverted(value: boolean);
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or gets the unlockKey which unlocks the product.
     *	Property type: {(value: number): string}
     */
     get formatFunction(): {
@@ -50,6 +51,11 @@ export declare class ProgressBar extends React.Component<React.HTMLAttributes<El
     set formatFunction(value: {
         (value: number): string;
     });
+    /** Sets or gets the language. Used in conjunction with the property messages.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Callback, related to localization module.
     *	Property type: string
     */
@@ -123,6 +129,7 @@ export declare class ProgressBar extends React.Component<React.HTMLAttributes<El
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default ProgressBar;

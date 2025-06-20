@@ -3,5 +3,5 @@
     "module": "dateinput.esm.js",
 	"typings": "dateinput.d.ts",
     "name": "smart-webcomponents-react/dateinput",
-    "sideEffects": false
+    "sideEffects": true
   }

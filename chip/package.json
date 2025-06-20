@@ -3,5 +3,5 @@
     "module": "chip.esm.js",
 	"typings": "chip.d.ts",
     "name": "smart-webcomponents-react/chip",
-    "sideEffects": false
+    "sideEffects": true
   }

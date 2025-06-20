@@ -3,5 +3,5 @@
     "module": "card.esm.js",
 	"typings": "card.d.ts",
     "name": "smart-webcomponents-react/card",
-    "sideEffects": false
+    "sideEffects": true
   }

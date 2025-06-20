@@ -3,5 +3,5 @@
     "module": "scrollbar.esm.js",
 	"typings": "scrollbar.d.ts",
     "name": "smart-webcomponents-react/scrollbar",
-    "sideEffects": false
+    "sideEffects": true
   }

@@ -9,7 +9,8 @@ export { ToggleButton } from './togglebutton';
 export { ToggleButtonProperties } from "./../index";
 export { PowerButton } from './powerbutton';
 export { PowerButtonProperties } from "./../index";
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface ButtonProps extends ButtonProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -46,6 +47,11 @@ export declare class Button extends React.Component<React.HTMLAttributes<Element
     get innerHTML(): string;
     set innerHTML(value: string);
     /** Sets the inner HTML of the element.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
+    /** Sets or gets the unlockKey which unlocks the product.
     *	Property type: string
     */
     get locale(): string;
@@ -113,6 +119,7 @@ export declare class Button extends React.Component<React.HTMLAttributes<Element
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Button;

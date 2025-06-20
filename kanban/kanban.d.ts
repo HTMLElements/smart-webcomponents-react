@@ -1,10 +1,11 @@
 import React from "react";
 import { KanbanProperties } from "./../index";
-import { KanbanAddNewButtonDisplayMode, KanbanColumnEditMode, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanTaskSubTasks, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanPriority, KanbanUser } from './../index';
+import { KanbanAddNewButtonDisplayMode, KanbanColumnEditMode, KanbanEditMode, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanTaskSubTasks, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanPriority, KanbanUser } from './../index';
 export { KanbanProperties } from "./../index";
-export { KanbanAddNewButtonDisplayMode, KanbanColumnOrientation, KanbanColumnEditMode, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanTaskSubTasks, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanPriority, KanbanUser } from './../index';
+export { KanbanAddNewButtonDisplayMode, KanbanColumnOrientation, KanbanColumnEditMode, KanbanEditMode, KanbanHeaderPosition, KanbanHierarchy, KanbanSelectionMode, KanbanTaskPosition, KanbanTaskSubTasks, KanbanColumn, KanbanDataSource, KanbanSwimlane, KanbanPriority, KanbanUser } from './../index';
 export { DataAdapter } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface KanbanProps extends KanbanProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -98,6 +99,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get allowDrop(): boolean;
     set allowDrop(value: boolean);
+    /** Allows the dropping of tasks placeholder. When you drag a task over another task it will make an empty space for the task.
+    *	Property type: boolean
+    */
+    get allowDropPlaceholder(): boolean;
+    set allowDropPlaceholder(value: boolean);
     /** This property changes the visual appeal of the Kanban columns and tasks. When set to true and the Kanban columns have their 'color' property set, the color is also applied to the tasks and edit dialog.
     *	Property type: boolean
     */
@@ -244,6 +250,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get editable(): boolean;
     set editable(value: boolean);
+    /** Determines the edit behavior. It could be either singleClick or doubleClick. The dialog edit window is by default opened when user double clicks on a Kanban task.
+    *	Property type: KanbanEditMode | string
+    */
+    get editMode(): KanbanEditMode | string;
+    set editMode(value: KanbanEditMode | string);
     /** Sets or gets the format string of the "Due date" label and the "Start date" and "Due date" editors.
     *	Property type: string
     */
@@ -264,6 +275,11 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     */
     get hierarchy(): KanbanHierarchy | string;
     set hierarchy(value: KanbanHierarchy | string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -706,8 +722,8 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     * @returns {any}
   */
     getSelectedTasks(id: number): any;
-    /** Gets the Kanban's state.
-    * @returns {{ collapsed: {}, dataSource: [], filtering: { filters: [], operator: string }, selection: { selected: [], selectionStart: number | string, selectionInColumn: string, swimlane: string }, sorting: { dataFields: [], dataTypes: [], orderBy: [] }, tabs: [], visibility: { taskActions: boolean, taskComments: boolean, taskDue: boolean, taskPriority: boolean, taskProgress: boolean, taskTags: boolean, taskUserIcon: boolean } }}
+    /** Gets the Kanban's state. Returns an object with the following type: { collapsed: {}, dataSource: [], filtering: { filters: [], operator: string }, selection: { selected: [], selectionStart?: number | string, selectionInColumn: string, swimlane: string }, sorting: { dataFields: [], dataTypes: [], orderBy: [] }, tabs: [], visibility: { taskActions: boolean, taskComments: boolean, taskDue: boolean, taskPriority: boolean, taskProgress: boolean, taskTags: boolean, taskUserIcon: boolean } }
+    * @returns {any}
   */
     getState(): any;
     /** Loads the Kanban's state.
@@ -806,6 +822,7 @@ export declare class Kanban extends React.Component<React.HTMLAttributes<Element
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Kanban;

@@ -3,7 +3,8 @@ import { RadioButtonProperties } from "./../index";
 import { Animation, CheckMode, ClickMode } from './../index';
 export { RadioButtonProperties } from "./../index";
 export { Animation, CheckMode, ClickMode } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface RadioButtonProps extends RadioButtonProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -56,6 +57,11 @@ export declare class RadioButton extends React.Component<React.HTMLAttributes<El
     */
     get innerHTML(): string;
     set innerHTML(value: string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -133,6 +139,7 @@ export declare class RadioButton extends React.Component<React.HTMLAttributes<El
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default RadioButton;

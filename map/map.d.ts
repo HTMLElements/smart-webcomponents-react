@@ -2,7 +2,8 @@ import React from "react";
 import { MapProperties } from "./../index";
 export { MapProperties } from "./../index";
 export {} from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface MapProps extends MapProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -67,6 +68,7 @@ export declare class Map extends React.Component<React.HTMLAttributes<Element> &
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Map;

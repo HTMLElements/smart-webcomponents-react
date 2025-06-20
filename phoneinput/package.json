@@ -3,5 +3,5 @@
     "module": "phoneinput.esm.js",
 	"typings": "phoneinput.d.ts",
     "name": "smart-webcomponents-react/phoneinput",
-    "sideEffects": false
+    "sideEffects": true
   }

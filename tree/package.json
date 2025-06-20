@@ -3,5 +3,5 @@
     "module": "tree.esm.js",
 	"typings": "tree.d.ts",
     "name": "smart-webcomponents-react/tree",
-    "sideEffects": false
+    "sideEffects": true
   }

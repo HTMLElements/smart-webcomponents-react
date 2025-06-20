@@ -2,22 +2,19 @@
 require('../source/modules/smart.listbox');
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
-	(factory((global.listbox = {}),global.React));
-}(this, (function (exports,React) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom/client')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom/client'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.listbox = {}, global.React, global.ReactDOM));
+})(this, (function (exports, React, ReactDOM) { 'use strict';
 
-	React = React && React.hasOwnProperty('default') ? React['default'] : React;
-
-	const Smart = window.Smart;
+	let Smart$1;
+	if (typeof window !== "undefined") {
+	    Smart$1 = window.Smart;
+	}
 	/**
 	 Defines a list item for ListBox, ComboBox, DropDownList.
 	*/
 	class ListItem extends React.Component {
-	    constructor(props) {
-	        super(props);
-	        this.componentRef = React.createRef();
-	    }
 	    // Gets the id of the React component.
 	    get id() {
 	        if (!this._id) {
@@ -154,11 +151,29 @@ require('../source/modules/smart.listbox');
 	    get eventListeners() {
 	        return ["onCreate", "onReady"];
 	    }
+	    constructor(props) {
+	        super(props);
+	        this.componentRef = React.createRef();
+	    }
 	    componentDidRender(initialize) {
 	        const that = this;
 	        const props = {};
 	        const events = {};
 	        let styles = null;
+	        const stringifyCircularJSON = (obj) => {
+	            const seen = new WeakSet();
+	            return JSON.stringify(obj, (k, v) => {
+	                if (v !== null && typeof v === 'object') {
+	                    if (seen.has(v))
+	                        return;
+	                    seen.add(v);
+	                }
+	                if (k === 'Smart') {
+	                    return v;
+	                }
+	                return v;
+	            });
+	        };
 	        for (let prop in that.props) {
 	            if (prop === 'children') {
 	                continue;
@@ -175,10 +190,27 @@ require('../source/modules/smart.listbox');
 	        }
 	        if (initialize) {
 	            that.nativeElement = this.componentRef.current;
+	            that.nativeElement.React = React;
+	            that.nativeElement.ReactDOM = ReactDOM;
+	            if (that.nativeElement && !that.nativeElement.isCompleted) {
+	                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+	            }
+	        }
+	        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+	            //	return;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
+	                if (that.nativeElement._classNames) {
+	                    const oldClassNames = that.nativeElement._classNames;
+	                    for (let className in oldClassNames) {
+	                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+	                            that.nativeElement.classList.remove(oldClassNames[className]);
+	                        }
+	                    }
+	                }
+	                that.nativeElement._classNames = classNames;
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
 	                        that.nativeElement.classList.add(classNames[className]);
@@ -196,7 +228,17 @@ require('../source/modules/smart.listbox');
 	                    that.nativeElement.setAttribute(prop, '');
 	                }
 	                const normalizedProp = normalizeProp(prop);
-	                that.nativeElement[normalizedProp] = props[prop];
+	                if (that.nativeElement[normalizedProp] === undefined) {
+	                    that.nativeElement.setAttribute(prop, props[prop]);
+	                }
+	                if (props[prop] !== undefined) {
+	                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+	                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+	                            continue;
+	                        }
+	                    }
+	                    that.nativeElement[normalizedProp] = props[prop];
+	                }
 	            }
 	        }
 	        for (let eventName in events) {
@@ -238,19 +280,18 @@ require('../source/modules/smart.listbox');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-list-item", { ref: this.componentRef }, this.props.children));
+	        return (React.createElement("smart-list-item", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
 	    }
 	}
 
-	const Smart$1 = window.Smart;
+	let Smart;
+	if (typeof window !== "undefined") {
+	    Smart = window.Smart;
+	}
 	/**
 	 Defines a group of list items.
 	*/
 	class ListItemsGroup extends React.Component {
-	    constructor(props) {
-	        super(props);
-	        this.componentRef = React.createRef();
-	    }
 	    // Gets the id of the React component.
 	    get id() {
 	        if (!this._id) {
@@ -277,11 +318,29 @@ require('../source/modules/smart.listbox');
 	    get eventListeners() {
 	        return ["onCreate", "onReady"];
 	    }
+	    constructor(props) {
+	        super(props);
+	        this.componentRef = React.createRef();
+	    }
 	    componentDidRender(initialize) {
 	        const that = this;
 	        const props = {};
 	        const events = {};
 	        let styles = null;
+	        const stringifyCircularJSON = (obj) => {
+	            const seen = new WeakSet();
+	            return JSON.stringify(obj, (k, v) => {
+	                if (v !== null && typeof v === 'object') {
+	                    if (seen.has(v))
+	                        return;
+	                    seen.add(v);
+	                }
+	                if (k === 'Smart') {
+	                    return v;
+	                }
+	                return v;
+	            });
+	        };
 	        for (let prop in that.props) {
 	            if (prop === 'children') {
 	                continue;
@@ -298,10 +357,27 @@ require('../source/modules/smart.listbox');
 	        }
 	        if (initialize) {
 	            that.nativeElement = this.componentRef.current;
+	            that.nativeElement.React = React;
+	            that.nativeElement.ReactDOM = ReactDOM;
+	            if (that.nativeElement && !that.nativeElement.isCompleted) {
+	                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+	            }
+	        }
+	        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+	            //	return;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
+	                if (that.nativeElement._classNames) {
+	                    const oldClassNames = that.nativeElement._classNames;
+	                    for (let className in oldClassNames) {
+	                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+	                            that.nativeElement.classList.remove(oldClassNames[className]);
+	                        }
+	                    }
+	                }
+	                that.nativeElement._classNames = classNames;
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
 	                        that.nativeElement.classList.add(classNames[className]);
@@ -319,7 +395,17 @@ require('../source/modules/smart.listbox');
 	                    that.nativeElement.setAttribute(prop, '');
 	                }
 	                const normalizedProp = normalizeProp(prop);
-	                that.nativeElement[normalizedProp] = props[prop];
+	                if (that.nativeElement[normalizedProp] === undefined) {
+	                    that.nativeElement.setAttribute(prop, props[prop]);
+	                }
+	                if (props[prop] !== undefined) {
+	                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+	                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+	                            continue;
+	                        }
+	                    }
+	                    that.nativeElement[normalizedProp] = props[prop];
+	                }
 	            }
 	        }
 	        for (let eventName in events) {
@@ -361,19 +447,18 @@ require('../source/modules/smart.listbox');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-list-items-group", { ref: this.componentRef }, this.props.children));
+	        return (React.createElement("smart-list-items-group", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
 	    }
 	}
 
-	const Smart$2 = window.Smart;
+	exports.Smart = void 0;
+	if (typeof window !== "undefined") {
+	    exports.Smart = window.Smart;
+	}
 	/**
 	 ListBox allows the user to select one or more items from a list.
 	*/
 	class ListBox extends React.Component {
-	    constructor(props) {
-	        super(props);
-	        this.componentRef = React.createRef();
-	    }
 	    // Gets the id of the React component.
 	    get id() {
 	        if (!this._id) {
@@ -711,6 +796,17 @@ require('../source/modules/smart.listbox');
 	            this.nativeElement.loadingIndicatorPosition = value;
 	        }
 	    }
+	    /** Sets or gets the unlockKey which unlocks the product.
+	    *	Property type: string
+	    */
+	    get unlockKey() {
+	        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+	    }
+	    set unlockKey(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.unlockKey = value;
+	        }
+	    }
 	    /** Sets or gets the language. Used in conjunction with the property messages.
 	    *	Property type: string
 	    */
@@ -933,7 +1029,7 @@ require('../source/modules/smart.listbox');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["allowDrag", "allowDrop", "alternationCount", "alternationEnd", "alternationStart", "animation", "autoSort", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dragFeedbackFormatFunction", "dragOffset", "dropAction", "editable", "filterable", "filterCallback", "filterMode", "filterInputPlaceholder", "grouped", "groupMember", "horizontalScrollBarVisibility", "incrementalSearchDelay", "incrementalSearchMode", "itemHeight", "itemMeasureMode", "items", "itemTemplate", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "name", "placeholder", "readonly", "rightToLeft", "selectedIndexes", "selectedValues", "selectionMode", "selectionChangeAction", "sorted", "sortDirection", "theme", "topVisibleIndex", "unfocusable", "value", "valueMember", "verticalScrollBarVisibility", "virtualized"];
+	        return ["allowDrag", "allowDrop", "alternationCount", "alternationEnd", "alternationStart", "animation", "autoSort", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dragFeedbackFormatFunction", "dragOffset", "dropAction", "editable", "filterable", "filterCallback", "filterMode", "filterInputPlaceholder", "grouped", "groupMember", "horizontalScrollBarVisibility", "incrementalSearchDelay", "incrementalSearchMode", "itemHeight", "itemMeasureMode", "items", "itemTemplate", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "unlockKey", "locale", "localizeFormatFunction", "messages", "name", "placeholder", "readonly", "rightToLeft", "selectedIndexes", "selectedValues", "selectionMode", "selectionChangeAction", "sorted", "sortDirection", "theme", "topVisibleIndex", "unfocusable", "value", "valueMember", "verticalScrollBarVisibility", "virtualized"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
@@ -946,6 +1042,19 @@ require('../source/modules/smart.listbox');
 	    appendChild(node) {
 	        const result = this.nativeElement.appendChild(node);
 	        return result;
+	    }
+	    /** Adds a new item(s).
+	    * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
+	    */
+	    add(item) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.add(item);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.add(item);
+	            });
+	        }
 	    }
 	    /** Removes all items from the listBox.
 	    */
@@ -968,6 +1077,18 @@ require('../source/modules/smart.listbox');
 	        else {
 	            this.nativeElement.whenRendered(() => {
 	                this.nativeElement.clearSelection();
+	            });
+	        }
+	    }
+	    /** Performs a data bind. This can be used to refresh the data source.
+	    */
+	    dataBind() {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.dataBind();
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.dataBind();
 	            });
 	        }
 	    }
@@ -1083,11 +1204,29 @@ require('../source/modules/smart.listbox');
 	            });
 	        }
 	    }
+	    constructor(props) {
+	        super(props);
+	        this.componentRef = React.createRef();
+	    }
 	    componentDidRender(initialize) {
 	        const that = this;
 	        const props = {};
 	        const events = {};
 	        let styles = null;
+	        const stringifyCircularJSON = (obj) => {
+	            const seen = new WeakSet();
+	            return JSON.stringify(obj, (k, v) => {
+	                if (v !== null && typeof v === 'object') {
+	                    if (seen.has(v))
+	                        return;
+	                    seen.add(v);
+	                }
+	                if (k === 'Smart') {
+	                    return v;
+	                }
+	                return v;
+	            });
+	        };
 	        for (let prop in that.props) {
 	            if (prop === 'children') {
 	                continue;
@@ -1104,10 +1243,27 @@ require('../source/modules/smart.listbox');
 	        }
 	        if (initialize) {
 	            that.nativeElement = this.componentRef.current;
+	            that.nativeElement.React = React;
+	            that.nativeElement.ReactDOM = ReactDOM;
+	            if (that.nativeElement && !that.nativeElement.isCompleted) {
+	                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+	            }
+	        }
+	        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+	            //	return;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
+	                if (that.nativeElement._classNames) {
+	                    const oldClassNames = that.nativeElement._classNames;
+	                    for (let className in oldClassNames) {
+	                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+	                            that.nativeElement.classList.remove(oldClassNames[className]);
+	                        }
+	                    }
+	                }
+	                that.nativeElement._classNames = classNames;
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
 	                        that.nativeElement.classList.add(classNames[className]);
@@ -1125,7 +1281,17 @@ require('../source/modules/smart.listbox');
 	                    that.nativeElement.setAttribute(prop, '');
 	                }
 	                const normalizedProp = normalizeProp(prop);
-	                that.nativeElement[normalizedProp] = props[prop];
+	                if (that.nativeElement[normalizedProp] === undefined) {
+	                    that.nativeElement.setAttribute(prop, props[prop]);
+	                }
+	                if (props[prop] !== undefined) {
+	                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+	                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+	                            continue;
+	                        }
+	                    }
+	                    that.nativeElement[normalizedProp] = props[prop];
+	                }
 	            }
 	        }
 	        for (let eventName in events) {
@@ -1133,7 +1299,7 @@ require('../source/modules/smart.listbox');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
-	            Smart$2.Render();
+	            exports.Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }
@@ -1168,16 +1334,15 @@ require('../source/modules/smart.listbox');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-list-box", { ref: this.componentRef }, this.props.children));
+	        return (React.createElement("smart-list-box", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
 	    }
 	}
 
-	exports.Smart = Smart$2;
 	exports.ListBox = ListBox;
-	exports.default = ListBox;
 	exports.ListItem = ListItem;
 	exports.ListItemsGroup = ListItemsGroup;
+	exports.default = ListBox;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));

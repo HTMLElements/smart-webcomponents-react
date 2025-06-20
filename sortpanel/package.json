@@ -3,5 +3,5 @@
     "module": "sortpanel.esm.js",
 	"typings": "sortpanel.d.ts",
     "name": "smart-webcomponents-react/sortpanel",
-    "sideEffects": false
+    "sideEffects": true
   }

@@ -22,6 +22,11 @@ export interface SchedulerProperties {
    */
   colorScheme?: string[];
   /**
+   * Determines the current time of the Scheduler to use for the current time indicator functionality. By default the current time is Today.
+   * Default value: new Date()
+   */
+  currentTime?: string | Date;
+  /**
    * Enables/Disables the current time indicator. Current time indicator shows the current time in the appropriate view cells. 
    * Default value: false
    */
@@ -302,6 +307,11 @@ export interface SchedulerProperties {
    */
   horizontalScrollBarVisibility?: HorizontalScrollBarVisibility | string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    *  Determines the language of the Scheduler. 
    * Default value: "en"
    */
@@ -377,7 +387,7 @@ export interface SchedulerProperties {
    */
   restrictedHours?: any;
   /**
-   * Defines an array of dates and hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed. Each array item is an Object and requires 2 fields - date and hours. For example: { date: new Date(2022, 10, 1), hours: [[0, 6], 12, [20, 23]] }. The hours define a range of restricted hours similartly to the restricted hours property, the date defines a date where the restricted hours will be applied.
+   * Defines an array of dates and hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed. Each array item is an Object and requires 2 fields - date and hours. For example: { date: new Date(2023, 10, 1), hours: [[0, 6], 12, [20, 23]] }. The hours define a range of restricted hours similartly to the restricted hours property, the date defines a date where the restricted hours will be applied.
    * Default value: 
    */
   restricted?: any;
@@ -848,9 +858,10 @@ export interface Scheduler extends BaseElement, SchedulerProperties {
   /**
    * Exports the events from the Scheduler.
    * @param {string} dataFormat. Determines the format of the exported file. The following values are available: <ul><li><b>pdf</b></li><li><b>xlsx</b></li><li><b>html</b></li><li><b>iCal</b></li></ul>
-   * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer ro the Smart Export Documentation.
+   * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer to the Smart Export Documentation.
+   * @param {any} dataCallback?. A callback that allows to change the exported data.
    */
-  exportData(dataFormat: string, callback?: any): void;
+  exportData(dataFormat: string, callback?: any, dataCallback?: any): void;
   /**
    * Returns a JSON representation of the events inside the Scheduler.
    * @returns {any}

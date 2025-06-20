@@ -3,5 +3,5 @@
     "module": "accordion.esm.js",
 	"typings": "accordion.d.ts",
     "name": "smart-webcomponents-react/accordion",
-    "sideEffects": false
+    "sideEffects": true
   }

@@ -3,7 +3,8 @@ import { BarcodeProperties } from "./../index";
 import { BarcodeLabelPosition, BarcodeRenderAs, BarcodeType } from './../index';
 export { BarcodeProperties } from "./../index";
 export { BarcodeLabelPosition, BarcodeRenderAs, BarcodeType } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface BarcodeProps extends BarcodeProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -89,6 +90,16 @@ export declare class Barcode extends React.Component<React.HTMLAttributes<Elemen
     */
     get value(): string;
     set value(value: string);
+    /** Sets or gets the width of the barcode. If the width is set to 0, the width of the barcode is calculated automatically.
+    *	Property type: number
+    */
+    get width(): number;
+    set width(value: number);
+    /** Sets or gets the height of the barcode. If the height is set to 0, the height of the barcode is calculated automatically.
+    *	Property type: number
+    */
+    get height(): number;
+    set height(value: number);
     get properties(): string[];
     /**  This event is triggered when the value of the barcode is invalid.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	invalidCharacters, 	lengthValidity, 	patternValidity, 	value)
@@ -131,6 +142,7 @@ export declare class Barcode extends React.Component<React.HTMLAttributes<Elemen
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Barcode;

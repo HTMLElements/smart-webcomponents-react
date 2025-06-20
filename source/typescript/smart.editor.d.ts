@@ -2,10 +2,20 @@ import  {BaseElement, Animation} from "./smart.element"
 
 export interface EditorProperties {
   /**
+   * An object containing settings related to the grid's AI integration.
+   * Default value: [object Object]
+   */
+  ai?: EditorAi;
+  /**
    * Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
    * Default value: advanced
    */
   animation?: Animation | string;
+  /**
+   * Automatically formats text as you type—bullets, checkboxes, headings, code blocks
+   * Default value: true
+   */
+  autoFormatting?: boolean;
   /**
    * Automatically loads the last saved state of the editor (from local storage) on element initialization. An id must be provided in order to load a previously saved state.
    * Default value: false
@@ -67,7 +77,7 @@ export interface EditorProperties {
    */
   disableSearchBar?: boolean;
   /**
-   * Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode.
+   * Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. The 'blockHtml' edit mode creates DIV tags when you hit enter and also includes built-in commands for data input. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode.
    * Default value: html
    */
   editMode?: EditMode | string;
@@ -102,6 +112,16 @@ export interface EditorProperties {
    */
   imageFormat?: EditorImageFormat | string;
   /**
+   * Automatically sets the width of an image when pasted from clipboard.
+   * Default value: 0
+   */
+  imagePasteWidth?: number;
+  /**
+   * Automatically sets the height of an image when pasted from clipboard.
+   * Default value: 0
+   */
+  imagePasteHeight?: number;
+  /**
    * Sets the content of the Editor as HTML. Allows to insert text and HTML.
    * Default value: "en"
    */
@@ -116,6 +136,11 @@ export interface EditorProperties {
    * Default value: [object Object]
    */
   iframeSettings?: EditorIframeSettings;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -379,6 +404,21 @@ export interface EditorProperties {
    */
   splitModeRefreshTimeout?: number;
   /**
+   * Sets the editor users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
+   * Default value: []
+   */
+  users?: any[];
+  /**
+   * Enables the editor pages feature.
+   * Default value: false
+   */
+  enablePages?: boolean;
+  /**
+   * Sets the editor pages. Expects an array with 'label' and 'innerHTML' properties.
+   * Default value: []
+   */
+  pages?: any[];
+  /**
    * Sets or gets the upload URL. This property corresponds to the upload form's action attribute. For example, the uploadUrl property can point to a PHP file, which handles the upload operation on the server-side.
    * Default value: ""
    */
@@ -636,6 +676,11 @@ export interface Editor extends BaseElement, EditorProperties {
    */
   onMessageOpen?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
+   * Adds a new Toolbar item. Example: editor.addToolbarItem({ name: &#039;customButton2&#039;, width: 100, template: &#039;&lt;smart-button&gt;Button2&lt;/smart-button&gt;&#039; })
+   * @param {any} itemName. The toolbar item to be added
+   */
+  addToolbarItem(itemName: any): void;
+  /**
    * Blurs the content of the Editor.
    */
   blur(): void;
@@ -702,6 +747,12 @@ export interface Editor extends BaseElement, EditorProperties {
    */
   hideLastMessage(): void;
   /**
+   * Inserts a new Toolbar item. Example: editor.insertToolbarItem({ name: &#039;customButton2&#039;, width: 100, template: &#039;&lt;smart-button&gt;Button2&lt;/smart-button&gt;&#039; })
+   * @param {any} itemName. The toolbar item to be added
+   * @param {number} index. The toolbar item's index
+   */
+  insertToolbarItem(itemName: any, index: number): void;
+  /**
    * Shows a custom message inside the Editor.
    * @param {string} message. The text message to be displayed.
    * @param {any} settings?. Additional settings that can be applied to the Toast element that handles the messages. This parameter should contain only valid Toast properties and values.
@@ -741,6 +792,11 @@ export interface Editor extends BaseElement, EditorProperties {
    */
   previewMode(value?: boolean): void;
   /**
+   * Removes a Toolbar item. Example: editor.removeToolbarItem(0)
+   * @param {number} index. The toolbar item's index
+   */
+  removeToolbarItem(index: number): void;
+  /**
    * Sets Editor into Full Screen Mode. If enabled the Editor is positioned above the page content and fills the screen.
    * @param {boolean} value?. Determines whether to enter or leave split mode. By default the argument is not passed and the mode is toggled.
    */
@@ -768,6 +824,35 @@ export interface Editor extends BaseElement, EditorProperties {
    * @returns {boolean | undefined}
    */
   updateToolbarItem(name: string | number, settings: any): boolean | undefined;
+}
+
+/**An object containing settings related to the grid's AI integration. */
+export interface EditorAi {
+  /**
+   * The AI model used for text generation or other AI-powered features.
+   * Default value: "gpt-3.5-turbo"
+   */
+  model?: string;
+  /**
+   * The maximum number of tokens (words/characters) the AI can generate in a single request
+   * Default value: 200
+   */
+  maxTokens?: number;
+  /**
+   * Controls the randomness of AI output. Lower values produce more focused results; higher values are more creative.
+   * Default value: 0.7
+   */
+  temperature?: number;
+  /**
+   * The endpoint URL for sending AI requests, typically your backend proxy to OpenAI or another provider.
+   * Default value: ""
+   */
+  url?: string;
+  /**
+   * The API key used to authenticate requests to the AI provider.
+   * Default value: ""
+   */
+  key?: string;
 }
 
 /**Determines the content filtering settings. */
@@ -1002,8 +1087,8 @@ export declare type EditorContentFilteringTagFilterMode = 'blackList' | 'whiteLi
 export declare type EditorContentFilteringStyleAttributeFilterMode = 'blackList' | 'whiteList';
 /**Determines the context menu for the Editor. The context menu is triggered when the user right clicks on the content area of the Editor. */
 export declare type EditorContextMenu = 'default' | 'browser' | 'none';
-/**Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode. */
-export declare type EditMode = 'html' | 'markdown';
+/**Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. The 'blockHtml' edit mode creates DIV tags when you hit enter and also includes built-in commands for data input. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode. */
+export declare type EditMode = 'html' | 'markdown' | 'blockHtml';
 /**Determines the file format of the image/video that are uploaded from local storage. By default images/videos are stroed as base64. */
 export declare type EditorImageFormat = 'base64' | 'blob';
 /**Determines the format of the content that will be pasted inside the Editor. */

@@ -3,5 +3,5 @@
     "module": "colorpicker.esm.js",
 	"typings": "colorpicker.d.ts",
     "name": "smart-webcomponents-react/colorpicker",
-    "sideEffects": false
+    "sideEffects": true
   }

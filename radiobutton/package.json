@@ -3,5 +3,5 @@
     "module": "radiobutton.esm.js",
 	"typings": "radiobutton.d.ts",
     "name": "smart-webcomponents-react/radiobutton",
-    "sideEffects": false
+    "sideEffects": true
   }

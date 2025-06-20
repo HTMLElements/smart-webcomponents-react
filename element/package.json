@@ -3,5 +3,5 @@
     "module": "element.esm.js",
 	"typings": "element.d.ts",
     "name": "smart-webcomponents-react/element",
-    "sideEffects": false
+    "sideEffects": true
   }

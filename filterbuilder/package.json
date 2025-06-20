@@ -3,5 +3,5 @@
     "module": "filterbuilder.esm.js",
 	"typings": "filterbuilder.d.ts",
     "name": "smart-webcomponents-react/filterbuilder",
-    "sideEffects": false
+    "sideEffects": true
   }

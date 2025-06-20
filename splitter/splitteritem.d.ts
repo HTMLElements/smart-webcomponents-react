@@ -2,7 +2,8 @@ import React from "react";
 import { SplitterItemProperties } from "./../index";
 export { SplitterItemProperties } from "./../index";
 export {} from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface SplitterItemProps extends SplitterItemProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -80,6 +81,7 @@ export declare class SplitterItem extends React.Component<React.HTMLAttributes<E
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default SplitterItem;

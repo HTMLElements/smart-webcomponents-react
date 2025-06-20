@@ -1,23 +1,28 @@
 
-if (!window['Smart']) {
-	window['Smart'] = { RenderMode: 'manual' };
+"use client";
+
+import '../source/modules/smart.ganttchart'
+
+if(typeof window !== 'undefined') {	
+	if (!window['Smart']) {
+		window['Smart'] = { RenderMode: 'manual' };
+	}
+	else {
+		window['Smart'].RenderMode = 'manual';
+	}	
+	//require('../source/modules/smart.ganttchart');
 }
-else {
-	window['Smart'].RenderMode = 'manual';
-}	
-import '../source/modules/smart.ganttchart';
-
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-const Smart = window.Smart;
+let Smart;
+if (typeof window !== "undefined") {
+    Smart = window.Smart;
+}
 /**
  Gantt charts are specialized bar charts that help clearly represent how tasks and resources are allocated over time in planning, project management, and scheduling applications.
 */
 class GanttChart extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -100,6 +105,17 @@ class GanttChart extends React.Component {
     set columnResizeFeedback(value) {
         if (this.nativeElement) {
             this.nativeElement.columnResizeFeedback = value;
+        }
+    }
+    /** Gantt's current time. By default it is the today's date.
+    *	Property type: string | Date
+    */
+    get currentTime() {
+        return this.nativeElement ? this.nativeElement.currentTime : undefined;
+    }
+    set currentTime(value) {
+        if (this.nativeElement) {
+            this.nativeElement.currentTime = value;
         }
     }
     /** Enables/Disables the current time indicator. Current time indicator shows the current time in the appropriate view cells.
@@ -311,6 +327,17 @@ class GanttChart extends React.Component {
             this.nativeElement.filterRow = value;
         }
     }
+    /** Determines the view start day. Sunday is 0, Monday is 1, Saturday is 6. By default it's Sunday.
+    *	Property type: number
+    */
+    get firstDayOfWeek() {
+        return this.nativeElement ? this.nativeElement.firstDayOfWeek : undefined;
+    }
+    set firstDayOfWeek(value) {
+        if (this.nativeElement) {
+            this.nativeElement.firstDayOfWeek = value;
+        }
+    }
     /** Groups the tasks inside the Task timeline according to the resources they are assigned to. Unassigned tasks are placed in a default group labeled 'Unassigned'.
     *	Property type: boolean
     */
@@ -344,7 +371,18 @@ class GanttChart extends React.Component {
             this.nativeElement.hideDateMarkers = value;
         }
     }
-    /** By default the Timeline has a two level header - timeline details and timeline header. This property hides the header details container( the top container ).
+    /** By default the Timeline has a three level header - timeline details, timeline second details and timeline header. This property hides the header container( the bottom container ).
+    *	Property type: boolean
+    */
+    get hideTimelineHeader() {
+        return this.nativeElement ? this.nativeElement.hideTimelineHeader : undefined;
+    }
+    set hideTimelineHeader(value) {
+        if (this.nativeElement) {
+            this.nativeElement.hideTimelineHeader = value;
+        }
+    }
+    /** By default the Timeline has a three level header - timeline details, timeline second details and timeline header. This property hides the header details container( the top container ).
     *	Property type: boolean
     */
     get hideTimelineHeaderDetails() {
@@ -355,15 +393,15 @@ class GanttChart extends React.Component {
             this.nativeElement.hideTimelineHeaderDetails = value;
         }
     }
-    /** Shows the selection column of the Task/Resource Table. When applied a checkbox column is displayed that allows to select tasks/resources.
+    /** By default the Timeline has a three level header - timeline details and timeline header. This property hides the second header details container( the middle container ).
     *	Property type: boolean
     */
-    get showSelectionColumn() {
-        return this.nativeElement ? this.nativeElement.showSelectionColumn : undefined;
+    get hideTimelineSecondHeaderDetails() {
+        return this.nativeElement ? this.nativeElement.hideTimelineSecondHeaderDetails : undefined;
     }
-    set showSelectionColumn(value) {
+    set hideTimelineSecondHeaderDetails(value) {
         if (this.nativeElement) {
-            this.nativeElement.showSelectionColumn = value;
+            this.nativeElement.hideTimelineSecondHeaderDetails = value;
         }
     }
     /** Hides the Resource panel regardless of the resources availability By default the Resource panel is visible if resources are added to the GanttChart. This property allows to hide the Resource panel permanently.
@@ -443,6 +481,17 @@ class GanttChart extends React.Component {
             this.nativeElement.keyboardNavigation = value;
         }
     }
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey() {
+        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+    }
+    set unlockKey(value) {
+        if (this.nativeElement) {
+            this.nativeElement.unlockKey = value;
+        }
+    }
     /**  Determines the language of the GanttChart.
     *	Property type: string
     */
@@ -498,6 +547,17 @@ class GanttChart extends React.Component {
             this.nativeElement.monthFormat = value;
         }
     }
+    /** Determines the scale in Month view.
+    *	Property type: MonthScale | string
+    */
+    get monthScale() {
+        return this.nativeElement ? this.nativeElement.monthScale : undefined;
+    }
+    set monthScale(value) {
+        if (this.nativeElement) {
+            this.nativeElement.monthScale = value;
+        }
+    }
     /** Determines the nonworking days of the week from 0 to 6, where 0 is the first day of the week and 6 is the last day. Nonworking days will be displayed with colored cells inside the timeline and will not affect the dateEnd of the tasks unless the adjustToNonworkingTime property is enabled.
     *	Property type: number[]
     */
@@ -518,6 +578,39 @@ class GanttChart extends React.Component {
     set nonworkingHours(value) {
         if (this.nativeElement) {
             this.nativeElement.nonworkingHours = value;
+        }
+    }
+    /** A function that can be used to completly customize the task element. The function has five arguments: task - the task object.segment - the task current segment object. If the task has only one segment, the task object is passed again.taskElement - the task's html element.segmentElement - the task's segment html element.labelElement - the task's segment label html element.
+    *	Property type: any
+    */
+    get onTaskRender() {
+        return this.nativeElement ? this.nativeElement.onTaskRender : undefined;
+    }
+    set onTaskRender(value) {
+        if (this.nativeElement) {
+            this.nativeElement.onTaskRender = value;
+        }
+    }
+    /** A function that can be used to completly customize the task element. The function has two arguments: task - the task object.taskElement - the task's html element.
+    *	Property type: any
+    */
+    get taskFormatFunction() {
+        return this.nativeElement ? this.nativeElement.taskFormatFunction : undefined;
+    }
+    set taskFormatFunction(value) {
+        if (this.nativeElement) {
+            this.nativeElement.taskFormatFunction = value;
+        }
+    }
+    /** A function that can be used to completly customize the tooltip. The function has three arguments: tooltipObject - the tooltip object.event - the event that triggered the tooltip.content - the tooltip's label element.
+    *	Property type: any
+    */
+    get tooltipFormatFunction() {
+        return this.nativeElement ? this.nativeElement.tooltipFormatFunction : undefined;
+    }
+    set tooltipFormatFunction(value) {
+        if (this.nativeElement) {
+            this.nativeElement.tooltipFormatFunction = value;
         }
     }
     /** A function that can be used to completly customize the popup Window that is used to interact width tasks by changing their properties. The function as three arguments: target - the target popup Window that is about to be opened.type - the type of the window. The type determines the purpose of the window. Three possible values: 'task' (task editing), 'confirm' ( confirmation window), 'connection' (used when deleting a connection between tasks). item - the connection/task object that is the target of the window.
@@ -551,6 +644,17 @@ class GanttChart extends React.Component {
     set progressLabelFormatFunction(value) {
         if (this.nativeElement) {
             this.nativeElement.progressLabelFormatFunction = value;
+        }
+    }
+    /** Determines the format of the dates the timeline header when they represent quarters.
+    *	Property type: QuarterFormat | string
+    */
+    get quarterFormat() {
+        return this.nativeElement ? this.nativeElement.quarterFormat : undefined;
+    }
+    set quarterFormat(value) {
+        if (this.nativeElement) {
+            this.nativeElement.quarterFormat = value;
         }
     }
     /** A getter that returns a flat structure as an array of all resources inside the element.
@@ -707,6 +811,17 @@ class GanttChart extends React.Component {
             this.nativeElement.selectedResourceIds = value;
         }
     }
+    /** Sets or gets the selection mode. Only applicable when selection is enabled.
+    *	Property type: GanttChartSelectionMode | string
+    */
+    get selectionMode() {
+        return this.nativeElement ? this.nativeElement.selectionMode : undefined;
+    }
+    set selectionMode(value) {
+        if (this.nativeElement) {
+            this.nativeElement.selectionMode = value;
+        }
+    }
     /** Enables/Disables the current time shader. If enabled all cells that represent past time will be shaded.
     *	Property type: boolean
     */
@@ -716,6 +831,17 @@ class GanttChart extends React.Component {
     set shadeUntilCurrentTime(value) {
         if (this.nativeElement) {
             this.nativeElement.shadeUntilCurrentTime = value;
+        }
+    }
+    /** Shows the selection column of the Task/Resource Table. When applied a checkbox column is displayed that allows to select tasks/resources.
+    *	Property type: boolean
+    */
+    get showSelectionColumn() {
+        return this.nativeElement ? this.nativeElement.showSelectionColumn : undefined;
+    }
+    set showSelectionColumn(value) {
+        if (this.nativeElement) {
+            this.nativeElement.showSelectionColumn = value;
         }
     }
     /** Determines whether the baselnes of the tasks are visible or not. Baselines are defined via the 'planned' attribute on the task objects of the dataSource property.
@@ -951,7 +1077,7 @@ class GanttChart extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["adjustToNonworkingTime", "autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "columnMenu", "columnResize", "columnResizeFeedback", "currentTimeIndicator", "currentTimeIndicatorInterval", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "dateMarkers", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableSegmentDrag", "disableSegmentResize", "disableWindowEditor", "durationUnit", "filterRow", "groupByResources", "headerTemplate", "hideDateMarkers", "hideTimelineHeaderDetails", "showSelectionColumn", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "infiniteTimeline", "infiniteTimelineStep", "inverted", "keyboardNavigation", "locale", "max", "min", "messages", "monthFormat", "nonworkingDays", "nonworkingHours", "popupWindowCustomizationFunction", "popupWindowTabs", "progressLabelFormatFunction", "resources", "resourceColumns", "resourceFiltering", "resourceGroupFormatFunction", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedTaskIds", "selectedResourceIds", "shadeUntilCurrentTime", "showBaseline", "showProgressLabel", "snapToNearest", "sortFunction", "sortMode", "tasks", "taskColumns", "taskFiltering", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "tooltip", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
+        return ["adjustToNonworkingTime", "autoSchedule", "autoScheduleStrictMode", "autoScrollStep", "columnMenu", "columnResize", "columnResizeFeedback", "currentTime", "currentTimeIndicator", "currentTimeIndicatorInterval", "dataExport", "dataSource", "dayFormat", "dateEnd", "dateStart", "dateMarkers", "disabled", "disableAutoScroll", "disableTaskDrag", "disableTaskProgressChange", "disableTaskResize", "disableSelection", "disableSegmentDrag", "disableSegmentResize", "disableWindowEditor", "durationUnit", "filterRow", "firstDayOfWeek", "groupByResources", "headerTemplate", "hideDateMarkers", "hideTimelineHeader", "hideTimelineHeaderDetails", "hideTimelineSecondHeaderDetails", "hideResourcePanel", "horizontalScrollBarVisibility", "hourFormat", "infiniteTimeline", "infiniteTimelineStep", "inverted", "keyboardNavigation", "unlockKey", "locale", "max", "min", "messages", "monthFormat", "monthScale", "nonworkingDays", "nonworkingHours", "onTaskRender", "taskFormatFunction", "tooltipFormatFunction", "popupWindowCustomizationFunction", "popupWindowTabs", "progressLabelFormatFunction", "quarterFormat", "resources", "resourceColumns", "resourceFiltering", "resourceGroupFormatFunction", "resourcePanelHeaderTemplate", "resourcePanelMin", "resourcePanelSize", "resourcePanelRefreshRate", "resourceTimelineFormatFunction", "resourceTimelineMode", "resourceTimelineView", "rightToLeft", "selectedTaskIds", "selectedResourceIds", "selectionMode", "shadeUntilCurrentTime", "showSelectionColumn", "showBaseline", "showProgressLabel", "snapToNearest", "sortFunction", "sortMode", "tasks", "taskColumns", "taskFiltering", "taskPanelMin", "taskPanelSize", "timelineMin", "treeMin", "treeSize", "timelineHeaderFormatFunction", "tooltip", "verticalScrollBarVisibility", "view", "yearFormat", "weekFormat", "theme", "unfocusable"];
     }
     // Gets the events of the React component.
     get eventListeners() {
@@ -1360,6 +1486,19 @@ class GanttChart extends React.Component {
             });
         }
     }
+    /** Scrolls to a date.
+    * @param {Date} date. The date to scroll to.
+    */
+    scrollToDate(date) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.scrollToDate(date);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.scrollToDate(date);
+            });
+        }
+    }
     /** Saves the current settings of the element to LocalStorage. Requires an id to be set to the element.
     * @param {any[]} state?. An Array containing a valid structure of Gantt Chart tasks.
     */
@@ -1579,11 +1718,29 @@ class GanttChart extends React.Component {
             });
         }
     }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
+    }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -1600,10 +1757,27 @@ class GanttChart extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -1621,7 +1795,17 @@ class GanttChart extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -1664,9 +1848,8 @@ class GanttChart extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-gantt-chart", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-gantt-chart", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-export default GanttChart;
-export { Smart, GanttChart };
+export { GanttChart, Smart, GanttChart as default };

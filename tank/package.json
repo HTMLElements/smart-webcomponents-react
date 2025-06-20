@@ -3,5 +3,5 @@
     "module": "tank.esm.js",
 	"typings": "tank.d.ts",
     "name": "smart-webcomponents-react/tank",
-    "sideEffects": false
+    "sideEffects": true
   }

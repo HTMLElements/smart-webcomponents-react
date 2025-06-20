@@ -3,5 +3,5 @@
     "module": "progresswindow.esm.js",
 	"typings": "progresswindow.d.ts",
     "name": "smart-webcomponents-react/progresswindow",
-    "sideEffects": false
+    "sideEffects": true
   }

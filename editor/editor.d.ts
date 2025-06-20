@@ -1,9 +1,10 @@
 import React from "react";
 import { EditorProperties } from "./../index";
-import { Animation, EditorContextMenu, EditMode, EditorImageFormat, PasteFormat, ToolbarMode, ToolbarViewMode, EditorContentFiltering, EditorDataExport, EditorIframeSettings, ToolbarItem } from './../index';
+import { Animation, EditorContextMenu, EditMode, EditorImageFormat, PasteFormat, ToolbarMode, ToolbarViewMode, EditorAi, EditorContentFiltering, EditorDataExport, EditorIframeSettings, ToolbarItem } from './../index';
 export { EditorProperties } from "./../index";
-export { Animation, EditorContentFilteringAttributeFilterMode, EditorContentFilteringTagFilterMode, EditorContentFilteringStyleAttributeFilterMode, EditorContextMenu, EditMode, EditorImageFormat, PasteFormat, ToolbarMode, ToolbarViewMode, EditorContentFiltering, EditorDataExport, EditorIframeSettings, ToolbarItem, ToolbarItemEditor } from './../index';
-export declare const Smart: any;
+export { Animation, EditorContentFilteringAttributeFilterMode, EditorContentFilteringTagFilterMode, EditorContentFilteringStyleAttributeFilterMode, EditorContextMenu, EditMode, EditorImageFormat, PasteFormat, ToolbarMode, ToolbarViewMode, EditorAi, EditorContentFiltering, EditorDataExport, EditorIframeSettings, ToolbarItem, ToolbarItemEditor } from './../index';
+declare let Smart: any;
+export { Smart };
 export interface EditorProps extends EditorProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -46,11 +47,21 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     private nativeElement;
     private componentRef;
     get id(): string;
+    /** An object containing settings related to the grid's AI integration.
+    *	Property type: EditorAi
+    */
+    get ai(): EditorAi;
+    set ai(value: EditorAi);
     /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
     *	Property type: Animation | string
     */
     get animation(): Animation | string;
     set animation(value: Animation | string);
+    /** Automatically formats text as you type—bullets, checkboxes, headings, code blocks
+    *	Property type: boolean
+    */
+    get autoFormatting(): boolean;
+    set autoFormatting(value: boolean);
     /** Automatically loads the last saved state of the editor (from local storage) on element initialization. An id must be provided in order to load a previously saved state.
     *	Property type: boolean
     */
@@ -117,7 +128,7 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     */
     get disableSearchBar(): boolean;
     set disableSearchBar(value: boolean);
-    /** Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode.
+    /** Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. The 'blockHtml' edit mode creates DIV tags when you hit enter and also includes built-in commands for data input. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode.
     *	Property type: EditMode | string
     */
     get editMode(): EditMode | string;
@@ -152,6 +163,16 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     */
     get imageFormat(): EditorImageFormat | string;
     set imageFormat(value: EditorImageFormat | string);
+    /** Automatically sets the width of an image when pasted from clipboard.
+    *	Property type: number
+    */
+    get imagePasteWidth(): number;
+    set imagePasteWidth(value: number);
+    /** Automatically sets the height of an image when pasted from clipboard.
+    *	Property type: number
+    */
+    get imagePasteHeight(): number;
+    set imagePasteHeight(value: number);
     /** Sets the content of the Editor as HTML. Allows to insert text and HTML.
     *	Property type: string
     */
@@ -167,6 +188,11 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     */
     get iframeSettings(): EditorIframeSettings;
     set iframeSettings(value: EditorIframeSettings);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -232,6 +258,21 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     */
     get splitModeRefreshTimeout(): number;
     set splitModeRefreshTimeout(value: number);
+    /** Sets the editor users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
+    *	Property type: any[]
+    */
+    get users(): any[];
+    set users(value: any[]);
+    /** Enables the editor pages feature.
+    *	Property type: boolean
+    */
+    get enablePages(): boolean;
+    set enablePages(value: boolean);
+    /** Sets the editor pages. Expects an array with 'label' and 'innerHTML' properties.
+    *	Property type: any[]
+    */
+    get pages(): any[];
+    set pages(value: any[]);
     /** Sets or gets the upload URL. This property corresponds to the upload form's action attribute. For example, the uploadUrl property can point to a PHP file, which handles the upload operation on the server-side.
     *	Property type: string
     */
@@ -473,6 +514,10 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
+    /** Adds a new Toolbar item. Example: editor.addToolbarItem({ name: &#039;customButton2&#039;, width: 100, template: &#039;&lt;smart-button&gt;Button2&lt;/smart-button&gt;&#039; })
+    * @param {any} itemName. The toolbar item to be added
+    */
+    addToolbarItem(itemName: any): void;
     /** Blurs the content of the Editor.
     */
     blur(): void;
@@ -525,6 +570,11 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     /** Hides the last shown message.
     */
     hideLastMessage(): void;
+    /** Inserts a new Toolbar item. Example: editor.insertToolbarItem({ name: &#039;customButton2&#039;, width: 100, template: &#039;&lt;smart-button&gt;Button2&lt;/smart-button&gt;&#039; })
+    * @param {any} itemName. The toolbar item to be added
+    * @param {number} index. The toolbar item's index
+    */
+    insertToolbarItem(itemName: any, index: number): void;
     /** Shows a custom message inside the Editor.
     * @param {string} message. The text message to be displayed.
     * @param {any} settings?. Additional settings that can be applied to the Toast element that handles the messages. This parameter should contain only valid Toast properties and values.
@@ -556,6 +606,10 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     * @param {boolean} value?. Determines whether to enter or leave split mode. By default the argument is not passed and the mode is toggled.
     */
     previewMode(value?: boolean): void;
+    /** Removes a Toolbar item. Example: editor.removeToolbarItem(0)
+    * @param {number} index. The toolbar item's index
+    */
+    removeToolbarItem(index: number): void;
     /** Sets Editor into Full Screen Mode. If enabled the Editor is positioned above the page content and fills the screen.
     * @param {boolean} value?. Determines whether to enter or leave split mode. By default the argument is not passed and the mode is toggled.
     */
@@ -586,6 +640,7 @@ export declare class Editor extends React.Component<React.HTMLAttributes<Element
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Editor;

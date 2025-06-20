@@ -1,23 +1,28 @@
 
-if (!window['Smart']) {
-	window['Smart'] = { RenderMode: 'manual' };
+"use client";
+
+import '../source/modules/smart.progressbar'
+
+if(typeof window !== 'undefined') {	
+	if (!window['Smart']) {
+		window['Smart'] = { RenderMode: 'manual' };
+	}
+	else {
+		window['Smart'].RenderMode = 'manual';
+	}	
+	//require('../source/modules/smart.progressbar');
 }
-else {
-	window['Smart'].RenderMode = 'manual';
-}	
-import '../source/modules/smart.progressbar';
-
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-const Smart = window.Smart;
+let Smart$1;
+if (typeof window !== "undefined") {
+    Smart$1 = window.Smart;
+}
 /**
  Progress Bar displayed as a circle.
 */
 class CircularProgressBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -69,7 +74,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.indeterminate = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or gets the unlockKey which unlocks the product.
     *	Property type: boolean
     */
     get inverted() {
@@ -78,6 +83,17 @@ class CircularProgressBar extends React.Component {
     set inverted(value) {
         if (this.nativeElement) {
             this.nativeElement.inverted = value;
+        }
+    }
+    /** Sets or gets the language. Used in conjunction with the property messages.
+    *	Property type: string
+    */
+    get unlockKey() {
+        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+    }
+    set unlockKey(value) {
+        if (this.nativeElement) {
+            this.nativeElement.unlockKey = value;
         }
     }
     /** Callback, related to localization module.
@@ -192,17 +208,35 @@ class CircularProgressBar extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "disabled", "formatFunction", "indeterminate", "inverted", "locale", "localizeFormatFunction", "max", "messages", "min", "showProgressValue", "rightToLeft", "theme", "unfocusable", "value"];
+        return ["animation", "disabled", "formatFunction", "indeterminate", "inverted", "unlockKey", "locale", "localizeFormatFunction", "max", "messages", "min", "showProgressValue", "rightToLeft", "theme", "unfocusable", "value"];
     }
     // Gets the events of the React component.
     get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
+    }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
     }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -219,10 +253,27 @@ class CircularProgressBar extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -240,7 +291,17 @@ class CircularProgressBar extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -248,7 +309,7 @@ class CircularProgressBar extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
-            Smart.Render();
+            Smart$1.Render();
             if (that.onCreate) {
                 that.onCreate();
             }
@@ -283,19 +344,18 @@ class CircularProgressBar extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-circular-progress-bar", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-circular-progress-bar", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-const Smart$1 = window.Smart;
+let Smart;
+if (typeof window !== "undefined") {
+    Smart = window.Smart;
+}
 /**
  Progress indicators. It can be used to show a user how far along he/she is in a process.
 */
 class ProgressBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.componentRef = React.createRef();
-    }
     // Gets the id of the React component.
     get id() {
         if (!this._id) {
@@ -347,7 +407,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.inverted = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or gets the unlockKey which unlocks the product.
     *	Property type: {(value: number): string}
     */
     get formatFunction() {
@@ -356,6 +416,17 @@ class ProgressBar extends React.Component {
     set formatFunction(value) {
         if (this.nativeElement) {
             this.nativeElement.formatFunction = value;
+        }
+    }
+    /** Sets or gets the language. Used in conjunction with the property messages.
+    *	Property type: string
+    */
+    get unlockKey() {
+        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+    }
+    set unlockKey(value) {
+        if (this.nativeElement) {
+            this.nativeElement.unlockKey = value;
         }
     }
     /** Callback, related to localization module.
@@ -481,17 +552,35 @@ class ProgressBar extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "disabled", "indeterminate", "inverted", "formatFunction", "locale", "localizeFormatFunction", "max", "messages", "min", "orientation", "rightToLeft", "showProgressValue", "theme", "unfocusable", "value"];
+        return ["animation", "disabled", "indeterminate", "inverted", "formatFunction", "unlockKey", "locale", "localizeFormatFunction", "max", "messages", "min", "orientation", "rightToLeft", "showProgressValue", "theme", "unfocusable", "value"];
     }
     // Gets the events of the React component.
     get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
+    }
+    constructor(props) {
+        super(props);
+        this.componentRef = React.createRef();
     }
     componentDidRender(initialize) {
         const that = this;
         const props = {};
         const events = {};
         let styles = null;
+        const stringifyCircularJSON = (obj) => {
+            const seen = new WeakSet();
+            return JSON.stringify(obj, (k, v) => {
+                if (v !== null && typeof v === 'object') {
+                    if (seen.has(v))
+                        return;
+                    seen.add(v);
+                }
+                if (k === 'Smart') {
+                    return v;
+                }
+                return v;
+            });
+        };
         for (let prop in that.props) {
             if (prop === 'children') {
                 continue;
@@ -508,10 +597,27 @@ class ProgressBar extends React.Component {
         }
         if (initialize) {
             that.nativeElement = this.componentRef.current;
+            that.nativeElement.React = React;
+            that.nativeElement.ReactDOM = ReactDOM;
+            if (that.nativeElement && !that.nativeElement.isCompleted) {
+                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+            }
+        }
+        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+            //	return;
         }
         for (let prop in props) {
             if (prop === 'class' || prop === 'className') {
                 const classNames = props[prop].trim().split(' ');
+                if (that.nativeElement._classNames) {
+                    const oldClassNames = that.nativeElement._classNames;
+                    for (let className in oldClassNames) {
+                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+                            that.nativeElement.classList.remove(oldClassNames[className]);
+                        }
+                    }
+                }
+                that.nativeElement._classNames = classNames;
                 for (let className in classNames) {
                     if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
                         that.nativeElement.classList.add(classNames[className]);
@@ -529,7 +635,17 @@ class ProgressBar extends React.Component {
                     that.nativeElement.setAttribute(prop, '');
                 }
                 const normalizedProp = normalizeProp(prop);
-                that.nativeElement[normalizedProp] = props[prop];
+                if (that.nativeElement[normalizedProp] === undefined) {
+                    that.nativeElement.setAttribute(prop, props[prop]);
+                }
+                if (props[prop] !== undefined) {
+                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+                            continue;
+                        }
+                    }
+                    that.nativeElement[normalizedProp] = props[prop];
+                }
             }
         }
         for (let eventName in events) {
@@ -537,7 +653,7 @@ class ProgressBar extends React.Component {
             that.nativeElement[eventName.toLowerCase()] = events[eventName];
         }
         if (initialize) {
-            Smart$1.Render();
+            Smart.Render();
             if (that.onCreate) {
                 that.onCreate();
             }
@@ -572,9 +688,8 @@ class ProgressBar extends React.Component {
         }
     }
     render() {
-        return (React.createElement("smart-progress-bar", { ref: this.componentRef }, this.props.children));
+        return (React.createElement("smart-progress-bar", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
     }
 }
 
-export default ProgressBar;
-export { Smart$1 as Smart, ProgressBar, CircularProgressBar };
+export { CircularProgressBar, ProgressBar, Smart, ProgressBar as default };

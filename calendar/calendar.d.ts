@@ -3,7 +3,8 @@ import { CalendarProperties } from "./../index";
 import { Animation, CalendarMode, DayFormat, CalendarDisplayMode, CalendarDisplayModeView, MonthFormat, ViewLayout, LayoutPosition, CalendarSelectionMode, TooltipPosition, YearFormat } from './../index';
 export { CalendarProperties } from "./../index";
 export { Animation, CalendarMode, DayFormat, CalendarDisplayMode, CalendarDisplayModeView, MonthFormat, ViewLayout, LayoutPosition, CalendarSelectionMode, TooltipPosition, YearFormat } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface CalendarProps extends CalendarProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -60,6 +61,11 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     */
     get disableAutoNavigation(): boolean;
     set disableAutoNavigation(value: boolean);
+    /** Enables or disables the Calendar mouse wheel behavior.
+    *	Property type: boolean
+    */
+    get disableMouseWheel(): boolean;
+    set disableMouseWheel(value: boolean);
     /** Determines the date view of the calendar when calendarMode is set to 'default'
     *	Property type: CalendarDisplayMode | string
     */
@@ -120,6 +126,11 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     */
     get importantDatesTemplate(): any;
     set importantDatesTemplate(value: any);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /**  Determines the language of the Calendar.
     *	Property type: string
     */
@@ -344,6 +355,7 @@ export declare class Calendar extends React.Component<React.HTMLAttributes<Eleme
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Calendar;

@@ -112,6 +112,11 @@ export interface ChartProperties {
    */
   legendLayout?: any;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the locale. Used in conjunction with the property messages.
    * Default value: "en"
    */
@@ -1369,6 +1374,11 @@ export interface ChartValueAxis {
    * Default value: [object Object]
    */
   title?: ChartTitle;
+  /**
+   * Color of tick marks.
+   * Default value: ""
+   */
+  tickMarksColor?: string;
   /**
    * Sets the interval between the units.
    * Default value: null

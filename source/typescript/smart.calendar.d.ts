@@ -37,6 +37,11 @@ export interface CalendarProperties {
    */
   disableAutoNavigation?: boolean;
   /**
+   * Enables or disables the Calendar mouse wheel behavior.
+   * Default value: false
+   */
+  disableMouseWheel?: boolean;
+  /**
    * Determines the date view of the calendar when calendarMode is set to 'default'
    * Default value: month
    */
@@ -96,6 +101,11 @@ export interface CalendarProperties {
    * Default value: null
    */
   importantDatesTemplate?: any;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    *  Determines the language of the Calendar. 
    * Default value: "en"

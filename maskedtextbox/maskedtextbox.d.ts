@@ -3,7 +3,8 @@ import { MaskedTextBoxProperties } from "./../index";
 import { Animation, MaskedTextBoxCutCopyMaskFormat, EnterKeyBehavior, MaskedTextBoxTextMaskFormat } from './../index';
 export { MaskedTextBoxProperties } from "./../index";
 export { Animation, MaskedTextBoxCutCopyMaskFormat, EnterKeyBehavior, MaskedTextBoxTextMaskFormat } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface MaskedTextBoxProps extends MaskedTextBoxProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -81,6 +82,11 @@ export declare class MaskedTextBox extends React.Component<React.HTMLAttributes<
     */
     get label(): string;
     set label(value: string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -229,6 +235,7 @@ export declare class MaskedTextBox extends React.Component<React.HTMLAttributes<
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default MaskedTextBox;

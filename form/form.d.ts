@@ -7,7 +7,8 @@ export { FormControl } from './formcontrol';
 export { FormControlProperties } from "./../index";
 export { FormGroup } from './formgroup';
 export { FormGroupProperties } from "./../index";
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface FormProps extends FormProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -60,7 +61,7 @@ export declare class Form extends React.Component<React.HTMLAttributes<Element> 
     */
     get readonly(): boolean;
     set readonly(value: boolean);
-    /** Gets the Form's state. Each member in the state has { dirty, untouched, disabled } properties.
+    /** Gets the Form's status. Each member in the status has { dirty, untouched, disabled } properties.
     *	Property type: boolean
     */
     get showColonAfterLabel(): boolean;
@@ -73,8 +74,8 @@ export declare class Form extends React.Component<React.HTMLAttributes<Element> 
     /** Automatically validates the form when it is created.
     *	Property type: any
     */
-    get state(): any;
-    set state(value: any);
+    get status(): any;
+    set status(value: any);
     /** undefined
     *	Property type: any
     */
@@ -128,6 +129,7 @@ export declare class Form extends React.Component<React.HTMLAttributes<Element> 
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Form;

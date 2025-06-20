@@ -1,0 +1,7 @@
+{
+    "main": "ribbon.umd.js",
+    "module": "ribbon.esm.js",
+	"typings": "ribbon.d.ts",
+    "name": "smart-webcomponents-react/ribbon",
+    "sideEffects": true
+  }

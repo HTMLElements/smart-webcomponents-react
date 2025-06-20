@@ -3,5 +3,5 @@
     "module": "multilinetextbox.esm.js",
 	"typings": "multilinetextbox.d.ts",
     "name": "smart-webcomponents-react/multilinetextbox",
-    "sideEffects": false
+    "sideEffects": true
   }

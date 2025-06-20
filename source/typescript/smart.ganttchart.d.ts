@@ -37,6 +37,11 @@ export interface GanttChartProperties {
    */
   columnResizeFeedback?: boolean;
   /**
+   * Gantt's current time. By default it is the today's date.
+   * Default value: 
+   */
+  currentTime?: string | Date;
+  /**
    * Enables/Disables the current time indicator. Current time indicator shows the current time in the appropriate view cells.
    * Default value: false
    */
@@ -167,11 +172,6 @@ export interface GanttChartProperties {
    */
   hideTimelineSecondHeaderDetails?: boolean;
   /**
-   * Shows the selection column of the Task/Resource Table. When applied a checkbox column is displayed that allows to select tasks/resources.
-   * Default value: false
-   */
-  showSelectionColumn?: boolean;
-  /**
    * Hides the Resource panel regardless of the resources availability By default the Resource panel is visible if resources are added to the GanttChart. This property allows to hide the Resource panel permanently.
    * Default value: false
    */
@@ -206,6 +206,11 @@ export interface GanttChartProperties {
    * Default value: false
    */
   keyboardNavigation?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    *  Determines the language of the GanttChart. 
    * Default value: "en"
@@ -247,6 +252,21 @@ export interface GanttChartProperties {
    */
   nonworkingHours?: number[] | number[][];
   /**
+   * A function that can be used to completly customize the task element. The function has five arguments: task - the task object.segment - the task current segment object. If the task has only one segment, the task object is passed again.taskElement - the task's html element.segmentElement - the task's segment html element.labelElement - the task's segment label html element.
+   * Default value: null
+   */
+  onTaskRender?: any;
+  /**
+   * A function that can be used to completly customize the task element. The function has two arguments: task - the task object.taskElement - the task's html element.
+   * Default value: null
+   */
+  taskFormatFunction?: any;
+  /**
+   * A function that can be used to completly customize the tooltip. The function has three arguments: tooltipObject - the tooltip object.event - the event that triggered the tooltip.content - the tooltip's label element.
+   * Default value: null
+   */
+  tooltipFormatFunction?: any;
+  /**
    * A function that can be used to completly customize the popup Window that is used to interact width tasks by changing their properties. The function as three arguments: target - the target popup Window that is about to be opened.type - the type of the window. The type determines the purpose of the window. Three possible values: 'task' (task editing), 'confirm' ( confirmation window), 'connection' (used when deleting a connection between tasks). item - the connection/task object that is the target of the window.
    * Default value: null
    */
@@ -261,6 +281,11 @@ export interface GanttChartProperties {
    * Default value: null
    */
   progressLabelFormatFunction?: any;
+  /**
+   * Determines the format of the dates the timeline header when they represent quarters.
+   * Default value: short
+   */
+  quarterFormat?: QuarterFormat | string;
   /**
    * A getter that returns a flat structure as an array of all resources inside the element.
    * Default value: null
@@ -332,10 +357,20 @@ export interface GanttChartProperties {
    */
   selectedResourceIds?: number[] | string[];
   /**
+   * Sets or gets the selection mode. Only applicable when selection is enabled.
+   * Default value: many
+   */
+  selectionMode?: GanttChartSelectionMode | string;
+  /**
    * Enables/Disables the current time shader. If enabled all cells that represent past time will be shaded.
    * Default value: false
    */
   shadeUntilCurrentTime?: boolean;
+  /**
+   * Shows the selection column of the Task/Resource Table. When applied a checkbox column is displayed that allows to select tasks/resources.
+   * Default value: false
+   */
+  showSelectionColumn?: boolean;
   /**
    * Determines whether the baselnes of the tasks are visible or not. Baselines are defined via the 'planned' attribute on the task objects of the dataSource property.
    * Default value: false
@@ -874,6 +909,11 @@ export interface GanttChart extends BaseElement, GanttChartProperties {
    */
   showTooltip(target: HTMLElement, content?: string): void;
   /**
+   * Scrolls to a date.
+   * @param {Date} date. The date to scroll to.
+   */
+  scrollToDate(date: Date): void;
+  /**
    * Saves the current settings of the element to LocalStorage. <strong>Requires an id to be set to the element.</strong>
    * @param {any[]} state?. An Array containing a valid structure of Gantt Chart tasks.
    */
@@ -1169,6 +1209,11 @@ export interface GanttChartTask {
    */
   formatFunction?: any;
   /**
+   * Project, Task or Milestone format function. The function gets passed the following arguments: task, segment, taskElement, segmentElement, labelElement. task - the task object.segment - the task current segment object. If the task has only one segment, the task object is passed again.taskElement - the task's html element.segmentElement - the task's segment html element.labelElement - the task's segment label html element.
+   * Default value: null
+   */
+  onRender?: any;
+  /**
    * Project, Task or Milestone max start date.
    * Default value: 
    */
@@ -1436,10 +1481,14 @@ export declare type HourFormat = 'default' | '2-digit' | 'numeric';
 export declare type MonthFormat = '2-digit' | 'numeric' | 'long' | 'short' | 'narrow';
 /**Determines the scale in Month view. */
 export declare type MonthScale = 'day' | 'week';
+/**Determines the format of the dates the timeline header when they represent quarters. */
+export declare type QuarterFormat = 'numeric' | 'long' | 'short';
 /**Determines how the capacity of the resources will be visualized inside the resource timeline. By default, the capacity is measured in hours depending on the <b>view</b> property of the element. */
 export declare type GanttChartResourceTimelineMode = 'diagram' | 'histogram' | 'custom';
 /**Determines how the resources will be displayed inside the resource Timeline. */
 export declare type GanttChartResourceTimelineView = 'hours' | 'tasks' | 'custom';
+/**Sets or gets the selection mode. Only applicable when selection is enabled. */
+export declare type GanttChartSelectionMode = 'one' | 'many' | 'extended';
 /**Determines whether the GanttChart can be sorted by one, more then one or no columns. */
 export declare type GanttChartSortMode = 'none' | 'one' | 'many';
 /**Project, Task or Milestone type. Possible values are 'project', 'milestone' and 'task' */

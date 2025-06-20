@@ -1,8 +1,0 @@
-smart-led {
-    width: 200px;
-    height: 200px;
-}
-
-    smart-led .smart-true-content-container {
-        background-color: lightblue;
-    }

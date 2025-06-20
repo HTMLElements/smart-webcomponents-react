@@ -2,22 +2,19 @@
 require('../source/modules/smart.tree');
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
-	(factory((global.tree = {}),global.React));
-}(this, (function (exports,React) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom/client')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom/client'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.tree = {}, global.React, global.ReactDOM));
+})(this, (function (exports, React, ReactDOM) { 'use strict';
 
-	React = React && React.hasOwnProperty('default') ? React['default'] : React;
-
-	const Smart = window.Smart;
+	let Smart$1;
+	if (typeof window !== "undefined") {
+	    Smart$1 = window.Smart;
+	}
 	/**
 	 Defines a tree items.
 	*/
 	class TreeItem extends React.Component {
-	    constructor(props) {
-	        super(props);
-	        this.componentRef = React.createRef();
-	    }
 	    // Gets the id of the React component.
 	    get id() {
 	        if (!this._id) {
@@ -121,11 +118,29 @@ require('../source/modules/smart.tree');
 	    get eventListeners() {
 	        return ["onCreate", "onReady"];
 	    }
+	    constructor(props) {
+	        super(props);
+	        this.componentRef = React.createRef();
+	    }
 	    componentDidRender(initialize) {
 	        const that = this;
 	        const props = {};
 	        const events = {};
 	        let styles = null;
+	        const stringifyCircularJSON = (obj) => {
+	            const seen = new WeakSet();
+	            return JSON.stringify(obj, (k, v) => {
+	                if (v !== null && typeof v === 'object') {
+	                    if (seen.has(v))
+	                        return;
+	                    seen.add(v);
+	                }
+	                if (k === 'Smart') {
+	                    return v;
+	                }
+	                return v;
+	            });
+	        };
 	        for (let prop in that.props) {
 	            if (prop === 'children') {
 	                continue;
@@ -142,10 +157,27 @@ require('../source/modules/smart.tree');
 	        }
 	        if (initialize) {
 	            that.nativeElement = this.componentRef.current;
+	            that.nativeElement.React = React;
+	            that.nativeElement.ReactDOM = ReactDOM;
+	            if (that.nativeElement && !that.nativeElement.isCompleted) {
+	                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+	            }
+	        }
+	        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+	            //	return;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
+	                if (that.nativeElement._classNames) {
+	                    const oldClassNames = that.nativeElement._classNames;
+	                    for (let className in oldClassNames) {
+	                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+	                            that.nativeElement.classList.remove(oldClassNames[className]);
+	                        }
+	                    }
+	                }
+	                that.nativeElement._classNames = classNames;
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
 	                        that.nativeElement.classList.add(classNames[className]);
@@ -163,7 +195,17 @@ require('../source/modules/smart.tree');
 	                    that.nativeElement.setAttribute(prop, '');
 	                }
 	                const normalizedProp = normalizeProp(prop);
-	                that.nativeElement[normalizedProp] = props[prop];
+	                if (that.nativeElement[normalizedProp] === undefined) {
+	                    that.nativeElement.setAttribute(prop, props[prop]);
+	                }
+	                if (props[prop] !== undefined) {
+	                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+	                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+	                            continue;
+	                        }
+	                    }
+	                    that.nativeElement[normalizedProp] = props[prop];
+	                }
 	            }
 	        }
 	        for (let eventName in events) {
@@ -205,19 +247,18 @@ require('../source/modules/smart.tree');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-tree-item", { ref: this.componentRef }, this.props.children));
+	        return (React.createElement("smart-tree-item", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
 	    }
 	}
 
-	const Smart$1 = window.Smart;
+	let Smart;
+	if (typeof window !== "undefined") {
+	    Smart = window.Smart;
+	}
 	/**
 	 Defines a group of tree items.
 	*/
 	class TreeItemsGroup extends React.Component {
-	    constructor(props) {
-	        super(props);
-	        this.componentRef = React.createRef();
-	    }
 	    // Gets the id of the React component.
 	    get id() {
 	        if (!this._id) {
@@ -321,11 +362,29 @@ require('../source/modules/smart.tree');
 	    get eventListeners() {
 	        return ["onCreate", "onReady"];
 	    }
+	    constructor(props) {
+	        super(props);
+	        this.componentRef = React.createRef();
+	    }
 	    componentDidRender(initialize) {
 	        const that = this;
 	        const props = {};
 	        const events = {};
 	        let styles = null;
+	        const stringifyCircularJSON = (obj) => {
+	            const seen = new WeakSet();
+	            return JSON.stringify(obj, (k, v) => {
+	                if (v !== null && typeof v === 'object') {
+	                    if (seen.has(v))
+	                        return;
+	                    seen.add(v);
+	                }
+	                if (k === 'Smart') {
+	                    return v;
+	                }
+	                return v;
+	            });
+	        };
 	        for (let prop in that.props) {
 	            if (prop === 'children') {
 	                continue;
@@ -342,10 +401,27 @@ require('../source/modules/smart.tree');
 	        }
 	        if (initialize) {
 	            that.nativeElement = this.componentRef.current;
+	            that.nativeElement.React = React;
+	            that.nativeElement.ReactDOM = ReactDOM;
+	            if (that.nativeElement && !that.nativeElement.isCompleted) {
+	                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+	            }
+	        }
+	        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+	            //	return;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
+	                if (that.nativeElement._classNames) {
+	                    const oldClassNames = that.nativeElement._classNames;
+	                    for (let className in oldClassNames) {
+	                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+	                            that.nativeElement.classList.remove(oldClassNames[className]);
+	                        }
+	                    }
+	                }
+	                that.nativeElement._classNames = classNames;
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
 	                        that.nativeElement.classList.add(classNames[className]);
@@ -363,7 +439,17 @@ require('../source/modules/smart.tree');
 	                    that.nativeElement.setAttribute(prop, '');
 	                }
 	                const normalizedProp = normalizeProp(prop);
-	                that.nativeElement[normalizedProp] = props[prop];
+	                if (that.nativeElement[normalizedProp] === undefined) {
+	                    that.nativeElement.setAttribute(prop, props[prop]);
+	                }
+	                if (props[prop] !== undefined) {
+	                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+	                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+	                            continue;
+	                        }
+	                    }
+	                    that.nativeElement[normalizedProp] = props[prop];
+	                }
 	            }
 	        }
 	        for (let eventName in events) {
@@ -405,19 +491,18 @@ require('../source/modules/smart.tree');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-tree-items-group", { ref: this.componentRef }, this.props.children));
+	        return (React.createElement("smart-tree-items-group", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
 	    }
 	}
 
-	const Smart$2 = window.Smart;
+	exports.Smart = void 0;
+	if (typeof window !== "undefined") {
+	    exports.Smart = window.Smart;
+	}
 	/**
 	 Treeview component is a user interface that is used to represent hierarchical data in a tree structure.
 	*/
 	class Tree extends React.Component {
-	    constructor(props) {
-	        super(props);
-	        this.componentRef = React.createRef();
-	    }
 	    // Gets the id of the React component.
 	    get id() {
 	        if (!this._id) {
@@ -568,6 +653,39 @@ require('../source/modules/smart.tree');
 	            this.nativeElement.dragOffset = value;
 	        }
 	    }
+	    /**
+	    *	Property type: boolean
+	    */
+	    get dropDownMode() {
+	        return this.nativeElement ? this.nativeElement.dropDownMode : undefined;
+	    }
+	    set dropDownMode(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.dropDownMode = value;
+	        }
+	    }
+	    /** Sets the width of the Tree when displayed in a drop-down mode.
+	    *	Property type: number
+	    */
+	    get dropDownWidth() {
+	        return this.nativeElement ? this.nativeElement.dropDownWidth : undefined;
+	    }
+	    set dropDownWidth(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.dropDownWidth = value;
+	        }
+	    }
+	    /** Sets the height of the Tree when displayed in a drop-down mode.
+	    *	Property type: number
+	    */
+	    get dropDownHeight() {
+	        return this.nativeElement ? this.nativeElement.dropDownHeight : undefined;
+	    }
+	    set dropDownHeight(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.dropDownHeight = value;
+	        }
+	    }
 	    /** Enables or disables item's editting. An edit operation can be initiated by double-clicking a tree item or pressing F2 while an item is selected.
 	    *	Property type: boolean
 	    */
@@ -687,6 +805,17 @@ require('../source/modules/smart.tree');
 	    set loadingIndicatorPosition(value) {
 	        if (this.nativeElement) {
 	            this.nativeElement.loadingIndicatorPosition = value;
+	        }
+	    }
+	    /** Sets or gets the unlockKey which unlocks the product.
+	    *	Property type: string
+	    */
+	    get unlockKey() {
+	        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+	    }
+	    set unlockKey(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.unlockKey = value;
 	        }
 	    }
 	    /** Sets or gets the locale. Used in conjunction with the property messages.
@@ -922,11 +1051,11 @@ require('../source/modules/smart.tree');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["allowDrag", "allowDrop", "animation", "autoHideToggleElement", "autoLoadState", "autoSaveState", "autoSort", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dragFeedbackFormatFunction", "dragOffset", "editable", "expandMode", "filterable", "filterOnEnter", "filterInputPlaceholder", "filterMember", "filterMode", "hasThreeStates", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "locale", "localizeFormatFunction", "messages", "overflow", "readonly", "rightToLeft", "scrollMode", "selectedIndexes", "selectionDisplayMode", "selectionMode", "selectionTarget", "showLines", "showRootLines", "sort", "sortDirection", "sorted", "theme", "toggleElementPosition", "toggleMode", "unfocusable", "valueMember"];
+	        return ["allowDrag", "allowDrop", "animation", "autoHideToggleElement", "autoLoadState", "autoSaveState", "autoSort", "dataSource", "disabled", "displayLoadingIndicator", "displayMember", "dragFeedbackFormatFunction", "dragOffset", "dropDownMode", "dropDownWidth", "dropDownHeight", "editable", "expandMode", "filterable", "filterOnEnter", "filterInputPlaceholder", "filterMember", "filterMode", "hasThreeStates", "itemsMember", "loadingIndicatorPlaceholder", "loadingIndicatorPosition", "unlockKey", "locale", "localizeFormatFunction", "messages", "overflow", "readonly", "rightToLeft", "scrollMode", "selectedIndexes", "selectionDisplayMode", "selectionMode", "selectionTarget", "showLines", "showRootLines", "sort", "sortDirection", "sorted", "theme", "toggleElementPosition", "toggleMode", "unfocusable", "valueMember"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
-	        return ["onChange", "onCollapse", "onCollapsing", "onDragEnd", "onDragging", "onDragStart", "onExpand", "onExpanding", "onScrollBottomReached", "onScrollTopReached", "onSwipeleft", "onSwiperight", "onCreate", "onReady"];
+	        return ["onChange", "onCollapse", "onCollapsing", "onDragEnd", "onDragging", "onDragStart", "onExpand", "onExpanding", "onFilterChange", "onOpen", "onClose", "onScrollBottomReached", "onScrollTopReached", "onSwipeleft", "onSwiperight", "onCreate", "onReady"];
 	    }
 	    /** Adds an item after another item as a sibling.
 	    * @param {HTMLElement} item. A jqx-tree-item/jqx-tree-items-group to add to the Tree
@@ -1009,6 +1138,30 @@ require('../source/modules/smart.tree');
 	            });
 	        }
 	    }
+	    /** Closes the dropdown when the Tree is in dropdown mode.
+	    */
+	    closeDropDown() {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.closeDropDown();
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.closeDropDown();
+	            });
+	        }
+	    }
+	    /** Opens the dropdown when the Tree is in dropdown mode.
+	    */
+	    openDropDown() {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.openDropDown();
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.openDropDown();
+	            });
+	        }
+	    }
 	    /** Makes sure an item is visible by scrolling to it.
 	    * @param {HTMLElement | string} item. The id or numeric path of an item
 	    */
@@ -1068,6 +1221,13 @@ require('../source/modules/smart.tree');
 	  */
 	    getItem(id) {
 	        const result = this.nativeElement.getItem(id);
+	        return result;
+	    }
+	    /** Gets the applied filter.
+	    * @returns {string}
+	  */
+	    getFilter() {
+	        const result = this.nativeElement.getFilter();
 	        return result;
 	    }
 	    /** Gets the selected values. If value is not defined, returns the selected labels.
@@ -1223,11 +1383,29 @@ require('../source/modules/smart.tree');
 	            });
 	        }
 	    }
+	    constructor(props) {
+	        super(props);
+	        this.componentRef = React.createRef();
+	    }
 	    componentDidRender(initialize) {
 	        const that = this;
 	        const props = {};
 	        const events = {};
 	        let styles = null;
+	        const stringifyCircularJSON = (obj) => {
+	            const seen = new WeakSet();
+	            return JSON.stringify(obj, (k, v) => {
+	                if (v !== null && typeof v === 'object') {
+	                    if (seen.has(v))
+	                        return;
+	                    seen.add(v);
+	                }
+	                if (k === 'Smart') {
+	                    return v;
+	                }
+	                return v;
+	            });
+	        };
 	        for (let prop in that.props) {
 	            if (prop === 'children') {
 	                continue;
@@ -1244,10 +1422,27 @@ require('../source/modules/smart.tree');
 	        }
 	        if (initialize) {
 	            that.nativeElement = this.componentRef.current;
+	            that.nativeElement.React = React;
+	            that.nativeElement.ReactDOM = ReactDOM;
+	            if (that.nativeElement && !that.nativeElement.isCompleted) {
+	                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+	            }
+	        }
+	        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+	            //	return;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
+	                if (that.nativeElement._classNames) {
+	                    const oldClassNames = that.nativeElement._classNames;
+	                    for (let className in oldClassNames) {
+	                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+	                            that.nativeElement.classList.remove(oldClassNames[className]);
+	                        }
+	                    }
+	                }
+	                that.nativeElement._classNames = classNames;
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
 	                        that.nativeElement.classList.add(classNames[className]);
@@ -1265,7 +1460,17 @@ require('../source/modules/smart.tree');
 	                    that.nativeElement.setAttribute(prop, '');
 	                }
 	                const normalizedProp = normalizeProp(prop);
-	                that.nativeElement[normalizedProp] = props[prop];
+	                if (that.nativeElement[normalizedProp] === undefined) {
+	                    that.nativeElement.setAttribute(prop, props[prop]);
+	                }
+	                if (props[prop] !== undefined) {
+	                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+	                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+	                            continue;
+	                        }
+	                    }
+	                    that.nativeElement[normalizedProp] = props[prop];
+	                }
 	            }
 	        }
 	        for (let eventName in events) {
@@ -1273,7 +1478,7 @@ require('../source/modules/smart.tree');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
-	            Smart$2.Render();
+	            exports.Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }
@@ -1308,16 +1513,15 @@ require('../source/modules/smart.tree');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-tree", { ref: this.componentRef }, this.props.children));
+	        return (React.createElement("smart-tree", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
 	    }
 	}
 
-	exports.Smart = Smart$2;
 	exports.Tree = Tree;
-	exports.default = Tree;
 	exports.TreeItem = TreeItem;
 	exports.TreeItemsGroup = TreeItemsGroup;
+	exports.default = Tree;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));

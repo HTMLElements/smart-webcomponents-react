@@ -4,22 +4,19 @@ require('../source/modules/smart.scheduler');
 import * as pkg from '../common/rrule.min.js';
 window.rrule = { RRule:  pkg.default };
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
-	(factory((global.scheduler = {}),global.React));
-}(this, (function (exports,React) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom/client')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom/client'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.scheduler = {}, global.React, global.ReactDOM));
+})(this, (function (exports, React, ReactDOM) { 'use strict';
 
-	React = React && React.hasOwnProperty('default') ? React['default'] : React;
-
-	const Smart = window.Smart;
+	exports.Smart = void 0;
+	if (typeof window !== "undefined") {
+	    exports.Smart = window.Smart;
+	}
 	/**
 	 Scheduler displays a set ot Events in Day, Week, Month, Agenda, Timeline Day, Timeline Week, Timeline Month views.
 	*/
 	class Scheduler extends React.Component {
-	    constructor(props) {
-	        super(props);
-	        this.componentRef = React.createRef();
-	    }
 	    // Gets the id of the React component.
 	    get id() {
 	        if (!this._id) {
@@ -69,6 +66,17 @@ window.rrule = { RRule:  pkg.default };
 	    set colorScheme(value) {
 	        if (this.nativeElement) {
 	            this.nativeElement.colorScheme = value;
+	        }
+	    }
+	    /** Determines the current time of the Scheduler to use for the current time indicator functionality. By default the current time is Today.
+	    *	Property type: string | Date
+	    */
+	    get currentTime() {
+	        return this.nativeElement ? this.nativeElement.currentTime : undefined;
+	    }
+	    set currentTime(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.currentTime = value;
 	        }
 	    }
 	    /** Enables/Disables the current time indicator. Current time indicator shows the current time in the appropriate view cells.
@@ -687,6 +695,17 @@ window.rrule = { RRule:  pkg.default };
 	            this.nativeElement.horizontalScrollBarVisibility = value;
 	        }
 	    }
+	    /** Sets or gets the unlockKey which unlocks the product.
+	    *	Property type: string
+	    */
+	    get unlockKey() {
+	        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+	    }
+	    set unlockKey(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.unlockKey = value;
+	        }
+	    }
 	    /**  Determines the language of the Scheduler.
 	    *	Property type: string
 	    */
@@ -852,7 +871,7 @@ window.rrule = { RRule:  pkg.default };
 	            this.nativeElement.restrictedHours = value;
 	        }
 	    }
-	    /** Defines an array of dates and hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed. Each array item is an Object and requires 2 fields - date and hours. For example: { date: new Date(2022, 10, 1), hours: [[0, 6], 12, [20, 23]] }. The hours define a range of restricted hours similartly to the restricted hours property, the date defines a date where the restricted hours will be applied.
+	    /** Defines an array of dates and hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed. Each array item is an Object and requires 2 fields - date and hours. For example: { date: new Date(2023, 10, 1), hours: [[0, 6], 12, [20, 23]] }. The hours define a range of restricted hours similartly to the restricted hours property, the date defines a date where the restricted hours will be applied.
 	    *	Property type: any
 	    */
 	    get restricted() {
@@ -1184,7 +1203,7 @@ window.rrule = { RRule:  pkg.default };
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["autoScrollStep", "autoHeightAllDayCells", "available", "colorScheme", "currentTimeIndicator", "currentTimeIndicatorInterval", "contextMenuDataSource", "contextMenuClipboardActions", "eventTemplate", "eventCollectorTemplate", "eventRenderMode", "eventTooltipTemplate", "cellTemplate", "dateCurrent", "dataExport", "dataSource", "dateSelectorFormatFunction", "dayFormat", "disabled", "disableAutoScroll", "disableDrag", "disableDrop", "disableResize", "disableSelection", "disableWindowEditor", "disableContextMenu", "disableEventMenu", "disableViewMenu", "disableDateMenu", "dragFeedbackFormatFunction", "dragOffset", "filter", "filterable", "filterMode", "events", "firstDayOfWeek", "footerTemplate", "groupByDate", "groupOrientation", "groupTemplate", "groups", "hourEnd", "hourStart", "hourFormat", "headerTemplate", "headerDatePosition", "headerNavigationStyle", "headerViewPosition", "hideAllDay", "hideNonworkingWeekdays", "hideOtherMonthDays", "hideTodayButton", "hideViewMenuCheckableItems", "hideWeekend", "legendLocation", "legendPosition", "legendLayout", "legendLayoutMenuBreakpoint", "mouseWheelStep", "horizontalScrollBarVisibility", "locale", "max", "maxEventsPerCell", "min", "messages", "minuteFormat", "monthFormat", "nonworkingDays", "nonworkingHours", "notificationInterval", "resizeHandlesVisibility", "resizeInterval", "resources", "restrictedDates", "restrictedHours", "restricted", "rightToLeft", "scrollButtonsPosition", "shadeUntilCurrentTime", "showLegend", "sortBy", "sortFunction", "sortOrder", "spinButtonsDelay", "spinButtonsInitialDelay", "statuses", "theme", "timelineHeaderFormatFunction", "timelineDayScale", "timeRulerTicks", "timeZone", "timeZones", "tooltipDelay", "tooltipOffset", "verticalScrollBarVisibility", "view", "viewType", "views", "viewSelectorType", "viewStartDay", "weekdayFormat", "yearFormat", "unfocusable", "undoRedoSteps", "windowCustomizationFunction"];
+	        return ["autoScrollStep", "autoHeightAllDayCells", "available", "colorScheme", "currentTime", "currentTimeIndicator", "currentTimeIndicatorInterval", "contextMenuDataSource", "contextMenuClipboardActions", "eventTemplate", "eventCollectorTemplate", "eventRenderMode", "eventTooltipTemplate", "cellTemplate", "dateCurrent", "dataExport", "dataSource", "dateSelectorFormatFunction", "dayFormat", "disabled", "disableAutoScroll", "disableDrag", "disableDrop", "disableResize", "disableSelection", "disableWindowEditor", "disableContextMenu", "disableEventMenu", "disableViewMenu", "disableDateMenu", "dragFeedbackFormatFunction", "dragOffset", "filter", "filterable", "filterMode", "events", "firstDayOfWeek", "footerTemplate", "groupByDate", "groupOrientation", "groupTemplate", "groups", "hourEnd", "hourStart", "hourFormat", "headerTemplate", "headerDatePosition", "headerNavigationStyle", "headerViewPosition", "hideAllDay", "hideNonworkingWeekdays", "hideOtherMonthDays", "hideTodayButton", "hideViewMenuCheckableItems", "hideWeekend", "legendLocation", "legendPosition", "legendLayout", "legendLayoutMenuBreakpoint", "mouseWheelStep", "horizontalScrollBarVisibility", "unlockKey", "locale", "max", "maxEventsPerCell", "min", "messages", "minuteFormat", "monthFormat", "nonworkingDays", "nonworkingHours", "notificationInterval", "resizeHandlesVisibility", "resizeInterval", "resources", "restrictedDates", "restrictedHours", "restricted", "rightToLeft", "scrollButtonsPosition", "shadeUntilCurrentTime", "showLegend", "sortBy", "sortFunction", "sortOrder", "spinButtonsDelay", "spinButtonsInitialDelay", "statuses", "theme", "timelineHeaderFormatFunction", "timelineDayScale", "timeRulerTicks", "timeZone", "timeZones", "tooltipDelay", "tooltipOffset", "verticalScrollBarVisibility", "view", "viewType", "views", "viewSelectorType", "viewStartDay", "weekdayFormat", "yearFormat", "unfocusable", "undoRedoSteps", "windowCustomizationFunction"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
@@ -1284,15 +1303,16 @@ window.rrule = { RRule:  pkg.default };
 	    }
 	    /** Exports the events from the Scheduler.
 	    * @param {string} dataFormat. Determines the format of the exported file. The following values are available: <ul><li><b>pdf</b></li><li><b>xlsx</b></li><li><b>html</b></li><li><b>iCal</b></li></ul>
-	    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer ro the Smart Export Documentation.
+	    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer to the Smart Export Documentation.
+	    * @param {any} dataCallback?. A callback that allows to change the exported data.
 	    */
-	    exportData(dataFormat, callback) {
+	    exportData(dataFormat, callback, dataCallback) {
 	        if (this.nativeElement.isRendered) {
-	            this.nativeElement.exportData(dataFormat, callback);
+	            this.nativeElement.exportData(dataFormat, callback, dataCallback);
 	        }
 	        else {
 	            this.nativeElement.whenRendered(() => {
-	                this.nativeElement.exportData(dataFormat, callback);
+	                this.nativeElement.exportData(dataFormat, callback, dataCallback);
 	            });
 	        }
 	    }
@@ -1741,11 +1761,29 @@ window.rrule = { RRule:  pkg.default };
 	        const result = this.nativeElement.undo(step);
 	        return result;
 	    }
+	    constructor(props) {
+	        super(props);
+	        this.componentRef = React.createRef();
+	    }
 	    componentDidRender(initialize) {
 	        const that = this;
 	        const props = {};
 	        const events = {};
 	        let styles = null;
+	        const stringifyCircularJSON = (obj) => {
+	            const seen = new WeakSet();
+	            return JSON.stringify(obj, (k, v) => {
+	                if (v !== null && typeof v === 'object') {
+	                    if (seen.has(v))
+	                        return;
+	                    seen.add(v);
+	                }
+	                if (k === 'Smart') {
+	                    return v;
+	                }
+	                return v;
+	            });
+	        };
 	        for (let prop in that.props) {
 	            if (prop === 'children') {
 	                continue;
@@ -1762,10 +1800,27 @@ window.rrule = { RRule:  pkg.default };
 	        }
 	        if (initialize) {
 	            that.nativeElement = this.componentRef.current;
+	            that.nativeElement.React = React;
+	            that.nativeElement.ReactDOM = ReactDOM;
+	            if (that.nativeElement && !that.nativeElement.isCompleted) {
+	                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+	            }
+	        }
+	        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+	            //	return;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
+	                if (that.nativeElement._classNames) {
+	                    const oldClassNames = that.nativeElement._classNames;
+	                    for (let className in oldClassNames) {
+	                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+	                            that.nativeElement.classList.remove(oldClassNames[className]);
+	                        }
+	                    }
+	                }
+	                that.nativeElement._classNames = classNames;
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
 	                        that.nativeElement.classList.add(classNames[className]);
@@ -1783,7 +1838,17 @@ window.rrule = { RRule:  pkg.default };
 	                    that.nativeElement.setAttribute(prop, '');
 	                }
 	                const normalizedProp = normalizeProp(prop);
-	                that.nativeElement[normalizedProp] = props[prop];
+	                if (that.nativeElement[normalizedProp] === undefined) {
+	                    that.nativeElement.setAttribute(prop, props[prop]);
+	                }
+	                if (props[prop] !== undefined) {
+	                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+	                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+	                            continue;
+	                        }
+	                    }
+	                    that.nativeElement[normalizedProp] = props[prop];
+	                }
 	            }
 	        }
 	        for (let eventName in events) {
@@ -1791,7 +1856,7 @@ window.rrule = { RRule:  pkg.default };
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
-	            Smart.Render();
+	            exports.Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }
@@ -1826,14 +1891,13 @@ window.rrule = { RRule:  pkg.default };
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-scheduler", { ref: this.componentRef }, this.props.children));
+	        return (React.createElement("smart-scheduler", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
 	    }
 	}
 
-	exports.Smart = Smart;
 	exports.Scheduler = Scheduler;
 	exports.default = Scheduler;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));

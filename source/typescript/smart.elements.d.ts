@@ -115,6 +115,11 @@ export interface ThreeDChartProperties {
    */
   lightColor?: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the locale. Used in conjunction with the property messages.
    * Default value: "en"
    */
@@ -1279,6 +1284,11 @@ export interface AccordionProperties {
    */
   expandMode?: AccordionExpandMode | string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -1559,6 +1569,11 @@ export interface ArrayProperties {
    * Default value: 50
    */
   indexerWidth?: number;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -2011,6 +2026,11 @@ export interface BreadcrumbProperties {
    */
   itemTemplate?: any;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -2134,6 +2154,11 @@ export interface ButtonProperties {
    */
   innerHTML: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -2241,6 +2266,11 @@ export interface ButtonGroupProperties {
    * Default value: false
    */
   disabled?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -2370,6 +2400,11 @@ export interface CalendarProperties {
    */
   disableAutoNavigation?: boolean;
   /**
+   * Enables or disables the Calendar mouse wheel behavior.
+   * Default value: false
+   */
+  disableMouseWheel?: boolean;
+  /**
    * Determines the date view of the calendar when calendarMode is set to 'default'
    * Default value: month
    */
@@ -2429,6 +2464,11 @@ export interface CalendarProperties {
    * Default value: null
    */
   importantDatesTemplate?: any;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    *  Determines the language of the Calendar. 
    * Default value: "en"
@@ -2727,6 +2767,11 @@ export interface CardProperties {
    */
   itemTemplate?: any;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -2869,6 +2914,11 @@ export interface CardViewProperties {
    * Default value: none
    */
   headerPosition?: CardViewHeaderPosition | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the locale. Used in conjunction with the property messages.
    * Default value: "en"
@@ -3316,6 +3366,11 @@ export interface CarouselProperties {
    */
   keyboard?: boolean;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -3557,6 +3612,11 @@ export interface ChartProperties {
    * Default value: [object Object]
    */
   legendLayout?: any;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the locale. Used in conjunction with the property messages.
    * Default value: "en"
@@ -4816,6 +4876,11 @@ export interface ChartValueAxis {
    */
   title?: ChartTitle;
   /**
+   * Color of tick marks.
+   * Default value: ""
+   */
+  tickMarksColor?: string;
+  /**
    * Sets the interval between the units.
    * Default value: null
    */
@@ -5377,6 +5442,11 @@ export interface CheckBoxProperties {
    */
   innerHTML: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -5520,6 +5590,11 @@ export interface CheckInputProperties {
    * Default value: 8
    */
   items?: number;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -5708,6 +5783,11 @@ export interface ChipProperties {
    */
   itemTemplate?: any;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -5803,6 +5883,11 @@ export interface CircularProgressBarProperties {
    * Default value: false
    */
   inverted?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -5939,6 +6024,11 @@ export interface ColorInputProperties {
    * Default value: 8
    */
   items?: number;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -6166,6 +6256,11 @@ export interface ColorPanelProperties {
    * Default value: false
    */
   inverted?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages.
    * Default value: "en"
@@ -6455,6 +6550,11 @@ export interface ColorPickerProperties {
    */
   label?: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -6679,6 +6779,11 @@ export interface ColumnPanelProperties {
    * Default value: false
    */
   disabled?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages.
    * Default value: "en"
@@ -6983,6 +7088,11 @@ export interface ComboBoxProperties {
    */
   loadingIndicatorPosition?: VerticalAlignment | string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -7196,6 +7306,11 @@ export interface ComboBox extends BaseElement, ComboBoxProperties {
    */
   appendChild<T extends Node>(node: Node): T;
   /**
+   * Adds a new item(s).
+   * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
+   */
+  add(item: any): void;
+  /**
    * Removes all items from the drop down list.
    */
   clearItems(): void;
@@ -7207,6 +7322,10 @@ export interface ComboBox extends BaseElement, ComboBoxProperties {
    * Closes the dropDown list.
    */
   close(): void;
+  /**
+   * Performs a data bind. This can be used to refresh the data source.
+   */
+  dataBind(): void;
   /**
    * Ensures the desired item is visible by scrolling to it.
    * @param {HTMLElement | string} item. A list item or value of the desired item to be visible.
@@ -7221,7 +7340,7 @@ export interface ComboBox extends BaseElement, ComboBoxProperties {
   /**
    * Inserts a new item at a specified position.
    * @param {number} position. The position where the item must be inserted.
-   * @param {any} item. Describes the properties of the item that will be inserted.
+   * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
    */
   insert(position: number, item: any): void;
   /**
@@ -7459,6 +7578,11 @@ export interface CustomizationDialogProperties {
    * Default value: apply,close
    */
   headerButtons?: string[];
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -7956,6 +8080,11 @@ export interface DateInputProperties {
    */
   autoCloseDelay?: number;
   /**
+   * Determines the calendar properties to be set to the popup calendar.
+   * Default value: null
+   */
+  calendarProperties?: any;
+  /**
    * Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. Intl.DateTimeFormat is used to format date strings in JavaScript. By default the date format is 'numeric'. The default value is: { day: 'numeric', month: 'numeric', year: 'numeric' }
    * Default value: { day: 'numeric', month: 'numeric', year: 'numeric' }
    */
@@ -7990,6 +8119,11 @@ export interface DateInputProperties {
    * Default value: "off"
    */
   inputPurpose?: string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -8164,6 +8298,11 @@ export interface DateRangeInputProperties {
    * Default value: "off"
    */
   inputPurpose?: string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -8509,6 +8648,11 @@ export interface DateTimePickerProperties {
    */
   label?: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the locale that determines what language is used to localize the labels inside the DateTimePicker.
    * Default value: "en"
    */
@@ -8788,7 +8932,7 @@ export interface DockingLayoutProperties {
    */
   closedItems?: any;
   /**
-   * Determines the structure of the element. This property represents an array of objects that define the hierarchy of the items inside the element and their specific settings. Each object must have a type attribute that defines it's behavior.  Three types of objects are allowed:   LayoutGroup - Represents a group of items (Splitter). Used when the user wants more than one DockingLayout item in a single container.  Properties: orientation - A string value indicating the orientation of the Splitter group. Possible values: 'horizontal', 'vertical'. size - A string | number value indicating the size of the Splitter group. items - An array of LayoutPanel object definitions. resizeMode - A string indicating the resize mode. Possible values: 'none', 'adjacent', 'end', 'proportional'. resizeStep - A nummeric value that determines the step of resizing. liveResize - Determines if splitter resizing happens while dragging or not.   LayoutPanel - Represents a DockingLayout item (TabsWindow). LayoutPanels can have one or many items (TabItem).  Properties:   id - the ID of the LayoutPanel. autoHide - a boolean property that determines if the LayoutPanel is autoHidden. autoHidePosition - determines the autoHide position of the item if 'autoHide' property is set. Possible values: 'top', 'bottom', 'left', 'right'. dropPosition - Determines the possible positions for the item at which a new item can be dropped as a result of dragging. Possible values: 'top', 'bottom', 'left', 'right', 'center', 'header', 'layout-top', 'layout-bottom', 'layout-left', 'layout-right'. Positions with the 'layout' prefix reflect on LayoutPanelItems that are children of the LayoutPanel. label - the Label of the LayoutPanel window. tabPosition - Determines the position of the Tab labels inside the LayoutPanel. layout - determines the DockingLayout owner of the LayoutPanel. Accepts a string indicating the ID of a DockingLayout on the page or a direct reference to it. headerButtons - an Array of strings that define the buttons in the header section of the DockingLayout item. tabCloseButtons - a boolean property that Enables or disables the close buttons inside each Tab item label inside the DockingLayout item. tabOverflow - same as 'overflow' property of jqxTabs. It defines the overflow mode of the labels of the Tab items inside a DockingLayout item.selectionMode - the same as jqxTabs selection modes. Applies to Tab items inside a DockingLayout item. tabResize - the same as 'resize' property of jqxTabs. Allows resizing the Tab labels inside the DockingLayout item. locked - Locks the size of the item and does not allow resizing. max - sets the maximum size of the item. min - sets the minimum size of the item size - sets the size of the item. items - an array of objects. Each object defines the structure of a LayoutPanelItem.   LayoutPanelItem - Represents a LayoutPanel item (TabItem). Properties:  id - the ID of the Tab item. label - a string representing the label of the Tab item. content - represents the content of the Tab item. Can be anything. selected - determines if the item is selected. By default the first added item to the LayoutPanel is automatically selected. draggable - a boolean property that allows to disable the dragging of the Tab item.    
+   * Determines the structure of the element. This property represents an array of objects that define the hierarchy of the items inside the element and their specific settings. Each object must have a type attribute that defines it's behavior.  Three types of objects are allowed:   LayoutGroup - Represents a group of items (Splitter). Used when the user wants more than one DockingLayout item in a single container.  Properties: orientation - A string value indicating the orientation of the Splitter group. Possible values: 'horizontal', 'vertical'. size - A string | number value indicating the size of the Splitter group. items - An array of LayoutPanel object definitions. resizeMode - A string indicating the resize mode. Possible values: 'none', 'adjacent', 'end', 'proportional'. resizeStep - A nummeric value that determines the step of resizing. liveResize - Determines if splitter resizing happens while dragging or not.   LayoutPanel - Represents a DockingLayout item (TabsWindow). LayoutPanels can have one or many items (TabItem).  Properties:   id - the ID of the LayoutPanel. autoHide - a boolean property that determines if the LayoutPanel is autoHidden. autoHidePosition - determines the autoHide position of the item if 'autoHide' property is set. Possible values: 'top', 'bottom', 'left', 'right'. dropPosition - Determines the possible positions for the item at which a new item can be dropped as a result of dragging. Possible values: 'top', 'bottom', 'left', 'right', 'center', 'header', 'layout-top', 'layout-bottom', 'layout-left', 'layout-right'. Positions with the 'layout' prefix reflect on LayoutPanelItems that are children of the LayoutPanel. label - the Label of the LayoutPanel window. tabPosition - Determines the position of the Tab labels inside the LayoutPanel. layout - determines the DockingLayout owner of the LayoutPanel. Accepts a string indicating the ID of a DockingLayout on the page or a direct reference to it. headerButtons - an Array of strings that define the buttons in the header section of the DockingLayout item. Possible values for the array are empty array like this [] or an array with any of the following items: 'close', 'autoHide'. tabCloseButtons - a boolean property that Enables or disables the close buttons inside each Tab item label inside the DockingLayout item. tabOverflow - same as 'overflow' property of jqxTabs. It defines the overflow mode of the labels of the Tab items inside a DockingLayout item.selectionMode - the same as jqxTabs selection modes. Applies to Tab items inside a DockingLayout item. tabResize - the same as 'resize' property of jqxTabs. Allows resizing the Tab labels inside the DockingLayout item. locked - Locks the size of the item and does not allow resizing. max - sets the maximum size of the item. min - sets the minimum size of the item size - sets the size of the item. items - an array of objects. Each object defines the structure of a LayoutPanelItem.   LayoutPanelItem - Represents a LayoutPanel item (TabItem). Properties:  id - the ID of the Tab item. label - a string representing the label of the Tab item. content - represents the content of the Tab item. Can be anything. selected - determines if the item is selected. By default the first added item to the LayoutPanel is automatically selected. draggable - a boolean property that allows to disable the dragging of the Tab item.    
    * Default value: 
    */
   layout?: any;
@@ -8797,6 +8941,11 @@ export interface DockingLayoutProperties {
    * Default value: false
    */
   liveResize?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -9185,6 +9334,11 @@ export interface DropDownButtonProperties {
    */
   label?: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -9348,11 +9502,6 @@ declare global {
 
 export interface DropDownListProperties {
   /**
-   * Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
-   * Default value: advanced
-   */
-  animation?: Animation | string;
-  /**
    * Used only when dropDownOpenMode is set to 'auto'. Determines the delay before the opened drop down closes if the pointer is not over the element.
    * Default value: 100
    */
@@ -9453,6 +9602,11 @@ export interface DropDownListProperties {
    */
   filterMode?: FilterMode | string;
   /**
+   * A callback that should return a condition that will be used for custom item filtering. Used in conjunction with filterMode 'custom'
+   * Default value: null
+   */
+  filterCallback?: any;
+  /**
    * If enabled, the items will be grouped by their first letter. Can't be applied if the dataSource already contains groups.
    * Default value: false
    */
@@ -9522,6 +9676,11 @@ export interface DropDownListProperties {
    * Default value: center
    */
   loadingIndicatorPosition?: VerticalAlignment | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -9730,6 +9889,11 @@ export interface DropDownList extends BaseElement, DropDownListProperties {
    */
   appendChild<T extends Node>(node: Node): T;
   /**
+   * Adds a new item(s).
+   * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
+   */
+  add(item: any): void;
+  /**
    * Removes all items from the drop down list.
    */
   clearItems(): void;
@@ -9741,6 +9905,10 @@ export interface DropDownList extends BaseElement, DropDownListProperties {
    * Closes the dropDown list.
    */
   close(): void;
+  /**
+   * Performs a data bind. This can be used to refresh the data source.
+   */
+  dataBind(): void;
   /**
    * Ensures the desired item is visible by scrolling to it.
    * @param {HTMLElement | string} item. A list item or value of the desired item to be visible.
@@ -9810,10 +9978,20 @@ declare global {
 
 export interface EditorProperties {
   /**
+   * An object containing settings related to the grid's AI integration.
+   * Default value: [object Object]
+   */
+  ai?: EditorAi;
+  /**
    * Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
    * Default value: advanced
    */
   animation?: Animation | string;
+  /**
+   * Automatically formats text as you type—bullets, checkboxes, headings, code blocks
+   * Default value: true
+   */
+  autoFormatting?: boolean;
   /**
    * Automatically loads the last saved state of the editor (from local storage) on element initialization. An id must be provided in order to load a previously saved state.
    * Default value: false
@@ -9875,7 +10053,7 @@ export interface EditorProperties {
    */
   disableSearchBar?: boolean;
   /**
-   * Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode.
+   * Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. The 'blockHtml' edit mode creates DIV tags when you hit enter and also includes built-in commands for data input. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode.
    * Default value: html
    */
   editMode?: EditMode | string;
@@ -9910,6 +10088,16 @@ export interface EditorProperties {
    */
   imageFormat?: EditorImageFormat | string;
   /**
+   * Automatically sets the width of an image when pasted from clipboard.
+   * Default value: 0
+   */
+  imagePasteWidth?: number;
+  /**
+   * Automatically sets the height of an image when pasted from clipboard.
+   * Default value: 0
+   */
+  imagePasteHeight?: number;
+  /**
    * Sets the content of the Editor as HTML. Allows to insert text and HTML.
    * Default value: "en"
    */
@@ -9924,6 +10112,11 @@ export interface EditorProperties {
    * Default value: [object Object]
    */
   iframeSettings?: EditorIframeSettings;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -10187,6 +10380,21 @@ export interface EditorProperties {
    */
   splitModeRefreshTimeout?: number;
   /**
+   * Sets the editor users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
+   * Default value: []
+   */
+  users?: any[];
+  /**
+   * Enables the editor pages feature.
+   * Default value: false
+   */
+  enablePages?: boolean;
+  /**
+   * Sets the editor pages. Expects an array with 'label' and 'innerHTML' properties.
+   * Default value: []
+   */
+  pages?: any[];
+  /**
    * Sets or gets the upload URL. This property corresponds to the upload form's action attribute. For example, the uploadUrl property can point to a PHP file, which handles the upload operation on the server-side.
    * Default value: ""
    */
@@ -10444,6 +10652,11 @@ export interface Editor extends BaseElement, EditorProperties {
    */
   onMessageOpen?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
+   * Adds a new Toolbar item. Example: editor.addToolbarItem({ name: &#039;customButton2&#039;, width: 100, template: &#039;&lt;smart-button&gt;Button2&lt;/smart-button&gt;&#039; })
+   * @param {any} itemName. The toolbar item to be added
+   */
+  addToolbarItem(itemName: any): void;
+  /**
    * Blurs the content of the Editor.
    */
   blur(): void;
@@ -10510,6 +10723,12 @@ export interface Editor extends BaseElement, EditorProperties {
    */
   hideLastMessage(): void;
   /**
+   * Inserts a new Toolbar item. Example: editor.insertToolbarItem({ name: &#039;customButton2&#039;, width: 100, template: &#039;&lt;smart-button&gt;Button2&lt;/smart-button&gt;&#039; })
+   * @param {any} itemName. The toolbar item to be added
+   * @param {number} index. The toolbar item's index
+   */
+  insertToolbarItem(itemName: any, index: number): void;
+  /**
    * Shows a custom message inside the Editor.
    * @param {string} message. The text message to be displayed.
    * @param {any} settings?. Additional settings that can be applied to the Toast element that handles the messages. This parameter should contain only valid Toast properties and values.
@@ -10549,6 +10768,11 @@ export interface Editor extends BaseElement, EditorProperties {
    */
   previewMode(value?: boolean): void;
   /**
+   * Removes a Toolbar item. Example: editor.removeToolbarItem(0)
+   * @param {number} index. The toolbar item's index
+   */
+  removeToolbarItem(index: number): void;
+  /**
    * Sets Editor into Full Screen Mode. If enabled the Editor is positioned above the page content and fills the screen.
    * @param {boolean} value?. Determines whether to enter or leave split mode. By default the argument is not passed and the mode is toggled.
    */
@@ -10576,6 +10800,35 @@ export interface Editor extends BaseElement, EditorProperties {
    * @returns {boolean | undefined}
    */
   updateToolbarItem(name: string | number, settings: any): boolean | undefined;
+}
+
+/**An object containing settings related to the grid's AI integration. */
+export interface EditorAi {
+  /**
+   * The AI model used for text generation or other AI-powered features.
+   * Default value: "gpt-3.5-turbo"
+   */
+  model?: string;
+  /**
+   * The maximum number of tokens (words/characters) the AI can generate in a single request
+   * Default value: 200
+   */
+  maxTokens?: number;
+  /**
+   * Controls the randomness of AI output. Lower values produce more focused results; higher values are more creative.
+   * Default value: 0.7
+   */
+  temperature?: number;
+  /**
+   * The endpoint URL for sending AI requests, typically your backend proxy to OpenAI or another provider.
+   * Default value: ""
+   */
+  url?: string;
+  /**
+   * The API key used to authenticate requests to the AI provider.
+   * Default value: ""
+   */
+  key?: string;
 }
 
 /**Determines the content filtering settings. */
@@ -10810,8 +11063,8 @@ export declare type EditorContentFilteringTagFilterMode = 'blackList' | 'whiteLi
 export declare type EditorContentFilteringStyleAttributeFilterMode = 'blackList' | 'whiteList';
 /**Determines the context menu for the Editor. The context menu is triggered when the user right clicks on the content area of the Editor. */
 export declare type EditorContextMenu = 'default' | 'browser' | 'none';
-/**Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode. */
-export declare type EditMode = 'html' | 'markdown';
+/**Determines the edit mode for the Editor. By default the editor's content accepts and parses HTML. The 'blockHtml' edit mode creates DIV tags when you hit enter and also includes built-in commands for data input. However if set to 'markdown' the Editor can be used as a full time Markdown Editor by parsing the makrdown to HTML in preview mode. */
+export declare type EditMode = 'html' | 'markdown' | 'blockHtml';
 /**Determines the file format of the image/video that are uploaded from local storage. By default images/videos are stroed as base64. */
 export declare type EditorImageFormat = 'base64' | 'blob';
 /**Determines the format of the content that will be pasted inside the Editor. */
@@ -10836,6 +11089,11 @@ export interface ElementProperties {
    * Default value: false
    */
   isRendered?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -11019,6 +11277,11 @@ export interface FileUploadProperties {
    * Default value: null
    */
   itemTemplate?: any;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -11283,6 +11546,11 @@ export interface FilterBuilderProperties {
    * Default value: { '=': '=', '<>': '<>', '>': '>', '>=': '>=', '<': '<', '<=': '<=', 'startswith': 'a|bc', 'endswith': 'ab|c', 'contains': 'abc', 'notcontains': '!abc', 'isblank': 'o', 'isnotblank': '*'}
    */
   icons?: FilterBuilderIcons;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -12467,6 +12735,11 @@ export interface FilterPanelProperties {
    */
   formatString?: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -12648,10 +12921,10 @@ export interface FormProperties {
    */
   showSummary?: boolean;
   /**
-   * Gets the Form's state. Each member in the state has { dirty, untouched, disabled } properties.
+   * Gets the Form's status. Each member in the status has { dirty, untouched, disabled } properties.
    * Default value: null
    */
-  state?: any;
+  status?: any;
   /**
    * Gets or Sets the Form value.
    * Default value: null
@@ -13299,6 +13572,11 @@ export interface GanttChartProperties {
    */
   columnResizeFeedback?: boolean;
   /**
+   * Gantt's current time. By default it is the today's date.
+   * Default value: 
+   */
+  currentTime?: string | Date;
+  /**
    * Enables/Disables the current time indicator. Current time indicator shows the current time in the appropriate view cells.
    * Default value: false
    */
@@ -13429,11 +13707,6 @@ export interface GanttChartProperties {
    */
   hideTimelineSecondHeaderDetails?: boolean;
   /**
-   * Shows the selection column of the Task/Resource Table. When applied a checkbox column is displayed that allows to select tasks/resources.
-   * Default value: false
-   */
-  showSelectionColumn?: boolean;
-  /**
    * Hides the Resource panel regardless of the resources availability By default the Resource panel is visible if resources are added to the GanttChart. This property allows to hide the Resource panel permanently.
    * Default value: false
    */
@@ -13468,6 +13741,11 @@ export interface GanttChartProperties {
    * Default value: false
    */
   keyboardNavigation?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    *  Determines the language of the GanttChart. 
    * Default value: "en"
@@ -13509,6 +13787,21 @@ export interface GanttChartProperties {
    */
   nonworkingHours?: number[] | number[][];
   /**
+   * A function that can be used to completly customize the task element. The function has five arguments: task - the task object.segment - the task current segment object. If the task has only one segment, the task object is passed again.taskElement - the task's html element.segmentElement - the task's segment html element.labelElement - the task's segment label html element.
+   * Default value: null
+   */
+  onTaskRender?: any;
+  /**
+   * A function that can be used to completly customize the task element. The function has two arguments: task - the task object.taskElement - the task's html element.
+   * Default value: null
+   */
+  taskFormatFunction?: any;
+  /**
+   * A function that can be used to completly customize the tooltip. The function has three arguments: tooltipObject - the tooltip object.event - the event that triggered the tooltip.content - the tooltip's label element.
+   * Default value: null
+   */
+  tooltipFormatFunction?: any;
+  /**
    * A function that can be used to completly customize the popup Window that is used to interact width tasks by changing their properties. The function as three arguments: target - the target popup Window that is about to be opened.type - the type of the window. The type determines the purpose of the window. Three possible values: 'task' (task editing), 'confirm' ( confirmation window), 'connection' (used when deleting a connection between tasks). item - the connection/task object that is the target of the window.
    * Default value: null
    */
@@ -13523,6 +13816,11 @@ export interface GanttChartProperties {
    * Default value: null
    */
   progressLabelFormatFunction?: any;
+  /**
+   * Determines the format of the dates the timeline header when they represent quarters.
+   * Default value: short
+   */
+  quarterFormat?: QuarterFormat | string;
   /**
    * A getter that returns a flat structure as an array of all resources inside the element.
    * Default value: null
@@ -13594,10 +13892,20 @@ export interface GanttChartProperties {
    */
   selectedResourceIds?: number[] | string[];
   /**
+   * Sets or gets the selection mode. Only applicable when selection is enabled.
+   * Default value: many
+   */
+  selectionMode?: GanttChartSelectionMode | string;
+  /**
    * Enables/Disables the current time shader. If enabled all cells that represent past time will be shaded.
    * Default value: false
    */
   shadeUntilCurrentTime?: boolean;
+  /**
+   * Shows the selection column of the Task/Resource Table. When applied a checkbox column is displayed that allows to select tasks/resources.
+   * Default value: false
+   */
+  showSelectionColumn?: boolean;
   /**
    * Determines whether the baselnes of the tasks are visible or not. Baselines are defined via the 'planned' attribute on the task objects of the dataSource property.
    * Default value: false
@@ -14136,6 +14444,11 @@ export interface GanttChart extends BaseElement, GanttChartProperties {
    */
   showTooltip(target: HTMLElement, content?: string): void;
   /**
+   * Scrolls to a date.
+   * @param {Date} date. The date to scroll to.
+   */
+  scrollToDate(date: Date): void;
+  /**
    * Saves the current settings of the element to LocalStorage. <strong>Requires an id to be set to the element.</strong>
    * @param {any[]} state?. An Array containing a valid structure of Gantt Chart tasks.
    */
@@ -14431,6 +14744,11 @@ export interface GanttChartTask {
    */
   formatFunction?: any;
   /**
+   * Project, Task or Milestone format function. The function gets passed the following arguments: task, segment, taskElement, segmentElement, labelElement. task - the task object.segment - the task current segment object. If the task has only one segment, the task object is passed again.taskElement - the task's html element.segmentElement - the task's segment html element.labelElement - the task's segment label html element.
+   * Default value: null
+   */
+  onRender?: any;
+  /**
    * Project, Task or Milestone max start date.
    * Default value: 
    */
@@ -14694,10 +15012,14 @@ export declare type Duration = 'day' | 'hour' | 'minute' | 'second' | 'milisecon
 export declare type HourFormat = 'default' | '2-digit' | 'numeric';
 /**Determines the scale in Month view. */
 export declare type MonthScale = 'day' | 'week';
+/**Determines the format of the dates the timeline header when they represent quarters. */
+export declare type QuarterFormat = 'numeric' | 'long' | 'short';
 /**Determines how the capacity of the resources will be visualized inside the resource timeline. By default, the capacity is measured in hours depending on the <b>view</b> property of the element. */
 export declare type GanttChartResourceTimelineMode = 'diagram' | 'histogram' | 'custom';
 /**Determines how the resources will be displayed inside the resource Timeline. */
 export declare type GanttChartResourceTimelineView = 'hours' | 'tasks' | 'custom';
+/**Sets or gets the selection mode. Only applicable when selection is enabled. */
+export declare type GanttChartSelectionMode = 'one' | 'many' | 'extended';
 /**Determines whether the GanttChart can be sorted by one, more then one or no columns. */
 export declare type GanttChartSortMode = 'none' | 'one' | 'many';
 /**Project, Task or Milestone type. Possible values are 'project', 'milestone' and 'task' */
@@ -14797,6 +15119,11 @@ export interface GaugeProperties {
    * Default value: all
    */
   labelsVisibility?: LabelsVisibility | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the locale. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -15034,20 +15361,25 @@ export interface GridProperties {
    */
   appearance?: GridAppearance;
   /**
+   * An object containing settings related to the grid's AI integration.
+   * Default value: [object Object]
+   */
+  ai?: GridAi;
+  /**
    * An object containing settings related to the grid's behavior.
    * Default value: [object Object]
    */
   behavior?: GridBehavior;
   /**
-   * An object containing settings related to the grid's layout.
+   * Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
+   * Default value: 
+   */
+  currentUser?: string | number;
+  /**
+   * Describes the column header settings.
    * Default value: [object Object]
    */
-  layout?: GridLayout;
-  /**
-   * Sets or gets the language. Used in conjunction with the property messages. 
-   * Default value: "en"
-   */
-  locale?: string;
+  columnHeader?: GridColumnHeader;
   /**
    * The clipboard property is used to enable/disable clipboard operations with Ctrl+C, Ctrl+X and Ctrl+V keyboard navigations..
    * Default value: [object Object]
@@ -15073,6 +15405,11 @@ export interface GridProperties {
    * Default value: 
    */
   columnGroups?: GridColumnGroup[];
+  /**
+   * 
+   * Default value: false
+   */
+  dropDownMode?: boolean;
   /**
    * Sets or gets details about conditional formatting to be applied to the Grid's cells.
    * Default value: null
@@ -15114,10 +15451,50 @@ export interface GridProperties {
    */
   filtering?: GridFiltering;
   /**
+   * Describes the footer settings of the grid.
+   * Default value: [object Object]
+   */
+  footer?: GridFooter;
+  /**
+   * Sets or gets whether Excel-like formulas can be passed as cell values. Formulas are always preceded by the = sign and are re-evaluated when cell values are changed. This feature depends on the third-party free plug-in formula-parser (the file formula-parser.min.js has to be referenced).
+   * Default value: false
+   */
+  formulas?: boolean;
+  /**
    * Describes the grid's grouping settings.
    * Default value: [object Object]
    */
   grouping?: GridGrouping;
+  /**
+   * Describes the settings for the group header.
+   * Default value: [object Object]
+   */
+  groupHeader?: GridGroupHeader;
+  /**
+   * Describes the header settings of the grid.
+   * Default value: [object Object]
+   */
+  header?: GridHeader;
+  /**
+   * An object containing settings related to the grid's layout.
+   * Default value: [object Object]
+   */
+  layout?: GridLayout;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
+   * Sets or gets the language. Used in conjunction with the property messages. 
+   * Default value: "en"
+   */
+  locale?: string;
+  /**
+   * Keys handling. You can define a key like "Enter": "Tab" or set a function as a value. When the key is pressed, it will be mapped to the other key, action such as 'copy', 'copyPrev', 'copyNext' or 'delete' or just a function defined in your document.
+   * Default value: null
+   */
+  keys?: any;
   /**
    * Sets the messages values.
    * Default value:    * [object Object]
@@ -15138,6 +15515,21 @@ export interface GridProperties {
    * Default value: null
    */
   onCellRender?: {(cell: GridCell): void};
+  /**
+   * Callback function, which is called when a cell edit starts. If you return false, the edit will be canceled.
+   * Default value: null
+   */
+  onCellBeginEdit?: {(id: string, dataField: string, value: any): boolean};
+  /**
+   * Callback function, which is called when a cell edit ends. It is used along with the 'editing.readOnlyEdit' property when it is set to true and the purpose of this function is to update the Grid cell after editing.
+   * Default value: null
+   */
+  onCellEditRequest?: {(id: string, dataField: string, value: any, oldValue: any, data: any): void};
+  /**
+   * Callback function, which is called when a cell value is changed.
+   * Default value: null
+   */
+  onCellValueChanged?: {(id: string, dataField: string, value: any): boolean};
   /**
    * Callback function() called before the grid has been initialized and the Grid's Virtual DOM is not created.
    * Default value: null
@@ -15259,26 +15651,6 @@ export interface GridProperties {
    */
   onCommand?: {(name: string, command: any, details: GridCell, event: Event | KeyboardEvent | PointerEvent, handled: boolean): void};
   /**
-   * Sets or gets the rows  CSS class rules. Different CSS class names are conditionally applied. Example: rowCSSRules: { 'cell-class-1': settings =&gt; settings.data.quantity === 5, 'cell-class-2': settings =&gt; settings.data.quantity &lt; 5, 'cell-class-3': settings =&gt; settings.data.quantity &gt; 5 }.  The settings object contains the following properties: index, data, row, api.
-   * Default value: null
-   */
-  rowCSSRules?: any;
-  /**
-   * Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
-   * Default value: 
-   */
-  currentUser?: string | number;
-  /**
-   * Sets the grid users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
-   * Default value: []
-   */
-  users?: any[];
-  /**
-   * Sets the grid's image and filter upload settings for the image and attachment columns.
-   * Default value: [object Object]
-   */
-  uploadSettings?: GridUploadSettings;
-  /**
    * Describes the paging settings.
    * Default value: [object Object]
    */
@@ -15294,40 +15666,10 @@ export interface GridProperties {
    */
   rowDetail?: GridRowDetail;
   /**
-   * Sets the scroll mode settings.
-   * Default value: physical
+   * Sets or gets the rows  CSS class rules. Different CSS class names are conditionally applied. Example: rowCSSRules: { 'cell-class-1': settings =&gt; settings.data.quantity === 5, 'cell-class-2': settings =&gt; settings.data.quantity &lt; 5, 'cell-class-3': settings =&gt; settings.data.quantity &gt; 5 }.  The settings object contains the following properties: index, data, row, api.
+   * Default value: null
    */
-  scrolling?: Scrolling | string;
-  /**
-   * Describes the column header settings.
-   * Default value: [object Object]
-   */
-  columnHeader?: GridColumnHeader;
-  /**
-   * Describes the summary row settings.
-   * Default value: [object Object]
-   */
-  summaryRow?: GridSummaryRow;
-  /**
-   * Sets the grid's state settings.
-   * Default value: [object Object]
-   */
-  stateSettings?: GridStateSettings;
-  /**
-   * Describes the settings for the group header.
-   * Default value: [object Object]
-   */
-  groupHeader?: GridGroupHeader;
-  /**
-   * Describes the header settings of the grid.
-   * Default value: [object Object]
-   */
-  header?: GridHeader;
-  /**
-   * Describes the footer settings of the grid.
-   * Default value: [object Object]
-   */
-  footer?: GridFooter;
+  rowCSSRules?: any;
   /**
    * Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
    * Default value: false
@@ -15339,6 +15681,21 @@ export interface GridProperties {
    */
   rows?: GridRow[];
   /**
+   * Sets the scroll mode settings.
+   * Default value: physical
+   */
+  scrolling?: Scrolling | string;
+  /**
+   * Describes the summary row settings.
+   * Default value: [object Object]
+   */
+  summaryRow?: GridSummaryRow;
+  /**
+   * Sets the grid's state settings.
+   * Default value: [object Object]
+   */
+  stateSettings?: GridStateSettings;
+  /**
    * Describes the selection settings.
    * Default value: [object Object]
    */
@@ -15348,6 +15705,21 @@ export interface GridProperties {
    * Default value: [object Object]
    */
   sorting?: GridSorting;
+  /**
+   * Sets the grid users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
+   * Default value: []
+   */
+  users?: any[];
+  /**
+   * Sets the grid's image and filter upload settings for the image and attachment columns.
+   * Default value: [object Object]
+   */
+  uploadSettings?: GridUploadSettings;
+  /**
+   * Sets the current data view. The possible values are 'grid', 'kanban' and 'card'.
+   * Default value: "grid"
+   */
+  view?: string;
 }
 /**
  Data Grid UI Component that covers everything from paging, sorting, grouping, filtering, and editing to row and column virtualization, right-to-left layout, export to Excel and PDF and Accessibility.
@@ -15422,6 +15794,15 @@ export interface Grid extends BaseElement, GridProperties {
    *  originalEvent - The origianl Event object.
    */
   onColumnDragStart?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered, when a column property is changed.
+	* @param event. The custom event. Custom data event was created with: ev.detail(column, propertyName, oldValue, value)
+   *  column - The resized column.
+   *  propertyName - The changed property's name.
+   *  oldValue - The old value(s) of the column.
+   *  value - The new value(s) of the column.
+   */
+  onColumnChange?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
    * This event is triggered, when the user drags a column.
 	* @param event. The custom event. Custom data event was created with: ev.detail(column, dataField, index, data, originalEvent)
@@ -15535,10 +15916,11 @@ export interface Grid extends BaseElement, GridProperties {
   onRowCollapse?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
    * This event is triggered, when the user clicks on a row of the grid.
-	* @param event. The custom event. Custom data event was created with: ev.detail(row, originalEvent, id, isRightClick, pageX, pageY)
+	* @param event. The custom event. Custom data event was created with: ev.detail(row, originalEvent, id, data, isRightClick, pageX, pageY)
    *  row - The clicked row.
    *  originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
    *  id - Gets the row id.
+   *  data - Gets the row data.
    *  isRightClick - Gets whether the pointing device's right button is clicked.
    *  pageX - Gets the click's X position.
    *  pageY - Gets the click's Y position.
@@ -15546,10 +15928,11 @@ export interface Grid extends BaseElement, GridProperties {
   onRowClick?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
    * This event is triggered, when the user double clicks on a row of the grid.
-	* @param event. The custom event. Custom data event was created with: ev.detail(row, originalEvent, id, isRightClick, pageX, pageY)
+	* @param event. The custom event. Custom data event was created with: ev.detail(row, originalEvent, id, data, isRightClick, pageX, pageY)
    *  row - The double-clicked row.
    *  originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
    *  id - Gets the row id.
+   *  data - Gets the row data.
    *  isRightClick - Gets whether the pointing device's right button is clicked.
    *  pageX - Gets the click's X position.
    *  pageY - Gets the click's Y position.
@@ -15575,11 +15958,12 @@ export interface Grid extends BaseElement, GridProperties {
   onRowStarred?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
    * This event is triggered, when the user clicks on a cell of the grid.
-	* @param event. The custom event. Custom data event was created with: ev.detail(cell, originalEvent, id, dataField, isRightClick, pageX, pageY)
+	* @param event. The custom event. Custom data event was created with: ev.detail(cell, originalEvent, id, dataField, value, isRightClick, pageX, pageY)
    *  cell - The clicked cell.
    *  originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
    *  id - Gets the row id.
    *  dataField - Gets the column dataField.
+   *  value - Gets the cell value.
    *  isRightClick - Gets whether the pointing device's right button is clicked.
    *  pageX - Gets the click's X position.
    *  pageY - Gets the click's Y position.
@@ -15587,11 +15971,12 @@ export interface Grid extends BaseElement, GridProperties {
   onCellClick?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
    * This event is triggered, when the user double clicks on a cell of the grid.
-	* @param event. The custom event. Custom data event was created with: ev.detail(cell, originalEvent, id, dataField, isRightClick, pageX, pageY)
+	* @param event. The custom event. Custom data event was created with: ev.detail(cell, originalEvent, id, dataField, value, isRightClick, pageX, pageY)
    *  cell - The double-clicked cell. 
    *  originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
    *  id - Gets the row id.
    *  dataField - Gets the column dataField.
+   *  value - Gets the cell value.
    *  isRightClick - Gets whether the pointing device's right button is clicked.
    *  pageX - Gets the click's X position.
    *  pageY - Gets the click's Y position.
@@ -15839,8 +16224,10 @@ export interface Grid extends BaseElement, GridProperties {
   /**
    * Exports the Grid data to .XLSX, .PDF, .JSON, .XML, .CSV, .TSV, .HTML, .JPEG or .PNG. The method uses the options of the <em>dataExport</em> property.
    * @param {string} Dataformat. 'xlsx', 'pdf', 'json', 'xml', 'csv', 'tsv', 'html', 'png', 'jpeg'.
+   * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer to the Smart Export Documentation.
+   * @param {any} dataCallback?. A callback that allows to change the exported data.
    */
-  exportData(Dataformat: string): void;
+  exportData(Dataformat: string, callback?: any, dataCallback?: any): void;
   /**
    * Finds entries by using a query and returns an array of row ids. Example: const rows = grid.find('nancy'); returns all rows that have 'nancy' value. Example 2: const rows = grid.find('nancy, davolio'); returns all rows that have 'nancy' and 'davolio' values in the same row. Example 3: const rows = grid.find(5, 'quantity', '>'); returns all rows where the value of the 'quantity' field is > 5. 
    * @param {string} query. Search query
@@ -15855,6 +16242,12 @@ export interface Grid extends BaseElement, GridProperties {
    * @returns {any[]}
    */
   findCells(query: string): any[];
+  /**
+   * Filter by all columns. This method works like a global filter and applies a filter to all grid columns.
+   * @param {string} query. Filter query to filter by.
+   * @param {string} dataType?. Optionally filter by a specific data type like 'string', 'boolean', 'date', 'number'.
+   */
+  filterBy(query: string, dataType?: string): void;
   /**
    * Navigates to a page, when paging is enabled.
    * @param {number} index. page index
@@ -15943,6 +16336,11 @@ export interface Grid extends BaseElement, GridProperties {
    */
   getSelectedRows(): any[];
   /**
+   * Gets an Array where each item contains the row data.
+   * @returns {any[]}
+   */
+  getSelectedRowsData(): any[];
+  /**
    * Gets the selected row ids.
    * @returns {any[]}
    */
@@ -15977,22 +16375,6 @@ export interface Grid extends BaseElement, GridProperties {
    * @returns {any}
    */
   getState(): any;
-  /**
-   * Saves the Grid state and returns a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
-   * @param {string} name?. state name
-   * @returns {any}
-   */
-  saveState(name?: string): any;
-  /**
-   * Loads a previously saved Grid state. You can pass a state name when there is a state which was previously saved with the saveState(stateName) method call or a state object returned by the saveState or getState method calls. The state object is required to be a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
-   * @param {any} state. state name or state object
-   * @returns {any}
-   */
-  loadState(state: any): any;
-  /**
-   * Resets the Grid state.
-   */
-  resetState(): void;
   /**
    * Gets the changes from the batch edit.
    * @returns 
@@ -16090,6 +16472,12 @@ export interface Grid extends BaseElement, GridProperties {
    */
   insertRow(data: any, index?: number, callback?: {(row: GridRow): void}): void;
   /**
+   * Loads a previously saved Grid state. You can pass a state name when there is a state which was previously saved with the saveState(stateName) method call or a state object returned by the saveState or getState method calls. The state object is required to be a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
+   * @param {any} state. state name or state object
+   * @returns {any}
+   */
+  loadState(state: any): any;
+  /**
    * Opens a column drop-down menu.
    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
    */
@@ -16100,6 +16488,14 @@ export interface Grid extends BaseElement, GridProperties {
    * @param {number} top. Top Position.
    */
   openContextMenu(left: number, top: number): void;
+  /**
+   * Opens the Grid when the 'dropDownMode' property is true.
+   */
+  openDropDown(): void;
+  /**
+   * Closes the Grid when the 'dropDownMode' property is true.
+   */
+  closeDropDown(): void;
   /**
    * Prints the Grid data. The method uses the options of the <em>dataExport</em> property. When printed, the Grid will not display any scrollbars so all rows and columns will be displayed. The grid will auto resize width and height to fit all contents. To customize the printing options, you can use  the <em>dataExport</em> property.
    */
@@ -16116,6 +16512,10 @@ export interface Grid extends BaseElement, GridProperties {
    * Refreshes the grid cells in view. The method is useful for live-updates of cell values.
    */
   refreshView(): void;
+  /**
+   * Resets the Grid state.
+   */
+  resetState(): void;
   /**
    * Removes a column filter. 
    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
@@ -16147,6 +16547,12 @@ export interface Grid extends BaseElement, GridProperties {
    * @param {boolean} insertAfter?. Determines whether to insert the first column after the reference column.
    */
   reorderColumns(dataField: string | number, referenceDataField: string | number, insertAfter?: boolean): void;
+  /**
+   * Saves the Grid state and returns a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
+   * @param {string} name?. state name
+   * @returns {any}
+   */
+  saveState(name?: string): any;
   /**
    * Sorts the Grid by a data field. This method will add or remove sorting, when sorting is enabled. To remove the sorting, use 'null' for the sortOrder parameter.
    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
@@ -16255,6 +16661,11 @@ export interface Grid extends BaseElement, GridProperties {
    */
   setCellStyle(rowId: string | number, dataField: string, rowStyle: {background?: string, color?: string, fontSize?: string, fontFamily?: string, textDecoration?: string, fontStyle?: string, fontWeight?: string}): void;
   /**
+   * Sets the label of the Grid when the 'dropDownMode' property is true.
+   * @param {string} label. The label to be displayed in the dropdown button.
+   */
+  setDropDownLabel(label: string): void;
+  /**
    * Sets the position of the vertical scrollbar. You can use this method in combination with the getVerticalScrollValue and getVerticalScrollMax.
    * @param {number} value. The new scroll position
    */
@@ -16265,10 +16676,28 @@ export interface Grid extends BaseElement, GridProperties {
    */
   setHorizontalScrollValue(value: number): void;
   /**
+   * Closes the Grid's side panel.
+   */
+  closeSidePanel(): void;
+  /**
+   * Shows the side panel of the Grid.
+   * @param {any} content. This is the content which will be displayed in the side panel. It can be String, HTML Element, HTML Template Element or Component
+   * @param {number} width?. This is the width of the side panel
+   * @param {any} callback?. Function called when the panel is opened. It can be used for dynamically showing content and initializing it.
+   */
+  showSidePanel(content: any, width?: number, callback?: any): void;
+  /**
    * Shows the Details of a Row, when row details are enabled.
    * @param {string | number} rowId. row bound id
    */
   showDetail(rowId: string | number): void;
+  /**
+   * Shows an overlay message below a cell. This method can be used for onboarding tips or in scenarios when you want to display custom messages to the user.
+   * @param {string | number} rowId. row bound id
+   * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+   * @param {string} value. The message to be shown below the cell
+   */
+  showCellMessage(rowId: string | number, dataField: string, value: string): void;
   /**
    * Updates a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
    * @param {string | number} rowId. row bound id
@@ -16471,6 +16900,16 @@ export interface GridAppearance {
    */
   showRowLines?: boolean;
   /**
+   * Shows lines between columns in column groups.
+   * Default value: true
+   */
+  showColumnGroupLines?: boolean;
+  /**
+   * Shows lines between cells in column groups.
+   * Default value: true
+   */
+  showColumnGroupCellLines?: boolean;
+  /**
    * Shows column groups in the Hide columns panel. Column groups and columns are shown in a tree-like structure. When the property is set to false, the column groups are not displayed and the column labels contain the column group name.
    * Default value: false
    */
@@ -16491,10 +16930,10 @@ export interface GridAppearance {
    */
   showFrozenColumnBackground?: boolean;
   /**
-   * Shows filtered row background, when the Grid has frozen rows.
-   * Default value: true
+   * Shows the selection on top of all other styles.
+   * Default value: false
    */
-  showFrozenRowBackground?: boolean;
+  showSelectionOnTop?: boolean;
   /**
    * Shows column sort button.
    * Default value: true
@@ -16547,6 +16986,35 @@ export interface GridAppearance {
   showTodayDateAsString?: boolean;
 }
 
+/**An object containing settings related to the grid's AI integration. */
+export interface GridAi {
+  /**
+   * The AI model used for text generation or other AI-powered features.
+   * Default value: "gpt-3.5-turbo"
+   */
+  model?: string;
+  /**
+   * The maximum number of tokens (words/characters) the AI can generate in a single request
+   * Default value: 200
+   */
+  maxTokens?: number;
+  /**
+   * Controls the randomness of AI output. Lower values produce more focused results; higher values are more creative.
+   * Default value: 0.7
+   */
+  temperature?: number;
+  /**
+   * The endpoint URL for sending AI requests, typically your backend proxy to OpenAI or another provider.
+   * Default value: ""
+   */
+  url?: string;
+  /**
+   * The API key used to authenticate requests to the AI provider.
+   * Default value: ""
+   */
+  key?: string;
+}
+
 /**An object containing settings related to the grid's behavior. */
 export interface GridBehavior {
   /**
@@ -16575,6 +17043,11 @@ export interface GridBehavior {
    */
   allowColumnFreeze?: boolean;
   /**
+   * Determines whether the scrolling with mouse wheel is enabled.
+   * Default value: true
+   */
+  allowMouseWheel?: boolean;
+  /**
    * Sets the column resize mode. split resize mode 'grows' or 'shrinks' the resize element's size and 'shrinks' or 'grows' the next sibling element's size. growAndShrink resize mode 'grows' or 'shrinks' the resize element's size
    * Default value: none
    */
@@ -16586,48 +17059,13 @@ export interface GridBehavior {
   rowResizeMode?: GridResizeMode | string;
 }
 
-/**An object containing settings related to the grid's layout. */
-export interface GridLayout {
+/**Describes the column header settings. */
+export interface GridColumnHeader {
   /**
-   * Enables or disables the Cells Value wrapping. When the property is true, cell value can wrap in multiple lines.
-   * Default value: false
+   * Sets the column header visibility.
+   * Default value: true
    */
-  allowCellsWrap?: boolean;
-  /**
-   * Automatically sets width to any new Column which does not have its 'width' property set.
-   * Default value: false
-   */
-  autoSizeNewColumn?: boolean;
-  /**
-   * Sets the width of the auto-generated Grid columns.
-   * Default value: null
-   */
-  autoGenerateColumnWidth?: string | number | null;
-  /**
-   * Sets the width of the Grid columns.
-   * Default value: null
-   */
-  columnWidth?: string | number | null;
-  /**
-   * Sets the height of the Grid columns.
-   * Default value: null
-   */
-  columnHeight?: string | number | null;
-  /**
-   * Sets the minimum height of the Grid columns.
-   * Default value: 30
-   */
-  columnMinHeight?: number;
-  /**
-   * Sets the minimum height of the Grid rows.
-   * Default value: 30
-   */
-  rowMinHeight?: number;
-  /**
-   * Sets the height of the Grid rows. The property can be set to null, auto or a number.
-   * Default value: null
-   */
-  rowHeight?: string | number | null;
+  visible?: boolean;
 }
 
 /**The <em>clipboard</em> property is used to enable/disable clipboard operations with Ctrl+C, Ctrl+X and Ctrl+V keyboard navigations.. */
@@ -16637,6 +17075,11 @@ export interface GridClipboard {
    * Default value: true
    */
   enabled?: boolean;
+  /**
+   * Sets or gets whether the copy the column headers to the clipboard.
+   * Default value: false
+   */
+  copyHeadersToClipboard?: boolean;
   /**
    * Sets or gets whether the copy-pasted values will be auto-filled by using automatic pattern detection. This is used in the Drag&Drop Multiple Cells selection. none does nothing. copy just copies the cells. 'fillSeries' detects and automatically fills the values. For example, if the selection has '1, 2' and the possible positions are more, the pasted values would be '1, 2, 3, 4, etc.
    * Default value: fillSeries
@@ -16676,10 +17119,10 @@ export interface GridColumn {
    */
   allowSelect?: boolean | null;
   /**
-   * Sets or gets whether the column can be edited.
+   * Sets or gets whether the column can be edited. The property can be 'boolean' i.e accept true and false values. To dynamically determine which cells are editable, a callback function can be supplied to the 'allowEdit' property. For example: allowEdit: (id, dataField, value, data) => { return value === 'Cappuccino'; }
    * Default value: true
    */
-  allowEdit?: boolean;
+  allowEdit?: any;
   /**
    * Sets or gets whether the column can be sorted.
    * Default value: true
@@ -16710,6 +17153,11 @@ export interface GridColumn {
    * Default value: true
    */
   allowNull?: boolean;
+  /**
+   * Sets or gets the cell's height in card view mode.
+   * Default value: 0
+   */
+  cardHeight?: number;
   /**
    * Sets or gets the column's cells format. This property is used for applying a formatting to the cell values. Number format strings: 'd' - decimal numbers.'f' - floating-point numbers.'n' - integer numbers.'c' - currency numbers.'p' - percentage numbers.For adding decimal places to the numbers, add a number after the formatting striFor example: 'c3' displays a number in this format $25.256Built-in Date formats:// short date pattern'd' - 'M/d/yyyy',// long date pattern'D' - 'dddd, MMMM dd, yyyy',// short time pattern't' - 'h:mm tt',// long time pattern'T' - 'h:mm:ss tt',// long date, short time pattern'f' - 'dddd, MMMM dd, yyyy h:mm tt',// long date, long time pattern'F' - 'dddd, MMMM dd, yyyy h:mm:ss tt',// month/day pattern'M' - 'MMMM dd',// month/year pattern'Y' - 'yyyy MMMM',// S is a sortable format that does not vary by culture'S' - 'yyyy'-'MM'-'dd'T'HH':'mm':'ss'Date format strings:'d'-the day of the month;'dd'-the day of the month'ddd'-the abbreviated name of the day of the week'dddd'- the full name of the day of the week'h'-the hour, using a 12-hour clock from 1 to 12'hh'-the hour, using a 12-hour clock from 01 to 12'H'-the hour, using a 24-hour clock from 0 to 23'HH'- the hour, using a 24-hour clock from 00 to 23'm'-the minute, from 0 through 59'mm'-the minutes,from 00 though59'M'- the month, from 1 through 12'MM'- the month, from 01 through 12'MMM'-the abbreviated name of the month'MMMM'-the full name of the month's'-the second, from 0 through 59'ss'-the second, from 00 through 59't'- the first character of the AM/PM designator'tt'-the AM/PM designator'y'- the year, from 0 to 99'yy'- the year, from 00 to 99'yyy'-the year, with a minimum of three digits'yyyy'-the year as a four-digit number;'yyyyy'-the year as a four-digit number.
    * Default value: ""
@@ -16771,6 +17219,11 @@ export interface GridColumn {
    */
   description?: string;
   /**
+   * Sets or gets custom data object related to the column.
+   * Default value: null
+   */
+  dataSet?: any;
+  /**
    * Gets the HTML Element. The property returns null when the Column is not in the View.
    * Default value: null
    */
@@ -16796,6 +17249,11 @@ export interface GridColumn {
    */
   filterMenuMode?: GridColumnFilterMenuMode | string;
   /**
+   * Sets or gets the column's filter editor. The value is an object with the following possible options: template: string, condition: string, onInit: any - callback function for init purposes, min: number, max: number, minLength: number, maxLength: number
+   * Default value: null
+   */
+  filterEditor?: any;
+  /**
    * Sets or gets the column's format function.
    * Default value: null
    */
@@ -16805,6 +17263,11 @@ export interface GridColumn {
    * Default value: [object Object]
    */
   formatSettings?: any;
+  /**
+   * Sets or gets the column's formula. The formula you set will be applied to all cells. Example: COL(Name) & '-' & COL(Price) or IF(COL(Price) * COL(Quantity) > 5, 'Yes', 'No')
+   * Default value: ""
+   */
+  formula?: string;
   /**
    * Sets or gets the column's group.
    * Default value: ""
@@ -16846,10 +17309,20 @@ export interface GridColumn {
    */
   rowSpan?: {(cellValue: any, rowIndex: number, data: any): number};
   /**
-   * Sets or gets the sort order of the column. Accepts: 'asc', 'desc' and null.
-   * Default value: null
+   * Sets or gets the relation id in the dataSourceSettings.relations. The 'relationField' property should be set.
+   * Default value: ""
    */
-  sortOrder?: GridColumnSortOrder | null | string;
+  relationId?: string;
+  /**
+   * Sets or gets the relation field in the dataSourceSettings.relations. The 'relationId' property should be set.
+   * Default value: ""
+   */
+  relationField?: string;
+  /**
+   * Sets or gets the sort order of the column. Accepts: 'asc', 'desc', 'none' and null.
+   * Default value: none
+   */
+  sortOrder?: GridColumnSortOrder | string;
   /**
    * Sets or gets the sort index of the column. Accepts an integer value. This property can be used to get or set the column's sort index when sorting mode is 'many'.
    * Default value: null
@@ -16881,10 +17354,15 @@ export interface GridColumn {
    */
   width?: string | number;
   /**
-   * Sets or gets the column's template. The property expects the 'id' of HTMLTemplateElement or HTML string which is displayed in the cells. Built-in string values are: 'checkBox', 'switchButton', 'radioButton', 'url', 'email', 'dropdownlist', 'list', 'progress', 'tags', 'autoNumber', 'modifiedBy', 'createdBy', 'createdTime', 'modifiedTime', 'images. For example, when you set the template to 'url', the cells will be render anchor tags. When you set the template property to HTMLTemplateElement you should consider that once a template is rendered, the formatObject.template property stores the rendered template component for further use.
+   * Sets or gets the column's template. The property expects the 'id' of HTMLTemplateElement or HTML string which is displayed in the cells. Built-in string values are: 'checkBox', 'switchButton', 'url', 'email', 'dropdownlist', 'list', 'progress', 'tags', 'autoNumber', 'modifiedBy', 'createdBy', 'createdTime', 'modifiedTime', 'images', 'checklist', 'attachments', 'sparklines', 'richText', 'color', 'rating', 'duration', 'startDate', 'dueDates'. For example, when you set the template to 'url', the cells will be render anchor tags. When you set the template property to HTMLTemplateElement you should consider that once a template is rendered, the formatObject.template property stores the rendered template component for further use.
    * Default value: 
    */
   template?: any;
+  /**
+   * Sets or gets additional settings related to the column's template. For example, when the template is 'sparklines', the templateSettings could be an object which defines has 'type' - 'bar', 'column', 'line' or 'pie'. If you want to apply a custom color, you can add the 'colorFunction: function(value) { } and return a custom color as a 'hex' string or a 'tooltipFormatFunction: function(value) {}' which returns a formatted tooltip string. Additional properties are 'min', 'max', 'gap' and 'strokeWidth'.
+   * Default value: null
+   */
+  templateSettings?: any;
   /**
    * Sets or gets the column's validation rules. The expected value is an Array of Objects. Each object should have a 'type' property that can be set to 'required', 'min', 'max', 'minLength', 'maxLength', 'email', 'null', 'requiredTrue', 'minData', 'maxDate', 'pattern'. The 'value' property should be set, too. For validation rule types 'required', 'requiredTrue' and 'null' you can skip the 'value' property. Optional property is 'message', which determines the error message.
    * Default value: null
@@ -16919,6 +17397,11 @@ export interface GridContextMenu {
    * Default value: false
    */
   enabled?: boolean;
+  /**
+   * Sets an array of custom context menu items to be displayed in the context menu.
+   * Default value: null
+   */
+  customContextMenuItems?: any[];
   /**
    * Sets the data sources to the context menu.
    * Default value: [object Object]
@@ -17322,6 +17805,61 @@ export interface GridDataExport {
    * Default value: null
    */
   rowIds?: {(): void};
+  /**
+   * An array of custom rows to add before the Grid rows.
+   * Default value: null
+   */
+  headerContent?: any;
+  /**
+   * An array of custom rows to add after the Grid rows.
+   * Default value: null
+   */
+  footerContent?: any;
+  /**
+   * A function which allows you to add images to the cells in Export to Excel. The following params are passed: (index, dataField, value, values). It should return an object like this: return { image: { id: 'myImage' + index, base64: value, imageType: 'jpeg', width: 20, height: 11, position: { offsetX: 10 + (25 * values.indexOf(value)), offsetY: 5.5 } } };
+   * Default value: null
+   */
+  addImageToCell?: any;
+  /**
+   * A function which allows you to set the height of the rows in the Export to Excel. The function gets the row index as parameter and should return its height as a number.
+   * Default value: null
+   */
+  setRowHeight?: any;
+  /**
+   * A function which allows you to return additonal data to the Excel export to export into multiple sheets.
+   * Default value: null
+   */
+  getSpreadsheets?: any;
+  /**
+   * A function which allows you to export a styled data grid to Excel.
+   * Default value: true
+   */
+  exportStyles?: boolean;
+  /**
+   * A function which allows you to format cells before export. (index, dataField, value) are the params. It should return the formatted value.
+   * Default value: null
+   */
+  cellFormatFunction?: any;
+  /**
+   * Sets whether the header is frozen when Export to Excel.
+   * Default value: false
+   */
+  freezeHeader?: boolean;
+  /**
+   * Sets whether to auto-convert the formulas in the Excel export.
+   * Default value: true
+   */
+  autoConvertFormulas?: boolean;
+  /**
+   * Sets whether to export only the selected cells or rows when Export to Excel.
+   * Default value: false
+   */
+  onlySelected?: boolean;
+  /**
+   * Sets whether to export it as Excel Table when Export to Excel
+   * Default value: false
+   */
+  exportAsTable?: boolean;
 }
 
 /**Sets the grid's data source settings when the <em>dataSource</em> property is set to an Array or URL. */
@@ -17387,6 +17925,11 @@ export interface GridDataSourceSettings {
    */
   mapChar?: string;
   /**
+   * Sets or gets the Grid relations. The property expects an array of objects. Each object should have '{id: string, label: string, columns: GridColumn[], dataSource: any}'. Once you have the relations defined, when you create a column, you can set 'relationId' and 'relationField'. This will automatically define a new column editor based on the relation settings.
+   * Default value: null
+   */
+  relations?: any;
+  /**
    * Sets the virtual data source function which is called each time the Grid requests data. Example for calling the callback function with the new data set: resultCallbackFunction({dataSource: data}); Demos using 'virtualDataSource' are available on the Grid demos page. Example: https://www.htmlelements.com/demos/grid/virtualscroll/
    * Default value: null
    */
@@ -17434,6 +17977,11 @@ export interface GridEditing {
    */
   autoUpdateFilterAndSort?: boolean;
   /**
+   * Automatically opens a drop-down editor not only when the arrow button is clicked, but also when you click an item from it.
+   * Default value: true
+   */
+  allowListOpenOnContentClick?: boolean;
+  /**
    * Enables editing.
    * Default value: false
    */
@@ -17448,6 +17996,11 @@ export interface GridEditing {
    * Default value: click
    */
   action?: GridEditingAction | string;
+  /**
+   * Read Only Edit is a mode in the grid whereby Cell Editing will not update the data inside the grid. Instead the grid invokes the 'onCellEditRequest' function allowing the application to process the update request.
+   * Default value: false
+   */
+  readOnlyEdit?: boolean;
   /**
    * Describes command keys.
    * Default value: [object Object]
@@ -17798,6 +18351,20 @@ export interface GridFilteringFilterBuilder {
   height?: number | null;
 }
 
+/**Describes the footer settings of the grid. */
+export interface GridFooter {
+  /**
+   * Sets the footer visibility.
+   * Default value: false
+   */
+  visible?: boolean;
+  /**
+   * Sets a template for the footer.
+   * Default value: 
+   */
+  template?: string | HTMLTemplateElement | {(element: HTMLElement): void};
+}
+
 /**Describes the grid's grouping settings. */
 export interface GridGrouping {
   /**
@@ -17910,38 +18477,141 @@ export interface GridGroupingSummaryRow {
   visible?: boolean;
 }
 
-/**Sets the grid's image and filter upload settings for the image and attachment columns. */
-export interface GridUploadSettings {
+/**Describes the settings for the group header. */
+export interface GridGroupHeader {
   /**
-   * Sets or file/image upload url.
-   * Default value: ""
+   * Sets the visibility of the group header.
+   * Default value: false
    */
-  url?: string;
+  visible?: boolean;
   /**
-   * Sets or file/image remove url.
-   * Default value: ""
-   */
-  removeUrl?: string;
-  /**
-   * Sets or gets the upload field name. In the backend, you can use this name to access the images data. For example in expressJS, you can use something like that: const images = req['files']['userfile[]'];
-   * Default value: "userfile[]"
-   */
-  name?: string;
-  /**
-   * Additional data to pass to the server. The format should be a JSON string.
-   * Default value: ""
-   */
-  data?: string;
-  /**
-   * Function called when the upload is completed. JSON object with 'files', 'status', 'fileURL' and 'serverResponse' are passed as parameters when the function is called by the Grid.
+   * Sets a template for the group header.
    * Default value: 
    */
-  onUploadCompleted?: any;
+  template?: string | HTMLTemplateElement;
+}
+
+/**Describes the header settings of the grid. */
+export interface GridHeader {
   /**
-   * Function called when the upload has failed. JSON object with 'files', 'status' and 'serverResponse' are passed as parameters when the function is called by the Grid.
+   * Sets the header visibility.
+   * Default value: false
+   */
+  visible?: boolean;
+  /**
+   * Sets a template for the header.
    * Default value: 
    */
-  onUploadError?: any;
+  template?: string | HTMLTemplateElement | {(element: HTMLElement): void};
+  /**
+   * This callback function can be used for customization of the Header toolbar. The Toolbar HTML Element is passed as an argument.
+   * Default value: null
+   */
+  onInit?: {(element: HTMLElement): void};
+  /**
+   * Determines the buttons displayed in the Grid header. 'columns' displays a button opening the columns chooser panel. 'filter'  displays a button opening the filtering panel.  'group' displays a button opening the grouping panel. 'sort'  displays a button opening the sorting panel. 'format'  displays a button opening the conditional formatting panel. 'search' displays a button opening the search panel. 'colors' displays a button with colors options for formatting.
+   * Default value: [ "columns", "filter", "group", "sort", "format", "search" ]
+   */
+  buttons?: string[];
+  /**
+   * Sets the search command type.
+   * Default value: search
+   */
+  searchCommand?: GridHeaderSearchCommand | string;
+  /**
+   * Custom toolbar button. Allows you to add a custom button to the toolbar.
+   * Default value: [object Object]
+   */
+  customButton?: GridCommand;
+}
+
+/**An object containing settings related to the grid's layout. */
+export interface GridLayout {
+  /**
+   * Enables or disables the Cells Value wrapping. When the property is true, cell value can wrap in multiple lines.
+   * Default value: false
+   */
+  allowCellsWrap?: boolean;
+  /**
+   * Automatically sets width to any new Column which does not have its 'width' property set.
+   * Default value: false
+   */
+  autoSizeNewColumn?: boolean;
+  /**
+   * Sets the min width of the new column.
+   * Default value: 250
+   */
+  autoSizeNewColumnMinWidth?: number;
+  /**
+   * Automatically sets the height of the Grid.
+   * Default value: false
+   */
+  autoHeight?: boolean;
+  /**
+   * Automatically sets the width of the Grid. All columns should have a 'width' property set to a number in order to use this feature.
+   * Default value: false
+   */
+  autoWidth?: boolean;
+  /**
+   * Sets the width of the auto-generated Grid columns.
+   * Default value: null
+   */
+  autoGenerateColumnWidth?: string | number | null;
+  /**
+   * Sets the width of the Grid columns.
+   * Default value: null
+   */
+  columnWidth?: string | number | null;
+  /**
+   * Sets the height of the Grid columns.
+   * Default value: null
+   */
+  columnHeight?: string | number | null;
+  /**
+   * Sets the minimum height of the Grid columns.
+   * Default value: 30
+   */
+  columnMinHeight?: number;
+  /**
+   * Sets the minimum width of a card in card view.
+   * Default value: 250
+   */
+  cardMinWidth?: number;
+  /**
+   * Sets the cards per row.
+   * Default value: null
+   */
+  cardsPerRow?: number;
+  /**
+   * Sets whether cards are vertically oriented. In this layout mode, the column label is displayed above the column value
+   * Default value: false
+   */
+  cardVertical?: boolean;
+  /**
+   * Sets the width of the Grid when displayed in a drop-down mode.
+   * Default value: 700
+   */
+  dropDownWidth?: number;
+  /**
+   * Sets the height of the Grid when displayed in a drop-down mode.
+   * Default value: 500
+   */
+  dropDownHeight?: number;
+  /**
+   * Sets the minimum height of the Grid rows.
+   * Default value: 30
+   */
+  rowMinHeight?: number;
+  /**
+   * Sets the height of the Grid rows. The property can be set to null, auto or a number.
+   * Default value: null
+   */
+  rowHeight?: string | number | null;
+  /**
+   * Sets the width of the view bar.
+   * Default value: 250
+   */
+  viewBarWidth?: number;
 }
 
 /**Describes the paging settings. */
@@ -18180,115 +18850,6 @@ export interface GridRowDetail {
    * Default value: [object Object]
    */
   dialog?: Dialog;
-}
-
-/**Describes the column header settings. */
-export interface GridColumnHeader {
-  /**
-   * Sets the column header visibility.
-   * Default value: true
-   */
-  visible?: boolean;
-}
-
-/**Describes the summary row settings. */
-export interface GridSummaryRow {
-  /**
-   * Sets the summary row visibility.
-   * Default value: false
-   */
-  visible?: boolean;
-  /**
-   * Sets the summary row editor. When you point over a summary row cell, an editor is displayed and you will be able to dynamically change the summary type.
-   * Default value: false
-   */
-  editing?: boolean;
-}
-
-/**Sets the grid's state settings. */
-export interface GridStateSettings {
-  /**
-   * Enables or disables auto-save of the Grid's state
-   * Default value: false
-   */
-  autoSave?: boolean;
-  /**
-   * Enables or disables save/load of the grid state.
-   * Default value: true
-   */
-  enabled?: boolean;
-  /**
-   * Sets or gets the current state.
-   * Default value: ""
-   */
-  current?: string;
-  /**
-   * Container which is auto-filled with state objects when you call the saveState method or enable the autoSave of states. Each object has a key which is the state's name and value which is a json with the state's properties.
-   * Default value: null
-   */
-  storage?: any;
-  /**
-   * Function called when the state is changed.
-   * Default value: 
-   */
-  onStateChange?: any;
-  /**
-   * Array with state options such as 'sort', 'filter', 'expandedRows', 'paging', 'selectedCells', 'selectedRows', 'group', 'columns'. This property determines which parts of the state would be saved or loaded.
-   * Default value: 
-   */
-  options?: string[];
-}
-
-/**Describes the settings for the group header. */
-export interface GridGroupHeader {
-  /**
-   * Sets the visibility of the group header.
-   * Default value: false
-   */
-  visible?: boolean;
-  /**
-   * Sets a template for the group header.
-   * Default value: 
-   */
-  template?: string | HTMLTemplateElement;
-}
-
-/**Describes the header settings of the grid. */
-export interface GridHeader {
-  /**
-   * Sets the header visibility.
-   * Default value: false
-   */
-  visible?: boolean;
-  /**
-   * Sets a template for the header.
-   * Default value: 
-   */
-  template?: string | HTMLTemplateElement | {(element: HTMLElement): void};
-  /**
-   * This callback function can be used for customization of the Header toolbar. The Toolbar HTML Element is passed as an argument.
-   * Default value: null
-   */
-  onInit?: {(element: HTMLElement): void};
-  /**
-   * Determines the buttons displayed in the Grid header. 'columns' displays a button opening the columns chooser panel. 'filter'  displays a button opening the filtering panel.  'group' displays a button opening the grouping panel. 'sort'  displays a button opening the sorting panel. 'format'  displays a button opening the conditional formatting panel. 'search' displays a button opening the search panel.
-   * Default value: [ "columns", "filter", "group", "sort", "format", "search" ]
-   */
-  buttons?: string[];
-}
-
-/**Describes the footer settings of the grid. */
-export interface GridFooter {
-  /**
-   * Sets the footer visibility.
-   * Default value: false
-   */
-  visible?: boolean;
-  /**
-   * Sets a template for the footer.
-   * Default value: 
-   */
-  template?: string | HTMLTemplateElement | {(element: HTMLElement): void};
 }
 
 export interface GridRow {
@@ -18547,6 +19108,59 @@ export interface GridCell {
   setStyle?: {(value: any): void};
 }
 
+/**Describes the summary row settings. */
+export interface GridSummaryRow {
+  /**
+   * Sets the summary row visibility.
+   * Default value: false
+   */
+  visible?: boolean;
+  /**
+   * Sets the summary row editor. When you point over a summary row cell, an editor is displayed and you will be able to dynamically change the summary type.
+   * Default value: false
+   */
+  editing?: boolean;
+}
+
+/**Sets the grid's state settings. */
+export interface GridStateSettings {
+  /**
+   * Enables or disables auto-save of the Grid's state
+   * Default value: false
+   */
+  autoSave?: boolean;
+  /**
+   * Enables or disables auto-load of the Grid's state on page reload.
+   * Default value: false
+   */
+  autoLoad?: boolean;
+  /**
+   * Enables or disables save/load of the grid state.
+   * Default value: true
+   */
+  enabled?: boolean;
+  /**
+   * Sets or gets the current state.
+   * Default value: ""
+   */
+  current?: string;
+  /**
+   * Container which is auto-filled with state objects when you call the saveState method or enable the autoSave of states. Each object has a key which is the state's name and value which is a json with the state's properties.
+   * Default value: null
+   */
+  storage?: any;
+  /**
+   * Function called when the state is changed.
+   * Default value: 
+   */
+  onStateChange?: any;
+  /**
+   * Array with state options such as 'sort', 'filter', 'expandedRows', 'paging', 'selectedCells', 'selectedRows', 'group', 'columns'. This property determines which parts of the state would be saved or loaded.
+   * Default value: 
+   */
+  options?: string[];
+}
+
 /**Describes the selection settings. */
 export interface GridSelection {
   /**
@@ -18698,6 +19312,40 @@ export interface GridSorting {
   sortToggleOnClickAndCommandKey?: boolean;
 }
 
+/**Sets the grid's image and filter upload settings for the image and attachment columns. */
+export interface GridUploadSettings {
+  /**
+   * Sets or file/image upload url.
+   * Default value: ""
+   */
+  url?: string;
+  /**
+   * Sets or file/image remove url.
+   * Default value: ""
+   */
+  removeUrl?: string;
+  /**
+   * Sets or gets the upload field name. In the backend, you can use this name to access the images data. For example in expressJS, you can use something like that: const images = req['files']['userfile[]'];
+   * Default value: "userfile[]"
+   */
+  name?: string;
+  /**
+   * Additional data to pass to the server. The format should be a JSON string.
+   * Default value: ""
+   */
+  data?: string;
+  /**
+   * Function called when the upload is completed. JSON object with 'files', 'status', 'fileURL' and 'serverResponse' are passed as parameters when the function is called by the Grid.
+   * Default value: 
+   */
+  onUploadCompleted?: any;
+  /**
+   * Function called when the upload has failed. JSON object with 'files', 'status' and 'serverResponse' are passed as parameters when the function is called by the Grid.
+   * Default value: 
+   */
+  onUploadError?: any;
+}
+
 declare global {
     interface Document {
         createElement(tagName: "smart-grid"): Grid;
@@ -18720,8 +19368,8 @@ export declare type GridClipboardAutoFillMode = 'none' | 'copy' | 'fillSeries';
 export declare type Position = 'near' | 'far';
 /**Sets or gets the filter menu mode of the column. In 'basic' mode, a single input is displayed in the filter menu. In 'default' mode, two input options are available for more precise filtering. In 'excel' mode, checked list with unique values is displayed. */
 export declare type GridColumnFilterMenuMode = 'basic' | 'default' | 'excel';
-/**Sets or gets the sort order of the column. Accepts: 'asc', 'desc' and null. */
-export declare type GridColumnSortOrder = 'asc' | 'desc' | null;
+/**Sets or gets the sort order of the column. Accepts: 'asc', 'desc', 'none' and null. */
+export declare type GridColumnSortOrder = 'asc' | 'desc' | 'none';
 /**The formatting condition. */
 export declare type GridConditionalFormattingCondition = 'between' | 'equal' | 'greaterThan' | 'lessThan' | 'notEqual';
 /**Sets the page orientation, when exporting to PDF. */
@@ -18748,6 +19396,8 @@ export declare type GridFilteringFilterMenuMode = 'default' | 'excel';
 export declare type GridGroupingExpandMode = 'buttonClick' | 'rowClick';
 /**Sets the group render mode. 'basic' mode renders the group headers without taking into account the indent, groupRowHeight and column label properties. 'compact' mode is the same as basic, but also renders the column labels in the group headers. The default mode is 'advanced', which adds indents to groups that depend on the group level. In 'multipleColumns' mode, each group is displayed in its column. */
 export declare type GridGroupingRenderMode = 'basic' | 'compact' | 'advanced' | 'multipleColumns';
+/**Sets the search command type. */
+export declare type GridHeaderSearchCommand = 'search' | 'filter';
 /**Sets the ellipsis display mode. */
 export declare type GridPagerAutoEllipsis = 'none' | 'before' | 'after' | 'both';
 /**Sets or gets whether the selection allows you to select 'one', 'many' or a variation of 'many' called 'extended'. 'one' allows you to have only single cell or row selected. 'many'  */
@@ -18781,6 +19431,11 @@ export interface GroupPanelProperties {
    * Default value: false
    */
   disabled?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages.
    * Default value: "en"
@@ -18911,6 +19566,11 @@ export interface InputProperties {
    */
   dropDownButtonPosition?: DropDownButtonPosition | string;
   /**
+   * Determines the position of the drop down when opened.
+   * Default value: auto
+   */
+  dropDownOpenPosition?: DropDownOpenPosition | string;
+  /**
    * Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
    * Default value: 
    */
@@ -18930,6 +19590,11 @@ export interface InputProperties {
    * Default value: 8
    */
   items?: number;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -19122,6 +19787,8 @@ declare global {
     }
 }
 
+/**Determines the position of the drop down when opened. */
+export declare type DropDownOpenPosition = 'auto' | 'top' | 'bottom';
 /**Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation. */
 export declare type InputQueryMode = 'contains' | 'containsIgnoreCase' | 'doesNotContain' | 'doesNotContainIgnoreCase' | 'equals' | 'equalsIgnoreCase' | 'startsWith' | 'startsWithIgnoreCase' | 'endsWith' | 'endsWithIgnoreCase';
 export interface KanbanProperties {
@@ -19175,6 +19842,11 @@ export interface KanbanProperties {
    * Default value: true
    */
   allowDrop?: boolean;
+  /**
+   * Allows the dropping of tasks placeholder. When you drag a task over another task it will make an empty space for the task.
+   * Default value: false
+   */
+  allowDropPlaceholder?: boolean;
   /**
    * This property changes the visual appeal of the Kanban columns and tasks. When set to true and the Kanban columns have their 'color' property set, the color is also applied to the tasks and edit dialog.
    * Default value: false
@@ -19286,6 +19958,11 @@ export interface KanbanProperties {
    */
   editable?: boolean;
   /**
+   * Determines the edit behavior. It could be either singleClick or doubleClick. The dialog edit window is by default opened when user double clicks on a Kanban task.
+   * Default value: doubleClick
+   */
+  editMode?: KanbanEditMode | string;
+  /**
    * Sets or gets the format string of the "Due date" label and the "Start date" and "Due date" editors.
    * Default value: "d"
    */
@@ -19305,6 +19982,11 @@ export interface KanbanProperties {
    * Default value: columns
    */
   hierarchy?: KanbanHierarchy | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the locale. Used in conjunction with the property messages.
    * Default value: "en"
@@ -19796,10 +20478,10 @@ export interface Kanban extends BaseElement, KanbanProperties {
    */
   getSelectedTasks(id: number): any;
   /**
-   * Gets the Kanban's state.
-   * @returns 
+   * Gets the Kanban's state. Returns an object with the following type: { collapsed: {}, dataSource: [], filtering: { filters: [], operator: string }, selection: { selected: [], selectionStart?: number | string, selectionInColumn: string, swimlane: string }, sorting: { dataFields: [], dataTypes: [], orderBy: [] }, tabs: [], visibility: { taskActions: boolean, taskComments: boolean, taskDue: boolean, taskPriority: boolean, taskProgress: boolean, taskTags: boolean, taskUserIcon: boolean } } 
+   * @returns {any}
    */
-  getState(): { collapsed: {}, dataSource: [], filtering: { filters: [], operator: string }, selection: { selected: [], selectionStart: number | string, selectionInColumn: string, swimlane: string }, sorting: { dataFields: [], dataTypes: [], orderBy: [] }, tabs: [], visibility: { taskActions: boolean, taskComments: boolean, taskDue: boolean, taskPriority: boolean, taskProgress: boolean, taskTags: boolean, taskUserIcon: boolean } };
+  getState(): any;
   /**
    * Loads the Kanban's state.
    * @param  state?. An object returned by one of the methods getState or saveState. If not passed, gets saved state from the browser's localStorage.
@@ -20110,6 +20792,8 @@ export declare type KanbanAddNewButtonDisplayMode = 'top' | 'bottom' | 'both';
 export declare type KanbanColumnOrientation = 'vertical' | 'horizontal';
 /**Determines the column edit behavior. With the 'header' option, edit starts on double click on the column's label. In 'menu' mode, edit is allowed from the 'columnActions' menu. In 'headerAndMenu' option, column editing includes both options. */
 export declare type KanbanColumnEditMode = 'header' | 'menu' | 'headerAndMenu';
+/**Determines the edit behavior. It could be either singleClick or doubleClick. The dialog edit window is by default opened when user double clicks on a Kanban task. */
+export declare type KanbanEditMode = 'doubleClick' | 'singleClick';
 /**Sets or gets the header position. The header contains the Customize, Filter, Sort, and Search buttons. */
 export declare type KanbanHeaderPosition = 'none' | 'top' | 'bottom';
 /**Sets or gets the way column hierarchy is represented. */
@@ -20141,6 +20825,11 @@ export interface LayoutProperties {
    * Default value: null
    */
   dataSource?: any;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -20440,6 +21129,11 @@ export interface LedProperties {
    */
   indeterminateTemplate?: any;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -20691,6 +21385,11 @@ export interface ListBoxProperties {
    */
   loadingIndicatorPosition?: VerticalAlignment | string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -20903,6 +21602,11 @@ export interface ListBox extends BaseElement, ListBoxProperties {
    */
   appendChild<T extends Node>(node: Node): T;
   /**
+   * Adds a new item(s).
+   * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
+   */
+  add(item: any): void;
+  /**
    * Removes all items from the listBox.
    */
   clearItems(): void;
@@ -20910,6 +21614,10 @@ export interface ListBox extends BaseElement, ListBoxProperties {
    * Unselects all items.
    */
   clearSelection(): void;
+  /**
+   * Performs a data bind. This can be used to refresh the data source.
+   */
+  dataBind(): void;
   /**
    * Ensures the target item is visible by scrolling to it.
    * @param {HTMLElement | string} item. A list item or value of the desired item to be visible.
@@ -21205,6 +21913,11 @@ export interface ListMenuProperties {
    * Default value: center
    */
   loadingIndicatorPosition?: VerticalAlignment | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -21506,6 +22219,11 @@ export interface MaskedTextBoxProperties {
    */
   label?: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -21757,6 +22475,11 @@ export interface MenuProperties {
    * Default value: "items"
    */
   itemsMember?: string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -22169,6 +22892,11 @@ export interface MultiColumnFilterPanelProperties {
    */
   editorPlaceholder?: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages.
    * Default value: "en"
    */
@@ -22339,6 +23067,11 @@ export interface MultiComboInputProperties {
    * Default value: 8
    */
   items?: number;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -22561,6 +23294,11 @@ export interface MultiInputProperties {
    * Default value: 8
    */
   items?: number;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -22791,6 +23529,11 @@ export interface MultilineTextBoxProperties {
    * Default value: ""
    */
   label?: string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -23078,6 +23821,11 @@ export interface MultiSplitButtonProperties {
    */
   loadingIndicatorPosition?: VerticalAlignment | string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -23279,6 +24027,11 @@ export interface NumberInputProperties {
    */
   inputPurpose?: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -23461,6 +24214,11 @@ export interface NumericTextBoxProperties {
    * Default value: false
    */
   leadingZeros?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -23716,6 +24474,11 @@ export interface PagerProperties {
    */
   disabled?: boolean;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -23900,6 +24663,11 @@ export interface PasswordInputProperties {
    */
   disabled?: boolean;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -24035,6 +24803,11 @@ export interface PasswordTextBoxProperties {
    * Default value: ""
    */
   label?: string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -24285,6 +25058,11 @@ export interface PathProperties {
    */
   label?: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -24460,6 +25238,11 @@ export interface PhoneInputProperties {
    * Default value:    * [object Object]
    */
   messages?: any;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the name attribute for the element. Name is used when submiting data inside an HTML form.
    * Default value: ""
@@ -24717,6 +25500,11 @@ export interface PivotTableProperties {
    * Default value: false
    */
   keyboardNavigation?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -25136,6 +25924,11 @@ export interface PowerButtonProperties {
    */
   disabled?: boolean;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -25236,6 +26029,11 @@ export interface ProgressBarProperties {
    * Default value: null
    */
   formatFunction?: {(value: number): string};
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -25549,6 +26347,11 @@ export interface QueryBuilderProperties {
    * Default value: { '=': 'equals', '<>': 'notequals', '>': 'greaterthan', '>=': 'greaterthanorequal', '<': 'lessthan', '<=': 'lessthanorequal', 'startswith': 'startswith', 'endswith': 'endswith', 'contains': 'contains', 'notcontains': 'notcontains', 'isblank': 'isblank', 'isnotblank': 'isnotblank' }
    */
   icons?: any;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -25869,6 +26672,11 @@ export interface RadioButtonProperties {
    */
   innerHTML: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -25975,6 +26783,11 @@ export interface RatingProperties {
    * Default value: false
    */
   disabled?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -26100,6 +26913,11 @@ export interface RepeatButtonProperties {
    */
   innerHTML: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -26174,6 +26992,433 @@ declare global {
     }
 }
 
+export interface RibbonProperties {
+  /**
+   * Determines whether the ribbon is collapsible.
+   * Default value: false
+   */
+  collapsible?: any;
+  /**
+   * Determines the tab items of the ribbon.
+   * Default value: 
+   */
+  dataSource?: any;
+  /**
+   * Sets or gets the value indicating whether the element is disabled.
+   * Default value: false
+   */
+  disabled?: boolean;
+  /**
+   * Determines the file menu options of the ribbon.
+   * Default value: undefined
+   */
+  fileMenu?: RibbonFileMenu;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
+   * Determines the locale of the ribbon.
+   * Default value: "en"
+   */
+  locale?: string;
+  /**
+   * Determines the messages of the ribbon
+   * Default value:    * [object Object]
+   */
+  messages?: any;
+  /**
+   * Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+   * Default value: false
+   */
+  rightToLeft?: boolean;
+  /**
+   * Determines the selected tab.
+   * Default value: 0
+   */
+  selectedTab?: any;
+}
+/**
+ Ribbon is a navigation control that allows you to organize your application's commands in a tabbed interface.
+*/
+export interface Ribbon extends BaseElement, RibbonProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
+   * This event is triggered when the ribbon is collapsed.
+	* @param event. The custom event.    */
+  onCollapse?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the ribbon is collapsing. The event can be canceled by calling event.preventDefault() in the event handler function.
+	* @param event. The custom event.    */
+  onCollapsing?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the dialog launcher is clicked.
+	* @param event. The custom event. Custom data event was created with: ev.detail(groupLabel, groupId)
+   *  groupLabel - The label of the dialog launcher's ribbon group.
+   *  groupId - The id of the dialog launcher's ribbon group.
+   */
+  onDialogLauncherClick?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the ribbon is expanded.
+	* @param event. The custom event.    */
+  onExpand?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the ribbon is expanding. The event can be canceled by calling event.preventDefault() in the event handler function.
+	* @param event. The custom event.    */
+  onExpanding?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the file menu button is clicked.
+	* @param event. The custom event.    */
+  onFileButtonClick?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the file menu is opened.
+	* @param event. The custom event.    */
+  onFileMenuOpen?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the file menu is closed.
+	* @param event. The custom event.    */
+  onFileMenuClose?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when a file menu item is clicked.
+	* @param event. The custom event. Custom data event was created with: ev.detail(item)
+   *  item - The file menu item.
+   */
+  onFileMenuItemClick?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the tab selection is changed.
+	* @param event. The custom event. Custom data event was created with: ev.detail(oldIndex, index)
+   *  oldIndex - The previous tab index.
+   *  index - The new index of the selected tab.
+   */
+  onSelect?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the tab selection is changing. The event can be canceled by calling event.preventDefault() in the event handler function.
+	* @param event. The custom event. Custom data event was created with: ev.detail(oldIndex, index)
+   *  oldIndex - The previous tab index.
+   *  index - The new index of the selected tab.
+   */
+  onSelecting?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * Adds a new ribbon tab to the ribbon. The tab can be added as an object, HTMLElement or id to an HTMLElement.
+   * @param {any} tab. The ribbon tab to be added.
+   */
+  addTab(tab: any): void;
+  /**
+   * Adds a new group to a ribbon tab. The group can be added as an object, HTMLElement or id to an HTMLElement.
+   * @param {any} tab. The id, index or HTMLElement  of the parent ribbon tab.
+   * @param {any} group. The ribbon group to be added.
+   */
+  addGroup(tab: any, group: any): void;
+  /**
+   * Adds a new ribbon item to a ribbon group. The item can be added as an object, HTMLElement or id to an HTMLElement.
+   * @param {string | number | HTMLElement} tab. The id, index or HTMLElement  of the parent ribbon tab.
+   * @param {string | HTMLElement} group. The id or HTMLElement of the parent ribbon group.
+   * @param {any} item. The ribbon item to be added.
+   */
+  addItem(tab: string | number | HTMLElement, group: string | HTMLElement, item: any): void;
+  /**
+   * Collapses the ribbon.
+   */
+  collapse(): void;
+  /**
+   * Expands the ribbon.
+   */
+  expand(): void;
+  /**
+   * Removes a ribbon tab from the ribbon.
+   * @param {string | number} ribbonTab. The id or index of the ribbon tab to be removed.
+   */
+  removeTab(ribbonTab: string | number): void;
+  /**
+   * Removes a ribbon group from a ribbon tab.
+   * @param {string | number} ribbonTabIndex?. The id or index of the parent ribbon tab.
+   * @param {string | number} ribbonGroup?. The id or index of the ribbon group to be removed.
+   */
+  removeGroup(ribbonTabIndex?: string | number, ribbonGroup?: string | number): void;
+  /**
+   * Removes a ribbon item from a ribbon group.
+   * @param {string | number} ribbonTabIndex?. The id or index of the parent ribbon tab.
+   * @param {string | number} ribbonGroup?. The id or index of the parent ribbon group.
+   * @param {string | number} ribbonItem?. The id or index of the ribbon item to be removed.
+   */
+  removeItem(ribbonTabIndex?: string | number, ribbonGroup?: string | number, ribbonItem?: string | number): void;
+  /**
+   * Selects a ribbon tab.
+   * @param {string | number} ribbonTabIndex. The index of the ribbon tab to be selected.
+   */
+  selectTab(ribbonTabIndex: string | number): void;
+}
+
+/**Determines the file menu options of the ribbon. */
+export interface RibbonFileMenu {
+  /**
+   * Determines whether the file button is enabled.
+   * Default value: true
+   */
+  enabled?: boolean;
+  /**
+   * Determines the data source that will be loaded to the FileMenu.
+   * Default value: 
+   */
+  items?: any;
+  /**
+   * Determines the position of the file menu.
+   * Default value: left
+   */
+  position?: RibbonFileMenuPosition | string;
+  /**
+   * Determines the label of the file menu.
+   * Default value: "File"
+   */
+  label?: string;
+  /**
+   * Determines the tooltip of the file menu.
+   * Default value: ""
+   */
+  tooltip?: string;
+  /**
+   * Determines the template of the file menu. Accepts HTMLTemplateElement, an id of an HTMLTemplateElement or a Function.
+   * Default value: ""
+   */
+  template?: string;
+  /**
+   * Determines the type of the file menu.
+   * Default value: dropDown
+   */
+  type?: RibbonFileMenuType | string;
+  /**
+   * Determines the icon of the file menu.
+   * Default value: ""
+   */
+  icon?: string;
+}
+
+declare global {
+    interface Document {
+        createElement(tagName: "smart-ribbon"): Ribbon;
+        querySelector(selectors: "smart-ribbon"): Ribbon | null;
+        querySelectorAll(selectors: "smart-ribbon"): NodeListOf<Ribbon>;
+        getElementsByTagName(qualifiedName: "smart-ribbon"): HTMLCollectionOf<Ribbon>;
+        getElementsByName(elementName: "smart-ribbon"): NodeListOf<Ribbon>;
+    }
+}
+
+/**Determines the position of the file menu. */
+export declare type RibbonFileMenuPosition = 'left' | 'right';
+/**Determines the type of the file menu. */
+export declare type RibbonFileMenuType = 'dropDown' | 'button';
+export interface RibbonGroupProperties {
+  /**
+   * Determines the label of the ribbon group.
+   * Default value: ""
+   */
+  label?: string;
+  /**
+   * Determines the icon of the ribbon group.
+   * Default value: ""
+   */
+  icon?: string;
+  /**
+   * Determines the class of the ribbon group.
+   * Default value: ""
+   */
+  cssClass?: string;
+  /**
+   * Determines the ribbon items of the ribbon group.
+   * Default value: 
+   */
+  ribbonItems?: any;
+  /**
+   * Determines the direction of the ribbon group.
+   * Default value: horizontal
+   */
+  direction?: RibbonGroupDirection | string;
+  /**
+   * Determines the settings of the dialog launcher of the ribbon group.
+   * Default value: [object Object]
+   */
+  dialogLauncher?: RibbonGroupDialogLauncher;
+  /**
+   * Determines the size, below which the ribbon group will be wrapped.
+   * Default value: undefined
+   */
+  wrapSize?: RibbonGroupWrapSize | string;
+}
+/**
+ Defines a ribbon group.
+*/
+export interface RibbonGroup extends BaseElement, RibbonGroupProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+}
+
+/**Determines the settings of the dialog launcher of the ribbon group. */
+export interface RibbonGroupDialogLauncher {
+  /**
+   * Determines whether the dialog launcher is enabled.
+   * Default value: false
+   */
+  enabled?: boolean;
+  /**
+   * Determines the tooltip of the dialog launcher.
+   * Default value: ""
+   */
+  tooltip?: string;
+}
+
+declare global {
+    interface Document {
+        createElement(tagName: "smart-ribbon-group"): RibbonGroup;
+        querySelector(selectors: "smart-ribbon-group"): RibbonGroup | null;
+        querySelectorAll(selectors: "smart-ribbon-group"): NodeListOf<RibbonGroup>;
+        getElementsByTagName(qualifiedName: "smart-ribbon-group"): HTMLCollectionOf<RibbonGroup>;
+        getElementsByName(elementName: "smart-ribbon-group"): NodeListOf<RibbonGroup>;
+    }
+}
+
+/**Determines the direction of the ribbon group. */
+export declare type RibbonGroupDirection = 'horizontal' | 'vertical';
+/**Determines the size, below which the ribbon group will be wrapped. */
+export declare type RibbonGroupWrapSize = 'iconOnly' | 'verySmall' | 'small' | 'normal' | 'large' | 'none';
+export interface RibbonItemProperties {
+  /**
+   * Determines whether the ribbon item is disabled.
+   * Default value: false
+   */
+  disabled?: boolean;
+  /**
+   * Determines the label of the ribbon item.
+   * Default value: ""
+   */
+  label?: string;
+  /**
+   * Determines the type of the ribbon item.
+   * Default value: button
+   */
+  type?: RibbonItemType | string;
+  /**
+   * Determines the template of the ribbon item. Accepts HTMLTemplateElement, an id of an HTMLTemplateElement or a Function.
+   * Default value: ""
+   */
+  template?: string;
+  /**
+   * Determines the size of the ribbon item.
+   * Default value: normal
+   */
+  size?: RibbonItemSize | string;
+  /**
+   * 
+   * Default value: null
+   */
+  sizeChanged?: any;
+  /**
+   * Determines the allowed sizes of the ribbon item.
+   * Default value: 
+   */
+  allowedSizes?: any;
+  /**
+   * Determines the icon of the ribbon item.
+   * Default value: ""
+   */
+  icon?: string;
+  /**
+   * Determines the settings of the ribbon item. The settings will be applied as properties if the ribbon item is set to a Smart Element.
+   * Default value: [object Object]
+   */
+  settings?: RibbonItemSettings;
+  /**
+   * Determines the class of the ribbon item.
+   * Default value: ""
+   */
+  cssClass?: string;
+  /**
+   * Sets a click event handler for the ribbon item.
+   * Default value: null
+   */
+  onItemClick?: any;
+  /**
+   * Sets a change event handler for the ribbon item.
+   * Default value: null
+   */
+  onItemChange?: any;
+  /**
+   * Determines the tooltip of the ribbon item.
+   * Default value: ""
+   */
+  tooltip?: string;
+}
+/**
+ Defines a ribbon item.
+*/
+export interface RibbonItem extends BaseElement, RibbonItemProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+}
+
+/**Determines the settings of the ribbon item. The settings will be applied as properties if the ribbon item is set to a Smart Element. */
+export interface RibbonItemSettings {
+}
+
+declare global {
+    interface Document {
+        createElement(tagName: "smart-ribbon-item"): RibbonItem;
+        querySelector(selectors: "smart-ribbon-item"): RibbonItem | null;
+        querySelectorAll(selectors: "smart-ribbon-item"): NodeListOf<RibbonItem>;
+        getElementsByTagName(qualifiedName: "smart-ribbon-item"): HTMLCollectionOf<RibbonItem>;
+        getElementsByName(elementName: "smart-ribbon-item"): NodeListOf<RibbonItem>;
+    }
+}
+
+/**Determines the type of the ribbon item. */
+export declare type RibbonItemType = 'separator' | 'button' | 'toggleButton' | 'multiSplitButton' | 'dropDownButton' | 'input' | 'custom';
+/**Determines the size of the ribbon item. */
+export declare type RibbonItemSize = 'iconOnly' | 'small' | 'verySmall' | 'normal' | 'large';
+export interface RibbonTabProperties {
+  /**
+   * Determines whether the tab item is disabled.
+   * Default value: false
+   */
+  disabled?: boolean;
+  /**
+   * Determines the label of the tab item.
+   * Default value: ""
+   */
+  label?: string;
+  /**
+   * Determines whether the tab item is selected.
+   * Default value: false
+   */
+  selected?: boolean;
+  /**
+   * Determines the ribbon group of the tab item
+   * Default value: undefined
+   */
+  ribbonGroups?: any;
+}
+/**
+ Defines a ribbon tab.
+*/
+export interface RibbonTab extends BaseElement, RibbonTabProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+}
+
+declare global {
+    interface Document {
+        createElement(tagName: "smart-ribbon-tab"): RibbonTab;
+        querySelector(selectors: "smart-ribbon-tab"): RibbonTab | null;
+        querySelectorAll(selectors: "smart-ribbon-tab"): NodeListOf<RibbonTab>;
+        getElementsByTagName(qualifiedName: "smart-ribbon-tab"): HTMLCollectionOf<RibbonTab>;
+        getElementsByName(elementName: "smart-ribbon-tab"): NodeListOf<RibbonTab>;
+    }
+}
+
 export interface SchedulerProperties {
   /**
    * Determines the scroll speed while dragging an event. 
@@ -26195,6 +27440,11 @@ export interface SchedulerProperties {
    * Default value: #D50000,#E67C73,#F4511E,#F6BF26,#33B679,#0B8043,#039BE5,#3F51B5,#7986CB,#8E24AA,#616161,
    */
   colorScheme?: string[];
+  /**
+   * Determines the current time of the Scheduler to use for the current time indicator functionality. By default the current time is Today.
+   * Default value: new Date()
+   */
+  currentTime?: string | Date;
   /**
    * Enables/Disables the current time indicator. Current time indicator shows the current time in the appropriate view cells. 
    * Default value: false
@@ -26476,6 +27726,11 @@ export interface SchedulerProperties {
    */
   horizontalScrollBarVisibility?: HorizontalScrollBarVisibility | string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    *  Determines the language of the Scheduler. 
    * Default value: "en"
    */
@@ -26551,7 +27806,7 @@ export interface SchedulerProperties {
    */
   restrictedHours?: any;
   /**
-   * Defines an array of dates and hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed. Each array item is an Object and requires 2 fields - date and hours. For example: { date: new Date(2022, 10, 1), hours: [[0, 6], 12, [20, 23]] }. The hours define a range of restricted hours similartly to the restricted hours property, the date defines a date where the restricted hours will be applied.
+   * Defines an array of dates and hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed. Each array item is an Object and requires 2 fields - date and hours. For example: { date: new Date(2023, 10, 1), hours: [[0, 6], 12, [20, 23]] }. The hours define a range of restricted hours similartly to the restricted hours property, the date defines a date where the restricted hours will be applied.
    * Default value: 
    */
   restricted?: any;
@@ -27022,9 +28277,10 @@ export interface Scheduler extends BaseElement, SchedulerProperties {
   /**
    * Exports the events from the Scheduler.
    * @param {string} dataFormat. Determines the format of the exported file. The following values are available: <ul><li><b>pdf</b></li><li><b>xlsx</b></li><li><b>html</b></li><li><b>iCal</b></li></ul>
-   * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer ro the Smart Export Documentation.
+   * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer to the Smart Export Documentation.
+   * @param {any} dataCallback?. A callback that allows to change the exported data.
    */
-  exportData(dataFormat: string, callback?: any): void;
+  exportData(dataFormat: string, callback?: any, dataCallback?: any): void;
   /**
    * Returns a JSON representation of the events inside the Scheduler.
    * @returns {any}
@@ -27535,6 +28791,11 @@ export interface ScrollBarProperties {
    */
   largeStep?: number;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -27709,6 +28970,11 @@ export interface SliderProperties {
    * Default value: all
    */
   labelsVisibility?: LabelsVisibility | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the locale. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -27964,6 +29230,11 @@ export interface SortableProperties {
    */
   items?: string | null;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages.
    * Default value: "en"
    */
@@ -28063,6 +29334,11 @@ export interface SortPanelProperties {
    * Default value: false
    */
   disabled?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages.
    * Default value: "en"
@@ -28177,6 +29453,11 @@ export interface SplitterProperties {
    * Default value: false
    */
   keepProportionsOnResize?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -28532,6 +29813,11 @@ export interface SwitchButtonProperties {
    * Default value: false
    */
   inverted?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -29041,6 +30327,11 @@ export interface TableProperties {
    */
   loadColumnStateBehavior?: TableLoadColumnStateBehavior | string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -29134,7 +30425,7 @@ export interface TableProperties {
    * Sets or gets the page size (when paging is enabled).
    * Default value: 10
    */
-  pageSize?: TablePageSize | string;
+  pageSize?: number;
   /**
    * Sets or gets the current (zero-based) page index (when paging is enabled).
    * Default value: 0
@@ -29155,6 +30446,11 @@ export interface TableProperties {
    * Default value: "null"
    */
   rowDetailTemplate?: string;
+  /**
+   * Sets or gets a callback function with 3 arguments - column, filterConditions, filterInputTemplateString. The function should return the new filter input.
+   * Default value: null
+   */
+  onFilterRowInput?: any;
   /**
    * Sets or gets an array of the Table's selected row's ids.
    * Default value: 
@@ -29510,6 +30806,10 @@ export interface Table extends BaseElement, TableProperties {
    * @param {string | number} row. The id of the cell's row.
    */
   removeRow(row: string | number): void;
+  /**
+   * Resets the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is cleared, based on the value of the <strong>stateSettings</strong> property.
+   */
+  resetState(): void;
   /**
    * Saves the Table's state. Information about columns, expanded rows, selected rows, applied fitering, grouping, and sorted columns is saved, based on the value of the <strong>stateSettings</strong> property.
    * @returns {any}
@@ -29868,8 +31168,6 @@ export declare type TableDataSourceSettingsDataSourceType = 'array' | 'json' | '
 export declare type TableEditMode = 'cell' | 'row';
 /**Sets or gets the behavior when loading column settings either via autoLoadState or loadState. Applicable only when stateSettings contains 'columns'. */
 export declare type TableLoadColumnStateBehavior = 'implementationOnly' | 'intersection' | 'stateOnly';
-/**Sets or gets the page size (when paging is enabled). */
-export declare type TablePageSize = '10' | '25' | '50';
 /**Sets or gets the selection mode. Only applicable when selection is enabled. */
 export declare type TableSelectionMode = 'one' | 'many' | 'extended';
 /**Determines the sorting mode of the Table. */
@@ -29925,6 +31223,11 @@ export interface TabsProperties {
    * Default value: false
    */
   enableMouseWheelAction?: boolean;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the locale. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -30114,9 +31417,9 @@ export interface Tabs extends BaseElement, TabsProperties {
   expand(): void;
   /**
    * Returns an array of the TabItems inside the element.
-   * @returns {TabItem[]}
+   * @returns {any}
    */
-  getTabs(): TabItem[];
+  getTabs(): any;
   /**
    * Returns the offset of the tab item container (smart-tab-item element) from the edge of the Tabs (smart-tabs element) where the tab strip is positioned.
    * @param {number} index. The index of the tab item.
@@ -30228,6 +31531,11 @@ export interface TankProperties {
    * Default value: all
    */
   labelsVisibility?: LabelsVisibility | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the locale. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -30478,6 +31786,11 @@ export interface TextAreaProperties {
    */
   items?: number;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -30540,10 +31853,20 @@ export interface TextAreaProperties {
    */
   readonly?: boolean;
   /**
+   * Determines whether ot not the user can resize the Textarea.
+   * Default value: none
+   */
+  resize?: TextAreaResize | string;
+  /**
    * Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
    * Default value: false
    */
   rightToLeft?: boolean;
+  /**
+   * Enables or disables the rich text formatting.
+   * Default value: false
+   */
+  richText?: boolean;
   /**
    * Determines whether the items are sorted alphabetically or not
    * Default value: false
@@ -30569,6 +31892,11 @@ export interface TextAreaProperties {
    * Default value: false
    */
   unfocusable?: boolean;
+  /**
+   * Sets the TextArea users. Expects an array of objects. Each object should have an id and name properties. When you press the 'at' key, you can enter an user from a dropdown.
+   * Default value: []
+   */
+  users?: any[];
   /**
    * Sets or gets the value of the element.
    * Default value: ""
@@ -30607,6 +31935,11 @@ export interface TextArea extends BaseElement, TextAreaProperties {
    */
   ensureVisible(): void;
   /**
+   * Returns an array of users mentioned in the Textarea's value.
+   * @returns {any[]}
+   */
+  getMentions(): any[];
+  /**
    * Opens the drop down.
    */
   open(): void;
@@ -30628,6 +31961,8 @@ declare global {
 
 /**Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation. */
 export declare type TextAreaQueryMode = 'contains' | 'containsIgnoreCase' | 'doesNotContain' | 'doesNotContainIgnoreCase' | 'equals' | 'equalsIgnoreCase' | 'startsWith' | 'startsWithIgnoreCase' | 'endsWith' | 'endsWithIgnoreCase';
+/**Determines whether ot not the user can resize the Textarea. */
+export declare type TextAreaResize = 'none' | 'horizontal' | 'vertical' | 'both';
 export interface TextBoxProperties {
   /**
    * Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
@@ -30799,6 +32134,11 @@ export interface TextBoxProperties {
    * Default value: center
    */
   loadingIndicatorPosition?: VerticalAlignment | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -30987,6 +32327,11 @@ export interface TimeInputProperties {
    */
   inputPurpose?: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -31125,6 +32470,62 @@ declare global {
 export declare type TimeFormatHour = 'numeric' | '2-digit';
 /**Minute format. */
 export declare type TimeFormatMinute = 'numeric' | '2-digit';
+export interface TimelineProperties {
+  /**
+   * Sets or gets whether the Timeline is with auto width in horizontal mode. 
+   * Default value: false
+   */
+  autoWidth?: boolean;
+  /**
+   * Sets or gets whether the items can be collapsed. 
+   * Default value: true
+   */
+  collapsible?: boolean;
+  /**
+   * Sets or gets whether the Timeline is disabled. 
+   * Default value: false
+   */
+  disabled?: boolean;
+  /**
+   * Sets or gets whether the Timeline is horizontal. 
+   * Default value: false
+   */
+  horizontal?: boolean;
+  /**
+   * Sets or gets position. The possible values are 'near', 'far' and 'both'.
+   * Default value: "both"
+   */
+  position?: string;
+  /**
+   * Sets or gets the items.  Each item should be an object. The object has the following properties: date: date, description: string, subtitle: string, css: string, dotCSS: string, title: string and icon: string. Example: [{ date: 'May 15, 2024', description: 'Flight: Reserving airline tickets', subtitle: 'May 15, 2024', title: 'Flight Reservation', icon: 'material-icons flight', dotCSS: '' }]
+   * Default value: []
+   */
+  dataSource?: any[];
+}
+/**
+ Displays a timeline with events.
+*/
+export interface Timeline extends BaseElement, TimelineProperties {
+
+  /* Get a member by its name */
+  [name: string]: any;
+  /**
+   * Re-renders the timeline.
+   * @returns {any}
+   */
+  render(): any;
+}
+
+declare global {
+    interface Document {
+        createElement(tagName: "smart-timeline"): Timeline;
+        querySelector(selectors: "smart-timeline"): Timeline | null;
+        querySelectorAll(selectors: "smart-timeline"): NodeListOf<Timeline>;
+        getElementsByTagName(qualifiedName: "smart-timeline"): HTMLCollectionOf<Timeline>;
+        getElementsByName(elementName: "smart-timeline"): NodeListOf<Timeline>;
+    }
+}
+
 export interface TimePickerProperties {
   /**
    * Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
@@ -31156,6 +32557,11 @@ export interface TimePickerProperties {
    * Default value: 12-hour
    */
   format?: TimePickerFormat | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -31314,6 +32720,11 @@ export interface ToastProperties {
    * Default value: "null"
    */
   itemTemplate?: string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -31484,6 +32895,11 @@ export interface ToggleButtonProperties {
    */
   innerHTML: string;
   /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
+  /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
    */
@@ -31610,6 +33026,11 @@ export interface TooltipProperties {
    * Default value: 0,0
    */
   offset?: number[];
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"
@@ -31801,6 +33222,21 @@ export interface TreeProperties {
    */
   dragOffset?: number[];
   /**
+   * 
+   * Default value: false
+   */
+  dropDownMode?: boolean;
+  /**
+   * Sets the width of the Tree when displayed in a drop-down mode.
+   * Default value: 300
+   */
+  dropDownWidth?: number;
+  /**
+   * Sets the height of the Tree when displayed in a drop-down mode.
+   * Default value: 400
+   */
+  dropDownHeight?: number;
+  /**
    * Enables or disables item's editting. An edit operation can be initiated by double-clicking a tree item or pressing F2 while an item is selected.
    * Default value: false
    */
@@ -31855,6 +33291,11 @@ export interface TreeProperties {
    * Default value: center
    */
   loadingIndicatorPosition?: VerticalAlignment | string;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the locale. Used in conjunction with the property messages.
    * Default value: "en"
@@ -32061,6 +33502,20 @@ export interface Tree extends BaseElement, TreeProperties {
    */
   onExpanding?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
   /**
+   * This event is triggered when selection in jqx-tree is changed.
+	* @param event. The custom event. Custom data event was created with: ev.detail(value)
+   *  value - The filter input value.
+   */
+  onFilterChange?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the dropdown is opened.
+	* @param event. The custom event.    */
+  onOpen?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
+  /**
+   * This event is triggered when the dropdown is closed.
+	* @param event. The custom event.    */
+  onClose: ((this: any, ev: Event) => any) | null;
+  /**
    * This event is triggered when the Tree has been scrolled to the bottom.
 	* @param event. The custom event.    */
   onScrollBottomReached?: ((this: any, ev: Event) => any) | ((this: any, ev: CustomEvent<any>) => any) | null;
@@ -32110,6 +33565,14 @@ export interface Tree extends BaseElement, TreeProperties {
    */
   collapseItem(item: HTMLElement | string, animation?: boolean): void;
   /**
+   * Closes the dropdown when the Tree is in dropdown mode.
+   */
+  closeDropDown(): void;
+  /**
+   * Opens the dropdown when the Tree is in dropdown mode.
+   */
+  openDropDown(): void;
+  /**
    * Makes sure an item is visible by scrolling to it.
    * @param {HTMLElement | string} item. The id or numeric path of an item
    */
@@ -32136,6 +33599,11 @@ export interface Tree extends BaseElement, TreeProperties {
    * @returns {HTMLElement}
    */
   getItem(id: string): HTMLElement;
+  /**
+   * Gets the applied filter.
+   * @returns {string}
+   */
+  getFilter(): string;
   /**
    * Gets the selected values. If value is not defined, returns the selected labels.
    * @returns {string[]}
@@ -32587,6 +34055,11 @@ export interface WindowProperties {
    * Default value: null
    */
   layout?: any;
+  /**
+   * Sets or gets the unlockKey which unlocks the product.
+   * Default value: ""
+   */
+  unlockKey?: string;
   /**
    * Sets or gets the language. Used in conjunction with the property messages. 
    * Default value: "en"

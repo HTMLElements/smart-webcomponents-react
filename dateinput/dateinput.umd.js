@@ -2,22 +2,19 @@
 require('../source/modules/smart.dateinput');
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
-	(factory((global.dateinput = {}),global.React));
-}(this, (function (exports,React) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom/client')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom/client'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.dateinput = {}, global.React, global.ReactDOM));
+})(this, (function (exports, React, ReactDOM) { 'use strict';
 
-	React = React && React.hasOwnProperty('default') ? React['default'] : React;
-
-	const Smart = window.Smart;
+	exports.Smart = void 0;
+	if (typeof window !== "undefined") {
+	    exports.Smart = window.Smart;
+	}
 	/**
 	 DateInput specifies an input field where the user can enter a date. It also has a popup with a Calendar that allows to pick a date.
 	*/
 	class DateInput extends React.Component {
-	    constructor(props) {
-	        super(props);
-	        this.componentRef = React.createRef();
-	    }
 	    // Gets the id of the React component.
 	    get id() {
 	        if (!this._id) {
@@ -45,6 +42,17 @@ require('../source/modules/smart.dateinput');
 	    set autoCloseDelay(value) {
 	        if (this.nativeElement) {
 	            this.nativeElement.autoCloseDelay = value;
+	        }
+	    }
+	    /** Determines the calendar properties to be set to the popup calendar.
+	    *	Property type: any
+	    */
+	    get calendarProperties() {
+	        return this.nativeElement ? this.nativeElement.calendarProperties : undefined;
+	    }
+	    set calendarProperties(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.calendarProperties = value;
 	        }
 	    }
 	    /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. Intl.DateTimeFormat is used to format date strings in JavaScript. By default the date format is 'numeric'. The default value is: { day: 'numeric', month: 'numeric', year: 'numeric' }
@@ -122,6 +130,17 @@ require('../source/modules/smart.dateinput');
 	    set inputPurpose(value) {
 	        if (this.nativeElement) {
 	            this.nativeElement.inputPurpose = value;
+	        }
+	    }
+	    /** Sets or gets the unlockKey which unlocks the product.
+	    *	Property type: string
+	    */
+	    get unlockKey() {
+	        return this.nativeElement ? this.nativeElement.unlockKey : undefined;
+	    }
+	    set unlockKey(value) {
+	        if (this.nativeElement) {
+	            this.nativeElement.unlockKey = value;
 	        }
 	    }
 	    /** Sets or gets the language. Used in conjunction with the property messages.
@@ -269,7 +288,7 @@ require('../source/modules/smart.dateinput');
 	    }
 	    // Gets the properties of the React component.
 	    get properties() {
-	        return ["autoClose", "autoCloseDelay", "dateTimeFormat", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "formatString", "inputPurpose", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "opened", "placeholder", "readonly", "rightToLeft", "theme", "unfocusable", "value"];
+	        return ["autoClose", "autoCloseDelay", "calendarProperties", "dateTimeFormat", "disabled", "dropDownButtonPosition", "dropDownHeight", "dropDownWidth", "formatString", "inputPurpose", "unlockKey", "locale", "localizeFormatFunction", "max", "messages", "min", "name", "opened", "placeholder", "readonly", "rightToLeft", "theme", "unfocusable", "value"];
 	    }
 	    // Gets the events of the React component.
 	    get eventListeners() {
@@ -350,11 +369,29 @@ require('../source/modules/smart.dateinput');
 	            });
 	        }
 	    }
+	    constructor(props) {
+	        super(props);
+	        this.componentRef = React.createRef();
+	    }
 	    componentDidRender(initialize) {
 	        const that = this;
 	        const props = {};
 	        const events = {};
 	        let styles = null;
+	        const stringifyCircularJSON = (obj) => {
+	            const seen = new WeakSet();
+	            return JSON.stringify(obj, (k, v) => {
+	                if (v !== null && typeof v === 'object') {
+	                    if (seen.has(v))
+	                        return;
+	                    seen.add(v);
+	                }
+	                if (k === 'Smart') {
+	                    return v;
+	                }
+	                return v;
+	            });
+	        };
 	        for (let prop in that.props) {
 	            if (prop === 'children') {
 	                continue;
@@ -371,10 +408,27 @@ require('../source/modules/smart.dateinput');
 	        }
 	        if (initialize) {
 	            that.nativeElement = this.componentRef.current;
+	            that.nativeElement.React = React;
+	            that.nativeElement.ReactDOM = ReactDOM;
+	            if (that.nativeElement && !that.nativeElement.isCompleted) {
+	                that.nativeElement.reactStateProps = JSON.parse(stringifyCircularJSON(props));
+	            }
+	        }
+	        if (initialize && that.nativeElement && that.nativeElement.isCompleted) {
+	            //	return;
 	        }
 	        for (let prop in props) {
 	            if (prop === 'class' || prop === 'className') {
 	                const classNames = props[prop].trim().split(' ');
+	                if (that.nativeElement._classNames) {
+	                    const oldClassNames = that.nativeElement._classNames;
+	                    for (let className in oldClassNames) {
+	                        if (that.nativeElement.classList.contains(oldClassNames[className]) && oldClassNames[className] !== "") {
+	                            that.nativeElement.classList.remove(oldClassNames[className]);
+	                        }
+	                    }
+	                }
+	                that.nativeElement._classNames = classNames;
 	                for (let className in classNames) {
 	                    if (!that.nativeElement.classList.contains(classNames[className]) && classNames[className] !== "") {
 	                        that.nativeElement.classList.add(classNames[className]);
@@ -392,7 +446,17 @@ require('../source/modules/smart.dateinput');
 	                    that.nativeElement.setAttribute(prop, '');
 	                }
 	                const normalizedProp = normalizeProp(prop);
-	                that.nativeElement[normalizedProp] = props[prop];
+	                if (that.nativeElement[normalizedProp] === undefined) {
+	                    that.nativeElement.setAttribute(prop, props[prop]);
+	                }
+	                if (props[prop] !== undefined) {
+	                    if (typeof props[prop] === 'object' && that.nativeElement.reactStateProps && !initialize) {
+	                        if (stringifyCircularJSON(props[prop]) === stringifyCircularJSON(that.nativeElement.reactStateProps[normalizedProp])) {
+	                            continue;
+	                        }
+	                    }
+	                    that.nativeElement[normalizedProp] = props[prop];
+	                }
 	            }
 	        }
 	        for (let eventName in events) {
@@ -400,7 +464,7 @@ require('../source/modules/smart.dateinput');
 	            that.nativeElement[eventName.toLowerCase()] = events[eventName];
 	        }
 	        if (initialize) {
-	            Smart.Render();
+	            exports.Smart.Render();
 	            if (that.onCreate) {
 	                that.onCreate();
 	            }
@@ -435,14 +499,13 @@ require('../source/modules/smart.dateinput');
 	        }
 	    }
 	    render() {
-	        return (React.createElement("smart-date-input", { ref: this.componentRef }, this.props.children));
+	        return (React.createElement("smart-date-input", { ref: this.componentRef, suppressHydrationWarning: true }, this.props.children));
 	    }
 	}
 
-	exports.Smart = Smart;
 	exports.DateInput = DateInput;
 	exports.default = DateInput;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));

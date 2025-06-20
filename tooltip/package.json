@@ -3,5 +3,5 @@
     "module": "tooltip.esm.js",
 	"typings": "tooltip.d.ts",
     "name": "smart-webcomponents-react/tooltip",
-    "sideEffects": false
+    "sideEffects": true
   }

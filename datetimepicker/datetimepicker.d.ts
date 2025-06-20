@@ -3,7 +3,8 @@ import { DateTimePickerProperties } from "./../index";
 import { Animation, DropDownButtonPosition, CalendarMode, DayFormat, DateTimePickerDisplayKind, CalendarDisplayModeView, DateTimePickerDropDownDisplayMode, DropDownPosition, DateTimePickerEditMode, DateTimePickerSpinButtonsPosition, TooltipPosition, Validation } from './../index';
 export { DateTimePickerProperties } from "./../index";
 export { Animation, DropDownButtonPosition, CalendarMode, DayFormat, DateTimePickerDisplayKind, CalendarDisplayModeView, DateTimePickerDropDownDisplayMode, DropDownPosition, DateTimePickerEditMode, DateTimePickerSpinButtonsPosition, TooltipPosition, Validation } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface DateTimePickerProps extends DateTimePickerProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -178,6 +179,11 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     */
     get label(): string;
     set label(value: string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the locale that determines what language is used to localize the labels inside the DateTimePicker.
     *	Property type: string
     */
@@ -366,6 +372,7 @@ export declare class DateTimePicker extends React.Component<React.HTMLAttributes
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default DateTimePicker;

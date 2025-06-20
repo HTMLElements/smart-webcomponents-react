@@ -1,0 +1,7 @@
+{
+    "main": "timeline.umd.js",
+    "module": "timeline.esm.js",
+	"typings": "timeline.d.ts",
+    "name": "smart-webcomponents-react/timeline",
+    "sideEffects": true
+  }

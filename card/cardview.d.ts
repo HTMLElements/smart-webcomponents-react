@@ -4,7 +4,8 @@ import { Animation, Orientation, CardViewCoverMode, CardViewHeaderPosition, Scro
 export { CardViewProperties } from "./../index";
 export { Animation, Orientation, CardViewColumnDataType, CardViewCoverMode, DataSourceSettingsSanitizeHTML, DataSourceSettingsDataFieldDataType, DataSourceSettingsDataSourceType, CardViewHeaderPosition, Scrolling, CardViewColumn, DataSourceSettings, DataSourceSettingsDataField } from './../index';
 export { DataAdapter } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface CardViewProps extends CardViewProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -93,6 +94,11 @@ export declare class CardView extends React.Component<React.HTMLAttributes<Eleme
     */
     get headerPosition(): CardViewHeaderPosition | string;
     set headerPosition(value: CardViewHeaderPosition | string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the locale. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -222,6 +228,7 @@ export declare class CardView extends React.Component<React.HTMLAttributes<Eleme
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default CardView;

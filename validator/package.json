@@ -3,5 +3,5 @@
     "module": "validator.esm.js",
 	"typings": "validator.d.ts",
     "name": "smart-webcomponents-react/validator",
-    "sideEffects": false
+    "sideEffects": true
   }

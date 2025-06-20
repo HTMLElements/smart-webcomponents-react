@@ -3,7 +3,8 @@ import { ToastProperties } from "./../index";
 import { Animation, ToastPosition, ToastType } from './../index';
 export { ToastProperties } from "./../index";
 export { Animation, ToastPosition, ToastType } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface ToastProps extends ToastProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -70,6 +71,11 @@ export declare class Toast extends React.Component<React.HTMLAttributes<Element>
     */
     get itemTemplate(): string;
     set itemTemplate(value: string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -182,6 +188,7 @@ export declare class Toast extends React.Component<React.HTMLAttributes<Element>
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Toast;

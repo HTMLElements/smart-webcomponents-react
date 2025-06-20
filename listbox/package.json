@@ -3,5 +3,5 @@
     "module": "listbox.esm.js",
 	"typings": "listbox.d.ts",
     "name": "smart-webcomponents-react/listbox",
-    "sideEffects": false
+    "sideEffects": true
   }

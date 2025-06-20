@@ -1,10 +1,11 @@
 import React from "react";
 import { GridProperties } from "./../index";
-import { Scrolling, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridContextMenu, GridColumnMenu, GridColumnGroup, GridConditionalFormatting, GridCharting, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridEditing, GridFiltering, GridGrouping, GridUploadSettings, GridPaging, GridPager, GridRowDetail, GridColumnHeader, GridSummaryRow, GridStateSettings, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSorting } from './../index';
+import { Scrolling, GridAppearance, GridAi, GridBehavior, GridColumnHeader, GridClipboard, GridColumn, GridContextMenu, GridColumnMenu, GridColumnGroup, GridConditionalFormatting, GridCharting, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridEditing, GridFiltering, GridFooter, GridGrouping, GridGroupHeader, GridHeader, GridLayout, GridPaging, GridPager, GridRowDetail, GridRow, GridCell, GridSummaryRow, GridStateSettings, GridSelection, GridSorting, GridUploadSettings } from './../index';
 export { GridProperties } from "./../index";
-export { GridAppearanceAutoGenerateRowLabelMode, GridAppearanceAutoGenerateColumnLabelMode, GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnFilterMenuMode, GridColumnSortOrder, GridConditionalFormattingCondition, GridDataExportPageOrientation, GridDataSourceSettingsSanitizeHTML, GridDataSourceSettingsDataFieldDataType, GridDataSourceSettingsDataSourceType, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridEditingAddNewRowDisplayMode, GridFilteringFilterRowApplyMode, GridFilteringFilterMenuMode, GridGroupingExpandMode, GridGroupingRenderMode, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridSortingCommandKey, GridAppearance, GridBehavior, GridLayout, GridClipboard, GridColumn, GridContextMenu, GridContextMenuDataSource, GridCommand, GridColumnMenu, GridColumnMenuDataSource, GridColumnGroup, GridConditionalFormatting, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridDataSourceSettingsDataField, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridEditingAddNewColumn, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridUploadSettings, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridColumnHeader, GridSummaryRow, GridStateSettings, GridGroupHeader, GridHeader, GridFooter, GridRow, GridCell, GridSelection, GridSelectionCheckBoxes, GridSorting } from './../index';
+export { GridAppearanceAutoGenerateRowLabelMode, GridAppearanceAutoGenerateColumnLabelMode, GridResizeMode, GridClipboardAutoFillMode, HorizontalAlignment, VerticalAlignment, Position, GridColumnFilterMenuMode, GridColumnSortOrder, GridConditionalFormattingCondition, GridDataExportPageOrientation, GridDataSourceSettingsSanitizeHTML, GridDataSourceSettingsDataFieldDataType, GridDataSourceSettingsDataSourceType, GridEditingAction, LayoutPosition, GridCommandDisplayMode, GridEditingMode, GridEditingAddNewRowDisplayMode, GridFilteringFilterRowApplyMode, GridFilteringFilterMenuMode, GridGroupingExpandMode, GridGroupingRenderMode, GridHeaderSearchCommand, GridPagerAutoEllipsis, Scrolling, GridSelectionMode, GridSelectionAction, GridSelectionCheckBoxesSelectAllMode, GridSortingMode, GridSortingCommandKey, GridAppearance, GridAi, GridBehavior, GridColumnHeader, GridClipboard, GridColumn, GridContextMenu, GridContextMenuDataSource, GridCommand, GridColumnMenu, GridColumnMenuDataSource, GridColumnGroup, GridConditionalFormatting, GridCharting, Dialog, GridCheckBoxes, GridDataExport, GridDataSourceSettings, GridDataSourceSettingsDataField, GridEditing, GridEditingCommandKeys, GridCommandKey, GridEditingCommandBar, GridEditingCommandBarDataSource, GridEditingCommandColumn, GridEditingCommandColumnDataSource, GridEditingAddNewRow, GridEditingAddNewColumn, GridFiltering, GridFilteringFilterRow, GridFilteringFilterMenu, GridFilteringFilterBuilder, GridFooter, GridGrouping, GridGroupingGroupBar, GridGroupingSummaryRow, GridGroupHeader, GridHeader, GridLayout, GridPaging, GridPagingSpinner, GridPager, GridPagerPageSizeSelector, GridPagerSummary, GridPagerNavigationButtons, GridPagerNavigationButtonsPrevNextButtons, GridPagerNavigationButtonsFirstLastButtons, GridPagerNavigationButtonsLabels, GridPagerNavigationInput, GridPagerPageIndexSelectors, GridRowDetail, GridRow, GridCell, GridSummaryRow, GridStateSettings, GridSelection, GridSelectionCheckBoxes, GridSorting, GridUploadSettings } from './../index';
 export { DataAdapter, Chart } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface GridProps extends GridProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -16,6 +17,7 @@ export interface GridProps extends GridProperties {
     onColumnDoubleClick?: ((event?: Event) => void) | undefined;
     onColumnResize?: ((event?: Event) => void) | undefined;
     onColumnDragStart?: ((event?: Event) => void) | undefined;
+    onColumnChange?: ((event?: Event) => void) | undefined;
     onColumnDragging?: ((event?: Event) => void) | undefined;
     onColumnDragEnd?: ((event?: Event) => void) | undefined;
     onColumnReorder?: ((event?: Event) => void) | undefined;
@@ -62,21 +64,26 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     get appearance(): GridAppearance;
     set appearance(value: GridAppearance);
+    /** An object containing settings related to the grid's AI integration.
+    *	Property type: GridAi
+    */
+    get ai(): GridAi;
+    set ai(value: GridAi);
     /** An object containing settings related to the grid's behavior.
     *	Property type: GridBehavior
     */
     get behavior(): GridBehavior;
     set behavior(value: GridBehavior);
-    /** An object containing settings related to the grid's layout.
-    *	Property type: GridLayout
+    /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
+    *	Property type: string | number
     */
-    get layout(): GridLayout;
-    set layout(value: GridLayout);
-    /** Sets or gets the language. Used in conjunction with the property messages.
-    *	Property type: string
+    get currentUser(): string | number;
+    set currentUser(value: string | number);
+    /** Describes the column header settings.
+    *	Property type: GridColumnHeader
     */
-    get locale(): string;
-    set locale(value: string);
+    get columnHeader(): GridColumnHeader;
+    set columnHeader(value: GridColumnHeader);
     /** The clipboard property is used to enable/disable clipboard operations with Ctrl+C, Ctrl+X and Ctrl+V keyboard navigations..
     *	Property type: GridClipboard
     */
@@ -108,6 +115,11 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     get columnGroups(): GridColumnGroup[];
     set columnGroups(value: GridColumnGroup[]);
+    /**
+    *	Property type: boolean
+    */
+    get dropDownMode(): boolean;
+    set dropDownMode(value: boolean);
     /** Sets or gets details about conditional formatting to be applied to the Grid's cells.
     *	Property type: GridConditionalFormatting[]
     */
@@ -148,11 +160,51 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     get filtering(): GridFiltering;
     set filtering(value: GridFiltering);
+    /** Describes the footer settings of the grid.
+    *	Property type: GridFooter
+    */
+    get footer(): GridFooter;
+    set footer(value: GridFooter);
+    /** Sets or gets whether Excel-like formulas can be passed as cell values. Formulas are always preceded by the = sign and are re-evaluated when cell values are changed. This feature depends on the third-party free plug-in formula-parser (the file formula-parser.min.js has to be referenced).
+    *	Property type: boolean
+    */
+    get formulas(): boolean;
+    set formulas(value: boolean);
     /** Describes the grid's grouping settings.
     *	Property type: GridGrouping
     */
     get grouping(): GridGrouping;
     set grouping(value: GridGrouping);
+    /** Describes the settings for the group header.
+    *	Property type: GridGroupHeader
+    */
+    get groupHeader(): GridGroupHeader;
+    set groupHeader(value: GridGroupHeader);
+    /** Describes the header settings of the grid.
+    *	Property type: GridHeader
+    */
+    get header(): GridHeader;
+    set header(value: GridHeader);
+    /** An object containing settings related to the grid's layout.
+    *	Property type: GridLayout
+    */
+    get layout(): GridLayout;
+    set layout(value: GridLayout);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
+    /** Sets or gets the language. Used in conjunction with the property messages.
+    *	Property type: string
+    */
+    get locale(): string;
+    set locale(value: string);
+    /** Keys handling. You can define a key like "Enter": "Tab" or set a function as a value. When the key is pressed, it will be mapped to the other key, action such as 'copy', 'copyPrev', 'copyNext' or 'delete' or just a function defined in your document.
+    *	Property type: any
+    */
+    get keys(): any;
+    set keys(value: any);
     /** Sets the messages values.
     *	Property type: any
     */
@@ -189,6 +241,33 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onCellRender(value: {
         (cell: GridCell): void;
     });
+    /** Describes the paging settings.
+    *	Property type: {(id: string, dataField: string, value: any): boolean}
+    */
+    get onCellBeginEdit(): {
+        (id: string, dataField: string, value: any): boolean;
+    };
+    set onCellBeginEdit(value: {
+        (id: string, dataField: string, value: any): boolean;
+    });
+    /** Describes the pager settings.
+    *	Property type: {(id: string, dataField: string, value: any, oldValue: any, data: any): void}
+    */
+    get onCellEditRequest(): {
+        (id: string, dataField: string, value: any, oldValue: any, data: any): void;
+    };
+    set onCellEditRequest(value: {
+        (id: string, dataField: string, value: any, oldValue: any, data: any): void;
+    });
+    /** Sets the row details.
+    *	Property type: {(id: string, dataField: string, value: any): boolean}
+    */
+    get onCellValueChanged(): {
+        (id: string, dataField: string, value: any): boolean;
+    };
+    set onCellValueChanged(value: {
+        (id: string, dataField: string, value: any): boolean;
+    });
     /** Sets or gets the rows  CSS class rules. Different CSS class names are conditionally applied. Example: rowCSSRules: { 'cell-class-1': settings =&gt; settings.data.quantity === 5, 'cell-class-2': settings =&gt; settings.data.quantity &lt; 5, 'cell-class-3': settings =&gt; settings.data.quantity &gt; 5 }.  The settings object contains the following properties: index, data, row, api.
     *	Property type: {(): void}
     */
@@ -198,7 +277,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onBeforeInit(value: {
         (): void;
     });
-    /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
+    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
     *	Property type: {(): void}
     */
     get onInit(): {
@@ -207,7 +286,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onInit(value: {
         (): void;
     });
-    /** Sets the grid users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
+    /** The rows property is used to describe all rows displayed in the grid.
     *	Property type: {(): void}
     */
     get onAfterInit(): {
@@ -216,22 +295,22 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onAfterInit(value: {
         (): void;
     });
-    /** Sets the grid's image and filter upload settings for the image and attachment columns.
+    /** Sets the scroll mode settings.
     *	Property type: any
     */
     get onChartInit(): any;
     set onChartInit(value: any);
-    /** Describes the paging settings.
+    /** Describes the summary row settings.
     *	Property type: any
     */
     get onRender(): any;
     set onRender(value: any);
-    /** Describes the pager settings.
+    /** Sets the grid's state settings.
     *	Property type: any
     */
     get onLoad(): any;
     set onLoad(value: any);
-    /** Sets the row details.
+    /** Describes the selection settings.
     *	Property type: {(event: KeyboardEvent): void}
     */
     get onKey(): {
@@ -240,7 +319,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onKey(value: {
         (event: KeyboardEvent): void;
     });
-    /** Sets the scroll mode settings.
+    /** Describes sorting settings.
     *	Property type: {(index: number, row: GridRow): void}
     */
     get onRowInit(): {
@@ -249,7 +328,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowInit(value: {
         (index: number, row: GridRow): void;
     });
-    /** Describes the column header settings.
+    /** Sets the grid users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
     *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
     */
     get onRowDetailInit(): {
@@ -258,7 +337,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowDetailInit(value: {
         (index: number, row: GridRow, details: HTMLElement): void;
     });
-    /** Describes the summary row settings.
+    /** Sets the grid's image and filter upload settings for the image and attachment columns.
     *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
     */
     get onRowDetailUpdated(): {
@@ -267,7 +346,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowDetailUpdated(value: {
         (index: number, row: GridRow, details: HTMLElement): void;
     });
-    /** Sets the grid's state settings.
+    /** Sets the current data view. The possible values are 'grid', 'kanban' and 'card'.
     *	Property type: {(index: number, row: GridRow, history: any[]): void}
     */
     get onRowHistory(): {
@@ -276,7 +355,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowHistory(value: {
         (index: number, row: GridRow, history: any[]): void;
     });
-    /** Describes the settings for the group header.
+    /** undefined
     *	Property type: {(index: number, row: GridRow, history: any[]): void}
     */
     get onRowStyle(): {
@@ -285,7 +364,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowStyle(value: {
         (index: number, row: GridRow, history: any[]): void;
     });
-    /** Describes the header settings of the grid.
+    /** undefined
     *	Property type: {(index: number[], row: GridRow[]): void}
     */
     get onRowInserted(): {
@@ -294,7 +373,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowInserted(value: {
         (index: number[], row: GridRow[]): void;
     });
-    /** Describes the footer settings of the grid.
+    /** undefined
     *	Property type: {(indexes: number[], rows: GridRow[]): void}
     */
     get onRowRemoved(): {
@@ -303,7 +382,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowRemoved(value: {
         (indexes: number[], rows: GridRow[]): void;
     });
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** undefined
     *	Property type: {(index: number[], row: GridRow[], oldValues: any[], values: any[], confirm: {(commit: boolean): void}): void}
     */
     get onRowUpdate(): {
@@ -316,7 +395,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
             (commit: boolean): void;
         }): void;
     });
-    /** The rows property is used to describe all rows displayed in the grid.
+    /** undefined
     *	Property type: {(index: number[], row: GridRow[]): void}
     */
     get onRowUpdated(): {
@@ -325,7 +404,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowUpdated(value: {
         (index: number[], row: GridRow[]): void;
     });
-    /** Describes the selection settings.
+    /** undefined
     *	Property type: {(index: number, data: any, row: GridRow[]): void}
     */
     get onRowClass(): {
@@ -334,7 +413,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     set onRowClass(value: {
         (index: number, data: any, row: GridRow[]): void;
     });
-    /** Describes sorting settings.
+    /** undefined
     *	Property type: {(index: number, dataField: string, cellValue: any, data: any, row: GridRow[]): void}
     */
     get onCellClass(): {
@@ -398,26 +477,6 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
         (name: string, command: any, details: GridCell, event: Event | KeyboardEvent | PointerEvent, handled: boolean): void;
     });
     /** undefined
-    *	Property type: any
-    */
-    get rowCSSRules(): any;
-    set rowCSSRules(value: any);
-    /** undefined
-    *	Property type: string | number
-    */
-    get currentUser(): string | number;
-    set currentUser(value: string | number);
-    /** undefined
-    *	Property type: any[]
-    */
-    get users(): any[];
-    set users(value: any[]);
-    /** undefined
-    *	Property type: GridUploadSettings
-    */
-    get uploadSettings(): GridUploadSettings;
-    set uploadSettings(value: GridUploadSettings);
-    /** undefined
     *	Property type: GridPaging
     */
     get paging(): GridPaging;
@@ -433,40 +492,10 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     get rowDetail(): GridRowDetail;
     set rowDetail(value: GridRowDetail);
     /** undefined
-    *	Property type: Scrolling | string
+    *	Property type: any
     */
-    get scrolling(): Scrolling | string;
-    set scrolling(value: Scrolling | string);
-    /** undefined
-    *	Property type: GridColumnHeader
-    */
-    get columnHeader(): GridColumnHeader;
-    set columnHeader(value: GridColumnHeader);
-    /** undefined
-    *	Property type: GridSummaryRow
-    */
-    get summaryRow(): GridSummaryRow;
-    set summaryRow(value: GridSummaryRow);
-    /** undefined
-    *	Property type: GridStateSettings
-    */
-    get stateSettings(): GridStateSettings;
-    set stateSettings(value: GridStateSettings);
-    /** undefined
-    *	Property type: GridGroupHeader
-    */
-    get groupHeader(): GridGroupHeader;
-    set groupHeader(value: GridGroupHeader);
-    /** undefined
-    *	Property type: GridHeader
-    */
-    get header(): GridHeader;
-    set header(value: GridHeader);
-    /** undefined
-    *	Property type: GridFooter
-    */
-    get footer(): GridFooter;
-    set footer(value: GridFooter);
+    get rowCSSRules(): any;
+    set rowCSSRules(value: any);
     /** undefined
     *	Property type: boolean
     */
@@ -478,6 +507,21 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     get rows(): GridRow[];
     set rows(value: GridRow[]);
     /** undefined
+    *	Property type: Scrolling | string
+    */
+    get scrolling(): Scrolling | string;
+    set scrolling(value: Scrolling | string);
+    /** undefined
+    *	Property type: GridSummaryRow
+    */
+    get summaryRow(): GridSummaryRow;
+    set summaryRow(value: GridSummaryRow);
+    /** undefined
+    *	Property type: GridStateSettings
+    */
+    get stateSettings(): GridStateSettings;
+    set stateSettings(value: GridStateSettings);
+    /** undefined
     *	Property type: GridSelection
     */
     get selection(): GridSelection;
@@ -487,6 +531,21 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     get sorting(): GridSorting;
     set sorting(value: GridSorting);
+    /** undefined
+    *	Property type: any[]
+    */
+    get users(): any[];
+    set users(value: any[]);
+    /** undefined
+    *	Property type: GridUploadSettings
+    */
+    get uploadSettings(): GridUploadSettings;
+    set uploadSettings(value: GridUploadSettings);
+    /** undefined
+    *	Property type: string
+    */
+    get view(): string;
+    set view(value: string);
     get properties(): string[];
     /**  This event is triggered, when the edit begins. After the event occurs, editing starts. If you need to prevent the editing for specific cells, rows or columns, you can call event.preventDefault();.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	id, 	dataField, 	row, 	column, 	cell, 	data, 	value)
@@ -546,6 +605,14 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     *   originalEvent - The origianl Event object.
     */
     onColumnDragStart?: ((event?: Event) => void) | undefined;
+    /**  This event is triggered, when a column property is changed.
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	propertyName, 	oldValue, 	value)
+    *   column - The resized column.
+    *   propertyName - The changed property's name.
+    *   oldValue - The old value(s) of the column.
+    *   value - The new value(s) of the column.
+    */
+    onColumnChange?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user drags a column.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	column, 	dataField, 	index, 	data, 	originalEvent)
     *   column - The column.
@@ -646,20 +713,22 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     onRowCollapse?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user clicks on a row of the grid.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent, 	id, 	isRightClick, 	pageX, 	pageY)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent, 	id, 	data, 	isRightClick, 	pageX, 	pageY)
     *   row - The clicked row.
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
     *   id - Gets the row id.
+    *   data - Gets the row data.
     *   isRightClick - Gets whether the pointing device's right button is clicked.
     *   pageX - Gets the click's X position.
     *   pageY - Gets the click's Y position.
     */
     onRowClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user double clicks on a row of the grid.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent, 	id, 	isRightClick, 	pageX, 	pageY)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	row, 	originalEvent, 	id, 	data, 	isRightClick, 	pageX, 	pageY)
     *   row - The double-clicked row.
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
     *   id - Gets the row id.
+    *   data - Gets the row data.
     *   isRightClick - Gets whether the pointing device's right button is clicked.
     *   pageX - Gets the click's X position.
     *   pageY - Gets the click's Y position.
@@ -682,22 +751,24 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     onRowStarred?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user clicks on a cell of the grid.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	cell, 	originalEvent, 	id, 	dataField, 	isRightClick, 	pageX, 	pageY)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	cell, 	originalEvent, 	id, 	dataField, 	value, 	isRightClick, 	pageX, 	pageY)
     *   cell - The clicked cell.
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
     *   id - Gets the row id.
     *   dataField - Gets the column dataField.
+    *   value - Gets the cell value.
     *   isRightClick - Gets whether the pointing device's right button is clicked.
     *   pageX - Gets the click's X position.
     *   pageY - Gets the click's Y position.
     */
     onCellClick?: ((event?: Event) => void) | undefined;
     /**  This event is triggered, when the user double clicks on a cell of the grid.
-    *  @param event. The custom event. 	Custom event was created with: event.detail(	cell, 	originalEvent, 	id, 	dataField, 	isRightClick, 	pageX, 	pageY)
+    *  @param event. The custom event. 	Custom event was created with: event.detail(	cell, 	originalEvent, 	id, 	dataField, 	value, 	isRightClick, 	pageX, 	pageY)
     *   cell - The double-clicked cell.
     *   originalEvent - The original event object, which is 'pointer', 'touch' or 'mouse' Event object, depending on the device type and web browser
     *   id - Gets the row id.
     *   dataField - Gets the column dataField.
+    *   value - Gets the cell value.
     *   isRightClick - Gets whether the pointing device's right button is clicked.
     *   pageX - Gets the click's X position.
     *   pageY - Gets the click's Y position.
@@ -911,8 +982,10 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     expandAllRows(): void;
     /** Exports the Grid data to .XLSX, .PDF, .JSON, .XML, .CSV, .TSV, .HTML, .JPEG or .PNG. The method uses the options of the dataExport property.
     * @param {string} Dataformat. 'xlsx', 'pdf', 'json', 'xml', 'csv', 'tsv', 'html', 'png', 'jpeg'.
+    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer to the Smart Export Documentation.
+    * @param {any} dataCallback?. A callback that allows to change the exported data.
     */
-    exportData(Dataformat: string): void;
+    exportData(Dataformat: string, callback?: any, dataCallback?: any): void;
     /** Finds entries by using a query and returns an array of row ids. Example: const rows = grid.find('nancy'); returns all rows that have 'nancy' value. Example 2: const rows = grid.find('nancy, davolio'); returns all rows that have 'nancy' and 'davolio' values in the same row. Example 3: const rows = grid.find(5, 'quantity', '>'); returns all rows where the value of the 'quantity' field is > 5.
     * @param {string} query. Search query
     * @param {string} dataField?. Column data field.
@@ -925,6 +998,11 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     * @returns {any[]}
   */
     findCells(query: string): any;
+    /** Filter by all columns. This method works like a global filter and applies a filter to all grid columns.
+    * @param {string} query. Filter query to filter by.
+    * @param {string} dataType?. Optionally filter by a specific data type like 'string', 'boolean', 'date', 'number'.
+    */
+    filterBy(query: string, dataType?: string): void;
     /** Navigates to a page, when paging is enabled.
     * @param {number} index. page index
     */
@@ -994,6 +1072,10 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     * @returns {any[]}
   */
     getSelectedRows(): any;
+    /** Gets an Array where each item contains the row data.
+    * @returns {any[]}
+  */
+    getSelectedRowsData(): any;
     /** Gets the selected row ids.
     * @returns {any[]}
   */
@@ -1022,19 +1104,6 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     * @returns {any}
   */
     getState(): any;
-    /** Saves the Grid state and returns a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
-    * @param {string} name?. state name
-    * @returns {any}
-  */
-    saveState(name?: string): any;
-    /** Loads a previously saved Grid state. You can pass a state name when there is a state which was previously saved with the saveState(stateName) method call or a state object returned by the saveState or getState method calls. The state object is required to be a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
-    * @param {any} state. state name or state object
-    * @returns {any}
-  */
-    loadState(state: any): any;
-    /** Resets the Grid state.
-    */
-    resetState(): void;
     /** Gets the changes from the batch edit.
     * @returns {{ upDated: [{ id: string, dataField: string, oldValue: Object, newValue: Object }], deleted: [{id: string, data: Object}], added: [{id: string, data: Object}] }}
   */
@@ -1117,6 +1186,11 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     insertRow(data: any, index?: number, callback?: {
         (row: GridRow): void;
     }): void;
+    /** Loads a previously saved Grid state. You can pass a state name when there is a state which was previously saved with the saveState(stateName) method call or a state object returned by the saveState or getState method calls. The state object is required to be a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
+    * @param {any} state. state name or state object
+    * @returns {any}
+  */
+    loadState(state: any): any;
     /** Opens a column drop-down menu.
     * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
     */
@@ -1126,6 +1200,12 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     * @param {number} top. Top Position.
     */
     openContextMenu(left: number, top: number): void;
+    /** Opens the Grid when the 'dropDownMode' property is true.
+    */
+    openDropDown(): void;
+    /** Closes the Grid when the 'dropDownMode' property is true.
+    */
+    closeDropDown(): void;
     /** Prints the Grid data. The method uses the options of the dataExport property. When printed, the Grid will not display any scrollbars so all rows and columns will be displayed. The grid will auto resize width and height to fit all contents. To customize the printing options, you can use  the dataExport property.
     */
     print(): void;
@@ -1136,6 +1216,9 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     refreshView(): void;
     /** Refreshes the grid cells in view. The method is useful for live-updates of cell values.
+    */
+    resetState(): void;
+    /** Resets the Grid state.
     * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
     * @param {boolean} refreshFilters?. Set this to false, if you need to make multiple removeFilter calls.
     */
@@ -1161,6 +1244,11 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     reorderColumns(dataField: string | number, referenceDataField: string | number, insertAfter?: boolean): void;
     /** Reorders two DataGrid columns.
+    * @param {string} name?. state name
+    * @returns {any}
+  */
+    saveState(name?: string): any;
+    /** Saves the Grid state and returns a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
     * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
     * @param {string | null} sortOrder. column's sort order. Use 'asc', 'desc' or null.
     */
@@ -1266,6 +1354,10 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
         fontWeight?: string;
     }): void;
     /** Sets a style to a row.
+    * @param {string} label. The label to be displayed in the dropdown button.
+    */
+    setDropDownLabel(label: string): void;
+    /** Sets the label of the Grid when the 'dropDownMode' property is true.
     * @param {number} value. The new scroll position
     */
     setVerticalScrollValue(value: number): void;
@@ -1274,10 +1366,25 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     */
     setHorizontalScrollValue(value: number): void;
     /** Sets the position of the horizontal scrollbar. You can use this method in combination with the getHorizontalScrollValue and getHorizontalScrollMax.
+    */
+    closeSidePanel(): void;
+    /** Closes the Grid's side panel.
+    * @param {any} content. This is the content which will be displayed in the side panel. It can be String, HTML Element, HTML Template Element or Component
+    * @param {number} width?. This is the width of the side panel
+    * @param {any} callback?. Function called when the panel is opened. It can be used for dynamically showing content and initializing it.
+    */
+    showSidePanel(content: any, width?: number, callback?: any): void;
+    /** Shows the side panel of the Grid.
     * @param {string | number} rowId. row bound id
     */
     showDetail(rowId: string | number): void;
     /** Shows the Details of a Row, when row details are enabled.
+    * @param {string | number} rowId. row bound id
+    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+    * @param {string} value. The message to be shown below the cell
+    */
+    showCellMessage(rowId: string | number, dataField: string, value: string): void;
+    /** Shows an overlay message below a cell. This method can be used for onboarding tips or in scenarios when you want to display custom messages to the user.
     * @param {string | number} rowId. row bound id
     * @param {any} data. row data matching the data source
     * @param {{(row: GridRow): void}} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
@@ -1308,6 +1415,7 @@ export declare class Grid extends React.Component<React.HTMLAttributes<Element> 
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default Grid;

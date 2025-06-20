@@ -3,7 +3,8 @@ import { DateInputProperties } from "./../index";
 import { DropDownButtonPosition } from './../index';
 export { DateInputProperties } from "./../index";
 export { DropDownButtonPosition } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface DateInputProps extends DateInputProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -29,6 +30,11 @@ export declare class DateInput extends React.Component<React.HTMLAttributes<Elem
     */
     get autoCloseDelay(): number;
     set autoCloseDelay(value: number);
+    /** Determines the calendar properties to be set to the popup calendar.
+    *	Property type: any
+    */
+    get calendarProperties(): any;
+    set calendarProperties(value: any);
     /** Determines the format of the dates displayed in the input. Accepts valid ECMAScript Internationalization API format. Intl.DateTimeFormat is used to format date strings in JavaScript. By default the date format is 'numeric'. The default value is: { day: 'numeric', month: 'numeric', year: 'numeric' }
     *	Property type: any
     */
@@ -64,6 +70,11 @@ export declare class DateInput extends React.Component<React.HTMLAttributes<Elem
     */
     get inputPurpose(): string;
     set inputPurpose(value: string);
+    /** Sets or gets the unlockKey which unlocks the product.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Sets or gets the language. Used in conjunction with the property messages.
     *	Property type: string
     */
@@ -173,6 +184,7 @@ export declare class DateInput extends React.Component<React.HTMLAttributes<Elem
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default DateInput;

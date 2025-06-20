@@ -3,5 +3,5 @@
     "module": "passwordinput.esm.js",
 	"typings": "passwordinput.d.ts",
     "name": "smart-webcomponents-react/passwordinput",
-    "sideEffects": false
+    "sideEffects": true
   }

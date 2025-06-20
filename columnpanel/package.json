@@ -3,5 +3,5 @@
     "module": "columnpanel.esm.js",
 	"typings": "columnpanel.d.ts",
     "name": "smart-webcomponents-react/columnpanel",
-    "sideEffects": false
+    "sideEffects": true
   }

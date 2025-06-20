@@ -3,7 +3,8 @@ import { CircularProgressBarProperties } from "./../index";
 import { Animation } from './../index';
 export { CircularProgressBarProperties } from "./../index";
 export { Animation } from './../index';
-export declare const Smart: any;
+declare let Smart: any;
+export { Smart };
 export interface CircularProgressBarProps extends CircularProgressBarProperties {
     className?: string;
     style?: React.CSSProperties;
@@ -43,11 +44,16 @@ export declare class CircularProgressBar extends React.Component<React.HTMLAttri
     */
     get indeterminate(): boolean;
     set indeterminate(value: boolean);
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or gets the unlockKey which unlocks the product.
     *	Property type: boolean
     */
     get inverted(): boolean;
     set inverted(value: boolean);
+    /** Sets or gets the language. Used in conjunction with the property messages.
+    *	Property type: string
+    */
+    get unlockKey(): string;
+    set unlockKey(value: string);
     /** Callback, related to localization module.
     *	Property type: string
     */
@@ -116,6 +122,7 @@ export declare class CircularProgressBar extends React.Component<React.HTMLAttri
     componentWillUnmount(): void;
     render(): React.ReactElement<{
         ref: any;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+        suppressHydrationWarning: boolean;
+    }, string | React.JSXElementConstructor<any>>;
 }
 export default CircularProgressBar;

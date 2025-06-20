@@ -3,5 +3,5 @@
     "module": "tabswindow.esm.js",
 	"typings": "tabswindow.d.ts",
     "name": "smart-webcomponents-react/tabswindow",
-    "sideEffects": false
+    "sideEffects": true
   }
