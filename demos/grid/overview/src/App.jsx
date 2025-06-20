@@ -2,7 +2,7 @@ import 'smart-webcomponents-react/source/styles/smart.default.css';
 import { Smart, Grid } from 'smart-webcomponents-react/grid';
 import { GetData } from './common/data'
 
-Smart.License ='8414516F-15A2-4D84-A7AF-A9A72400DB02'
+
 
 function App() {
 
