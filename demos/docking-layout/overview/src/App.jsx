@@ -57,7 +57,8 @@ class App extends React.Component {
 	componentDidMount() {
 	}
 
-	handleReady() {
+	
+	handleReady = () => {
 		ReactDOM.render(<MultilineTextBox />, document.querySelector("#firstContainer"));
 		ReactDOM.render(<Slider />, document.querySelector("#secondContainer"));
 	}
