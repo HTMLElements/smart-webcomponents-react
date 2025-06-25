@@ -1,158 +1,105 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
-import { ComboBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/combobox';
+import React, { useRef, useCallback } from 'react';
+import { Button } from 'smart-webcomponents-react/button';
+import { ComboBox } from 'smart-webcomponents-react/combobox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const combobox = useRef(null);
 
-		this.combobox = React.createRef();
-	}
+    const dataSource = [
+        { label: "Andrew", value: 1, group: "Product Owners" },
+        { label: "Natalia", value: 2, group: "Developers" },
+        { label: "Michael", value: 3, group: "Developers" },
+        { label: "Angel", value: 4, group: "Product Owners" },
+        { label: "Hristo", value: 5, group: "Developers" },
+        { label: "Peter", value: 6, group: "Developers" },
+        { label: "Albert", value: 7, group: "Support" },
+        { label: "George", value: 8, group: "Support" }
+    ];
 
-	dataSource = [{
-		label: "Andrew",
-		value: 1,
-		group: "Product Owners"
-	},
-	{
-		label: "Natalia",
-		value: 2,
-		group: "Developers"
-	},
-	{
-		label: "Michael",
-		value: 3,
-		group: "Developers"
-	},
-	{
-		label: "Angel",
-		value: 4,
-		group: "Product Owners"
-	},
-	{
-		label: "Hristo",
-		value: 5,
-		group: "Developers"
-	},
-	{
-		label: "Peter",
-		value: 6,
-		group: "Developers"
-	},
-	{
-		label: "Albert",
-		value: 7,
-		group: "Support"
-	},
-	{
-		label: "George",
-		value: 8,
-		group: "Support"
-	}];
+    const handleUnsort = useCallback(() => {
+        combobox.current.sorted = false;
+    }, []);
 
-	handleUnsort() {
-		this.combobox.current.sorted = false;
-	}
+    const handleSort = useCallback(() => {
+        combobox.current.sorted = true;
+    }, []);
 
-	handleSort() {
-		this.combobox.current.sorted = true;
-	}
+    const handleUngroup = useCallback(() => {
+        combobox.current.grouped = false;
+    }, []);
 
-	handleUngroup() {
-		this.combobox.current.grouped = false;
-	}
+    const handleGroup = useCallback(() => {
+        combobox.current.grouped = true;
+    }, []);
 
-	handleGroup() {
-		this.combobox.current.grouped = true;
-	}
+    const handleOpen = useCallback(() => {
+        combobox.current.open();
+    }, []);
 
-	handleOpen() {
-		this.combobox.current.open();
-	}
+    const handleClose = useCallback(() => {
+        combobox.current.close();
+    }, []);
 
-	handleClose() {
-		this.combobox.current.close();
-	}
+    const handleDefault = useCallback(() => {
+        combobox.current.selectionMode = 'oneOrManyExtended';
+    }, []);
 
-	handleDefault() {
-		this.combobox.current.selectionMode = 'oneOrManyExtended';
-	}
+    const handleCheck = useCallback(() => {
+        combobox.current.selectionMode = 'checkBox';
+    }, []);
 
-	handleCheck() {
-		this.combobox.current.selectionMode = 'checkBox';
-	}
+    const handleRadio = useCallback(() => {
+        combobox.current.selectionMode = 'radioButton';
+    }, []);
 
-	handleRadio() {
-		this.combobox.current.selectionMode = 'radioButton';
-	}
+    const handleInsert = useCallback(() => {
+        combobox.current.insert(0, { label: "New Item", value: Date.now(), group: "Support" });
+    }, []);
 
-	handleInsert() {
-		this.combobox.current.insert(0, "New Item");
-	}
+    const handleUpdate = useCallback(() => {
+        combobox.current.update(0, { label: "Updated Item", value: 999, group: "Support" });
+    }, []);
 
-	handleUpdate() {
-		this.combobox.current.update(0, "Updated Item");
-	}
+    const handleRemove = useCallback(() => {
+        combobox.current.removeAt(0);
+    }, []);
 
-	handleRemove() {
-		this.combobox.current.removeAt(0);
-	}
+    const handleDisable = useCallback(() => {
+        combobox.current.disabled = !combobox.current.disabled;
+    }, []);
 
-	handleDisable() {
-		const combobox = this.combobox.current;
-
-		combobox.disabled = !combobox.disabled;
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<ComboBox ref={this.combobox} id="dropDownListMethodsDemo" dataSource={this.dataSource}></ComboBox>
-				<div className="options">
-					<div className="option">Settings</div>
-					<div className="option">
-						<Button id="unsort" onClick={this.handleUnsort.bind(this)}>Unsort</Button>
-						<Button id="sort" onClick={this.handleSort.bind(this)}>Sort</Button>
-						<br />
-						<br />
-						<Button id="ungroup" onClick={this.handleUngroup.bind(this)}>Ungroup</Button>
-						<Button id="group" onClick={this.handleGroup.bind(this)}>Group</Button>
-						<br />
-						<br />
-						<Button id="open" onClick={this.handleOpen.bind(this)}>Open</Button>
-						<Button id="close" onClick={this.handleClose.bind(this)}>Close</Button>
-						<br />
-						<br />
-						<Button id="default" onClick={this.handleDefault.bind(this)}>Default</Button>
-						<Button id="check" onClick={this.handleCheck.bind(this)}>Check</Button>
-						<br />
-						<br />
-						<Button id="radio" onClick={this.handleRadio.bind(this)}>Radio</Button>
-						<br />
-						<br />
-						<Button id="insert" onClick={this.handleInsert.bind(this)}>Insert</Button>
-						<Button id="update" onClick={this.handleUpdate.bind(this)}>Update</Button>
-						<br />
-						<br />
-						<Button id="remove" onClick={this.handleRemove.bind(this)}>Remove</Button>
-						<br />
-						<br />
-						<Button style={{ width: "auto" }} id="disabled" onClick={this.handleDisable.bind(this)}>Enable/Disable</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <ComboBox ref={combobox} id="dropDownListMethodsDemo" dataSource={dataSource}></ComboBox>
+            <div className="options">
+                <div className="option">Settings</div>
+                <div className="option">
+                    <Button onClick={handleUnsort}>Unsort</Button>
+                    <Button onClick={handleSort}>Sort</Button>
+                    <br /><br />
+                    <Button onClick={handleUngroup}>Ungroup</Button>
+                    <Button onClick={handleGroup}>Group</Button>
+                    <br /><br />
+                    <Button onClick={handleOpen}>Open</Button>
+                    <Button onClick={handleClose}>Close</Button>
+                    <br /><br />
+                    <Button onClick={handleDefault}>Default</Button>
+                    <Button onClick={handleCheck}>Check</Button>
+                    <br /><br />
+                    <Button onClick={handleRadio}>Radio</Button>
+                    <br /><br />
+                    <Button onClick={handleInsert}>Insert</Button>
+                    <Button onClick={handleUpdate}>Update</Button>
+                    <br /><br />
+                    <Button onClick={handleRemove}>Remove</Button>
+                    <br /><br />
+                    <Button style={{ width: "auto" }} onClick={handleDisable}>Enable/Disable</Button>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

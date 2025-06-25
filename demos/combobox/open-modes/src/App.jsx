@@ -1,116 +1,65 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
-import { ComboBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/combobox';
+import React, { useRef, useState } from 'react';
+import { Button } from 'smart-webcomponents-react/button';
+import { ComboBox } from 'smart-webcomponents-react/combobox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const comboBoxRef = useRef();
+  const [activeMode, setActiveMode] = useState('default');
 
-		this.combobox = React.createRef();
-		this.button = React.createRef();
-		this.button2 = React.createRef();
-		this.button3 = React.createRef();
-		this.button4 = React.createRef();
-	}
+  const dataSource = [
+    { label: "Andrew", value: 1, group: "A" },
+    { label: "Natalia", value: 2, group: "B" },
+    { label: "Michael", value: 3, group: "B" },
+    { label: "Angel", value: 4, group: "A" },
+    { label: "Hristo", value: 5, group: "C" },
+    { label: "Peter", value: 6, group: "A" },
+    { label: "Albert", value: 7, group: "A" },
+    { label: "George", value: 8, group: "C" }
+  ];
 
-		dataSource = [{
-			label: "Andrew",
-			value: 1,
-			group: "A"
-		},
-		{
-			label: "Natalia",
-			value: 2,
-			group: "B"
-		},
-		{
-			label: "Michael",
-			value: 3,
-			group: "B"
-		},
-		{
-			label: "Angel",
-			value: 4,
-			group: "A"
-		},
-		{
-			label: "Hristo",
-			value: 5,
-			group: "C"
-		},
-		{
-			label: "Peter",
-			value: 6,
-			group: "A"
-		},
-		{
-			label: "Albert",
-			value: 7,
-			group: "A"
-		},
-		{
-			label: "George",
-			value: 8,
-			group: "C"
-		}
-		];
+  const handleModeChange = (mode) => {
+    if (comboBoxRef.current) {
+      comboBoxRef.current.dropDownOpenMode = mode.toLowerCase();
+    }
+    setActiveMode(mode);
+  };
 
-		handleButtonClick(event) {
-			const that = this;
-			const combobox = that.combobox.current;
-			const buttons = [that.button.current, that.button2.current, that.button3.current, that.button4.current];
+  const modes = ['Default', 'Auto', 'DropDownButton', 'None'];
 
-			let mode = event.target.textContent.trim();
+  return (
+    <div>
+      <div id="description">
+        <h3>Modes Description</h3>
+        <p><strong>Auto</strong> – opens/closes on hover.</p>
+        <p><strong>Default</strong> – opens/closes on click.</p>
+        <p><strong>DropDownButton</strong> – separate input and dropdown button.</p>
+        <p><strong>None</strong> – dropdown cannot be opened.</p>
+      </div>
 
-			combobox.dropDownOpenMode = mode.charAt(0).toLowerCase() + mode.slice(1);
+      <ComboBox
+        ref={comboBoxRef}
+        className="drop-down-list-modes-demo"
+        dataSource={dataSource}
+        dropDownOpenMode={activeMode.toLowerCase()}
+      />
 
-			for (let b = 0; b < buttons.length; b++) {
-				buttons[b].disabled = buttons[b].nativeElement === event.target ? true : false;
-			}
-		}
-
-
-		componentDidMount() {
-
-		}
-
-		render() {
-			return (
-				<div>
-					<div id="description">
-						<h3>Modes Description</h3>
-						<p>Auto - the comboBox is opened/closed when the element is hovered.</p>
-						<p>Default - the comboBox is opened/closed when the element is clicked.</p>
-						<p>DropDownButton - the comboBox is devided in two. An input field and a
-						drop-down button.
-			            <br />Each component can be focused. The comboBox can be opened/closed when
-			            the dropDownButton is clicked.</p>
-						<p>None - the combobox can't be opened/closed.</p>
-					</div>
-					<ComboBox ref={this.combobox} className="drop-down-list-modes-demo" dataSource={this.dataSource}></ComboBox>
-					<div className="options">
-						<div className="caption">ComboBox Open Mode:</div>
-						<div className="option">
-							<Button ref={this.button} disabled onClick={this.handleButtonClick.bind(this)}>Default</Button>
-						</div>
-						<div className="option">
-							<Button ref={this.button2} onClick={this.handleButtonClick.bind(this)}>Auto</Button>
-						</div>
-						<div className="option">
-							<Button ref={this.button3} onClick={this.handleButtonClick.bind(this)}>DropDownButton</Button>
-						</div>
-						<div className="option">
-							<Button ref={this.button4} onClick={this.handleButtonClick.bind(this)}>None</Button>
-						</div>
-					</div>
-				</div>
-			);
-		}
-	}
-
-	
+      <div className="options">
+        <div className="caption">ComboBox Open Mode:</div>
+        {modes.map((mode, index) => (
+          <div className="option" key={index}>
+            <Button
+              disabled={activeMode === mode}
+              onClick={() => handleModeChange(mode)}
+            >
+              {mode}
+            </Button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default App;

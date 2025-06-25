@@ -1,136 +1,124 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef, useState } from 'react';
+import { Button } from 'smart-webcomponents-react/button';
 import { DockingLayout } from 'smart-webcomponents-react/dockinglayout';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const dockinglayoutRef = useRef(null);
+  const [insertCount, setInsertCount] = useState(0);
+  const [disabled, setDisabled] = useState(false);
 
-		this.dockinglayout = React.createRef();
-		this.dropdownlist = React.createRef();
-		this.button = React.createRef();
-		this.button2 = React.createRef();
-		this.button3 = React.createRef();
-		this.button4 = React.createRef();
+  const layout = [
+    {
+      type: 'LayoutGroup',
+      size: '50%',
+      orientation: 'horizontal',
+      items: [
+        {
+          type: 'LayoutPanel',
+          label: 'Tabs 0',
+          size: '50%',
+          items: [{ label: 'Tab 0', content: 'Content of Tab 0' }]
+        },
+        {
+          type: 'LayoutPanel',
+          label: 'Tabs 1',
+          items: [{ label: 'Tab 1', content: 'Content of Tab 1' }]
+        }
+      ]
+    },
+    {
+      type: 'LayoutGroup',
+      orientation: 'horizontal',
+      items: [
+        {
+          type: 'LayoutPanel',
+          label: 'Tabs 2',
+          size: '25%',
+          items: [{ label: 'Tab 2', content: 'Content of Tab 2' }]
+        },
+        {
+          type: 'LayoutPanel',
+          label: 'Tabs 3',
+          items: [{ label: 'Tab 3', content: 'Content of Tab 3' }]
+        }
+      ]
+    }
+  ];
 
-		this.insertCount = 0;
-	}
+  const validate = () => {
+    const newCount = insertCount + 1;
+    setInsertCount(newCount);
 
-	layout = [{
-		type: 'LayoutGroup',
-		size: '50%',
-		orientation: 'horizontal',
-		items: [{
-			type: 'LayoutPanel',
-			label: 'Tabs 0',
-			size: '50%',
-			items: [{
-				label: 'Tab 0',
-				content: 'Content of Tab 0'
-			}]
-		},
-		{
-			type: 'LayoutPanel',
-			label: 'Tabs 1',
-			items: [{
-				label: 'Tab 1',
-				content: 'Content of Tab 1'
-			}]
-		}
-		]
-	},
-	{
-		type: 'LayoutGroup',
-		orientation: 'horizontal',
-		items: [{
-			type: 'LayoutPanel',
-			label: 'Tabs 2',
-			size: '25%',
-			items: [{
-				label: 'Tab 2',
-				content: 'Content of Tab 2'
-			}]
-		},
-		{
-			type: 'LayoutPanel',
-			label: 'Tabs 3',
-			items: [{
-				label: 'Tab 3',
-				content: 'Content of Tab 3',
-			}]
-		}
-		]
-	}];
+    if (newCount >= 2) {
+      setDisabled(true);
+    }
 
-	validate() {
-		this.insertCount++;
+    return newCount <= 2;
+  };
 
-		if (this.insertCount === 2) {
-			this.button.current.disabled = true;
-			this.button2.current.disabled = true;
-			this.button3.current.disabled = true;
-			this.button4.current.disabled = true;
-			return true;
-		}
+  const handleInsertOutsideTargetGroup = (position) => {
+    if (!validate()) return;
 
-		if (this.insertCount > 2) {
-			return false;
-		}
+    const newTab = {
+      label: 'New Item',
+      items: [
+        {
+          label: 'New Tab Item',
+          content: 'New Tab Item Content'
+        }
+      ]
+    };
 
-		return true;
-	};
+    dockinglayoutRef.current[`insertOutsideTargetGroup${position}`](0, newTab);
+  };
 
-	handleInsertOutsideTargetGroup(position) {
-		const result = this.validate();
-		const createTabsWindowObject = function () {
-			return {
-				label: 'New Item',
-				items: [{
-					label: 'New Tab Item',
-					content: 'New Tab Item Content'
-				}]
-			}
-		};
-
-		if (!result) {
-			return;
-		}
-
-		this.dockinglayout.current['insertOutsideTargetGroup' + position](0, new createTabsWindowObject());
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<DockingLayout ref={this.dockinglayout} id="layout" layout={this.layout}></DockingLayout>
-				<div className="options">
-					<div className="caption">Insert Outside Tab 0 and Tab 1 group:</div>
-					<div className="option">
-						<Button ref={this.button} id="insertOutsideTargetGroupLeft" onClick={this.handleInsertOutsideTargetGroup.bind(this, 'Left')}>Left</Button>
-					</div>
-					<div className="option">
-						<Button ref={this.button2} id="insertOutsideTargetGroupRight" onClick={this.handleInsertOutsideTargetGroup.bind(this, 'Right')}>Right</Button>
-					</div>
-					<div className="option">
-						<Button ref={this.button3} id="insertOutsideTargetGroupTop" onClick={this.handleInsertOutsideTargetGroup.bind(this, 'Top')}>Top</Button>
-					</div>
-					<div className="option">
-						<Button ref={this.button4} id="insertOutsideTargetGroupBottom" onClick={this.handleInsertOutsideTargetGroup.bind(this, 'Bottom')}>Bottom</Button>
-					</div>
-				</div>
-				<br />
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <DockingLayout ref={dockinglayoutRef} id="layout" layout={layout} />
+      <div className="options">
+        <div className="caption">Insert Outside Tab 0 and Tab 1 group:</div>
+        <div className="option">
+          <Button
+            id="insertOutsideTargetGroupLeft"
+            disabled={disabled}
+            onClick={() => handleInsertOutsideTargetGroup('Left')}
+          >
+            Left
+          </Button>
+        </div>
+        <div className="option">
+          <Button
+            id="insertOutsideTargetGroupRight"
+            disabled={disabled}
+            onClick={() => handleInsertOutsideTargetGroup('Right')}
+          >
+            Right
+          </Button>
+        </div>
+        <div className="option">
+          <Button
+            id="insertOutsideTargetGroupTop"
+            disabled={disabled}
+            onClick={() => handleInsertOutsideTargetGroup('Top')}
+          >
+            Top
+          </Button>
+        </div>
+        <div className="option">
+          <Button
+            id="insertOutsideTargetGroupBottom"
+            disabled={disabled}
+            onClick={() => handleInsertOutsideTargetGroup('Bottom')}
+          >
+            Bottom
+          </Button>
+        </div>
+      </div>
+      <br />
+    </div>
+  );
+};
 
 export default App;

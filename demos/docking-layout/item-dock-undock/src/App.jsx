@@ -1,101 +1,104 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from 'react';
+import { Button } from 'smart-webcomponents-react/button';
 import { DockingLayout } from 'smart-webcomponents-react/dockinglayout';
-import { DropDownList, ListItem, ListItemsGroup } from 'smart-webcomponents-react/dropdownlist';
+import { DropDownList, ListItem } from 'smart-webcomponents-react/dropdownlist';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const dockingLayoutRef = useRef(null);
+  const dropdownListRef = useRef(null);
 
-		this.dockinglayout = React.createRef();
-		this.dropdownlist = React.createRef();
-	}
+  const layout = [
+    {
+      type: 'LayoutPanel',
+      items: [
+        {
+          id: 'A',
+          label: 'A',
+          content: 'Content of item with id #itemA',
+          selected: true
+        }
+      ],
+      autoHide: true,
+      autoHidePosition: 'top'
+    },
+    {
+      type: 'LayoutPanel',
+      items: [
+        {
+          id: 'B',
+          label: 'B',
+          content: 'Content of item with id #itemB'
+        }
+      ],
+      autoHide: true,
+      autoHidePosition: 'left'
+    },
+    {
+      type: 'LayoutPanel',
+      items: [
+        {
+          id: 'C',
+          label: 'C',
+          content: 'Content of item with id #itemC'
+        }
+      ],
+      autoHide: true,
+      autoHidePosition: 'right'
+    },
+    {
+      type: 'LayoutPanel',
+      items: [
+        {
+          id: 'D',
+          label: 'D',
+          content: 'Content of item with id #itemD'
+        }
+      ],
+      autoHide: true,
+      autoHidePosition: 'bottom'
+    }
+  ];
 
-	layout = [{
-		type: 'LayoutPanel',
-		items: [{
-			id: 'A',
-			label: 'A',
-			content: 'Content of item with id #itemA',
-			selected: true
-		}],
-		autoHide: true,
-		autoHidePosition: 'top'
-	},
-	{
-		type: 'LayoutPanel',
-		items: [{
-			id: 'B',
-			label: 'B',
-			content: 'Content of item with id #itemB',
-		}],
-		autoHide: true,
-		autoHidePosition: 'left'
-	},
-	{
-		type: 'LayoutPanel',
-		items: [{
-			id: 'C',
-			label: 'C',
-			content: 'Content of item with id #itemC'
-		}],
-		autoHide: true,
-		autoHidePosition: 'right'
-	},
-	{
-		type: 'LayoutPanel',
-		items: [{
-			id: 'D',
-			label: 'D',
-			content: 'Content of item with id #itemD',
-		}],
-		autoHide: true,
-		autoHidePosition: 'bottom'
-	}];
+  const handleDock = () => {
+    const selected = dropdownListRef.current?.selectedValues?.[0];
+    if (selected) {
+      dockingLayoutRef.current.dock(selected);
+    }
+  };
 
-	handleDock() {
-		this.dockinglayout.current.dock(this.dropdownlist.current.selectedValues[0]);
-	}
+  const handleUndock = () => {
+    const selected = dropdownListRef.current?.selectedValues?.[0];
+    if (selected) {
+      dockingLayoutRef.current.undock(selected);
+    }
+  };
 
-	handleUndock() {
-		this.dockinglayout.current.undock(this.dropdownlist.current.selectedValues[0]);
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<DockingLayout ref={this.dockinglayout} id="layout" layout={this.layout}></DockingLayout>
-				<div className="options">
-					<div className="caption">Choose an Item</div>
-					<div className="option">
-						<DropDownList ref={this.dropdownlist} sorted>
-							<ListItem value="A">Tabs A</ListItem>
-							<ListItem value="B">Tabs B</ListItem>
-							<ListItem value="C">Tabs C</ListItem>
-							<ListItem value="D">Tabs D</ListItem>
-						</DropDownList>
-					</div>
-					<div className="option">
-						<Button id="dock" onClick={this.handleDock.bind(this)}>Dock</Button>
-					</div>
-					<div className="option">
-						<Button id="undock" onClick={this.handleUndock.bind(this)}>Undock</Button>
-					</div>
-				</div>
-				<br />
-				<br />
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <DockingLayout ref={dockingLayoutRef} id="layout" layout={layout}></DockingLayout>
+      <div className="options">
+        <div className="caption">Choose an Item</div>
+        <div className="option">
+          <DropDownList ref={dropdownListRef} sorted>
+            <ListItem value="A">Tabs A</ListItem>
+            <ListItem value="B">Tabs B</ListItem>
+            <ListItem value="C">Tabs C</ListItem>
+            <ListItem value="D">Tabs D</ListItem>
+          </DropDownList>
+        </div>
+        <div className="option">
+          <Button id="dock" onClick={handleDock}>Dock</Button>
+        </div>
+        <div className="option">
+          <Button id="undock" onClick={handleUndock}>Undock</Button>
+        </div>
+      </div>
+      <br />
+      <br />
+    </div>
+  );
+};
 
 export default App;

@@ -1,71 +1,53 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useCallback } from 'react';
 import { DateTimePicker } from 'smart-webcomponents-react/datetimepicker';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.datetimepicker = React.createRef();
-		this.radiobutton = React.createRef();
-		this.radiobutton2 = React.createRef();
-		this.radiobutton3 = React.createRef();
-		this.radiobutton4 = React.createRef();
-		this.radiobutton5 = React.createRef();
-	}
+const App = () => {
+  const datetimepickerRef = useRef(null);
 
-	handleDefaultChange() {
-		this.datetimepicker.current.dropDownDisplayMode = 'default';
-	}
+  const handleChangeMode = useCallback((mode) => {
+    if (datetimepickerRef.current) {
+      datetimepickerRef.current.dropDownDisplayMode = mode;
+    }
+  }, []);
 
-	handleClassicChange() {
-		this.datetimepicker.current.dropDownDisplayMode = 'classic';
-	}
+  return (
+    <div>
+      <DateTimePicker
+        ref={datetimepickerRef}
+        id="dateTimePicker"
+        calendarButton
+        dropDownDisplayMode="default"
+        dropDownPosition="center-bottom"
+        enableMouseWheelAction
+        spinButtons
+        spinButtonsPosition="left"
+      />
 
-	handleCalendarChange() {
-		this.datetimepicker.current.dropDownDisplayMode = 'calendar';
-	}
-
-	handleTimePickerChange() {
-		this.datetimepicker.current.dropDownDisplayMode = 'timePicker';
-	}
-
-	handleAutoChange() {
-		this.datetimepicker.current.dropDownDisplayMode = 'auto';
-	}
-
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<DateTimePicker ref={this.datetimepicker} id="dateTimePicker" calendarButton
-					dropDownDisplayMode="default" dropDownPosition="center-bottom" enableMouseWheelAction
-					spinButtons spinButtonsPosition="left"></DateTimePicker>
-				<div className="options">
-					<div className="caption">Display Mode</div>
-					<div className="option">
-						<RadioButton ref={this.radiobutton} checked onChange={this.handleDefaultChange.bind(this)}>Default</RadioButton>
-						<RadioButton ref={this.radiobutton2} onChange={this.handleClassicChange.bind(this)}>Classic (NI theme)</RadioButton>
-						<RadioButton ref={this.radiobutton3} onChange={this.handleCalendarChange.bind(this)}>Calendar only</RadioButton>
-						<RadioButton ref={this.radiobutton4} onChange={this.handleTimePickerChange.bind(this)}>Time picker only</RadioButton>
-						<RadioButton ref={this.radiobutton5} onChange={this.handleAutoChange.bind(this)}>Auto (based on <strong>formatString</strong>)</RadioButton>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+      <div className="options">
+        <div className="caption">Display Mode</div>
+        <div className="option">
+          <RadioButton checked onChange={() => handleChangeMode('default')}>
+            Default
+          </RadioButton>
+          <RadioButton onChange={() => handleChangeMode('classic')}>
+            Classic (NI theme)
+          </RadioButton>
+          <RadioButton onChange={() => handleChangeMode('calendar')}>
+            Calendar only
+          </RadioButton>
+          <RadioButton onChange={() => handleChangeMode('timePicker')}>
+            Time picker only
+          </RadioButton>
+          <RadioButton onChange={() => handleChangeMode('auto')}>
+            Auto (based on <strong>formatString</strong>)
+          </RadioButton>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

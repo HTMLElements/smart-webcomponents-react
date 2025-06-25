@@ -1,11 +1,10 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useMemo, useCallback } from "react";
 import { Chart } from 'smart-webcomponents-react/chart';
 
-class App extends React.Component {
-	sampleData = [{
+const App = () => {
+  const sampleData = [{
 		"Date": "11/21/2017",
 		"SPOpen": "2057.46",
 		"SPHigh": "2071.46",
@@ -18486,146 +18485,112 @@ class App extends React.Component {
 		"NQAdjClose": "2308.42",
 		"uid": 1231
 	}];
-	monthFormatter = new Intl.DateTimeFormat('en', {
-		month: 'short'
-	});
-	toolTipCustomFormatFn = (value, itemIndex, serie, group, xAxisValue, xAxis) => {
-		const dataItem = this.sampleData[itemIndex],
-			volume = dataItem.SPVolume;
-		return `<div style="text-align: left;">
-			<b>Date:</b> ${xAxisValue.getDate()}-${this.monthFormatter.format(xAxisValue)}-${xAxisValue.getFullYear()}
-			<br />
-			<b>Open price:</b> $${value.open}
-			<br />
-			<b>Close price:</b> $${value.close}
-			<br />
-			<b>Low price:</b> $${value.low}
-			<br />
-			<b>High price:</b> $${value.high}
-			<br />
-			<b>Daily volume:</b> ${volume}
-		</div>`;
-	};
-
-	caption = 'NASDAQ and S&P 500 - OHLC Example';
-	description = '(June 2017 - November 2018)';
-	animationDuration = 1500;
-	enableCrosshairs = true;
-	padding = {
-		left: 5,
-		top: 5,
-		right: 5,
-		bottom: 5
-	};
-	dataSource = this.sampleData;
-	colorScheme = 'scheme21';
-	xAxis = {
-		dataField: 'Date',
-		labels: {
-			formatFunction: (value) => {
-				return value.getDate() + '-' + this.monthFormatter.format(value) + '<br>' + value.getFullYear().toString();
-			}
-		},
-		type: 'date',
-		valuesOnTicks: true,
-		minValue: new Date(2017, 8, 20),
-		maxValue: new Date(2017, 10, 1),
-		rangeSelector: {
-			visible: true,
-			size: 120,
-			serieType: 'area',
-			padding: {
-				left: 25,
-				right: 10,
-				top: 10,
-				bottom: 10
-			},
-			dataField: 'SPClose',
-			baseUnit: 'month',
-			gridLines: {
-				visible: false
-			},
-			labels: {
-				formatFunction: (value) => {
-					return this.monthFormatter.format(value) + '\'' + value.getFullYear().toString().substring(2);
-				}
-			}
-		}
-	};
-	seriesGroups = [{
-		type: 'ohlc',
-		toolTipFormatFunction: this.toolTipCustomFormatFn,
-		valueAxis: {
-			description: 'S&P 500<br>'
-		},
-		series: [{
-			dataFieldClose: 'SPClose',
-			displayTextClose: 'S&P Close price',
-			dataFieldOpen: 'SPOpen',
-			displayTextOpen: 'S&P Open price',
-			dataFieldHigh: 'SPHigh',
-			displayTextHigh: 'S&P High price',
-			dataFieldLow: 'SPLow',
-			displayTextLow: 'S&P Low price',
-			displayText: 'S&P 500',
-			lineWidth: 1
-		}]
-	},
-	{
-		type: 'line',
-		toolTipFormatFunction: this.toolTipCustomFormatFn,
-		valueAxis: {
-			position: 'right',
-			title: {
-				text: '<br>NASDAQ'
-			},
-			gridLines: {
-				visible: false
-			}
-		},
-		series: [{
-			dataField: 'NQClose',
-			dataFieldClose: 'NQClose',
-			displayTextClose: 'Nasdaq Close price',
-			dataFieldOpen: 'NQOpen',
-			displayTextOpen: 'Nasdaq Open price',
-			dataFieldHigh: 'NQHigh',
-			displayTextHigh: 'Nasdaq High price',
-			dataFieldLow: 'NQLow',
-			displayTextLow: 'Nasdaq Low price',
-			displayText: 'NASDAQ',
-			lineWidth: 1
-		}]
-	}
-	];
-
-	init() {
-
-	}
 
 
-	componentDidMount() {
+  const monthFormatter = useMemo(() => new Intl.DateTimeFormat('en', {
+    month: 'short'
+  }), []);
 
-	}
+  const toolTipCustomFormatFn = useCallback((value, itemIndex, serie, group, xAxisValue) => {
+    const dataItem = sampleData[itemIndex];
+    if (!dataItem) return '';
 
-	render() {
-		return (
-			<div>
-				<Chart id="chart"
-					caption={this.caption}
-					description={this.description}
-					animationDuration={this.animationDuration}
-					enableCrosshairs={this.enableCrosshairs}
-					padding={this.padding}
-					dataSource={this.dataSource}
-					colorScheme={this.colorScheme}
-					xAxis={this.xAxis}
-					seriesGroups={this.seriesGroups}></Chart>
-			</div>
-		);
-	}
-}
+    const volume = dataItem.SPVolume || dataItem.NQVolume || 'N/A';
+    return `<div style="text-align: left;">
+      <b>Date:</b> ${xAxisValue.getDate()}-${monthFormatter.format(xAxisValue)}-${xAxisValue.getFullYear()}<br />
+      <b>Open price:</b> $${value.open}<br />
+      <b>Close price:</b> $${value.close}<br />
+      <b>Low price:</b> $${value.low}<br />
+      <b>High price:</b> $${value.high}<br />
+      <b>Daily volume:</b> ${volume}
+    </div>`;
+  }, [sampleData, monthFormatter]);
 
+  const xAxis = useMemo(() => ({
+    dataField: 'Date',
+    type: 'date',
+    valuesOnTicks: true,
+    minValue: new Date(2017, 8, 20),
+    maxValue: new Date(2017, 10, 1),
+    labels: {
+      formatFunction: (value) =>
+        `${value.getDate()}-${monthFormatter.format(value)}<br>${value.getFullYear()}`
+    },
+    rangeSelector: {
+      visible: true,
+      size: 120,
+      serieType: 'area',
+      padding: { left: 25, right: 10, top: 10, bottom: 10 },
+      dataField: 'SPClose',
+      baseUnit: 'month',
+      gridLines: { visible: false },
+      labels: {
+        formatFunction: (value) =>
+          `${monthFormatter.format(value)}'${value.getFullYear().toString().slice(-2)}`
+      }
+    }
+  }), [monthFormatter]);
 
+  const seriesGroups = useMemo(() => [
+    {
+      type: 'ohlc',
+      toolTipFormatFunction: toolTipCustomFormatFn,
+      valueAxis: {
+        description: 'S&P 500<br>'
+      },
+      series: [{
+        dataFieldClose: 'SPClose',
+        displayTextClose: 'S&P Close price',
+        dataFieldOpen: 'SPOpen',
+        displayTextOpen: 'S&P Open price',
+        dataFieldHigh: 'SPHigh',
+        displayTextHigh: 'S&P High price',
+        dataFieldLow: 'SPLow',
+        displayTextLow: 'S&P Low price',
+        displayText: 'S&P 500',
+        lineWidth: 1
+      }]
+    },
+    {
+      type: 'line',
+      toolTipFormatFunction: toolTipCustomFormatFn,
+      valueAxis: {
+        position: 'right',
+        title: { text: '<br>NASDAQ' },
+        gridLines: { visible: false }
+      },
+      series: [{
+        dataField: 'NQClose',
+        dataFieldClose: 'NQClose',
+        displayTextClose: 'Nasdaq Close price',
+        dataFieldOpen: 'NQOpen',
+        displayTextOpen: 'Nasdaq Open price',
+        dataFieldHigh: 'NQHigh',
+        displayTextHigh: 'Nasdaq High price',
+        dataFieldLow: 'NQLow',
+        displayTextLow: 'Nasdaq Low price',
+        displayText: 'NASDAQ',
+        lineWidth: 1
+      }]
+    }
+  ], [toolTipCustomFormatFn]);
+
+  return (
+    <div>
+      <Chart
+        id="chart"
+        caption="NASDAQ and S&P 500 - OHLC Example"
+        description="(June 2017 - November 2018)"
+        animationDuration={1500}
+        enableCrosshairs={true}
+        padding={{ left: 5, top: 5, right: 5, bottom: 5 }}
+        dataSource={sampleData}
+        colorScheme="scheme21"
+        xAxis={xAxis}
+        seriesGroups={seriesGroups}
+      />
+    </div>
+  );
+};
 
 export default App;

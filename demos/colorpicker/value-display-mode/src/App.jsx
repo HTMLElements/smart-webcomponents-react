@@ -1,73 +1,79 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect, useCallback } from "react";
 import { ColorPicker } from 'smart-webcomponents-react/colorpicker';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const colorPickerRef = useRef(null);
+  const inputRef = useRef(null);
 
-		this.colorPicker = React.createRef();
-		this.input = React.createRef();
-	}
+  const handleChange = useCallback((event) => {
+    inputRef.current.value = event.detail.value;
+  }, []);
 
-	handleChange(event) {
-		this.input.current.value = event.detail.value;
-	}
+  const handleInputChange = useCallback((event) => {
+    const value = event.target.value;
+    if (colorPickerRef.current) {
+      colorPickerRef.current.value = value;
+    }
+  }, []);
 
-	init() {
-		const colorPicker = this.colorPicker.current;
+  const handleRadioChange = useCallback((event) => {
+    if (event.detail.checked) {
+      const newMode = event.target.innerText.trim();
+      if (colorPickerRef.current) {
+        colorPickerRef.current.valueDisplayMode = newMode;
+      }
+    }
+  }, []);
 
-		document.addEventListener('change', function (event) {
-			//Set ApplyValueMode and Palette
-			if (event.target.groupName === 'valueDisplayMode') {
-				colorPicker.valueDisplayMode = event.target.innerHTML;
-				return;
-			}
+  useEffect(() => {
+    if (colorPickerRef.current) {
+      inputRef.current.value = colorPickerRef.current.value;
+    }
+  }, []);
 
-			//Set a new value
-			if (event.target.id === 'rgbValue') {
-				colorPicker.value = event.targett.value;
-			}
-		});
-
-		this.input.current.value = colorPicker.value;
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">The demo shows switching between different value display modes of the
-			        Color Picker</div>
-				<ColorPicker ref={this.colorPicker} enableCustomColors onChange={this.handleChange.bind(this)}></ColorPicker>
-				<div className="options">
-					<div className="option">Selected color:
-			            <input ref={this.input} type="text" className="Input" placeholder="#RRGGBB" id="rgbValue" />
-					</div>
-					<div className="option">
-						<div>Toggle Value Display Mode</div>
-						<RadioButton groupName="valueDisplayMode"
-							checked>default</RadioButton>
-						<br />
-						<RadioButton groupName="valueDisplayMode">colorBox</RadioButton>
-						<br />
-						<RadioButton groupName="valueDisplayMode">colorCode</RadioButton>
-						<br />
-						<RadioButton groupName="valueDisplayMode">none</RadioButton>
-						<br />
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">
+        The demo shows switching between different value display modes of the Color Picker
+      </div>
+      <ColorPicker
+        ref={colorPickerRef}
+        enableCustomColors
+        onChange={handleChange}
+      />
+      <div className="options">
+        <div className="option">
+          Selected color:
+          <input
+            ref={inputRef}
+            type="text"
+            className="Input"
+            placeholder="#RRGGBB"
+            id="rgbValue"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="option">
+          <div>Toggle Value Display Mode</div>
+          {["default", "colorBox", "colorCode", "none"].map((mode, i) => (
+            <div key={mode}>
+              <RadioButton
+                groupName="valueDisplayMode"
+                checked={mode === "default"}
+                onChange={handleRadioChange}
+              >
+                {mode}
+              </RadioButton>
+              <br />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

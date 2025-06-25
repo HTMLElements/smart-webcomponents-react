@@ -1,79 +1,105 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useCallback } from 'react';
 import { ColorPicker } from 'smart-webcomponents-react/colorpicker';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const frameRef = useRef(null);
+  const frameHeaderRef = useRef(null);
+  const frameContentRef = useRef(null);
 
-		this.colorpicker = React.createRef();
-		this.frame = React.createRef();
-		this.frameHeader = React.createRef();
-		this.frameContent = React.createRef();
-	}
+  const handleHeaderBackgroundChange = useCallback((event) => {
+    if (frameHeaderRef.current) {
+      frameHeaderRef.current.style.backgroundColor = event.detail.value;
+    }
+  }, []);
 
-	handleHeaderBackgroundChange(event) {
-		this.frameHeader.current.style.backgroundColor = event.detail.value;
-	}
+  const handleHeaderColorChange = useCallback((event) => {
+    if (frameHeaderRef.current) {
+      frameHeaderRef.current.style.color = event.detail.value;
+    }
+  }, []);
 
-	handleHeaderColorChange(event) {
-		this.frameHeader.current.style.color = event.detail.value;
-	}
+  const handleContentBackgroundChange = useCallback((event) => {
+    if (frameContentRef.current) {
+      frameContentRef.current.style.backgroundColor = event.detail.value;
+    }
+  }, []);
 
-	handleContentBackgroundChange(event) {
-		this.frameContent.current.style.backgroundColor = event.detail.value;
-	}
+  const handleContentColorChange = useCallback((event) => {
+    if (frameContentRef.current) {
+      frameContentRef.current.style.color = event.detail.value;
+    }
+  }, []);
 
-	handleContentColorChange(event) {
-		this.frameContent.current.style.color = event.detail.value;
-	}
+  const handleBorderChange = useCallback((event) => {
+    if (frameRef.current) {
+      frameRef.current.style.borderColor = event.detail.value;
+    }
+  }, []);
 
-	handleBorderChange(event) {
-		this.frame.current.style.borderColor = event.detail.value;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<div id="demoBox">
-					<div ref={this.frame} id="frame">
-						<div ref={this.frameHeader} id="frameHeader">Header</div>
-						<div ref={this.frameContent} id="frameContent">Content</div>
-					</div>
-				</div>
-				<br />
-				<div>Border Color</div>
-				<br />
-				<ColorPicker ref={this.colorpicker} dropDownAppendTo="body" displayMode="default"
-					dropDownWidth="auto" placeholder="Border Color" id="borderColor" onChange={this.handleBorderChange.bind(this)}></ColorPicker>
-				<br />
-				<div>Header Background</div>
-				<br />
-				<ColorPicker  dropDownAppendTo="body" displayMode="default"
-					dropDownWidth="auto" placeholder="Header Background Color" id="headerBackground" onChange={this.handleHeaderBackgroundChange.bind(this)}></ColorPicker>
-				<div>Header Font Color</div>
-				<br />
-				<ColorPicker  dropDownAppendTo="body" displayMode="default"
-					dropDownWidth="auto" placeholder="Header Font Color" id="headerColor" onChange={this.handleHeaderColorChange.bind(this)}></ColorPicker>
-				<div>Background</div>
-				<br />
-				<ColorPicker  dropDownAppendTo="body" displayMode="default"
-					dropDownWidth="auto" placeholder="Background Color" id="background" onChange={this.handleContentBackgroundChange.bind(this)}></ColorPicker>
-				<div>Font Color</div>
-				<br />
-				<ColorPicker  dropDownAppendTo="body" displayMode="default"
-					dropDownWidth="auto" placeholder="Font Color" id="color" onChange={this.handleContentColorChange.bind(this)}></ColorPicker>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div id="demoBox">
+        <div ref={frameRef} id="frame">
+          <div ref={frameHeaderRef} id="frameHeader">Header</div>
+          <div ref={frameContentRef} id="frameContent">Content</div>
+        </div>
+      </div>
+      <br />
+      <div>Border Color</div>
+      <br />
+      <ColorPicker
+        dropDownAppendTo="body"
+        displayMode="default"
+        dropDownWidth="auto"
+        placeholder="Border Color"
+        id="borderColor"
+        onChange={handleBorderChange}
+      />
+      <br />
+      <div>Header Background</div>
+      <br />
+      <ColorPicker
+        dropDownAppendTo="body"
+        displayMode="default"
+        dropDownWidth="auto"
+        placeholder="Header Background Color"
+        id="headerBackground"
+        onChange={handleHeaderBackgroundChange}
+      />
+      <div>Header Font Color</div>
+      <br />
+      <ColorPicker
+        dropDownAppendTo="body"
+        displayMode="default"
+        dropDownWidth="auto"
+        placeholder="Header Font Color"
+        id="headerColor"
+        onChange={handleHeaderColorChange}
+      />
+      <div>Background</div>
+      <br />
+      <ColorPicker
+        dropDownAppendTo="body"
+        displayMode="default"
+        dropDownWidth="auto"
+        placeholder="Background Color"
+        id="background"
+        onChange={handleContentBackgroundChange}
+      />
+      <div>Font Color</div>
+      <br />
+      <ColorPicker
+        dropDownAppendTo="body"
+        displayMode="default"
+        dropDownWidth="auto"
+        placeholder="Font Color"
+        id="color"
+        onChange={handleContentColorChange}
+      />
+    </div>
+  );
+};
 
 export default App;

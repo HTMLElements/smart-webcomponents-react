@@ -1,102 +1,97 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from 'react';
 import { ColorPicker } from 'smart-webcomponents-react/colorpicker';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const colorPickerRef = useRef(null);
 
-		this.colorpicker = React.createRef();
-	}
+  useEffect(() => {
+    const colorPicker = colorPickerRef.current;
 
-	init() {
-		const colorPicker = this.colorpicker.current;
+    const handleChange = (event) => {
+      const { target } = event;
 
-		document.addEventListener('change', function (event) {
-			//Set new Grid Item size
-			if (event.target.groupName === 'columnSize' || event.target.groupName === 'columnGap') {
-				let size, className = event.target.groupName === 'columnSize' ? 'item-size' : 'column-gap';
-				switch (event.target.innerHTML) {
-					case '1':
-					case '20':
-						size = 'small';
-						break;
-					case '5':
-					case '40':
-						size = 'medium';
-						break;
-					case '10':
-					case '60':
-						size = 'large';
-						break;
-				}
+      // Grid item size or column gap handling
+      if (target.groupName === 'columnSize' || target.groupName === 'columnGap') {
+        let size, className = target.groupName === 'columnSize' ? 'item-size' : 'column-gap';
 
-				//Remove the oldClass
-				const classes = colorPicker.nativeElement.classList;
+        switch (target.textContent) {
+          case '1':
+          case '20':
+            size = 'small';
+            break;
+          case '5':
+          case '40':
+            size = 'medium';
+            break;
+          case '10':
+          case '60':
+            size = 'large';
+            break;
+          default:
+            return;
+        }
 
-				for (let i = 0; i < classes.length; i++) {
-					if (classes[i].indexOf(className) > -1) {
-						classes.remove(classes.item(i));
-					}
-				}
+        const classList = colorPicker.nativeElement.classList;
+        // Remove any existing class with the same prefix
+        [...classList].forEach(cls => {
+          if (cls.startsWith(className)) {
+            classList.remove(cls);
+          }
+        });
 
-				classes.add(className + '-' + size);
-				return;
-			}
+        classList.add(`${className}-${size}`);
+        return;
+      }
 
-			//Set ApplyValueMode and Palette
-			if (event.target.groupName === 'applyValueMode') {
-				colorPicker.applyValueMode = event.target.innerHTML;
-				return;
-			}
+      // ApplyValueMode
+      if (target.groupName === 'applyValueMode') {
+        colorPicker.applyValueMode = target.textContent;
+        return;
+      }
 
-			//Set a new value
-			if (event.target.id === 'rgbValue') {
-				colorPicker.value = event.target.value;
-			}
-		});
-	}
+      // Manual RGB input
+      if (target.id === 'rgbValue') {
+        colorPicker.value = target.value;
+      }
+    };
 
-	componentDidMount() {
-		this.init();
-	}
+    document.addEventListener('change', handleChange);
+    return () => document.removeEventListener('change', handleChange);
+  }, []);
 
-	render() {
-		return (
-			<div>
-				<div className="demo-description">This example demonstrates the "materialGrid" display mode of the Color
-			        Picker.</div>
-				<ColorPicker ref={this.colorpicker} displayMode="materialGrid"></ColorPicker>
-				<div className="options">
-					<div className="option">
-						<div>Toggle Grid Color Size</div>
-						<RadioButton groupName="columnSize"
-							checked>20</RadioButton>
-						<RadioButton groupName="columnSize">40</RadioButton>
-						<RadioButton groupName="columnSize">60</RadioButton>
-					</div>
-					<div className="option">
-						<div>Toggle Grid Column Gap</div>
-						<RadioButton groupName="columnGap"
-							checked>1</RadioButton>
-						<RadioButton groupName="columnGap">5</RadioButton>
-						<RadioButton groupName="columnGap">10</RadioButton>
-					</div>
-					<div className="option">
-						<div>Apply Value Mode</div>
-						<RadioButton groupName="applyValueMode"
-							checked>instantly</RadioButton>
-						<RadioButton groupName="applyValueMode">useButtons</RadioButton>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">
+        This example demonstrates the "materialGrid" display mode of the Color Picker.
+      </div>
+      <ColorPicker
+        ref={colorPickerRef}
+        displayMode="materialGrid"
+      />
+      <div className="options">
+        <div className="option">
+          <div>Toggle Grid Color Size</div>
+          <RadioButton groupName="columnSize" checked>20</RadioButton>
+          <RadioButton groupName="columnSize">40</RadioButton>
+          <RadioButton groupName="columnSize">60</RadioButton>
+        </div>
+        <div className="option">
+          <div>Toggle Grid Column Gap</div>
+          <RadioButton groupName="columnGap" checked>1</RadioButton>
+          <RadioButton groupName="columnGap">5</RadioButton>
+          <RadioButton groupName="columnGap">10</RadioButton>
+        </div>
+        <div className="option">
+          <div>Apply Value Mode</div>
+          <RadioButton groupName="applyValueMode" checked>instantly</RadioButton>
+          <RadioButton groupName="applyValueMode">useButtons</RadioButton>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

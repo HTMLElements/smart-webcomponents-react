@@ -1,11 +1,11 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useMemo } from "react";
 import { Chart } from 'smart-webcomponents-react/chart';
 
-class App extends React.Component {
-	sampleData = [{
+const App = () => {
+  const rawData = [
+   {
 		"Date": "10/1/2017",
 		"Referral": "1391",
 		"SearchPaid": "1158",
@@ -191,99 +191,109 @@ class App extends React.Component {
 		"SearchPaid": "1181",
 		"SearchNonPaid": "1235",
 		"uid": 30
-	}];
-	monthFormatter = new Intl.DateTimeFormat('en', {
-		month: 'short'
-	});
-
-	caption = 'Web Site Traffic Analysis';
-	description = 'Daily unique visitors (stacked)';
-	showLegend = true;
-	padding = {
-		left: 5,
-		top: 5,
-		right: 15,
-		bottom: 5
-	};
-	titlePadding = {
-		left: 10,
-		top: 0,
-		right: 0,
-		bottom: 10
-	};
-	dataSource = this.sampleData;
-	xAxis = {
-		type: 'date',
-		baseUnit: 'day',
-		textRotationAngle: 0,
-		dataField: 'Date',
-		labels: {
-			formatFunction: function (value) {
-				return value.getDate();
-			}
-		},
-		toolTipFormatFunction: (value) => {
-			return value.getDate() + '-' + this.monthFormatter.format(value) + '-' + value.getFullYear();
-		},
-		valuesOnTicks: false,
-		gridLines: {
-			unitInterval: 31
-		}
-	};
-	valueAxis = {
-		title: {
-			text: 'Daily Visits<br>'
-		},
-		labels: {
-			horizontalAlignment: 'right'
-		}
-	};
-	colorScheme = 'scheme05';
-	seriesGroups = [{
-		type: 'stackedline100',
-		series: [{
-			dataField: 'Referral',
-			displayText: 'Referral Traffic'
-		},
-		{
-			dataField: 'SearchPaid',
-			displayText: 'Paid Search Traffic'
-		},
-		{
-			dataField: 'SearchNonPaid',
-			displayText: 'Organic Search Traffic'
-		}
-		]
-	}];
-
-	init() {
-
 	}
+  ];
 
+  const monthFormatter = new Intl.DateTimeFormat('en', { month: 'short' });
 
-	componentDidMount() {
+  // Convert raw data to correct types only once
+  const dataSource = useMemo(() => {
+    return rawData.map(item => ({
+      ...item,
+      Date: new Date(item.Date),
+      Referral: Number(item.Referral),
+      SearchPaid: Number(item.SearchPaid),
+      SearchNonPaid: Number(item.SearchNonPaid)
+    }));
+  }, [rawData]);
 
-	}
+  const caption = 'Web Site Traffic Analysis';
+  const description = 'Daily unique visitors (stacked)';
+  const showLegend = true;
 
-	render() {
-		return (
-			<div>
-				<Chart id="chart"
-					caption={this.caption}
-					description={this.description}
-					showLegend={this.showLegend}
-					padding={this.padding}
-					titlePadding={this.titlePadding}
-					dataSource={this.dataSource}
-					xAxis={this.xAxis}
-					valueAxis={this.valueAxis}
-					colorScheme={this.colorScheme}
-					seriesGroups={this.seriesGroups}></Chart>
-			</div>
-		);
-	}
-}
+  const padding = {
+    left: 5,
+    top: 5,
+    right: 15,
+    bottom: 5
+  };
 
+  const titlePadding = {
+    left: 10,
+    top: 0,
+    right: 0,
+    bottom: 10
+  };
 
+  const xAxis = {
+    type: 'date',
+    baseUnit: 'day',
+    textRotationAngle: 0,
+    dataField: 'Date',
+    labels: {
+      formatFunction: function (value) {
+        return value.getDate();
+      }
+    },
+    toolTipFormatFunction: (value) => {
+      return value.getDate() + '-' + monthFormatter.format(value) + '-' + value.getFullYear();
+    },
+    valuesOnTicks: false,
+    gridLines: {
+      unitInterval: 7,
+      visible: true
+    }
+  };
+
+  const valueAxis = {
+    title: {
+      text: 'Daily Visits (%)<br>'
+    },
+    labels: {
+      horizontalAlignment: 'right',
+      formatSettings: {
+        suffix: '%'
+      }
+    }
+  };
+
+  const colorScheme = 'scheme05';
+
+  const seriesGroups = [{
+    type: 'stackedline100',
+    series: [
+      {
+        dataField: 'Referral',
+        displayText: 'Referral Traffic'
+      },
+      {
+        dataField: 'SearchPaid',
+        displayText: 'Paid Search Traffic'
+      },
+      {
+        dataField: 'SearchNonPaid',
+        displayText: 'Organic Search Traffic'
+      }
+    ]
+  }];
+
+  return (
+    <div>
+      <Chart
+        id="chart"
+        caption={caption}
+        description={description}
+        showLegend={showLegend}
+        padding={padding}
+        titlePadding={titlePadding}
+        dataSource={dataSource}
+        xAxis={xAxis}
+        valueAxis={valueAxis}
+        colorScheme={colorScheme}
+        seriesGroups={seriesGroups}
+      />
+    </div>
+  );
+};
 
 export default App;

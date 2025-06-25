@@ -1,246 +1,197 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useCallback } from 'react';
 import { Chart } from 'smart-webcomponents-react/chart';
 import { CheckBox } from 'smart-webcomponents-react/checkbox';
 import { Slider } from 'smart-webcomponents-react/slider';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.chart = React.createRef();
-	}
+const App = () => {
+  const chartRef = useRef(null);
 
-	sampleData = [{
-		City: 'London',
-		SalesCountJan: 210,
-		SalesRevenueJan: 123
-	},
-	{
-		City: 'Madrid',
-		SalesCountJan: 190,
-		SalesRevenueJan: 114
-	},
-	{
-		City: 'Munich',
-		SalesCountJan: 201,
-		SalesRevenueJan: 112
-	},
-	{
-		City: 'Amsterdam',
-		SalesCountJan: 110,
-		SalesRevenueJan: 98
-	},
-	{
-		City: 'Paris',
-		SalesCountJan: 105,
-		SalesRevenueJan: 93
-	},
-	{
-		City: 'Prague',
-		SalesCountJan: 54,
-		SalesRevenueJan: 100
-	}
-	];
+  const sampleData = [
+    { City: 'London', SalesCountJan: 210, SalesRevenueJan: 123 },
+    { City: 'Madrid', SalesCountJan: 190, SalesRevenueJan: 114 },
+    { City: 'Munich', SalesCountJan: 201, SalesRevenueJan: 112 },
+    { City: 'Amsterdam', SalesCountJan: 110, SalesRevenueJan: 98 },
+    { City: 'Paris', SalesCountJan: 105, SalesRevenueJan: 93 },
+    { City: 'Prague', SalesCountJan: 54, SalesRevenueJan: 100 }
+  ];
 
-	caption = "Sales volume and revenue by city";
-	description = "(revenue in thousands)";
-	animation = 'none';
-	showLegend = true;
-	padding = {
-		left: 5,
-		top: 5,
-		right: 5,
-		bottom: 5
-	};
-	titlePadding = {
-		left: 0,
-		top: 0,
-		right: 0,
-		bottom: 5
-	};
-	colorScheme = 'scheme01';
-	dataSource = this.sampleData;
-	xAxis = {
-		dataField: 'City',
-		valuesOnTicks: true,
-		labels: {
-			autoRotate: true
-		}
-	};
-	valueAxis = {
-		labels: {
-			formatSettings: {
-				decimalPlaces: 0
-			},
-			autoRotate: true
-		}
-	};
-	seriesGroups = [{
-		polar: true,
-		endAngle: 270,
-		radius: 120,
-		type: 'line',
-		series: [{
-			dataField: 'SalesCountJan',
-			displayText: 'Sales count',
-			opacity: 0.7,
-			lineWidth: 1,
-			radius: 2,
-			symbolType: 'circle'
-		},
-		{
-			dataField: 'SalesRevenueJan',
-			displayText: 'Revenue',
-			opacity: 0.7,
-			lineWidth: 1,
-			radius: 2,
-			symbolType: 'square'
-		}
-		]
-	}];
+  const chartConfig = {
+    caption: 'Sales volume and revenue by city',
+    description: '(revenue in thousands)',
+    animation: 'none',
+    showLegend: true,
+    padding: { left: 5, top: 5, right: 5, bottom: 5 },
+    titlePadding: { left: 0, top: 0, right: 0, bottom: 5 },
+    colorScheme: 'scheme01',
+    dataSource: sampleData,
+    xAxis: {
+      dataField: 'City',
+      valuesOnTicks: true,
+      labels: { autoRotate: true }
+    },
+    valueAxis: {
+      labels: {
+        formatSettings: { decimalPlaces: 0 },
+        autoRotate: true
+      }
+    },
+    seriesGroups: [
+      {
+        polar: true,
+        endAngle: 270,
+        radius: 120,
+        type: 'line',
+        series: [
+          {
+            dataField: 'SalesCountJan',
+            displayText: 'Sales count',
+            opacity: 0.7,
+            lineWidth: 1,
+            radius: 2,
+            symbolType: 'circle'
+          },
+          {
+            dataField: 'SalesRevenueJan',
+            displayText: 'Revenue',
+            opacity: 0.7,
+            lineWidth: 1,
+            radius: 2,
+            symbolType: 'square'
+          }
+        ]
+      }
+    ]
+  };
 
-	handleSliderStartAngleChange(event) {
-		const chart = this.chart.current,
-			value = parseFloat(event.detail.value);
-		chart.seriesGroups[0].startAngle = value;
-		chart.update();
-	}
+  const updateChart = useCallback(() => {
+    const chart = chartRef.current;
+    chart.update();
+  }, []);
 
-	handleSliderEndAngleChange(event) {
-		const chart = this.chart.current,
-			value = parseFloat(event.detail.value);
-		chart.seriesGroups[0].endAngle = value;
-		chart.update();
-	}
+  const handleSliderStartAngleChange = useCallback((event) => {
+    const value = parseFloat(event.detail.value);
+    chartRef.current.seriesGroups[0].startAngle = value;
+    updateChart();
+  }, [updateChart]);
 
-	handleSliderRotateChange(event) {
-		const chart = this.chart.current,
-			value = parseFloat(event.detail.value);
-		if (!chart.seriesGroups && !chart.seriesGroups[0]) {
-			return;
-		}
-		if (chart.seriesGroups[0]) {
-			let startAngle = chart.seriesGroups[0].startAngle || 0,
-				endAngle = chart.seriesGroups[0].endAngle || 0;
-			if (isNaN(endAngle)) {
-				endAngle = 360;
-			}
-			if (isNaN(startAngle)) {
-				startAngle = 0;
-			}
-			const diff = endAngle - startAngle;
-			chart.seriesGroups[0].startAngle = value;
-			chart.seriesGroups[0].endAngle = value + diff;
-			chart.update();
-		}
-	}
+  const handleSliderEndAngleChange = useCallback((event) => {
+    const value = parseFloat(event.detail.value);
+    chartRef.current.seriesGroups[0].endAngle = value;
+    updateChart();
+  }, [updateChart]);
 
-	handleSliderRadiusChange(event) {
-		const chart = this.chart.current,
-			value = parseFloat(event.detail.value);
-		chart.seriesGroups[0].radius = value;
-		chart.update();
-	}
+  const handleSliderRotateChange = useCallback((event) => {
+    const chart = chartRef.current;
+    const value = parseFloat(event.detail.value);
+    if (!chart.seriesGroups || !chart.seriesGroups[0]) return;
 
-	handleCheckBoxAutoRotateLabelsChange(event) {
-		const chart = this.chart.current;
+    let start = chart.seriesGroups[0].startAngle || 0;
+    let end = chart.seriesGroups[0].endAngle || 360;
+    const diff = end - start;
 
-		if (chart.xAxis && chart.xAxis.labels) {
-			chart.xAxis.labels.autoRotate = event.detail.value;
-		}
-		if (chart.valueAxis && chart.valueAxis.labels) {
-			chart.valueAxis.labels.autoRotate = event.detail.value;
-		}
-	}
+    chart.seriesGroups[0].startAngle = value;
+    chart.seriesGroups[0].endAngle = value + diff;
+    updateChart();
+  }, [updateChart]);
 
-	handleCheckBoxTicksBetweenChange(event) {
-		const chart = this.chart.current;
+  const handleSliderRadiusChange = useCallback((event) => {
+    const value = parseFloat(event.detail.value);
+    chartRef.current.seriesGroups[0].radius = value;
+    updateChart();
+  }, [updateChart]);
 
-		if (chart.xAxis) {
-			chart.xAxis.valuesOnTicks = !event.detail.value;
-		}
-	}
+  const handleCheckBoxAutoRotateLabelsChange = useCallback((event) => {
+    const value = event.detail.value;
+    const chart = chartRef.current;
+    if (chart.xAxis?.labels) chart.xAxis.labels.autoRotate = value;
+    if (chart.valueAxis?.labels) chart.valueAxis.labels.autoRotate = value;
+  }, []);
 
-	init() {
+  const handleCheckBoxTicksBetweenChange = useCallback((event) => {
+    const chart = chartRef.current;
+    if (chart.xAxis) chart.xAxis.valuesOnTicks = !event.detail.value;
+  }, []);
 
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Chart ref={this.chart} id="chart"
-					caption={this.caption}
-					description={this.description}
-					animation={this.animation}
-					showLegend={this.showLegend}
-					padding={this.padding}
-					titlePadding={this.titlePadding}
-					colorScheme={this.colorScheme}
-					dataSource={this.dataSource}
-					xAxis={this.xAxis}
-					valueAxis={this.valueAxis}
-					seriesGroups={this.seriesGroups}></Chart>
-				<div className="options">
-					<table>
-						<tr>
-							<td>
-								<p>Move the slider to change start angle:</p>
-								<Slider id="sliderStartAngle"
-									min="0" max="360" value="0" coerce labelsVisibility="endPoints" ticksVisibility="major"
-									showUnit unit="°"
-									onChange={this.handleSliderStartAngleChange.bind(this)}></Slider>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<p>Move the slider to change end angle:</p>
-								<Slider id="sliderEndAngle"
-									min="0" max="360" value="270" coerce labelsVisibility="endPoints" ticksVisibility="major"
-									showUnit unit="°"
-									onChange={this.handleSliderEndAngleChange.bind(this)}></Slider>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<p>Move the slider to rotate:</p>
-								<Slider id="sliderRotate"
-									min="0" max="360" value="0" coerce labelsVisibility="endPoints" ticksVisibility="major"
-									onChange={this.handleSliderRotateChange.bind(this)}></Slider>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<p>Move the slider to change the radius:</p>
-								<Slider id="sliderRadius"
-									min="80" max="140" value="120" coerce labelsVisibility="endPoints" ticksVisibility="major"
-									onChange={this.handleSliderRadiusChange.bind(this)}></Slider>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<CheckBox  id="checkBoxAutoRotateLabels" checked
-									onChange={this.handleCheckBoxAutoRotateLabelsChange.bind(this)}>Auto-rotate labels</CheckBox>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<CheckBox  id="checkBoxTicksBetween"
-									onChange={this.handleCheckBoxTicksBetweenChange.bind(this)}>Ticks between values</CheckBox>
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Chart
+        ref={chartRef}
+        id="chart"
+        {...chartConfig}
+      />
+      <div className="options">
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <p>Move the slider to change start angle:</p>
+                <Slider
+                  min="0" max="360" value="0" coerce
+                  labelsVisibility="endPoints" ticksVisibility="major"
+                  showUnit unit="°"
+                  onChange={handleSliderStartAngleChange}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Move the slider to change end angle:</p>
+                <Slider
+                  min="0" max="360" value="270" coerce
+                  labelsVisibility="endPoints" ticksVisibility="major"
+                  showUnit unit="°"
+                  onChange={handleSliderEndAngleChange}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Move the slider to rotate:</p>
+                <Slider
+                  min="0" max="360" value="0" coerce
+                  labelsVisibility="endPoints" ticksVisibility="major"
+                  onChange={handleSliderRotateChange}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Move the slider to change the radius:</p>
+                <Slider
+                  min="80" max="140" value="120" coerce
+                  labelsVisibility="endPoints" ticksVisibility="major"
+                  onChange={handleSliderRadiusChange}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <CheckBox
+                  id="checkBoxAutoRotateLabels"
+                  checked
+                  onChange={handleCheckBoxAutoRotateLabelsChange}
+                >
+                  Auto-rotate labels
+                </CheckBox>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <CheckBox
+                  id="checkBoxTicksBetween"
+                  onChange={handleCheckBoxTicksBetweenChange}
+                >
+                  Ticks between values
+                </CheckBox>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
 
 export default App;

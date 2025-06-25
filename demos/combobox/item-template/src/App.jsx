@@ -1,26 +1,22 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { ComboBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/combobox';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-
 		this.combobox = React.createRef();
 	}
 
 	init() {
-		const that = this;
 		const template = document.createElement('template');
-
 		template.id = 'template';
-		template.innerHTML = '<span className="glyphicon glyphicon-ok"></span><span style="margin-left:5px;">{{label}}</span>';
+		template.innerHTML =
+			'<span class="glyphicon glyphicon-ok"></span><span style="margin-left:5px;">{{label}}</span>';
 
 		document.body.appendChild(template);
-
-		that.combobox.current.itemTemplate = template.id;
+		this.combobox.current.itemTemplate = template.id;
 	}
 
 	componentDidMount() {
@@ -34,7 +30,7 @@ class App extends React.Component {
 					<ListItemsGroup label="Swedish Cars">
 						<ListItem selected value="volvo">Volvo</ListItem>
 						<ListItem value="saab">Saab</ListItem>
-						<ListItem value="saab">Scania</ListItem>
+						<ListItem value="scania">Scania</ListItem>
 					</ListItemsGroup>
 					<ListItemsGroup label="German Cars">
 						<ListItem value="mercedes">Mercedes</ListItem>
@@ -54,7 +50,5 @@ class App extends React.Component {
 		);
 	}
 }
-
-
 
 export default App;

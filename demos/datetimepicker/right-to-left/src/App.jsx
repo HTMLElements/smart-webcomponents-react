@@ -1,43 +1,42 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef } from "react";
 import { DateTimePicker } from 'smart-webcomponents-react/datetimepicker';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.datetimepicker = React.createRef();
-	}
+const App = () => {
+  const datetimepickerRef = useRef(null);
 
-	init() {
-		const dateTimePicker = this.datetimepicker.current,
-			messages = Object.assign({}, dateTimePicker.messages);
-		messages['he'] = {
-			'now': 'עכשיו',
-			'dateTabLabel': 'תאריך',
-			'timeTabLabel': 'זמן'
-		};
-		dateTimePicker.messages = messages;
-		dateTimePicker.placeholder = 'הזן תאריך';
-	}
+  useEffect(() => {
+    const dateTimePicker = datetimepickerRef.current;
+    if (dateTimePicker) {
+      const messages = {
+        ...dateTimePicker.messages,
+        he: {
+          now: 'עכשיו',
+          dateTabLabel: 'תאריך',
+          timeTabLabel: 'זמן'
+        }
+      };
+      dateTimePicker.messages = messages;
+      dateTimePicker.placeholder = 'הזן תאריך';
+    }
+  }, []);
 
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">DateTimePicker Web Component with enabled Right to Left Layout</div>
-				<DateTimePicker ref={this.datetimepicker} dropDownPosition="bottom" calendarButton dropDownDisplayMode="default"
-					rightToLeft locale="he"></DateTimePicker>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">
+        DateTimePicker Web Component with enabled Right to Left Layout
+      </div>
+      <DateTimePicker
+        ref={datetimepickerRef}
+        dropDownPosition="bottom"
+        dropDownDisplayMode="default"
+        calendarButton
+        rightToLeft
+        locale="he"
+      />
+    </div>
+  );
+};
 
 export default App;

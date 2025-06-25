@@ -1,105 +1,110 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef } from 'react';
 import { CheckBox } from 'smart-webcomponents-react/checkbox';
 import { ColorPicker } from 'smart-webcomponents-react/colorpicker';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const colorpickerRef = useRef(null);
 
-		this.colorpicker = React.createRef();
-	}
+    useEffect(() => {
+        const colorPicker = colorpickerRef.current;
 
-	init() {
-		const colorPicker = this.colorpicker.current;
+        const handleChange = (event) => {
+            const { target } = event;
 
-		document.addEventListener('change', function (event) {
-			//Set new Grid Item size
-			if (event.target.groupName === 'gridSettings' || event.target.groupName === 'gapSettings') {
-				let size, className = event.target.groupName === 'gridSettings' ? 'item-size' : 'column-gap';
+            // Handle grid size and gap settings
+            if (target.groupName === 'gridSettings' || target.groupName === 'gapSettings') {
+                let size;
+                const className = target.groupName === 'gridSettings' ? 'item-size' : 'column-gap';
 
-				switch (event.target.innerHTML) {
-					case '10':
-					case '1':
-						size = 'small';
-						break;
-					case '20':
-					case '2.5':
-						size = 'medium';
-						break;
-					case '30':
-					case '5':
-						size = 'large';
-						break;
-				}
+                switch (target.innerHTML) {
+                    case '10':
+                    case '1':
+                        size = 'small';
+                        break;
+                    case '20':
+                    case '2.5':
+                        size = 'medium';
+                        break;
+                    case '30':
+                    case '5':
+                        size = 'large';
+                        break;
+                    default:
+                        return;
+                }
 
-				//Remove the oldClass
-				const classes = colorPicker.nativeElement.classList;
+                const classes = colorPicker.nativeElement.classList;
 
-				for (let i = 0; i < classes.length; i++) {
-					if (classes[i].indexOf(className) > -1) {
-						classes.remove(classes.item(i));
-					}
-				}
+                // Remove old class
+                [...classes].forEach(cls => {
+                    if (cls.includes(className)) {
+                        classes.remove(cls);
+                    }
+                });
 
-				classes.add(className + '-' + size);
-				return;
-			}
+                classes.add(`${className}-${size}`);
+                return;
+            }
 
-			if (event.target.id === 'enableCustomColors') {
-				colorPicker.enableCustomColors = event.target.checked;
-				return;
-			}
+            // Enable/disable custom colors
+            if (target.id === 'enableCustomColors') {
+                colorPicker.enableCustomColors = target.checked;
+                return;
+            }
 
-			//Set a new value
-			if (event.target.id === 'rgbValue') {
-				colorPicker.value = event.target.value;
-			}
-		});
-	}
+            // Set RGB value
+            if (target.id === 'rgbValue') {
+                colorPicker.value = target.value;
+            }
+        };
 
-	componentDidMount() {
-		this.init();
-	}
+        document.addEventListener('change', handleChange);
 
-	render() {
-		return (
-			<div>
-			    <div className="demo-description">This example allows you to customize the Color Picker with its API</div>
-			    <ColorPicker ref={this.colorpicker}></ColorPicker>
-			        <div className="options">
-			            <div className="option">
-			                 <h3>Toggle Grid Color Size</h3>
-			                <RadioButton groupName="gridSettings">10</RadioButton>
-			                <br/>
-			                <RadioButton groupName="gridSettings" checked>20</RadioButton>
-			                <br/>
-			                <RadioButton groupName="gridSettings">30</RadioButton>
-			                <br/>
-			            </div>
-			            <div className="option">
-			                 <h3>Toggle Grid Column Gap</h3>
-			                <RadioButton  groupName="gapSettings" checked>1</RadioButton>
-			                <br/>
-			                <RadioButton groupName="gapSettings">2.5</RadioButton>
-			                <br/>
-			                <RadioButton groupName="gapSettings">5</RadioButton>
-			                <br/>
-			            </div>
-			            <div className="option">
-			                 <h3>Enable/Disable Custom Colors</h3>
-			                <CheckBox  id="enableCustomColors">Enable Custom Colors</CheckBox>
-			                <br/>
-			            </div>
-			        </div>
-			</div>
-		);
-	}
-}
+        return () => {
+            document.removeEventListener('change', handleChange);
+        };
+    }, []);
 
-
+    return (
+        <div>
+            <div className="demo-description">
+                This example allows you to customize the Color Picker with its API
+            </div>
+            <ColorPicker ref={colorpickerRef}></ColorPicker>
+            <div className="options">
+                <div className="option">
+                    <h3>Toggle Grid Color Size</h3>
+                    <RadioButton groupName="gridSettings">10</RadioButton>
+                    <br />
+                    <RadioButton groupName="gridSettings" checked>
+                        20
+                    </RadioButton>
+                    <br />
+                    <RadioButton groupName="gridSettings">30</RadioButton>
+                    <br />
+                </div>
+                <div className="option">
+                    <h3>Toggle Grid Column Gap</h3>
+                    <RadioButton groupName="gapSettings" checked>
+                        1
+                    </RadioButton>
+                    <br />
+                    <RadioButton groupName="gapSettings">2.5</RadioButton>
+                    <br />
+                    <RadioButton groupName="gapSettings">5</RadioButton>
+                    <br />
+                </div>
+                <div className="option">
+                    <h3>Enable/Disable Custom Colors</h3>
+                    <CheckBox id="enableCustomColors">Enable Custom Colors</CheckBox>
+                    <br />
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

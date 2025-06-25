@@ -1,65 +1,68 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { DockingLayout } from 'smart-webcomponents-react/dockinglayout';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const dockinglayoutRef = useRef();
 
-		this.dockinglayout = React.createRef();
-	}
+  const layout = [
+    {
+      id: 'item1',
+      label: 'Tabs 1',
+      items: [
+        {
+          label: 'Tab 1',
+          content: 'Content of Tab 1',
+          selected: true
+        },
+        {
+          label: 'Tab 2',
+          content: 'Content of Tab 2'
+        }
+      ],
+      dropPosition: ['top', 'bottom', 'left', 'layout-left', 'layout-top']
+    },
+    {
+      id: 'item2',
+      label: 'Tabs 2',
+      items: [
+        {
+          label: 'Tab 3',
+          content: 'Content of Tab 3'
+        }
+      ]
+    }
+  ];
 
-	layout = [{
-		id: 'item1',
-		label: 'Tabs 1',
-		items: [{
-			label: 'Tab 1',
-			content: 'Content of Tab 1',
-			selected: true
-		},
-		{
-			label: 'Tab 2',
-			content: 'Content of Tab 2'
-		}
-		],
-		dropPosition: ['top', 'bottom', 'left', 'layout-left', 'layout-top']
-	},
-	{
-		id: 'item2',
-		label: 'Tabs 2',
-		items: [{
-			label: 'Tab 3',
-			content: 'Content of Tab 3'
-		}]
-	}];
+  const handleChange = (position) => {
+    if (dockinglayoutRef.current) {
+      dockinglayoutRef.current.snapMode = position;
+    }
+  };
 
-	handleChange(position) {
-		this.dockinglayout.current.snapMode = position;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<DockingLayout ref={this.dockinglayout} id="layout" layout={this.layout}></DockingLayout>
-				<div className="options">
-					<div className="caption">Snap Mode</div>
-					<div className="option">
-						<RadioButton checked onChange={this.handleChange.bind(this, 'advanced')}>Advanced</RadioButton>
-						<RadioButton onChange={this.handleChange.bind(this, 'simple')}>Simple</RadioButton>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <DockingLayout ref={dockinglayoutRef} id="layout" layout={layout}></DockingLayout>
+      <div className="options">
+        <div className="caption">Snap Mode</div>
+        <div className="option">
+          <RadioButton
+            checked
+            onChange={() => handleChange('advanced')}
+          >
+            Advanced
+          </RadioButton>
+          <RadioButton
+            onChange={() => handleChange('simple')}
+          >
+            Simple
+          </RadioButton>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

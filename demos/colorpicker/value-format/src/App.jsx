@@ -1,63 +1,57 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from 'react';
 import { CheckBox } from 'smart-webcomponents-react/checkbox';
 import { ColorPicker } from 'smart-webcomponents-react/colorpicker';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const colorPickerRef = useRef(null);
 
-		this.colorPicker = React.createRef();
-	}
+    useEffect(() => {
+        const colorPicker = colorPickerRef.current;
 
-	init() {
-		const colorPicker = this.colorPicker.current;
+        const handleChange = (event) => {
+            if (!event || !event.target) return;
 
-		document.addEventListener('change', function (event) {
-			//Set ApplyValueMode and Palette
-			if (event.target.groupName === 'valueFormat') {
-				colorPicker.valueFormat = event.target.innerHTML;
-				return;
-			}
-			if (event.target.id === 'editAlphaChannel') {
-				colorPicker.editAlphaChannel = event.detail.value;
-			}
-		});
-	}
+            if (event.target.groupName === 'valueFormat') {
+                colorPicker.valueFormat = event.target.innerHTML;
+                return;
+            }
 
-	componentDidMount() {
-		this.init();
-	}
+            if (event.target.id === 'editAlphaChannel') {
+                colorPicker.editAlphaChannel = event.detail?.value;
+            }
+        };
 
-	render() {
-		return (
-			<div>
-				<ColorPicker ref={this.colorPicker} enableCustomColors editable></ColorPicker>
-				<div className="options">
-					<div className="option">
-						<h3>Toggle Value Display Mode</h3>
-						<RadioButton groupName="valueFormat" checked>default</RadioButton>
-						<br />
-						<RadioButton groupName="valueFormat">rgb</RadioButton>
-						<br />
-						<RadioButton groupName="valueFormat">rgba</RadioButton>
-						<br />
-						<RadioButton groupName="valueFormat">hex</RadioButton>
-						<br />
-					</div>
-					<div className="option">
-						<h3>Edit Alpha Channel</h3>
-						<CheckBox id="editAlphaChannel">Edit Alpha Channel</CheckBox>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
+        document.addEventListener('change', handleChange);
 
+        return () => {
+            document.removeEventListener('change', handleChange);
+        };
+    }, []);
 
+    return (
+        <div>
+            <ColorPicker ref={colorPickerRef} enableCustomColors editable />
+            <div className="options">
+                <div className="option">
+                    <h3>Toggle Value Display Mode</h3>
+                    <RadioButton groupName="valueFormat" checked>default</RadioButton>
+                    <br />
+                    <RadioButton groupName="valueFormat">rgb</RadioButton>
+                    <br />
+                    <RadioButton groupName="valueFormat">rgba</RadioButton>
+                    <br />
+                    <RadioButton groupName="valueFormat">hex</RadioButton>
+                </div>
+                <div className="option">
+                    <h3>Edit Alpha Channel</h3>
+                    <CheckBox id="editAlphaChannel">Edit Alpha Channel</CheckBox>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

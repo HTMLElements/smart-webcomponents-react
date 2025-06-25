@@ -1,55 +1,46 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef } from "react";
 import { ColorPicker } from 'smart-webcomponents-react/colorpicker';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const colorpickerRef = useRef(null);
 
-		this.colorpicker = React.createRef();
-	}
+  useEffect(() => {
+    const colorPicker = colorpickerRef.current;
+    const messages = {
+      ...colorPicker.messages,
+      he: {
+        redPrefix: 'ר:',
+        greenPrefix: 'ז:',
+        bluePrefix: 'ב:',
+        hexPrefix: '#:',
+        alphaPrefix: 'אלפא:',
+        ok: 'בסדר',
+        cancel: 'בטל',
+        customColor: 'צבע מותאם אישית',
+        standardColors: 'צבעים סטנדרטיים',
+        themeColors: 'צבעי נושא'
+      }
+    };
 
-	init() {
+    colorPicker.messages = messages;
+    colorPicker.placeholder = 'אנא בחר צבע';
+  }, []);
 
-
-		const colorPicker = this.colorpicker.current,
-			messages = Object.assign({}, colorPicker.messages);
-		messages['he'] = {
-			'redPrefix': 'ר:',
-			'greenPrefix': 'ז:',
-			'bluePrefix': 'ב:',
-			'hexPrefix': '#:',
-			'alphaPrefix': 'אלפא:',
-			'ok': 'בסדר',
-			'cancel': 'בטל',
-			'customColor': 'צבע מותאם אישית',
-			'standardColors': 'צבעים סטנדרטיים',
-			'themeColors': 'צבעי נושא'
-		};
-
-		colorPicker.messages = messages;
-		colorPicker.placeholder = 'אנא בחר צבע';
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">
-					<h1>smartColorPicker allows picking a color from a drop-down</h1>
-				</div>
-
-				<ColorPicker ref={this.colorpicker} enableCustomColors rightToLeft locale="he"></ColorPicker>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">
+        <h1>smartColorPicker allows picking a color from a drop-down</h1>
+      </div>
+      <ColorPicker
+        ref={colorpickerRef}
+        enableCustomColors
+        rightToLeft
+        locale="he"
+      />
+    </div>
+  );
+};
 
 export default App;

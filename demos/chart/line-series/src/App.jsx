@@ -1,11 +1,16 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useMemo } from "react";
 import { Chart } from 'smart-webcomponents-react/chart';
 
-class App extends React.Component {
-	sampleData = [{
+const App = () => {
+  const sampleData = useMemo(() => [{
+    "Date": "1/2/2019",
+    "S&P 500": "1831.98",
+    "NASDAQ": "4143.07",
+    "uid": 0
+  },
+  	sampleData = [{
 		"Date": "1/2/2019",
 		"S&P 500": "1831.98",
 		"NASDAQ": "4143.07",
@@ -1245,108 +1250,106 @@ class App extends React.Component {
 		"S&P 500": "2081.88",
 		"NASDAQ": "4773.47",
 		"uid": 247
-	}];
-	monthFormatter = new Intl.DateTimeFormat('en', {
-		month: 'short'
-	});
-
-	caption = 'U.S. Stock Market Index Performance';
-	description = 'NASDAQ Composite compared to S&P 500';
-	showLegend = true;
-	padding = {
-		left: 10,
-		top: 5,
-		right: 10,
-		bottom: 5
-	};
-	titlePadding = {
-		left: 50,
-		top: 0,
-		right: 0,
-		bottom: 10
-	};
-	dataSource = this.sampleData;
-	colorScheme = 'scheme32';
-	xAxis = {
-		dataField: 'Date',
-		formatFunction: (value) => {
-			return value.getDate() + '-' + this.monthFormatter.format(value) + '-' + value.getFullYear();
-		},
-		type: 'date',
-		baseUnit: 'month',
-		valuesOnTicks: true,
-		minValue: '01-01-2019',
-		maxValue: '01-01-2020',
-		tickMarks: {
-			visible: true,
-			unitInterval: 1,
-			color: '#BCBCBC'
-		},
-		unitInterval: 1,
-		gridLines: {
-			visible: true,
-			unitInterval: 3,
-			color: '#BCBCBC'
-		},
-		labels: {
-			angle: -45,
-			rotationPoint: 'topright',
-			offset: {
-				x: -25,
-				y: 0
-			}
-		}
-	};
-	valueAxis = {
-		visible: true,
-		title: {
-			text: 'Daily Closing Price<br>'
-		},
-		tickMarks: {
-			color: '#BCBCBC'
-		}
-	};
-	seriesGroups = [{
-		type: 'line',
-		series: [{
-			dataField: 'S&P 500',
-			displayText: 'S&P 500'
-		},
-		{
-			dataField: 'NASDAQ',
-			displayText: 'NASDAQ'
-		}
-		]
-	}];
-
-	init() {
-
 	}
+  ], []);
 
+  const monthFormatter = useMemo(() => new Intl.DateTimeFormat('en', {
+    month: 'short'
+  }), []);
 
-	componentDidMount() {
+  const caption = 'U.S. Stock Market Index Performance';
+  const description = 'NASDAQ Composite compared to S&P 500';
+  const showLegend = true;
 
-	}
+  const padding = {
+    left: 10,
+    top: 5,
+    right: 10,
+    bottom: 5
+  };
 
-	render() {
-		return (
-			<div>
-				<Chart id="chart"
-					caption={this.caption}
-					description={this.description}
-					showLegend={this.showLegend}
-					padding={this.padding}
-					titlePadding={this.titlePadding}
-					dataSource={this.dataSource}
-					colorScheme={this.colorScheme}
-					xAxis={this.xAxis}
-					valueAxis={this.valueAxis}
-					seriesGroups={this.seriesGroups}></Chart>
-			</div>
-		);
-	}
-}
+  const titlePadding = {
+    left: 50,
+    top: 0,
+    right: 0,
+    bottom: 10
+  };
 
+  const colorScheme = 'scheme32';
 
+  const xAxis = useMemo(() => ({
+    dataField: 'Date',
+    formatFunction: (value) =>
+      value.getDate() + '-' + monthFormatter.format(value) + '-' + value.getFullYear(),
+    type: 'date',
+    baseUnit: 'month',
+    valuesOnTicks: true,
+    minValue: '01-01-2019',
+    maxValue: '01-01-2020',
+    tickMarks: {
+      visible: true,
+      unitInterval: 1,
+      color: '#BCBCBC'
+    },
+    unitInterval: 1,
+    gridLines: {
+      visible: true,
+      unitInterval: 3,
+      color: '#BCBCBC'
+    },
+    labels: {
+      angle: -45,
+      rotationPoint: 'topright',
+      offset: {
+        x: -25,
+        y: 0
+      }
+    }
+  }), [monthFormatter]);
+
+  const valueAxis = {
+    visible: true,
+    title: {
+      text: 'Daily Closing Price<br>'
+    },
+    tickMarks: {
+      color: '#BCBCBC'
+    }
+  };
+
+  const seriesGroups = [
+    {
+      type: 'line',
+      series: [
+        {
+          dataField: 'S&P 500',
+          displayText: 'S&P 500'
+        },
+        {
+          dataField: 'NASDAQ',
+          displayText: 'NASDAQ'
+        }
+      ]
+    }
+  ];
+
+  return (
+    <div>
+      <Chart
+        id="chart"
+        caption={caption}
+        description={description}
+        showLegend={showLegend}
+        padding={padding}
+        titlePadding={titlePadding}
+        dataSource={sampleData}
+        colorScheme={colorScheme}
+        xAxis={xAxis}
+        valueAxis={valueAxis}
+        seriesGroups={seriesGroups}
+      />
+    </div>
+  );
+};
 
 export default App;

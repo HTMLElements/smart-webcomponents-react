@@ -1,13 +1,12 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from 'react';
 import { Chart } from 'smart-webcomponents-react/chart';
-import { CheckBox } from 'smart-webcomponents-react/checkbox';
 
-class App extends React.Component {
-	sampleData = [{
-		"Date": "6/29/2015",
+const App = () => {
+  const chartRef = useRef();
+
+  const sampleData = [	"Date": "6/29/2015",
 		"Open": "19",
 		"High": "25",
 		"Low": "17.54",
@@ -8359,116 +8358,116 @@ class App extends React.Component {
 		"AdjClose": "246.21",
 		"uid": 928
 	}];
-	monthFormatter = new Intl.DateTimeFormat('en', {
-		month: 'short'
-	})
-	toolTipCustomFormatFn = (value, itemIndex, serie, group, xAxisValue, xAxis) => {
-		const dataItem = this.sampleData[itemIndex];
-		return `<div style="text-align: left;">
-				<b>Date:</b> ${xAxisValue.getDate()}-${this.monthFormatter.format(xAxisValue)}-${xAxisValue.getFullYear()}
-				<br />
-				<b>Open price:</b> $${dataItem.Open}
-				<br />
-				<b>Close price:</b> $${dataItem.Close}
-				<br />
-				<b>Daily volume:</b> ${dataItem.Volume}
-			</div>`;
-	};
 
-	caption = 'Tesla Motors Stock Price';
-	description = '(June 2015 - March 2018)';
-	animationDuration = 1500;
-	enableCrosshairs = true;
-	padding = {
-		left: 5,
-		top: 5,
-		right: 30,
-		bottom: 5
-	};
-	titlePadding = {
-		left: 30,
-		top: 5,
-		right: 0,
-		bottom: 10
-	};
-	dataSource = this.sampleData;
-	xAxis = {
-		dataField: 'Date',
-		type: 'date',
-		baseUnit: 'day',
-		labels: {
-			formatFunction: (value) => {
-				return value.getDate() + '-' + this.monthFormatter.format(value) + '\'' + value.getFullYear().toString().substring(2);
-			}
-		},
-		rangeSelector: {
-			visible: true,
-			size: 80,
-			padding: {
-				top: 0,
-				bottom: 0
-			},
-			dataField: 'Close',
-			baseUnit: 'month',
-			gridLines: {
-				visible: false
-			},
-			serieType: 'area',
-			labels: {
-				formatFunction: (value) => {
-					return this.monthFormatter.format(value) + '\'' + value.getFullYear().toString().substring(2);
-				}
-			}
-		}
-	};
-	valueAxis = {
-		title: {
-			text: 'Price per share [USD]<br><br>'
-		},
-		labels: {
-			horizontalAlignment: 'right'
-		}
-	};
-	colorScheme = 'scheme01';
-	seriesGroups = [{
-		type: 'line',
-		toolTipFormatFunction: this.toolTipCustomFormatFn,
-		series: [{
-			dataField: 'Close',
-			displayText: 'Close Price',
-			lineWidth: 1,
-			lineWidthSelected: 1
-		}]
-	}];
+  const monthFormatter = new Intl.DateTimeFormat('en', {
+    month: 'short'
+  });
 
-	init() {
+  const toolTipCustomFormatFn = (value, itemIndex, serie, group, xAxisValue, xAxis) => {
+    const dataItem = sampleData[itemIndex];
+    return `<div style="text-align: left;">
+      <b>Date:</b> ${xAxisValue.getDate()}-${monthFormatter.format(xAxisValue)}-${xAxisValue.getFullYear()}
+      <br />
+      <b>Open price:</b> $${dataItem.Open}
+      <br />
+      <b>Close price:</b> $${dataItem.Close}
+      <br />
+      <b>Daily volume:</b> ${dataItem.Volume}
+    </div>`;
+  };
 
-	}
+  const caption = 'Tesla Motors Stock Price';
+  const description = '(June 2015 - March 2018)';
+  const animationDuration = 1500;
+  const enableCrosshairs = true;
 
-	componentDidMount() {
+  const padding = {
+    left: 5,
+    top: 5,
+    right: 30,
+    bottom: 5
+  };
 
-	}
+  const titlePadding = {
+    left: 30,
+    top: 5,
+    right: 0,
+    bottom: 10
+  };
 
-	render() {
-		return (
-			<div>
-				<Chart id="chart"
-					caption={this.caption}
-					description={this.description}
-					animationDuration={this.animationDuration}
-					enableCrosshairs={this.enableCrosshairs}
-					padding={this.padding}
-					titlePadding={this.titlePadding}
-					dataSource={this.dataSource}
-					xAxis={this.xAxis}
-					valueAxis={this.valueAxis}
-					colorScheme={this.colorScheme}
-					seriesGroups={this.seriesGroups}></Chart>
-			</div>
-		);
-	}
-}
+  const xAxis = {
+    dataField: 'Date',
+    type: 'date',
+    baseUnit: 'day',
+    labels: {
+      formatFunction: (value) =>
+        `${value.getDate()}-${monthFormatter.format(value)}'${value.getFullYear().toString().slice(2)}`
+    },
+    rangeSelector: {
+      visible: true,
+      size: 80,
+      padding: {
+        top: 0,
+        bottom: 0
+      },
+      dataField: 'Close',
+      baseUnit: 'month',
+      gridLines: {
+        visible: false
+      },
+      serieType: 'area',
+      labels: {
+        formatFunction: (value) =>
+          `${monthFormatter.format(value)}'${value.getFullYear().toString().slice(2)}`
+      }
+    }
+  };
 
+  const valueAxis = {
+    title: {
+      text: 'Price per share [USD]<br><br>'
+    },
+    labels: {
+      horizontalAlignment: 'right'
+    }
+  };
 
+  const colorScheme = 'scheme01';
+
+  const seriesGroups = [
+    {
+      type: 'line',
+      toolTipFormatFunction: toolTipCustomFormatFn,
+      series: [
+        {
+          dataField: 'Close',
+          displayText: 'Close Price',
+          lineWidth: 1,
+          lineWidthSelected: 1
+        }
+      ]
+    }
+  ];
+
+  return (
+    <div>
+      <Chart
+        ref={chartRef}
+        id="chart"
+        caption={caption}
+        description={description}
+        animationDuration={animationDuration}
+        enableCrosshairs={enableCrosshairs}
+        padding={padding}
+        titlePadding={titlePadding}
+        dataSource={sampleData}
+        xAxis={xAxis}
+        valueAxis={valueAxis}
+        colorScheme={colorScheme}
+        seriesGroups={seriesGroups}
+      />
+    </div>
+  );
+};
 
 export default App;

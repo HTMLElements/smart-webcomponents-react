@@ -1,151 +1,163 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from 'react';
 import { CheckBox } from 'smart-webcomponents-react/checkbox';
 import { ColorPicker } from 'smart-webcomponents-react/colorpicker';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const colorPickerRef = useRef(null);
 
-		this.colorpicker = React.createRef();
-	}
+  useEffect(() => {
+    const colorPicker = colorPickerRef.current;
 
-	init() {
-		const colorPicker = this.colorpicker.current;
+    const handleChange = (event) => {
+      const target = event.target;
 
-		document.addEventListener('change', function (event) {
-			const target = event.target;
+      if (!colorPicker) return;
 
-			if (target.groupName === 'columnCount') {
-				colorPicker.columnCount = parseInt(target.innerHTML);
-				return;
-			}
+      // Set column count
+      if (target.groupName === 'columnCount') {
+        colorPicker.columnCount = parseInt(target.textContent, 10);
+        return;
+      }
 
-			//Set new Grid Item size
-			if (target.groupName === 'columnSize' || target.groupName === 'columnGap') {
-				let size, className = target.groupName === 'columnSize' ? 'item-size' : 'column-gap';
-				switch (target.innerHTML) {
-					case '3':
-					case '5':
-					case '20':
-						size = 'small';
-						break;
-					case '6':
-					case '10':
-					case '40':
-						size = 'medium';
-						break;
-					case '15':
-					case '9':
-					case '60':
-						size = 'large';
-						break;
-				}
+      // Set grid item size or gap
+      if (target.groupName === 'columnSize' || target.groupName === 'columnGap') {
+        let size;
+        const className = target.groupName === 'columnSize' ? 'item-size' : 'column-gap';
 
-				//Remove the oldClass
-				const classes = colorPicker.nativeElement.classList;
+        switch (target.textContent) {
+          case '3':
+          case '5':
+          case '20':
+            size = 'small';
+            break;
+          case '6':
+          case '10':
+          case '40':
+            size = 'medium';
+            break;
+          case '9':
+          case '15':
+          case '60':
+            size = 'large';
+            break;
+          default:
+            return;
+        }
 
-				for (let i = 0; i < classes.length; i++) {
-					if (classes[i].indexOf(className) > -1) {
-						classes.remove(classes.item(i));
-					}
-				}
+        // Remove existing related class
+        const classes = colorPicker.nativeElement.classList;
+        [...classes].forEach(cls => {
+          if (cls.includes(className)) {
+            classes.remove(cls);
+          }
+        });
 
-				classes.add(className + '-' + size);
-				return;
-			}
+        classes.add(`${className}-${size}`);
+        return;
+      }
 
-			//Set ApplyValueMode and Palette
-			if (target.groupName === 'applyValueMode') {
-				colorPicker.applyValueMode = target.innerHTML;
-				return;
-			}
+      // Apply value mode
+      if (target.groupName === 'applyValueMode') {
+        colorPicker.applyValueMode = target.textContent;
+        return;
+      }
 
-			if (target.groupName === 'palette') {
-				colorPicker.palette = target.innerHTML;
-				return;
-			}
+      // Palette
+      if (target.groupName === 'palette') {
+        colorPicker.palette = target.textContent;
+        return;
+      }
 
-			//Set inverted mode
-			if (target.id === 'inverted') {
-				colorPicker.inverted = event.detail.value;
-				return;
-			}
-		});
-	}
+      // Inverted toggle
+      if (target.id === 'inverted') {
+        colorPicker.inverted = event.detail?.value ?? target.checked;
+        return;
+      }
+    };
 
-	componentDidMount() {
-		this.init();
-	}
+    document.addEventListener('change', handleChange);
+    return () => document.removeEventListener('change', handleChange);
+  }, []);
 
-	render() {
-		return (
-			<div>
-				<div className="demo-description">The Color Picker's display-mode is set to "spectrumGrid"</div>
-				<ColorPicker
-					ref={this.colorpicker} displayMode="spectrumGrid" placeholder="Select a Color"></ColorPicker>
-				<div className="options">
-					<div className="option">
-						<h3>Toggle Grid Column Size</h3>
-						<RadioButton groupName="columnCount">5</RadioButton>
-						<br />
-						<RadioButton groupName="columnCount" checked>10</RadioButton>
-						<br />
-						<RadioButton groupName="columnCount">15</RadioButton>
-						<br />
-					</div>
-					<div className="option">
-						<h3>Toggle Grid Color Size</h3>
-						<RadioButton groupName="columnSize" checked>20</RadioButton>
-						<br />
-						<RadioButton groupName="columnSize">40</RadioButton>
-						<br />
-						<RadioButton groupName="columnSize">60</RadioButton>
-						<br />
-					</div>
-					<div className="option">
-						<h3>Toggle Grid Column Gap</h3>
-						<RadioButton groupName="columnGap" checked>3</RadioButton>
-						<br />
-						<RadioButton groupName="columnGap">6</RadioButton>
-						<br />
-						<RadioButton groupName="columnGap">9</RadioButton>
-						<br />
-					</div>
-					<div className="option">
-						<h3>Apply Value Mode</h3>
-						<RadioButton groupName="applyValueMode" checked>instantly</RadioButton>
-						<br />
-						<RadioButton groupName="applyValueMode">useButtons</RadioButton>
-						<br />
-					</div>
-					<div className="option">
-						<h3>Palette</h3>
-						<RadioButton groupName="palette" checked>default</RadioButton>
-						<br />
-						<RadioButton groupName="palette">gray</RadioButton>
-						<br />
-						<RadioButton groupName="palette">red</RadioButton>
-						<br />
-						<RadioButton groupName="palette">green</RadioButton>
-						<br />
-						<RadioButton groupName="palette">blue</RadioButton>
-						<br />
-					</div>
-					<div className="option">
-						<h3>Inverted</h3>
-						<CheckBox id="inverted">inverted</CheckBox>
-						<br />
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">
+        The Color Picker's display-mode is set to "spectrumGrid"
+      </div>
+      <ColorPicker
+        ref={colorPickerRef}
+        displayMode="spectrumGrid"
+        placeholder="Select a Color"
+      />
+      <div className="options">
+        <div className="option">
+          <h3>Toggle Grid Column Size</h3>
+          <RadioButton groupName="columnCount">5</RadioButton>
+          <br />
+          <RadioButton groupName="columnCount" checked>
+            10
+          </RadioButton>
+          <br />
+          <RadioButton groupName="columnCount">15</RadioButton>
+          <br />
+        </div>
+        <div className="option">
+          <h3>Toggle Grid Color Size</h3>
+          <RadioButton groupName="columnSize" checked>
+            20
+          </RadioButton>
+          <br />
+          <RadioButton groupName="columnSize">40</RadioButton>
+          <br />
+          <RadioButton groupName="columnSize">60</RadioButton>
+          <br />
+        </div>
+        <div className="option">
+          <h3>Toggle Grid Column Gap</h3>
+          <RadioButton groupName="columnGap" checked>
+            3
+          </RadioButton>
+          <br />
+          <RadioButton groupName="columnGap">6</RadioButton>
+          <br />
+          <RadioButton groupName="columnGap">9</RadioButton>
+          <br />
+        </div>
+        <div className="option">
+          <h3>Apply Value Mode</h3>
+          <RadioButton groupName="applyValueMode" checked>
+            instantly
+          </RadioButton>
+          <br />
+          <RadioButton groupName="applyValueMode">useButtons</RadioButton>
+          <br />
+        </div>
+        <div className="option">
+          <h3>Palette</h3>
+          <RadioButton groupName="palette" checked>
+            default
+          </RadioButton>
+          <br />
+          <RadioButton groupName="palette">gray</RadioButton>
+          <br />
+          <RadioButton groupName="palette">red</RadioButton>
+          <br />
+          <RadioButton groupName="palette">green</RadioButton>
+          <br />
+          <RadioButton groupName="palette">blue</RadioButton>
+          <br />
+        </div>
+        <div className="option">
+          <h3>Inverted</h3>
+          <CheckBox id="inverted">inverted</CheckBox>
+          <br />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

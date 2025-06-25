@@ -1,121 +1,65 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React from 'react';
 import { Chart } from 'smart-webcomponents-react/chart';
 
-class App extends React.Component {
-	sampleData = [{
-		Country: 'Switzerland',
-		Inflation2012: -0.95,
-		Inflation2011: -0.72
-	},
-	{
-		Country: 'USA',
-		Inflation2012: 2.35,
-		Inflation2011: 2.96
-	},
-	{
-		Country: 'Germany',
-		Inflation2012: 2.03,
-		Inflation2011: 2.10
-	},
-	{
-		Country: 'India',
-		Inflation2012: 8.38,
-		Inflation2011: 6.49
-	},
-	{
-		Country: 'China',
-		Inflation2012: 3.34,
-		Inflation2011: 4.06
-	},
-	{
-		Country: 'Canada',
-		Inflation2012: 2.05,
-		Inflation2011: 2.30
-	}
-	];
+const App = () => {
+  const sampleData = [
+    { Country: 'Luxembourg', Inflation2011: 3.5, Inflation2012: 2.7 },
+    { Country: 'Germany', Inflation2011: 2.5, Inflation2012: 2.1 },
+    { Country: 'Spain', Inflation2011: 3.1, Inflation2012: 2.4 },
+    { Country: 'France', Inflation2011: 2.1, Inflation2012: 2 },
+    { Country: 'Belgium', Inflation2011: 3.5, Inflation2012: 2.6 },
+    { Country: 'Netherlands', Inflation2011: 2.5, Inflation2012: 2.5 }
+  ];
 
-	caption = 'CPI inflation comparison by country';
-	description = 'Years: 2011 vs 2012';
-	showLegend = true;
-	padding = {
-		left: 20,
-		top: 5,
-		right: 20,
-		bottom: 5
-	};
-	titlePadding = {
-		left: 90,
-		top: 0,
-		right: 0,
-		bottom: 10
-	};
-	dataSource = this.sampleData;
-	colorScheme = 'scheme08';
-	xAxis = {
-		dataField: 'Country'
-	};
-	valueAxis = {
-		title: {
-			visible: false
-		},
-		unitInterval: 1,
-		minValue: -5,
-		maxValue: 10,
-		labels: {
-			formatSettings: {
-				sufix: '%'
-			}
-		}
-	};
-	seriesGroups = [{
-		type: 'column',
-		orientation: 'horizontal',
-		columnsGapPercent: 50,
-		toolTipFormatSettings: {
-			sufix: '%'
-		},
-		series: [{
-			dataField: 'Inflation2012',
-			displayText: 'Inflation 2012'
-		},
-		{
-			dataField: 'Inflation2011',
-			displayText: 'Inflation 2011'
-		}
-		]
-	}];
+  const chartSettings = {
+    caption: 'CPI inflation rate comparison - 2011 vs 2012',
+    description: 'Source: Eurostat',
+    showLegend: true,
+    padding: { left: 5, top: 5, right: 15, bottom: 5 },
+    titlePadding: { left: 90, top: 0, right: 0, bottom: 10 },
+    dataSource: sampleData,
+    colorScheme: 'scheme08',
+    xAxis: {
+      dataField: 'Country',
+      displayText: 'Country'
+    },
+    valueAxis: {
+      unitInterval: 1,
+      minValue: 0,
+      maxValue: 5,
+      displayValueAxis: true,
+      description: 'Inflation Rate (%)',
+      axisSize: 'auto',
+      tickMarksColor: '#888888',
+      gridLinesColor: '#888888',
+      labels: {
+        formatSettings: {
+          sufix: '%',
+          decimalPlaces: 1
+        }
+      }
+    },
+    seriesGroups: [
+      {
+        type: 'column',
+        orientation: 'horizontal',
+        columnsGapPercent: 100,
+        toolTipFormatSettings: { sufix: '%', decimalPlaces: 1 },
+        series: [
+          { dataField: 'Inflation2011', displayText: 'Inflation 2011' },
+          { dataField: 'Inflation2012', displayText: 'Inflation 2012' }
+        ]
+      }
+    ]
+  };
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Chart id="chart"
-					caption={this.caption}
-					description={this.description}
-					showLegend={this.showLegend}
-					padding={this.padding}
-					titlePadding={this.titlePadding}
-					dataSource={this.dataSource}
-					colorScheme={this.colorScheme}
-					xAxis={this.xAxis}
-					valueAxis={this.valueAxis}
-					seriesGroups={this.seriesGroups}></Chart>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Chart id="chart" {...chartSettings} />
+    </div>
+  );
+};
 
 export default App;

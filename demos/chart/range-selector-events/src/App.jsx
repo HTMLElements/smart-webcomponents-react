@@ -1,17 +1,13 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useCallback } from 'react';
 import { Chart } from 'smart-webcomponents-react/chart';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.chart = React.createRef();
-		this.eventsTextArea = React.createRef();
-	}
+const App = () => {
+  const chartRef = useRef(null);
+  const eventsTextAreaRef = useRef(null);
 
-	sampleData = [{
+  const sampleData = [{
 		'Date': '11/21/2017',
 		'SPOpen': '2057.46',
 		'SPHigh': '2071.46',
@@ -11100,175 +11096,161 @@ class App extends React.Component {
 		'SPAdjClose': '1132.99',
 		'uid': 1231
 	}];
-	monthFormatter = new Intl.DateTimeFormat('en', {
-		month: 'short'
-	});
-	toolTipCustomFormatFn = (value, itemIndex, serie, group, xAxisValue) => {
-		const dataItem = this.sampleData[itemIndex],
-			volume = dataItem.SPVolume;
-		return `<div style='text-align: left;'>
-				<b>Date:</b> ${xAxisValue.getDate()}-${this.monthFormatter.format(xAxisValue)}-${xAxisValue.getFullYear()}</b>
-				<br />
-				<b>Index value:</b> ${value}
-				<br />
-				<b>Daily volume:</b> ${volume}
-			</div>`;
-	};
 
-	caption = 'S&P 500 Index value and daily volume';
-	description = '(June 2017 - November 2018)';
-	animationDuration = 1500;
-	enableCrosshairs = true;
-	padding = {
-		left: 20,
-		top: 5,
-		right: 20,
-		bottom: 5
-	};
-	colorScheme = 'scheme17';
-	dataSource = this.sampleData;
-	xAxis = {
-		dataField: 'Date',
-		type: 'date',
-		valuesOnTicks: true,
-		labels: {
-			formatFunction: (value) => {
-				return value.getDate() + '-' + this.monthFormatter.format(value) + '<br>' + value.getFullYear().toString();
-			}
-		},
-		gridLines: {
-			visible: false
-		},
-		rangeSelector: {
-			visible: true,
-			size: 100,
-			padding: {
-				top: 10,
-				bottom: 0
-			},
-			dataField: 'SPClose',
-			baseUnit: 'month',
-			gridLines: {
-				visible: false
-			},
-			formatFunction: (value) => {
-				return this.monthFormatter.format(value) + '\'' + value.getFullYear().toString().substring(2);
-			}
-		}
-	};
-	seriesGroups = [{
-		type: 'line',
-		linesUnselectMode: 'click',
-		toolTipFormatFunction: this.toolTipCustomFormatFn,
-		valueAxis: {
-			title: {
-				text: 'S&P 500<br>'
-			},
-			gridLines: {
-				visible: false
-			}
-		},
-		series: [{
-			dataField: 'SPClose',
-			displayText: 'S&P Index Value',
-			lineWidth: 1
-		}]
-	},
-	{
-		type: 'area',
-		toolTipFormatFunction: this.toolTipCustomFormatFn,
-		linesUnselectMode: "click",
-		valueAxis: {
-			position: 'right',
-			title: {
-				text: '<br>Daily Volume'
-			},
-			gridLines: {
-				visible: false
-			},
-			labels: {
-				formatFunction: function (value) {
-					return value / 1000000 + 'M';
-				}
-			}
-		},
-		series: [{
-			dataField: 'SPVolume',
-			displayText: 'S&P Index Volume',
-			lineWidth: 1,
-			opacity: 0.2
-		}]
-	}
-	];
+  const monthFormatter = new Intl.DateTimeFormat('en', { month: 'short' });
 
-	dumpEventInfo(event) {
-		const chart = this.chart.current,
-			eventDetail = event.detail;
-		if (typeof eventDetail !== 'object') {
-			return;
-		}
-		if (event.type.indexOf('refresh') !== -1 && chart.nativeElement !== eventDetail.instance) {
-			return;
-		}
-		const date = new Date();
-		let text = this.eventsTextArea.current.value,
-			line = 'Time: ' + (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()) + ', event: ' + event.type;
-		if (eventDetail.elementIndex) {
-			line += ', element index: ' + eventDetail.elementIndex;
-		}
-		if (eventDetail.elementValue) {
-			line += ', value: ' + eventDetail.elementValue;
-		}
-		if (event.type === 'toggle') {
-			if (chart.seriesGroups) {
-				line += ', series group index: ' + chart.seriesGroups.indexOf(eventDetail.seriesGroup);
-				line += ', visible: ' + eventDetail.state;
-			}
-		}
-		if (event.type.indexOf('rangeSelection') !== -1) {
-			line += ', minValue: ' + eventDetail.minValue.getFullYear() + '-' + (eventDetail.minValue.getMonth() + 1) + '-' + eventDetail.minValue.getDate();
-			line += ', maxValue: ' + eventDetail.maxValue.getFullYear() + '-' + (eventDetail.maxValue.getMonth() + 1) + '-' + eventDetail.maxValue.getDate();
-		}
-		text = line + '\n' + text;
-		this.eventsTextArea.current.value = text;
-	}
+  const toolTipCustomFormatFn = useCallback((value, itemIndex, serie, group, xAxisValue) => {
+    const dataItem = sampleData[itemIndex];
+    const volume = dataItem?.SPVolume ?? 0;
+    return `<div style='text-align: left;'>
+      <b>Date:</b> ${xAxisValue.getDate()}-${monthFormatter.format(xAxisValue)}-${xAxisValue.getFullYear()}
+      <br />
+      <b>Index value:</b> ${value}
+      <br />
+      <b>Daily volume:</b> ${volume}
+    </div>`;
+  }, [sampleData]);
 
-	init() {
+  const caption = 'S&P 500 Index value and daily volume';
+  const description = '(June 2017 - November 2018)';
+  const animationDuration = 1500;
+  const enableCrosshairs = true;
 
-	}
+  const padding = {
+    left: 20,
+    top: 5,
+    right: 20,
+    bottom: 5
+  };
 
-	componentDidMount() {
+  const colorScheme = 'scheme17';
 
-	}
+  const xAxis = {
+    dataField: 'Date',
+    type: 'date',
+    valuesOnTicks: true,
+    labels: {
+      formatFunction: (value) =>
+        `${value.getDate()}-${monthFormatter.format(value)}<br>${value.getFullYear()}`
+    },
+    gridLines: {
+      visible: false
+    },
+    rangeSelector: {
+      visible: true,
+      size: 100,
+      padding: {
+        top: 10,
+        bottom: 0
+      },
+      dataField: 'SPClose',
+      baseUnit: 'month',
+      gridLines: {
+        visible: false
+      },
+      formatFunction: (value) =>
+        `${monthFormatter.format(value)}'${value.getFullYear().toString().slice(2)}`
+    }
+  };
 
-	render() {
-		return (
-			<div>
-				<Chart ref={this.chart} id="chart"
-					caption={this.caption}
-					description={this.description}
-					animationDuration={this.animationDuration}
-					enableCrosshairs={this.enableCrosshairs}
-					padding={this.padding}
-					colorScheme={this.colorScheme}
-					dataSource={this.dataSource}
-					xAxis={this.xAxis}
-					seriesGroups={this.seriesGroups}
-					onClick={this.dumpEventInfo.bind(this)}
-					onMouseover={this.dumpEventInfo.bind(this)}
-					onMouseout={this.dumpEventInfo.bind(this)}
-					onToggle={this.dumpEventInfo.bind(this)}
-					onRangeSelectionChanging={this.dumpEventInfo.bind(this)}
-					onRangeSelectionChanged={this.dumpEventInfo.bind(this)}
-					onRefreshBegin={this.dumpEventInfo.bind(this)}
-					onRefreshEnd={this.dumpEventInfo.bind(this)}></Chart>
-				<br />
-				<textarea ref={this.eventsTextArea} id="eventsTextArea"></textarea>
-			</div>
-		);
-	}
-}
+  const seriesGroups = [
+    {
+      type: 'line',
+      linesUnselectMode: 'click',
+      toolTipFormatFunction: toolTipCustomFormatFn,
+      valueAxis: {
+        title: { text: 'S&P 500<br>' },
+        gridLines: { visible: false }
+      },
+      series: [
+        {
+          dataField: 'SPClose',
+          displayText: 'S&P Index Value',
+          lineWidth: 1
+        }
+      ]
+    },
+    {
+      type: 'area',
+      toolTipFormatFunction: toolTipCustomFormatFn,
+      linesUnselectMode: 'click',
+      valueAxis: {
+        position: 'right',
+        title: { text: '<br>Daily Volume' },
+        gridLines: { visible: false },
+        labels: {
+          formatFunction: (value) => `${value / 1000000}M`
+        }
+      },
+      series: [
+        {
+          dataField: 'SPVolume',
+          displayText: 'S&P Index Volume',
+          lineWidth: 1,
+          opacity: 0.2
+        }
+      ]
+    }
+  ];
 
+  const dumpEventInfo = useCallback((event) => {
+    const chart = chartRef.current;
+    const eventDetail = event.detail;
+    if (typeof eventDetail !== 'object') return;
 
+    if (event.type.includes('refresh') && chart?.nativeElement !== eventDetail.instance) return;
+
+    const now = new Date();
+    let text = eventsTextAreaRef.current.value;
+    let line = `Time: ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}, event: ${event.type}`;
+
+    if (eventDetail.elementIndex) {
+      line += `, element index: ${eventDetail.elementIndex}`;
+    }
+    if (eventDetail.elementValue) {
+      line += `, value: ${eventDetail.elementValue}`;
+    }
+    if (event.type === 'toggle' && chart?.seriesGroups) {
+      line += `, series group index: ${chart.seriesGroups.indexOf(eventDetail.seriesGroup)}`;
+      line += `, visible: ${eventDetail.state}`;
+    }
+    if (event.type.includes('rangeSelection')) {
+      const min = eventDetail.minValue;
+      const max = eventDetail.maxValue;
+      line += `, minValue: ${min.getFullYear()}-${min.getMonth() + 1}-${min.getDate()}`;
+      line += `, maxValue: ${max.getFullYear()}-${max.getMonth() + 1}-${max.getDate()}`;
+    }
+
+    eventsTextAreaRef.current.value = line + '\n' + text;
+  }, []);
+
+  return (
+    <div>
+      <Chart
+        ref={chartRef}
+        id="chart"
+        caption={caption}
+        description={description}
+        animationDuration={animationDuration}
+        enableCrosshairs={enableCrosshairs}
+        padding={padding}
+        colorScheme={colorScheme}
+        dataSource={sampleData}
+        xAxis={xAxis}
+        seriesGroups={seriesGroups}
+        onClick={dumpEventInfo}
+        onMouseover={dumpEventInfo}
+        onMouseout={dumpEventInfo}
+        onToggle={dumpEventInfo}
+        onRangeSelectionChanging={dumpEventInfo}
+        onRangeSelectionChanged={dumpEventInfo}
+        onRefreshBegin={dumpEventInfo}
+        onRefreshEnd={dumpEventInfo}
+      />
+      <br />
+      <textarea ref={eventsTextAreaRef} id="eventsTextArea" rows="10" style={{ width: '100%' }} />
+    </div>
+  );
+};
 
 export default App;

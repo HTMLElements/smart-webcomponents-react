@@ -1,148 +1,131 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
+import React, { useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import { Button } from 'smart-webcomponents-react/button';
 import { DockingLayout } from 'smart-webcomponents-react/dockinglayout';
-import { DropDownList, ListItem, ListItemsGroup } from 'smart-webcomponents-react/dropdownlist';
+import { DropDownList, ListItem } from 'smart-webcomponents-react/dropdownlist';
 
-class App extends React.Component {
+const App = () => {
+  const dockinglayoutRef = useRef(null);
+  const dropdownlistRef = useRef(null);
+  const buttonRef = useRef(null);
+  const button2Ref = useRef(null);
 
-	constructor(props) {
-		super(props);
+  const [itemsCount, setItemsCount] = useState(0);
+  const [layout, setLayout] = useState([
+    {
+      type: 'LayoutPanel',
+      label: 'Tabs 0',
+      items: [{ label: 'Tab 0', content: 'Content of Tab 0' }]
+    },
+    {
+      type: 'LayoutPanel',
+      label: 'Tabs 1',
+      items: [{ label: 'Tab 1', content: 'Content of Tab 1' }]
+    },
+    {
+      type: 'LayoutPanel',
+      label: 'Tabs 2',
+      items: [{ label: 'Tab 2', content: 'Content of Tab 2' }]
+    }
+  ]);
 
-		this.dockinglayout = React.createRef();
-		this.dropdownlist = React.createRef();
-		this.button = React.createRef();
-		this.button2 = React.createRef();
+  const handleStateChange = () => {
+    const layoutComponent = dockinglayoutRef.current;
+    const layoutItems = layoutComponent.items;
+    const undockedItems = layoutComponent.undockedItems;
 
-		this.itemsCount = 0;
-	}
+    layoutItems.forEach((item, i) => {
+      item.label = `Tabs ${i}`;
+      item.update(0, `Tab ${i}`, `Content of Tab ${i}`);
+    });
 
-	layout = [{
-		type: 'LayoutPanel',
-		label: 'Tabs 0',
-		items: [{
-			label: 'Tab 0',
-			content: 'Content of Tab 0'
-		}]
-	},
-	{
-		type: 'LayoutPanel',
-		label: 'Tabs 1',
-		items: [{
-			label: 'Tab 1',
-			content: 'Content of Tab 1',
-		}]
-	},
-	{
-		type: 'LayoutPanel',
-		label: 'Tabs 2',
-		items: [{
-			label: 'Tab 2',
-			content: 'Content of Tab 2'
-		}]
-	}];
+    undockedItems.forEach((item) => {
+      item.label = 'Undocked Tabs';
+      item.update(0, 'Tab', 'Content of Undocked Tab');
+    });
+  };
 
-	handleStateChange(event) {
-		const smartDockingLayout = this.dockinglayout.current;
-		let layoutItems = smartDockingLayout.items, i;
+  const createListItem = () => {
+    const dropDownList = dropdownlistRef.current;
 
-		let undockedItems = smartDockingLayout.undockedItems;
-		
-		for (i = 0; i < layoutItems.length; i++) {
-			layoutItems[i].label = 'Tabs ' + i;
-			layoutItems[i].update(0, 'Tab ' + i, 'Content of Tab ' + i);
-		}
+    const fragment = document.createDocumentFragment();
+    const itemLabel = `Tabs ${dropDownList.items.length}`;
 
-		for (i = 0; i < undockedItems.length; i++) {
-			undockedItems[i].label = 'Undocked Tabs';
-			undockedItems[i].update(0, 'Tab', 'Content of Undocked Tab');
-		}
-	}
+    const listItem = document.createElement('smart-list-item');
+    listItem.textContent = itemLabel;
+    listItem.value = itemLabel;
 
-	createListItem() {
-		const fragment = document.createDocumentFragment(),
-			dropDownList = this.dropdownlist.current;
+    dropDownList.nativeElement.appendChild(listItem);
+  };
 
-		ReactDOM.render(<ListItem />, fragment, function () {
-			this.label = 'Tabs ' + dropDownList.items.length;
-			dropDownList.appendChild(this.nativeElement);
-		});
+  const insertItem = (position) => {
+    const dropDownList = dropdownlistRef.current;
+    const dockinglayout = dockinglayoutRef.current;
 
-	}
+    const newItem = {
+      label: 'New Item',
+      size: '25%',
+      items: [
+        {
+          label: 'New Tab Item',
+          content: 'New Tab Item Content'
+        }
+      ]
+    };
 
-	handleInsertBeforeItem(event) {
-		const tabsWindowObject = {
-			label: 'New Item',
-			size: '25%',
-			items: [{
-				label: 'New Tab Item',
-				content: 'New Tab Item Content'
-			}]
-		};
+    const selectedIndex = dropDownList.selectedIndexes[0];
 
-		if (this.itemsCount === 1) {
-			this.button.current.disabled = true;
-			this.button2.current.disabled = true;
-		}
+    if (position === 'before') {
+      dockinglayout.insertBeforeItem(selectedIndex, newItem);
+    } else {
+      dockinglayout.insertAfterItem(selectedIndex, newItem);
+    }
 
-		this.dockinglayout.current.insertBeforeItem(this.dropdownlist.current.selectedIndexes[0], tabsWindowObject);
-		this.createListItem();
-		this.itemsCount++;
-	}
+    createListItem();
+    setItemsCount((count) => {
+      const newCount = count + 1;
+      if (newCount === 1) {
+        buttonRef.current.disabled = true;
+        button2Ref.current.disabled = true;
+      }
+      return newCount;
+    });
+  };
 
-	handleInsertAfterItem(event) {
-		const tabsWindowObject = {
-			label: 'New Item',
-			size: '25%',
-			items: [{
-				label: 'New Tab Item',
-				content: 'New Tab Item Content'
-			}]
-		};
+  return (
+    <div>
+      <DockingLayout
+        ref={dockinglayoutRef}
+        id="layout"
+        layout={layout}
+        onStateChange={handleStateChange}
+      ></DockingLayout>
 
-		if (this.itemsCount === 1) {
-			this.button.current.disabled = true;
-			this.button2.current.disabled = true;
-		}
-
-		this.dockinglayout.current.insertAfterItem(this.dropdownlist.current.selectedIndexes[0], tabsWindowObject);
-		this.createListItem();
-		this.itemsCount++;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<DockingLayout ref={this.dockinglayout} id="layout" layout={this.layout} onStateChange={this.handleStateChange.bind(this)}></DockingLayout>
-
-				<div className="options">
-					<div className="caption">Choose an Item</div>
-					<div className="option">
-						<DropDownList ref={this.dropdownlist} selectedIndexes={[0]} sorted>
-							<ListItem>Tabs 0</ListItem>
-							<ListItem>Tabs 1</ListItem>
-							<ListItem>Tabs 2</ListItem>
-						</DropDownList>
-					</div>
-					<div className="caption">Choose a method</div>
-					<div className="option">
-						<Button ref={this.button} id="insertBeforeItem" onClick={this.handleInsertBeforeItem.bind(this)}>InsertBeforeItem</Button>
-					</div>
-					<div className="option">
-						<Button ref={this.button2} id="insertAfterItem" onClick={this.handleInsertAfterItem.bind(this)}>InsertAfterItem</Button>
-					</div>
-				</div>
-			</div >
-		);
-	}
-}
-
-
+      <div className="options">
+        <div className="caption">Choose an Item</div>
+        <div className="option">
+          <DropDownList ref={dropdownlistRef} selectedIndexes={[0]} sorted>
+            <ListItem value="Tabs 0">Tabs 0</ListItem>
+            <ListItem value="Tabs 1">Tabs 1</ListItem>
+            <ListItem value="Tabs 2">Tabs 2</ListItem>
+          </DropDownList>
+        </div>
+        <div className="caption">Choose a method</div>
+        <div className="option">
+          <Button ref={buttonRef} id="insertBeforeItem" onClick={() => insertItem('before')}>
+            InsertBeforeItem
+          </Button>
+        </div>
+        <div className="option">
+          <Button ref={button2Ref} id="insertAfterItem" onClick={() => insertItem('after')}>
+            InsertAfterItem
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

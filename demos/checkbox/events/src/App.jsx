@@ -1,39 +1,28 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useCallback } from "react";
 import { CheckBox } from 'smart-webcomponents-react/checkbox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const logRef = useRef(null);
 
-		this.log = React.createRef();
-	}
+  const handleChange = useCallback((event) => {
+    if (logRef.current) {
+      logRef.current.textContent = "Change event. Status: " + event.detail.value;
+    }
+  }, []);
 
-	handleChange(event) {
-		this.log.current.textContent = "Change event. Status: " + event.detail.value;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<CheckBox onChange={this.handleChange.bind(this)}>Check Box</CheckBox>
-				<div className="options">
-					<div className="caption">Events</div>
-					<div className="option">
-						<span ref={this.log} id="log">Change event. Status: false</span>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <CheckBox onChange={handleChange}>Check Box</CheckBox>
+      <div className="options">
+        <div className="caption">Events</div>
+        <div className="option">
+          <span ref={logRef} id="log">Change event. Status: false</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

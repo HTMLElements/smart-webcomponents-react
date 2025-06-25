@@ -1,11 +1,10 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useMemo, useCallback } from "react";
 import { Chart } from 'smart-webcomponents-react/chart';
 
-class App extends React.Component {
-	sampleData = [{
+const App = () => {
+  const sampleData = [{
 		"Date": "11/21/2017",
 		"SPOpen": "2057.46",
 		"SPHigh": "2071.46",
@@ -11094,142 +11093,105 @@ class App extends React.Component {
 		"SPAdjClose": "1132.99",
 		"uid": 1231
 	}];
-	monthFormatter = new Intl.DateTimeFormat('en', {
-		month: 'short'
-	});
-	toolTipCustomFormatFn = (value, itemIndex, serie, group, xAxisValue, xAxis) => {
-		const dataItem = this.sampleData[itemIndex],
-			volume = dataItem.SPVolume;
-		return `<div style="text-align: left;">
-			<b>Date:</b> ${xAxisValue.getDate()}-${this.monthFormatter.format(xAxisValue)}-${xAxisValue.getFullYear()}
-			<br />
-			<b>Open price:</b> $${value.open}
-			<br />
-			<b>Close price:</b> $${value.close}
-			<br />
-			<b>Low price:</b> $${value.low}
-			<br />
-			<b>High price:</b> $${value.high}
-			<br />
-			<b>Daily volume:</b> ${volume}
-		</div>`;
-	};
 
-	caption = 'S&P 500 Candlestick Chart';
-	description = '(June 2013 - November 2018)';
-	animationDuration = 1500;
-	enableCrosshairs = true;
-	padding = {
-		left: 5,
-		top: 5,
-		right: 5,
-		bottom: 5
-	};
-	dataSource = this.sampleData;
-	xAxis = {
-		dataField: 'Date',
-		labels: {
-			formatFunction: (value) => {
-				return value.getDate() + '-' + this.monthFormatter.format(value) + '\'' + value.getFullYear().toString().substring(2);
-			}
-		},
-		type: 'date',
-		valuesOnTicks: true,
-		rangeSelector: {
-			visible: true,
-			size: 120,
-			padding: {
-				left: 25,
-				right: 25,
-				top: 10,
-				bottom: 10
-			},
-			dataField: 'SPClose',
-			baseUnit: 'month',
-			serieType: 'area',
-			gridLines: {
-				visible: false
-			},
-			labels: {
-				formatFunction: (value) => {
-					return this.monthFormatter.format(value) + '\'' + value.getFullYear().toString().substring(2);
-				}
-			}
-		}
-	};
-	colorScheme = 'scheme17';
-	seriesGroups = [{
-		type: 'candlestick',
-		columnsMaxWidth: 15,
-		columnsMinWidth: 5,
-		toolTipFormatFunction: this.toolTipCustomFormatFn,
-		valueAxis: {
-			description: 'S&P 500<br>'
-		},
-		series: [{
-			dataFieldClose: 'SPClose',
-			displayTextClose: 'S&P Close price',
-			dataFieldOpen: 'SPOpen',
-			displayTextOpen: 'S&P Open price',
-			dataFieldHigh: 'SPHigh',
-			displayTextHigh: 'S&P High price',
-			dataFieldLow: 'SPLow',
-			displayTextLow: 'S&P Low price',
-			displayText: 'S&P 500',
-			lineWidth: 1
-		}]
-	},
-	{
-		type: 'line',
-		valueAxis: {
-			position: 'right',
-			title: {
-				text: '<br>Daily Volume'
-			},
-			gridLines: {
-				visible: false
-			},
-			labels: {
-				formatFunction: function (value) {
-					return value / 1000000 + 'M';
-				}
-			}
-		},
-		series: [{
-			dataField: 'SPVolume',
-			displayText: 'Volume',
-			lineWidth: 1
-		}]
-	}
-	];
+  const monthFormatter = useMemo(() => new Intl.DateTimeFormat('en', {
+    month: 'short'
+  }), []);
 
-	init() {
+  const toolTipCustomFormatFn = useCallback((value, itemIndex, serie, group, xAxisValue) => {
+    const dataItem = sampleData[itemIndex];
+    const volume = dataItem.SPVolume;
+    return `<div style="text-align: left;">
+      <b>Date:</b> ${xAxisValue.getDate()}-${monthFormatter.format(xAxisValue)}-${xAxisValue.getFullYear()}<br />
+      <b>Open price:</b> $${value.open}<br />
+      <b>Close price:</b> $${value.close}<br />
+      <b>Low price:</b> $${value.low}<br />
+      <b>High price:</b> $${value.high}<br />
+      <b>Daily volume:</b> ${volume}
+    </div>`;
+  }, [sampleData, monthFormatter]);
 
-	}
+  const xAxis = useMemo(() => ({
+    dataField: 'Date',
+    type: 'date',
+    valuesOnTicks: true,
+    labels: {
+      formatFunction: value => `${value.getDate()}-${monthFormatter.format(value)}'${value.getFullYear().toString().slice(-2)}`
+    },
+    rangeSelector: {
+      visible: true,
+      size: 120,
+      padding: { left: 25, right: 25, top: 10, bottom: 10 },
+      dataField: 'SPClose',
+      baseUnit: 'month',
+      serieType: 'area',
+      gridLines: { visible: false },
+      labels: {
+        formatFunction: value => `${monthFormatter.format(value)}'${value.getFullYear().toString().slice(-2)}`
+      }
+    }
+  }), [monthFormatter]);
 
+  const seriesGroups = useMemo(() => [
+    {
+      type: 'candlestick',
+      columnsMaxWidth: 15,
+      columnsMinWidth: 5,
+      toolTipFormatFunction: toolTipCustomFormatFn,
+      valueAxis: {
+        description: 'S&P 500<br>'
+      },
+      series: [{
+        dataFieldClose: 'SPClose',
+        displayTextClose: 'S&P Close price',
+        dataFieldOpen: 'SPOpen',
+        displayTextOpen: 'S&P Open price',
+        dataFieldHigh: 'SPHigh',
+        displayTextHigh: 'S&P High price',
+        dataFieldLow: 'SPLow',
+        displayTextLow: 'S&P Low price',
+        displayText: 'S&P 500',
+        lineWidth: 1
+      }]
+    },
+    {
+      type: 'line',
+      valueAxis: {
+        position: 'right',
+        title: {
+          text: '<br>Daily Volume'
+        },
+        gridLines: {
+          visible: false
+        },
+        labels: {
+          formatFunction: value => value / 1_000_000 + 'M'
+        }
+      },
+      series: [{
+        dataField: 'SPVolume',
+        displayText: 'Volume',
+        lineWidth: 1
+      }]
+    }
+  ], [toolTipCustomFormatFn]);
 
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Chart id="chart"
-					caption={this.caption}
-					description={this.description}
-					animationDuration={this.animationDuration}
-					enableCrosshairs={this.enableCrosshairs}
-					padding={this.padding}
-					dataSource={this.dataSource}
-					xAxis={this.xAxis}
-					colorScheme={this.colorScheme}
-					seriesGroups={this.seriesGroups}></Chart>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Chart
+        id="chart"
+        caption="S&P 500 Candlestick Chart"
+        description="(June 2013 - November 2018)"
+        animationDuration={1500}
+        enableCrosshairs={true}
+        padding={{ left: 5, top: 5, right: 5, bottom: 5 }}
+        dataSource={sampleData}
+        xAxis={xAxis}
+        colorScheme="scheme17"
+        seriesGroups={seriesGroups}
+      />
+    </div>
+  );
+};
 
 export default App;

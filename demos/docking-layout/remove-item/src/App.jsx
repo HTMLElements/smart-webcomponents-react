@@ -1,112 +1,124 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef, useState } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 import { DockingLayout } from 'smart-webcomponents-react/dockinglayout';
-import { DropDownList, ListItem, ListItemsGroup } from 'smart-webcomponents-react/dropdownlist';
+import { DropDownList, ListItem } from 'smart-webcomponents-react/dropdownlist';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const dockingLayoutRef = useRef(null);
+  const dropdownListRef = useRef(null);
+  const buttonRef = useRef(null);
 
-		this.dockinglayout = React.createRef();
-		this.dropdownlist = React.createRef();
-		this.button = React.createRef();
+  const [itemsRemoved, setItemsRemoved] = useState(0);
 
-		this.itemsCount = 0;
-	}
+  const draggable = false;
 
-	draggable = false;
+  const layout = [
+    {
+      type: 'LayoutGroup',
+      orientation: 'horizontal',
+      items: [
+        {
+          id: 'tab0',
+          type: 'LayoutPanel',
+          label: 'Tabs 0',
+          size: '65%',
+          items: [
+            {
+              label: 'Tab 0',
+              content: 'Content of Tab 0'
+            }
+          ]
+        },
+        {
+          id: 'tab1',
+          type: 'LayoutPanel',
+          label: 'Tabs 1',
+          items: [
+            {
+              label: 'Tab 1',
+              content: 'Content of Tab 1'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      type: 'LayoutGroup',
+      orientation: 'horizontal',
+      items: [
+        {
+          id: 'tab2',
+          type: 'LayoutPanel',
+          label: 'Tabs 2',
+          size: '25%',
+          items: [
+            {
+              label: 'Tab 2',
+              content: 'Content of Tab 2'
+            }
+          ]
+        },
+        {
+          id: 'tab3',
+          type: 'LayoutPanel',
+          label: 'Tabs 3',
+          items: [
+            {
+              label: 'Tab 3',
+              content: 'Content of Tab 3'
+            }
+          ]
+        }
+      ]
+    }
+  ];
 
-	layout = [{
-		type: 'LayoutGroup',
-		orientation: 'horizontal',
-		items: [{
-			id: 'tab0',
-			type: 'LayoutPanel',
-			label: 'Tabs 0',
-			size: '65%',
-			items: [{
-				label: 'Tab 0',
-				content: 'Content of Tab 0'
-			}]
-		},
-		{
-			id: 'tab1',
-			type: 'LayoutPanel',
-			label: 'Tabs 1',
-			items: [{
-				label: 'Tab 1',
-				content: 'Content of Tab 1'
-			}]
-		}
-		]
-	},
-	{
-		type: 'LayoutGroup',
-		orientation: 'horizontal',
-		items: [{
-			id: 'tab2',
-			type: 'LayoutPanel',
-			label: 'Tabs 2',
-			size: '25%',
-			items: [{
-				label: 'Tab 2',
-				content: 'Content of Tab 2'
-			}]
-		},
-		{
-			id: 'tab3',
-			type: 'LayoutPanel',
-			label: 'Tabs 3',
-			items: [{
-				label: 'Tab 3',
-				content: 'Content of Tab 3',
-			}]
-		}
-		]
-	}];
+  const handleRemove = () => {
+    const dropDownList = dropdownListRef.current;
+    const selectedValue = dropDownList.selectedValues[0];
+    const selectedIndex = dropDownList.selectedIndexes[0];
 
-	handleRemove() {
-		const dropDownList = this.dropdownlist.current;
+    if (selectedValue != null && selectedIndex !== undefined) {
+      dockingLayoutRef.current.removeAt(selectedValue);
+      dropDownList.removeAt(selectedIndex);
 
-		this.dockinglayout.current.removeAt(dropDownList.selectedValues[0]);
-		dropDownList.removeAt(dropDownList.selectedIndexes[0]);
-		this.itemsCount++;
+      const newCount = itemsRemoved + 1;
+      setItemsRemoved(newCount);
 
-		if (this.itemsCount === 3) {
-			this.button.current.disabled = true;
-			dropDownList.disabled = true;
-		}
-	}
+      if (newCount === 3) {
+        buttonRef.current.disabled = true;
+        dropDownList.disabled = true;
+      }
+    }
+  };
 
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<DockingLayout ref={this.dockinglayout} id="layout" layout={this.layout} draggable={this.draggable}></DockingLayout>
-				<div className="options">
-					<div className="option">
-						<DropDownList ref={this.dropdownlist} id="dropDownList">
-							<ListItem value="tab0">Tab 0</ListItem>
-							<ListItem value="tab1">Tab 1</ListItem>
-							<ListItem value="tab2">Tab 2</ListItem>
-							<ListItem value="tab3">Tab 3</ListItem>
-						</DropDownList>
-					</div>
-					<div className="option">
-						<Button ref={this.button} id="remove" onClick={this.handleRemove.bind(this)}>Remove</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <DockingLayout
+        ref={dockingLayoutRef}
+        id="layout"
+        layout={layout}
+        draggable={draggable}
+      />
+      <div className="options">
+        <div className="option">
+          <DropDownList ref={dropdownListRef} id="dropDownList">
+            <ListItem value="tab0">Tab 0</ListItem>
+            <ListItem value="tab1">Tab 1</ListItem>
+            <ListItem value="tab2">Tab 2</ListItem>
+            <ListItem value="tab3">Tab 3</ListItem>
+          </DropDownList>
+        </div>
+        <div className="option">
+          <Button ref={buttonRef} id="remove" onClick={handleRemove}>
+            Remove
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

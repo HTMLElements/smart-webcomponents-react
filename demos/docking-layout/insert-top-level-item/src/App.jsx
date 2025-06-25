@@ -1,105 +1,113 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef, useState } from 'react';
+import { Button } from 'smart-webcomponents-react/button';
 import { DockingLayout } from 'smart-webcomponents-react/dockinglayout';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const dockinglayoutRef = useRef(null);
+  const [insertCount, setInsertCount] = useState(0);
+  const [disabled, setDisabled] = useState(false);
 
-		this.dockinglayout = React.createRef();
-		this.button = React.createRef();
-		this.button2 = React.createRef();
-		this.button3 = React.createRef();
-		this.button4 = React.createRef();
+  const layout = [
+    {
+      type: 'LayoutPanel',
+      label: 'Tabs 0',
+      items: [
+        {
+          label: 'Tab 0',
+          content: 'Content of Tab 0'
+        }
+      ]
+    },
+    {
+      type: 'LayoutPanel',
+      label: 'Tabs 1',
+      items: [
+        {
+          label: 'Tab 1',
+          content: 'Content of Tab 1'
+        }
+      ]
+    }
+  ];
 
-		this.insertCount = 0;
-	}
+  const validate = () => {
+    const newCount = insertCount + 1;
+    setInsertCount(newCount);
 
-	layout = [{
-		type: 'LayoutPanel',
-		label: 'Tabs 0',
-		items: [{
-			label: 'Tab 0',
-			content: 'Content of Tab 0'
-		}]
-	},
-	{
-		type: 'LayoutPanel',
-		label: 'Tabs 1',
-		items: [{
-			label: 'Tab 1',
-			content: 'Content of Tab 1',
-		}]
-	}];
+    if (newCount >= 2) {
+      setDisabled(true);
+    }
 
-	validate() {
-		this.insertCount++;
-		if (this.insertCount === 2) {
-			this.button.current.disabled = true;
-			this.button2.current.disabled = true;
-			this.button3.current.disabled = true;
-			this.button4.current.disabled = true;
-			return true;
-		}
+    return newCount <= 2;
+  };
 
-		if (this.insertCount > 2) {
-			return false;
-		}
+  const handleInsertLayout = (position) => {
+    if (!validate()) return;
 
-		return true;
-	};
+    const newLayoutItem = {
+      label: 'New Item',
+      items: [
+        {
+          label: 'New Tab Item',
+          content: 'New Tab Item Content'
+        }
+      ]
+    };
 
-	handleInsertLayout(position) {
-		const result = this.validate(),
-			tabsWindowObject = {
-				label: 'New Item',
-				items: [{
-					label: 'New Tab Item',
-					content: 'New Tab Item Content'
-				}]
-			};
+    dockinglayoutRef.current[`insertLayout${position}`](newLayoutItem);
+  };
 
-		if (!result) {
-			return;
-		}
-
-		this.dockinglayout.current[`insertLayout${position}`](tabsWindowObject);
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<DockingLayout ref={this.dockinglayout} id="layout" layout={this.layout}></DockingLayout>
-				<div className="options">
-					<div className="caption">Insert Layout</div>
-					<div className="option">
-						<Button ref={this.button} id="insertLayoutLeft" onClick={this.handleInsertLayout.bind(this, 'Left')}>Left</Button>
-					</div>
-					<div className="option">
-						<Button ref={this.button2} id="insertLayoutRight" onClick={this.handleInsertLayout.bind(this, 'Right')}>Right</Button>
-					</div>
-					<div className="option">
-						<Button ref={this.button3} id="insertLayoutTop" onClick={this.handleInsertLayout.bind(this, 'Top')}>Top</Button>
-					</div>
-					<div className="option">
-						<Button ref={this.button4} id="insertLayoutBottom" onClick={this.handleInsertLayout.bind(this, 'Bottom')}>Bottom</Button>
-					</div>
-				</div>
-				<br />
-				<br />
-				<div className="description">Insert Top Level Docking Layout Item on Left, Right, Top, Bottom</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <DockingLayout ref={dockinglayoutRef} id="layout" layout={layout} />
+      <div className="options">
+        <div className="caption">Insert Layout</div>
+        <div className="option">
+          <Button
+            id="insertLayoutLeft"
+            onClick={() => handleInsertLayout('Left')}
+            disabled={disabled}
+          >
+            Left
+          </Button>
+        </div>
+        <div className="option">
+          <Button
+            id="insertLayoutRight"
+            onClick={() => handleInsertLayout('Right')}
+            disabled={disabled}
+          >
+            Right
+          </Button>
+        </div>
+        <div className="option">
+          <Button
+            id="insertLayoutTop"
+            onClick={() => handleInsertLayout('Top')}
+            disabled={disabled}
+          >
+            Top
+          </Button>
+        </div>
+        <div className="option">
+          <Button
+            id="insertLayoutBottom"
+            onClick={() => handleInsertLayout('Bottom')}
+            disabled={disabled}
+          >
+            Bottom
+          </Button>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div className="description">
+        Insert Top Level Docking Layout Item on Left, Right, Top, Bottom
+      </div>
+    </div>
+  );
+};
 
 export default App;

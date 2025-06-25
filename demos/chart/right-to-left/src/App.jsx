@@ -1,11 +1,10 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useCallback } from 'react';
 import { Chart } from 'smart-webcomponents-react/chart';
 
-class App extends React.Component {
-	sampleData = [{
+const App = () => {
+  const sampleData = [{
 		"Date": "1/2/2019",
 		"S&P 500": "1831.98",
 		"NASDAQ": "4143.07",
@@ -1246,111 +1245,113 @@ class App extends React.Component {
 		"NASDAQ": "4773.47",
 		"uid": 247
 	}];
-	monthFormatter = new Intl.DateTimeFormat('en', {
-		month: 'short'
-	});
 
-	caption = 'ביצועי מדד שוק המניות בארה"ב';
-	description = 'NASDAQ Composite לעומת S&P 500';
-	showLegend = true;
-	padding = {
-		left: 10,
-		top: 5,
-		right: 10,
-		bottom: 5
-	};
-	titlePadding = {
-		left: 50,
-		top: 0,
-		right: 0,
-		bottom: 10
-	};
-	dataSource = this.sampleData;
-	colorScheme = 'scheme32';
-	xAxis = {
-		dataField: 'Date',
-		formatFunction: (value) => {
-			return value.getDate() + '-' + this.monthFormatter.format(value) + '-' + value.getFullYear();
-		},
-		type: 'date',
-		baseUnit: 'month',
-		valuesOnTicks: true,
-		minValue: '01-01-2019',
-		maxValue: '01-01-2020',
-		tickMarks: {
-			visible: true,
-			unitInterval: 1,
-			color: '#BCBCBC'
-		},
-		unitInterval: 1,
-		gridLines: {
-			visible: true,
-			unitInterval: 3,
-			color: '#BCBCBC'
-		},
-		labels: {
-			angle: -45,
-			rotationPoint: 'topright',
-			offset: {
-				x: -25,
-				y: 0
-			}
-		}
-	};
-	valueAxis = {
-		visible: true,
-		title: {
-			text: 'מחיר נעילה יומי<br>'
-		},
-		tickMarks: {
-			color: '#BCBCBC'
-		}
-	};
-	seriesGroups = [{
-		type: 'line',
-		series: [{
-			dataField: 'S&P 500',
-			displayText: 'S&P 500'
-		},
-		{
-			dataField: 'NASDAQ',
-			displayText: 'NASDAQ'
-		}
-		]
-	}];
+  const monthFormatter = new Intl.DateTimeFormat('en', {
+    month: 'short'
+  });
 
-	init() {
+  const formatDate = useCallback((value) => {
+    return value.getDate() + '-' + monthFormatter.format(value) + '-' + value.getFullYear();
+  }, [monthFormatter]);
 
-	}
+  const caption = 'ביצועי מדד שוק המניות בארה"ב';
+  const description = 'NASDAQ Composite לעומת S&P 500';
+  const showLegend = true;
 
-	componentDidMount() {
+  const padding = {
+    left: 10,
+    top: 5,
+    right: 10,
+    bottom: 5
+  };
 
-	}
+  const titlePadding = {
+    left: 50,
+    top: 0,
+    right: 0,
+    bottom: 10
+  };
 
-	render() {
-		return (
-			<div>
-				<div className="demo-description">Chart fully supports right-to-left (RTL) language locales. You can enable/disable
-			        the right-to-left support using rightToLeft property.</div>
-				<Chart id="chart"
-					rightToLeft
-					locale="he"
-					caption={this.caption}
-					description={this.description}
-					showLegend={this.showLegend}
-					padding={this.padding}
-					titlePadding={this.titlePadding}
-					dataSource={this.dataSource}
-					colorScheme={this.colorScheme}
-					xAxis={this.xAxis}
-					valueAxis={this.valueAxis}
-					seriesGroups={this.seriesGroups}
-				></Chart>
-			</div>
-		);
-	}
-}
+  const colorScheme = 'scheme32';
 
+  const xAxis = {
+    dataField: 'Date',
+    formatFunction: formatDate,
+    type: 'date',
+    baseUnit: 'month',
+    valuesOnTicks: true,
+    minValue: '01-01-2019',
+    maxValue: '01-01-2020',
+    tickMarks: {
+      visible: true,
+      unitInterval: 1,
+      color: '#BCBCBC'
+    },
+    unitInterval: 1,
+    gridLines: {
+      visible: true,
+      unitInterval: 3,
+      color: '#BCBCBC'
+    },
+    labels: {
+      angle: -45,
+      rotationPoint: 'topright',
+      offset: {
+        x: -25,
+        y: 0
+      }
+    }
+  };
 
+  const valueAxis = {
+    visible: true,
+    title: {
+      text: 'מחיר נעילה יומי<br>'
+    },
+    tickMarks: {
+      color: '#BCBCBC'
+    }
+  };
+
+  const seriesGroups = [
+    {
+      type: 'line',
+      series: [
+        {
+          dataField: 'S&P 500',
+          displayText: 'S&P 500'
+        },
+        {
+          dataField: 'NASDAQ',
+          displayText: 'NASDAQ'
+        }
+      ]
+    }
+  ];
+
+  return (
+    <div>
+      <div className="demo-description">
+        Chart fully supports right-to-left (RTL) language locales. You can enable/disable
+        the right-to-left support using rightToLeft property.
+      </div>
+      <Chart
+        id="chart"
+        rightToLeft
+        locale="he"
+        caption={caption}
+        description={description}
+        showLegend={showLegend}
+        padding={padding}
+        titlePadding={titlePadding}
+        dataSource={sampleData}
+        colorScheme={colorScheme}
+        xAxis={xAxis}
+        valueAxis={valueAxis}
+        seriesGroups={seriesGroups}
+      />
+    </div>
+  );
+};
 
 export default App;

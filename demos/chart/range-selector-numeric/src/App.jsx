@@ -1,12 +1,10 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useCallback } from "react";
 import { Chart } from 'smart-webcomponents-react/chart';
-import { CheckBox } from 'smart-webcomponents-react/checkbox';
 
-class App extends React.Component {
-	sampleData = [{
+const App = () => {
+  const sampleData = [{
 		"Date": "6/29/2013",
 		"Open": "19",
 		"High": "25",
@@ -8367,85 +8365,83 @@ class App extends React.Component {
 		"Volume": "7812300",
 		"AdjClose": "246.21",
 		"uid": 928
-	}];
-	toolTipCustomFormatFn = function (value, itemIndex) {
-		return 'Index: ' + itemIndex + ", Value: " + value;
-	};
+	}]
 
-	caption = 'Range selector with regular x-axis';
-	description = 'In this example the range selector works with numeric axis';
-	showLegend = false;
-	animationDuration = 1500;
-	enableCrosshairs = true;
-	padding = {
-		left: 5,
-		top: 5,
-		right: 20,
-		bottom: 5
-	};
-	colorScheme = 'scheme02';
-	dataSource = this.sampleData;
-	xAxis = {
-		minValue: 175,
-		maxValue: 550,
-		flip: false,
-		valuesOnTicks: true,
-		rangeSelector: {
-			visible: true,
-			serieType: 'area',
-			padding: {
-				top: 20,
-				bottom: 0
-			},
-			size: 110,
-			gridLines: {
-				visible: false
-			},
-		}
-	};
-	seriesGroups = [{
-		type: 'line',
-		toolTipFormatFunction: this.toolTipCustomFormatFn,
-		valueAxis: {
-			flip: false,
-			title: {
-				text: 'Value<br><br>'
-			}
-		},
-		series: [{
-			dataField: 'Close',
-			lineWidth: 1,
-			lineWidthSelected: 1
-		}]
-	}];
+  const toolTipCustomFormatFn = useCallback((value, itemIndex) => {
+    return 'Index: ' + itemIndex + ", Value: " + value;
+  }, []);
 
-	init() {
+  const caption = 'Range selector with regular x-axis';
+  const description = 'In this example the range selector works with numeric axis';
+  const showLegend = false;
+  const animationDuration = 1500;
+  const enableCrosshairs = true;
 
-	}
+  const padding = {
+    left: 5,
+    top: 5,
+    right: 20,
+    bottom: 5
+  };
 
-	componentDidMount() {
+  const colorScheme = 'scheme02';
 
-	}
+  const xAxis = {
+    minValue: 175,
+    maxValue: 550,
+    flip: false,
+    valuesOnTicks: true,
+    rangeSelector: {
+      visible: true,
+      serieType: 'area',
+      padding: {
+        top: 20,
+        bottom: 0
+      },
+      size: 110,
+      gridLines: {
+        visible: false
+      }
+    }
+  };
 
-	render() {
-		return (
-			<div>
-				<Chart id="chart"
-					caption={this.caption}
-					description={this.description}
-					showLegend={this.showLegend}
-					animationDuration={this.animationDuration}
-					enableCrosshairs={this.enableCrosshairs}
-					padding={this.padding}
-					colorScheme={this.colorScheme}
-					dataSource={this.dataSource}
-					xAxis={this.xAxis}
-					seriesGroups={this.seriesGroups}></Chart>
-			</div>
-		);
-	}
-}
+  const seriesGroups = [
+    {
+      type: 'line',
+      toolTipFormatFunction: toolTipCustomFormatFn,
+      valueAxis: {
+        flip: false,
+        title: {
+          text: 'Value<br><br>'
+        }
+      },
+      series: [
+        {
+          dataField: 'Close',
+          lineWidth: 1,
+          lineWidthSelected: 1
+        }
+      ]
+    }
+  ];
 
-
+  return (
+    <div>
+      <Chart
+        id="chart"
+        caption={caption}
+        description={description}
+        showLegend={showLegend}
+        animationDuration={animationDuration}
+        enableCrosshairs={enableCrosshairs}
+        padding={padding}
+        colorScheme={colorScheme}
+        dataSource={sampleData}
+        xAxis={xAxis}
+        seriesGroups={seriesGroups}
+      />
+    </div>
+  );
+};
 
 export default App;

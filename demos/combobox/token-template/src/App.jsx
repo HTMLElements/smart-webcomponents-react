@@ -1,106 +1,94 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { ComboBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/combobox';
+import React, { useEffect, useRef } from "react";
+import { ComboBox, ListItem } from 'smart-webcomponents-react/combobox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const comboboxRef = useRef(null);
 
-		this.combobox = React.createRef();
-	}
+  const handleChange = () => {
+    const tokens = comboboxRef.current.nativeElement.getElementsByClassName('smart-token');
 
-	handleChange(event) {
-		const that = this;
-		const tokens = that.combobox.current.nativeElement.getElementsByClassName('smart-token');
+    for (let i = 0; i < tokens.length; i++) {
+      const token = tokens[i];
+      const img = token.querySelector('.avatar');
 
-		for (let i = 0; i < tokens.length; i++) {
-			var token = tokens[i];
-			var img = token.querySelector('.avatar');
+      if (!img) continue;
 
-			if (token.textContent.indexOf('Anne Kean') > -1) {
-				img.src = './../../../src/images/phonebook/anne.png';
-			} else if (token.textContent.indexOf('Andrew Watson') > -1) {
-				img.src = './../../../src/images/phonebook/andrew.png';
-			} else if (token.textContent.indexOf('Avril Janin') > -1) {
-				img.src = './../../../src/images/phonebook/avril.jpeg';
-			} else if (token.textContent.indexOf('Janet Pattenson') > -1) {
-				img.src = './../../../src/images/phonebook/janet.png';
-			} else if (token.textContent.indexOf('Johanna Svensson') > -1) {
-				img.src = './../../../src/images/phonebook/johanna.jpeg';
-			} else if (token.textContent.indexOf('Johnny Abana') > -1) {
-				img.src = './../../../src/images/phonebook/johnny.jpeg';
-			} else if (token.textContent.indexOf('Laura Thene') > -1) {
-				img.src = './../../../src/images/phonebook/laura.png';
-			} else if (token.textContent.indexOf('Margaret Vetton') > -1) {
-				img.src = './../../../src/images/phonebook/margaret.png';
-			} else if (token.textContent.indexOf('Maria Sevrano') > -1) {
-				img.src = './../../../src/images/phonebook/Maria.jpeg';
-			} else if (token.textContent.indexOf('Mark Yemen') > -1) {
-				img.src = './../../../src/images/phonebook/mark.jpeg';
-			} else if (token.textContent.indexOf('Maya Verdara') > -1) {
-				img.src = './../../../src/images/phonebook/maya.jpeg';
-			} else if (token.textContent.indexOf('Michael Barton') > -1) {
-				img.src = './../../../src/images/phonebook/michael.png';
-			} else if (token.textContent.indexOf('Monica Oghini') > -1) {
-				img.src = './../../../src/images/phonebook/monica.jpeg';
-			} else if (token.textContent.indexOf('Nancy Queens') > -1) {
-				img.src = './../../../src/images/phonebook/nancy.png';
-			} else if (token.textContent.indexOf('Robert Drawny') > -1) {
-				img.src = './../../../src/images/phonebook/robert.png';
-			} else if (token.textContent.indexOf('Steven Fedrichy') > -1) {
-				img.src = './../../../src/images/phonebook/steven.jpeg';
-			} else if (token.textContent.indexOf('Toni Versachi') > -1) {
-				img.src = './../../../src/images/phonebook/toni.jpeg';
-			}
-		}
+      const name = token.textContent.trim();
 
-	}
+      const imageMap = {
+        'Anne Kean': 'anne.png',
+        'Andrew Watson': 'andrew.png',
+        'Avril Janin': 'avril.jpeg',
+        'Janet Pattenson': 'janet.png',
+        'Johanna Svensson': 'johanna.jpeg',
+        'Johnny Abana': 'johnny.jpeg',
+        'Laura Thene': 'laura.png',
+        'Margaret Vetton': 'margaret.png',
+        'Maria Sevrano': 'Maria.jpeg',
+        'Mark Yemen': 'mark.jpeg',
+        'Maya Verdara': 'maya.jpeg',
+        'Michael Barton': 'michael.png',
+        'Monica Oghini': 'monica.jpeg',
+        'Nancy Queens': 'nancy.png',
+        'Robert Drawny': 'robert.png',
+        'Steven Fedrichy': 'steven.jpeg',
+        'Toni Versachi': 'toni.jpeg'
+      };
 
-	init() {
-		const that = this;
-		const template = document.createElement('template');
+      const match = Object.keys(imageMap).find(person => name.includes(person));
+      if (match) {
+        img.src = `./../../../src/images/phonebook/${imageMap[match]}`;
+      }
+    }
+  };
 
-		template.id = 'tokenTemplate';
-		template.innerHTML = '<span><img className="avatar" src="./../../../src/images/phonebook/andrew.png" width="35" height="35" /></span><span>{{data}}</span>';
+  useEffect(() => {
+    const template = document.createElement('template');
+    template.id = 'tokenTemplate';
+    template.innerHTML = `
+      <span>
+        <img class="avatar" src="./../../../src/images/phonebook/andrew.png" width="35" height="35" />
+      </span>
+      <span>{{data}}</span>
+    `;
 
-		document.body.appendChild(template);
+    document.body.appendChild(template);
 
-		that.combobox.current.tokenTemplate = template.id;
-	}
+    if (comboboxRef.current) {
+      comboboxRef.current.tokenTemplate = template.id;
+    }
+  }, []);
 
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<ComboBox ref={this.combobox} selectionDisplayMode="tokens" selectionMode="zeroOrMany" onChange={this.handleChange.bind(this)}>
-					<ListItem selected>Andrew Watson</ListItem>
-					<ListItem>Anne Kean</ListItem>
-					<ListItem>Avril Janin</ListItem>
-					<ListItem>Janet Pattenson</ListItem>
-					<ListItem>Johanna Svensson</ListItem>
-					<ListItem>Johnny Abana</ListItem>
-					<ListItem>Laura Thene</ListItem>
-					<ListItem>Margaret Vetton</ListItem>
-					<ListItem>Maria Sevrano</ListItem>
-					<ListItem>Mark Yemen</ListItem>
-					<ListItem>Maya Verdara</ListItem>
-					<ListItem>Michael Barton</ListItem>
-					<ListItem>Monica Oghini</ListItem>
-					<ListItem>Nancy Queens</ListItem>
-					<ListItem>Robert Drawny</ListItem>
-					<ListItem>Steven Fedrichy</ListItem>
-					<ListItem>Toni Versachi</ListItem>
-				</ComboBox>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <ComboBox
+        ref={comboboxRef}
+        selectionDisplayMode="tokens"
+        selectionMode="zeroOrMany"
+        onChange={handleChange}
+      >
+        <ListItem selected>Andrew Watson</ListItem>
+        <ListItem>Anne Kean</ListItem>
+        <ListItem>Avril Janin</ListItem>
+        <ListItem>Janet Pattenson</ListItem>
+        <ListItem>Johanna Svensson</ListItem>
+        <ListItem>Johnny Abana</ListItem>
+        <ListItem>Laura Thene</ListItem>
+        <ListItem>Margaret Vetton</ListItem>
+        <ListItem>Maria Sevrano</ListItem>
+        <ListItem>Mark Yemen</ListItem>
+        <ListItem>Maya Verdara</ListItem>
+        <ListItem>Michael Barton</ListItem>
+        <ListItem>Monica Oghini</ListItem>
+        <ListItem>Nancy Queens</ListItem>
+        <ListItem>Robert Drawny</ListItem>
+        <ListItem>Steven Fedrichy</ListItem>
+        <ListItem>Toni Versachi</ListItem>
+      </ComboBox>
+    </div>
+  );
+};
 
 export default App;
