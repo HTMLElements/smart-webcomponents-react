@@ -1,75 +1,69 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from 'react';
+import { Button } from 'smart-webcomponents-react/button';
 import { Tree, TreeItem, TreeItemsGroup } from 'smart-webcomponents-react/tree';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.tree = React.createRef();
-	}
+const App = () => {
+  const tree = useRef(null);
 
-	handleMoveUpClick() {
-		const tree = this.tree.current;
+  const handleMoveUpClick = () => {
+    const treeElement = tree.current;
 
-		tree.getItem(tree.selectedIndexes[0]).then(function (selectedItem) {
-			tree.moveUp(selectedItem);
-		});
-	}
+    if (treeElement.selectedIndexes.length === 0) return;
 
-	handleMoveDownClick() {
-		const tree = this.tree.current;
+    treeElement.getItem(treeElement.selectedIndexes[0]).then((selectedItem) => {
+      treeElement.moveUp(selectedItem);
+    });
+  };
 
-		tree.getItem(tree.selectedIndexes[0]).then(function (selectedItem) {
-			tree.moveDown(selectedItem);
-		});
-	}
+  const handleMoveDownClick = () => {
+    const treeElement = tree.current;
 
-	init() {
+    if (treeElement.selectedIndexes.length === 0) return;
 
-	}
+    treeElement.getItem(treeElement.selectedIndexes[0]).then((selectedItem) => {
+      treeElement.moveDown(selectedItem);
+    });
+  };
 
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Tree ref={this.tree} id="tree" className="animation" showLines showRootLines>
-					<TreeItemsGroup id="numbers" expanded>Numbers
-			            <TreeItem>3</TreeItem>
-						<TreeItem>2</TreeItem>
-						<TreeItem id="one">1</TreeItem>
-					</TreeItemsGroup>
-					<TreeItemsGroup id="letters" expanded>Letters
-			            <TreeItem>A</TreeItem>
-						<TreeItem>C</TreeItem>
-						<TreeItem>Z</TreeItem>
-						<TreeItem>B</TreeItem>
-					</TreeItemsGroup>
-					<TreeItemsGroup id="greekLetters" expanded>Greek letters
-			            <TreeItem>β</TreeItem>
-						<TreeItem>δ</TreeItem>
-						<TreeItem>α</TreeItem>
-						<TreeItem>γ</TreeItem>
-					</TreeItemsGroup>
-				</Tree>
-				<div className="options">
-					<div className="caption">Settings</div>
-					<div className="option">
-						<Button id="moveUp" title="Move selected item up" onClick={this.handleMoveUpClick.bind(this)}>Up</Button>
-						<Button id="moveDown" title="Move selected item down" onClick={this.handleMoveDownClick.bind(this)}>Down</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Tree ref={tree} id="tree" className="animation" showLines showRootLines>
+        <TreeItemsGroup id="numbers" expanded>
+          Numbers
+          <TreeItem>3</TreeItem>
+          <TreeItem>2</TreeItem>
+          <TreeItem id="one">1</TreeItem>
+        </TreeItemsGroup>
+        <TreeItemsGroup id="letters" expanded>
+          Letters
+          <TreeItem>A</TreeItem>
+          <TreeItem>C</TreeItem>
+          <TreeItem>Z</TreeItem>
+          <TreeItem>B</TreeItem>
+        </TreeItemsGroup>
+        <TreeItemsGroup id="greekLetters" expanded>
+          Greek letters
+          <TreeItem>β</TreeItem>
+          <TreeItem>δ</TreeItem>
+          <TreeItem>α</TreeItem>
+          <TreeItem>γ</TreeItem>
+        </TreeItemsGroup>
+      </Tree>
+      <div className="options">
+        <div className="caption">Settings</div>
+        <div className="option">
+          <Button id="moveUp" title="Move selected item up" onClick={handleMoveUpClick}>
+            Up
+          </Button>
+          <Button id="moveDown" title="Move selected item down" onClick={handleMoveDownClick}>
+            Down
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

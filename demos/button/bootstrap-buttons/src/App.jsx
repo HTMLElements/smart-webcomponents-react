@@ -1,46 +1,32 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+  const button = useRef(null);
+  const button2 = useRef(null);
 
-		this.button = React.createRef();
-		this.button2 = React.createRef();
-	}
+  const handleClick = (buttonType) => {
+    const submitButton = (buttonType === 'success' ? button : button2).current.nativeElement;
 
-	handleClick(buttonType) {
-		const submitButton = (buttonType === 'success' ? this.button : this.button2).current.nativeElement;
+    if (submitButton.classList.contains('sending')) {
+      submitButton.classList.remove('sending');
+    } else {
+      submitButton.classList.add('sending');
+    }
 
-		if (submitButton.classList.contains('sending')) {
-			submitButton.classList.remove('sending');
-		}
-		else {
-			submitButton.classList.add('sending');
-		}
+    setTimeout(() => {
+      submitButton.classList.remove('sending');
+    }, 4500);
+  };
 
-		setTimeout(function () {
-			submitButton.classList.remove('sending');
-		}, 4500);
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Button ref={this.button} onClick={this.handleClick.bind(this, 'success')} className="submit success Button-element">Click Me</Button>
-				<Button ref={this.button2} onClick={this.handleClick.bind(this)} className="submit primary Button-element">Click Me</Button>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Button ref={button} onClick={() => handleClick('success')} className="submit success Button-element">Click Me</Button>
+      <Button ref={button2} onClick={() => handleClick()} className="submit primary Button-element">Click Me</Button>
+    </div>
+  );
+};
 
 export default App;

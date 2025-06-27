@@ -1,64 +1,65 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useState, useRef, useEffect } from "react";
 import { Calendar } from 'smart-webcomponents-react/calendar';
 import { SwitchButton } from 'smart-webcomponents-react/switchbutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const calendar = useRef(null);
 
-		this.calendar = React.createRef();
-		this.log = React.createRef();
-	}
+  const [animationOn, setAnimationOn] = useState(true);
+  const [animationDirectionLandscape, setAnimationDirectionLandscape] = useState(true);
 
-	handleAnimationChange(event) {
-		if (event.detail.value) {
-			this.calendar.current.animation = 'advanced';
-		} 
-		else {
-			this.calendar.current.animation = 'none';
-		}
+  useEffect(() => {
+    if (calendar.current) {
+      calendar.current.animation = animationOn ? 'advanced' : 'none';
+    }
+  }, [animationOn]);
 
-		this.log.current.innerHTML = 'smartCalendar animations ' + (event.detail.value ? 'On' : 'Off');
-	}
+  useEffect(() => {
+    if (calendar.current) {
+      calendar.current.scrollButtonsNavigationMode = animationDirectionLandscape ? 'landscape' : 'portrait';
+    }
+  }, [animationDirectionLandscape]);
 
-	handleAnimationDirectionChange(event) {
-		if (event.detail.value) {
-			this.calendar.current.scrollButtonsNavigationMode = 'landscape';
-		} 
-		else {
-			this.calendar.current.scrollButtonsNavigationMode = 'portrait';
-		}
-	}
+  const handleAnimationChange = (event) => {
+    setAnimationOn(event.detail.value);
+  };
 
-	componentDidMount() {
+  const handleAnimationDirectionChange = (event) => {
+    setAnimationDirectionLandscape(event.detail.value);
+  };
 
-	}
+  return (
+    <div>
+      <h3 id="log">smartCalendar animations {animationOn ? 'On' : 'Off'}</h3>
+      <br />
+      <h3 id="animationSwitchLabel">Toggle animation</h3>
+      <SwitchButton
+        onChange={handleAnimationChange}
+        id="animationSwitch"
+        switchMode="click"
+        checked={animationOn}
+      >
+        <span className="smart-true-content">ON</span>
+        <span className="smart-false-content">OFF</span>
+      </SwitchButton>
 
-	render() {
-		return (
-			<div>
-				<h3 ref={this.log} id="log">smartCalendar animations On</h3>
-				<br />
-				<h3 id="animationSwitchLabel">Toggle animation</h3>
-				<SwitchButton onChange={this.handleAnimationChange.bind(this)} id="animationSwitch" switchMode="click"
-					checked> <span className="smart-true-content">ON</span>
-					<span className="smart-false-content">OFF</span>
-				</SwitchButton>
-				<Calendar ref={this.calendar} id="calendar"></Calendar>
-				<br />
-				<h3 id="animationDirectionSwitchLabel">Animation direction</h3>
-				<SwitchButton onChange={this.handleAnimationDirectionChange.bind(this)} id="animationDirectionSwitch" switchMode="click"
-					checked> <span className="smart-true-content">Landscape</span>
-					<span className="smart-false-content">Portrait</span>
-				</SwitchButton>
-			</div>
-		);
-	}
-}
+      <Calendar ref={calendar} id="calendar"></Calendar>
 
-
+      <br />
+      <h3 id="animationDirectionSwitchLabel">Animation direction</h3>
+      <SwitchButton
+        onChange={handleAnimationDirectionChange}
+        id="animationDirectionSwitch"
+        switchMode="click"
+        checked={animationDirectionLandscape}
+      >
+        <span className="smart-true-content">Landscape</span>
+        <span className="smart-false-content">Portrait</span>
+      </SwitchButton>
+    </div>
+  );
+};
 
 export default App;

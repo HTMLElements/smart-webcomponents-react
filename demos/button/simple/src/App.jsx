@@ -1,29 +1,14 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React from "react";  // Import React to use JSX
+import { Button } from 'smart-webcomponents-react/button';  // Import Button component
 
-class App extends React.Component {
-
-	init() {
-	
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <Button >Click Me</Button>
-			</div>
-		);
-	}
-}
-
-
+const App = () => {
+  return (
+    <div>
+      <Button>Click Me</Button>
+    </div>
+  );
+};
 
 export default App;

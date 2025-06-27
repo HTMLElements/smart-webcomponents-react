@@ -1,58 +1,106 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useMemo, useEffect } from "react";
 import { Carousel } from 'smart-webcomponents-react/carousel';
 
-class App extends React.Component {
+const App = () => {
+  // Generate image data source
+  const dataSource = useMemo(() => {
+    return Array.from({ length: 7 }, (_, index) => ({
+      image: `./../../../src/images/carousel-square-${index + 1}.jpg`
+    }));
+  }, []);
 
-	generateDataSource(items) {
-		let dataSource = Array(items).fill({});
+  useEffect(() => {
+    // Component did mount logic (if needed)
+  }, []);
 
-		dataSource.forEach((element, index) => dataSource[index] = {
-			image: `./../../../src/images/carousel-square-${index + 1}.jpg`
-		});
-		
-		return dataSource;
-	}
+  return (
+    <div>
+      <h2>Horizontal 3D Carousel</h2>
+      <Carousel
+        dataSource={dataSource}
+        id="carouselHorizontal"
+        className="horizontal"
+        autoPlay
+        slideShow
+        loop
+        hideIndicators
+        keyboard
+        displayMode="3d"
+        interval={10000}
+      />
 
-	dataSource = this.generateDataSource(7);
+      <Carousel
+        dataSource={dataSource}
+        id="carouselHorizontal2"
+        className="horizontal circle"
+        autoPlay
+        slideShow
+        loop
+        hideIndicators
+        keyboard
+        displayMode="3d"
+        interval={10000}
+      />
 
-	componentDidMount() {
+      <br />
+      <br />
 
-	}
+      <h2>Bottom - Top 3D Carousel</h2>
+      <Carousel
+        dataSource={dataSource}
+        id="carouselBottomTop"
+        className="bottom-top"
+        autoPlay
+        slideShow
+        loop
+        hideIndicators
+        keyboard
+        displayMode="3d"
+      />
 
-	render() {
-		return (
-			<div>
-				<h2>Horizontal 3D Carousel</h2>
-				<Carousel dataSource={this.dataSource} id="carouselHorizontal" className="horizontal" autoPlay
-					slideShow loop hideIndicators keyboard displayMode="3d" interval={10000}></Carousel>
+      <Carousel
+        dataSource={dataSource}
+        id="carouselBottomTop2"
+        className="bottom-top circle"
+        autoPlay
+        slideShow
+        loop
+        hideIndicators
+        keyboard
+        displayMode="3d"
+      />
 
-				<Carousel dataSource={this.dataSource} id="carouselHorizontal2" className="horizontal circle"
-					autoPlay slideShow loop hideIndicators keyboard displayMode="3d" interval={10000}></Carousel>
-				<br />
-				<br />
-				<h2>Bottom - Top  3D Carousel</h2>
-				<Carousel dataSource={this.dataSource} id="carouselBottomTop" className="bottom-top" autoPlay
-					slideShow loop hideIndicators keyboard displayMode="3d"></Carousel>
+      <br />
+      <br />
 
-				<Carousel dataSource={this.dataSource} id="carouselBottomTop2" className="bottom-top circle"
-					autoPlay slideShow loop hideIndicators keyboard displayMode="3d"></Carousel>
+      <h2>Top - Bottom 3D Carousel</h2>
+      <Carousel
+        dataSource={dataSource}
+        id="carouselTopBottom"
+        className="top-bottom"
+        autoPlay
+        slideShow
+        loop
+        hideIndicators
+        keyboard
+        displayMode="3d"
+      />
 
-				<br />
-				<br />
-				<h2>Top - Bottom  3D Carousel</h2>
-				<Carousel dataSource={this.dataSource} id="carouselTopBottom" className="top-bottom" autoPlay
-					slideShow loop hideIndicators keyboard displayMode="3d"></Carousel>
-
-				<Carousel dataSource={this.dataSource} id="carouselTopBottom2" className="top-bottom circle"
-					autoPlay slideShow loop hideIndicators keyboard displayMode="3d"></Carousel>
-			</div>
-		);
-	}
-}
-
-
+      <Carousel
+        dataSource={dataSource}
+        id="carouselTopBottom2"
+        className="top-bottom circle"
+        autoPlay
+        slideShow
+        loop
+        hideIndicators
+        keyboard
+        displayMode="3d"
+      />
+    </div>
+  );
+};
 
 export default App;

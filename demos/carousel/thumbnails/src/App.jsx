@@ -1,54 +1,53 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef } from "react";
 import { Carousel } from 'smart-webcomponents-react/carousel';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const carouselRef = useRef();
 
-		this.carousel = React.createRef();
-	}
+  const generateDataSource = (items) => {
+    const basePath = './../../../src/images/';
+    return Array.from({ length: items }, (_, index) => ({
+      image: `${basePath}carousel-large-${index + 1}.jpg`,
+      thumb: `${basePath}carousel-xs-${index + 1}.jpg`
+    }));
+  };
 
-	generateDataSource(items) {
-		const basePath = './../../../src/images/';
-		let dataSource = Array(items).fill({});
+  const dataSource = generateDataSource(7);
 
-		dataSource.forEach((element, index) => dataSource[index] = {
-			image: `${basePath}carousel-large-${index + 1}.jpg`,
-			thumb: `${basePath}carousel-xs-${index + 1}.jpg`
-		});
+  useEffect(() => {
+    const template = document.createElement('template');
+    template.innerHTML = '<img src="{{thumb}}"/>';
+    template.id = 'thumb';
 
-		return dataSource;
-	}
+    document.body.appendChild(template);
 
-	dataSource = this.generateDataSource(7);
+    if (carouselRef.current) {
+      carouselRef.current.indicatorTemplate = 'thumb';
+    }
 
-	init() {
-		const template = document.createElement('template');
+    // Optional: clean up the template when the component unmounts
+    return () => {
+      const existing = document.getElementById('thumb');
+      if (existing) {
+        existing.remove();
+      }
+    };
+  }, []);
 
-		template.innerHTML = '<img src="{{thumb}}"/>';
-		template.id = 'thumb';
-
-		document.body.appendChild(template);
-
-		this.carousel.current.indicatorTemplate = 'thumb';
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<Carousel ref={this.carousel} id="carousel" dataSource={this.dataSource} autoPlay slideShow loop></Carousel>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Carousel
+        ref={carouselRef}
+        id="carousel"
+        dataSource={dataSource}
+        autoPlay
+        slideShow
+        loop
+      />
+    </div>
+  );
+};
 
 export default App;

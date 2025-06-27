@@ -1,30 +1,16 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { ButtonGroup } from 'smart-webcomponents-react/buttongroup';
 
-class App extends React.Component {
+const App = () => {
+  const dataSource = ["a", "b", "c"];
 
-	dataSource = ["a","b","c"];
-
-	init() {
-	
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-			    <ButtonGroup dataSource={this.dataSource}></ButtonGroup>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <ButtonGroup dataSource={dataSource}></ButtonGroup>
+    </div>
+  );
+};
 
 export default App;

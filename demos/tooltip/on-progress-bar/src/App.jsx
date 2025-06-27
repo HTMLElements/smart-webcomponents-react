@@ -1,59 +1,50 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { ProgressBar, CircularProgressBar } from 'smart-webcomponents-react/progressbar';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 import { Tooltip } from 'smart-webcomponents-react/tooltip';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const tooltip = useRef(null);
+  const tooltip2 = useRef(null);
+  const progressbar = useRef(null);
+  const progressbar2 = useRef(null);
 
-		this.tooltip = React.createRef();
-		this.tooltip2 = React.createRef();
-		this.progressbar = React.createRef();
-		this.progressbar2 = React.createRef();
-	}
+  const handleChange = (position) => {
+    if (tooltip.current) tooltip.current.position = position;
+    if (tooltip2.current) tooltip2.current.position = position;
+  };
 
-	handleChange(position) {
-		this.tooltip.current.position = position;
-		this.tooltip2.current.position = position;
-	}
+  useEffect(() => {
+    if (tooltip.current && progressbar.current) {
+      tooltip.current.nativeElement.innerHTML = 'Progress: ' + progressbar.current.value + '%';
+    }
+    if (tooltip2.current && progressbar2.current) {
+      tooltip2.current.nativeElement.innerHTML = 'Progress: ' + progressbar2.current.value + '%';
+    }
+  }, []);
 
-	init() {
-		this.tooltip.current.nativeElement.innerHTML = 'Progress: ' + this.progressbar.current.value + '%';
-		this.tooltip2.current.nativeElement.innerHTML = 'Progress: ' + this.progressbar2.current.value + '%';
-	}
+  return (
+    <div>
+      <ProgressBar ref={progressbar} id="linearProgressBar" value={50}></ProgressBar>
+      <Tooltip ref={tooltip} id="tooltip" selector="linearProgressBar" arrow></Tooltip>
 
-	componentDidMount() {
-		this.init();
-	}
+      <CircularProgressBar ref={progressbar2} id="circularProgressBar" value={75}></CircularProgressBar>
+      <Tooltip ref={tooltip2} id="tooltip2" selector="circularProgressBar" arrow position="left"></Tooltip>
 
-	render() {
-		return (
-			<div>
-				<ProgressBar ref={this.progressbar} id="linearProgressBar" value={50}></ProgressBar>
-				<Tooltip ref={this.tooltip} id="tooltip" selector="linearProgressBar"
-					arrow></Tooltip>
-				<CircularProgressBar ref={this.progressbar2} id="circularProgressBar" value={75}></CircularProgressBar>
-				<Tooltip ref={this.tooltip2} id="tooltip2" selector="circularProgressBar"
-					arrow position="left"></Tooltip>
-				<div className="options">
-					<h3>Tooltip Position:</h3>
-					<RadioButton checked onChange={this.handleChange.bind(this, 'top')}>Top</RadioButton>
-					<br />
-					<RadioButton onChange={this.handleChange.bind(this, 'bottom')}>Bottom</RadioButton>
-					<br />
-					<RadioButton onChange={this.handleChange.bind(this, 'left')}>Left</RadioButton>
-					<br />
-					<RadioButton onChange={this.handleChange.bind(this, 'right')}>Right</RadioButton>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+      <div className="options">
+        <h3>Tooltip Position:</h3>
+        <RadioButton checked onChange={() => handleChange('top')}>Top</RadioButton>
+        <br />
+        <RadioButton onChange={() => handleChange('bottom')}>Bottom</RadioButton>
+        <br />
+        <RadioButton onChange={() => handleChange('left')}>Left</RadioButton>
+        <br />
+        <RadioButton onChange={() => handleChange('right')}>Right</RadioButton>
+      </div>
+    </div>
+  );
+};
 
 export default App;

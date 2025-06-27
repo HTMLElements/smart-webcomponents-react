@@ -1,78 +1,49 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect } from "react";
 import { Card } from 'smart-webcomponents-react/card';
 
-class App extends React.Component {
-
-	dataSource = {
+const App = () => {
+	const dataSource = {
 		content: 'Swipe left/right'
 	};
 
-	init() {
-		const that = this,
-			cards = document.querySelectorAll('smart-card');
+	useEffect(() => {
+		// Define the card template
+		document.getElementById('templateContainer').innerHTML = `
+			<template id="cardTemplate">
+				<div class="card-content">{{content}}</div>
+			</template>
+		`;
 
-		document.getElementById('templateContainer').innerHTML =
-			`<template id="cardTemplate">
-				<div className="card-content">{{content}}</div>
-			</template>`;
+		// Add swipe event listeners
+		const cards = document.querySelectorAll('smart-card');
 
-
-		for (let i = 0; i < cards.length; i++) {
-			const card = cards[i];
-
-			card.addEventListener('swipeleft', function () {
+		cards.forEach(card => {
+			card.addEventListener('swipeleft', () => {
 				card.classList.add('swipe-left');
 			});
 
-			card.addEventListener('swiperight', function () {
+			card.addEventListener('swiperight', () => {
 				card.classList.add('swipe-right');
 			});
 
-			card.addEventListener("animationend", function () {
+			card.addEventListener('animationend', () => {
 				card.remove();
 			});
-		}
-	}
+		});
+	}, []);
 
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<smart-cards>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-					<Card dataSource={this.dataSource} itemTemplate="cardTemplate"></Card>
-				</smart-cards>
-				<div id="templateContainer"></div>
-			</div>
-		);
-	}
-}
-
-
+	return (
+		<div>
+			<smart-cards>
+				{Array.from({ length: 21 }).map((_, index) => (
+					<Card key={index} dataSource={dataSource} itemTemplate="cardTemplate" />
+				))}
+			</smart-cards>
+			<div id="templateContainer"></div>
+		</div>
+	);
+};
 
 export default App;

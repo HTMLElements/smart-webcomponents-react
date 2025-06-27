@@ -1,98 +1,92 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef, useEffect } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 import { Table } from 'smart-webcomponents-react/table';
 import { GetData } from './common/data';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.table = React.createRef();
-		this.button3 = React.createRef();
-	}
+const App = () => {
+  const tableRef = useRef(null);
+  const loadStateButtonRef = useRef(null);
 
-	dataSource = GetData(15);
+  const dataSource = GetData(15);
 
-	columnReorder = true;
-	selection = true;
-	sortMode = 'many';
-	columns = [{
-		label: 'id',
-		dataField: 'id',
-		dataType: 'number'
-	},
-	{
-		label: 'Product Name',
-		dataField: 'productName',
-		dataType: 'string'
-	},
-	{
-		label: 'Quantity',
-		dataField: 'quantity',
-		dataType: 'number',
-		formatFunction(settings) {
-			settings.template = settings.value + ' cups';
-		}
-	},
-	{
-		label: 'Price',
-		dataField: 'price',
-		dataType: 'number'
-	},
-	{
-		label: 'Date Purchased',
-		dataField: 'date',
-		dataType: 'date'
-	}
-	];
+  const columnReorder = true;
+  const selection = true;
+  const sortMode = 'many';
+  const columns = [
+    {
+      label: 'id',
+      dataField: 'id',
+      dataType: 'number'
+    },
+    {
+      label: 'Product Name',
+      dataField: 'productName',
+      dataType: 'string'
+    },
+    {
+      label: 'Quantity',
+      dataField: 'quantity',
+      dataType: 'number',
+      formatFunction(settings) {
+        settings.template = settings.value + ' cups';
+      }
+    },
+    {
+      label: 'Price',
+      dataField: 'price',
+      dataType: 'number'
+    },
+    {
+      label: 'Date Purchased',
+      dataField: 'date',
+      dataType: 'date'
+    }
+  ];
 
-	handleGetState() {
-		this.table.current.getState().then(function (state) {
-			alert(JSON.stringify(state));
-		});
-	}
+  const handleGetState = () => {
+    tableRef.current.getState().then(state => {
+      alert(JSON.stringify(state));
+    });
+  };
 
-	handleSaveState() {
-		this.table.current.saveState();
-		this.button3.current.disabled = false;
-	}
+  const handleSaveState = () => {
+    tableRef.current.saveState();
+    if (loadStateButtonRef.current) {
+      loadStateButtonRef.current.disabled = false;
+    }
+  };
 
-	handleLoadState() {
-		this.table.current.loadState();
-	}
+  const handleLoadState = () => {
+    tableRef.current.loadState();
+  };
 
-	init() {
-		if (window.localStorage.getItem('smartTabletable')) {
-			this.button3.current.disabled = false;
-		}
-	}
+  useEffect(() => {
+    if (window.localStorage.getItem('smartTabletable') && loadStateButtonRef.current) {
+      loadStateButtonRef.current.disabled = false;
+    }
+  }, []);
 
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">This demo showcases state maintenance in Table.</div>
-				<Table ref={this.table} id="table"
-					dataSource={this.dataSource}
-					columnReorder={this.columnReorder}
-					selection={this.selection}
-					sortMode={this.sortMode}
-					columns={this.columns}></Table>
-				<div className="options">
-					<Button id="getState" onClick={this.handleGetState.bind(this)}>Get state</Button>
-					<Button id="saveState" onClick={this.handleSaveState.bind(this)}>Save state</Button>
-					<Button ref={this.button3} id="loadState" disabled onClick={this.handleLoadState.bind(this)}>Load state</Button>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">This demo showcases state maintenance in Table.</div>
+      <Table
+        ref={tableRef}
+        id="table"
+        dataSource={dataSource}
+        columnReorder={columnReorder}
+        selection={selection}
+        sortMode={sortMode}
+        columns={columns}
+      />
+      <div className="options">
+        <Button id="getState" onClick={handleGetState}>Get state</Button>
+        <Button id="saveState" onClick={handleSaveState}>Save state</Button>
+        <Button ref={loadStateButtonRef} id="loadState" disabled onClick={handleLoadState}>Load state</Button>
+      </div>
+    </div>
+  );
+};
 
 export default App;

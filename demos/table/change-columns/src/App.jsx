@@ -1,155 +1,87 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 import { Table } from 'smart-webcomponents-react/table';
 import { GetData } from './common/data';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+  const table = useRef(null);
+  const addBtn = useRef(null);
+  const removeBtn = useRef(null);
+  const shuffleBtn = useRef(null);
 
-		this.table = React.createRef();
-		this.button = React.createRef();
-		this.button2 = React.createRef();
-		this.button3 = React.createRef();
-	}
+  const allColumns = [
+    { label: 'id', dataField: 'id', dataType: 'number' },
+    { label: 'Reports To', dataField: 'reportsto', dataType: 'number' },
+    { label: 'First Name', dataField: 'firstName', dataType: 'string' },
+    { label: 'Last Name', dataField: 'lastName', dataType: 'string' },
+    { label: 'Product Name', dataField: 'productName', dataType: 'string' },
+    { label: 'Price', dataField: 'price', dataType: 'number' },
+    { label: 'Quantity', dataField: 'quantity', dataType: 'number' },
+    { label: 'Total', dataField: 'total', dataType: 'number' },
+    { label: 'Date', dataField: 'date', dataType: 'date' },
+    { label: 'Available', dataField: 'available', dataType: 'boolean' }
+  ];
 
-	allColumns = [{
-		label: 'id',
-		dataField: 'id',
-		dataType: 'number'
-	},
-	{
-		label: 'Reports To',
-		dataField: 'reportsto',
-		dataType: 'number'
-	},
-	{
-		label: 'First Name',
-		dataField: 'firstName',
-		dataType: 'string'
-	},
-	{
-		label: 'Last Name',
-		dataField: 'lastName',
-		dataType: 'string'
-	},
-	{
-		label: 'Product Name',
-		dataField: 'productName',
-		dataType: 'string'
-	},
-	{
-		label: 'Price',
-		dataField: 'price',
-		dataType: 'number'
-	},
-	{
-		label: 'Quantity',
-		dataField: 'quantity',
-		dataType: 'number'
-	},
-	{
-		label: 'Total',
-		dataField: 'total',
-		dataType: 'number'
-	},
-	{
-		label: 'Date',
-		dataField: 'date',
-		dataType: 'date'
-	},
-	{
-		label: 'Available',
-		dataField: 'available',
-		dataType: 'boolean'
-	}
-	];
+  const initialColumns = [
+    { label: 'id', dataField: 'id', dataType: 'number' },
+    { label: 'Reports To', dataField: 'reportsto', dataType: 'number' },
+    { label: 'First Name', dataField: 'firstName', dataType: 'string' },
+    { label: 'Last Name', dataField: 'lastName', dataType: 'string' }
+  ];
 
-	dataSource = GetData(15);
+  const dataSource = GetData(15);
 
-	columns = [{
-		label: 'id',
-		dataField: 'id',
-		dataType: 'number'
-	},
-	{
-		label: 'Reports To',
-		dataField: 'reportsto',
-		dataType: 'number'
-	},
-	{
-		label: 'First Name',
-		dataField: 'firstName',
-		dataType: 'string'
-	},
-	{
-		label: 'Last Name',
-		dataField: 'lastName',
-		dataType: 'string'
-	}
-	];
+  const handleAdd = () => {
+    const t = table.current;
+    const add = addBtn.current;
+    const remove = removeBtn.current;
 
-	handleAdd() {
-		const table = this.table.current,
-			add = this.button.current,
-			remove = this.button2.current;
+    for (let i = 0; i < allColumns.length; i++) {
+      if (!t.columns.find(column => column.dataField === allColumns[i].dataField)) {
+        t.columns = [...t.columns, allColumns[i]];
+        break;
+      }
+    }
 
-		for (let i = 0; i < this.allColumns.length; i++) {
-			if (!table.columns.find(column => column.dataField === this.allColumns[i].dataField)) {
-				table.columns.push(this.allColumns[i]);
-				break;
-			}
-		}
+    remove.disabled = false;
 
-		remove.disabled = false;
+    if (t.columns.length === allColumns.length) {
+      add.disabled = true;
+    }
+  };
 
-		if (table.columns.length === this.allColumns.length) {
-			add.disabled = true;
-		}
-	}
+  const handleRemove = () => {
+    const t = table.current;
+    const add = addBtn.current;
+    const remove = removeBtn.current;
 
-	handleRemove() {
-		const table = this.table.current,
-			add = this.button.current,
-			remove = this.button2.current;
+    t.columns = t.columns.slice(0, -1);
 
-		table.columns.pop();
-		add.disabled = false;
-		if (table.columns.length === 0) {
-			remove.disabled = true;
-		}
-	}
+    add.disabled = false;
+    if (t.columns.length === 0) {
+      remove.disabled = true;
+    }
+  };
 
-	handleShuffle() {
-		const table = this.table.current;
+  const handleShuffle = () => {
+    const t = table.current;
 
-		table.columns = table.columns.sort(function () {
-			return 0.5 - Math.random();
-		});
-	}
+    t.columns = [...t.columns].sort(() => 0.5 - Math.random());
+  };
 
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">This demo showcases how to change the columns of Table.</div>
-				<Table ref={this.table} id="table" dataSource={this.dataSource} columns={this.columns}></Table>
-				<div className="options">
-					<Button ref={this.button} id="add" onClick={this.handleAdd.bind(this)}>Add a column</Button>
-					<Button ref={this.button2} id="remove" onClick={this.handleRemove.bind(this)}>Remove last column</Button>
-					<Button ref={this.button3} id="shuffle" onClick={this.handleShuffle.bind(this)}>Shuffle columns</Button>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">This demo showcases how to change the columns of Table.</div>
+      <Table ref={table} id="table" dataSource={dataSource} columns={initialColumns}></Table>
+      <div className="options">
+        <Button ref={addBtn} id="add" onClick={handleAdd}>Add a column</Button>
+        <Button ref={removeBtn} id="remove" onClick={handleRemove}>Remove last column</Button>
+        <Button ref={shuffleBtn} id="shuffle" onClick={handleShuffle}>Shuffle columns</Button>
+      </div>
+    </div>
+  );
+};
 
 export default App;

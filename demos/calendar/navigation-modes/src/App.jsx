@@ -1,59 +1,56 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { Calendar } from 'smart-webcomponents-react/calendar';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const calendarRef = useRef(null);
 
-		this.calendar = React.createRef();
-	}
+  const handleScrollButtonsPosition = (position, event) => {
+    if (event.detail.value) {
+      calendarRef.current.scrollButtonsPosition = position;
+    }
+  };
 
-	handleScrollButtonsPosition(position, event) {
-		if (event.detail.value) {
-			this.calendar.current.scrollButtonsPosition = position;
-		}
-	}
+  const handleScrollButtonsNavigationMode = (mode, event) => {
+    if (event.detail.value) {
+      calendarRef.current.scrollButtonsNavigationMode = mode;
+    }
+  };
 
-	handleScrollButtonsNavigationMode(mode, event) {
-		if (event.detail.value) {
-			this.calendar.current.scrollButtonsNavigationMode = mode;
-		}
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <Calendar ref={this.calendar}></Calendar>
-			    <div className="options">
-			        <div className="caption">Scroll Buttons Position</div>
-			        <div className="option">
-			            <RadioButton onChange={this.handleScrollButtonsPosition.bind(this, 'near')}  groupName="a">Near</RadioButton>
-			            <br/>
-			            <RadioButton onChange={this.handleScrollButtonsPosition.bind(this, 'far')}  groupName="a">Far</RadioButton>
-			            <br/>
-			            <RadioButton onChange={this.handleScrollButtonsPosition.bind(this, 'both')} checked groupName="a">Both</RadioButton>
-			            <br/>
-			        </div>
-			        <div className="caption">Scroll Buttons Navigation Mode</div>
-			        <div className="option">
-			            <RadioButton onChange={this.handleScrollButtonsNavigationMode.bind(this, 'landscape')} checked groupName="b">Landscape</RadioButton>
-			            <br/>
-			            <RadioButton onChange={this.handleScrollButtonsNavigationMode.bind(this, 'portrait')}  groupName="b">Portrait</RadioButton>
-			        </div>
-			    </div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Calendar ref={calendarRef}></Calendar>
+      <div className="options">
+        <div className="caption">Scroll Buttons Position</div>
+        <div className="option">
+          <RadioButton onChange={(e) => handleScrollButtonsPosition('near', e)} groupName="a">
+            Near
+          </RadioButton>
+          <br />
+          <RadioButton onChange={(e) => handleScrollButtonsPosition('far', e)} groupName="a">
+            Far
+          </RadioButton>
+          <br />
+          <RadioButton onChange={(e) => handleScrollButtonsPosition('both', e)} checked groupName="a">
+            Both
+          </RadioButton>
+          <br />
+        </div>
+        <div className="caption">Scroll Buttons Navigation Mode</div>
+        <div className="option">
+          <RadioButton onChange={(e) => handleScrollButtonsNavigationMode('landscape', e)} checked groupName="b">
+            Landscape
+          </RadioButton>
+          <br />
+          <RadioButton onChange={(e) => handleScrollButtonsNavigationMode('portrait', e)} groupName="b">
+            Portrait
+          </RadioButton>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

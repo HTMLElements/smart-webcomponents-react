@@ -1,39 +1,35 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+  const logRef = useRef();
+  const buttonRef = useRef();
 
-		this.log = React.createRef();
-		this.button = React.createRef();
-	}
+  const handleEvent = (event) => {
+    logRef.current.innerHTML = event.type;
+  };
 
-	handleEvent(event) {
-		this.log.current.innerHTML = event.type;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Button ref={this.button} id="myButton" onClick={this.handleEvent.bind(this)} onFocus={this.handleEvent.bind(this)} onBlur={this.handleEvent.bind(this)}
-					onMouseEnter={this.handleEvent.bind(this)} onMouseLeave={this.handleEvent.bind(this)}>Click</Button>
-				<div className="options">
-					<div className="caption">Events</div>
-					<div className="option" ref={this.log} id="log"></div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Button 
+        ref={buttonRef} 
+        id="myButton" 
+        onClick={handleEvent} 
+        onFocus={handleEvent} 
+        onBlur={handleEvent} 
+        onMouseEnter={handleEvent} 
+        onMouseLeave={handleEvent}
+      >
+        Click
+      </Button>
+      <div className="options">
+        <div className="caption">Events</div>
+        <div className="option" ref={logRef} id="log"></div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

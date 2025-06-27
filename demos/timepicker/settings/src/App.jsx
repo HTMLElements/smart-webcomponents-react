@@ -1,99 +1,104 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 import { TimePicker } from 'smart-webcomponents-react/timepicker';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.timepicker = React.createRef();
-		this.valueLog = React.createRef();
-	}
+const App = () => {
+  const timepicker = useRef(null);
+  const valueLog = useRef(null);
 
-	handleTimePickerChange(event) {
-		const value = event.detail.value;
-		this.valueLog.current.innerHTML = value.getHours() + ':' + value.getMinutes();
-	}
+  const handleTimePickerChange = (event) => {
+    const value = event.detail.value;
+    if (valueLog.current && value instanceof Date) {
+      valueLog.current.innerHTML = value.getHours() + ':' + value.getMinutes();
+    }
+  };
 
-	handleHoursChange() {
-		this.timepicker.current.selection = 'hour';
-	}
+  const handleHoursChange = () => {
+    if (timepicker.current) {
+      timepicker.current.selection = 'hour';
+    }
+  };
 
-	handleMinutesChange() {
-		this.timepicker.current.selection = 'minute';
-	}
+  const handleMinutesChange = () => {
+    if (timepicker.current) {
+      timepicker.current.selection = 'minute';
+    }
+  };
 
-	handleminuteInterval1Change() {
-		this.timepicker.current.minuteInterval = 1;
-	}
+  const handleMinuteInterval1Change = () => {
+    if (timepicker.current) {
+      timepicker.current.minuteInterval = 1;
+    }
+  };
 
-	handleminuteInterval5Change() {
-		this.timepicker.current.minuteInterval = 5;
-	}
+  const handleMinuteInterval5Change = () => {
+    if (timepicker.current) {
+      timepicker.current.minuteInterval = 5;
+    }
+  };
 
-	handleminuteInterval15Change() {
-		this.timepicker.current.minuteInterval = 15;
-	}
+  const handleMinuteInterval15Change = () => {
+    if (timepicker.current) {
+      timepicker.current.minuteInterval = 15;
+    }
+  };
 
-	handleSetHoursClick() {
-		this.timepicker.current.setHours(20);
-	}
+  const handleSetHoursClick = () => {
+    if (timepicker.current) {
+      timepicker.current.setHours(20);
+    }
+  };
 
-	handleSetMinutesClick() {
-		this.timepicker.current.setMinutes(12);
-	}
+  const handleSetMinutesClick = () => {
+    if (timepicker.current) {
+      timepicker.current.setMinutes(12);
+    }
+  };
 
-	handleSetNowClick() {
-		this.timepicker.current.value = new Date();
-	}
+  const handleSetNowClick = () => {
+    if (timepicker.current) {
+      timepicker.current.value = new Date();
+    }
+  };
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<div>
-					<TimePicker ref={this.timepicker} id="timePicker" format="24-hour" onChange={this.handleTimePickerChange.bind(this)}></TimePicker>
-				</div>
-				<div className="options">
-					<div className="caption">Settings</div>
-					<div className="option">
-						<div className="container">
-							<p>Selection</p>
-							<RadioButton checked groupName="selection" onChange={this.handleHoursChange.bind(this)}>Hours</RadioButton>
-							<RadioButton groupName="selection" onChange={this.handleMinutesChange.bind(this)}>Minutes</RadioButton>
-						</div>
-						<div className="container">
-							<p>Minute interval</p>
-							<RadioButton checked groupName="minuteInterval" onChange={this.handleminuteInterval1Change.bind(this)}>1</RadioButton>
-							<RadioButton groupName="minuteInterval" onChange={this.handleminuteInterval5Change.bind(this)}>5</RadioButton>
-							<RadioButton groupName="minuteInterval" onChange={this.handleminuteInterval15Change.bind(this)}>15</RadioButton>
-						</div>
-						<br />
-						<Button id="setHours" className="demoButton" onClick={this.handleSetHoursClick.bind(this)}>Set hours to 20</Button>
-						<Button id="setMinutes" className="demoButton" onClick={this.handleSetMinutesClick.bind(this)}>Set minutes to 12</Button>
-						<Button id="setNow" className="demoButton" onClick={this.handleSetNowClick.bind(this)}>Set to now</Button>
-						<br />
-						<br />
-						<div>Current value: <strong ref={this.valueLog} id="valueLog"></strong>
-						</div>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div>
+        <TimePicker
+          ref={timepicker}
+          id="timePicker"
+          format="24-hour"
+          onChange={handleTimePickerChange}
+        ></TimePicker>
+      </div>
+      <div className="options">
+        <div className="caption">Settings</div>
+        <div className="option">
+          <div className="container">
+            <p>Selection</p>
+            <RadioButton checked groupName="selection" onChange={handleHoursChange}>Hours</RadioButton>
+            <RadioButton groupName="selection" onChange={handleMinutesChange}>Minutes</RadioButton>
+          </div>
+          <div className="container">
+            <p>Minute interval</p>
+            <RadioButton checked groupName="minuteInterval" onChange={handleMinuteInterval1Change}>1</RadioButton>
+            <RadioButton groupName="minuteInterval" onChange={handleMinuteInterval5Change}>5</RadioButton>
+            <RadioButton groupName="minuteInterval" onChange={handleMinuteInterval15Change}>15</RadioButton>
+          </div>
+          <br />
+          <Button id="setHours" className="demoButton" onClick={handleSetHoursClick}>Set hours to 20</Button>
+          <Button id="setMinutes" className="demoButton" onClick={handleSetMinutesClick}>Set minutes to 12</Button>
+          <Button id="setNow" className="demoButton" onClick={handleSetNowClick}>Set to now</Button>
+          <br />
+          <br />
+          <div>Current value: <strong ref={valueLog} id="valueLog"></strong></div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

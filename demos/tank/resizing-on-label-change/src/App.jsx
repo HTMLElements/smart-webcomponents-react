@@ -1,236 +1,132 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useState, useEffect } from 'react';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 import { Tank } from 'smart-webcomponents-react/tank';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.tank = React.createRef();
-		this.scaleWidth = React.createRef();
-		this.scaleHeight = React.createRef();
-		this.trackWidth = React.createRef();
-		this.trackHeight = React.createRef();
-	}
+const App = () => {
+  const tank = useRef(null);
+  const scaleWidth = useRef(null);
+  const scaleHeight = useRef(null);
+  const trackWidth = useRef(null);
+  const trackHeight = useRef(null);
 
-	setLogAndUpdateSize(tank) {
-		const scaleWidth = this.scaleWidth.current,
-			scaleHeight = this.scaleHeight.current,
-			trackWidth = this.trackWidth.current,
-			trackHeight = this.trackHeight.current;
-		if (tank.scalePosition === 'far') {
-			scaleWidth.innerHTML = window.getComputedStyle(tank.nativeElement.getElementsByClassName('smart-scale')[1]).getPropertyValue('width');
-			scaleHeight.innerHTML = window.getComputedStyle(tank.nativeElement.getElementsByClassName('smart-scale')[1]).getPropertyValue('height');
-		} else {
-			scaleWidth.innerHTML = window.getComputedStyle(tank.nativeElement.getElementsByClassName('smart-scale')[0]).getPropertyValue('width');
-			scaleHeight.innerHTML = window.getComputedStyle(tank.nativeElement.getElementsByClassName('smart-scale')[0]).getPropertyValue('height');
-		}
-		trackWidth.innerHTML = window.getComputedStyle(tank.nativeElement.getElementsByClassName('smart-track')[0]).getPropertyValue('width');
-		trackHeight.innerHTML = window.getComputedStyle(tank.nativeElement.getElementsByClassName('smart-track')[0]).getPropertyValue('height');
+  const setLogAndUpdateSize = (tankInstance) => {
+    if (!tankInstance) return;
+    const scaleElements = tankInstance.nativeElement.getElementsByClassName('smart-scale');
+    const trackElements = tankInstance.nativeElement.getElementsByClassName('smart-track');
 
-		tank.getOptimalSize().then(function (size) {
-			tank.nativeElement.style.width = size.width + 'px';
-			tank.nativeElement.style.height = size.height + 'px';
-		});
-	};
+    if (tankInstance.scalePosition === 'far') {
+      if (scaleElements.length > 1) {
+        scaleWidth.current.innerHTML = window.getComputedStyle(scaleElements[1]).getPropertyValue('width');
+        scaleHeight.current.innerHTML = window.getComputedStyle(scaleElements[1]).getPropertyValue('height');
+      }
+    } else {
+      if (scaleElements.length > 0) {
+        scaleWidth.current.innerHTML = window.getComputedStyle(scaleElements[0]).getPropertyValue('width');
+        scaleHeight.current.innerHTML = window.getComputedStyle(scaleElements[0]).getPropertyValue('height');
+      }
+    }
 
-	handleMaxTwoMlnChange(event) {
-		const tank = this.tank.current;
+    if (trackElements.length > 0) {
+      trackWidth.current.innerHTML = window.getComputedStyle(trackElements[0]).getPropertyValue('width');
+      trackHeight.current.innerHTML = window.getComputedStyle(trackElements[0]).getPropertyValue('height');
+    }
 
-		if (event.detail.value) {
-			tank.max = 2000000;
-			this.setLogAndUpdateSize(tank);
-		}
-	}
+    tankInstance.getOptimalSize().then((size) => {
+      tankInstance.nativeElement.style.width = size.width + 'px';
+      tankInstance.nativeElement.style.height = size.height + 'px';
+    });
+  };
 
-	handleMaxTwoThousandChange(event) {
-		const tank = this.tank.current;
+  // Handlers for radio buttons
+  const handleMaxChange = (value) => {
+    if (tank.current) {
+      tank.current.max = value;
+      setLogAndUpdateSize(tank.current);
+    }
+  };
 
-		if (event.detail.value) {
-			tank.max = 2000;
-			this.setLogAndUpdateSize(tank);
-		}
-	}
+  const handleMinChange = (value) => {
+    if (tank.current) {
+      tank.current.min = value;
+      setLogAndUpdateSize(tank.current);
+    }
+  };
 
-	handleMaxTwentyChange(event) {
-		const tank = this.tank.current;
+  const handleScalePositionChange = (value) => {
+    if (tank.current) {
+      tank.current.scalePosition = value;
+      setLogAndUpdateSize(tank.current);
+    }
+  };
 
-		if (event.detail.value) {
-			tank.max = 20;
-			this.setLogAndUpdateSize(tank);
-		}
-	}
+  const handleOrientationChange = (value) => {
+    if (tank.current) {
+      tank.current.orientation = value;
+      setLogAndUpdateSize(tank.current);
+    }
+  };
 
-	handleMinTwoMlnChange(event) {
-		const tank = this.tank.current;
+  const handleLabelsVisibilityChange = (value) => {
+    if (tank.current) {
+      tank.current.labelsVisibility = value;
+      setLogAndUpdateSize(tank.current);
+    }
+  };
 
-		if (event.detail.value) {
-			tank.min = -2000000;
-			this.setLogAndUpdateSize(tank);
-		}
-	}
+  // On mount, initialize the size
+  useEffect(() => {
+    if (tank.current) {
+      setLogAndUpdateSize(tank.current);
+    }
+  }, []);
 
-	handleMinTwoThousandChange(event) {
-		const tank = this.tank.current;
-
-		if (event.detail.value) {
-			tank.min = -2000;
-			this.setLogAndUpdateSize(tank);
-		}
-	}
-
-	handleMinTwentyChange(event) {
-		const tank = this.tank.current;
-
-		if (event.detail.value) {
-			tank.min = -20;
-			this.setLogAndUpdateSize(tank);
-		}
-	}
-
-	handleHorizontalOrientationChange(event) {
-		const tank = this.tank.current;
-
-		if (event.detail.value) {
-			tank.orientation = 'horizontal';
-			this.setLogAndUpdateSize(tank);
-		}
-	}
-
-	handleVerticalOrientationChange(event) {
-		const tank = this.tank.current;
-
-		if (event.detail.value) {
-			tank.orientation = 'vertical';
-			this.setLogAndUpdateSize(tank);
-		}
-	}
-
-	handleScaleNearChange(event) {
-		const tank = this.tank.current;
-
-		if (event.detail.value) {
-			tank.scalePosition = 'near';
-			this.setLogAndUpdateSize(tank);
-		}
-	}
-
-	handleScaleFarChange(event) {
-		const tank = this.tank.current;
-
-		if (event.detail.value) {
-			tank.scalePosition = 'far';
-			this.setLogAndUpdateSize(tank);
-		}
-	}
-
-	handleScaleBothChange(event) {
-		const tank = this.tank.current;
-
-		if (event.detail.value) {
-			tank.scalePosition = 'both';
-			this.setLogAndUpdateSize(tank);
-		}
-	}
-
-	handleScaleNoneChange(event) {
-		const tank = this.tank.current;
-
-		if (event.detail.value) {
-			tank.scalePosition = 'none';
-			this.setLogAndUpdateSize(tank);
-		}
-	}
-
-	handleTurnLabelsOnChange(event) {
-		const tank = this.tank.current;
-
-		if (event.detail.value) {
-			tank.labelsVisibility = 'all';
-			this.setLogAndUpdateSize(tank);
-		}
-	}
-
-	handleTurnLabelsOffChange(event) {
-		const tank = this.tank.current;
-
-		if (event.detail.value) {
-			tank.labelsVisibility = 'none';
-			this.setLogAndUpdateSize(tank);
-		}
-	}
-
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Tank ref={this.tank} id="tank" orientation="vertical" min="-20" max="20"></Tank>
-				<div className="options">
-					<div className="caption">Settings</div>
-					<div className="option">
-						<p>Set Max:</p>
-						<RadioButton groupName="max" id="maxTwoMln" onChange={this.handleMaxTwoMlnChange.bind(this)}>2 000 000</RadioButton>
-						<RadioButton groupName="max"
-							id="maxTwoThousand" onChange={this.handleMaxTwoThousandChange.bind(this)}>2 000</RadioButton>
-						<RadioButton groupName="max" id="maxTwenty"
-							checked onChange={this.handleMaxTwentyChange.bind(this)}>20</RadioButton>
-					</div>
-					<div className="option">
-						<p>Set Min:</p>
-						<RadioButton groupName="min" id="minTwoMln" onChange={this.handleMinTwoMlnChange.bind(this)}>-2 000 000</RadioButton>
-						<RadioButton groupName="min"
-							id="minTwoThousand" onChange={this.handleMinTwoThousandChange.bind(this)}>-2 000</RadioButton>
-						<RadioButton groupName="min" id="minTwenty"
-							checked onChange={this.handleMinTwentyChange.bind(this)}>-20</RadioButton>
-					</div>
-					<div className="option">
-						<p>Set Scale Position:</p>
-						<RadioButton groupName="scalePosition"
-							id="scaleNear" checked onChange={this.handleScaleNearChange.bind(this)}>Near</RadioButton>
-						<RadioButton groupName="scalePosition"
-							id="scaleFar" onChange={this.handleScaleFarChange.bind(this)}>Far</RadioButton>
-						<RadioButton groupName="scalePosition"
-							id="scaleBoth" onChange={this.handleScaleBothChange.bind(this)}>Both</RadioButton>
-						<RadioButton groupName="scalePosition"
-							id="scaleNone" onChange={this.handleScaleNoneChange.bind(this)}>None</RadioButton>
-					</div>
-					<div className="option">
-						<p>Change orientation:</p>
-						<RadioButton groupName="orientation"
-							id="horizontalOrientation" onChange={this.handleHorizontalOrientationChange.bind(this)}>Horizontal</RadioButton>
-						<RadioButton groupName="orientation"
-							id="verticalOrientation" checked onChange={this.handleVerticalOrientationChange.bind(this)}>Vertical</RadioButton>
-					</div>
-					<div className="option">
-						<p>Show labels:</p>
-						<RadioButton groupName="labelVisibility"
-							id="turnLabelsOn" checked onChange={this.handleTurnLabelsOnChange.bind(this)}>On</RadioButton>
-						<RadioButton groupName="labelVisibility"
-							id="turnLabelsOff" onChange={this.handleTurnLabelsOffChange.bind(this)}>Off</RadioButton>
-					</div>
-					<div className="option">
-						<div id="log">Scale width: <span ref={this.scaleWidth} id="scaleWidth"></span>
-							<br />Scale height: <span ref={this.scaleHeight} id="scaleHeight"></span>
-							<br />Track width: <span ref={this.trackWidth} id="trackWidth"></span>
-							<br />Track height: <span ref={this.trackHeight} id="trackHeight"></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Tank ref={tank} id="tank" orientation="vertical" min={-20} max={20}></Tank>
+      <div className="options">
+        <div className="caption">Settings</div>
+        <div className="option">
+          <p>Set Max:</p>
+          <RadioButton groupName="max" id="maxTwoMln" onChange={e => e.detail.value && handleMaxChange(2000000)}>2 000 000</RadioButton>
+          <RadioButton groupName="max" id="maxTwoThousand" onChange={e => e.detail.value && handleMaxChange(2000)}>2 000</RadioButton>
+          <RadioButton groupName="max" id="maxTwenty" checked onChange={e => e.detail.value && handleMaxChange(20)}>20</RadioButton>
+        </div>
+        <div className="option">
+          <p>Set Min:</p>
+          <RadioButton groupName="min" id="minTwoMln" onChange={e => e.detail.value && handleMinChange(-2000000)}>-2 000 000</RadioButton>
+          <RadioButton groupName="min" id="minTwoThousand" onChange={e => e.detail.value && handleMinChange(-2000)}>-2 000</RadioButton>
+          <RadioButton groupName="min" id="minTwenty" checked onChange={e => e.detail.value && handleMinChange(-20)}>-20</RadioButton>
+        </div>
+        <div className="option">
+          <p>Set Scale Position:</p>
+          <RadioButton groupName="scalePosition" id="scaleNear" checked onChange={e => e.detail.value && handleScalePositionChange('near')}>Near</RadioButton>
+          <RadioButton groupName="scalePosition" id="scaleFar" onChange={e => e.detail.value && handleScalePositionChange('far')}>Far</RadioButton>
+          <RadioButton groupName="scalePosition" id="scaleBoth" onChange={e => e.detail.value && handleScalePositionChange('both')}>Both</RadioButton>
+          <RadioButton groupName="scalePosition" id="scaleNone" onChange={e => e.detail.value && handleScalePositionChange('none')}>None</RadioButton>
+        </div>
+        <div className="option">
+          <p>Change orientation:</p>
+          <RadioButton groupName="orientation" id="horizontalOrientation" onChange={e => e.detail.value && handleOrientationChange('horizontal')}>Horizontal</RadioButton>
+          <RadioButton groupName="orientation" id="verticalOrientation" checked onChange={e => e.detail.value && handleOrientationChange('vertical')}>Vertical</RadioButton>
+        </div>
+        <div className="option">
+          <p>Show labels:</p>
+          <RadioButton groupName="labelVisibility" id="turnLabelsOn" checked onChange={e => e.detail.value && handleLabelsVisibilityChange('all')}>On</RadioButton>
+          <RadioButton groupName="labelVisibility" id="turnLabelsOff" onChange={e => e.detail.value && handleLabelsVisibilityChange('none')}>Off</RadioButton>
+        </div>
+        <div className="option">
+          <div id="log">
+            Scale width: <span ref={scaleWidth} id="scaleWidth"></span><br />
+            Scale height: <span ref={scaleHeight} id="scaleHeight"></span><br />
+            Track width: <span ref={trackWidth} id="trackWidth"></span><br />
+            Track height: <span ref={trackHeight} id="trackHeight"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

@@ -1,42 +1,36 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 import { Toast } from 'smart-webcomponents-react/toast';
 
-class App extends React.Component {
+const App = () => {
+  const toast = useRef(null);
 
-	constructor(props) {
-		super(props);
+  const handleClick = () => {
+    toast.current.open();
+  };
 
-		this.toast = React.createRef();
-	}
-
-	handleClick(event) {
-		this.toast.current.open();
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Toast ref={this.toast} position="top-left" autoOpen autoClose showCloseButton
-					type={null}>Toast with custom icon</Toast>
-				<div className="options">
-					<div className="caption">Settings</div>
-					<div className="option">
-						<Button onClick={this.handleClick.bind(this)} id="openButton">Open Toast</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Toast
+        ref={toast}
+        position="top-left"
+        autoOpen
+        autoClose
+        showCloseButton
+        type={null}
+      >
+        Toast with custom icon
+      </Toast>
+      <div className="options">
+        <div className="caption">Settings</div>
+        <div className="option">
+          <Button onClick={handleClick} id="openButton">Open Toast</Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

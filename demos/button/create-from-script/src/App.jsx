@@ -1,32 +1,22 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { Button } from 'smart-webcomponents-react/button';
 
-class App extends React.Component {
+const App = () => {
+  const buttonRef = useRef(null);
 
-	constructor(p) {
-		super(p);
+  const handleClick = () => {
+    buttonRef.current.innerHTML = "Clicked";
+  };
 
-		this.button = React.createRef();
-	}
-
-	handleClick() {
-		this.button.current.innerHTML = "Clicked";
-	}
-
-	componentDidMount() {
-		ReactDOM.render(<Button ref={this.button} onClick={this.handleClick.bind(this)} id="button">Click Me</Button>, document.getElementById('buttonContainer'));
-	}
-
-	render() {
-		return (
-			<div id="buttonContainer"></div>
-		);
-	}
-}
-
-
+  return (
+    <div id="buttonContainer">
+      <Button ref={buttonRef} onClick={handleClick} id="button">
+        Click Me
+      </Button>
+    </div>
+  );
+};
 
 export default App;

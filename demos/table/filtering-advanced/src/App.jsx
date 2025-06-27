@@ -1,416 +1,337 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
-import { Menu, MenuItem, MenuItemsGroup } from 'smart-webcomponents-react/menu';
+import { Button } from 'smart-webcomponents-react/button';
+import { Menu, MenuItem } from 'smart-webcomponents-react/menu';
 import { Table } from 'smart-webcomponents-react/table';
 import { Input } from 'smart-webcomponents-react/input';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+  // Refs
+  const table = useRef(null);
+  const menu = useRef(null);
+  const menu2 = useRef(null);
+  const menuitem = useRef(null);
+  const button = useRef(null);
+  const numberofappliedfilters = useRef(null);
+  const filterrowscontainer = useRef(null);
 
-		this.table = React.createRef();
-		this.menu = React.createRef();
-		this.menu2 = React.createRef();
-		this.menuitem = React.createRef();
-		this.button = React.createRef();
-		this.numberofappliedfilters = React.createRef();
-		this.filterrowscontainer = React.createRef();
+  // State to track filters applied and custom filter rows created
+  const [filterRows, setFilterRows] = useState({});
+  const [appliedFilters, setAppliedFilters] = useState({});
+  const rowToRemove = useRef(null);
 
-		this.rowToRemove = null;
-		this.filterRows = {};
-		this.appliedFilters = {};
-	}
+  const emails = [
+    { name: 'Walter Stewart', email: 'walter.stewart@example.com', permission: 'Owner' },
+    { name: 'Manuel Smith', email: 'manuel.smith@example.com', permission: 'Owner' },
+    { name: 'Annette Gray', email: 'annette.gray@example.com', permission: 'Restricted' },
+    { name: 'Candice Murphy', email: 'candice.murphy@example.com', permission: 'Owner' },
+    { name: 'Theresa Reynolds', email: 'theresa.reynolds@example.com', permission: 'Restricted' },
+    { name: 'Wyatt Silva', email: 'wyatt.silva@example.com', permission: 'Restricted' },
+    { name: 'April Hayes', email: 'april.hayes@example.com', permission: 'Owner' },
+    { name: 'Brayden Henry', email: 'brayden.henry@example.com', permission: 'Restricted' },
+    { name: 'Clayton Rice', email: 'clayton.rice@example.com', permission: 'Restricted' },
+    { name: 'Alberto Day', email: 'alberto.day@example.com', permission: 'Restricted' },
+    { name: 'Jeremy Marshall', email: 'jeremy.marshall@example.com', permission: 'Owner' },
+    { name: 'Ivan Kennedy', email: 'ivan.kennedy@example.com', permission: 'Restricted' },
+    { name: 'Sofia Grant', email: 'sofia.grant@example.com', permission: 'Restricted' },
+    { name: 'Felicia Moore', email: 'felicia.moore@example.com', permission: 'Restricted' },
+    { name: 'Carolyn White', email: 'carolyn.white@example.com', permission: 'Restricted' },
+    { name: 'Leo Austin', email: 'leo.austin@example.com', permission: 'Restricted' },
+    { name: 'Derrick Larson', email: 'derrick.larson@example.com', permission: 'Restricted' },
+    { name: 'Carla James', email: 'carla.james@example.com', permission: 'Restricted' },
+    { name: 'Vickie Cruz', email: 'vickie.cruz@example.com', permission: 'Owner' },
+    { name: 'Brianna Torres', email: 'brianna.torres@example.com', permission: 'Restricted' },
+    { name: 'Kristen Cruz', email: 'kristen.cruz@example.com', permission: 'Restricted' },
+    { name: 'Terrance Holt', email: 'terrance.holt@example.com', permission: 'Restricted' },
+    { name: 'Marlene Reed', email: 'marlene.reed@example.com', permission: 'Restricted' },
+    { name: 'Beatrice Nichols', email: 'beatrice.nichols@example.com', permission: 'Restricted' },
+    { name: 'Scarlett Walker', email: 'scarlett.walker@example.com', permission: 'Restricted' },
+    { name: 'Scott Oliver', email: 'scott.oliver@example.com', permission: 'Restricted' },
+    { name: 'Joe Castillo', email: 'joe.castillo@example.com', permission: 'Restricted' },
+    { name: 'Florence Sanders', email: 'florence.sanders@example.com', permission: 'Owner' },
+  ];
 
-	emails = [{
-		name: 'Walter Stewart',
-		email: 'walter.stewart@example.com',
-		permission: 'Owner'
-	},
-	{
-		name: 'Manuel Smith',
-		email: 'manuel.smith@example.com',
-		permission: 'Owner'
-	},
-	{
-		name: 'Annette Gray',
-		email: 'annette.gray@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Candice Murphy',
-		email: 'candice.murphy@example.com',
-		permission: 'Owner'
-	},
-	{
-		name: 'Theresa Reynolds',
-		email: 'theresa.reynolds@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Wyatt Silva',
-		email: 'wyatt.silva@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'April Hayes',
-		email: 'april.hayes@example.com',
-		permission: 'Owner'
-	},
-	{
-		name: 'Brayden Henry',
-		email: 'brayden.henry@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Clayton Rice',
-		email: 'clayton.rice@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Alberto Day',
-		email: 'alberto.day@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Jeremy Marshall',
-		email: 'jeremy.marshall@example.com',
-		permission: 'Owner'
-	},
-	{
-		name: 'Ivan Kennedy',
-		email: 'ivan.kennedy@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Sofia Grant',
-		email: 'sofia.grant@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Felicia Moore',
-		email: 'felicia.moore@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Carolyn White',
-		email: 'carolyn.white@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Leo Austin',
-		email: 'leo.austin@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Derrick Larson',
-		email: 'derrick.larson@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Carla James',
-		email: 'carla.james@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Vickie Cruz',
-		email: 'vickie.cruz@example.com',
-		permission: 'Owner'
-	},
-	{
-		name: 'Brianna Torres',
-		email: 'brianna.torres@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Kristen Cruz',
-		email: 'kristen.cruz@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Terrance Holt',
-		email: 'terrance.holt@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Marlene Reed',
-		email: 'marlene.reed@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Beatrice Nichols',
-		email: 'beatrice.nichols@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Scarlett Walker',
-		email: 'scarlett.walker@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Scott Oliver',
-		email: 'scott.oliver@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Joe Castillo',
-		email: 'joe.castillo@example.com',
-		permission: 'Restricted'
-	},
-	{
-		name: 'Florence Sanders',
-		email: 'florence.sanders@example.com',
-		permission: 'Owner'
-	},
-	];
+  const dataSource = emails;
+  const paging = true;
+  const sortMode = 'one';
 
-	dataSource = this.emails;
+  const columns = [
+    {
+      label: 'Name',
+      dataField: 'name',
+      dataType: 'string',
+      width: 275,
+      formatFunction(settings) {
+        if (settings.value === 'Candice Murphy') {
+          settings.template = `<strong>${settings.value} (you)</strong>`;
+        }
+      }
+    },
+    {
+      label: 'Email',
+      dataField: 'email',
+      dataType: 'string',
+      width: 275
+    },
+    {
+      label: 'Permission',
+      dataField: 'permission',
+      dataType: 'string',
+      width: 200
+    },
+    {
+      label: '',
+      dataField: 'action',
+      dataType: 'string',
+      allowSort: false,
+      formatFunction(settings) {
+        settings.template = `<smart-button row-id="${settings.row}" class="remove-button"><span class="material-icons">more_vert</span></smart-button>`;
+      }
+    }
+  ];
 
-	paging = true;
+  const conditions = [
+    { value: 'CONTAINS', label: 'Contains' },
+    { value: 'DOES_NOT_CONTAIN', label: 'Does not contain' },
+    { value: 'STARTS_WITH', label: 'Starts with' },
+    { value: 'ENDS_WITH', label: 'Ends with' },
+    { value: 'EQUAL', label: 'Equals' }
+  ];
 
-	sortMode = 'one';
+  // Create a custom filter row DOM element and render React into it
+  const createCustomFilterRow = (columnLabel) => {
+    if (filterRows[columnLabel]) {
+      // Already created
+      return;
+    }
 
-	columns = [{
-		label: 'Name',
-		dataField: 'name',
-		dataType: 'string',
-		width: 275,
-		formatFunction(settings) {
-			if (settings.value === 'Candice Murphy') {
-				settings.template = `<strong>${settings.value} (you)</strong>`;
-			}
-		}
-	},
-	{
-		label: 'Email',
-		dataField: 'email',
-		dataType: 'string',
-		width: 275
-	},
-	{
-		label: 'Permission',
-		dataField: 'permission',
-		dataType: 'string',
-		width: 200
-	},
-	{
-		label: '',
-		dataField: 'action',
-		dataType: 'string',
-		allowSort: false,
-		formatFunction(settings) {
-			settings.template = `<smart-button row-id="${settings.row}" className="remove-button"><span className="material-icons">more_vert</span></smart-button>`;
-		}
-	}];
+    // Create a container div for this filter row
+    const row = document.createElement('div');
+    row.className = 'filter-row filter-row-' + columnLabel;
 
-	conditions = [{
-		value: 'CONTAINS',
-		label: 'Contains'
-	},
-	{
-		value: 'DOES_NOT_CONTAIN',
-		label: 'Does not contain'
-	},
-	{
-		value: 'STARTS_WITH',
-		label: 'Starts with'
-	},
-	{
-		value: 'ENDS_WITH',
-		label: 'Ends with'
-	},
-	{
-		value: 'EQUAL',
-		label: 'Equals'
-	}
-	];
+    // Render React elements into the row
+    ReactDOM.createRoot(row).render(
+      <div className={'filter-row filter-row-' + columnLabel}>
+        <Input
+          dataSource={conditions}
+          dropDownButtonPosition='right'
+          placeholder='Condition'
+          className="underlined"
+        />
+        <Input
+          dataSource={conditions}
+          dropDownButtonPosition='right'
+          placeholder={'Filter by ' + columnLabel}
+          className="underlined"
+        />
+        <Button dataField={columnLabel} className="primary confirm">Done</Button>
+      </div>
+    );
 
-	createCustomFilterRow(columnLabel) {
-		const row = document.createElement('div');
+    // Append row to the filter rows container
+    if (filterrowscontainer.current) {
+      filterrowscontainer.current.appendChild(row);
+    }
 
-		ReactDOM.render(<div className={'filter-row filter-row-' + columnLabel}>
-			<Input dataSource={this.conditions} dropDownButtonPosition='right'
-				placeholder='Condition' className="underlined"></Input>
-			<Input dataSource={this.conditions} dropDownButtonPosition='right'
-				placeholder={'Filter by ' + columnLabel} className="underlined"></Input>
-			<Button dataField={columnLabel} className="primary confirm">Done</Button>
-		</div>, document.getElementById('filterRowsContainer'));
+    // Save ref to filterRows state (as object but not using state setter to avoid re-renders)
+    setFilterRows(prev => ({ ...prev, [columnLabel]: row }));
+  };
 
-		this.filterRows[columnLabel] = row;
-	}
+  // Handle click on table (for remove-button)
+  const handleTableClick = (event) => {
+    const tableEl = table.current;
+    const removeMenu = menu2.current;
+    const removeButton = event.target.closest('.remove-button');
 
-	handleTableClick(event) {
-		const table = this.table.current,
-			removeMenu = this.menu2.current,
-			removeButton = event.target.closest('.remove-button');
+    if (removeButton) {
+      const rect = removeButton.getBoundingClientRect();
+      rowToRemove.current = tableEl.nativeElement.rowById[removeButton.getAttribute('row-id')];
 
-		if (removeButton) {
-			const rect = removeButton.getBoundingClientRect();
+      if (rowToRemove.current.data.permission === 'Restricted') {
+        removeMenu.items[0].label = 'Allow access';
+        removeMenu.items[0].value = 'Owner';
+      } else {
+        removeMenu.items[0].label = 'Remove access';
+        removeMenu.items[0].value = 'Restricted';
+      }
 
-			this.rowToRemove = table.nativeElement.rowById[removeButton.getAttribute('row-id')];
+      removeMenu.open(rect.right - removeMenu.nativeElement.offsetWidth, rect.bottom);
+    }
+  };
 
-			if (this.rowToRemove.data.permission === 'Restricted') {
-				removeMenu.items[0].label = 'Allow access';
-				removeMenu.items[0].value = 'Owner';
-			}
-			else {
-				removeMenu.items[0].label = 'Remove access';
-				removeMenu.items[0].value = 'Restricted';
-			}
-			removeMenu.open(rect.right - removeMenu.nativeElement.offsetWidth, rect.bottom);
-		}
-	}
+  const handleRemoveMenuItemClick = (event) => {
+    if (rowToRemove.current) {
+      rowToRemove.current.data.permission = event.detail.value;
+      // Refresh the table data if needed
+      table.current.nativeElement.refresh();
+    }
+  };
 
-	handleRemoveMenuItemClick(event) {
-		this.rowToRemove.data.permission = event.detail.value;
-	}
+  const handlePointerUp = (event) => {
+    event.stopPropagation();
+  };
 
-	handlePointerUp(event) {
-		event.stopPropagation();
-	}
+  // Handle filter button click to toggle filter menu
+  const handleClick = () => {
+    const rect = button.current.nativeElement.getBoundingClientRect();
+    const filterMenu = menu.current;
+    const removeMenu = menu2.current;
 
-	handleClick() {
-		const rect = this.button.current.nativeElement.getBoundingClientRect(),
-			filterMenu = this.menu.current,
-			removeMenu = this.menu2.current;
+    if (filterMenu.opened) {
+      filterMenu.close();
+    } else {
+      filterMenu.open(rect.right - filterMenu.nativeElement.offsetWidth, rect.bottom);
+    }
 
-		if (filterMenu.opened) {
-			filterMenu.close();
-		}
-		else {
-			filterMenu.open(rect.right - filterMenu.nativeElement.offsetWidth, rect.bottom);
-		}
+    removeMenu.close();
+  };
 
-		removeMenu.close();
-	}
+  const clearFiltersOnClick = (event) => {
+    const tableEl = table.current;
+    const numberOfAppliedFiltersEl = numberofappliedfilters.current;
+    const filterMenu = menu.current;
 
-	clearFiltersOnClick(event) {
-		const table = this.table.current,
-			numberOfAppliedFilters = this.numberofappliedfilters.current,
-			filterMenu = this.menu.current;
+    if (event.target.closest('smart-button')) {
+      tableEl.clearFilters();
 
-		if (event.target.closest('smart-button')) {
-			table.clearFilters();
+      for (let i = 0; i < filterMenu.items.length; i++) {
+        const menuItem = filterMenu.items[i];
+        menuItem.checked = false;
+        menuItem.classList.remove('filtered');
+      }
 
-			for (let index in filterMenu.items) {
-				const menuItem = filterMenu.items[index];
-				menuItem.checked = false;
-				menuItem.classList.remove('filtered');
-			}
+      // Remove all filter rows from DOM
+      if (filterrowscontainer.current) {
+        filterrowscontainer.current.querySelectorAll('.filter-row').forEach(row => row.remove());
+      }
 
-			Array.from(document.querySelectorAll('.filter-row')).forEach(row => row.remove());
-			numberOfAppliedFilters.classList.add('smart-visibility-hidden');
-			numberOfAppliedFilters.innerHTML = '0';
-			this.appliedFilters = {};
-			filterMenu.close();
-		}
-	}
+      if (numberOfAppliedFiltersEl) {
+        numberOfAppliedFiltersEl.classList.add('smart-visibility-hidden');
+        numberOfAppliedFiltersEl.innerHTML = '0';
+      }
 
-	handleItemCheckChange(event) {
-		const filterRow = this.filterRows[event.detail.value],
-			filterRowsContainer = this.filterrowscontainer.current;
+      setAppliedFilters({});
+      filterMenu.close();
+    }
+  };
 
-		if (event.detail.checked) {
-			if (filterRow) {
-				filterRowsContainer.appendChild(filterRow);
-			}
-			else {
-				this.createCustomFilterRow(event.detail.value);
-			}
-		}
-		else {
-			filterRow.remove();
-		}
-	}
+  const handleItemCheckChange = (event) => {
+    const value = event.detail.value;
+    const checked = event.detail.checked;
+    const filterRow = filterRows[value];
+    const filterRowsContainer = filterrowscontainer.current;
 
-	handleFilterRowsClick(event) {
-		const table = this.table.current,
-			numberOfAppliedFilters = this.numberofappliedfilters.current,
-			filterMenu = this.menu.current,
-			confirmButton = (event.target.closest('.confirm'));
+    if (checked) {
+      if (filterRow) {
+        filterRowsContainer.appendChild(filterRow);
+      } else {
+        createCustomFilterRow(value);
+      }
+    } else {
+      if (filterRow && filterRow.parentElement) {
+        filterRow.parentElement.removeChild(filterRow);
+      }
+    }
+  };
 
-		if (confirmButton) {
-			const filterRow = confirmButton.parentElement,
-				conditionInput = filterRow.firstElementChild,
-				valueInput = filterRow.children[1],
-				dataField = confirmButton.dataField,
-				condition = conditionInput.$.input.dataValue,
-				value = valueInput.value,
-				menuItem = filterMenu.querySelector(`smart-menu-item[value="${dataField}"]`);
+  // Handle clicks inside filter rows (for Done button)
+  const handleFilterRowsClick = (event) => {
+    const target = event.target;
+    if (target.classList.contains('confirm')) {
+      const rowEl = target.closest('.filter-row');
+      if (!rowEl) return;
 
-			if (!condition || !value) {
-				delete this.appliedFilters[dataField];
-				table.removeFilter(dataField);
-				menuItem.classList.remove('filtered');
-			}
-			else {
-				const filterGroup = new window.Smart.Utilities.FilterGroup(),
-					filterObject = filterGroup.createFilter('string', value, condition);
+      const inputs = rowEl.querySelectorAll('smart-input');
+      if (inputs.length < 2) return;
 
-				filterGroup.addFilter('or', filterObject);
-				table.addFilter(dataField, filterGroup);
-				this.appliedFilters[dataField] = filterGroup;
-				menuItem.classList.add('filtered');
-			}
+      const conditionInput = inputs[0];
+      const valueInput = inputs[1];
+      const condition = conditionInput.value;
+      const value = valueInput.value;
+      const columnLabel = Object.keys(filterRows).find(key => filterRows[key] === rowEl);
 
-			const numberOfFilters = Object.keys(this.appliedFilters).length;
+      if (condition && value && columnLabel) {
+        appliedFilters[columnLabel] = { condition, value };
+        setAppliedFilters({ ...appliedFilters });
+        filterRows[columnLabel].classList.add('filtered');
 
-			numberOfAppliedFilters.classList.toggle('smart-visibility-hidden', numberOfFilters === 0);
-			numberOfAppliedFilters.innerHTML = numberOfFilters.toString();
-			menuItem.checked = false;
-			filterRow.remove();
-		}
-	}
+        // Apply filter on table column
+        table.current.nativeElement.filtering.addFilter({
+          column: columnLabel,
+          condition: condition,
+          value: value
+        });
 
-	componentDidMount() {
-		const template = document.createElement('template');
+        table.current.nativeElement.refresh();
+      }
+    }
+  };
 
-		template.id = 'clearFiltersTemplate';
-		template.innerHTML = '<smart-button className="primary">Clear filters</smart-button>';
+  useEffect(() => {
+    // Add event listeners for table click and filter rows clicks
+    const tableEl = table.current.nativeElement;
+    tableEl.addEventListener('click', handleTableClick);
+    if (filterrowscontainer.current) {
+      filterrowscontainer.current.addEventListener('click', handleFilterRowsClick);
+    }
 
-		document.body.appendChild(template);
+    return () => {
+      tableEl.removeEventListener('click', handleTableClick);
+      if (filterrowscontainer.current) {
+        filterrowscontainer.current.removeEventListener('click', handleFilterRowsClick);
+      }
+    };
+  }, [filterRows, appliedFilters]);
 
-		this.menuitem.current.label = 'clearFiltersTemplate';
-	}
+  return (
+    <div className="app">
+      <div className="options">
+        <Button
+          ref={button}
+          id="filterbutton"
+          className="primary"
+          onClick={handleClick}
+          innerHTML='Filters<span className="material-icons">filter_alt</span>'
+        />
+        <span ref={numberofappliedfilters} id="numberofappliedfilters" className="smart-visibility-hidden">0</span>
 
-	render() {
-		return (
-			<div>
-				<div id="mainContainer">
-					<div id="filterContainer">
-						<div>
-							<div id="label">Users</div>
-							<div id="numberOfAppliedFiltersContainer">
-								<div ref={this.numberofappliedfilters} id="numberOfAppliedFilters" className="smart-visibility-hidden"></div>
-							</div>
-							<div>
-								<Button ref={this.button} id="filterIcon" onPointerUp={this.handlePointerUp.bind(this)} onClick={this.handleClick.bind(this)}><span className="material-icons">filter_list</span>
-								</Button>
-							</div>
-						</div>
-						<div ref={this.filterrowscontainer} id="filterRowsContainer" onClick={this.handleFilterRowsClick.bind(this)}></div>
-					</div>
-					<Table ref={this.table} id="table" onClick={this.handleTableClick.bind(this)} dataSource={this.dataSource} paging={this.paging} sortMode={this.sortMode} columns={this.columns} ></Table>
-				</div>
-				<Menu ref={this.menu} id="filterMenu" checkboxes checkable checkMode="checkbox, none" mode="dropDown" onItemCheckChange={this.handleItemCheckChange.bind(this)}>
-					<MenuItem value="name"><span className="material-icons">filter_alt</span>Name</MenuItem>
-					<MenuItem
-						value="email"><span className="material-icons">filter_alt</span>Email</MenuItem>
-					<MenuItem
-						separator value="permission"><span className="material-icons">filter_alt</span>Permission</MenuItem>
-					<MenuItem ref={this.menuitem} onClick={this.clearFiltersOnClick.bind(this)}
-						id="clearFilters" value="clearFilters"></MenuItem>
-				</Menu>
-				<Menu ref={this.menu2} id="removeMenu" mode="dropDown" onItemClick={this.handleRemoveMenuItemClick.bind(this)}>
-					<MenuItem>Remove access</MenuItem>
-				</Menu>
-			</div>
-		);
-	}
-}
-
-
+        <Menu
+          ref={menu}
+          id="filtermenu"
+          className="filter-menu"
+          checkable
+          onChange={handleItemCheckChange}
+          onClick={clearFiltersOnClick}
+          onPointerUp={handlePointerUp}
+          items={[
+            { label: 'Name', value: 'Name' },
+            { label: 'Email', value: 'Email' },
+            { label: 'Permission', value: 'Permission' },
+            { label: 'Clear filters', type: 'button', className: 'clear-filters' }
+          ]}
+        />
+        <Menu
+          ref={menu2}
+          id="removemenu"
+          onChange={handleRemoveMenuItemClick}
+          items={[
+            { label: 'Remove access', value: 'Restricted' }
+          ]}
+        />
+      </div>
+      <div ref={filterrowscontainer} id="filterrowscontainer" className="filter-rows-container"></div>
+      <Table
+        ref={table}
+        id="table"
+        dataSource={dataSource}
+        columns={columns}
+        paging={paging}
+        sortMode={sortMode}
+      />
+    </div>
+  );
+};
 
 export default App;

@@ -1,52 +1,62 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { Calendar } from 'smart-webcomponents-react/calendar';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const calendarRef = useRef(null);
+    const inputMinRef = useRef(null);
+    const inputMaxRef = useRef(null);
 
-		this.calendar = React.createRef();
-		this.input = React.createRef();
-		this.input2 = React.createRef();
-	}
+    const handleChange = (property, event) => {
+        if (calendarRef.current) {
+            calendarRef.current[property] = event.target.value;
+        }
+    };
 
-	handleChange(property, event) {
-		this.calendar.current[property] = event.target.value;
-	}
+    const init = () => {
+        if (inputMinRef.current) inputMinRef.current.value = '2018-7-1';
+        if (inputMaxRef.current) inputMaxRef.current.value = '2019-7-31';
+    };
 
-	init() {
-		this.input.current.value = '2018-7-1';
-		this.input2.current.value = '2019-7-31';
-	}
+    useEffect(() => {
+        init();
+    }, []);
 
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<Calendar ref={this.calendar} className="calendar-demo" min="2018, 7, 1" max="2019-7-31"
-					selectedDates={["2019-7-2", "2029-7-17"]}></Calendar>
-				<div className="options" id="controlContainer">
-					<div>Min/Max Set</div>
-					<div className="option"> <pre>Min </pre>
-						<input className="text-input" ref={this.input} onChange={this.handleChange.bind(this, 'min')}  placeholder="2019-01-01"
-							id="minInput" />
-					</div>
-					<div className="option"> <pre>Max </pre>
-						<input className="text-input" ref={this.input2} onChange={this.handleChange.bind(this, 'max')} placeholder="2019-01-01"
-							id="maxInput" />
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <Calendar
+                ref={calendarRef}
+                className="calendar-demo"
+                min="2018, 7, 1"
+                max="2019-7-31"
+                selectedDates={["2019-7-2", "2029-7-17"]}
+            ></Calendar>
+            <div className="options" id="controlContainer">
+                <div>Min/Max Set</div>
+                <div className="option">
+                    <pre>Min </pre>
+                    <input
+                        className="text-input"
+                        ref={inputMinRef}
+                        onChange={(e) => handleChange('min', e)}
+                        placeholder="2019-01-01"
+                        id="minInput"
+                    />
+                </div>
+                <div className="option">
+                    <pre>Max </pre>
+                    <input
+                        className="text-input"
+                        ref={inputMaxRef}
+                        onChange={(e) => handleChange('max', e)}
+                        placeholder="2019-01-01"
+                        id="maxInput"
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

@@ -1,40 +1,26 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+  const button = useRef(null);
+  const log = useRef(null);
 
-		this.button = React.createRef();
-		this.log = React.createRef();
-	}
+  const handleClick = () => {
+    const buttonElement = button.current;
+    buttonElement.disabled = true;
+    log.current.innerHTML = "Disabled: " + buttonElement.nativeElement.getAttribute("disabled");
+  };
 
-	handleClick() {
-		const button = this.button.current;
-
-		button.disabled = true;
-		this.log.current.innerHTML = "Disabled: " + button.nativeElement.getAttribute("disabled");
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Button ref={this.button} id="button" onClick={this.handleClick.bind(this)}>Click Me</Button>
-				<br />
-				<br />
-				<div ref={this.log} id="log">Disabled: false</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Button ref={button} id="button" onClick={handleClick}>Click Me</Button>
+      <br />
+      <br />
+      <div ref={log} id="log">Disabled: false</div>
+    </div>
+  );
+};
 
 export default App;

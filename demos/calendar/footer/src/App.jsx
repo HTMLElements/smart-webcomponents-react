@@ -1,48 +1,45 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import { Button } from 'smart-webcomponents-react/button';
 import { Calendar } from 'smart-webcomponents-react/calendar';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const calendarRef = useRef(null);
 
-		this.calendar = React.createRef();
-	}
+    const handleReady = () => {
+        ReactDOM.render(
+            <div>
+                <Button className="flat primary">CANCEL</Button>
+                <Button className="flat primary">OK</Button>
+            </div>,
+            document.getElementById('buttonContainer')
+        );
+    };
 
-	handleReady() {
-		ReactDOM.render(<div>
-			<Button className="flat primary">CANCEL</Button>
-			<Button className="flat primary">OK</Button>
-		</div>, document.getElementById('buttonContainer'));
-	}
+    useEffect(() => {
+        const template = document.createElement('template');
+        template.id = 'templateWithButtons';
+        template.innerHTML = '<div id="buttonContainer"></div>';
 
-	init() {
-		const template = document.createElement('template');
+        document.body.appendChild(template);
 
-		template.id = 'templateWithButtons';
-		template.innerHTML = '<div id="buttonContainer"></div>';
+        if (calendarRef.current) {
+            calendarRef.current.footerTemplate = template.id;
+        }
+    }, []);
 
-		document.body.appendChild(template);
-
-		this.calendar.current.footerTemplate = template.id;
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<Calendar ref={this.calendar} onReady={this.handleReady.bind(this)} id="customFooter" viewSections={["title", "header", "footer"]}></Calendar>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <Calendar
+                ref={calendarRef}
+                onReady={handleReady}
+                id="customFooter"
+                viewSections={["title", "header", "footer"]}
+            ></Calendar>
+        </div>
+    );
+};
 
 export default App;

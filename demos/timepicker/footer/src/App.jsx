@@ -1,42 +1,34 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useEffect, useRef } from "react";
 import { TimePicker } from 'smart-webcomponents-react/timepicker';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.timepicker = React.createRef();
-	}
+const App = () => {
+  const timepicker = useRef(null);
 
-	handleReady() {
-		this.timepicker.current.footerTemplate = "templateWithButtons";
-	}
+  useEffect(() => {
+    const templateWithButtons = document.createElement('template');
 
-	init() {
-		const templateWithButtons = document.createElement('template');
+    templateWithButtons.id = 'templateWithButtons';
+    templateWithButtons.innerHTML = `
+      <smart-button class="flat primary">CANCEL</smart-button>
+      <smart-button class="flat primary">OK</smart-button>
+    `;
 
-		templateWithButtons.id = 'templateWithButtons';
-		templateWithButtons.innerHTML = `<smart-button className="flat primary">CANCEL</smart-button><smart-button className="flat primary">OK</smart-button>`;
+    document.body.appendChild(templateWithButtons);
+  }, []);
 
-		document.body.appendChild(templateWithButtons);
-	}
+  const handleReady = () => {
+    if (timepicker.current) {
+      timepicker.current.footerTemplate = 'templateWithButtons';
+    }
+  };
 
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div >
-				<TimePicker ref={this.timepicker} footer onReady={this.handleReady.bind(this)}></TimePicker>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <TimePicker ref={timepicker} footer onReady={handleReady}></TimePicker>
+    </div>
+  );
+};
 
 export default App;

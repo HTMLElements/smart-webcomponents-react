@@ -1,31 +1,16 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { TimePicker } from 'smart-webcomponents-react/timepicker';
 
-class App extends React.Component {
-
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<p>Select hour and the view will be switched to minutes view</p>
-				<br />
-				<TimePicker autoSwitchToMinutes></TimePicker>
-			</div>
-		);
-	}
-}
-
-
+const App = () => {
+  return (
+    <div>
+      <p>Select hour and the view will be switched to minutes view</p>
+      <br />
+      <TimePicker autoSwitchToMinutes />
+    </div>
+  );
+};
 
 export default App;

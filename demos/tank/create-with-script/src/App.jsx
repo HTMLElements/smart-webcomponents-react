@@ -1,37 +1,25 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef } from "react";
 import { Tank } from 'smart-webcomponents-react/tank';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.tankContainer = React.createRef();
-	}
+function App() {
+  const tankRef = useRef(null);
 
-	init() {
-		ReactDOM.render(<Tank />, this.tankContainer.current, function () {
-			const tank = this;
+  useEffect(() => {
+    const tank = tankRef.current;
+    if (tank) {
+      tank.value = 50;               // number, not string
+      tank.orientation = 'vertical';
+      tank.focus();
+    }
+  }, []); // run once after mount
 
-			tank.value = '50';
-			tank.orientation = 'vertical';
-			tank.focus();
-		});
-	}
-
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div ref={this.tankContainer}></div>
-		);
-	}
+  return (
+    <div>
+      <Tank ref={tankRef} />
+    </div>
+  );
 }
-
-
 
 export default App;

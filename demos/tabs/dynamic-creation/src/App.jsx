@@ -1,35 +1,31 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
-import { Tabs, TabItem, TabItemsGroup } from 'smart-webcomponents-react/tabs';
+import { Tabs } from 'smart-webcomponents-react/tabs';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.tabsContainer = React.createRef();
-	}
+const App = () => {
+  const tabsContainer = useRef(null);
 
-	init() {
-		ReactDOM.render(<Tabs />, this.tabsContainer.current, function () {
-			const tabs = this;
+  useEffect(() => {
+    if (tabsContainer.current) {
+      const root = ReactDOM.createRoot(tabsContainer.current);
+      root.render(<Tabs />);
 
-			tabs.nativeElement.innerHTML = `<smart-tab-item label="TAB 1">Content 1</smart-tab-item>
-											<smart-tab-item label="TAB 2">Content 2</smart-tab-item>`;
-		});
-	}
+      // Wait for the Tabs component to render
+      setTimeout(() => {
+        const tabsElement = tabsContainer.current.querySelector('smart-tabs');
+        if (tabsElement) {
+          tabsElement.innerHTML = `
+            <smart-tab-item label="TAB 1">Content 1</smart-tab-item>
+            <smart-tab-item label="TAB 2">Content 2</smart-tab-item>
+          `;
+        }
+      }, 0);
+    }
+  }, []);
 
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div ref={this.tabsContainer}></div>
-		);
-	}
-}
-
-
+  return <div ref={tabsContainer}></div>;
+};
 
 export default App;

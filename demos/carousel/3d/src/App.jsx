@@ -1,40 +1,50 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useMemo } from "react";
 import { Carousel } from 'smart-webcomponents-react/carousel';
 
-class App extends React.Component {
+const App = () => {
+  // Generate image data source (memoized to avoid regeneration)
+  const dataSource = useMemo(() => {
+    return Array.from({ length: 7 }, (_, index) => ({
+      image: `./../../../src/images/carousel-square-${index + 1}.jpg`
+    }));
+  }, []);
 
-	generateDataSource(items) {
-		let dataSource = Array(items).fill({});
+  useEffect(() => {
+    // Component did mount logic (if needed)
+  }, []);
 
-		dataSource.forEach((element, index) => dataSource[index] = {
-			image: `./../../../src/images/carousel-square-${index + 1}.jpg`
-		});
-		return dataSource;
-	}
+  return (
+    <div>
+      <h2>3d Carousel Square Style</h2>
+      <Carousel
+        dataSource={dataSource}
+        id="carouselSquare"
+        autoPlay
+        slideShow
+        loop
+        hideIndicators
+        keyboard
+        displayMode="3d"
+        interval={10000}
+      />
 
-	dataSource = this.generateDataSource(7);
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			     <h2>3d Carousel Square Style</h2>
-			    <Carousel dataSource={this.dataSource} id="carouselSquare" autoPlay slideShow loop
-			    hideIndicators keyboard displayMode="3d" interval={10000}></Carousel>
-			     <h2>3d Carousel Circle Style</h2>
-			    <Carousel dataSource={this.dataSource} id="carouselCircle" className="circle" autoPlay
-			    slideShow loop hideIndicators keyboard displayMode="3d" interval={10000}></Carousel>
-			</div>
-		);
-	}
-}
-
-
+      <h2>3d Carousel Circle Style</h2>
+      <Carousel
+        dataSource={dataSource}
+        id="carouselCircle"
+        className="circle"
+        autoPlay
+        slideShow
+        loop
+        hideIndicators
+        keyboard
+        displayMode="3d"
+        interval={10000}
+      />
+    </div>
+  );
+};
 
 export default App;

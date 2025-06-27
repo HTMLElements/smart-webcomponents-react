@@ -1,45 +1,41 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { SwitchButton } from 'smart-webcomponents-react/switchbutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const switchbutton = useRef(null);
 
-		this.switchbutton = React.createRef();
-	}
+  useEffect(() => {
+    document.getElementById('templateContainer').innerHTML = `
+      <template id="trueTemplate">
+        <span class="smart-true-content">{{content}}</span>
+      </template>
+      <template id="falseTemplate">
+        <span class="smart-false-content">{{content}}</span>
+      </template>
+    `;
 
-	init() {
-		document.getElementById('templateContainer').innerHTML = `
-			<template id="trueTemplate"> <span className="smart-true-content">{{content}}</span>
-			</template>
-			<template id="falseTemplate"> <span className="smart-false-content">{{content}}</span>
-			</template>`;
+    if (switchbutton.current) {
+      switchbutton.current.trueTemplate = 'trueTemplate';
+      switchbutton.current.falseTemplate = 'falseTemplate';
+    }
+  }, []);
 
-			this.switchbutton.current.trueTemplate = 'trueTemplate';
-			this.switchbutton.current.falseTemplate = 'falseTemplate';
-	}
-
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>Custom Switch Button template
-				<br />
-				<br />
-				<SwitchButton ref={this.switchbutton} checked={null} 
-					trueContent="On" falseContent="Off"></SwitchButton>
-				<div id="templateContainer"></div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      Custom Switch Button template
+      <br />
+      <br />
+      <SwitchButton
+        ref={switchbutton}
+        checked={null}
+        trueContent="On"
+        falseContent="Off"
+      ></SwitchButton>
+      <div id="templateContainer"></div>
+    </div>
+  );
+};
 
 export default App;

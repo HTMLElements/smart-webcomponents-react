@@ -1,93 +1,80 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef } from "react";
 import { Calendar } from 'smart-webcomponents-react/calendar';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const calendarRef = useRef(null);
+    const logRef = useRef(null);
 
-		this.calendar = React.createRef();
-		this.log = React.createRef();
-	}
+    const formatDate = (date) => {
+        const monthNames = [
+            "January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"
+        ];
+        const day = date.getDate();
+        const monthName = monthNames[date.getMonth()];
+        const year = date.getFullYear();
 
-	formatDate(date) {
-		const monthNames = [
-			"January", "February", "March",
-			"April", "May", "June", "July",
-			"August", "September", "October",
-			"November", "December"
-		];
-		const day = date.getDate();
-		const monthIndex = date.getMonth();
-		const monthName = monthNames[monthIndex];
-		const year = date.getFullYear();
+        return `${day} ${monthName} ${year}`;
+    };
 
-		return day + ' ' + monthName + ' ' + year;
-	}
+    const handleOpen = (event) => {
+        const date = new Date(event.detail.value);
+        const calendar = calendarRef.current;
 
-	handleOpen(event) {
-		const date = new Date(event.detail.value),
-			calendar = this.calendar.current;
+        if (date.getFullYear() === 2020) {
+            const tooltip = event.detail.target;
+            calendar.tooltipPosition = 'top';
 
-		if (date.getFullYear() === 2020) {
-			const tooltip = event.detail.target;
+            if (date.getMonth() === 5 && date.getDate() === 9) {
+                tooltip.innerHTML = "Ivan's Birthday !";
+            } else if (date.getMonth() === 6) {
+                if (date.getDate() === 1) {
+                    tooltip.innerHTML = "Filip's Birthday !";
+                } else {
+                    tooltip.innerHTML = "Anthony's Birthday !";
+                    calendar.tooltipPosition = 'right';
+                }
+            }
+        }
+    };
 
-			calendar.tooltipPosition = 'top';
+    useEffect(() => {
+        const template = document.createElement('template');
+        template.id = 'importantDatesTemplate';
+        template.innerHTML = '<span>{{day}}</span><span>&#127874</span>';
 
-			if (date.getMonth() === 5 && date.getDate() === 9) {
-				tooltip.innerHTML = 'Ivan\'s Birthday !';
-			}
-			else if (date.getMonth() === 6) {
-				if (date.getDate() === 1) {
-					tooltip.innerHTML = 'Filip\'s Birthday !';
-				}
-				else {
-					tooltip.innerHTML = 'Anthony\'s Birthday !';
-					calendar.tooltipPosition = 'right';
-				}
-			}
-		}
-	}
+        document.body.appendChild(template);
 
-	init() {
-		const template = document.createElement('template');
+        const calendar = calendarRef.current;
+        calendar.importantDatesTemplate = template.id;
 
-		template.id = 'importantDatesTemplate';
-		template.innerHTML = '<span>{{day}}</span><span>&#127874</span>';
+        if (calendar.importantDates) {
+            calendar.importantDates.forEach(dateString => {
+                const formattedDate = formatDate(new Date(dateString));
+                logRef.current.innerHTML += `${formattedDate}<br />`;
+            });
+        }
+    }, []);
 
-		document.body.appendChild(template);
-
-		this.calendar.current.importantDatesTemplate = template.id;
-
-		const importantDates = this.calendar.current.importantDates;
-
-		if (importantDates) {
-			for (let d = 0; d < importantDates.length; d++) {
-				this.log.current.innerHTML += this.formatDate(new Date(importantDates[d])) + '<br />';
-			}
-		}
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<Calendar ref={this.calendar} className="special-days"
-					importantDates={["2020, 6, 9", "2020, 7, 1", "2020, 7, 30", "2020, 12, 24"]} tooltip></Calendar>
-				<div className="options">
-					<div className="caption">Important Dates</div>
-					<div className="option" ref={this.log} id="importantDates"></div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <Calendar
+                ref={calendarRef}
+                className="special-days"
+                importantDates={["2020, 6, 9", "2020, 7, 1", "2020, 7, 30", "2020, 12, 24"]}
+                tooltip
+                onOpen={handleOpen}
+            />
+            <div className="options">
+                <div className="caption">Important Dates</div>
+                <div className="option" ref={logRef} id="importantDates"></div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

@@ -1,55 +1,46 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useState, useRef, useEffect } from "react";
 import { Calendar } from 'smart-webcomponents-react/calendar';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const calendar = useRef(null);
+  const [weeksCount, setWeeksCount] = useState(2);
 
-		this.calendar = React.createRef();
-		this.weeksCountSelector = React.createRef();
-	}
+  useEffect(() => {
+    if (calendar.current) {
+      calendar.current.weeks = weeksCount;
+      calendar.current.nativeElement.style.height = 120 + 32 * (weeksCount - 1) + 'px';
+    }
+  }, [weeksCount]);
 
-	handleChange(event) {
-		const calendar = this.calendar.current;
+  const handleChange = (event) => {
+    let weeks = parseInt(event.target.value);
+    if (isNaN(weeks)) return;
+    if (weeks < 1) weeks = 1;
+    if (weeks > 6) weeks = 6;
+    setWeeksCount(weeks);
+  };
 
-		if (calendar.weeks) {
-			calendar.weeks = parseInt(event.target.value);
-			calendar.nativeElement.style.height = 120 + 32 * (calendar.weeks - 1) + 'px';
-		}
-	}
-
-	init() {
-		const calendar = this.calendar.current;
-
-		if (calendar.weeks) {
-			calendar.nativeElement.style.height = 120 + 32 * (calendar.weeks - 1) + 'px';
-		}
-
-		this.weeksCountSelector.current.value = '2';
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<Calendar ref={this.calendar} weeks={2}></Calendar>
-				<div className="options">
-					<div className="caption">Number of weeks(1-6)</div>
-					<div className="option">
-						<input className="text-input" ref={this.weeksCountSelector} onChange={this.handleChange.bind(this)} id="weeksCountSelector" />
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Calendar ref={calendar} weeks={weeksCount}></Calendar>
+      <div className="options">
+        <div className="caption">Number of weeks (1-6)</div>
+        <div className="option">
+          <input
+            className="text-input"
+            value={weeksCount}
+            onChange={handleChange}
+            id="weeksCountSelector"
+            type="number"
+            min="1"
+            max="6"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

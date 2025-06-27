@@ -1,35 +1,33 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useMemo } from "react";
 import { Table } from 'smart-webcomponents-react/table';
 import { GetCountriesData } from './common/data';
 
-class App extends React.Component {
+const App = () => {
+  const dataSource = useMemo(() => GetCountriesData(), []);
+  
+  const columns = useMemo(() => [
+    'Country',
+    'Area',
+    'Population_Rural',
+    'Population_Total',
+    'GDP_Total'
+  ], []);
 
-	dataSource = GetCountriesData();
-
-	columns = [
-		'Country',
-		'Area',
-		'Population_Rural',
-		'Population_Total',
-		'GDP_Total'
-	];
-
-	componentDidMount() {
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">Add .table-bordered for borders on all sides of the table and cells.</div>
-				<Table className="table-hover table-bordered table-striped" id="table" dataSource={this.dataSource} columns={this.columns}></Table>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">
+        Add .table-bordered for borders on all sides of the table and cells.
+      </div>
+      <Table
+        className="table-hover table-bordered table-striped"
+        id="table"
+        dataSource={dataSource}
+        columns={columns}
+      />
+    </div>
+  );
+};
 
 export default App;

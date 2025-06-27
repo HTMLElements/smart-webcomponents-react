@@ -1,113 +1,82 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { Table } from 'smart-webcomponents-react/table';
 import { GetData } from './common/data';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
 
-		this.table = React.createRef();
-	}
+    const tableRef = useRef(null);
 
-	data = GetData(15);
+    const data = GetData(15);
 
-	dataSource = this.data;
+    const columns = [
+        { label: 'id', dataField: 'id', dataType: 'number' },
+        { label: 'First Name', dataField: 'firstName', dataType: 'string' },
+        { label: 'Last Name', dataField: 'lastName', dataType: 'string' },
+        { label: 'Product Name', dataField: 'productName', dataType: 'string' },
+        { label: 'Quantity', dataField: 'quantity', dataType: 'number' }
+    ];
 
-	freezeFooter = true;
+    const handleReady = () => {
+        const totalQuantity = data.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('totalQuantity').innerHTML = totalQuantity.toString();
+    };
 
-	freezeHeader = true;
+    useEffect(() => {
+        const footerTemplate = document.createElement('template');
+        footerTemplate.id = 'customFooterRowTemplate';
+        footerTemplate.innerHTML = `
+            <tr>
+                <td>id</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Product Name</td>
+                <td>Quantity</td>
+            </tr>
+            <tr>
+                <td id="totalLabel" colspan="4">Total</td>
+                <td id="totalQuantity"></td>
+            </tr>
+        `;
 
-	columns = [{
-		label: 'id',
-		dataField: 'id',
-		dataType: 'number'
-	},
-	{
-		label: 'First Name',
-		dataField: 'firstName',
-		dataType: 'string'
-	},
-	{
-		label: 'Last Name',
-		dataField: 'lastName',
-		dataType: 'string'
-	},
-	{
-		label: 'Product Name',
-		dataField: 'productName',
-		dataType: 'string'
-	},
-	{
-		label: 'Quantity',
-		dataField: 'quantity',
-		dataType: 'number'
-	}
-	];
+        const headerTemplate = document.createElement('template');
+        headerTemplate.id = 'customHeaderRowTemplate';
+        headerTemplate.innerHTML = `
+            <tr id="customHeaderRow">
+                <th>The user's id</th>
+                <th>The user's first name</th>
+                <th>The user's last name</th>
+                <th>Official product name</th>
+                <th>The number of purchased items</th>
+            </tr>
+        `;
 
-	handleReady() {
-		let totalQuantity = 0;
+        document.body.appendChild(footerTemplate);
+        document.body.appendChild(headerTemplate);
 
-		this.data.forEach(dataPoint => totalQuantity += dataPoint.quantity);
+        if (tableRef.current) {
+            tableRef.current.footerRow = footerTemplate.id;
+            tableRef.current.headerRow = headerTemplate.id;
+        }
+    }, []);
 
-		document.getElementById('totalQuantity').innerHTML = totalQuantity.toString();
-	}
-
-	init() {
-		const template = document.createElement('template'),
-			template2 = document.createElement('template');
-
-		template.id = 'customFooterRowTemplate';
-		template2.id = 'customHeaderRowTemplate';
-		template.innerHTML = `
-			<tr>
-				<td>id</td>
-				<td>First Name</td>
-				<td>Last Name</td>
-				<td>Product Name</td>
-				<td>Quantity</td>
-			</tr>
-			<tr>
-				<td id="totalLabel" colspan="4">Total</td>
-				<td id="totalQuantity"></td>
-			</tr>
-		`;
-
-		template2.innerHTML = `
-			<tr id="customHeaderRow">
-				<th>The user's id</th>
-				<th>The user's first name</th>
-				<th>The user's last name</th>
-				<th>Official product name</th>
-				<th>The number of purchased items</th>
-			</tr>
-		`;
-
-		document.body.appendChild(template);
-		document.body.appendChild(template2);
-
-		this.table.current.footerRow = template.id;
-		this.table.current.headerRow = template2.id;
-	}
-
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">This demo showcases how to show multiple header and footer rows in Table.</div>
-				<Table ref={this.table} id="table" dataSource={this.dataSource} freezeFooter={this.freezeFooter}
-					freezeHeader={this.freezeHeader} columns={this.columns} onReady={this.handleReady.bind(this)}></Table>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <div className="demo-description">
+                This demo showcases how to show multiple header and footer rows in Table.
+            </div>
+            <Table
+                ref={tableRef}
+                id="table"
+                dataSource={data}
+                freezeFooter
+                freezeHeader
+                columns={columns}
+                onReady={handleReady}
+            />
+        </div>
+    );
+};
 
 export default App;

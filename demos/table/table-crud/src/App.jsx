@@ -1,95 +1,91 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef, useState } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 import { Table } from 'smart-webcomponents-react/table';
 import { GetCountriesData } from './common/data';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+  const table = useRef(null);
+  const buttonAdd = useRef(null);
+  const buttonRemove = useRef(null);
+  const buttonUpdate = useRef(null);
 
-		this.table = React.createRef();
-		this.button = React.createRef();
-		this.button2 = React.createRef();
-		this.button3 = React.createRef();
+  const [counter, setCounter] = useState(0);
 
-		this.counter = 0;
-	}
+  const dataSource = React.useMemo(() => GetCountriesData(), []);
 
-	dataSource = GetCountriesData();
+  const columns = React.useMemo(() => [
+    'Country',
+    'Area',
+    'Population_Rural',
+    'Population_Total',
+    'GDP_Total'
+  ], []);
 
-	columns = [
-		'Country',
-		'Area',
-		'Population_Rural',
-		'Population_Total',
-		'GDP_Total'
-	];
+  const handleAdd = () => {
+    if (!table.current) return;
+    const newCounter = counter + 1;
+    setCounter(newCounter);
 
-	handleAdd() {
-		const table = this.table.current;
+    table.current.dataSource.add({
+      Country: "Bulgaria" + newCounter,
+      Area: "100000",
+      Population_Rural: "8000000",
+      Population_Total: "8100000",
+      GDP_Total: "12321321" // fixed property name to match columns case
+    });
+  };
 
-		this.counter++;
+  const handleUpdate = () => {
+    if (!table.current) return;
 
-		table.dataSource.add({
-			Country: "Bulgaria" + this.counter,
-			Area: "100000",
-			Population_Rural: "8000000",
-			Population_Total: "8100000",
-			GDP_TOTAL: "12321321"
-		});
-	}
+    if (table.current.dataSource.length > 0) {
+      const newCounter = counter + 1;
+      setCounter(newCounter);
 
-	handleUpdate() {
-		const table = this.table.current;
+      table.current.dataSource.update(0, {
+        Country: "Bulgaria" + newCounter,
+        Area: "100000",
+        Population_Rural: "8000000",
+        Population_Total: "8100000",
+        GDP_Total: "12321321321" // fixed property name
+      });
+    }
+  };
 
-		if (table.dataSource.length > 0) {
-			this.counter++;
-			table.dataSource.update(0, {
-				Country: "Bulgaria" + this.counter,
-				Area: "100000",
-				Population_Rural: "8000000",
-				Population_Total: "8100000",
-				GDP_TOTAL: "12321321321"
-			});
-		}
-	}
+  const handleRemove = () => {
+    if (!table.current) return;
 
-	handleRemove() {
-		const table = this.table.current;
+    if (table.current.dataSource.length > 0) {
+      table.current.dataSource.removeAt(table.current.dataSource.length - 1);
+    }
+  };
 
-		if (table.dataSource.length > 0) {
-			table.dataSource.removeAt(table.dataSource.length - 1);
-		}
-	}
-
-	componentDidMount() {
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">This demo shows how to Add, Remove and Update rows to a Table.</div>
-				<Table ref={this.table} className="table-dark table-striped" id="table" dataSource={this.dataSource} columns={this.columns}></Table>
-				<div className="options">
-					<div className="caption">Settings</div>
-					<div className="option">
-						<Button ref={this.button} id="add" onClick={this.handleAdd.bind(this)}>Add</Button>
-					</div>
-					<div className="option">
-						<Button ref={this.button2} id="remove" onClick={this.handleRemove.bind(this)}>Remove</Button>
-					</div>
-					<div className="option">
-						<Button ref={this.button3} id="update" onClick={this.handleUpdate.bind(this)}>Update</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">This demo shows how to Add, Remove and Update rows to a Table.</div>
+      <Table
+        ref={table}
+        className="table-dark table-striped"
+        id="table"
+        dataSource={dataSource}
+        columns={columns}
+      ></Table>
+      <div className="options">
+        <div className="caption">Settings</div>
+        <div className="option">
+          <Button ref={buttonAdd} id="add" onClick={handleAdd}>Add</Button>
+        </div>
+        <div className="option">
+          <Button ref={buttonRemove} id="remove" onClick={handleRemove}>Remove</Button>
+        </div>
+        <div className="option">
+          <Button ref={buttonUpdate} id="update" onClick={handleUpdate}>Update</Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

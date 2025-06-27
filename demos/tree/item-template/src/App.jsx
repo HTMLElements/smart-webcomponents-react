@@ -1,116 +1,110 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
-import { Tree, TreeItem, TreeItemsGroup } from 'smart-webcomponents-react/tree';
+import React, { useEffect, useRef } from 'react';
+import { Tree } from 'smart-webcomponents-react/tree';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.tree = React.createRef();
-	}
+const App = () => {
+  const tree = useRef(null);
 
-	handleClick(event) {
-		const target = event.target;
-		const button = target.closest('smart-button');
-		if (!button) {
-			return;
-		}
-		const input = button.previousElementSibling,
-			editorItem = button.closest('smart-tree-item'),
-			treeItemsGroup = button.closest('smart-tree-items-group');
-		if (input.value) {
-			const newItem = document.createElement('smart-tree-item');
-			newItem.innerHTML = input.value;
-			this.tree.current.addBefore(newItem, editorItem);
-			input.value = '';
-		}
-	}
+  const handleClick = (event) => {
+    const target = event.target;
+    const button = target.closest('smart-button');
+    if (!button) {
+      return;
+    }
+    const input = button.previousElementSibling,
+      editorItem = button.closest('smart-tree-item'),
+      treeItemsGroup = button.closest('smart-tree-items-group');
+    if (input.value) {
+      const newItem = document.createElement('smart-tree-item');
+      newItem.innerHTML = input.value;
+      tree.current.addBefore(newItem, editorItem);
+      input.value = '';
+    }
+  };
 
-	init() {
-		const tree = this.tree.current;
+  useEffect(() => {
+    const treeElement = tree.current;
 
-		function handleSwipe(event) {
-			const originalTarget = event.originalEvent.target,
-				closestItem = originalTarget.closest('smart-tree-item') || originalTarget.closest('smart-tree-items-group');
-			if (closestItem && closestItem.level > 1 && closestItem.label !== 'editorTemplate') {
-				const remove = window.confirm('Do you wish to remove item "' + closestItem.label + '"?');
-				if (remove) {
-					tree.removeItem(closestItem);
-				}
-			}
-		}
+    function handleSwipe(event) {
+      const originalTarget = event.originalEvent.target,
+        closestItem =
+          originalTarget.closest('smart-tree-item') ||
+          originalTarget.closest('smart-tree-items-group');
+      if (closestItem && closestItem.level > 1 && closestItem.label !== 'editorTemplate') {
+        const remove = window.confirm(
+          'Do you wish to remove item "' + closestItem.label + '"?'
+        );
+        if (remove) {
+          treeElement.removeItem(closestItem);
+        }
+      }
+    }
 
-		tree.nativeElement.addEventListener('swipeleft', function (event) {
-			handleSwipe(event);
-		});
-		tree.nativeElement.addEventListener('swiperight', function (event) {
-			handleSwipe(event);
-		});
+    treeElement.nativeElement.addEventListener('swipeleft', handleSwipe);
+    treeElement.nativeElement.addEventListener('swiperight', handleSwipe);
 
-		const editorTemplate = document.createElement('template');
+    // Create and append the editor template only once
+    if (!document.getElementById('editorTemplate')) {
+      const editorTemplate = document.createElement('template');
+      editorTemplate.id = 'editorTemplate';
+      editorTemplate.innerHTML = `
+        <input class="tree-input" placeholder="New item..." />
+        <smart-button class="btn primary" title="Add item">+</smart-button>
+      `;
+      document.body.appendChild(editorTemplate);
+    }
 
-		editorTemplate.id = 'editorTemplate';
-		editorTemplate.innerHTML = `<input className="tree-input" placeholder="New item..." />
-<smart-button  className="btn primary" title="Add item">+</smart-button>`;
-		document.body.appendChild(editorTemplate);
+    treeElement.dataSource = [
+      {
+        label: 'Groceries',
+        expanded: true,
+        items: [
+          { label: 'Bread' },
+          { label: 'Milk' },
+          { label: 'Potatoes' },
+          { label: 'editorTemplate' }
+        ]
+      },
+      {
+        label: 'To do',
+        expanded: true,
+        items: [
+          { label: 'Check car' },
+          { label: 'Attend board meeting' },
+          { label: 'Take kids from school' },
+          { label: 'Change light bulb' },
+          { label: 'editorTemplate' }
+        ]
+      }
+    ];
 
-		this.tree.current.dataSource = [
-			{
-				label: 'Groceries',
-				expanded: true,
-				items: [{
-					label: 'Bread'
-				},
-				{
-					label: 'Milk'
-				},
-				{
-					label: 'Potatoes'
-				},
-				{
-					label: 'editorTemplate'
-				}]
-			},
-			{
-				label: 'To do',
-				expanded: true,
-				items: [{
-					label: 'Check car'
-				},
-				{
-					label: 'Attend board meeting'
-				},
-				{
-					label: 'Take kids from school'
-				},
-				{
-					label: 'Change light bulb'
-				},
-				{
-					label: 'editorTemplate'
-				}]
-			}
-		];
-	}
+    return () => {
+      // Cleanup event listeners
+      treeElement.nativeElement.removeEventListener('swipeleft', handleSwipe);
+      treeElement.nativeElement.removeEventListener('swiperight', handleSwipe);
+    };
+  }, []);
 
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div> <em>Note: Sub-items can be removed by swiping left or right and can be edited by double-clicking or pressing F2.</em>
-				<br />
-				<br />
-				<Tree ref={this.tree} id="tree" editable showLines showRootLines toggleElementPosition="near" onClick={this.handleClick.bind(this)}></Tree>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <em>
+        Note: Sub-items can be removed by swiping left or right and can be edited by
+        double-clicking or pressing F2.
+      </em>
+      <br />
+      <br />
+      <Tree
+        ref={tree}
+        id="tree"
+        editable
+        showLines
+        showRootLines
+        toggleElementPosition="near"
+        onClick={handleClick}
+      ></Tree>
+    </div>
+  );
+};
 
 export default App;

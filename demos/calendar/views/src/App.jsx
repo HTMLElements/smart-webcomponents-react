@@ -1,44 +1,40 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { Calendar } from 'smart-webcomponents-react/calendar';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const calendar = useRef(null);
 
-		this.calendar = React.createRef();
-	}
+  const handleChange = (view, event) => {
+    if (event.detail.value) {
+      calendar.current.view = view;
+    }
+  };
 
-	handleChange(view, event) {
-		if (event.detail.value) {
-			this.calendar.current.view = view;
-		}
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Calendar ref={this.calendar} className="calendar-views" view="landscape" viewSections={["title", "header"]}
-					selectionMode="one"></Calendar>
-				<div className="options">
-					<div className="caption">View Mode</div>
-					<div className="option">
-						<RadioButton onChange={this.handleChange.bind(this, 'landscape')} checked>Landscape</RadioButton>
-						<RadioButton onChange={this.handleChange.bind(this, 'portrait')}>Portrait</RadioButton>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Calendar
+        ref={calendar}
+        className="calendar-views"
+        view="landscape"
+        viewSections={["title", "header"]}
+        selectionMode="one"
+      />
+      <div className="options">
+        <div className="caption">View Mode</div>
+        <div className="option">
+          <RadioButton onChange={(e) => handleChange('landscape', e)} checked>
+            Landscape
+          </RadioButton>
+          <RadioButton onChange={(e) => handleChange('portrait', e)}>
+            Portrait
+          </RadioButton>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

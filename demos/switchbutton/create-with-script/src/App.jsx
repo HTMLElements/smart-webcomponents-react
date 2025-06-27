@@ -1,26 +1,15 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from 'react-dom/client';
 import SwitchButton from "smart-webcomponents-react/switchbutton";
 
-class App extends React.Component {
+const App = () => {
+  useEffect(() => {
+    ReactDOM.render(<SwitchButton />, document.getElementById('switchContainer'));
+  }, []);
 
-	init() {
-		ReactDOM.render(<SwitchButton />, document.getElementById('switchContainer'));
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div id="switchContainer"></div>
-		);
-	}
-}
-
-
+  return <div id="switchContainer"></div>;
+};
 
 export default App;

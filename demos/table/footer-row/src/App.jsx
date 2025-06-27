@@ -1,86 +1,74 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef, useCallback } from "react";
 import { Table } from 'smart-webcomponents-react/table';
 import { GetData } from './common/data';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+  const table = useRef(null);
 
-		this.table = React.createRef();
-	}
+  const data = GetData(15);
 
-	data = GetData(15);
+  const dataSource = data;
 
-	dataSource = this.data;
+  const columns = [
+    { label: 'id', dataField: 'id', dataType: 'number' },
+    { label: 'First Name', dataField: 'firstName', dataType: 'string' },
+    { label: 'Last Name', dataField: 'lastName', dataType: 'string' },
+    { label: 'Product Name', dataField: 'productName', dataType: 'string' },
+    { label: 'Quantity', dataField: 'quantity', dataType: 'number' }
+  ];
 
-	columns = [{
-		label: 'id',
-		dataField: 'id',
-		dataType: 'number'
-	},
-	{
-		label: 'First Name',
-		dataField: 'firstName',
-		dataType: 'string'
-	},
-	{
-		label: 'Last Name',
-		dataField: 'lastName',
-		dataType: 'string'
-	},
-	{
-		label: 'Product Name',
-		dataField: 'productName',
-		dataType: 'string'
-	},
-	{
-		label: 'Quantity',
-		dataField: 'quantity',
-		dataType: 'number'
-	}
-	];
+  // Setup footer row template once on mount
+  useEffect(() => {
+    const template = document.createElement('template');
 
-	handleReady() {
-		let totalQuantity = 0;
+    template.id = 'customFooterRow';
+    template.innerHTML = `
+      <tr>
+        <td id="totalLabel" colspan="4">Total</td>
+        <td id="totalQuantity"></td>
+      </tr>
+    `;
 
-		this.data.forEach(dataPoint => totalQuantity += dataPoint.quantity);
+    document.body.appendChild(template);
 
-		document.getElementById('totalQuantity').innerHTML = totalQuantity.toString();
-	}
+    if (table.current) {
+      table.current.footerRow = template.id;
+    }
 
-	init() {
-		const template = document.createElement('template');
+    // Cleanup template on unmount
+    return () => {
+      const existingTemplate = document.getElementById(template.id);
+      if (existingTemplate) existingTemplate.remove();
+    };
+  }, []);
 
-		template.id = 'customFooterRow';
-		template.innerHTML = `
-			<tr>
-				<td id="totalLabel" colspan="4">Total</td>
-				<td id="totalQuantity"></td>
-			</tr>
-		`;
+  // Calculate total quantity and update footer cell
+  const handleReady = useCallback(() => {
+    let totalQuantity = 0;
+    data.forEach(item => {
+      totalQuantity += item.quantity;
+    });
 
-		document.body.appendChild(template);
+    const totalQuantityCell = document.getElementById('totalQuantity');
+    if (totalQuantityCell) {
+      totalQuantityCell.innerHTML = totalQuantity.toString();
+    }
+  }, [data]);
 
-		this.table.current.footerRow = template.id;
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">This demo shows how to add a footer row to Table.</div>
-				<Table ref={this.table} id="table" dataSource={this.dataSource} columns={this.columns} onReady={this.handleReady.bind(this)}></Table>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">This demo shows how to add a footer row to Table.</div>
+      <Table
+        ref={table}
+        id="table"
+        dataSource={dataSource}
+        columns={columns}
+        onReady={handleReady}
+      />
+    </div>
+  );
+};
 
 export default App;

@@ -1,24 +1,14 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { Calendar } from 'smart-webcomponents-react/calendar';
 
-class App extends React.Component {
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <Calendar  id="calendar" rightToLeft locale="he"></Calendar>
-			</div>
-		);
-	}
-}
-
-
+const App = () => {
+  return (
+    <div>
+      <Calendar id="calendar" rightToLeft locale="he"></Calendar>
+    </div>
+  );
+};
 
 export default App;

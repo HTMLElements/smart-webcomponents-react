@@ -1,50 +1,45 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef } from "react";
 import { Table } from 'smart-webcomponents-react/table';
 import { GetCountriesData } from './common/data';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+  const table = useRef(null);
 
-		this.table = React.createRef();
-	}
+  const dataSource = GetCountriesData();
 
-	dataSource = GetCountriesData();
+  const columns = [
+    'Country',
+    'Area',
+    'Population_Rural',
+    'Population_Total',
+    'GDP_Total'
+  ];
 
-	columns = [
-		'Country',
-		'Area',
-		'Population_Rural',
-		'Population_Total',
-		'GDP_Total'
-	]
+  useEffect(() => {
+    if (table.current) {
+      table.current.sortBy('Country', 'asc');
+    }
+  }, []);
 
-	init() {
-		const table = this.table.current;
-
-		table.sortBy('Country', 'asc');
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">Add "sort-mode" attribute and set it to "one" to make the Table sortable.
-				To make it sortable by many columns, set the attribute to "many"
-			        &lt;tbody&gt;.</div>
-				<Table ref={this.table} sortMode="one" className="table-dark table-striped"
-					id="table" dataSource={this.dataSource} columns={this.columns}></Table>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">
+        Add "sort-mode" attribute and set it to "one" to make the Table sortable.
+        To make it sortable by many columns, set the attribute to "many"
+        &lt;tbody&gt;.
+      </div>
+      <Table
+        ref={table}
+        sortMode="one"
+        className="table-dark table-striped"
+        id="table"
+        dataSource={dataSource}
+        columns={columns}
+      ></Table>
+    </div>
+  );
+};
 
 export default App;

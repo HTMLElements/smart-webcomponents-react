@@ -1,41 +1,34 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { Calendar } from 'smart-webcomponents-react/calendar';
-import { throws } from "assert";
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const calendar = useRef(null);
 
-		this.calendar = React.createRef();
-	}
+  useEffect(() => {
+    const template = document.createElement('template');
 
-	init() {
-		const template = document.createElement('template');
+    template.id = 'headerTemplate';
+    template.innerHTML = '<div class="smart-date-element"><span>{{date}}</span></div>';
 
-		template.id = 'headerTemplate';
-		template.innerHTML = '<div className="smart-date-element"><span>{{date}}</span></div>';
+    document.body.appendChild(template);
 
-		document.body.appendChild(template);
+    if (calendar.current) {
+      calendar.current.headerTemplate = template.id;
+    }
+  }, []);
 
-		this.calendar.current.headerTemplate = template.id;
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<Calendar ref={this.calendar} className="custom-header" selectionMode="one" selectedDates={["2017-08-17"]}></Calendar>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Calendar
+        ref={calendar}
+        className="custom-header"
+        selectionMode="one"
+        selectedDates={["2017-08-17"]}
+      />
+    </div>
+  );
+};
 
 export default App;

@@ -1,47 +1,32 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 import { WaitWindow } from 'smart-webcomponents-react/waitwindow';
 
-class App extends React.Component {
+const App = () => {
+  const waitWindow = useRef(null);
 
-	constructor(p) {
-		super(p);
+  const handleEvent = () => {
+    if (waitWindow.current.opened) {
+      return;
+    }
+    waitWindow.current.open();
+    setTimeout(() => {
+      waitWindow.current.close();
+    }, 2500);
+  };
 
-		this.button = React.createRef();
-		this.waitWindow = React.createRef();
-	}
-	
-	handleEvent(event) {
-	    if (this.waitWindow.current.opened) {
-			return;
-		}
-		this.waitWindow.current.open();
-		setTimeout(() => {
-			this.waitWindow.current.close();
-		}, 2500);
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <div className="options">
-			        <div className="option">
-			            <Button ref={this.button} onClick={this.handleEvent.bind(this)} id="openButton">Open</Button>
-			        </div>
-			    </div>
-			    <WaitWindow opened ref={this.waitWindow} label="Wait Window" modal></WaitWindow>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="options">
+        <div className="option">
+          <Button onClick={handleEvent} id="openButton">Open</Button>
+        </div>
+      </div>
+      <WaitWindow opened={false} ref={waitWindow} label="Wait Window" modal></WaitWindow>
+    </div>
+  );
+};
 
 export default App;

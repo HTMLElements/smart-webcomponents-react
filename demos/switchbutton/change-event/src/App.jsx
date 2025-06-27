@@ -1,39 +1,28 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { SwitchButton } from 'smart-webcomponents-react/switchbutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const log = useRef(null);
 
-		this.log = React.createRef();
-	}
+  const handleChange = (event) => {
+    const checkStatus = event.detail.value;
+    if (log.current) {
+      log.current.textContent = checkStatus.toString();
+    }
+  };
 
-	handleChange(event) {
-		const checkStatus = event.detail.value;
-
-		this.log.current.textContent = checkStatus;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="options">
-					<div className="captions" id="checked">Checked: <span ref={this.log} id="log">false</span>
-					</div>
-				</div>
-				<SwitchButton onChange={this.handleChange.bind(this)}></SwitchButton>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="options">
+        <div className="captions" id="checked">
+          Checked: <span ref={log} id="log">false</span>
+        </div>
+      </div>
+      <SwitchButton onChange={handleChange}></SwitchButton>
+    </div>
+  );
+};
 
 export default App;

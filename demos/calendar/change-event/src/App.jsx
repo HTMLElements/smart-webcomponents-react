@@ -1,37 +1,24 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useState } from "react";
 import { Calendar } from 'smart-webcomponents-react/calendar';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const [eventLog, setEventLog] = useState('');
 
-		this.log = React.createRef();
-	}
+  const handleChange = (event) => {
+    setEventLog(event.detail.value.toString());
+  };
 
-	handleChange(event) {
-		this.log.current.innerHTML = event.detail.value.toString();
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Calendar onChange={this.handleChange.bind(this)} id="calendar"></Calendar>
-				<div>
-					<h3>Event Log:</h3>
-					<div ref={this.log} id="eventLog"></div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Calendar onChange={handleChange} id="calendar"></Calendar>
+      <div>
+        <h3>Event Log:</h3>
+        <div id="eventLog">{eventLog}</div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

@@ -1,69 +1,80 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef, useEffect, useState } from "react";
+import ReactDOM from 'react-dom';
+import { Button } from 'smart-webcomponents-react/button';
 import { Toast } from 'smart-webcomponents-react/toast';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const CustomTemplate = ({ onClose }) => (
+  <div className="buttons">
+    <Button onClick={onClose} id="closeButton">Close</Button>
+  </div>
+);
 
-		this.toast = React.createRef();
-	}
+const App = () => {
+  const toast = useRef(null);
+  const [templateContainer, setTemplateContainer] = useState(null);
 
-	handleOpen(event) {
-		if (event.detail.instance.querySelector('#templateContent').querySelector('smart-button')) {
-			return;
-		}
+  useEffect(() => {
+    // Create a container div to mount the React content for the toast template
+    const container = document.createElement('div');
+    container.id = 'templateContent';
+    setTemplateContainer(container);
 
-		ReactDOM.render(
-			<div className="buttons">
-				<Button onClick={this.handleClick2.bind(this)} id="closeButton">Close</Button>
-			</div>, new DocumentFragment(), function () {
-				event.detail.instance.querySelector('#templateContent').appendChild(this);
-			});
-	}
+    // Append the container to the toast's internal content on open
+    if (toast.current) {
+      toast.current.itemTemplate = 'template'; // Just keeping this as a placeholder id, can be ignored
+    }
 
-	init() {
-		const template = document.createElement('template');
+    return () => {
+      container.remove();
+    };
+  }, []);
 
-		template.id = 'template';
-		template.innerHTML = '<div id="templateContent"><span className="content">{{content}}</span></div>';
+  // Handle toast open event: append React Portal to toast content
+  const handleOpen = (event) => {
+    const toastInstance = event.detail.instance;
+    const contentElement = toastInstance.querySelector('#templateContent');
 
-		document.body.appendChild(template);
+    if (!contentElement) {
+      // Append container div if it doesn't exist yet
+      toastInstance.appendChild(templateContainer);
+    }
 
-		this.toast.current.itemTemplate = template.id;
-	}
+    if (templateContainer && !templateContainer.hasChildNodes()) {
+      ReactDOM.render(<CustomTemplate onClose={handleCloseLast} />, templateContainer);
+    }
+  };
 
-	handleClick() {
-		this.toast.current.open();
-	}
+  const handleClick = () => {
+    toast.current.open();
+  };
 
-	handleClick2() {
-		this.toast.current.closeLast();
-	}
+  const handleCloseLast = () => {
+    toast.current.closeLast();
+  };
 
-	componentDidMount() {
-		this.init();
-	}
+  return (
+    <div>
+      <Toast
+        ref={toast}
+        onOpen={handleOpen}
+        position="top-left"
+        showCloseButton
+        modal
+      >
+        Toast with custom template!
+        {/* The custom template container will be appended dynamically */}
+      </Toast>
 
-	render() {
-		return (
-			<div>
-				<Toast ref={this.toast} onOpen={this.handleOpen.bind(this)} position="top-left" showCloseButton modal>Toast with custom template!</Toast>
-
-				<div className="options">
-					<div className="caption">Settings</div>
-					<div className="option">
-						<Button onClick={this.handleClick.bind(this)} id="openButton">Open Toast</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+      <div className="options">
+        <div className="caption">Settings</div>
+        <div className="option">
+          <Button onClick={handleClick} id="openButton">Open Toast</Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

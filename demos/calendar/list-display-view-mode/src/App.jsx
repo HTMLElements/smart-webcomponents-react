@@ -1,60 +1,71 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { Calendar } from 'smart-webcomponents-react/calendar';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const calendarRef = useRef(null);
+    const radioMonthRef = useRef(null);
+    const radioYearRef = useRef(null);
+    const radioDecadeRef = useRef(null);
 
-		this.calendar = React.createRef();
-		this.radiobutton = React.createRef();
-		this.radiobutton2 = React.createRef();
-		this.radiobutton3 = React.createRef();
-	}
+    const handleChange = (mode, event) => {
+        if (event.detail.value) {
+            calendarRef.current.displayMode = mode;
+        }
+    };
 
-	handleChange(mode, event) {
-		if (event.detail.value) {
-			this.calendar.current.displayMode = mode;
-		}
-	}
+    const handleDisplayModeChange = () => {
+        const currentMode = calendarRef.current.displayMode;
 
-	handleDisplayModeChange(event) {
-		if (this.calendar.current.displayMode === 'month') {
-			this.radiobutton.current.checked = true;
-		}
-		else if (this.calendar.current.displayMode === 'year') {
-			this.radiobutton2.current.checked = true;
-		}
-		else {
-			this.radiobutton3.current.checked = true;
-		}
-	}
+        if (currentMode === 'month') {
+            radioMonthRef.current.checked = true;
+        } else if (currentMode === 'year') {
+            radioYearRef.current.checked = true;
+        } else {
+            radioDecadeRef.current.checked = true;
+        }
+    };
 
-	componentDidMount() {
+    useEffect(() => {
+        // You can perform additional setup if needed when the component mounts
+    }, []);
 
-	}
-
-	render() {
-		return (
-			<div>
-				<Calendar ref={this.calendar} onDisplayModeChange={this.handleDisplayModeChange.bind(this)} displayModeView="list"></Calendar>
-				<br />
-				<div className="options">
-					<div className="caption">Choose Mode</div>
-					<div className="option">
-						<RadioButton ref={this.radiobutton} onChange={this.handleChange.bind(this, 'month')} checked>Month</RadioButton>
-						<RadioButton ref={this.radiobutton2} onChange={this.handleChange.bind(this, 'year')}>Year</RadioButton>
-						<RadioButton ref={this.radiobutton3} onChange={this.handleChange.bind(this, 'decade')}>Decade</RadioButton>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <Calendar
+                ref={calendarRef}
+                onDisplayModeChange={handleDisplayModeChange}
+                displayModeView="list"
+            />
+            <br />
+            <div className="options">
+                <div className="caption">Choose Mode</div>
+                <div className="option">
+                    <RadioButton
+                        ref={radioMonthRef}
+                        onChange={(event) => handleChange('month', event)}
+                        checked
+                    >
+                        Month
+                    </RadioButton>
+                    <RadioButton
+                        ref={radioYearRef}
+                        onChange={(event) => handleChange('year', event)}
+                    >
+                        Year
+                    </RadioButton>
+                    <RadioButton
+                        ref={radioDecadeRef}
+                        onChange={(event) => handleChange('decade', event)}
+                    >
+                        Decade
+                    </RadioButton>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

@@ -1,44 +1,45 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { Button } from 'smart-webcomponents-react/button';
 import { Tooltip } from 'smart-webcomponents-react/tooltip';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const tooltip = useRef(null);
+  const log = useRef(null);
 
-		this.tooltip = React.createRef();
-		this.log = React.createRef();
-	}
+  const handleChange = (event) => {
+    if (tooltip.current) {
+      tooltip.current.innerHTML = 'LED is: ' + (event.detail.value ? "ON" : "OFF");
+    }
+  };
 
-	handleChange(event) {
-		this.tooltip.current.innerHTML = 'LED is: ' + (event.detail.value ? "ON" : "OFF");
-	}
+  const handleEvent = (event) => {
+    if (log.current) {
+      log.current.innerHTML = event.type + ' event fired';
+    }
+  };
 
-	handleEvent(event) {
-		this.log.current.innerHTML = event.type + ' event fired';
-	}
-	
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Button id="led">Button</Button>
-				<Tooltip ref={this.tooltip} id="tooltip" selector="led" arrow position="bottom" onOpen={this.handleEvent.bind(this)} onClose={this.handleEvent.bind(this)}>LED is OFF</Tooltip>
-				<div className="options">
-					<h3>Event log:</h3>
-					<div ref={this.log} id="log"></div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Button id="led">Button</Button>
+      <Tooltip
+        ref={tooltip}
+        id="tooltip"
+        selector="led"
+        arrow
+        position="bottom"
+        onOpen={handleEvent}
+        onClose={handleEvent}
+      >
+        LED is OFF
+      </Tooltip>
+      <div className="options">
+        <h3>Event log:</h3>
+        <div ref={log} id="log"></div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

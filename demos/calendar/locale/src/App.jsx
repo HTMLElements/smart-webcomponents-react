@@ -1,47 +1,43 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { Calendar } from 'smart-webcomponents-react/calendar';
-import { DropDownList, ListItem, ListItemsGroup } from 'smart-webcomponents-react/dropdownlist';
+import { DropDownList } from 'smart-webcomponents-react/dropdownlist';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const calendarRef = useRef(null);
+    const logRef = useRef(null);
 
-		this.calendar = React.createRef();
-		this.log = React.createRef();
-	}
+    const dataSource = ['en', 'tr', 'ar', 'ru', 'de', 'es', 'pt', 'fr', 'zh', 'ja', 'it', 'bg', 'nl'];
 
-	dataSource = ['en', 'tr', 'ar', 'ru', 'de', 'es', 'pt', 'fr', 'zh', 'ja', 'it', 'bg', 'nl'];
+    const handleChange = (event) => {
+        if (calendarRef.current && event.detail.label) {
+            calendarRef.current.locale = event.detail.label;
+            if (logRef.current) {
+                logRef.current.innerHTML = 'Current locale is ' + event.detail.label.toUpperCase();
+            }
+        }
+    };
 
-	handleChange(event) {
-		this.calendar.current.locale = event.detail.label;
-		this.log.current.innerHTML = 'Current locale is  ' + event.detail.label.toUpperCase();
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Calendar ref={this.calendar} id="calendar"></Calendar>
-				<div className="options">
-					<div className="caption">Choose a locale</div>
-					<div className="option">
-						<DropDownList dataSource={this.dataSource} onChange={this.handleChange.bind(this)} selectedIndexes={[0]} id="localePicker"></DropDownList>
-					</div>
-					<div className="option">
-						<div ref={this.log} id="log"></div>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <Calendar ref={calendarRef} id="calendar" />
+            <div className="options">
+                <div className="caption">Choose a locale</div>
+                <div className="option">
+                    <DropDownList
+                        dataSource={dataSource}
+                        onChange={handleChange}
+                        selectedIndexes={[0]}
+                        id="localePicker"
+                    />
+                </div>
+                <div className="option">
+                    <div ref={logRef} id="log"></div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

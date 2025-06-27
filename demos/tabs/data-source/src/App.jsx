@@ -1,91 +1,51 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
-import { Tabs, TabItem, TabItemsGroup } from 'smart-webcomponents-react/tabs';
+import React, { useRef } from 'react';
+import { Button } from 'smart-webcomponents-react/button';
+import { Tabs } from 'smart-webcomponents-react/tabs';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.tabs = React.createRef();
-	}
+const App = () => {
+  const tabs = useRef(null);
 
-	handleClick() {
-		this.tabs.current.dataSource = [{
-			label: 'Item A',
-			content: 'Content A',
-			index: 3
-		},
-		{
-			label: 'Item B',
-			content: 'Content B',
-			index: 2
-		},
-		{
-			label: 'Item C',
-			content: 'Content C',
-			index: 1
-		},
-		{
-			label: 'Item D',
-			labelSize: 80,
-			content: 'Content D',
-			index: 0
-		}];
-	}
+  const initialDataSource = [
+    {
+      label: 'Group 1',
+      items: [
+        { label: 'Item 1.1', content: 'Content 1.1' },
+        { label: 'Item 1.2', content: 'Content 1.2' },
+        { label: 'Item 1.3', content: 'Content 1.3' }
+      ]
+    },
+    { label: 'Item 2', content: 'Content 2' },
+    { label: 'Item 3', content: 'Content 3', selected: true }
+  ];
 
-	dataSource = [{
-		label: 'Group 1',
-		items: [{
-			label: 'Item 1.1',
-			content: 'Content 1.1'
-		},
-		{
-			label: 'Item 1.2',
-			content: 'Content 1.2'
-		},
-		{
-			label: 'Item 1.3',
-			content: 'Content 1.3'
-		}
-		]
-	},
-	{
-		label: 'Item 2',
-		content: 'Content 2'
-	},
-	{
-		label: 'Item 3',
-		content: 'Content 3',
-		selected: true
-	}
-	];
+  const newDataSource = [
+    { label: 'Item A', content: 'Content A', index: 3 },
+    { label: 'Item B', content: 'Content B', index: 2 },
+    { label: 'Item C', content: 'Content C', index: 1 },
+    { label: 'Item D', labelSize: 80, content: 'Content D', index: 0 }
+  ];
 
-	init() {
+  const handleClick = () => {
+    if (tabs.current) {
+      tabs.current.dataSource = newDataSource;
+    }
+  };
 
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Tabs ref={this.tabs} className="demoTabs" dataSource={this.dataSource}></Tabs>
-				<div className="options">
-					<div className="caption">Settings</div>
-					<div className="option">
-						<Button  id="loadDataSource" className="demoButton" onClick={this.handleClick.bind(this)}>Load a different dataSource</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Tabs ref={tabs} className="demoTabs" dataSource={initialDataSource}></Tabs>
+      <div className="options">
+        <div className="caption">Settings</div>
+        <div className="option">
+          <Button id="loadDataSource" className="demoButton" onClick={handleClick}>
+            Load a different dataSource
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

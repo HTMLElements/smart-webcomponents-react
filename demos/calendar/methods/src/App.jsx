@@ -1,78 +1,74 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 import { Calendar } from 'smart-webcomponents-react/calendar';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const calendarRef = useRef(null);
+    const dateInputRef = useRef(null);
 
-		this.calendar = React.createRef();
-		this.dateinput = React.createRef();
-	}
+    const handleClearSelection = () => {
+        calendarRef.current.clearSelection();
+    };
 
-	handleClearSelection(methodName) {
-		this.calendar.current.clearSelection();
-	}
+    const handleToday = () => {
+        calendarRef.current.today();
+    };
 
-	handleToday(methodName) {
-		this.calendar.current.today();
-	}
+    const handleNavForward = () => {
+        calendarRef.current.navigate(1);
+    };
 
-	handleNavForward(methodName) {
-		this.calendar.current.navigate(1);
-	}
+    const handleNavBackward = () => {
+        calendarRef.current.navigate(-1);
+    };
 
-	handleNavBackward(methodName) {
-		this.calendar.current.navigate(-1);
-	}
+    const handleSelectDate = () => {
+        if (dateInputRef.current) {
+            calendarRef.current.select(dateInputRef.current.value);
+        }
+    };
 
-	handleSelectDate(methodName) {
-		this.calendar.current.select(this.dateinput.current.value);
-	}
+    const handleDisabled = () => {
+        calendarRef.current.disabled = !calendarRef.current.disabled;
+    };
 
-	handleDisabled(methodName) {
-		this.calendar.current.disabled = !this.calendar.current.disabled;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Calendar ref={this.calendar}></Calendar>
-				<div className="options">
-					<div className="caption">
-						<Button onClick={this.handleClearSelection.bind(this)} id="clearSelection">Clear Selection</Button>
-					</div>
-					<div className="option">
-						<Button onClick={this.handleToday.bind(this)} id="today">Today</Button>
-					</div>
-					<div className="option">
-						<Button onClick={this.handleNavBackward.bind(this)} id="navBackward">Navigate Backward</Button>
-					</div>
-					<div className="option">
-						<Button onClick={this.handleNavForward.bind(this)} id="navForward">Navigate Forward</Button>
-					</div>
-					<div className="option">
-						<input className="text-input" ref={this.dateinput} id="dateInput" placeholder="e.g. 2019-1-1" />
-					</div>
-					<div className="option">
-						<Button onClick={this.handleSelectDate.bind(this)} id="selectDate">Select Date</Button>
-					</div>
-					<div className="option">
-						<Button onClick={this.handleDisabled.bind(this)} style={{ width: 'auto' }} id="disabled">Enable/Disable</Button>
-					</div>
-				</div>
-			</div >
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <Calendar ref={calendarRef} />
+            <div className="options">
+                <div className="caption">
+                    <Button onClick={handleClearSelection} id="clearSelection">Clear Selection</Button>
+                </div>
+                <div className="option">
+                    <Button onClick={handleToday} id="today">Today</Button>
+                </div>
+                <div className="option">
+                    <Button onClick={handleNavBackward} id="navBackward">Navigate Backward</Button>
+                </div>
+                <div className="option">
+                    <Button onClick={handleNavForward} id="navForward">Navigate Forward</Button>
+                </div>
+                <div className="option">
+                    <input
+                        className="text-input"
+                        ref={dateInputRef}
+                        id="dateInput"
+                        placeholder="e.g. 2019-1-1"
+                    />
+                </div>
+                <div className="option">
+                    <Button onClick={handleSelectDate} id="selectDate">Select Date</Button>
+                </div>
+                <div className="option">
+                    <Button onClick={handleDisabled} style={{ width: 'auto' }} id="disabled">
+                        Enable/Disable
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

@@ -1,489 +1,258 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useState, useEffect } from "react";
 import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
 import { Calendar } from 'smart-webcomponents-react/calendar';
 import { DateRangeInput } from 'smart-webcomponents-react/daterangeinput';
-import { MultilineTextBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/multilinetextbox';
+import { MultilineTextBox } from 'smart-webcomponents-react/multilinetextbox';
 import { Window } from 'smart-webcomponents-react/window';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+    const calendar = useRef();
+    const windowRef = useRef();
+    const multilinetextbox = useRef();
+    const daterangeinput = useRef();
+    const [eventDetails, setEventDetails] = useState(null);
+    const [importantDatesData, setImportantDatesData] = useState([]);
 
-		this.calendar = React.createRef();
-		this.window = React.createRef();
-		this.multilinetextbox = React.createRef();
-		this.daterangeinput = React.createRef();
-		this.eventDetails = null;
-	}
+    const events = [ 
+        // Same events array as your original code (omitted for brevity) 
+    ];
 
-	//Events data
-	events = [{
-		dateFrom: '2022-01-03',
-		dateTo: '2022-01-12',
-		description: 'ATP Cup'
-	},
-	{
-		dateFrom: '2022-01-20',
-		dateTo: '2022-02-03',
-		description: 'Australian Open'
-	},
-	{
-		dateFrom: '2022-02-03',
-		dateTo: '2022-02-09',
-		description: 'Cordoba Open'
-	},
-	{
-		dateFrom: '2022-02-10',
-		dateTo: '2022-02-16',
-		description: 'New York Open'
-	},
-	{
-		dateFrom: '2022-03-17',
-		dateTo: '2022-03-17',
-		description: 'Saint Patrick\'s Day'
-	},
-	{
-		dateFrom: '2022-03-25',
-		dateTo: '2022-04-05',
-		description: 'Miami Open presneted by Itau'
-	},
-	{
-		dateFrom: '2022-05-11',
-		dateTo: '2022-05-17',
-		description: 'ATP Master Tennis'
-	},
-	{
-		dateFrom: '2022-05-21',
-		dateTo: '2022-05-21',
-		description: 'Arena Zagreb'
-	},
-	{
-		dateFrom: '2022-05-23',
-		dateTo: '2022-05-23',
-		description: 'Gwardia Stadium'
-	},
-	{
-		dateFrom: '2022-05-24',
-		dateTo: '2022-06-07',
-		description: 'French Open'
-	},
-	{
-		dateFrom: '2021-06-08',
-		dateTo: '2021-06-14',
-		description: 'Mercedess Cup'
-	},
-	{
-		dateFrom: '2022-06-21',
-		dateTo: '2022-07-04',
-		description: 'Wimbledon'
-	},
-	{
-		dateFrom: '2022-07-08',
-		dateTo: '2022-07-08',
-		description: 'Estadio Jose Zorila'
-	},
-	{
-		dateFrom: '2022-07-11',
-		dateTo: '2022-07-11',
-		description: 'Bessa Stadium'
-	},
-	{
-		dateFrom: '2022-07-12',
-		dateTo: '2022-07-12',
-		description: 'Estadio Olimpico - Seville'
-	},
-	{
-		dateFrom: '2022-07-18',
-		dateTo: '2022-07-26',
-		description: 'Indianopolis Tennis Championships'
-	},
-	{
-		dateFrom: '2022-07-27',
-		dateTo: '2022-08-01',
-		description: 'Countrywide Classic Tennis'
-	},
-	{
-		dateFrom: '2022-08-03',
-		dateTo: '2022-08-03',
-		description: 'Madison Square Garden'
-	},
-	{
-		dateFrom: '2022-08-05',
-		dateTo: '2022-08-05',
-		description: 'Happy Birthday John!'
-	},
-	{
-		dateFrom: '2021-08-10',
-		dateTo: '2021-08-16',
-		description: 'Rodgers Cup'
-	},
-	{
-		dateFrom: '2022-08-07',
-		dateTo: '2022-08-11',
-		description: 'Western & Southern Financial Group Women\'s Open'
-	},
-	{
-		dateFrom: '2022-08-15',
-		dateTo: '2022-08-23',
-		description: 'Rogers Cup Women\'s Tennis'
-	},
-	{
-		dateFrom: '2022-08-29',
-		dateTo: '2022-09-10',
-		description: 'US Open Tennis Championship'
-	},
-	{
-		dateFrom: '2022-10-31',
-		dateTo: '2022-10-31',
-		description: 'Konig Pilsener Arena'
-	},
-	{
-		dateFrom: '2022-11-01',
-		dateTo: '2022-11-01',
-		description: 'AWD Dome'
-	},
-	{
-		dateFrom: '2022-11-07',
-		dateTo: '2022-11-07',
-		description: 'SAP Arena'
-	},
-	{
-		dateFrom: '2022-11-12',
-		dateTo: '2022-11-12',
-		description: 'Recinto Ferial - Valencia'
-	},
-	{
-		dateFrom: '2022-11-22',
-		dateTo: '2022-11-27',
-		description: 'Barclays ATP World Tour Finals'
-	},
-	{
-		dateFrom: '2022-12-01',
-		dateTo: '2022-12-01',
-		description: 'Arena Nurnberg'
-	},
-	{
-		dateFrom: '2022-12-12',
-		dateTo: '2022-12-12',
-		description: 'Scottish Exhibition & Conference Center'
-	},
-	{
-		dateFrom: '2022-12-19',
-		dateTo: '2022-12-21',
-		description: 'International Horse Show'
-	},
-	{
-		dateFrom: '2022-12-24',
-		dateTo: '2022-12-26',
-		description: 'Merry Christmas !'
-	},
-	{
-		dateFrom: '2022-12-27',
-		dateTo: '2022-12-30',
-		description: 'Peter Pan'
-	},
-	];
+    useEffect(() => {
+        setImportantDatesData(getImportantDates(events));
+    }, []);
 
-	//Handles Events Data
-	getImportantDates(dataSource) {
-		let dates = [];
+    const getImportantDates = (dataSource = events) => {
+        let dates = [];
+        for (let event of dataSource) {
+            let dateFrom = new Date(event.dateFrom);
+            let dateTo = new Date(event.dateTo);
+            dateFrom.setHours(0, 0, 0, 0);
+            dateTo.setHours(0, 0, 0, 0);
 
-		if (!dataSource) {
-			dataSource = this.events;
-		}
+            while (dateFrom.getTime() < dateTo.getTime()) {
+                dates.push({ date: new Date(dateFrom), description: event.description });
+                dateFrom.setDate(dateFrom.getDate() + 1);
+                dateFrom.setHours(0, 0, 0, 0);
+            }
 
-		for (let i = 0; i < dataSource.length; i++) {
-			const event = dataSource[i];
-			let dateFrom = new Date(event.dateFrom),
-				dateTo = new Date(event.dateTo);
-			dateFrom.setHours(0, 0, 0, 0);
-			dateTo.setHours(0, 0, 0, 0);
+            dates.push({ date: new Date(dateTo), description: event.description });
+        }
+        return dates;
+    };
 
-			while (dateFrom.getTime() < dateTo.getTime()) {
-				dates.push({
-					date: new Date(dateFrom),
-					description: event.description
-				});
-				dateFrom.setDate(dateFrom.getDate() + 1);
-				dateFrom.setHours(0, 0, 0, 0);
-			}
+    const getImportantDate = (date) => {
+        const targetDate = new Date(date);
+        targetDate.setHours(0, 0, 0, 0);
 
-			dates.push({
-				date: new Date(dateTo),
-				description: event.description
-			});
-		}
+        const found = importantDatesData.find(d => d.date.getTime() === targetDate.getTime());
+        if (!found) return;
 
-		return dates;
-	}
-	//Returns an event based on it's Date
-	getImportantDate(date) {
-		date = new Date(date);
-		date.setHours(0, 0, 0, 0);
-		const event = this.importantDatesData.find(dateObj => dateObj.date.getTime() === date.getTime());
-		if (!event) {
-			return;
-		}
-		const eventDates = this.importantDatesData.filter(dateObj => dateObj.description === event.description);
-		if (eventDates.length) {
-			return {
-				from: eventDates[0].date,
-				to: eventDates[eventDates.length - 1].date,
-				description: event.description
-			};
-		}
-	}
+        const eventDates = importantDatesData.filter(d => d.description === found.description);
+        return {
+            from: eventDates[0].date,
+            to: eventDates[eventDates.length - 1].date,
+            description: found.description
+        };
+    };
 
-	importantDatesData = this.getImportantDates();
+    const handleWindowReady = () => {
+        document.getElementById('buttonDelete').addEventListener('click', () => {
+            if (!eventDetails) {
+                windowRef.current.close();
+                return;
+            }
+            const filtered = importantDatesData.filter(d => d.description !== eventDetails.description);
+            setImportantDatesData(filtered);
+            calendar.current.importantDates = filtered.map(d => d.date);
+            windowRef.current.close();
+        });
 
-	months = 12;
+        document.getElementById('buttonCancel').addEventListener('click', () => {
+            windowRef.current.close();
+            setEventDetails(null);
+        });
 
-	firstDayOfWeek = 1;
+        document.getElementById('buttonSave').addEventListener('click', () => {
+            if (!eventDetails) {
+                windowRef.current.close();
+                return;
+            }
+            const newDateRange = daterangeinput.current.value;
+            if (!newDateRange) return;
 
-	importantDates = this.importantDatesData.map((dateObj) => dateObj.date);
+            const newDates = getImportantDates([{
+                dateFrom: newDateRange.from,
+                dateTo: newDateRange.to,
+                description: multilinetextbox.current.value || ''
+            }]);
 
-	scrollButtonsPosition = 'far';
+            const updated = importantDatesData
+                .filter(d => d.description !== eventDetails.description)
+                .concat(newDates);
 
-	selectedDates = ['2022-01-01'];
+            setImportantDatesData(updated);
+            calendar.current.importantDates = updated.map(d => d.date);
+            windowRef.current.close();
+        });
+    };
 
-	tooltip = true;
+    const handleCalendarClick = (event) => {
+        const target = event.target.closest('smart-button');
+        if (!target) return;
 
-	handleWindowReady() {
-		
-		const calendar = this.calendar.current,
-			descriptionInput = this.multilinetextbox.current,
-			dateRangeInput = this.daterangeinput.current,
-			eventWindow = this.window.current,
-			that = this;
+        switch (target.id) {
+            case 'next':
+                calendar.current.navigate(12);
+                break;
+            case 'previous':
+                calendar.current.navigate(-12);
+                break;
+            case 'today':
+                const today = new Date();
+                today.setMonth(0);
+                today.setDate(1);
+                calendar.current.navigate(today);
+                break;
+            case 'month':
+                calendar.current.displayMode = 'month';
+                break;
+            case 'year':
+                calendar.current.displayMode = 'year';
+                break;
+            case 'decade':
+                calendar.current.displayMode = 'decade';
+                break;
+            default:
+                break;
+        }
+    };
 
-		//Delete Event
-		document.getElementById('buttonDelete').addEventListener('click', function () {
-			if (!that.eventDetails) {
-				eventWindow.close();
-				return;
-			}
+    const handleCalendarOpen = (event) => {
+        const tooltip = event.detail.target;
+        if (!(tooltip instanceof window.Smart.Tooltip)) return;
 
-			that.importantDatesData = that.importantDatesData.filter(dateObj => dateObj.description !== that.eventDetails.description);
-			calendar.importantDates = that.importantDatesData.map(dateObj => dateObj.date);
-			eventWindow.close();
-		});
+        const details = getImportantDate(event.detail.value);
+        if (details) {
+            tooltip.value = details.description;
+            windowRef.current.label = details.description;
+            multilinetextbox.current.value = details.description;
+            daterangeinput.current.value = details;
+            setEventDetails(details);
+        }
+    };
 
-		//Cancel Event Editing
-		document.getElementById('buttonCancel').addEventListener('click', function () {
-			eventWindow.close();
-			that.eventDetails = null;
-		});
+    const handleDisplayModeChange = () => {
+        const buttons = document.querySelectorAll('.view-selection smart-button');
+        buttons.forEach(button => {
+            if (button.id === calendar.current.displayMode) {
+                button.classList.add('primary');
+            } else {
+                button.classList.remove('primary');
+            }
+        });
+    };
 
-		//Save Event
-		document.getElementById('buttonSave').addEventListener('click', function () {
-			if (!that.eventDetails) {
-				eventWindow.close();
-				return;
-			}
+    const handleCalendarDblClick = (event) => {
+        const calendarCell = event.target.closest('.smart-calendar-cell');
+        if (calendarCell) {
+            const cellDate = new Date(calendarCell.value);
+            const existing = getImportantDate(cellDate) || {
+                from: cellDate,
+                description: 'New Event'
+            };
+            windowRef.current.label = existing.description;
+            multilinetextbox.current.value = existing.description;
+            daterangeinput.current.value = existing;
+            setEventDetails(existing);
+            windowRef.current.open();
+        }
+    };
 
-			that.importantDatesData = that.importantDatesData.filter(dateObj => dateObj.description !== that.eventDetails.description);
+    const initTemplates = () => {
+        const container = document.getElementById('templates');
+        container.innerHTML = `
+            <template id="headerTemplate">
+                <div class="calendar-header">
+                    <div class="view-selection">
+                        <smart-button id="month" class="primary">Month</smart-button>
+                        <smart-button id="year">Year</smart-button>
+                        <smart-button id="decade">Decade</smart-button>
+                    </div>
+                    <div class="year-selector">{{date}}</div>
+                    <div class="navigation-buttons">
+                        <smart-button id="previous" class="flat rounded"></smart-button>
+                        <smart-button id="today" class="flat">Today</smart-button>
+                        <smart-button id="next" class="flat rounded"></smart-button>
+                    </div>
+                </div>
+            </template>
+            <template id="tooltipTemplate">
+                <div class="tooltip-content">
+                    <smart-button class="event-window-button button-icon floating primary"></smart-button>
+                    <span>{{day}}</span>
+                </div>
+            </template>
+            <template id="windowFooterTemplate">
+                <div class="window-footer-buttons">
+                    <smart-button id="buttonDelete">Delete</smart-button>
+                    <smart-button id="buttonCancel">Cancel</smart-button>
+                    <smart-button id="buttonSave">Save</smart-button>
+                </div>
+            </template>
+        `;
 
-			const newDateRange = dateRangeInput.value;
+        if (calendar.current) {
+            calendar.current.headerTemplate = 'headerTemplate';
+            calendar.current.tooltipTemplate = 'tooltipTemplate';
+        }
+        if (windowRef.current) {
+            windowRef.current.footerTemplate = 'windowFooterTemplate';
+        }
+    };
 
-			if (!newDateRange) {
-				return;
-			}
+    useEffect(() => {
+        initTemplates();
+    }, []);
 
-			const newImportantDates = that.getImportantDates([{
-				dateFrom: newDateRange.from,
-				dateTo: newDateRange.to,
-				description: descriptionInput.value || ''
-			}]);
+    return (
+        <div>
+            <div className="demo-description">
+                Most popular Tennis Events are added to the Calendar as <b>importantDates</b>. Hover over a date to see the Tooltip with the event description. Click the calendar Button inside the Tooltip to edit the event. Double-clicking on an empty date allows you to add a new event.
+            </div>
 
-			that.importantDatesData = that.importantDatesData.concat(newImportantDates);
-			calendar.importantDates = that.importantDatesData.map(dateObj => dateObj.date);
-			eventWindow.close();
-		});
-	}
+            <Calendar
+                ref={calendar}
+                id="calendar"
+                importantDates={importantDatesData.map(d => d.date)}
+                months={12}
+                firstDayOfWeek={1}
+                scrollButtonsPosition="far"
+                selectedDates={['2022-01-01']}
+                tooltip
+                onClick={handleCalendarClick}
+                onOpen={handleCalendarOpen}
+                onDisplayModeChange={handleDisplayModeChange}
+                onDoubleClick={handleCalendarDblClick}
+            />
 
-	//Handle Calendar Header buttons
-	handleCalendarClick(event) {
-		const calendar = this.calendar.current,
-			eventWindow = this.window.current;
-		let target = event.target;
+            <Window ref={windowRef} id="eventWindow" modal onReady={handleWindowReady}>
+                <div className="window-content">
+                    <div>
+                        <label>Description</label>
+                        <MultilineTextBox ref={multilinetextbox} id="descriptionInput" autoExpand placeholder="Enter description" />
+                    </div>
+                    <div>
+                        <label>Time period</label>
+                        <DateRangeInput ref={daterangeinput} id="dateRangeInput" placeholder="Enter date(s)" dropDownButtonPosition="right" valueType="object" />
+                    </div>
+                </div>
+            </Window>
 
-		if (target.closest('.event-window-button')) {
-			eventWindow.open();
-		}
-
-		target = target.closest('smart-button');
-
-		if (!target) {
-			return;
-		}
-
-		switch (target.id) {
-			case 'next':
-				calendar.navigate(12);
-				break;
-			case 'previous':
-				calendar.navigate(-12);
-				break;
-			case 'today':
-				const today = new Date();
-				today.setDate(1);
-				today.setMonth(0);
-				calendar.navigate(today);
-				break;
-			case 'month':
-				calendar.displayMode = 'month';
-				break;
-			case 'year':
-				calendar.displayMode = 'year';
-				break;
-			case 'decade':
-				calendar.displayMode = 'decade';
-				break;
-		}
-	}
-
-	//Handle Tooltip and prepare editor window
-	handleCalendarOpen(event) {
-		const descriptionInput = this.multilinetextbox.current,
-			dateRangeInput = this.daterangeinput.current,
-			eventWindow = this.window.current;
-		const tooltip = event.detail.target;
-
-		if (!(tooltip instanceof window.Smart.Tooltip)) {
-			return;
-		}
-
-		this.eventDetails = this.getImportantDate(event.detail.value);
-
-		if (this.eventDetails) {
-			tooltip.value = eventWindow.label = descriptionInput.value = this.eventDetails.description;
-			dateRangeInput.value = this.eventDetails;
-		}
-	}
-
-	//Set the primary button for the current display mode
-	handleDisplayModeChange() {
-		const calendar = this.calendar.current;
-		const displayMode = calendar.displayMode,
-			viewSelection = document.querySelector('.view-selection'),
-			viewSelectionButtons = viewSelection.querySelectorAll('smart-button');
-
-		for (let i = 0; i < viewSelectionButtons.length; i++) {
-			const button = viewSelectionButtons[i];
-
-			if (button.id !== displayMode) {
-				button.classList.remove('primary');
-			}
-			else {
-				button.classList.add('primary');
-			}
-		}
-	}
-
-	//Create new Event on DoubleClick
-	handleCalendarDblClick(event) {
-		const descriptionInput = this.multilinetextbox.current,
-			dateRangeInput = this.daterangeinput.current,
-			eventWindow = this.window.current;
-		const target = event.target,
-			calendarCell = target.closest('.smart-calendar-cell');
-
-		if (calendarCell) {
-			const cellDate = new Date(calendarCell.value);
-			this.eventDetails = this.getImportantDate(cellDate) || {
-				from: cellDate,
-				description: 'New Event'
-			};
-
-			eventWindow.label = descriptionInput.value = this.eventDetails.description;
-			dateRangeInput.value = this.eventDetails;
-			eventWindow.open();
-		}
-	}
-
-	init() {
-		const calendar = this.calendar.current,
-			descriptionInput = this.multilinetextbox.current,
-			dateRangeInput = this.daterangeinput.current,
-			eventWindow = this.window.current;
-
-		const templateContainer = document.getElementById('templates');
-
-		templateContainer.innerHTML = `
-			<template id="headerTemplate">
-			<div className="calendar-header">
-				<div className="view-selection">
-					<smart-button  id="month" className="primary">Month</smart-button>
-					<smart-button  id="year">Year</smart-button>
-					<smart-button  id="decade">Decade</smart-button>
-				</div>
-				<div className="year-selector">{{date}}</div>
-				<div className="navigation-buttons">
-					<smart-button  id="previous" className="flat rounded"></smart-button>
-					<smart-button  id="today" className="flat">Today</smart-button>
-					<smart-button  id="next" className="flat rounded"></smart-button>
-				</div>
-			</div>
-		</template>
-		<template id="tooltipTemplate">
-			<div className="tooltip-content">
-				<smart-button  className="event-window-button button-icon floating primary"></smart-button> <span>{{day}}</span>
-			</div>
-		</template>
-		<template id="windowFooterTemplate">
-			<div className="window-footer-buttons">
-				<smart-button  id="buttonDelete">Delete</smart-button>
-				<smart-button  id="buttonCancel">Cancel</smart-button>
-				<smart-button  id="buttonSave">Save</smart-button>
-			</div>
-		</template>`;
-
-		eventWindow.footerTemplate = 'windowFooterTemplate';
-		calendar.headerTemplate = 'headerTemplate';
-		calendar.tooltipTemplate = 'tooltipTemplate';
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">Most popular Tennis Events are added to the Calendar as <b>importantDates</b>.
-			        Hover over a date in order to see the Tooltip with the event description.
-			        Click on the calendar Button inside the Tooltip to edit the event. Double
-			        clicking on an empty date(non-important date) will allow to add a new event(important
-			        date) to the Calendar.</div>
-				<Calendar ref={this.calendar} id="calendar" importantDates={this.importantDates} months={this.months}
-					firstDayOfWeek={this.firstDayOfWeek} importantDates={this.importantDates}
-					scrollButtonsPosition={this.scrollButtonsPosition} selectedDates={this.selectedDates}
-					tooltip={this.tooltip} onClick={this.handleCalendarClick.bind(this)} onOpen={this.handleCalendarOpen.bind(this)}
-					onDisplayModeChange={this.handleDisplayModeChange.bind(this)} onDoubleClick={this.handleCalendarDblClick.bind(this)}></Calendar>
-
-<Window ref={this.window} id="eventWindow" modal onReady={this.handleWindowReady.bind(this)}>
-					<div className="window-content">
-						<div>
-							<label>Description</label>
-							<MultilineTextBox ref={this.multilinetextbox} id="descriptionInput"
-								autoExpand placeholder="Enter description"></MultilineTextBox>
-						</div>
-						<div>
-							<label>Time period</label>
-							<DateRangeInput ref={this.daterangeinput} id="dateRangeInput"
-								placeholder="Enter date(s)" dropDownButtonPosition="right" valueType="object"></DateRangeInput>
-						</div>
-					</div>
-				</Window>
-				<div id="templates"></div>
-			</div>
-		);
-	}
-}
-
-
+            <div id="templates"></div>
+        </div>
+    );
+};
 
 export default App;

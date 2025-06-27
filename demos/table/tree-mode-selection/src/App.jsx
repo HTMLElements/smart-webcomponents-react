@@ -1,210 +1,187 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { Table } from 'smart-webcomponents-react/table';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+  const tableRef = useRef(null);
 
-		this.table = React.createRef();
-	}
+  const dataSource = [
+    {
+      "EmployeeID": 1,
+      "FirstName": "Nancy",
+      "LastName": "Davolio",
+      "ReportsTo": 2,
+      "Country": "USA",
+      "Title": "Sales Representative",
+      "HireDate": "1992-05-01 00:00:00",
+      "BirthDate": "1948-12-08 00:00:00",
+      "City": "Seattle",
+      "Address": "507 - 20th Ave. E.Apt. 2A"
+    },
+    {
+      "EmployeeID": 2,
+      "FirstName": "Andrew",
+      "LastName": "Fuller",
+      "ReportsTo": null,
+      "Country": "USA",
+      "Title": "Vice President, Sales",
+      "HireDate": "1992-08-14 00:00:00",
+      "BirthDate": "1952-02-19 00:00:00",
+      "City": "Tacoma",
+      "Address": "908 W. Capital Way"
+    },
+    {
+      "EmployeeID": 3,
+      "FirstName": "Janet",
+      "LastName": "Leverling",
+      "ReportsTo": 2,
+      "Country": "USA",
+      "Title": "Sales Representative",
+      "HireDate": "1992-04-01 00:00:00",
+      "BirthDate": "1963-08-30 00:00:00",
+      "City": "Kirkland",
+      "Address": "722 Moss Bay Blvd."
+    },
+    {
+      "EmployeeID": 4,
+      "FirstName": "Margaret",
+      "LastName": "Peacock",
+      "ReportsTo": 2,
+      "Country": "USA",
+      "Title": "Sales Representative",
+      "HireDate": "1993-05-03 00:00:00",
+      "BirthDate": "1937-09-19 00:00:00",
+      "City": "Redmond",
+      "Address": "4110 Old Redmond Rd."
+    },
+    {
+      "EmployeeID": 5,
+      "FirstName": "Steven",
+      "LastName": "Buchanan",
+      "ReportsTo": 2,
+      "Country": "UK",
+      "Title": "Sales Manager",
+      "HireDate": "1993-10-17 00:00:00",
+      "BirthDate": "1955-03-04 00:00:00",
+      "City": "London",
+      "Address": "14 Garrett Hill"
+    },
+    {
+      "EmployeeID": 6,
+      "FirstName": "Michael",
+      "LastName": "Suyama",
+      "ReportsTo": 5,
+      "Country": "UK",
+      "Title": "Sales Representative",
+      "HireDate": "1993-10-17 00:00:00",
+      "BirthDate": "1963-07-02 00:00:00",
+      "City": "London",
+      "Address": "Coventry House Miner Rd."
+    },
+    {
+      "EmployeeID": 7,
+      "FirstName": "Robert",
+      "LastName": "King",
+      "ReportsTo": 5,
+      "Country": "UK",
+      "Title": "Sales Representative",
+      "HireDate": "1994-01-02 00:00:00",
+      "BirthDate": "1960-05-29 00:00:00",
+      "City": "London",
+      "Address": "Edgeham Hollow Winchester Way"
+    },
+    {
+      "EmployeeID": 8,
+      "FirstName": "Laura",
+      "LastName": "Callahan",
+      "ReportsTo": 2,
+      "Country": "USA",
+      "Title": "Inside Sales Coordinator",
+      "HireDate": "1994-03-05 00:00:00",
+      "BirthDate": "1958-01-09 00:00:00",
+      "City": "Seattle",
+      "Address": "4726 - 11th Ave. N.E."
+    },
+    {
+      "EmployeeID": 9,
+      "FirstName": "Anne",
+      "LastName": "Dodsworth",
+      "ReportsTo": 5,
+      "Country": "UK",
+      "Title": "Sales Representative",
+      "HireDate": "1994-11-15 00:00:00",
+      "BirthDate": "1966-01-27 00:00:00",
+      "City": "London",
+      "Address": "7 Houndstooth Rd."
+    }
+  ];
 
-	dataSource = [{
-			"EmployeeID": 1,
-			"FirstName": "Nancy",
-			"LastName": "Davolio",
-			"ReportsTo": 2,
-			"Country": "USA",
-			"Title": "Sales Representative",
-			"HireDate": "1992-05-01 00:00:00",
-			"BirthDate": "1948-12-08 00:00:00",
-			"City": "Seattle",
-			"Address": "507 - 20th Ave. E.Apt. 2A"
-		},
-		{
-			"EmployeeID": 2,
-			"FirstName": "Andrew",
-			"LastName": "Fuller",
-			"ReportsTo": null,
-			"Country": "USA",
-			"Title": "Vice President, Sales",
-			"HireDate": "1992-08-14 00:00:00",
-			"BirthDate": "1952-02-19 00:00:00",
-			"City": "Tacoma",
-			"Address": "908 W. Capital Way"
-		},
-		{
-			"EmployeeID": 3,
-			"FirstName": "Janet",
-			"LastName": "Leverling",
-			"ReportsTo": 2,
-			"Country": "USA",
-			"Title": "Sales Representative",
-			"HireDate": "1992-04-01 00:00:00",
-			"BirthDate": "1963-08-30 00:00:00",
-			"City": "Kirkland",
-			"Address": "722 Moss Bay Blvd."
-		},
-		{
-			"EmployeeID": 4,
-			"FirstName": "Margaret",
-			"LastName": "Peacock",
-			"ReportsTo": 2,
-			"Country": "USA",
-			"Title": "Sales Representative",
-			"HireDate": "1993-05-03 00:00:00",
-			"BirthDate": "1937-09-19 00:00:00",
-			"City": "Redmond",
-			"Address": "4110 Old Redmond Rd."
-		},
-		{
-			"EmployeeID": 5,
-			"FirstName": "Steven",
-			"LastName": "Buchanan",
-			"ReportsTo": 2,
-			"Country": "UK",
-			"Title": "Sales Manager",
-			"HireDate": "1993-10-17 00:00:00",
-			"BirthDate": "1955-03-04 00:00:00",
-			"City": "London",
-			"Address": "14 Garrett Hill"
-		},
-		{
-			"EmployeeID": 6,
-			"FirstName": "Michael",
-			"LastName": "Suyama",
-			"ReportsTo": 5,
-			"Country": "UK",
-			"Title": "Sales Representative",
-			"HireDate": "1993-10-17 00:00:00",
-			"BirthDate": "1963-07-02 00:00:00",
-			"City": "London",
-			"Address": "Coventry House Miner Rd."
-		},
-		{
-			"EmployeeID": 7,
-			"FirstName": "Robert",
-			"LastName": "King",
-			"ReportsTo": 5,
-			"Country": "UK",
-			"Title": "Sales Representative",
-			"HireDate": "1994-01-02 00:00:00",
-			"BirthDate": "1960-05-29 00:00:00",
-			"City": "London",
-			"Address": "Edgeham Hollow Winchester Way"
-		},
-		{
-			"EmployeeID": 8,
-			"FirstName": "Laura",
-			"LastName": "Callahan",
-			"ReportsTo": 2,
-			"Country": "USA",
-			"Title": "Inside Sales Coordinator",
-			"HireDate": "1994-03-05 00:00:00",
-			"BirthDate": "1958-01-09 00:00:00",
-			"City": "Seattle",
-			"Address": "4726 - 11th Ave. N.E."
-		},
-		{
-			"EmployeeID": 9,
-			"FirstName": "Anne",
-			"LastName": "Dodsworth",
-			"ReportsTo": 5,
-			"Country": "UK",
-			"Title": "Sales Representative",
-			"HireDate": "1994-11-15 00:00:00",
-			"BirthDate": "1966-01-27 00:00:00",
-			"City": "London",
-			"Address": "7 Houndstooth Rd."
-		}
-		];
-	
-	dataSourceSettings = {
-		keyDataField: 'EmployeeID',
-		parentDataField: 'ReportsTo',
-		id: 'EmployeeID',
-		dataFields: [
-			'EmployeeID: number',
-			'ReportsTo: number',
-			'FirstName: string',
-			'LastName: string',
-			'Country: string',
-			'City: string',
-			'Address: string',
-			'Title: string',
-			'HireDate: date',
-			'BirthDate: date'
-		]
-	};
+  const dataSourceSettings = {
+    keyDataField: 'EmployeeID',
+    parentDataField: 'ReportsTo',
+    id: 'EmployeeID',
+    dataFields: [
+      'EmployeeID: number',
+      'ReportsTo: number',
+      'FirstName: string',
+      'LastName: string',
+      'Country: string',
+      'City: string',
+      'Address: string',
+      'Title: string',
+      'HireDate: date',
+      'BirthDate: date'
+    ]
+  };
 
-	keyboardNavigation = true;
+  const keyboardNavigation = true;
+  const selection = true;
 
-	handleInit() {
-		const firstRowData = this.rows[0].data;
+  const columns = [
+    { label: 'First Name', dataField: 'FirstName' },
+    { label: 'Last Name', dataField: 'LastName' },
+    { label: 'Title', dataField: 'Title' },
+    { label: 'Birth Date', dataField: 'BirthDate', dataType: 'date' },
+    { label: 'Hire Date', dataField: 'HireDate', dataType: 'date' },
+    { label: 'Address', dataField: 'Address' },
+    { label: 'City', dataField: 'City' },
+    { label: 'Country', dataField: 'Country' }
+  ];
 
-		firstRowData.expanded = true;
-		firstRowData.children[3].expanded = true;
-	};
+  const handleInit = () => {
+    const rows = tableRef.current?.rows;
+    if (rows && rows.length > 0) {
+      rows[0].data.expanded = true;
+      if (rows[0].data.children && rows[0].data.children.length > 3) {
+        rows[0].data.children[3].expanded = true;
+      }
+    }
+  };
 
-	selection = true;
+  useEffect(() => {
+    if (tableRef.current) {
+      tableRef.current.select(5);
+    }
+  }, []);
 
-	columns = [{
-		label: 'First Name',
-		dataField: 'FirstName'
-	},
-	{
-		label: 'Last Name',
-		dataField: 'LastName'
-	},
-	{
-		label: 'Title',
-		dataField: 'Title'
-	},
-	{
-		label: 'Birth Date',
-		dataField: 'BirthDate',
-		dataType: 'date'
-	},
-	{
-		label: 'Hire Date',
-		dataField: 'HireDate',
-		dataType: 'date'
-	},
-	{
-		label: 'Address',
-		dataField: 'Address'
-	},
-	{
-		label: 'City',
-		dataField: 'City'
-	},
-	{
-		label: 'Country',
-		dataField: 'Country'
-	}
-	];
-
-	init() {
-		this.table.current.select(5);
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">This demo showcases the tree mode functionality of Table with selection.</div>
-				<Table ref={this.table} id="table"
-					dataSource={this.dataSource} dataSourceSettings={this.dataSourceSettings} keyboardNavigation={this.keyboardNavigation} selection={this.selection} columns={this.columns} onInit={this.handleInit}></Table>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">
+        This demo showcases the tree mode functionality of Table with selection.
+      </div>
+      <Table
+        ref={tableRef}
+        id="table"
+        dataSource={dataSource}
+        dataSourceSettings={dataSourceSettings}
+        keyboardNavigation={keyboardNavigation}
+        selection={selection}
+        columns={columns}
+        onInit={handleInit}
+      />
+    </div>
+  );
+};
 
 export default App;

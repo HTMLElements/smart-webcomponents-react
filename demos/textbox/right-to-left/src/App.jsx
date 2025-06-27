@@ -1,24 +1,24 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect } from "react";
 import { TextBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/textbox';
 
-class App extends React.Component {
+const App = () => {
 
-	componentDidMount() {
+  useEffect(() => {
+    // componentDidMount logic here if needed
+  }, []);
 
-	}
-
-	render() {
-		return (
-			<div>
-			    <TextBox  selectAllOnFocus placeholder="בבקשה היכנס" label="תיבת טקסט" rightToLeft></TextBox>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <TextBox 
+        selectAllOnFocus 
+        placeholder="בבקשה היכנס" 
+        label="תיבת טקסט" 
+        rightToLeft>
+      </TextBox>
+    </div>
+  );
+};
 
 export default App;

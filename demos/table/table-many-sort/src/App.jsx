@@ -1,51 +1,44 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef, useMemo } from "react";
 import { Table } from 'smart-webcomponents-react/table';
 import { GetCountriesData } from './common/data';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+  const tableRef = useRef(null);
 
-		this.table = React.createRef();
-	}
+  const dataSource = useMemo(() => GetCountriesData(), []);
+  const columns = useMemo(() => [
+    'Country',
+    'Area',
+    'Population_Rural',
+    'Population_Total',
+    'GDP_Total'
+  ], []);
 
-	dataSource = GetCountriesData();
+  useEffect(() => {
+    if (tableRef.current) {
+      // Sort by multiple columns on mount
+      tableRef.current.sortBy('Country', 'asc');
+      tableRef.current.sortBy('Population_Total', 'asc');
+    }
+  }, []);
 
-	columns = [
-		'Country',
-		'Area',
-		'Population_Rural',
-		'Population_Total',
-		'GDP_Total'
-	]
-
-	init() {
-		const table = this.table.current;
-
-		table.sortBy('Country', 'asc');
-		table.sortBy('Population_Total', 'asc');
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">Add "sort-mode" attribute and set it to "many" to make the Table sortable
-				by multiple columns
-			        &lt;tbody&gt;.</div>
-				<Table ref={this.table} sortMode="many" className="thead-light table-striped"
-					id="table" dataSource={this.dataSource} columns={this.columns}></Table>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">
+        Add "sort-mode" attribute and set it to "many" to make the Table sortable by multiple columns &lt;tbody&gt;.
+      </div>
+      <Table
+        ref={tableRef}
+        sortMode="many"
+        className="thead-light table-striped"
+        id="table"
+        dataSource={dataSource}
+        columns={columns}
+      />
+    </div>
+  );
+};
 
 export default App;

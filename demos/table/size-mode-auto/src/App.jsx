@@ -1,79 +1,50 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect } from "react";
 import { Table } from 'smart-webcomponents-react/table';
 import { GetData } from './common/data';
 
-class App extends React.Component {
-	columnMinWidth = '50px';
-	columnSizeMode = 'auto';
-	dataSource = GetData(100);
-	selection = true;
-	tooltip = true;
-	columns = [{
-		label: 'id',
-		dataField: 'id',
-		dataType: 'number'
-	},
-	{
-		label: 'First Name',
-		dataField: 'firstName',
-		dataType: 'string'
-	},
-	{
-		label: 'Last Name',
-		dataField: 'lastName',
-		dataType: 'string'
-	},
-	{
-		label: 'Product Name',
-		dataField: 'productName',
-		dataType: 'string'
-	},
-	{
-		label: 'Quantity',
-		dataField: 'quantity',
-		dataType: 'number'
-	},
-	{
-		label: 'Price',
-		dataField: 'price',
-		dataType: 'number'
-	},
-	{
-		label: 'Total',
-		dataField: 'total',
-		dataType: 'number'
-	}
-	];
+const App = () => {
 
-	init() {
+    const columnMinWidth = '50px';
+    const columnSizeMode = 'auto';
+    const dataSource = GetData(100);
+    const selection = true;
+    const tooltip = true;
 
-	}
+    const columns = [
+        { label: 'id', dataField: 'id', dataType: 'number' },
+        { label: 'First Name', dataField: 'firstName', dataType: 'string' },
+        { label: 'Last Name', dataField: 'lastName', dataType: 'string' },
+        { label: 'Product Name', dataField: 'productName', dataType: 'string' },
+        { label: 'Quantity', dataField: 'quantity', dataType: 'number' },
+        { label: 'Price', dataField: 'price', dataType: 'number' },
+        { label: 'Total', dataField: 'total', dataType: 'number' }
+    ];
 
-	componentDidMount() {
-		this.init();
-	}
+    useEffect(() => {
+        // Initialization logic if needed
+    }, []);
 
-	render() {
-		return (
-			<div>
-				<div className="demo-description">This demo showcases the "auto" column size mode of jqx-table. In this mode, columns are sized based on their
-        content and the value of the <strong>columnMinWidth</strong> property, unless there is not enough space in the
-        Table, in which case ellipses are shown. User-set static column width is still respected.</div>
-				<Table id="table"
-					columnMinWidth={this.columnMinWidth}
-					columnSizeMode={this.columnSizeMode}
-					dataSource={this.dataSource}
-					selection={this.selection}
-					tooltip={this.tooltip}
-					columns={this.columns}></Table>
-			</div>
-		);
-	}
-}
+    return (
+        <div>
+            <div className="demo-description">
+                This demo showcases the "auto" column size mode of jqx-table. In this mode, columns are sized based on their
+                content and the value of the <strong>columnMinWidth</strong> property, unless there is not enough space in the
+                Table, in which case ellipses are shown. User-set static column width is still respected.
+            </div>
 
-
+            <Table
+                id="table"
+                columnMinWidth={columnMinWidth}
+                columnSizeMode={columnSizeMode}
+                dataSource={dataSource}
+                selection={selection}
+                tooltip={tooltip}
+                columns={columns}
+            />
+        </div>
+    );
+};
 
 export default App;

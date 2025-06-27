@@ -1,40 +1,36 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useMemo } from "react";
 import { Carousel } from 'smart-webcomponents-react/carousel';
 
-class App extends React.Component {
+const App = () => {
+  const generateDataSource = (items) => {
+    const dataSource = [];
+    for (let i = 0; i < items; i++) {
+      dataSource.push({
+        image: `./../../../src/images/carousel-square-${i + 1}.jpg`
+      });
+    }
+    return dataSource;
+  };
 
-	generateDataSource(items) {
-		let dataSource = [];
+  const dataSource = useMemo(() => generateDataSource(7), []);
 
-		for (let i = 0; i < items; i++) {
-			const item = {
-				image: `./../../../src/images/carousel-square-${i + 1}.jpg`
-			};
-			dataSource.push(item);
-		}
-
-		return dataSource;
-	}
-
-	dataSource = this.generateDataSource(7);
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Carousel dataSource={this.dataSource} id="carousel" className="vertical circle" autoPlay
-					slideShow loop keyboard displayMode="3d" interval={10000}></Carousel>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Carousel
+        dataSource={dataSource}
+        id="carousel"
+        className="vertical circle"
+        autoPlay
+        slideShow
+        loop
+        keyboard
+        displayMode="3d"
+        interval={10000}
+      />
+    </div>
+  );
+};
 
 export default App;

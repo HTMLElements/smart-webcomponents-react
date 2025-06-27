@@ -1,38 +1,24 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useMemo } from "react";
 import { Carousel } from 'smart-webcomponents-react/carousel';
 
-class App extends React.Component {
+const App = () => {
+  const generateDataSource = (items) => {
+    return Array.from({ length: items }, (_, index) => ({
+      image: `./../../../src/images/carousel-medium-${index + 1}.jpg`,
+      label: 'שקופית ' + index,
+      content: 'תוכן ' + index
+    }));
+  };
 
-	generateDataSource(items) {
-		const dataSource = Array(items).fill({});
+  const dataSource = useMemo(() => generateDataSource(6), []);
 
-		dataSource.forEach((element, index) => dataSource[index] = {
-			image: `./../../../src/images/carousel-medium-${index + 1}.jpg`,
-			label: 'שקופית ' + index,
-			content: 'תוכן ' + index
-		});
-
-		return dataSource;
-	}
-
-	dataSource = this.generateDataSource(6);
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Carousel dataSource={this.dataSource} rightToLeft keyboard></Carousel>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Carousel dataSource={dataSource} rightToLeft keyboard />
+    </div>
+  );
+};
 
 export default App;

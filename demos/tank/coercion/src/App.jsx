@@ -1,46 +1,48 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { NumericTextBox } from 'smart-webcomponents-react/numerictextbox';
 import { Tank } from 'smart-webcomponents-react/tank';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.tank = React.createRef();
-	}
+function App() {
+  const tankRef = useRef(null);
 
-	handleChange(event) {
-		this.tank.current.interval = event.detail.value;
-	}
+  const handleChange = (event) => {
+    if (tankRef.current) {
+      tankRef.current.interval = event.detail.value;
+    }
+  };
 
-	init() {
+  return (
+    <div>
+      <Tank
+        ref={tankRef}
+        id="tank"
+        coerce
+        interval={10}
+        min={0}
+        max={100}
+        value={50}
+        scalePosition="both"
+        scaleType="integer"
+      ></Tank>
 
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Tank ref={this.tank} id="tank" coerce interval="10" min="0" max="100" value="50"
-					scalePosition="both" scaleType="integer"></Tank>
-				<div className="options">
-					<div className="option">
-						<p>Set coercion interval:</p>
-						<NumericTextBox id="numericTextBox"
-							value="10" min="1" max="100" inputFormat="integer" spinButtons onChange={this.handleChange.bind(this)}></NumericTextBox>
-					</div>
-				</div>
-			</div>
-		);
-	}
+      <div className="options">
+        <div className="option">
+          <p>Set coercion interval:</p>
+          <NumericTextBox
+            id="numericTextBox"
+            value={10}
+            min={1}
+            max={100}
+            inputFormat="integer"
+            spinButtons
+            onChange={handleChange}
+          ></NumericTextBox>
+        </div>
+      </div>
+    </div>
+  );
 }
-
-
 
 export default App;

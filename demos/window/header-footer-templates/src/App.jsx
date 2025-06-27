@@ -1,72 +1,70 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { Gauge } from 'smart-webcomponents-react/gauge';
 import { Window } from 'smart-webcomponents-react/window';
 import { PowerButton } from 'smart-webcomponents-react/button';
+import ReactDOM from 'react-dom/client';
 
+const App = () => {
+  const windowRef = useRef(null);
+  const gaugeRef = useRef(null);
+  const buttonRef = useRef(null);
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+  const handleClick = () => {
+    if (gaugeRef.current && buttonRef.current) {
+      gaugeRef.current.disabled = !buttonRef.current.checked;
+    }
+  };
 
-		this.window = React.createRef();
-		this.gauge = React.createRef();
-		this.button = React.createRef();
-	}
+  const handleChange = (event) => {
+    document.getElementById('value').textContent = event.detail.value;
+  };
 
-	handleClick() {
-		this.gauge.current.disabled = !this.button.current.checked;
-	}
+  const handleReady = () => {
+    ReactDOM.createRoot(document.getElementById('powerButtonContainer')).render(
+      <PowerButton ref={buttonRef} id="power" checked onClick={handleClick}></PowerButton>
+    );
+  };
 
-	handleChange(event) {
-		document.getElementById('value').textContent = event.detail.value;
-	}
+  useEffect(() => {
+    const headerTemplate = document.createElement('template');
+    const footerTemplate = document.createElement('template');
 
-	handleReady() {
-		const that = this;
-		
-		ReactDOM.render(<PowerButton id="power" ref={that.button} checked onClick={that.handleClick.bind(that)}></PowerButton>,  document.getElementById('powerButtonContainer'));
-	}
+    headerTemplate.innerHTML = '<div id="powerButtonContainer"></div><label>Gauge</label>';
+    footerTemplate.innerHTML = '<div>Value: <span id="value"></span></div>';
 
-	init() {
-		const that = this;
-		const template = document.createElement('template'),
-			template2 = document.createElement('template');
+    headerTemplate.id = 'headerTemplate';
+    footerTemplate.id = 'footerTemplate';
 
-		template.innerHTML = '<div id="powerButtonContainer"></div><label>Gauge</label>';
-		template2.innerHTML = '<div>Value:<span id="value"></span></div>';
+    document.body.appendChild(headerTemplate);
+    document.body.appendChild(footerTemplate);
 
-		template.id = 'headerTemplate';
-		template2.id = 'footerTemplate';
+    if (windowRef.current) {
+      windowRef.current.headerTemplate = headerTemplate.id;
+      windowRef.current.footerTemplate = footerTemplate.id;
+    }
+  }, []);
 
-		document.body.appendChild(template);
-		document.body.appendChild(template2);
-
-		this.window.current.headerTemplate = template.id;
-		this.window.current.footerTemplate = template2.id;
-
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<Window ref={this.window} opened onReady={this.handleReady.bind(this)}>
-					<section>
-						<Gauge ref={this.gauge} analogDisplayType="needle" startAngle={-30} endAngle={210} onChange={this.handleChange.bind(this)}
-							min={0} max={100} value={0} sizeMode="auto"></Gauge>
-					</section>
-				</Window>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Window ref={windowRef} opened onReady={handleReady}>
+        <section>
+          <Gauge
+            ref={gaugeRef}
+            analogDisplayType="needle"
+            startAngle={-30}
+            endAngle={210}
+            min={0}
+            max={100}
+            value={0}
+            sizeMode="auto"
+            onChange={handleChange}
+          />
+        </section>
+      </Window>
+    </div>
+  );
+};
 
 export default App;

@@ -1,24 +1,22 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useEffect } from "react";  // Import React and useEffect for lifecycle methods.
+import { Button } from 'smart-webcomponents-react/button';  // Import the Button component from Smart UI library.
 
-class App extends React.Component {
+const App = () => {
 
-	componentDidMount() {
+  // useEffect hook to replace componentDidMount, running after the component is mounted
+  useEffect(() => {
+    // Code here will run once when the component mounts
+    // You can perform side effects like fetching data or initializing other tasks
+  }, []);  // Empty array ensures it runs only once after the first render
 
-	}
-
-	render() {
-		return (
-			<div>
-			    <Button ></Button>
-			</div>
-		);
-	}
+  return (
+    <div>
+      {/* Rendering a div element containing a Button component */}
+      <Button></Button>
+    </div>
+  );
 }
-
-
 
 export default App;

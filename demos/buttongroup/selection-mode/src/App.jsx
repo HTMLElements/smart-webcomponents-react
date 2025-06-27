@@ -1,49 +1,47 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef } from "react";
 import { ButtonGroup } from 'smart-webcomponents-react/buttongroup';
 import { Input } from 'smart-webcomponents-react/input';
 
-class App extends React.Component {
-	constructor(prop) {
-		super(prop);
+const App = () => {
+  const buttonGroup = useRef(null);
+  const options = useRef(null);
 
-		this.buttonGroup = React.createRef();
-		this.options = React.createRef();
-	}
+  const dataSource = ["a", "b", "c"];
+  const selectionModes = ["none", "one", "zeroOrOne", "zeroOrMany"];
 
-	dataSource = ["a","b","c"];
+  useEffect(() => {
+    const handleChange = (event) => {
+      if (buttonGroup.current) {
+        buttonGroup.current.selectionMode = event.detail.value;
+      }
+    };
 
-	selectionModes = ["none", "one", "zeroOrOne", "zeroOrMany"];
+    const optionsElement = options.current;
+    optionsElement.addEventListener('change', handleChange);
 
-	init() {
-		const buttonGroup = this.buttonGroup.current;
-		
-	    document.querySelector('.options').addEventListener('change', function(event) {
-	        buttonGroup.selectionMode = event.detail.value;
-	    });
-	}
+    return () => {
+      optionsElement.removeEventListener('change', handleChange);
+    };
+  }, []);
 
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-			    <ButtonGroup ref={this.buttonGroup}  dataSource={this.dataSource}></ButtonGroup>
-			        <div className="options" ref={this.options}>
-			             <h4>Select a Selection Mode:</h4>
-			            <div className="option">
-			                <Input readonly value="one" dataSource={this.selectionModes} dropDownButtonPosition="right"></Input>
-			            </div>
-			        </div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <ButtonGroup ref={buttonGroup} dataSource={dataSource}></ButtonGroup>
+      <div className="options" ref={options}>
+        <h4>Select a Selection Mode:</h4>
+        <div className="option">
+          <Input
+            readonly
+            value="one"
+            dataSource={selectionModes}
+            dropDownButtonPosition="right"
+          ></Input>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

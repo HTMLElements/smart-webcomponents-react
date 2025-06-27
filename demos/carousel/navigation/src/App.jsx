@@ -1,86 +1,100 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef, useMemo, useCallback } from 'react';
+import { Button } from 'smart-webcomponents-react/button';
 import { Carousel } from 'smart-webcomponents-react/carousel';
 import { CheckBox } from 'smart-webcomponents-react/checkbox';
-import { TextBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/textbox';
+import { TextBox } from 'smart-webcomponents-react/textbox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const carouselRef = useRef(null);
+  const textboxRef = useRef(null);
 
-		this.carousel = React.createRef();
-		this.textbox = React.createRef();
-	}
+  const generateDataSource = (items) => {
+    return Array.from({ length: items }, (_, index) => ({
+      image: `./../../../src/images/carousel-medium-${index + 1}.jpg`,
+      label: 'Slide ' + index,
+      content: 'Content ' + index
+    }));
+  };
 
-	generateDataSource(items) {
-		const dataSource = Array(items).fill({});
+  const dataSource = useMemo(() => generateDataSource(6), []);
 
-		dataSource.forEach((element, index) => dataSource[index] = {
-			image: `./../../../src/images/carousel-medium-${index + 1}.jpg`,
-			label: 'Slide ' + index,
-			content: 'Content ' + index
-		});
+  const handleChange = useCallback((property, event) => {
+    if (carouselRef.current) {
+      carouselRef.current[property] = property.startsWith('hide')
+        ? !event.detail.value
+        : event.detail.value;
+    }
+  }, []);
 
-		return dataSource;
-	}
+  const handleClick = useCallback((methodName) => {
+    if (carouselRef.current && typeof carouselRef.current[methodName] === 'function') {
+      carouselRef.current[methodName]();
+    }
+  }, []);
 
-	dataSource = this.generateDataSource(6);
+  const handleSlideTo = useCallback(() => {
+    if (carouselRef.current && textboxRef.current) {
+      const value = parseInt(textboxRef.current.value, 10);
+      carouselRef.current.slideTo(isNaN(value) ? 0 : value);
+    }
+  }, []);
 
-	handleChange(property, event) {
-		this.carousel.current[property] =  property.indexOf('hide') === 0 ? !event.detail.value : event.detail.value;
-	}
+  return (
+    <div>
+      <Carousel ref={carouselRef} dataSource={dataSource} id="carousel" />
 
-	handleClick(methodName) {
-		this.carousel.current[methodName]();
-	}
-
-	handleSlideTo() {
-		this.carousel.current.slideTo(parseInt('' + this.textbox.current.value) || 0);
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Carousel ref={this.carousel} dataSource={this.dataSource} id="carousel"></Carousel>
-
-				<div id="navigationBox">
-					<CheckBox onChange={this.handleChange.bind(this, 'hideArrows')} id="arrows" checked>Show Arrows</CheckBox>
-					<br />
-					<CheckBox onChange={this.handleChange.bind(this, 'hideIndicators')} id="indicators" checked>Show Indicators</CheckBox>
-					<br />
-					<CheckBox onChange={this.handleChange.bind(this, 'wheel')} id="wheel" >Navigate via Mouse Wheel</CheckBox>
-					<br />
-					<CheckBox onChange={this.handleChange.bind(this, 'swipe')} id="swipe" >Navigate via Swipe Left / Swipe Right</CheckBox>
-					<br />
-					<CheckBox onChange={this.handleChange.bind(this, 'slideShow')} id="slideShow" >SlideShow</CheckBox>
-					<br />
-					<CheckBox onChange={this.handleChange.bind(this, 'loop')} id="loop" >Loop</CheckBox>
-					<br />
-					<hr />
-					<Button onClick={this.handleClick.bind(this, 'play')} id="playButton">Play</Button>
-					<Button onClick={this.handleClick.bind(this, 'pause')} id="pauseButton">Pause</Button>
-					<br />
-					<br />
-					<Button onClick={this.handleClick.bind(this, 'prev')} id="prevButton">Prev</Button>
-					<Button onClick={this.handleClick.bind(this, 'next')} id="nextButton">Next</Button>
-					<br />
-					<br />
-					<Button onClick={this.handleSlideTo.bind(this)} id="slideToButton">Slide To</Button>
-					<br />
-					<TextBox ref={this.textbox} id="slideToValue" placeholder="Value"></TextBox>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+      <div id="navigationBox">
+        <CheckBox onChange={(e) => handleChange('hideArrows', e)} id="arrows" checked>
+          Show Arrows
+        </CheckBox>
+        <br />
+        <CheckBox onChange={(e) => handleChange('hideIndicators', e)} id="indicators" checked>
+          Show Indicators
+        </CheckBox>
+        <br />
+        <CheckBox onChange={(e) => handleChange('wheel', e)} id="wheel">
+          Navigate via Mouse Wheel
+        </CheckBox>
+        <br />
+        <CheckBox onChange={(e) => handleChange('swipe', e)} id="swipe">
+          Navigate via Swipe Left / Swipe Right
+        </CheckBox>
+        <br />
+        <CheckBox onChange={(e) => handleChange('slideShow', e)} id="slideShow">
+          SlideShow
+        </CheckBox>
+        <br />
+        <CheckBox onChange={(e) => handleChange('loop', e)} id="loop">
+          Loop
+        </CheckBox>
+        <br />
+        <hr />
+        <Button onClick={() => handleClick('play')} id="playButton">
+          Play
+        </Button>
+        <Button onClick={() => handleClick('pause')} id="pauseButton">
+          Pause
+        </Button>
+        <br />
+        <br />
+        <Button onClick={() => handleClick('prev')} id="prevButton">
+          Prev
+        </Button>
+        <Button onClick={() => handleClick('next')} id="nextButton">
+          Next
+        </Button>
+        <br />
+        <br />
+        <Button onClick={handleSlideTo} id="slideToButton">
+          Slide To
+        </Button>
+        <br />
+        <TextBox ref={textboxRef} id="slideToValue" placeholder="Value" />
+      </div>
+    </div>
+  );
+};
 
 export default App;
