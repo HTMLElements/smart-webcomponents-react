@@ -1,34 +1,22 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { PasswordInput } from 'smart-webcomponents-react/passwordinput';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+function App(props) {
+	const input = useRef(null);
 
-		this.input = React.createRef();
-	}
+	useEffect(() => {
+		let inputElement = input.current;
+		// You can perform additional logic with inputElement if needed
+	}, []);
 
-	init() {
-		let input = this.input.current;
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<PasswordInput ref={this.input} placeholder="Empty"></PasswordInput>
-			</div>
-		);
-	}
+	return (
+		<div>
+			<PasswordInput ref={input} placeholder="Empty"></PasswordInput>
+		</div>
+	);
 }
-
-
 
 export default App;

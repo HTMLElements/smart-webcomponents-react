@@ -1,29 +1,19 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { MultilineTextBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/multilinetextbox';
+import React, { useEffect } from "react";
+import { MultilineTextBox } from 'smart-webcomponents-react/multilinetextbox';
 
-class App extends React.Component {
+function App() {
+    // Equivalent to the init function and componentDidMount
+    useEffect(() => {
+        // init logic (currently empty)
+    }, []);
 
-	init() {
-	
-	}
-
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-			    <MultilineTextBox placeholder="Enter Text" autoExpand></MultilineTextBox>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <MultilineTextBox placeholder="Enter Text" autoExpand></MultilineTextBox>
+        </div>
+    );
 }
-
-
 
 export default App;

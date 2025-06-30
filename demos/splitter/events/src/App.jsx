@@ -1,61 +1,52 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Splitter, SplitterItem, SplitterBar } from 'smart-webcomponents-react/splitter';
+import React, { useRef } from 'react';
+import { Splitter, SplitterItem } from 'smart-webcomponents-react/splitter';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const log = useRef(null);
 
-		this.log = React.createRef();
-	}
+  const handleEvent = (event) => {
+    if (!event.detail) {
+      return;
+    }
 
-	handleEvent(event) {
-		function getElement(event) {
-			const element = document.createElement('div');
+    function getElement(event) {
+      const element = document.createElement('div');
 
-			element.textContent = 'Type: ' + event.type;
+      element.textContent = 'Type: ' + event.type;
 
-			if (event.detail.x) {
-				element.textContent += ', X: ' + event.detail.x + ', Y: ' + event.detail.y;
-			}
+      if (event.detail.x) {
+        element.textContent += ', X: ' + event.detail.x + ', Y: ' + event.detail.y;
+      }
 
-			return element;
-		}
+      return element;
+    }
 
-		if (!event.detail) {
-			return;
-		}
+    log.current.appendChild(getElement(event));
+  };
 
-		this.log.current.appendChild(getElement(event));
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Splitter onResize={this.handleEvent.bind(this)}
-					onExpand={this.handleEvent.bind(this)} onCollapse={this.handleEvent.bind(this)}
-					onResizeStart={this.handleEvent.bind(this)} onResizeEnd={this.handleEvent.bind(this)}>
-					<SplitterItem collapsible size="150"></SplitterItem>
-					<SplitterItem collapsible></SplitterItem>
-				</Splitter>
-				<div className="options">
-					<div>Event Log:</div>
-					<div className="option ">
-						<div ref={this.log} id="log">
-						</div>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Splitter
+        onResize={handleEvent}
+        onExpand={handleEvent}
+        onCollapse={handleEvent}
+        onResizeStart={handleEvent}
+        onResizeEnd={handleEvent}
+      >
+        <SplitterItem collapsible size="150"></SplitterItem>
+        <SplitterItem collapsible></SplitterItem>
+      </Splitter>
+      <div className="options">
+        <div>Event Log:</div>
+        <div className="option ">
+          <div ref={log} id="log">
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

@@ -1,31 +1,29 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { Gauge } from 'smart-webcomponents-react/gauge';
 
-class App extends React.Component {
+function App() {
+    // You can use useEffect here if you need componentDidMount logic in the future.
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Gauge id="gauge" analogDisplayType="needle" scaleType="integer"
-					digitalDisplay startAngle={-30} endAngle={210} min="0" max="100" value="25"
-					rightToLeft unit='ק"ג' showUnit></Gauge>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <Gauge
+                id="gauge"
+                analogDisplayType="needle"
+                scaleType="integer"
+                digitalDisplay
+                startAngle={-30}
+                endAngle={210}
+                min={0}
+                max={100}
+                value={25}
+                rightToLeft
+                unit='ק"ג'
+                showUnit
+            />
+        </div>
+    );
 }
-
-
 
 export default App;

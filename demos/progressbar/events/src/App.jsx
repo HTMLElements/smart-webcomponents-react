@@ -1,54 +1,51 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
-import { ProgressBar, CircularProgressBar } from 'smart-webcomponents-react/progressbar';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
+import { ProgressBar } from 'smart-webcomponents-react/progressbar';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+function App() {
+  const progressbar = useRef(null);
+  const log = useRef(null);
 
-		this.progressbar = React.createRef();
-		this.log = React.createRef();
-	}
+  const setVal = (number) => {
+    const customElement = progressbar.current;
+    if (customElement) {
+      customElement.value = number;
+    }
+  };
 
-	setVal(number) {
-		const customElement = this.progressbar.current;
+  const handleChange = (event) => {
+    const newV = event.detail.value;
+    const oldV = event.detail.oldValue;
 
-		customElement.value = number;
-	}
+    if (log.current) {
+      log.current.innerHTML =
+        '"change" event has been raised.' +
+        '<br/><br/>' +
+        'Event Details:' +
+        '<br/>' +
+        'newValue:' + newV +
+        '<br/>' +
+        'oldValue: ' + oldV;
+    }
+  };
 
-	handleChange(event) {
-		const newV = event.detail.value,
-			oldV = event.detail.oldValue;
-	
-		this.log.current.innerHTML = '"change" event has been raised.' + '<br/><br/>' + 'Event Details:' + '<br/>' + 'newValue:' + newV + '<br/>' + 'oldValue: ' + oldV;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<ProgressBar ref={this.progressbar} value={50} onChange={this.handleChange.bind(this)}></ProgressBar>
-				<div className="options">
-					<div className="caption">Settings</div>
-					<div className="option">
-						<div>
-							<Button  onclick={this.setVal.bind(this, 100)}>Set Value</Button>
-						</div>
-						<br />
-						<div ref={this.log} id="log"></div>
-					</div>
-				</div>
-			</div>
-		);
-	}
+  return (
+    <div>
+      <ProgressBar ref={progressbar} value={50} onChange={handleChange}></ProgressBar>
+      <div className="options">
+        <div className="caption">Settings</div>
+        <div className="option">
+          <div>
+            <Button onClick={() => setVal(100)}>Set Value</Button>
+          </div>
+          <br />
+          <div ref={log} id="log"></div>
+        </div>
+      </div>
+    </div>
+  );
 }
-
-
 
 export default App;

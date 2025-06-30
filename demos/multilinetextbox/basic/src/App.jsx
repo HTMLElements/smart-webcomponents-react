@@ -1,29 +1,21 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
-import { MultilineTextBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/multilinetextbox';
+import { MultilineTextBox } from 'smart-webcomponents-react/multilinetextbox';
 
-class App extends React.Component {
+function App() {
+    // If you want to use lifecycle logic, you can add useEffect here
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<MultilineTextBox enterKeyBehavior="newLine" selectAllOnFocus autoFocus placeholder="smart Text Area"></MultilineTextBox>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <MultilineTextBox
+                enterKeyBehavior="newLine"
+                selectAllOnFocus
+                autoFocus
+                placeholder="smart Text Area"
+            />
+        </div>
+    );
 }
-
-
 
 export default App;

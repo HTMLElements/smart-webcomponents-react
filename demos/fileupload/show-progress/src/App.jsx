@@ -1,29 +1,19 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { FileUpload } from 'smart-webcomponents-react/fileupload';
 
-class App extends React.Component {
+const App = () => {
+    // You can use useEffect if you need lifecycle methods
+    // React.useEffect(() => {
+    //     // componentDidMount code here
+    // }, []);
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<FileUpload showProgress multiple uploadUrl=""></FileUpload>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <FileUpload showProgress multiple uploadUrl="" />
+        </div>
+    );
+};
 
 export default App;

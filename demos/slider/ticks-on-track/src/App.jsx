@@ -1,30 +1,26 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { Slider } from 'smart-webcomponents-react/slider';
 
-class App extends React.Component {
+function App() {
+    // The init and componentDidMount methods from the class are not used.
+    // Add React.useEffect here if you need lifecycle logic.
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Slider id="slider" showTooltip orientation="horizontal"
-					min="0" max="100" value="71" scalePosition="both" ticksPosition="track"></Slider>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <Slider
+                id="slider"
+                showTooltip
+                orientation="horizontal"
+                min="0"
+                max="100"
+                value="71"
+                scalePosition="both"
+                ticksPosition="track"
+            />
+        </div>
+    );
 }
-
-
 
 export default App;

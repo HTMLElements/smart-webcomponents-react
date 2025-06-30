@@ -1,40 +1,42 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
-import { MultilineTextBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/multilinetextbox';
+import { MultilineTextBox } from 'smart-webcomponents-react/multilinetextbox';
 
-class App extends React.Component {
+function App() {
+    // You can use useEffect here for lifecycle methods if needed
+    // React.useEffect(() => {
+    //     // componentDidMount logic
+    // }, []);
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<MultilineTextBox enterKeyBehavior="newLine"
-					verticalScrollBarVisibility="auto" horizontalScrollBarVisibility="auto"
-					placeholder="Auto Scrollbars"></MultilineTextBox>
-				<MultilineTextBox enterKeyBehavior="newLine"
-					verticalScrollBarVisibility="disabled" horizontalScrollBarVisibility="disabled"
-					placeholder="Disabled Scrollbars"></MultilineTextBox>
-				<MultilineTextBox enterKeyBehavior="newLine"
-					verticalScrollBarVisibility="visible" horizontalScrollBarVisibility="visible"
-					placeholder="Visible Scrollbars"></MultilineTextBox>
-				<MultilineTextBox enterKeyBehavior="newLine"
-					verticalScrollBarVisibility="hidden" horizontalScrollBarVisibility="hidden"
-					placeholder="Hidden Scrollbars"></MultilineTextBox>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <MultilineTextBox
+                enterKeyBehavior="newLine"
+                verticalScrollBarVisibility="auto"
+                horizontalScrollBarVisibility="auto"
+                placeholder="Auto Scrollbars"
+            ></MultilineTextBox>
+            <MultilineTextBox
+                enterKeyBehavior="newLine"
+                verticalScrollBarVisibility="disabled"
+                horizontalScrollBarVisibility="disabled"
+                placeholder="Disabled Scrollbars"
+            ></MultilineTextBox>
+            <MultilineTextBox
+                enterKeyBehavior="newLine"
+                verticalScrollBarVisibility="visible"
+                horizontalScrollBarVisibility="visible"
+                placeholder="Visible Scrollbars"
+            ></MultilineTextBox>
+            <MultilineTextBox
+                enterKeyBehavior="newLine"
+                verticalScrollBarVisibility="hidden"
+                horizontalScrollBarVisibility="hidden"
+                placeholder="Hidden Scrollbars"
+            ></MultilineTextBox>
+        </div>
+    );
 }
-
-
 
 export default App;

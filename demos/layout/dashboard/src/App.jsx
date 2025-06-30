@@ -1,7 +1,7 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useRef } from 'react';
+
 import {
   Button,
   RepeatButton,
@@ -27,26 +27,24 @@ import {
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 import { TextBox } from 'smart-webcomponents-react/textbox';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+const App = () => {
+  // Refs for components and DOM
+  const calendar = useRef();
+  const listbox = useRef();
+  const textbox = useRef();
+  const textbox2 = useRef();
+  const radiobutton = useRef();
+  const radiobutton2 = useRef();
+  const datetimepicker = useRef();
+  const grid = useRef();
+  const button = useRef();
+  const button2 = useRef();
+  const headerName = useRef();
+  const headerLogo = useRef();
+  const personInfo = useRef();
 
-    this.calendar = React.createRef();
-    this.listbox = React.createRef();
-    this.textbox = React.createRef();
-    this.textbox2 = React.createRef();
-    this.radiobutton = React.createRef();
-    this.radiobutton2 = React.createRef();
-    this.datetimepicker = React.createRef();
-    this.grid = React.createRef();
-    this.button = React.createRef();
-    this.button2 = React.createRef();
-    this.headerName = React.createRef();
-    this.headerLogo = React.createRef();
-    this.personInfo = React.createRef();
-  }
-
-  data = [
+  // Data & State Refs
+  const data = useRef([
     {
       id: 0,
       date: new Date(new Date().setDate(new Date().getDate() - 1)),
@@ -147,9 +145,9 @@ class App extends React.Component {
       symptoms: 'Fear of animals',
       inpatient: false,
     },
-  ];
+  ]);
 
-  sampleData = [
+  const sampleData = useRef([
     {
       type: 'Circulatory',
       inpatients: 55,
@@ -180,11 +178,11 @@ class App extends React.Component {
       inpatients: 75,
       outpatients: 55,
     },
-  ];
+  ]);
 
-  selectedPersonId = 0;
+  const selectedPersonId = useRef(0);
 
-  chartProps = {
+  const chartProps = {
     caption: 'Total visits',
     description: '',
     showLegend: true,
@@ -201,7 +199,7 @@ class App extends React.Component {
       right: 0,
       bottom: 10,
     },
-    dataSource: this.sampleData,
+    dataSource: sampleData.current,
     xAxis: {
       dataField: 'type',
       visible: false,
@@ -234,7 +232,7 @@ class App extends React.Component {
     ],
   };
 
-  gridProps = {
+  const gridProps = {
     appearance: {
       showRowHeaderNumber: true,
     },
@@ -242,7 +240,7 @@ class App extends React.Component {
       enabled: true,
       mode: 'one',
     },
-    dataSource: this.data,
+    dataSource: data.current,
     columns: [
       {
         label: '',
@@ -274,30 +272,32 @@ class App extends React.Component {
     ],
   };
 
-  initCalendar() {
-    const calendar = this.calendar.current;
+  // ---------- Equivalent Methods as in the class ----------
 
-    if (!calendar) {
+  function initCalendar() {
+    const cal = calendar.current;
+
+    if (!cal) {
       return;
     }
-    calendar.min = new Date(new Date().setDate(new Date().getDate() - 1));
-    calendar.max = new Date();
-    calendar.clearSelection();
+    cal.min = new Date(new Date().setDate(new Date().getDate() - 1));
+    cal.max = new Date();
+    cal.clearSelection();
   }
 
-  initGrid() {
-    if (this.grid.current) {
-      this.grid.current.select(0);
+  function initGrid() {
+    if (grid.current) {
+      grid.current.select(0);
     }
   }
 
-  initListBox() {
-    const listbox = this.listbox.current;
+  function initListBox() {
+    const lb = listbox.current;
 
-    if (!listbox) {
+    if (!lb) {
       return;
     }
-    listbox.dataSource = this.data.map((x) => {
+    lb.dataSource = data.current.map((x) => {
       return {
         id: x.id,
         name: x.name,
@@ -305,132 +305,118 @@ class App extends React.Component {
       };
     });
 
-    const items = listbox.items;
+    const items = lb.items;
 
-    for (let i = 0; i < listbox.dataSource.length; i++) {
+    for (let i = 0; i < lb.dataSource.length; i++) {
       if (!items[i].querySelector('img')) {
         continue;
       }
       items[i].querySelector(
         'img'
-      ).src = `../../images/people/${listbox.dataSource[i].image}.jpg`;
+      ).src = `../../images/people/${lb.dataSource[i].image}.jpg`;
     }
   }
 
-  //Calendar onReady
-  handleCalendar() {
-    const that = this;
-  }
+  // onReady for Calendar (kept in case)
+  const handleCalendar = () => {
+    // Placeholder for onReady event if needed
+  };
 
-  handleCalendarChange(e) {
-    const that = this;
-
+  const handleCalendarChange = (e) => {
     if (e.detail.value.length) {
-      that.grid.current.addFilter(
+      grid.current.addFilter(
         'date',
         '= ' + e.detail.value[0].toLocaleDateString()
       );
     } else {
-      that.grid.current.clearFilter();
+      grid.current.clearFilter();
     }
-  }
+  };
 
-  handleListBoxChange(e) {
-    this.changeSelectedPerson(e.detail.value, true);
-  }
+  const handleListBoxChange = (e) => {
+    changeSelectedPerson(e.detail.value, true);
+  };
 
-  handleGridChange(e) {
-    const that = this;
-
+  const handleGridChange = (e) => {
     if (!e.target || (e.target && !e.target.getSelection)) {
       return;
     }
-
     const selection = e.target.getSelection();
-
     if (selection && selection.rows && selection.rows.length > 0) {
       const id = selection.rows[0].id;
-
-      that.changeSelectedPerson(id);
+      changeSelectedPerson(id);
     }
-  }
+  };
 
-  changeSelectedPerson(id, updateGrid) {
-    const that = this;
+  function changeSelectedPerson(id, updateGrid) {
+    if (selectedPersonId.current === id) return;
+    selectedPersonId.current = id;
 
-    if (that.selectedPersonId === id) return;
-
-    that.selectedPersonId = id;
-
-    const personData = that.data[id];
-
-    this.headerName.current.innerHTML = personData.name;
+    const personData = data.current[id];
+    if (headerName.current) headerName.current.innerHTML = personData.name;
 
     const imgSrc = `../../images/people/${personData.image}.jpg`;
 
-    this.headerLogo.current.src = imgSrc;
+    if (headerLogo.current) headerLogo.current.src = imgSrc;
 
-    const personInfo = that.personInfo.current;
+    if (personInfo.current) {
+      personInfo.current.querySelector('img').src = imgSrc;
+    }
 
-    that.textbox.current.value = personData.name;
-    that.datetimepicker.current.value = personData.date;
-    that.textbox2.current.value = personData.email;
-
-    personInfo.querySelector('img').src = imgSrc;
+    if (textbox.current) textbox.current.value = personData.name;
+    if (datetimepicker.current) datetimepicker.current.value = personData.date;
+    if (textbox2.current) textbox2.current.value = personData.email;
 
     if (personData.inpatient) {
-      that.radiobutton.current.checked = true;
+      if (radiobutton.current) radiobutton.current.checked = true;
     } else {
-      that.radiobutton2.current.checked = true;
+      if (radiobutton2.current) radiobutton2.current.checked = true;
     }
 
     if (updateGrid) {
-      that.grid.current.select(personData.id);
+      if (grid.current) grid.current.select(personData.id);
     } else {
-      that.listbox.current.selectedIndexes = [personData.id];
+      if (listbox.current) listbox.current.selectedIndexes = [personData.id];
     }
   }
 
-  updatePersonData() {
-    const that = this;
-    const selectedPerson = that.data[that.selectedPersonId];
+  function updatePersonData() {
+    const selectedIdx = selectedPersonId.current;
+    const selectedPerson = data.current[selectedIdx];
 
-    selectedPerson.name = that.textbox.current.value;
-    selectedPerson.date = that.datetimepicker.current.value;
-    selectedPerson.email = that.textbox2.current.value;
-    selectedPerson.inpatient = that.radiobutton.current.checked ? true : false;
+    selectedPerson.name = textbox.current.value;
+    selectedPerson.date = datetimepicker.current.value;
+    selectedPerson.email = textbox2.current.value;
+    selectedPerson.inpatient = radiobutton.current.checked ? true : false;
 
     // update grid data
-    const grid = that.grid.current;
-    const gridData = grid.rows[that.selectedPersonId].data;
+    const gridRef = grid.current;
+    const gridData = gridRef.rows[selectedIdx].data;
 
     gridData.name = selectedPerson.name;
     gridData.date = selectedPerson.date;
     gridData.email = selectedPerson.email;
     gridData.inpatient = selectedPerson.inpatient;
-    grid.refreshView();
+    gridRef.refreshView();
 
     // update listbox data
-    const listbox = that.listbox.current;
+    const lb = listbox.current;
+    lb.update(selectedIdx, selectedPerson.name);
 
-    listbox.update(that.selectedPersonId, selectedPerson.name);
+    const items = lb.items;
 
-    const items = listbox.items;
-
-    items[that.selectedPersonId].querySelector(
+    items[selectedIdx].querySelector(
       'img'
-    ).src = `../../images/people/${that.data[that.selectedPersonId].image}.jpg`;
+    ).src = `../../images/people/${data.current[selectedIdx].image}.jpg`;
   }
 
-  resetForm() {
-    const that = this;
-    const selectedPerson = that.data[that.selectedPersonId];
+  function resetForm() {
+    const selectedIdx = selectedPersonId.current;
+    const selectedPerson = data.current[selectedIdx];
 
-    if (that.textbox.current) {
-      that.textbox.current.value = selectedPerson.name;
-      that.datetimepicker.current.value = selectedPerson.date;
-      that.textbox2.current.value = selectedPerson.email;
-    }
+    if (textbox.current) textbox.current.value = selectedPerson.name;
+    if (datetimepicker.current) datetimepicker.current.value = selectedPerson.date;
+    if (textbox2.current) textbox2.current.value = selectedPerson.email;
 
     if (document.querySelector('#personInfo img')) {
       document.querySelector(
@@ -438,162 +424,159 @@ class App extends React.Component {
       ).src = `../../images/people/${selectedPerson.image}.jpg`;
     }
 
-    if (!that.radiobutton.current) {
+    if (!radiobutton.current) {
       return;
     }
 
     if (selectedPerson.inpatient) {
-      that.radiobutton.current.checked = true;
+      radiobutton.current.checked = true;
     } else {
-      that.radiobutton2.current.checked = true;
+      radiobutton2.current.checked = true;
     }
   }
 
-  init() {
-    const that = this;
+  // Initialization routine, similar to componentDidMount
+  useEffect(() => {
+    initCalendar();
+    initGrid();
+    initListBox();
+    resetForm();
 
-    that.initCalendar();
-    that.initGrid();
-    that.initListBox();
-    that.resetForm();
+    // templates (can only append once)
+    if (!document.getElementById('calendarFooter')) {
+      const calendarTemplate = document.createElement('template'),
+        itemTemplate = document.createElement('template');
 
-    const calendarTemplate = document.createElement('template'),
-      itemTemplate = document.createElement('template');
+      calendarTemplate.id = 'calendarFooter';
+      itemTemplate.id = 'template';
 
-    calendarTemplate.id = 'calendarFooter';
-    itemTemplate.id = 'template';
+      calendarTemplate.innerHTML =
+        '<smart-button className="flat primary">Clear</smart-button>';
+      itemTemplate.innerHTML =
+        '<span className="list-item"><img height="53px" className="icon" src="../../images/people/nancy.jpg" />{{label}}</span>';
 
-    calendarTemplate.innerHTML =
-      '<smart-button className="flat primary">Clear</smart-button>';
-    itemTemplate.innerHTML =
-      '<span className="list-item"><img height="53px" className="icon" src="../../images/people/nancy.jpg" />{{label}}</span>';
-
-    document.body.appendChild(calendarTemplate);
-    document.body.appendChild(itemTemplate);
-
-    if (!that.calendar.current && !that.listbox.current) {
-      return;
+      document.body.appendChild(calendarTemplate);
+      document.body.appendChild(itemTemplate);
     }
 
-    that.calendar.current.footerTemplate = calendarTemplate.id;
-    that.listbox.current.itemTemplate = itemTemplate.id;
-  }
+    if (calendar.current && listbox.current) {
+      calendar.current.footerTemplate = "calendarFooter";
+      listbox.current.itemTemplate = "template";
+    }
+    // eslint-disable-next-line
+  }, []);
 
-  componentDidMount() {
-    this.init();
-  }
+  // ---------- JSX ----------
 
-  render() {
-    return (
-      <div>
-        <Layout>
-          <TabLayoutGroup position="bottom">
-            <TabLayoutItem modifiers="drag, resize" label="Patients">
-              <div className="dashboard-header">
-                {' '}
-                <span ref={this.headerName} className="header-name">
-                  Nancy Davolio
+  return (
+    <div>
+      <Layout>
+        <TabLayoutGroup position="bottom">
+          <TabLayoutItem modifiers="drag, resize" label="Patients">
+            <div className="dashboard-header">
+              <span ref={headerName} className="header-name">
+                Nancy Davolio
+              </span>
+              <div>
+                <span className="icon-holder">
+                  <img
+                    ref={headerLogo}
+                    className="header-logo"
+                    src="../../images/people/nancy.jpg"
+                    alt="Person"
+                  />
                 </span>
-                <div>
-                  <span className="icon-holder">
-                    <img
-                      ref={this.headerLogo}
-                      className="header-logo"
-                      src="../../images/people/nancy.jpg"
-                    />
-                  </span>
-                </div>
               </div>
-              <ListBox
-                ref={this.listbox}
-                id="listbox"
-                filterable
-                onChange={this.handleListBoxChange.bind(this)}
-                itemHeight={53}
-                displayMember="name"
-                selectionMode="zeroOrOne"
-                selectedIndexes={[0]}
-              ></ListBox>
-            </TabLayoutItem>
-            <TabLayoutItem modifiers="drag, resize" label="Calendar">
-              <Calendar
-                ref={this.calendar}
-                id="calendar"
-                viewSections={['footer']}
-                onReady={this.handleCalendar.bind(this)}
-                onChange={this.handleCalendarChange.bind(this)}
-              ></Calendar>
-            </TabLayoutItem>
-          </TabLayoutGroup>
-          <TabLayoutGroup size="80%">
-            <TabLayoutItem modifiers="drag, resize" label="Total Visits">
-              <LayoutGroup orientation="horizontal">
-                <LayoutGroup orientation="vertical">
-                  <LayoutItem>
-                    <Chart {...this.chartProps} id="chart"></Chart>
-                  </LayoutItem>
-                  <LayoutItem>
-                    <div ref={this.personInfo} id="personInfo">
-                      <img width="30%" />
-                      <div id="form">
-                        <label>Name</label>
-                        <TextBox ref={this.textbox} id="name"></TextBox>
-                        <label>Date</label>
-                        <DateTimePicker
-                          ref={this.datetimepicker}
-                          calendarButton
-                          formatString="MM/dd/yyyy"
-                          dropDownAppendTo="body"
-                        ></DateTimePicker>
-                        <label>Email</label>
-                        <TextBox ref={this.textbox2} id="email"></TextBox>
-                        <RadioButton ref={this.radiobutton} id="inpatient">
-                          Inpatient
-                        </RadioButton>
-                        <RadioButton ref={this.radiobutton2} id="outpatient">
-                          Outpatient
-                        </RadioButton>
-                        <div className="buttons">
-                          <Button
-                            ref={this.button}
-                            className="primary"
-                            id="save"
-                            onClick={this.updatePersonData.bind(this)}
-                          >
-                            Save
-                          </Button>
-                          <Button
-                            ref={this.button2}
-                            id="reset"
-                            onClick={this.resetForm.bind(this)}
-                          >
-                            Reset
-                          </Button>
-                        </div>
+            </div>
+            <ListBox
+              ref={listbox}
+              id="listbox"
+              filterable
+              onChange={handleListBoxChange}
+              itemHeight={53}
+              displayMember="name"
+              selectionMode="zeroOrOne"
+              selectedIndexes={[0]}
+            ></ListBox>
+          </TabLayoutItem>
+          <TabLayoutItem modifiers="drag, resize" label="Calendar">
+            <Calendar
+              ref={calendar}
+              id="calendar"
+              viewSections={['footer']}
+              onReady={handleCalendar}
+              onChange={handleCalendarChange}
+            ></Calendar>
+          </TabLayoutItem>
+        </TabLayoutGroup>
+        <TabLayoutGroup size="80%">
+          <TabLayoutItem modifiers="drag, resize" label="Total Visits">
+            <LayoutGroup orientation="horizontal">
+              <LayoutGroup orientation="vertical">
+                <LayoutItem>
+                  <Chart {...chartProps} id="chart"></Chart>
+                </LayoutItem>
+                <LayoutItem>
+                  <div ref={personInfo} id="personInfo">
+                    <img width="30%" alt="Person" />
+                    <div id="form">
+                      <label>Name</label>
+                      <TextBox ref={textbox} id="name"></TextBox>
+                      <label>Date</label>
+                      <DateTimePicker
+                        ref={datetimepicker}
+                        calendarButton
+                        formatString="MM/dd/yyyy"
+                        dropDownAppendTo="body"
+                      ></DateTimePicker>
+                      <label>Email</label>
+                      <TextBox ref={textbox2} id="email"></TextBox>
+                      <RadioButton ref={radiobutton} id="inpatient">
+                        Inpatient
+                      </RadioButton>
+                      <RadioButton ref={radiobutton2} id="outpatient">
+                        Outpatient
+                      </RadioButton>
+                      <div className="buttons">
+                        <Button
+                          ref={button}
+                          className="primary"
+                          id="save"
+                          onClick={updatePersonData}
+                        >
+                          Save
+                        </Button>
+                        <Button
+                          ref={button2}
+                          id="reset"
+                          onClick={resetForm}
+                        >
+                          Reset
+                        </Button>
                       </div>
                     </div>
-                  </LayoutItem>
-                </LayoutGroup>
-                <TabLayoutGroup position="bottom">
-                  <TabLayoutItem
-                    modifiers="drag, resize"
-                    label="In/Out Patients"
-                  >
-                    <Grid
-                      ref={this.grid}
-                      {...this.gridProps}
-                      id="grid"
-                      onChange={this.handleGridChange.bind(this)}
-                    ></Grid>
-                  </TabLayoutItem>
-                </TabLayoutGroup>
+                  </div>
+                </LayoutItem>
               </LayoutGroup>
-            </TabLayoutItem>
-          </TabLayoutGroup>
-        </Layout>
-      </div>
-    );
-  }
-}
+              <TabLayoutGroup position="bottom">
+                <TabLayoutItem
+                  modifiers="drag, resize"
+                  label="In/Out Patients"
+                >
+                  <Grid
+                    ref={grid}
+                    {...gridProps}
+                    id="grid"
+                    onChange={handleGridChange}
+                  ></Grid>
+                </TabLayoutItem>
+              </TabLayoutGroup>
+            </LayoutGroup>
+          </TabLayoutItem>
+        </TabLayoutGroup>
+      </Layout>
+    </div>
+  );
+};
 
 export default App;

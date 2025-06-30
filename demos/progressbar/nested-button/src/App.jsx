@@ -1,48 +1,31 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { CircularProgressBar } from 'smart-webcomponents-react/progressbar';
 import { ToggleButton } from 'smart-webcomponents-react/button';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const progressbar = useRef(null);
+  const togglebutton = useRef(null);
 
-		this.progressbar = React.createRef();
-		this.togglebutton = React.createRef();
-	}
+  const handleChange = (event) => {
+    const button = togglebutton.current;
+    const progressBar = progressbar.current;
 
-	handleChange(event) {
-		const button = this.togglebutton.current,
-			progressBar = this.progressbar.current;
+    if (button.checked) {
+      progressBar.indeterminate = false;
+    } else {
+      progressBar.indeterminate = true;
+    }
+  };
 
-		if (button.checked) {
-			progressBar.indeterminate = false;
-		}
-		else {
-			progressBar.indeterminate = true;
-		}
-	}
-
-	init() {
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<CircularProgressBar ref={this.progressbar} indeterminate value={100}>
-					<ToggleButton ref={this.togglebutton} onChange={this.handleChange.bind(this)}></ToggleButton>
-				</CircularProgressBar>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <CircularProgressBar ref={progressbar} indeterminate value={100}>
+        <ToggleButton ref={togglebutton} onChange={handleChange}></ToggleButton>
+      </CircularProgressBar>
+    </div>
+  );
+};
 
 export default App;

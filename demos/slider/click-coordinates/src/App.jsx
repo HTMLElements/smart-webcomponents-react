@@ -1,46 +1,41 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { Slider } from 'smart-webcomponents-react/slider';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.x = React.createRef();
-		this.y = React.createRef();
-	}
+function App() {
+  const x = useRef(null);
+  const y = useRef(null);
 
-	handleSliderClick(event) {
-		this.x.current.innerHTML = event.pageX;
-		this.y.current.innerHTML = event.pageY;
-	}
+  const handleSliderClick = (event) => {
+    if (x.current && y.current) {
+      x.current.innerHTML = event.pageX;
+      y.current.innerHTML = event.pageY;
+    }
+  };
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Slider id="slider" showTooltip orientation="horizontal"
-					min="0" max="100" value="30" scalePosition="near" onClick={this.handleSliderClick.bind(this)}></Slider>
-				<div className="options">
-					<div className="caption">Settings</div>
-					<div className="option">
-						<div><strong>Coorinates:</strong> (<span ref={this.x} id="x"></span>, <span ref={this.y} id="y"></span>)</div>
-					</div>
-				</div>
-			</div>
-		);
-	}
+  return (
+    <div>
+      <Slider
+        id="slider"
+        showTooltip
+        orientation="horizontal"
+        min="0"
+        max="100"
+        value="30"
+        scalePosition="near"
+        onClick={handleSliderClick}
+      ></Slider>
+      <div className="options">
+        <div className="caption">Settings</div>
+        <div className="option">
+          <div>
+            <strong>Coorinates:</strong> (<span ref={x} id="x"></span>, <span ref={y} id="y"></span>)
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
-
-
 
 export default App;

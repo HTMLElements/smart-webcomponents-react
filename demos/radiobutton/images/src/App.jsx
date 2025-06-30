@@ -1,31 +1,20 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect } from "react";
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
+const App = () => {
 
-	init() {
+    useEffect(() => {
+        // Your code here (was in init and componentDidMount)
+    }, []);
 
-		// Your code here
-	}
-
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<RadioButton checked className="heart">On</RadioButton>
-				<RadioButton className="heart">Off</RadioButton>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <RadioButton checked className="heart">On</RadioButton>
+            <RadioButton className="heart">Off</RadioButton>
+        </div>
+    );
+};
 
 export default App;

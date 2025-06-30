@@ -1,63 +1,72 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button, ToggleButton } from 'smart-webcomponents-react/button';
 import { NumericTextBox } from 'smart-webcomponents-react/numerictextbox';
 import { Slider } from 'smart-webcomponents-react/slider';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.slider = React.createRef();
-		this.numerictextbox = React.createRef();
-	}
+function App() {
+    const slider = useRef();
+    const numerictextbox = useRef();
 
-	handleIntervalChange() {
-		this.slider.current.interval = this.numerictextbox.current.value;
-	}
+    const handleIntervalChange = () => {
+        slider.current.interval = numerictextbox.current.value;
+    };
 
-	handleToggleCoercionChange(event) {
-		this.slider.current.coerce = event.detail.value;
-	}
+    const handleToggleCoercionChange = (event) => {
+        slider.current.coerce = event.detail.value;
+    };
 
-	handleSetValueClick() {
-		this.slider.current.val(99);
-	}
+    const handleSetValueClick = () => {
+        slider.current.val(99);
+    };
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Slider ref={this.slider} showTooltip id="horizontalSlider" min="0" max="100"
-					value="77" scalePosition="both" coerce interval="5"></Slider>
-				<br />
-				<div className="options">
-					<div className="caption">Set coercion interval</div>
-					<div className="option">
-						<NumericTextBox ref={this.numerictextbox} id="interval" spinButtons inputFormat="integer"
-							value="5" onChange={this.handleIntervalChange.bind(this)}></NumericTextBox>
-					</div>
-					<div className="option">
-						<ToggleButton id="toggleCoercion" checked onChange={this.handleToggleCoercionChange.bind(this)}>Toggle coercion</ToggleButton>
-					</div>
-					<div className="option">
-						<Button id="setValue" onClick={this.handleSetValueClick.bind(this)}>Set value to 99</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <Slider
+                ref={slider}
+                showTooltip
+                id="horizontalSlider"
+                min="0"
+                max="100"
+                value="77"
+                scalePosition="both"
+                coerce
+                interval="5"
+            />
+            <br />
+            <div className="options">
+                <div className="caption">Set coercion interval</div>
+                <div className="option">
+                    <NumericTextBox
+                        ref={numerictextbox}
+                        id="interval"
+                        spinButtons
+                        inputFormat="integer"
+                        value="5"
+                        onChange={handleIntervalChange}
+                    />
+                </div>
+                <div className="option">
+                    <ToggleButton
+                        id="toggleCoercion"
+                        checked
+                        onChange={handleToggleCoercionChange}
+                    >
+                        Toggle coercion
+                    </ToggleButton>
+                </div>
+                <div className="option">
+                    <Button
+                        id="setValue"
+                        onClick={handleSetValueClick}
+                    >
+                        Set value to 99
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
 }
-
-
 
 export default App;

@@ -1,58 +1,57 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { Menu, MenuItem, MenuItemsGroup } from 'smart-webcomponents-react/menu';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.menu = React.createRef();
-	}
+const App = () => {
+  const menu = useRef();
 
-	init() {
-		const menu = this.menu.current;
+  useEffect(() => {
+    const menuRef = menu.current;
 
-		document.addEventListener('contextmenu', function (event) {
-			event.preventDefault();
-		});
-		document.addEventListener('mousedown', function (event) {
-			if (!menu.nativeElement.contains(event.target)) {
-				menu.close();
-			}
-		});
-		document.addEventListener('mouseup', function (event) {
-			if (event.which === 3 && !menu.nativeElement.contains(event.target)) {
-				menu.open(event.pageX, event.pageY);
-			}
-		});
+    const handleContextMenu = (event) => {
+      event.preventDefault();
+    };
 
-	}
+    const handleMouseDown = (event) => {
+      if (!menuRef.nativeElement.contains(event.target)) {
+        menuRef.close();
+      }
+    };
 
+    const handleMouseUp = (event) => {
+      if (event.which === 3 && !menuRef.nativeElement.contains(event.target)) {
+        menuRef.open(event.pageX, event.pageY);
+      }
+    };
 
-	componentDidMount() {
-		this.init();
-	}
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
 
-	render() {
-		return (
-			<div>
-				<p>Right-click anywhere to show the context menu.</p>
-				<Menu ref={this.menu} id="menu" mode="dropDown">
-					<MenuItem label="Default Formatting" separator></MenuItem>
-					<MenuItem label="Format Cells..." separator></MenuItem>
-					<MenuItem label="Insert..."></MenuItem>
-					<MenuItem label="Delete..."></MenuItem>
-					<MenuItem label="Cut"></MenuItem>
-					<MenuItem label="Copy"></MenuItem>
-					<MenuItem label="Paste"></MenuItem>
-					<MenuItem label="Selection List..."></MenuItem>
-				</Menu>
-			</div>
-		);
-	}
-}
+    // Cleanup function
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
 
-
+  return (
+    <div>
+      <p>Right-click anywhere to show the context menu.</p>
+      <Menu ref={menu} id="menu" mode="dropDown">
+        <MenuItem label="Default Formatting" separator></MenuItem>
+        <MenuItem label="Format Cells..." separator></MenuItem>
+        <MenuItem label="Insert..."></MenuItem>
+        <MenuItem label="Delete..."></MenuItem>
+        <MenuItem label="Cut"></MenuItem>
+        <MenuItem label="Copy"></MenuItem>
+        <MenuItem label="Paste"></MenuItem>
+        <MenuItem label="Selection List..."></MenuItem>
+      </Menu>
+    </div>
+  );
+};
 
 export default App;

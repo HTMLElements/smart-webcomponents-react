@@ -1,18 +1,13 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { ListBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/listbox';
+import React, { useEffect, useRef } from "react";
+import { ListBox } from 'smart-webcomponents-react/listbox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+function App() {
+	const listbox = useRef();
 
-		this.listbox = React.createRef();
-	}
-
-	init() {
-		const listBox = this.listbox.current;
+	useEffect(() => {
+		const listBox = listbox.current;
 
 		listBox.remoteFilteringDetails = {
 			url: '../misc/customers.txt',
@@ -40,27 +35,17 @@ class App extends React.Component {
 				console.log('Error');
 			}
 		};
+	}, []);
 
-	}
-
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<h3>Remote Filtering</h3>
-				<label>Enter a filtering string(e.x. london)</label>
-				<br />
-				<br />
-				<ListBox ref={this.listbox} filterable id="listBox" filterInputPlaceholder="Enter:"></ListBox>
-			</div>
-		);
-	}
+	return (
+		<div>
+			<h3>Remote Filtering</h3>
+			<label>Enter a filtering string(e.x. london)</label>
+			<br />
+			<br />
+			<ListBox ref={listbox} filterable id="listBox" filterInputPlaceholder="Enter:" />
+		</div>
+	);
 }
-
-
 
 export default App;

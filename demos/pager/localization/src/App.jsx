@@ -1,36 +1,31 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { Pager } from 'smart-webcomponents-react/pager';
 
-class App extends React.Component {
+const messages = {
+  en: {
+    'firstButton': 'Premier',
+    'lastButton': 'Dernier',
+    'previousButton': 'Précédent',
+    'nextButton': 'Prochain'
+  }
+};
 
-	messages = {
-		en: {
-			'firstButton': 'Premier',
-			'lastButton': 'Dernier',
-			'previousButton': 'Précédent',
-			'nextButton': 'Prochain'
-		}
-	};
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <Pager messages={this.messages} showNavigationButtonLabels showPrevNextNavigationButtons
-			    showFirstLastNavigationButtons showPageIndexSelectors pagesCount={300}
-			    pageIndexSelectors={10}></Pager>
-			</div>
-		);
-	}
+function App() {
+  return (
+    <div>
+      <Pager
+        messages={messages}
+        showNavigationButtonLabels
+        showPrevNextNavigationButtons
+        showFirstLastNavigationButtons
+        showPageIndexSelectors
+        pagesCount={300}
+        pageIndexSelectors={10}
+      />
+    </div>
+  );
 }
-
-
 
 export default App;

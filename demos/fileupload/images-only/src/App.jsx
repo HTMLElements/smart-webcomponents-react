@@ -1,29 +1,19 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { FileUpload } from 'smart-webcomponents-react/fileupload';
 
-class App extends React.Component {
+function App() {
+    // You can use React.useEffect if you need componentDidMount logic
+    // React.useEffect(() => {
+    //   // componentDidMount code here
+    // }, []);
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<FileUpload accept="image/*" multiple uploadUrl=""></FileUpload>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <FileUpload accept="image/*" multiple uploadUrl=""></FileUpload>
+        </div>
+    );
 }
-
-
 
 export default App;

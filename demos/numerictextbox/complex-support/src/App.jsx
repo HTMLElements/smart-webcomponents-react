@@ -1,59 +1,57 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 import { NumericTextBox } from 'smart-webcomponents-react/numerictextbox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.numerictextbox = React.createRef();
-	}
+function App() {
+    const numerictextbox = useRef(null);
 
-	handleSetSignificantDigitsClick() {
-		this.numerictextbox.current.significantDigits = 5;
-	}
+    const handleSetSignificantDigitsClick = () => {
+        if (numerictextbox.current) {
+            numerictextbox.current.significantDigits = 5;
+        }
+    };
 
-	handleSetPrecisionDigitsClick() {
-		this.numerictextbox.current.precisionDigits = 5;
-	}
+    const handleSetPrecisionDigitsClick = () => {
+        if (numerictextbox.current) {
+            numerictextbox.current.precisionDigits = 5;
+        }
+    };
 
-	handleSetValueClick() {
-		this.numerictextbox.current.value = '5e12 + 1.6e3i';
-	}
+    const handleSetValueClick = () => {
+        if (numerictextbox.current) {
+            numerictextbox.current.value = '5e12 + 1.6e3i';
+        }
+    };
 
-	handleSetScientificNotationValueClick() {
-		this.numerictextbox.current.value = '34E - 12i';
-	}
+    const handleSetScientificNotationValueClick = () => {
+        if (numerictextbox.current) {
+            numerictextbox.current.value = '34E - 12i';
+        }
+    };
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<NumericTextBox ref={this.numerictextbox} id="myCustomElement" inputFormat="complex"
-					value="3.14159265359+0.3i" spinButtons spinButtonsPosition="left" spinButtonsStep="1 + 1i"
-					enableMouseWheelAction></NumericTextBox>
-				<br />
-				<Button id="setSignificantDigits" onClick={this.handleSetSignificantDigitsClick.bind(this)}>significantDigits = 5</Button>
-				<Button id="setPrecisionDigits" onClick={this.handleSetPrecisionDigitsClick.bind(this)}>precisionDigits = 5</Button>
-				<br />
-				<br />
-				<Button id="setValue" onClick={this.handleSetValueClick.bind(this)}>set value to "5e12 + 1.6e3i"</Button>
-				<Button id="setScientificNotationValue" onClick={this.handleSetScientificNotationValueClick.bind(this)}>set value to "34E - 12i"</Button>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <NumericTextBox
+                ref={numerictextbox}
+                id="myCustomElement"
+                inputFormat="complex"
+                value="3.14159265359+0.3i"
+                spinButtons
+                spinButtonsPosition="left"
+                spinButtonsStep="1 + 1i"
+                enableMouseWheelAction
+            ></NumericTextBox>
+            <br />
+            <Button id="setSignificantDigits" onClick={handleSetSignificantDigitsClick}>significantDigits = 5</Button>
+            <Button id="setPrecisionDigits" onClick={handleSetPrecisionDigitsClick}>precisionDigits = 5</Button>
+            <br />
+            <br />
+            <Button id="setValue" onClick={handleSetValueClick}>set value to "5e12 + 1.6e3i"</Button>
+            <Button id="setScientificNotationValue" onClick={handleSetScientificNotationValueClick}>set value to "34E - 12i"</Button>
+        </div>
+    );
 }
-
-
 
 export default App;

@@ -1,81 +1,109 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { Gauge } from 'smart-webcomponents-react/gauge';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.gauge = React.createRef();
-		this.gauge2 = React.createRef();
-		this.gauge3 = React.createRef();
-	}
+function App() {
+    const gauge = useRef();
+    const gauge2 = useRef();
+    const gauge3 = useRef();
 
-	handleSwitchWhileDraggingChange() {
-		this.gauge.current.mechanicalAction = 'switchWhileDragging';
-		this.gauge2.current.mechanicalAction = 'switchWhileDragging';
-		this.gauge3.current.mechanicalAction = 'switchWhileDragging';
-	}
+    const handleSwitchWhileDraggingChange = () => {
+        if (gauge.current && gauge2.current && gauge3.current) {
+            gauge.current.mechanicalAction = 'switchWhileDragging';
+            gauge2.current.mechanicalAction = 'switchWhileDragging';
+            gauge3.current.mechanicalAction = 'switchWhileDragging';
+        }
+    };
 
-	handleSwitchUntilReleasedChange() {
-		this.gauge.current.mechanicalAction = 'switchUntilReleased';
-		this.gauge2.current.mechanicalAction = 'switchUntilReleased';
-		this.gauge3.current.mechanicalAction = 'switchUntilReleased';
-	}
+    const handleSwitchUntilReleasedChange = () => {
+        if (gauge.current && gauge2.current && gauge3.current) {
+            gauge.current.mechanicalAction = 'switchUntilReleased';
+            gauge2.current.mechanicalAction = 'switchUntilReleased';
+            gauge3.current.mechanicalAction = 'switchUntilReleased';
+        }
+    };
 
-	handleSwitchWhenReleasedChange() {
-		this.gauge.current.mechanicalAction = 'switchWhenReleased';
-		this.gauge2.current.mechanicalAction = 'switchWhenReleased';
-		this.gauge3.current.mechanicalAction = 'switchWhenReleased';
-	}
+    const handleSwitchWhenReleasedChange = () => {
+        if (gauge.current && gauge2.current && gauge3.current) {
+            gauge.current.mechanicalAction = 'switchWhenReleased';
+            gauge2.current.mechanicalAction = 'switchWhenReleased';
+            gauge3.current.mechanicalAction = 'switchWhenReleased';
+        }
+    };
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Gauge ref={this.gauge} id="needleGauge" analogDisplayType="needle" digitalDisplay
-					startAngle={-30} endAngle={210} min="0" max="100" value="100"></Gauge>
-				<Gauge ref={this.gauge2} id="fillGauge" analogDisplayType="fill"
-					digitalDisplay startAngle={-30} endAngle={210} min="0" max="100" value="20"
-					ticks-position="scale"></Gauge>
-				<Gauge ref={this.gauge3} id="lineGauge" analogDisplayType="line"
-					digitalDisplay startAngle={-30} endAngle={210} min="0" max="100" value="75"
-					ticks-position="scale"></Gauge>
-				<div className="options">
-					<div className="caption">Mechanical action</div>
-					<div className="option">
-						<RadioButton id="switchWhileDragging" name="mechanicalAction"
-							checked onChange={this.handleSwitchWhileDraggingChange.bind(this)}>
-							<label for="switchWhileDragging">switchWhileDragging</label>
-						</RadioButton>
-						<br />
-						<RadioButton type="radio" id="switchUntilReleased"
-							name="mechanicalAction" onChange={this.handleSwitchUntilReleasedChange.bind(this)}>
-							<label for="switchUntilReleased">switchUntilReleased</label>
-						</RadioButton>
-						<br />
-						<RadioButton type="radio" id="switchWhenReleased"
-							name="mechanicalAction" onChange={this.handleSwitchWhenReleasedChange.bind(this)}>
-							<label for="switchWhenReleased">switchWhenReleased</label>
-						</RadioButton>
-						<br />
-					</div>
-				</div>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <Gauge
+                ref={gauge}
+                id="needleGauge"
+                analogDisplayType="needle"
+                digitalDisplay
+                startAngle={-30}
+                endAngle={210}
+                min="0"
+                max="100"
+                value="100"
+            />
+            <Gauge
+                ref={gauge2}
+                id="fillGauge"
+                analogDisplayType="fill"
+                digitalDisplay
+                startAngle={-30}
+                endAngle={210}
+                min="0"
+                max="100"
+                value="20"
+                ticks-position="scale"
+            />
+            <Gauge
+                ref={gauge3}
+                id="lineGauge"
+                analogDisplayType="line"
+                digitalDisplay
+                startAngle={-30}
+                endAngle={210}
+                min="0"
+                max="100"
+                value="75"
+                ticks-position="scale"
+            />
+            <div className="options">
+                <div className="caption">Mechanical action</div>
+                <div className="option">
+                    <RadioButton
+                        id="switchWhileDragging"
+                        name="mechanicalAction"
+                        checked
+                        onChange={handleSwitchWhileDraggingChange}
+                    >
+                        <label htmlFor="switchWhileDragging">switchWhileDragging</label>
+                    </RadioButton>
+                    <br />
+                    <RadioButton
+                        type="radio"
+                        id="switchUntilReleased"
+                        name="mechanicalAction"
+                        onChange={handleSwitchUntilReleasedChange}
+                    >
+                        <label htmlFor="switchUntilReleased">switchUntilReleased</label>
+                    </RadioButton>
+                    <br />
+                    <RadioButton
+                        type="radio"
+                        id="switchWhenReleased"
+                        name="mechanicalAction"
+                        onChange={handleSwitchWhenReleasedChange}
+                    >
+                        <label htmlFor="switchWhenReleased">switchWhenReleased</label>
+                    </RadioButton>
+                    <br />
+                </div>
+            </div>
+        </div>
+    );
 }
-
-
 
 export default App;

@@ -1,54 +1,40 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { FileUpload } from 'smart-webcomponents-react/fileupload';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.eventContainer = React.createRef();
-	}
+const App = () => {
+  const eventContainer = useRef(null);
 
-	printEventName(event) {
-		const item = document.createElement('div');
-		item.innerHTML = item.innerHTML + event.type + '<br />';
-		this.eventContainer.current.appendChild(item);
-	}
+  const printEventName = (event) => {
+    const item = document.createElement('div');
+    item.innerHTML = event.type + '<br />';
+    if (eventContainer.current) {
+      eventContainer.current.appendChild(item);
+    }
+  };
 
+  // If you need to add code from `componentDidMount` or `init`, use useEffect here.
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="demo-description">File Upload | Events which are raised by the Web Component</div>
-				<div className="container">
-					<FileUpload multiple uploadUrl=""
-						onFileSelected={this.printEventName.bind(this)}
-						onUploadCanceled={this.printEventName.bind(this)}
-						onUploadCompleted={this.printEventName.bind(this)}
-						onUploadError={this.printEventName.bind(this)}
-						onUploadPaused={this.printEventName.bind(this)}
-						onUploadStarted={this.printEventName.bind(this)}
-						onValidationError={this.printEventName.bind(this)}
-					></FileUpload>
-				</div>
-				<div ref={this.eventContainer} className="container" id="eventContainer">
-					<h2>Events:</h2>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <div className="demo-description">File Upload | Events which are raised by the Web Component</div>
+      <div className="container">
+        <FileUpload multiple uploadUrl=""
+          onFileSelected={printEventName}
+          onUploadCanceled={printEventName}
+          onUploadCompleted={printEventName}
+          onUploadError={printEventName}
+          onUploadPaused={printEventName}
+          onUploadStarted={printEventName}
+          onValidationError={printEventName}
+        ></FileUpload>
+      </div>
+      <div ref={eventContainer} className="container" id="eventContainer">
+        <h2>Events:</h2>
+      </div>
+    </div>
+  );
+};
 
 export default App;

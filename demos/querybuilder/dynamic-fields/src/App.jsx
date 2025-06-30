@@ -1,121 +1,118 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect, useCallback } from "react";
 import { QueryBuilder } from 'smart-webcomponents-react/querybuilder';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.querybuilder = React.createRef();
-		this.filterQueryValue = React.createRef();
-	}
+function App() {
+  const querybuilder = useRef();
+  const filterQueryValue = useRef();
 
-	handleQueryBuilderChange() {
-		this.filterQueryValue.current.innerHTML = JSON.stringify(this.querybuilder.current.value, null, '\t');
-	}
+  const fields = [
+    {
+      label: 'Id',
+      dataField: 'id',
+      dataType: 'number',
+      filterOperations: ['=', '<', '>']
+    },
+    {
+      label: 'Product',
+      dataField: 'productName',
+      dataType: 'string',
+      filterOperations: ['=']
+    },
+    {
+      label: 'Product code',
+      dataField: 'productCode',
+      dataType: 'string'
+    },
+    {
+      label: 'Unit Price',
+      dataField: 'price',
+      dataType: 'number'
+    },
+    {
+      label: 'Produced',
+      dataField: 'produced',
+      dataType: 'date',
+      filterOperations: ['<', '>']
+    },
+    {
+      label: 'Purchased',
+      dataField: 'purchased',
+      dataType: 'dateTime'
+    },
+    {
+      label: 'Available',
+      dataField: 'available',
+      dataType: 'boolean'
+    }
+  ];
 
-	fields = [{
-		label: 'Id',
-		dataField: 'id',
-		dataType: 'number',
-		filterOperations: ['=', '<', '>']
-	},
-	{
-		label: 'Product',
-		dataField: 'productName',
-		dataType: 'string',
-		filterOperations: ['=']
-	},
-	{
-		label: 'Product code',
-		dataField: 'productCode',
-		dataType: 'string'
-	},
-	{
-		label: 'Unit Price',
-		dataField: 'price',
-		dataType: 'number'
-	},
-	{
-		label: 'Produced',
-		dataField: 'produced',
-		dataType: 'date',
-		filterOperations: ['<', '>']
-	},
-	{
-		label: 'Purchased',
-		dataField: 'purchased',
-		dataType: 'dateTime'
-	},
-	{
-		label: 'Available',
-		dataField: 'available',
-		dataType: 'boolean'
-	}
-	];
+  const value = [
+    [
+      ['customField', '<', 3],
+      'or',
+      ['id', '=', 3000]
+    ],
+    'and',
+    [
+      ['price', '<', 1300],
+    ],
+    'or',
+    [
+      ['produced', '>', new Date(2015, 3, 4)],
+      'and',
+      ['purchased', '>=', new Date(2019, 4, 23, 15, 33)]
+    ]
+  ];
 
-	value = [
-		[
-			['customField', '<', 3],
-			'or',
-			['id', '=', 3000]
-		],
-		'and',
-		[
-			['price', '<', 1300],
-		],
-		'or',
-		[
-			['produced', '>', new Date(2015, 3, 4)],
-			'and',
-			['purchased', '>=', new Date(2019, 4, 23, 15, 33)]
-		]
-	];
+  // Always use useCallback for stable props
+  const getDynamicField = useCallback((field) => {
+    if (field === 'customField') {
+      return {
+        label: 'Custom Field',
+        dataField: field,
+        dataType: 'number',
+        filterOperations: ['<', '>']
+      };
+    }
+    return {
+      label: field,
+      dataField: field.toLowerCase(),
+      dataType: 'string',
+      filterOperations: ['=', 'startswith', 'endswith']
+    };
+  }, []);
 
-	getDynamicField(field) {
-		if (field === 'customField') {
-			return {
-				label: 'Custom Field',
-				dataField: field,
-				dataType: 'number',
-				filterOperations: ['<', '>']
-			};
-		}
-		return {
-			label: field,
-			dataField: field.toLowerCase(),
-			dataType: 'string',
-			filterOperations: ['=', 'startswith', 'endswith']
-		};
-	}
+  const handleQueryBuilderChange = useCallback(() => {
+    if (filterQueryValue.current && querybuilder.current) {
+      filterQueryValue.current.innerHTML = JSON.stringify(querybuilder.current.value, null, '\t');
+    }
+  }, []);
 
-	init() {
-		this.filterQueryValue.current.innerHTML = JSON.stringify(this.querybuilder.current.value, null, '\t');
-	}
+  // Set initial value on mount
+  useEffect(() => {
+    if (filterQueryValue.current && querybuilder.current) {
+      filterQueryValue.current.innerHTML = JSON.stringify(querybuilder.current.value, null, '\t');
+    }
+  }, []);
 
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<QueryBuilder ref={this.querybuilder} id="queryBuilder"
-					allowDrag
-					fields={this.fields}
-					fieldsMode="dynamic"
-					showIcons
-					value={this.value}
-					getDynamicField={this.getDynamicField}
-					onChange={this.handleQueryBuilderChange.bind(this)}
-				></QueryBuilder>
-				<div ref={this.filterQueryValue} id="filterQueryValue"></div>
-			</div>
-		);
-	}
+  return (
+    <div>
+      <QueryBuilder
+        ref={querybuilder}
+        id="queryBuilder"
+        allowDrag
+        fields={fields}
+        fieldsMode="dynamic"
+        showIcons
+        value={value}
+        getDynamicField={getDynamicField}
+        onChange={handleQueryBuilderChange}
+      />
+      <div ref={filterQueryValue} id="filterQueryValue"></div>
+    </div>
+  );
 }
-
-
 
 export default App;

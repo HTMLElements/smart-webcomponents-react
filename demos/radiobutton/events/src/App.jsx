@@ -1,40 +1,34 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const log = useRef(null);
 
-		this.log = React.createRef();
-	}
+  const handleChange = (button, event) => {
+    if (log.current) {
+      log.current.textContent = 'Radio Button ' + button + ' is ' + event.detail.value;
+    }
+  };
 
-	handleChange(button, event) {
-		this.log.current.textContent = 'Radio Button ' + button + " is " + event.detail.value;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <RadioButton onChange={this.handleChange.bind(this, 1)} checked>Radio Button 1</RadioButton>
-			    <RadioButton onChange={this.handleChange.bind(this, 2)}>Radio Button 2</RadioButton>
-				
-			    <div className="options">
-			        <div className="Events"></div>
-			        <div className="option"><span ref={this.log} id="log"></span>
-			        </div>
-			    </div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <RadioButton onChange={e => handleChange(1, e)} checked>
+        Radio Button 1
+      </RadioButton>
+      <RadioButton onChange={e => handleChange(2, e)}>
+        Radio Button 2
+      </RadioButton>
+      
+      <div className="options">
+        <div className="Events"></div>
+        <div className="option">
+          <span ref={log} id="log"></span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;

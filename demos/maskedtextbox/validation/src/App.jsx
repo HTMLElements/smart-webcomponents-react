@@ -1,51 +1,38 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { MaskedTextBox } from 'smart-webcomponents-react/maskedtextbox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+function App() {
+  const validationStatus = useRef(null);
 
-		this.validationStatus = React.createRef();
-	}
+  // Same validation logic as in the class component
+  const validation = (value) => {
+    return value.length === 5;
+  };
 
-	validation = function (value) {
-		if (value.length === 5) {
-			return true;
-		}
+  // Handle validation event
+  const handleValidation = (event) => {
+    const details = event.detail;
+    console.log('Validation success : ' + details.success);
 
-		return false;
-	};
+    if (details.success) {
+      validationStatus.current.innerHTML = 'Validation successful!';
+    } else {
+      validationStatus.current.innerHTML = 'Please, fill the mask...';
+    }
+  };
 
-	handleValidation(event) {
-		const details = event.detail;
-
-		console.log('Validation success : ' + details.success);
-
-		if (details.success) {
-			this.validationStatus.current.innerHTML = 'Validation successful!';
-		}
-		else {
-			this.validationStatus.current.innerHTML = 'Please, fill the mask...';
-		}
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<MaskedTextBox validation={this.validation} onValidation={this.handleValidation.bind(this)} id="maskedTextBox"></MaskedTextBox>
-				<div ref={this.validationStatus}id="validationStatus"></div>
-			</div>
-		);
-	}
+  return (
+    <div>
+      <MaskedTextBox
+        validation={validation}
+        onValidation={handleValidation}
+        id="maskedTextBox"
+      />
+      <div ref={validationStatus} id="validationStatus"></div>
+    </div>
+  );
 }
-
-
 
 export default App;

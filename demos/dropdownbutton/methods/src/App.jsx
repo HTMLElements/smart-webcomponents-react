@@ -1,98 +1,83 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
+import React, { useRef } from "react";
 import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import { Button } from 'smart-webcomponents-react/button';
 import { DropDownButton } from 'smart-webcomponents-react/dropdownbutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const dropdownbutton = useRef(null);
 
-		this.dropdownbutton = React.createRef();
-	}
+    const handleOpen = () => {
+        dropdownbutton.current.open();
+    };
 
-	handleOpen() {
-		this.dropdownbutton.current.open();
-	}
+    const handleClose = () => {
+        dropdownbutton.current.close();
+    };
 
-	handleClose() {
-		this.dropdownbutton.current.close();
-	}
+    const handleClear = () => {
+        dropdownbutton.current.removeAll();
+    };
 
-	handleClear() {
-		this.dropdownbutton.current.removeAll();
-	}
+    const handleAppendChild = () => {
+        const fragment = document.createDocumentFragment();
 
-	handleAppendChild() {
-		const fragment = document.createDocumentFragment();
+        // Create React Button component dynamically and render it into fragment
+        const root = ReactDOM.createRoot(fragment);
+        root.render(
+            <Button id="simpleButton">Button</Button>
+        );
 
-		ReactDOM.render(<Button />, fragment, function () {
-			const button = this;
+        dropdownbutton.current.nativeElement.appendChild(fragment);
+    };
 
-			button.nativeElement.id = 'simpleButton';
-			button.innerHTML = 'Button';
+    const handleRemoveChild = () => {
+        const button = document.getElementById('simpleButton');
+        if (button) {
+            dropdownbutton.current.removeChild(button);
+        }
+    };
 
-		});
+    const handleDisable = () => {
+        dropdownbutton.current.disabled = !dropdownbutton.current.disabled;
+    };
 
-		this.dropdownbutton.current.nativeElement.appendChild(fragment);
-	}
+    return (
+        <div>
+            <DropDownButton 
+                ref={dropdownbutton} 
+                id="dropDownButtonDemo" 
+                placeholder="DropDownButton"
+            >
+                <h4>What is Lorem Ipsum?</h4>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the
+                1500s, when an unknown printer took a galley of type and scrambled it to
+                make a type specimen book. It has survived not only five centuries, but
+                also the leap into electronic typesetting, remaining essentially unchanged.
+                It was popularised in the 1960s with the release of Letraset sheets containing
+                Lorem Ipsum passages, and more recently with desktop publishing software
+                like Aldus PageMaker including versions of Lorem Ipsum.
+            </DropDownButton>
 
-	handleRemoveChild() {
-		const button = document.getElementById('simpleButton');
-
-		if (button) {
-			this.dropdownbutton.current.removeChild(button);
-		}
-	}
-
-	handleDisable() {
-		this.dropdownbutton.current.disabled = !this.dropdownbutton.current.disabled;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<DropDownButton ref={this.dropdownbutton} id="dropDownButtonDemo" placeholder="DropDownButton">
-					<h4> What is Lorem Ipsum?</h4>
-Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-			        Lorem Ipsum has been the industry's standard dummy text ever since the
-			        1500s, when an unknown printer took a galley of type and scrambled it to
-			        make a type specimen book. It has survived not only five centuries, but
-			        also the leap into electronic typesetting, remaining essentially unchanged.
-			        It was popularised in the 1960s with the release of Letraset sheets containing
-			        Lorem Ipsum passages, and more recently with desktop publishing software
-			        like Aldus PageMaker including versions of Lorem Ipsum.</DropDownButton>
-				<div
-					className="options">
-					<div className="option" id="methodButtons">
-						<Button id="open" onClick={this.handleOpen.bind(this)}>Open</Button>
-						<br />
-						<br />
-						<Button id="close" onClick={this.handleClose.bind(this)}>Close</Button>
-						<br />
-						<br />
-						<Button id="appendChild" onClick={this.handleAppendChild.bind(this)}>Append Child</Button>
-						<br />
-						<br />
-						<Button id="removeChild" onClick={this.handleRemoveChild.bind(this)}>Remove Child</Button>
-						<br />
-						<br />
-						<Button id="clear" onClick={this.handleClear.bind(this)}>Clear</Button>
-						<br />
-						<br />
-						<Button id="disabled" onClick={this.handleDisable.bind(this)}>Enable/Disable</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+            <div className="options">
+                <div className="option" id="methodButtons">
+                    <Button id="open" onClick={handleOpen}>Open</Button>
+                    <br /><br />
+                    <Button id="close" onClick={handleClose}>Close</Button>
+                    <br /><br />
+                    <Button id="appendChild" onClick={handleAppendChild}>Append Child</Button>
+                    <br /><br />
+                    <Button id="removeChild" onClick={handleRemoveChild}>Remove Child</Button>
+                    <br /><br />
+                    <Button id="clear" onClick={handleClear}>Clear</Button>
+                    <br /><br />
+                    <Button id="disabled" onClick={handleDisable}>Enable/Disable</Button>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

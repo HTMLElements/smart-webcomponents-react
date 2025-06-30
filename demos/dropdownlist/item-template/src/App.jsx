@@ -1,61 +1,54 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { DropDownList, ListItem, ListItemsGroup } from 'smart-webcomponents-react/dropdownlist';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+function App() {
+    const dropdownlist = useRef();
 
-		this.dropdownlist = React.createRef();
-	}
+    useEffect(() => {
+        const template = document.createElement('template');
+        template.id = 'template';
+        template.innerHTML = '<span className="glyphicon glyphicon-ok"></span><span style="margin-left:5px;">{{label}}</span>';
 
-	init() {
-		const that = this;
-		const template = document.createElement('template');
+        document.body.appendChild(template);
 
-		template.id = 'template';
-		template.innerHTML = '<span className="glyphicon glyphicon-ok"></span><span style="margin-left:5px;">{{label}}</span>';
+        if (dropdownlist.current) {
+            dropdownlist.current.itemTemplate = template.id;
+        }
+        
+        // Optional: Cleanup the template on component unmount
+        return () => {
+            if (template.parentNode) {
+                template.parentNode.removeChild(template);
+            }
+        };
+    }, []);
 
-		document.body.appendChild(template);
-
-		that.dropdownlist.current.itemTemplate = template.id;
-	}
-
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<DropDownList ref={this.dropdownlist}>
-					<ListItemsGroup label="Swedish Cars">
-						<ListItem selected value="volvo">Volvo</ListItem>
-						<ListItem value="saab">Saab</ListItem>
-						<ListItem value="saab">Scania</ListItem>
-					</ListItemsGroup>
-					<ListItemsGroup label="German Cars">
-						<ListItem value="mercedes">Mercedes</ListItem>
-						<ListItem value="vw">VW</ListItem>
-						<ListItem value="audi">Audi</ListItem>
-						<ListItem value="porsche">Porsche</ListItem>
-					</ListItemsGroup>
-					<ListItemsGroup label="Japanese Cars">
-						<ListItem value="mazda">Mazda</ListItem>
-						<ListItem value="honda">Honda</ListItem>
-						<ListItem value="infinity">Infinity</ListItem>
-						<ListItem value="mitsubishi">Mitsubishi</ListItem>
-						<ListItem value="toyota">Toyota</ListItem>
-					</ListItemsGroup>
-				</DropDownList>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <DropDownList ref={dropdownlist}>
+                <ListItemsGroup label="Swedish Cars">
+                    <ListItem selected value="volvo">Volvo</ListItem>
+                    <ListItem value="saab">Saab</ListItem>
+                    <ListItem value="saab">Scania</ListItem>
+                </ListItemsGroup>
+                <ListItemsGroup label="German Cars">
+                    <ListItem value="mercedes">Mercedes</ListItem>
+                    <ListItem value="vw">VW</ListItem>
+                    <ListItem value="audi">Audi</ListItem>
+                    <ListItem value="porsche">Porsche</ListItem>
+                </ListItemsGroup>
+                <ListItemsGroup label="Japanese Cars">
+                    <ListItem value="mazda">Mazda</ListItem>
+                    <ListItem value="honda">Honda</ListItem>
+                    <ListItem value="infinity">Infinity</ListItem>
+                    <ListItem value="mitsubishi">Mitsubishi</ListItem>
+                    <ListItem value="toyota">Toyota</ListItem>
+                </ListItemsGroup>
+            </DropDownList>
+        </div>
+    );
 }
-
-
 
 export default App;

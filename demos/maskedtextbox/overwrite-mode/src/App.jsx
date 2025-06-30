@@ -1,37 +1,37 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { CheckBox } from 'smart-webcomponents-react/checkbox';
 import { MaskedTextBox } from 'smart-webcomponents-react/maskedtextbox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+  const maskedtextbox = useRef();
 
-		this.maskedtextbox = React.createRef();
-	}
+  const handleChange = (event) => {
+    if (maskedtextbox.current) {
+      maskedtextbox.current.isOverwriteMode = event.detail.value;
+    }
+  };
 
-	handleChange(event) {
-		this.maskedtextbox.current.isOverwriteMode = event.detail.value;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <MaskedTextBox ref={this.maskedtextbox} id="maskedTextBox" value="10201" isOverwriteMode
-			    resetOnSpace></MaskedTextBox>
-			    <br />
-			    <CheckBox onChange={this.handleChange.bind(this)} id="checkBox" checked>Is Overwrite Mode</CheckBox>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <MaskedTextBox
+        ref={maskedtextbox}
+        id="maskedTextBox"
+        value="10201"
+        isOverwriteMode
+        resetOnSpace
+      />
+      <br />
+      <CheckBox
+        onChange={handleChange}
+        id="checkBox"
+        checked
+      >
+        Is Overwrite Mode
+      </CheckBox>
+    </div>
+  );
+};
 
 export default App;

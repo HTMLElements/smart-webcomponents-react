@@ -1,59 +1,63 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button, ToggleButton } from 'smart-webcomponents-react/button';
 import { Gauge } from 'smart-webcomponents-react/gauge';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.gauge = React.createRef();
-	}
+const App = () => {
+  const gauge = useRef();
 
-	handleToggleCoerceChange(event) {
-		this.gauge.current.coerce = event.detail.value;
-	}
+  const handleToggleCoerceChange = (event) => {
+    gauge.current.coerce = event.detail.value;
+  };
 
-	handleSetIntervalClick() {
-		this.gauge.current.interval = 2;
-	}
+  const handleSetIntervalClick = () => {
+    gauge.current.interval = 2;
+  };
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Gauge ref={this.gauge} id="gauge" analogDisplayType="needle" digitalDisplay
-					startAngle={-30} endAngle={210} min="0" max="21" value="1" coerce interval="1"></Gauge>
-				<div className="options">
-					<div className="caption">Settings</div>
-					<div className="option">
-						<ToggleButton id="toggleCoerce" checked onChange={this.handleToggleCoerceChange.bind(this)}>Toggle <strong>coerce</strong>
-						</ToggleButton>
-					</div>
-					<div className="option">
-						<Button id="setInterval" onClick={this.handleSetIntervalClick.bind(this)}>Set <strong>interval</strong> to <em>2</em>
-						</Button>
-					</div>
-				</div>
-				<br />
-				<br />
-				<br />
-				<div className="description">Coercion - snapping to the nearest value according to the coercion interval
-			        setting.</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Gauge
+        ref={gauge}
+        id="gauge"
+        analogDisplayType="needle"
+        digitalDisplay
+        startAngle={-30}
+        endAngle={210}
+        min="0"
+        max="21"
+        value="1"
+        coerce
+        interval="1"
+      ></Gauge>
+      <div className="options">
+        <div className="caption">Settings</div>
+        <div className="option">
+          <ToggleButton
+            id="toggleCoerce"
+            checked
+            onChange={handleToggleCoerceChange}
+          >
+            Toggle <strong>coerce</strong>
+          </ToggleButton>
+        </div>
+        <div className="option">
+          <Button
+            id="setInterval"
+            onClick={handleSetIntervalClick}
+          >
+            Set <strong>interval</strong> to <em>2</em>
+          </Button>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div className="description">
+        Coercion - snapping to the nearest value according to the coercion interval setting.
+      </div>
+    </div>
+  );
+};
 
 export default App;

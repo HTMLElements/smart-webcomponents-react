@@ -1,47 +1,51 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
 import { NumericTextBox } from 'smart-webcomponents-react/numerictextbox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.numerictextbox = React.createRef();
-	}
+function App() {
+    const numerictextbox = useRef();
 
-	handleSetSignificantDigitsClick() {
-		this.numerictextbox.current.significantDigits = 5;
-	}
+    const handleSetSignificantDigitsClick = () => {
+        if (numerictextbox.current) {
+            numerictextbox.current.significantDigits = 5;
+        }
+    };
 
-	handleSetPrecisionDigitsClick() {
-		this.numerictextbox.current.precisionDigits = 5;
-	}
+    const handleSetPrecisionDigitsClick = () => {
+        if (numerictextbox.current) {
+            numerictextbox.current.precisionDigits = 5;
+        }
+    };
 
-	init() {
-
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<NumericTextBox ref={this.numerictextbox} id="myCustomElement" inputFormat="floatingPoint"
-					value="3.14159265359" spinButtons spinButtonsPosition="right" spinButtonsStep="1"
-					enableMouseWheelAction></NumericTextBox>
-				<br />
-				<Button id="setSignificantDigits" onClick={this.handleSetSignificantDigitsClick.bind(this)}>significantDigits = 5</Button>
-				<Button id="setPrecisionDigits" onClick={this.handleSetPrecisionDigitsClick.bind(this)}>precisionDigits = 5</Button>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <NumericTextBox
+                ref={numerictextbox}
+                id="myCustomElement"
+                inputFormat="floatingPoint"
+                value="3.14159265359"
+                spinButtons
+                spinButtonsPosition="right"
+                spinButtonsStep="1"
+                enableMouseWheelAction
+            />
+            <br />
+            <Button
+                id="setSignificantDigits"
+                onClick={handleSetSignificantDigitsClick}
+            >
+                significantDigits = 5
+            </Button>
+            <Button
+                id="setPrecisionDigits"
+                onClick={handleSetPrecisionDigitsClick}
+            >
+                precisionDigits = 5
+            </Button>
+        </div>
+    );
 }
-
-
 
 export default App;

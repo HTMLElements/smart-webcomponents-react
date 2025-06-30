@@ -1,39 +1,29 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { FileUpload } from 'smart-webcomponents-react/fileupload';
-import { ProgressBar, CircularProgressBar } from 'smart-webcomponents-react/progressbar';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.fileupload = React.createRef();
-	}
+const App = () => {
+  const fileupload = useRef();
 
-	init() {
-		const itemTemplate = document.createElement('template');
+  useEffect(() => {
+    // Create item template only if it doesn't already exist
+    if (!document.getElementById('itemTemplate')) {
+      const itemTemplate = document.createElement('template');
+      itemTemplate.id = 'itemTemplate';
+      itemTemplate.innerHTML = '<smart-progress-bar>{{filename}}</smart-progress-bar>';
+      document.body.appendChild(itemTemplate);
+    }
+    if (fileupload.current) {
+      fileupload.current.itemTemplate = 'itemTemplate';
+    }
+  }, []);
 
-		itemTemplate.id = 'itemTemplate';
-		itemTemplate.innerHTML = '<smart-progress-bar>{{filename}}</smart-progress-bar>';
-		document.body.appendChild(itemTemplate);
-
-		this.fileupload.current.itemTemplate = 'itemTemplate';
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<FileUpload ref={this.fileupload} showProgress multiple uploadUrl=""></FileUpload>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <FileUpload ref={fileupload} showProgress multiple uploadUrl="" />
+    </div>
+  );
+};
 
 export default App;

@@ -1,45 +1,44 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { MultilineTextBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/multilinetextbox';
+import React, { useRef } from "react";
+import { MultilineTextBox } from 'smart-webcomponents-react/multilinetextbox';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.multilinetextbox = React.createRef();
-	}
+const App = () => {
+  const multilinetextbox = useRef();
 
-	handleDefaultModeChange() {
-		this.multilinetextbox.current.displayMode = 'default';
-	}
+  const handleDefaultModeChange = () => {
+    multilinetextbox.current.displayMode = 'default';
+  };
 
-	handleEscapedModeChange() {
-		this.multilinetextbox.current.displayMode = 'escaped';
-	}
+  const handleEscapedModeChange = () => {
+    multilinetextbox.current.displayMode = 'escaped';
+  };
 
-	init() {
-
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<RadioButton id="defaultMode" checked onChange={this.handleDefaultModeChange.bind(this)}>Default mode</RadioButton>
-				<RadioButton id="escapedMode" onChange={this.handleEscapedModeChange.bind(this)}>Escaped mode</RadioButton>
-				<br />
-				<MultilineTextBox ref={this.multilinetextbox} enterKeyBehavior="newLine"
-					placeholder="Your text" value=""></MultilineTextBox>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <RadioButton
+        id="defaultMode"
+        checked
+        onChange={handleDefaultModeChange}
+      >
+        Default mode
+      </RadioButton>
+      <RadioButton
+        id="escapedMode"
+        onChange={handleEscapedModeChange}
+      >
+        Escaped mode
+      </RadioButton>
+      <br />
+      <MultilineTextBox
+        ref={multilinetextbox}
+        enterKeyBehavior="newLine"
+        placeholder="Your text"
+        value=""
+      ></MultilineTextBox>
+    </div>
+  );
+};
 
 export default App;

@@ -1,26 +1,18 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
-import { MultiSplitButton, ListItem, ListItemsGroup } from 'smart-webcomponents-react/multisplitbutton';
+import { MultiSplitButton } from 'smart-webcomponents-react/multisplitbutton';
 
-class App extends React.Component {
+const App = () => {
+  const buttonsDataSource = ['Button 1', 'Button 2', 'Button 3'];
 
-	buttonsDataSource = ['Button 1', 'Button 2', 'Button 3'];
+  // No equivalent of componentDidMount since it is empty
 
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <MultiSplitButton buttonsDataSource={this.buttonsDataSource} id="multiSplitButton"></MultiSplitButton>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <MultiSplitButton buttonsDataSource={buttonsDataSource} id="multiSplitButton" />
+    </div>
+  );
+};
 
 export default App;

@@ -1,43 +1,39 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { Pager } from 'smart-webcomponents-react/pager';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+function App() {
+  const log = useRef(null);
 
-		this.log = React.createRef();
-	}
+  const handleChange = (event) => {
+    if (log.current) {
+      log.current.innerHTML = 'Selected item #' + event.detail.index;
+    }
+  };
 
-	handleChange(event) {
-		this.log.current.innerHTML = 'Selected item #' + event.detail.index;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Pager onChange={this.handleChange.bind(this)} showPrevNextNavigationButtons showFirstLastNavigationButtons
-					showPageIndexSelectors pagesCount={10} pageIndexSelectors={5} showSummary></Pager>
-				<div className="options">
-					<div className="caption">Event Log:</div>
-					<div className="option">
-						<div ref={this.log} id="eventLog"></div>
-					</div>
-					<div className="option">
-						<div id="selectedPage"></div>
-					</div>
-				</div>
-			</div>
-		);
-	}
+  return (
+    <div>
+      <Pager
+        onChange={handleChange}
+        showPrevNextNavigationButtons
+        showFirstLastNavigationButtons
+        showPageIndexSelectors
+        pagesCount={10}
+        pageIndexSelectors={5}
+        showSummary
+      />
+      <div className="options">
+        <div className="caption">Event Log:</div>
+        <div className="option">
+          <div ref={log} id="eventLog"></div>
+        </div>
+        <div className="option">
+          <div id="selectedPage"></div>
+        </div>
+      </div>
+    </div>
+  );
 }
-
-
 
 export default App;

@@ -1,24 +1,19 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { Rating } from 'smart-webcomponents-react/rating';
 
-class App extends React.Component {
+function App() {
+    // You can use useEffect here if you need componentDidMount logic
+    // React.useEffect(() => {
+    //     // componentDidMount logic
+    // }, []);
 
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <Rating rightToLeft></Rating>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <Rating rightToLeft></Rating>
+        </div>
+    );
 }
-
-
 
 export default App;

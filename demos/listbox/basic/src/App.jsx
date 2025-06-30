@@ -1,7 +1,6 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { ListBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/listbox';
 
 function App() {
@@ -30,8 +29,7 @@ function App() {
 				<ListItem value="20">Liqueur coffee</ListItem>
 			</ListBox>
 		</div>
-	 );
+	);
 }
-
 
 export default App;

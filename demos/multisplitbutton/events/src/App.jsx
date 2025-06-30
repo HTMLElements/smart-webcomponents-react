@@ -1,44 +1,37 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { MultiSplitButton, ListItem, ListItemsGroup } from 'smart-webcomponents-react/multisplitbutton';
+import React, { useRef } from "react";
+import { MultiSplitButton } from 'smart-webcomponents-react/multisplitbutton';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+const App = () => {
+    const log = useRef(null);
 
-		this.log = React.createRef();
-	}
+    const buttonsDataSource = ['Button 1', 'Button 2', 'Button 3'];
+    const dropDownButtonPosition = 'right';
 
-	buttonsDataSource = ['Button 1', 'Button 2', 'Button 3'];
+    const handleButtonClick = (event) => {
+        if (log.current) {
+            log.current.innerHTML = "Clicked Button " + event.detail.index;
+        }
+    };
 
-	dropDownButtonPosition = 'right';
+    return (
+        <div>
+            <MultiSplitButton
+                buttonsDataSource={buttonsDataSource}
+                dropDownButtonPosition={dropDownButtonPosition}
+                id="multiSplitButton"
+                onButtonClick={handleButtonClick}
+            ></MultiSplitButton>
 
-	handleButtonClick(event) {
-		this.log.current.innerHTML = "Clicked Button " + event.detail.index;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<MultiSplitButton buttonsDataSource={this.buttonsDataSource} dropDownButtonPosition={this.dropDownButtonPosition} id="multiSplitButton" onButtonClick={this.handleButtonClick.bind(this)}></MultiSplitButton>
-
-				<div className="options">
-					<div className="caption">Events</div>
-					<div className="option">
-						<div ref={this.log} id="log"></div>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+            <div className="options">
+                <div className="caption">Events</div>
+                <div className="option">
+                    <div ref={log} id="log"></div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

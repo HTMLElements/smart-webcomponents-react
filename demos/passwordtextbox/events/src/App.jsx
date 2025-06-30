@@ -1,40 +1,33 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { PasswordTextBox } from 'smart-webcomponents-react/passwordtextbox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const passwordtextbox = useRef(null);
+    const log = useRef(null);
 
-		this.passwordtextbox = React.createRef();
-		this.log = React.createRef();
-	}
+    const handleChange = (event) => {
+        if (log.current && passwordtextbox.current) {
+            log.current.innerHTML = passwordtextbox.current.value;
+        }
+    };
 
-	handleChange(event) {
-		this.log.current.innerHTML = this.passwordtextbox.current.value;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<PasswordTextBox ref={this.passwordtextbox} onChange={this.handleChange.bind(this)} placeholder="Your password"></PasswordTextBox>
-				<div className="options">
-					<div className="caption">Events Log</div>
-					<div className="option">
-						<div ref={this.log} id="eventLog"></div>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <PasswordTextBox
+                ref={passwordtextbox}
+                onChange={handleChange}
+                placeholder="Your password"
+            />
+            <div className="options">
+                <div className="caption">Events Log</div>
+                <div className="option">
+                    <div ref={log} id="eventLog"></div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

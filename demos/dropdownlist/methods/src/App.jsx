@@ -1,157 +1,117 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
-import { DropDownList, ListItem, ListItemsGroup } from 'smart-webcomponents-react/dropdownlist';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
+import { DropDownList } from 'smart-webcomponents-react/dropdownlist';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const dropdownlist = useRef();
 
-		this.dropdownlist = React.createRef();
-	}
+    const dataSource = [
+        { label: "Andrew", value: 1, group: "Product Owners" },
+        { label: "Natalia", value: 2, group: "Developers" },
+        { label: "Michael", value: 3, group: "Developers" },
+        { label: "Angel", value: 4, group: "Product Owners" },
+        { label: "Hristo", value: 5, group: "Developers" },
+        { label: "Peter", value: 6, group: "Developers" },
+        { label: "Albert", value: 7, group: "Support" },
+        { label: "George", value: 8, group: "Support" }
+    ];
 
-	dataSource = [{
-		label: "Andrew",
-		value: 1,
-		group: "Product Owners"
-	},
-	{
-		label: "Natalia",
-		value: 2,
-		group: "Developers"
-	},
-	{
-		label: "Michael",
-		value: 3,
-		group: "Developers"
-	},
-	{
-		label: "Angel",
-		value: 4,
-		group: "Product Owners"
-	},
-	{
-		label: "Hristo",
-		value: 5,
-		group: "Developers"
-	},
-	{
-		label: "Peter",
-		value: 6,
-		group: "Developers"
-	},
-	{
-		label: "Albert",
-		value: 7,
-		group: "Support"
-	},
-	{
-		label: "George",
-		value: 8,
-		group: "Support"
-	}];
+    const handleUnsort = () => {
+        dropdownlist.current.sorted = false;
+    };
 
-	handleUnsort() {
-		this.dropdownlist.current.sorted = false;
-	}
+    const handleSort = () => {
+        dropdownlist.current.sorted = true;
+    };
 
-	handleSort() {
-		this.dropdownlist.current.sorted = true;
-	}
+    const handleUngroup = () => {
+        dropdownlist.current.grouped = false;
+    };
 
-	handleUngroup() {
-		this.dropdownlist.current.grouped = false;
-	}
+    const handleGroup = () => {
+        dropdownlist.current.grouped = true;
+    };
 
-	handleGroup() {
-		this.dropdownlist.current.grouped = true;
-	}
+    const handleOpen = () => {
+        dropdownlist.current.open();
+    };
 
-	handleOpen() {
-		this.dropdownlist.current.open();
-	}
+    const handleClose = () => {
+        dropdownlist.current.close();
+    };
 
-	handleClose() {
-		this.dropdownlist.current.close();
-	}
+    const handleDefault = () => {
+        dropdownlist.current.selectionMode = 'oneOrManyExtended';
+    };
 
-	handleDefault() {
-		this.dropdownlist.current.selectionMode = 'oneOrManyExtended';
-	}
+    const handleCheck = () => {
+        dropdownlist.current.selectionMode = 'checkBox';
+    };
 
-	handleCheck() {
-		this.dropdownlist.current.selectionMode = 'checkBox';
-	}
+    const handleRadio = () => {
+        dropdownlist.current.selectionMode = 'radioButton';
+    };
 
-	handleRadio() {
-		this.dropdownlist.current.selectionMode = 'radioButton';
-	}
+    const handleInsert = () => {
+        dropdownlist.current.insert(0, "New Item");
+    };
 
-	handleInsert() {
-		this.dropdownlist.current.insert(0, "New Item");
-	}
+    const handleUpdate = () => {
+        dropdownlist.current.update(0, "Updated Item");
+    };
 
-	handleUpdate() {
-		this.dropdownlist.current.update(0, "Updated Item");
-	}
+    const handleRemove = () => {
+        dropdownlist.current.removeAt(0);
+    };
 
-	handleRemove() {
-		this.dropdownlist.current.removeAt(0);
-	}
+    const handleDisable = () => {
+        const dropDownList = dropdownlist.current;
+        dropDownList.disabled = !dropDownList.disabled;
+    };
 
-	handleDisable() {
-		const dropDownList = this.dropdownlist.current;
-
-		dropDownList.disabled = !dropDownList.disabled;
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<DropDownList ref={this.dropdownlist} id="dropDownListMethodsDemo" dataSource={this.dataSource}></DropDownList>
-				<div className="options">
-					<div className="option">Settings</div>
-					<div className="option">
-						<Button id="unsort" onClick={this.handleUnsort.bind(this)}>Unsort</Button>
-						<Button id="sort" onClick={this.handleSort.bind(this)}>Sort</Button>
-						<br />
-						<br />
-						<Button id="ungroup" onClick={this.handleUngroup.bind(this)}>Ungroup</Button>
-						<Button id="group" onClick={this.handleGroup.bind(this)}>Group</Button>
-						<br />
-						<br />
-						<Button id="open" onClick={this.handleOpen.bind(this)}>Open</Button>
-						<Button id="close" onClick={this.handleClose.bind(this)}>Close</Button>
-						<br />
-						<br />
-						<Button id="default" onClick={this.handleDefault.bind(this)}>Default</Button>
-						<Button id="check" onClick={this.handleCheck.bind(this)}>Check</Button>
-						<br />
-						<br />
-						<Button id="radio" onClick={this.handleRadio.bind(this)}>Radio</Button>
-						<br />
-						<br />
-						<Button id="insert" onClick={this.handleInsert.bind(this)}>Insert</Button>
-						<Button id="update" onClick={this.handleUpdate.bind(this)}>Update</Button>
-						<br />
-						<br />
-						<Button id="remove" onClick={this.handleRemove.bind(this)}>Remove</Button>
-						<br />
-						<br />
-						<Button style={{ width: "auto" }} id="disabled" onClick={this.handleDisable.bind(this)}>Enable/Disable</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <DropDownList
+                ref={dropdownlist}
+                id="dropDownListMethodsDemo"
+                dataSource={dataSource}
+            />
+            <div className="options">
+                <div className="option">Settings</div>
+                <div className="option">
+                    <Button id="unsort" onClick={handleUnsort}>Unsort</Button>
+                    <Button id="sort" onClick={handleSort}>Sort</Button>
+                    <br />
+                    <br />
+                    <Button id="ungroup" onClick={handleUngroup}>Ungroup</Button>
+                    <Button id="group" onClick={handleGroup}>Group</Button>
+                    <br />
+                    <br />
+                    <Button id="open" onClick={handleOpen}>Open</Button>
+                    <Button id="close" onClick={handleClose}>Close</Button>
+                    <br />
+                    <br />
+                    <Button id="default" onClick={handleDefault}>Default</Button>
+                    <Button id="check" onClick={handleCheck}>Check</Button>
+                    <br />
+                    <br />
+                    <Button id="radio" onClick={handleRadio}>Radio</Button>
+                    <br />
+                    <br />
+                    <Button id="insert" onClick={handleInsert}>Insert</Button>
+                    <Button id="update" onClick={handleUpdate}>Update</Button>
+                    <br />
+                    <br />
+                    <Button id="remove" onClick={handleRemove}>Remove</Button>
+                    <br />
+                    <br />
+                    <Button style={{ width: "auto" }} id="disabled" onClick={handleDisable}>Enable/Disable</Button>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

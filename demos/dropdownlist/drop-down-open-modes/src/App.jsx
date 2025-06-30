@@ -1,97 +1,50 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
-import { DropDownList, ListItem, ListItemsGroup } from 'smart-webcomponents-react/dropdownlist';
+import React, { useRef } from "react";
+import { Button } from 'smart-webcomponents-react/button';
+import { DropDownList } from 'smart-webcomponents-react/dropdownlist';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+function App() {
+	const dropdownlist = useRef();
+	const log = useRef();
+	const button = useRef();
+	const button2 = useRef();
+	const button3 = useRef();
+	const button4 = useRef();
 
-		this.dropdownlist = React.createRef();
-		this.log = React.createRef();
-		this.button = React.createRef();
-		this.button2 = React.createRef();
-		this.button3 = React.createRef();
-		this.button4 = React.createRef();
-	}
+	const dataSource = [
+		{ label: "Andrew", value: 1, group: "A" },
+		{ label: "Natalia", value: 5, group: "B" },
+		{ label: "Michael", value: 4, group: "B" },
+		{ label: "Angel", value: 2, group: "A" },
+		{ label: "Hristo", value: 6, group: "C" },
+		{ label: "Peter", value: 3, group: "A" },
+		{ label: "Albert", value: 3, group: "A" },
+		{ label: "Boyko", value: 7, group: "A" },
+		{ label: "Dimitar", value: 3, group: "B" },
+		{ label: "George", value: 25, group: "C" }
+	];
 
-	dataSource = [{
-		label: "Andrew",
-		value: 1,
-		group: "A"
-	},
-	{
-		label: "Natalia",
-		value: 5,
-		group: "B"
-	},
-	{
-		label: "Michael",
-		value: 4,
-		group: "B"
-	},
-	{
-		label: "Angel",
-		value: 2,
-		group: "A"
-	},
-	{
-		label: "Hristo",
-		value: 6,
-		group: "C"
-	},
-	{
-		label: "Peter",
-		value: 3,
-		group: "A"
-	},
-	{
-		label: "Albert",
-		value: 3,
-		group: "A"
-	},
-	{
-		label: "Boyko",
-		value: 7,
-		group: "A"
-	},
-	{
-		label: "Dimitar",
-		value: 3,
-		group: "B"
-	},
-	{
-		label: "George",
-		value: 25,
-		group: "C"
-	}];
-
-	handleDropDownListClick(event) {
-		const that = this;
-
-		const dropDownList = that.dropdownlist.current;
-		const log = that.log.current;
+	const handleDropDownListClick = (event) => {
+		const dropDownList = dropdownlist.current;
+		const logDiv = log.current;
 		const target = event.target;
 
 		if (dropDownList.dropDownOpenMode !== 'dropDownButton') {
-			log.innerHTML = 'DropDownButton clicked';
+			logDiv.innerHTML = 'DropDownButton clicked';
 			return;
 		}
 		if (target.classList.contains('smart-action-button')) {
-			log.textContent = 'ActionButton clicked';
+			logDiv.textContent = 'ActionButton clicked';
 		}
 		else if (target.classList.contains('smart-drop-down-button')) {
-			log.textContent = 'DropDownButton clicked';
+			logDiv.textContent = 'DropDownButton clicked';
 		}
-	}
+	};
 
-	handleRadioButtonClick(event) {
-		const that = this;
-
-		const dropDownList = that.dropdownlist.current;
-		const buttons = [that.button.current, that.button2.current, that.button3.current, that.button4.current];
+	const handleRadioButtonClick = (event) => {
+		const dropDownList = dropdownlist.current;
+		const buttons = [button.current, button2.current, button3.current, button4.current];
 		let mode = event.target.textContent.trim();
 
 		dropDownList.dropDownOpenMode = mode.charAt(0).toLowerCase() + mode.slice(1);
@@ -99,41 +52,38 @@ class App extends React.Component {
 		for (let b = 0; b < buttons.length; b++) {
 			buttons[b].disabled = buttons[b].nativeElement === event.target ? true : false;
 		}
-	}
+	};
 
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<div id="description">
-					<h3>Modes Description</h3>
-					<pre>Auto - the dropDownList is opened/closed when the element is hovered.</pre>
-					<pre>Default - the dropDownList is opened/closed when the element is clicked.</pre>
-					<pre>DropDownButton - the dropDownList is divided in two components. An Action Button and a dropDown Button. The dropDownList can be opened/closed when the dropDownButton is clicked.</pre>
-					<pre>None - the dropDownList can't be opened/closed.</pre>
-				</div>
-				<div id="eventLog">
-					<h4>Event log:</h4>
-					<div ref={this.log} id="log">...</div>
-				</div>
-				<div id="container">
-					<DropDownList ref={this.dropdownlist} className="drop-down-list-modes-demo" dataSource={this.dataSource} onClick={this.handleDropDownListClick.bind(this)}></DropDownList>
-					<div id="controlPanel">
-						<h3>DropDownListOpen Mode:</h3>
-						<Button ref={this.button} disabled onClick={this.handleRadioButtonClick.bind(this)}>Default</Button>
-						<Button ref={this.button2} onClick={this.handleRadioButtonClick.bind(this)}>Auto</Button>
-						<Button ref={this.button3} onClick={this.handleRadioButtonClick.bind(this)}>DropDownButton</Button>
-						<Button ref={this.button4} onClick={this.handleRadioButtonClick.bind(this)}>None</Button>
-					</div>
+	return (
+		<div>
+			<div id="description">
+				<h3>Modes Description</h3>
+				<pre>Auto - the dropDownList is opened/closed when the element is hovered.</pre>
+				<pre>Default - the dropDownList is opened/closed when the element is clicked.</pre>
+				<pre>DropDownButton - the dropDownList is divided in two components. An Action Button and a dropDown Button. The dropDownList can be opened/closed when the dropDownButton is clicked.</pre>
+				<pre>None - the dropDownList can't be opened/closed.</pre>
+			</div>
+			<div id="eventLog">
+				<h4>Event log:</h4>
+				<div ref={log} id="log">...</div>
+			</div>
+			<div id="container">
+				<DropDownList
+					ref={dropdownlist}
+					className="drop-down-list-modes-demo"
+					dataSource={dataSource}
+					onClick={handleDropDownListClick}
+				/>
+				<div id="controlPanel">
+					<h3>DropDownListOpen Mode:</h3>
+					<Button ref={button} disabled onClick={handleRadioButtonClick}>Default</Button>
+					<Button ref={button2} onClick={handleRadioButtonClick}>Auto</Button>
+					<Button ref={button3} onClick={handleRadioButtonClick}>DropDownButton</Button>
+					<Button ref={button4} onClick={handleRadioButtonClick}>None</Button>
 				</div>
 			</div>
-		);
-	}
+		</div>
+	);
 }
-
-
 
 export default App;

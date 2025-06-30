@@ -1,159 +1,136 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
+import React, { useRef } from "react";
 import ReactDOM from 'react-dom/client';
 import { Button, RepeatButton, ToggleButton, PowerButton } from 'smart-webcomponents-react/button';
 import { Splitter, SplitterItem, SplitterBar } from 'smart-webcomponents-react/splitter';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+    const splitter = useRef();
 
-		this.splitter = React.createRef();
-	}
+    const handleAppend = () => {
+        const currentSplitter = splitter.current;
+        if (currentSplitter.items.length === 0) {
+            return;
+        }
 
-	handleAppend() {
-		const splitter = this.splitter.current;
+        ReactDOM.render(<SplitterItem></SplitterItem>, new DocumentFragment(), function () {
+            this.innerHTML = 'New Item Content';
+            currentSplitter.appendChild(this.nativeElement);
+        });
+    };
 
-		if (splitter.items.length === 0) {
-			return;
-		}
+    const handleInsertBefore = () => {
+        const currentSplitter = splitter.current;
+        if (currentSplitter.items.length === 0) {
+            return;
+        }
 
-		ReactDOM.render(<SplitterItem></SplitterItem>, new DocumentFragment(), function () {
-			this.innerHTML = 'New Item Content';
+        ReactDOM.render(<SplitterItem></SplitterItem>, new DocumentFragment(), function () {
+            this.innerHTML = 'New Item Content';
+            currentSplitter.insertBefore(this.nativeElement, currentSplitter.items[0]);
+        });
+    };
 
-			splitter.appendChild(this.nativeElement);
-		});
-	}
+    const handleRemoveItem = () => {
+        const currentSplitter = splitter.current;
+        if (currentSplitter.items.length === 0) {
+            return;
+        }
+        currentSplitter.removeChild(currentSplitter.items[0]);
+    };
 
-	handleInsertBefore() {
-		const splitter = this.splitter.current;
+    const handleInsert = () => {
+        const currentSplitter = splitter.current;
+        if (currentSplitter.items.length === 0) {
+            return;
+        }
+        currentSplitter.insert(0, {
+            content: 'Newly Inserted Item'
+        });
+    };
 
-		if (splitter.items.length === 0) {
-			return;
-		}
+    const handleRemove = () => {
+        const currentSplitter = splitter.current;
+        if (currentSplitter.items.length === 0) {
+            return;
+        }
+        currentSplitter.removeAt(0);
+    };
 
-		ReactDOM.render(<SplitterItem></SplitterItem>, new DocumentFragment(), function () {
-			this.innerHTML = 'New Item Content';
+    const handleShowSplitterBar = () => {
+        const currentSplitter = splitter.current;
+        if (currentSplitter.items.length === 0) {
+            return;
+        }
+        currentSplitter.showBar(0);
+    };
 
-			splitter.insertBefore(this.nativeElement, splitter.items[0]);
-		});
-	}
+    const handleHideSplitterBar = () => {
+        splitter.current.hideBar(0);
+    };
 
-	handleRemoveItem() {
-		const splitter = this.splitter.current;
+    const handleCollapse = () => {
+        splitter.current.collapse(0);
+    };
 
-		if (splitter.items.length === 0) {
-			return;
-		}
+    const handleExpand = () => {
+        splitter.current.expand(0);
+    };
 
-		splitter.removeChild(splitter.items[0]);
-	}
+    const handleLockSplitterItem = () => {
+        splitter.current.lockItem(0);
+    };
 
-	handleInsert() {
-		const splitter = this.splitter.current;
+    const handleUnlockSplitterItem = () => {
+        splitter.current.unlockItem(0);
+    };
 
-		if (splitter.items.length === 0) {
-			return;
-		}
-
-		splitter.insert(0, {
-			content: 'Newly Inserted Item'
-		});
-	}
-
-	handleRemove() {
-		const splitter = this.splitter.current;
-
-		if (splitter.items.length === 0) {
-			return;
-		}
-
-		splitter.removeAt(0);
-	}
-
-	handleShowSplitterBar() {
-		const splitter = this.splitter.current;
-
-		if (splitter.items.length === 0) {
-			return;
-		}
-		splitter.showBar(0);
-	}
-
-	handleHideSplitterBar() {
-		this.splitter.current.hideBar(0);
-	}
-
-	handleCollapse() {
-		this.splitter.current.collapse(0);
-	}
-
-	handleExpand() {
-		this.splitter.current.expand(0);
-	}
-
-	handleLockSplitterItem() {
-		this.splitter.current.lockItem(0);
-	}
-
-	handleUnlockSplitterItem() {
-		this.splitter.current.unlockItem(0);
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Splitter ref={this.splitter} id="horizontalSplitter">
-					<SplitterItem size="25%" collapsible>Item 1</SplitterItem>
-					<SplitterItem size="25%" collapsible>item 2</SplitterItem>
-					<SplitterItem collapsible>item 3</SplitterItem>
-				</Splitter>
-				<div className="options">
-					<div className="caption">Methods</div>
-					<div className="option">
-						<Button id="appendItem" onClick={this.handleAppend.bind(this)}>Append Item</Button>
-					</div>
-					<div className="option">
-						<Button id="insertBefore" onClick={this.handleInsertBefore.bind(this)}>Insert Before</Button>
-					</div>
-					<div className="option">
-						<Button id="removeItem" onClick={this.handleRemoveItem.bind(this)}>Remove Item</Button>
-					</div>
-					<div className="option">
-						<Button id="insertButton" onClick={this.handleInsert.bind(this)}>Insert</Button>
-					</div>
-					<div className="option">
-						<Button id="removeButton" onClick={this.handleRemove.bind(this)}>Remove</Button>
-					</div>
-					<div className="option">
-						<Button id="collapseItem" onClick={this.handleCollapse.bind(this)}>Collapse</Button>
-					</div>
-					<div className="option">
-						<Button id="expandItem" onClick={this.handleExpand.bind(this)}>Expand</Button>
-					</div>
-					<div className="option">
-						<Button id="showSplitterBar" onClick={this.handleShowSplitterBar.bind(this)}>Show Splitter Bar</Button>
-					</div>
-					<div className="option">
-						<Button id="hideSplitterBar" onClick={this.handleHideSplitterBar.bind(this)}>Hide Splitter Bar</Button>
-					</div>
-					<div className="option">
-						<Button id="lockSplitterItem" onClick={this.handleLockSplitterItem.bind(this)}>Lock Splitter Item</Button>
-					</div>
-					<div className="option">
-						<Button id="unlockSplitterItem" onClick={this.handleUnlockSplitterItem.bind(this)}>Unlock Splitter Item</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <Splitter ref={splitter} id="horizontalSplitter">
+                <SplitterItem size="25%" collapsible>Item 1</SplitterItem>
+                <SplitterItem size="25%" collapsible>item 2</SplitterItem>
+                <SplitterItem collapsible>item 3</SplitterItem>
+            </Splitter>
+            <div className="options">
+                <div className="caption">Methods</div>
+                <div className="option">
+                    <Button id="appendItem" onClick={handleAppend}>Append Item</Button>
+                </div>
+                <div className="option">
+                    <Button id="insertBefore" onClick={handleInsertBefore}>Insert Before</Button>
+                </div>
+                <div className="option">
+                    <Button id="removeItem" onClick={handleRemoveItem}>Remove Item</Button>
+                </div>
+                <div className="option">
+                    <Button id="insertButton" onClick={handleInsert}>Insert</Button>
+                </div>
+                <div className="option">
+                    <Button id="removeButton" onClick={handleRemove}>Remove</Button>
+                </div>
+                <div className="option">
+                    <Button id="collapseItem" onClick={handleCollapse}>Collapse</Button>
+                </div>
+                <div className="option">
+                    <Button id="expandItem" onClick={handleExpand}>Expand</Button>
+                </div>
+                <div className="option">
+                    <Button id="showSplitterBar" onClick={handleShowSplitterBar}>Show Splitter Bar</Button>
+                </div>
+                <div className="option">
+                    <Button id="hideSplitterBar" onClick={handleHideSplitterBar}>Hide Splitter Bar</Button>
+                </div>
+                <div className="option">
+                    <Button id="lockSplitterItem" onClick={handleLockSplitterItem}>Lock Splitter Item</Button>
+                </div>
+                <div className="option">
+                    <Button id="unlockSplitterItem" onClick={handleUnlockSplitterItem}>Unlock Splitter Item</Button>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;

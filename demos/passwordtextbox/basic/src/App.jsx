@@ -1,30 +1,20 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { PasswordTextBox } from 'smart-webcomponents-react/passwordtextbox';
 
-class App extends React.Component {
+const App = () => {
+    // Equivalent of componentDidMount
+    // React.useEffect(() => {
+    //     // Any side-effects here
+    // }, []);
 
-	init() {
-	
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <div className="demo-description">Simple password field.</div>
-			    <PasswordTextBox placeholder="Your password"></PasswordTextBox>
-			</div>
-		);
-	}
-}
-
-
+    return (
+        <div>
+            <div className="demo-description">Simple password field.</div>
+            <PasswordTextBox placeholder="Your password"></PasswordTextBox>
+        </div>
+    );
+};
 
 export default App;

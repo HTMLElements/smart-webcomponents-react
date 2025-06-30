@@ -1,7 +1,6 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useState } from "react";
 import 'smart-webcomponents-react/source/modules/smart.form';
 import 'smart-webcomponents-react/source/modules/smart.datetimepicker';
 import 'smart-webcomponents-react/source/modules/smart.dropdownlist';
@@ -9,19 +8,14 @@ import 'smart-webcomponents-react/source/modules/smart.input';
 import 'smart-webcomponents-react/source/modules/smart.maskedtextbox';
 import 'smart-webcomponents-react/source/modules/smart.numerictextbox';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		
-		this.state = {
-			log: '',
-			statusLog: ''
-		};
-	}
-	
-	componentDidMount() {
+const App = () => {
+	const [log, setLog] = useState('');
+	const [statusLog, setStatusLog] = useState('');
+
+	useEffect(() => {
 		const form = new window.Smart.Form('#profileForm', {
-			controls: [{
+			controls: [
+				{
 					dataField: 'textBoxValue',
 					controlType: 'text',
 					label: 'Text input',
@@ -45,18 +39,10 @@ class App extends React.Component {
 					required: true,
 					controlType: 'dropdownlist',
 					controlOptions: {
-						dataSource: [{
-								label: 'Option 1',
-								value: 'value1'
-							},
-							{
-								label: 'Option 2',
-								value: 'value2'
-							},
-							{
-								label: 'Option 3',
-								value: 'value3'
-							}
+						dataSource: [
+							{ label: 'Option 1', value: 'value1' },
+							{ label: 'Option 2', value: 'value2' },
+							{ label: 'Option 3', value: 'value3' }
 						]
 					}
 				},
@@ -69,18 +55,10 @@ class App extends React.Component {
 					dataField: 'radiobuttonValue',
 					controlType: 'option',
 					optionsLayout: 'horizontal',
-					options: [{
-							label: 'Option 1',
-							value: 'value1'
-						},
-						{
-							label: 'Option 2',
-							value: 'value2'
-						},
-						{
-							label: 'Option 3',
-							value: 'value3'
-						}
+					options: [
+						{ label: 'Option 1', value: 'value1' },
+						{ label: 'Option 2', value: 'value2' },
+						{ label: 'Option 3', value: 'value3' }
 					]
 				},
 				{
@@ -116,35 +94,32 @@ class App extends React.Component {
 			'checkboxValue3': true,
 		};
 
-
 		form.value = sampleValue;
 
 		form.onValueChanges = (value) => {
-			this.setState({log: JSON.stringify(value)});
-		}
+			setLog(JSON.stringify(value));
+		};
 
 		form.onStatusChanges = (value) => {
-			this.setState({statusLog: JSON.stringify(value)});
-		}
-	}
+			setStatusLog(JSON.stringify(value));
+		};
+	}, []); // Only run once after mount
 
-	render() {
-		return (
-			<div>
-			    <div className="demo-description">This example shows how to handle onValueChanges and onStatusChanges events
-			        of the Reactive Form component.</div>
-			    <form id="profileForm"></form>
-			    <br/>
-				<h3>Value</h3>
-				<div id="log">{this.state.log}</div>
-				<br/>
-				<h3>Status</h3>
-			    <div id="statusLog">{this.state.statusLog}</div>
+	return (
+		<div>
+			<div className="demo-description">
+				This example shows how to handle onValueChanges and onStatusChanges events
+				of the Reactive Form component.
 			</div>
-		);
-	}
-}
-
-
+			<form id="profileForm"></form>
+			<br/>
+			<h3>Value</h3>
+			<div id="log">{log}</div>
+			<br/>
+			<h3>Status</h3>
+			<div id="statusLog">{statusLog}</div>
+		</div>
+	);
+};
 
 export default App;

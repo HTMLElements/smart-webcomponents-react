@@ -1,34 +1,23 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef, useEffect } from "react";
 import { PhoneInput } from 'smart-webcomponents-react/phoneinput';
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 
-class App extends React.Component {
-	constructor(p) {
-		super(p);
+function App() {
+    const input = useRef();
 
-		this.input = React.createRef();
-	}
+    useEffect(() => {
+        // Equivalent to init()
+        let phoneInput = input.current;
+        // Add any extra initialization logic here if needed
+    }, []);
 
-	init() {
-		let input = this.input.current;
-	}
-
-	componentDidMount() {
-		this.init();
-	}
-
-	render() {
-		return (
-			<div>
-				<PhoneInput ref={this.input} placeholder="Empty"></PhoneInput>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <PhoneInput ref={input} placeholder="Empty"></PhoneInput>
+        </div>
+    );
 }
-
-
 
 export default App;

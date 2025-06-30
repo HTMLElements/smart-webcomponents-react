@@ -1,35 +1,24 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
-import { MultilineTextBox, ListItem, ListItemsGroup } from 'smart-webcomponents-react/multilinetextbox';
+import { MultilineTextBox } from 'smart-webcomponents-react/multilinetextbox';
 
-class App extends React.Component {
+function App() {
+    // Equivalent of init() and componentDidMount
+    // React.useEffect(() => {
+    //   // Your code here (similar to componentDidMount/init)
+    // }, []);
 
-	init() {
-
-		// Your code here
-	}
-
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<p>Text areas should have a visible border, using the same color and thickness
-			        as the input line.</p>
-				<MultilineTextBox></MultilineTextBox>
-				<br />
-				<MultilineTextBox disabled></MultilineTextBox>
-				<p>Disabled</p>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <p>Text areas should have a visible border, using the same color and thickness
+                as the input line.</p>
+            <MultilineTextBox></MultilineTextBox>
+            <br />
+            <MultilineTextBox disabled></MultilineTextBox>
+            <p>Disabled</p>
+        </div>
+    );
 }
-
-
 
 export default App;

@@ -1,24 +1,16 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import { MaskedTextBox } from 'smart-webcomponents-react/maskedtextbox';
 
-class App extends React.Component {
+function App() {
+    // No logic needed for componentDidMount since it's empty
 
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-			    <MaskedTextBox label="מספר טלפון" mask="+1 (###) ### - ####" rightToLeft></MaskedTextBox>
-			</div>
-		);
-	}
+    return (
+        <div>
+            <MaskedTextBox label="מספר טלפון" mask="+1 (###) ### - ####" rightToLeft></MaskedTextBox>
+        </div>
+    );
 }
-
-
 
 export default App;

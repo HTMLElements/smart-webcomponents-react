@@ -1,100 +1,96 @@
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
-import React from "react";
-import ReactDOM from 'react-dom/client';
+import React, { useRef } from "react";
 import { RadioButton } from 'smart-webcomponents-react/radiobutton';
 import { Slider } from 'smart-webcomponents-react/slider';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.slider = React.createRef();
-		this.slider2 = React.createRef();
-	}
+const App = () => {
+  const slider = useRef();
+  const slider2 = useRef();
 
-	handleAllChange() {
-		this.slider.current.labelsVisibility = 'all';
-		this.slider2.current.labelsVisibility = 'all';
-	}
+  const handleAllChange = () => {
+    if (slider.current && slider2.current) {
+      slider.current.labelsVisibility = 'all';
+      slider2.current.labelsVisibility = 'all';
+    }
+  };
 
-	handleEndPointsChange() {
-		this.slider.current.labelsVisibility = 'endPoints';
-		this.slider2.current.labelsVisibility = 'endPoints';
-	}
+  const handleEndPointsChange = () => {
+    if (slider.current && slider2.current) {
+      slider.current.labelsVisibility = 'endPoints';
+      slider2.current.labelsVisibility = 'endPoints';
+    }
+  };
 
-	handleNoneChange() {
-		this.slider.current.labelsVisibility = 'none';
-		this.slider2.current.labelsVisibility = 'none';
-	}
+  const handleNoneChange = () => {
+    if (slider.current && slider2.current) {
+      slider.current.labelsVisibility = 'none';
+      slider2.current.labelsVisibility = 'none';
+    }
+  };
 
-	handleMajorChange() {
-		this.slider.current.ticksVisibility = 'major';
-		this.slider2.current.ticksVisibility = 'major';
-	}
+  const handleMajorChange = () => {
+    if (slider.current && slider2.current) {
+      slider.current.ticksVisibility = 'major';
+      slider2.current.ticksVisibility = 'major';
+    }
+  };
 
-	handleMinorChange() {
-		this.slider.current.ticksVisibility = 'minor';
-		this.slider2.current.ticksVisibility = 'minor';
-	}
+  const handleMinorChange = () => {
+    if (slider.current && slider2.current) {
+      slider.current.ticksVisibility = 'minor';
+      slider2.current.ticksVisibility = 'minor';
+    }
+  };
 
-	handleNoTicksChange() {
-		this.slider.current.ticksVisibility = 'none';
-		this.slider2.current.ticksVisibility = 'none';
-	}
+  const handleNoTicksChange = () => {
+    if (slider.current && slider2.current) {
+      slider.current.ticksVisibility = 'none';
+      slider2.current.ticksVisibility = 'none';
+    }
+  };
 
-	init() {
-
-	}
-
-	componentDidMount() {
-
-	}
-
-	render() {
-		return (
-			<div>
-				<Slider ref={this.slider} id="horizontalSlider" showTooltip min="17" max="769"
-					value="172" scalePosition="both"></Slider>
-				<br />
-				<Slider ref={this.slider2} id="verticalSlider" showTooltip orientation="vertical"
-					inverted min="-100" max="0" value="-4" scalePosition="both"></Slider>
-				<div className="options">
-					<div className="option">
-						<p>Labels</p>
-						<RadioButton id="all" name="labelsVisibility" checked onChange={this.handleAllChange.bind(this)}>
-							<label for="all">All</label>
-						</RadioButton>
-						<br />
-						<RadioButton id="endPoints" name="labelsVisibility" onChange={this.handleEndPointsChange.bind(this)}>
-							<label for="endPoints">Endpoints</label>
-						</RadioButton>
-						<br />
-						<RadioButton id="none" name="labelsVisibility" onChange={this.handleNoneChange.bind(this)}>
-							<label for="none">None</label>
-						</RadioButton>
-						<br />
-					</div>
-					<div className="option">
-						<p>Tick Marks</p>
-						<RadioButton id="major" name="ticksVisibility" onChange={this.handleMajorChange.bind(this)}>
-							<label for="major">Major</label>
-						</RadioButton>
-						<br />
-						<RadioButton id="minor" name="ticksVisibility" checked onChange={this.handleMinorChange.bind(this)}>
-							<label for="minor">Minor</label>
-						</RadioButton>
-						<br />
-						<RadioButton id="noTicks" name="ticksVisibility" onChange={this.handleNoTicksChange.bind(this)}>
-							<label for="noTicks">None</label>
-						</RadioButton>
-						<br />
-					</div>
-				</div>
-			</div>
-		);
-	}
-}
-
-
+  return (
+    <div>
+      <Slider ref={slider} id="horizontalSlider" showTooltip min="17" max="769"
+        value="172" scalePosition="both"></Slider>
+      <br />
+      <Slider ref={slider2} id="verticalSlider" showTooltip orientation="vertical"
+        inverted min="-100" max="0" value="-4" scalePosition="both"></Slider>
+      <div className="options">
+        <div className="option">
+          <p>Labels</p>
+          <RadioButton id="all" name="labelsVisibility" defaultChecked onChange={handleAllChange}>
+            <label htmlFor="all">All</label>
+          </RadioButton>
+          <br />
+          <RadioButton id="endPoints" name="labelsVisibility" onChange={handleEndPointsChange}>
+            <label htmlFor="endPoints">Endpoints</label>
+          </RadioButton>
+          <br />
+          <RadioButton id="none" name="labelsVisibility" onChange={handleNoneChange}>
+            <label htmlFor="none">None</label>
+          </RadioButton>
+          <br />
+        </div>
+        <div className="option">
+          <p>Tick Marks</p>
+          <RadioButton id="major" name="ticksVisibility" onChange={handleMajorChange}>
+            <label htmlFor="major">Major</label>
+          </RadioButton>
+          <br />
+          <RadioButton id="minor" name="ticksVisibility" defaultChecked onChange={handleMinorChange}>
+            <label htmlFor="minor">Minor</label>
+          </RadioButton>
+          <br />
+          <RadioButton id="noTicks" name="ticksVisibility" onChange={handleNoTicksChange}>
+            <label htmlFor="noTicks">None</label>
+          </RadioButton>
+          <br />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;
