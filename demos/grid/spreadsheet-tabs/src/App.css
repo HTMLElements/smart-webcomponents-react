@@ -1,0 +1,15 @@
+smart-grid {
+    width: 100%;
+	height: 100%;
+}
+smart-tabs {
+	max-width: 800px;
+	width: 100%;
+	height: 800px;
+}
+.smart-grid-cell {
+	font-style: italic;
+}
+.smart-data-view-bold-button::before {
+	display: none;
+}

@@ -1,0 +1,25 @@
+html, body { padding: 10px; }
+
+smart-gantt-chart {
+    height: 500px;
+   --smart-gantt-chart-timeline-cell-min-size: 40px;
+    --smart-gantt-chart-task-tree-splitter-bar-fit-size: calc(2 * var(--smart-gantt-chart-task-default-height));
+    --smart-gantt-chart-project-color: #1de9b6;
+    --smart-gantt-chart-task-color: #448aff;
+    --smart-gantt-chart-milestone-color: #ffc107;
+    --smart-gantt-chart-task-label-color: white;
+    --smart-gantt-chart-task-label-color-selected: white;
+    --smart-gantt-chart-project-label-color: rgba(0, 0, 0, .6);
+    --smart-gantt-chart-project-label-color-selected: rgba(0, 0, 0, .6);
+    --smart-gantt-chart-timeline-task-connection-color: #87a4bc;
+    --smart-gantt-chart-timeline-task-connection-color-hover: #87a4bc;
+    --smart-gantt-chart-timeline-task-connection-feedback-color: #87a4bc;
+    --smart-gantt-chart-timeline-weekend-color: initial;
+    --smart-gantt-chart-task-default-height: 35px;
+    --smart-gantt-chart-task-fill-border-radius: 10px;
+    --smart-gantt-chart-task-popup-window-default-width: 550px;
+}
+
+.smart-gantt-chart-critical-task .smart-timeline-task {
+    border-radius: 10px;
+}

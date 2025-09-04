@@ -1,0 +1,22 @@
+	smart-grid {
+		width: calc(100% - 350px);
+		height: 600px;
+	}
+
+    html, body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+    }
+	
+    .contact-icons img {
+      width: 18px;
+      margin-right: 5px;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    .flag {
+      width: 20px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }

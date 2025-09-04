@@ -1,0 +1,8 @@
+	smart-grid {
+		width: calc(100% - 350px);
+		height: auto;
+	}
+
+	.delivered .smart-label {
+		background: #33C0ED !important;
+	}
