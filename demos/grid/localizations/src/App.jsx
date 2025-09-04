@@ -547,7 +547,7 @@ const Demo = () => {
       try {
         if (locale !== "en") {
           // Dynamically fetch locale JSON for grid localization
-          const response = await fetch(`../../../source/locales/${locale}/grid.json`);
+          const response = await fetch(`assets/locales/${locale}/grid.json`);
           if (!response.ok) throw new Error(`HTTP error ${response.status}`);
           const localeData = await response.json();
           grid.setLocale(locale, localeData);
