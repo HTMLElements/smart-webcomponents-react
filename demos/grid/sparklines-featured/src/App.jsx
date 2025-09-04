@@ -1874,41 +1874,26 @@ const Demo = () => {
       dataField: "ticker",
       width: 350,
       dataType: "string",
-      template: (formatObject) => {
-        const data = formatObject.data;
-        const value = formatObject.value;
+      cellsRenderer: (row, dataField, value, data) => {
+	    const value = formatObject.value;
         const imgSrc = "./images/" + value + ".png";
 
-        if (!formatObject.template) {
-          formatObject.template = `
+        const html = `
             <div
-              style={{
-                marginLeft: 10,
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-              }}
-              className="smart-flex"
+              style="margin-left: 10px; display: flex; align-items: center; gap: 5px;"
             >
               <img
-                src={imgSrc}
-                alt={value}
-                style={{ width: 20, height: 20, borderRadius: 32 }}
+                src=${imgSrc}
+                alt=${value}
+                style="border-radius: 32px; width: 20px; height: 20px;"
               />
-              <span style={{ fontWeight: "bold" }}>{value}</span>
-              <span>{data.name}</span>
+              <span style="font-weight: bold">${value}</span>
+              <span>${data.name}</span>
             </div>
           `;
-        } else {
-          // If template exists, update children accordingly
-          const img = formatObject.template.children[0];
-          const ticker = formatObject.template.children[1];
-          const name = formatObject.template.children[2];
-
-          img.src = imgSrc;
-          ticker.textContent = value;
-          name.textContent = data.name;
         }
+		
+		return html;
       },
     },
     {
@@ -1938,9 +1923,8 @@ const Demo = () => {
       dataField: "purchasePrice",
       dataType: "number",
       cellsFormat: "c2",
-      template: (settings) => {
-        const data = settings.data;
-        let price = data.price;
+      cellsRenderer: (row, dataField, value, data) => {
+	    let price = data.price;
         let purchasePrice = data.purchasePrice;
 
         let isUp = false;
@@ -1968,7 +1952,6 @@ const Demo = () => {
           color = "";
         }
 
-        if (!settings.template) {
           const div = document.createElement("div");
           div.style.marginRight = "10px";
           div.style.display = "flex";
@@ -1996,18 +1979,11 @@ const Demo = () => {
             " " +
             arrow +
             "</span>";
-
-          settings.template = div;
-        } else {
-          let symbol = purchaseDifference > 0 ? "+" : "";
-          settings.template.children[0].textContent =
-            symbol + purchaseDifference.toFixed(2) + " " + purchaseArrow;
-          settings.template.children[0].style.color = purchaseColor;
-          settings.template.children[1].textContent = "$" + price.toFixed(2);
-        }
-
+      
         data.oldPurchasePrice = data.purchasePrice;
         data.oldPrice = data.price;
+		
+		return div.outerHTML;
       },
     },
     {
@@ -2017,8 +1993,8 @@ const Demo = () => {
       dataField: "price",
       dataType: "number",
       cellsFormat: "c2",
-      template: (settings) => {
-        const data = settings.data;
+      cellsRenderer: (row, dataField, value, data) => {
+        const data = data;
         const quantity = data.quantity;
         let price = data.price;
         let total = quantity * price;
@@ -2032,38 +2008,37 @@ const Demo = () => {
         let arrow = isUp > 0 ? "↑" : "↓";
         let color = isUp > 0 ? "#00d647" : "#ff4d4f";
 
-        if (!settings.template) {
-          arrow = "";
-          color = "";
-          const div = document.createElement("div");
-          div.style.marginRight = "10px";
-          div.style.display = "flex";
-          div.style.alignItems = "center";
-          div.style.justifyContent = "end";
-          div.style.height = "100%";
-          div.innerHTML =
-            '<span>&nbsp;</span><span style="display: flex; align-items: center; font-size: 12px; color: #ffffff; height: 25px; padding: 3px 6px; border-radius: 15px; background: #1283DA' +
-            ';">$' +
-            total.toFixed(2) +
-            " " +
-            arrow +
-            "</span>";
-          settings.template = div;
-        } else {
-          settings.template.children[1].textContent = "$" + total.toFixed(2) + " " + arrow;
-        }
+		arrow = "";
+		  color = "";
+		  const div = document.createElement("div");
+		  div.style.marginRight = "10px";
+		  div.style.display = "flex";
+		  div.style.alignItems = "center";
+		  div.style.justifyContent = "end";
+		  div.style.height = "100%";
+		  div.innerHTML =
+			'<span>&nbsp;</span><span style="display: flex; align-items: center; font-size: 12px; color: #ffffff; height: 25px; padding: 3px 6px; border-radius: 15px; background: #1283DA' +
+			';">$' +
+			total.toFixed(2) +
+			" " +
+			arrow +
+			"</span>";
+          
         data.oldPrice = data.price;
+		
+		return div.outerHTML;
       },
     },
     {
       label: "Timeline",
       dataField: "timeline",
       template: "sparklines",
+	  width: 200,
       templateSettings: {
         type: "column",
       },
       dataType: "string",
-    },
+    }
   ];
 
   // Grid properties
