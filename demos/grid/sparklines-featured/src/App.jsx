@@ -1875,8 +1875,7 @@ const Demo = () => {
       width: 350,
       dataType: "string",
       cellsRenderer: (row, dataField, value, data) => {
-	    const value = formatObject.value;
-        const imgSrc = "./images/" + value + ".png";
+	    const imgSrc = "./images/" + value + ".png";
 
         const html = `
             <div
