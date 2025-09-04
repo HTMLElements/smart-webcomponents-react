@@ -1890,10 +1890,9 @@ const Demo = () => {
               <span>${data.name}</span>
             </div>
           `;
-        }
-		
+        
 		return html;
-      },
+      }
     },
     {
       label: "Instrument",
