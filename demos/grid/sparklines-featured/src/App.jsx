@@ -1876,7 +1876,10 @@ const Demo = () => {
       dataType: "string",
       cellsRenderer: (row, dataField, value, data) => {
 	    const imgSrc = "./images/" + value + ".png";
-
+		if (!value) {
+			return;
+		}
+		
         const html = `
             <div
               style="margin-left: 10px; display: flex; align-items: center; gap: 5px;"
@@ -1924,7 +1927,11 @@ const Demo = () => {
       cellsRenderer: (row, dataField, value, data) => {
 	    let price = data.price;
         let purchasePrice = data.purchasePrice;
-
+	
+		if (!price) {
+			return;
+		}
+		
         let isUp = false;
         let isPurchaseUp = false;
 
@@ -1971,7 +1978,6 @@ const Demo = () => {
             purchaseArrow +
             '</span>' +
             '<span style="font-size: 12px; color: #ffffff;  display: flex; align-items: center; height: 25px; padding: 3px 6px; border-radius: 15px; background: #00d647' +
-            color +
             ';">$' +
             price.toFixed(2) +
             " " +
@@ -1992,9 +1998,13 @@ const Demo = () => {
       dataType: "number",
       cellsFormat: "c2",
       cellsRenderer: (row, dataField, value, data) => {
-        const data = data;
         const quantity = data.quantity;
         let price = data.price;
+		
+		if (!price) {
+			return;
+		}
+		
         let total = quantity * price;
         let isUp = false;
 
