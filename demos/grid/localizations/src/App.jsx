@@ -584,7 +584,7 @@ const Demo = () => {
 			onChange={onLocalizationChange}
             dataSource={localizationOptions}
             dropDownMaxHeight={600}
-			selectedIndexes=[0]
+			selectedIndexes={[0]}
             dropDownHeight="auto"
             style={{ marginLeft: 10, width: 150 }}
           />
