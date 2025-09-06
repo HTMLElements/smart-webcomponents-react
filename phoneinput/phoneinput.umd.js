@@ -22,7 +22,7 @@ require('../source/modules/smart.phoneinput');
 	        }
 	        return this._id;
 	    }
-	    /** Enables or disables the element.
+	    /** Determines whether the element is interactive or inactive. When enabled, the element can be interacted with by the user; when disabled, the element becomes unresponsive to user actions, often appearing visually distinct (e.g., grayed out).
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Sets additional class names to the Input drop down.
+	    /** Specifies extra CSS class names to be applied to the Input dropdown element, allowing for customized styling and theming beyond the default classes.
 	    *	Property type: any
 	    */
 	    get dropDownClassList() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.dropDownClassList = value;
 	        }
 	    }
-	    /** Determines the position of the drop down button.
+	    /** Specifies the placement of the dropdown button relative to its associated element, such as positioning it to the left, right, above, or below the target UI component.
 	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.dropDownButtonPosition = value;
 	        }
 	    }
-	    /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
+	    /** Specifies the height of the dropdown menu. By default, this property is set to an empty string, which means the dropdown's height will be determined by a corresponding CSS variable. If a specific value is provided, it will override the CSS variable and explicitly set the dropdown's height.
 	    *	Property type: string | number
 	    */
 	    get dropDownHeight() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.dropDownHeight = value;
 	        }
 	    }
-	    /** Sets the width of the drop down. By default it's set to an empty string. In this case the width of the drop down is controlled by a CSS variable.
+	    /** Specifies the width of the dropdown menu. By default, this value is an empty string (""). When left empty, the dropdown's width is determined by a CSS variable, allowing the width to be managed through external stylesheets rather than being hardcoded. This provides flexibility for responsive design and consistent styling across your application. If a specific width is provided (e.g., "200px" or "50%"), it will override the CSS variable and explicitly set the dropdown's width.
 	    *	Property type: string | number
 	    */
 	    get dropDownWidth() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.dropDownWidth = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Defines or retrieves an object containing string values used throughout the widget’s user interface, allowing for easy localization of text. This property works together with the locale setting to display the widget’s content in different languages, based on the specified translations. Use this object to provide or customize all user-facing strings for multilingual support.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Sets or retrieves the unlockKey property, which serves as a unique key required to unlock access to the product. When assigning a value, the unlockKey enables authorized usage; when retrieving, it provides the current key associated with the product’s access permissions.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the name attribute for the element. Name is used when submiting data inside an HTML form.
+	    /** Defines or retrieves the value of the name attribute for the element. The name attribute uniquely identifies the element within an HTML form, allowing its data to be included and referenced when the form is submitted to a server. This is essential for processing form data on the server side.
 	    *	Property type: string
 	    */
 	    get name() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.name = value;
 	        }
 	    }
-	    /** Determines whether the input will be in international or national mode i.e whether the input will start with '+'.
+	    /** Specifies whether the input should be in international or national format. In international mode, the input should begin with a '+' followed by the country code (e.g., +1 555-1234). In national mode, the input should omit the '+' and country code, using only the local number format.
 	    *	Property type: boolean
 	    */
 	    get nationalMode() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.nationalMode = value;
 	        }
 	    }
-	    /** Determines whether the drop down is opened or not.
+	    /** Specifies whether the dropdown menu is currently visible (open) or hidden (closed).
 	    *	Property type: boolean
 	    */
 	    get opened() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.opened = value;
 	        }
 	    }
-	    /** Sets or gets an array of country codes which will be used instead of the default one with all countries. The country code should be ISO 3166-1 alpha-2 codes(https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+	    /** Specifies or retrieves an array of country codes to customize the set of countries used, replacing the default list that includes all countries. Each country code must be a valid ISO 3166-1 alpha-2 code (see: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), which consists of two uppercase letters (e.g., 'US' for the United States, 'FR' for France). Use this property to limit available options to a specific set of countries as needed.
 	    *	Property type: any
 	    */
 	    get onlyCountries() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.onlyCountries = value;
 	        }
 	    }
-	    /** Determines the placeholder of the input.
+	    /** Specifies the placeholder text that appears inside the input field before the user enters any value, providing a hint or example of the expected input format.
 	    *	Property type: string
 	    */
 	    get placeholder() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.placeholder = value;
 	        }
 	    }
-	    /** Sets or gets the selected country of the element. The country code should be ISO 3166-1 alpha-2 codes(https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+	    /** Gets or sets the selected country for the element using a country code. The country code must conform to the ISO 3166-1 alpha-2 standard (see: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), which consists of a two-letter, uppercase code representing each country (e.g., "US" for United States, "FR" for France).
 	    *	Property type: string
 	    */
 	    get selectedCountry() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.selectedCountry = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Gets or sets a value that determines whether the element's alignment is configured for right-to-left (RTL) languages (such as Arabic or Hebrew), enabling proper display and layout of text and content for those locales.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Determines the theme for the element. Themes define the look of the elements.
+	    /** Specifies the visual theme to be applied to the element. The selected theme controls the element's overall appearance, including colors, fonts, spacing, and other stylistic properties, ensuring a consistent look and feel across the user interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** When set to true, this property prevents the element from receiving keyboard focus, making it inaccessible via tab navigation and standard focus events.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.phoneinput');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Sets or gets the value of the element.
+	    /** Retrieves the current value of the element or assigns a new value to it. This property can be used to access the data contained within form elements (such as input, textarea, or select) or to update their content programmatically.
 	    *	Property type: string
 	    */
 	    get value() {
@@ -217,7 +217,7 @@ require('../source/modules/smart.phoneinput');
 	    get eventListeners() {
 	        return ["onChange", "onChanging", "onItemClick", "onCreate", "onReady"];
 	    }
-	    /** Closes the drop down.
+	    /** Closes the dropdown menu, hiding its visible options from the user and collapsing the interface element.
 	    */
 	    close() {
 	        if (this.nativeElement.isRendered) {
@@ -229,7 +229,7 @@ require('../source/modules/smart.phoneinput');
 	            });
 	        }
 	    }
-	    /** Ensures that the active ( selected ) item is always visible.
+	    /** Guarantees that the currently active (selected) item remains visible within the viewport by automatically scrolling the container as needed. This ensures users can always see and interact with their selection, even as the list or content changes.
 	    */
 	    ensureVisible() {
 	        if (this.nativeElement.isRendered) {
@@ -241,7 +241,7 @@ require('../source/modules/smart.phoneinput');
 	            });
 	        }
 	    }
-	    /** Returns the entered phone number with formatting.
+	    /** Returns the provided phone number as a formatted string, applying standard formatting conventions (such as adding parentheses, spaces, or dashes) based on the specified locale or default format. Ensures consistency and improves readability for display or storage purposes.
 	    * @param {boolean} isInternational?. When you use 'false', the national phone number will be returned and the international phone number, when you use 'true' as parameter.
 	    * @returns {string}
 	  */
@@ -249,7 +249,7 @@ require('../source/modules/smart.phoneinput');
 	        const result = this.nativeElement.getNumber(isInternational);
 	        return result;
 	    }
-	    /** Returns an item by its country dial code. The item is an object with 'label', 'value', 'iso2' and 'dialCode' properties.
+	    /** Retrieves an object representing a country based on its dial code. The returned object contains the following properties:- **label**: The local or English name of the country (e.g., "United States").- **value**: A unique identifier for the country (commonly the country name or abbreviation).- **iso2**: The two-letter ISO 3166-1 alpha-2 country code (e.g., "US").- **dialCode**: The international telephone dialing code associated with the country (e.g., "+1").
 	    * @param {string} dialCode?. Returns the national or international phone number
 	    * @returns {any}
 	  */
@@ -257,21 +257,21 @@ require('../source/modules/smart.phoneinput');
 	        const result = this.nativeElement.getItemByDialCode(dialCode);
 	        return result;
 	    }
-	    /** Returns the selected item. The item is an object with 'label', 'value', 'iso2' and 'dialCode' properties.
+	    /** Returns the currently selected item as an object.  This object contains the following properties:  - `label`: A string representing the display name of the item (e.g., country name).  - `value`: A string or identifier associated with the item (e.g., country code).  - `iso2`: A two-letter ISO 3166-1 alpha-2 country code string (e.g., 'US' for United States).  - `dialCode`: A string representing the country’s international dialing code (e.g., '+1').
 	    * @returns {any}
 	  */
 	    getSelectedItem() {
 	        const result = this.nativeElement.getSelectedItem();
 	        return result;
 	    }
-	    /** Returns true or false depending on whether the entered phone number is valid.
+	    /** Determines if the provided phone number meets the required format and validation rules, returning true for a valid phone number and false if the input is invalid.
 	    * @returns {boolean}
 	  */
 	    isValidNumber() {
 	        const result = this.nativeElement.isValidNumber();
 	        return result;
 	    }
-	    /** Validates the entered phone number.
+	    /** Validates whether the entered phone number is in the correct format and meets specified criteria, such as required length, allowed characters, and country or area code compliance.
 	    */
 	    validate() {
 	        if (this.nativeElement.isRendered) {
@@ -283,7 +283,7 @@ require('../source/modules/smart.phoneinput');
 	            });
 	        }
 	    }
-	    /** Opens the drop down.
+	    /** Displays the drop-down menu, making its list of selectable options visible to the user.
 	    */
 	    open() {
 	        if (this.nativeElement.isRendered) {
@@ -295,7 +295,7 @@ require('../source/modules/smart.phoneinput');
 	            });
 	        }
 	    }
-	    /** Selects the text inside the input or if it is readonly then the element is focused.
+	    /** Enhances the behavior of an input field by selecting its text content when it is editable. If the input field is marked as readonly, it will instead focus the element without selecting the text. This ensures that users can easily interact with editable inputs, while still providing focus to readonly fields for accessibility or further actions.
 	    */
 	    select() {
 	        if (this.nativeElement.isRendered) {

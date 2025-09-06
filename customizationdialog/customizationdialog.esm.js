@@ -30,7 +30,7 @@ class CustomizationDialog extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Sets or retrieves the animation mode for the component. When this property is set to 'none', all animations are disabled. If set to other supported values, the corresponding animation effects will be enabled for transitions or interactions.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Array with filtered fields and their settings.
+    /** An array containing the filtered fields, each with its associated configuration settings. Each element in the array represents a specific field and includes detailed settings such as field type, validation rules, display options, and other relevant properties.
     *	Property type: any
     */
     get dataSource() {
@@ -52,7 +52,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.dataSource = value;
         }
     }
-    /** Sets or gets the displayMember. The displayMember specifies the name of an object property to display. The name is contained in the collection specified by the 'dataSource' property.
+    /** Enhances or retrieves the value of the 'displayMember' property. The 'displayMember' determines which property of each object—within the collection referenced by the 'dataSource' property—will be displayed in the UI component. Set this property to the name of the object field you want to show as the display text for each item in the collection.
     *	Property type: string
     */
     get displayMember() {
@@ -63,7 +63,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.displayMember = value;
         }
     }
-    /** Enables or disables the element.
+    /** Controls whether the element is active and interactive (enabled) or inactive and unresponsive to user input (disabled).
     *	Property type: boolean
     */
     get disabled() {
@@ -74,7 +74,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Sets whether is enabled/disabled filtering tab.
+    /** Determines whether the filtering tab is enabled or disabled, allowing you to control its availability to users. When set to true, the filtering tab will be accessible; when false, it will be hidden or inactive.
     *	Property type: boolean
     */
     get filtering() {
@@ -85,7 +85,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.filtering = value;
         }
     }
-    /** Sets whether is enabled/disabled grouping tab.
+    /** Controls whether the tab grouping feature is enabled or disabled. When enabled, users can organize multiple tabs into groups for improved navigation and management. When disabled, tab grouping functionality will not be available.
     *	Property type: boolean
     */
     get grouping() {
@@ -96,7 +96,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.grouping = value;
         }
     }
-    /** Set's the buttons that will be visible in the header section.
+    /** Specifies which buttons will be displayed in the header section. Provide an array of button identifiers to control the visibility and order of header buttons.
     *	Property type: string[]
     */
     get headerButtons() {
@@ -107,7 +107,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.headerButtons = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Sets or retrieves the unlockKey, a unique code used to authorize and grant access to the product’s features or content.
     *	Property type: string
     */
     get unlockKey() {
@@ -118,7 +118,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or retrieves the current language code (e.g., "en", "fr", "es") used for localization. This property works together with the messages property to provide language-specific content or translations. When the language is set, the corresponding localized messages from the messages property are used throughout the application.
     *	Property type: string
     */
     get locale() {
@@ -129,7 +129,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback, related to localization module.
+    /** Callback function associated with the localization module, typically used to handle language changes, translations, or localization-related events within the application.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -140,7 +140,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Defines an object containing customizable strings used in the widget's user interface that support localization. This property allows you to set or retrieve these strings to provide translations or alternative text in different languages. Typically used together with the locale property to enable multi-language support within the widget.
     *	Property type: any
     */
     get messages() {
@@ -151,7 +151,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets whether the columns reordering is active.
+    /** Specifies whether column reordering is enabled or retrieves the current state. When active, users can change the order of columns by dragging and dropping them.
     *	Property type: boolean
     */
     get reorder() {
@@ -162,7 +162,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.reorder = value;
         }
     }
-    /** Sets or gets the tab, wich is selected on initialization.
+    /** Sets or retrieves the tab that is selected by default when the component is first initialized. This determines which tab is active and visible to the user upon loading.
     *	Property type: number
     */
     get selectedTab() {
@@ -173,7 +173,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.selectedTab = value;
         }
     }
-    /** Sets whether is enabled/disabled sorting tab.
+    /** Determines whether the sorting tab is enabled or disabled. When set to true, the sorting tab will be available for user interaction; when set to false, the sorting tab will be hidden or inactive.
     *	Property type: boolean
     */
     get sorting() {
@@ -184,7 +184,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.sorting = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the theme to be applied to the element. The theme controls the overall appearance, including colors, fonts, and styling, ensuring a consistent visual presentation across the user interface.
     *	Property type: string
     */
     get theme() {
@@ -195,7 +195,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, this property prevents the element from receiving keyboard focus, making it inaccessible via the tab key or programmatic focus methods.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -206,7 +206,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Sets or gets element's value. It's represente by object, contained
+    /** "Sets or retrieves the value of the element. The value is represented as an object, which may contain various properties relevant to the element's data or state."
     *	Property type: any
     */
     get value() {
@@ -217,7 +217,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.value = value;
         }
     }
-    /** Determines the value member of an item. Stored as value in the item object.
+    /** Specifies which property of the item object should be used as the item's value. The designated property will be accessed and stored as the value for each item in the list or collection. For example, if set to "id," the value from item.id will be used as the item's value.
     *	Property type: string
     */
     get valueMember() {
@@ -228,7 +228,7 @@ class CustomizationDialog extends React.Component {
             this.nativeElement.valueMember = value;
         }
     }
-    /** Sets or gets whether the columns of the element could be hidden.
+    /** Determines whether the columns within the element can be toggled between visible and hidden states. When set, it controls the ability to programmatically or interactively hide or show individual columns. When retrieved, it returns the current configuration indicating if column visibility can be altered.
     *	Property type: boolean
     */
     get visibility() {
@@ -247,7 +247,7 @@ class CustomizationDialog extends React.Component {
     get eventListeners() {
         return ["onOpen", "onClose", "onChange", "onApply", "onCreate", "onReady"];
     }
-    /** Opens the dialog
+    /** Opens a modal dialog window, allowing users to interact with additional content or options without navigating away from the current page.
     */
     open() {
         if (this.nativeElement.isRendered) {
@@ -259,7 +259,7 @@ class CustomizationDialog extends React.Component {
             });
         }
     }
-    /** Closes the dialog.
+    /** Closes the dialog window, dismissing its content and returning focus to the underlying page or application. This action may also trigger any associated cleanup or callback functions.
     */
     close() {
         if (this.nativeElement.isRendered) {

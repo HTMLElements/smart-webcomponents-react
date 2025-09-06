@@ -23,7 +23,7 @@ export declare class MenuItem extends React.Component<React.HTMLAttributes<Eleme
     */
     get checked(): boolean;
     set checked(value: boolean);
-    /** Enables or disables element.
+    /** Controls whether the element is enabled or disabled. When set to true, the element is interactive and can receive user input; when set to false, the element is disabled, preventing user interaction and applying a disabled appearance as appropriate.
     *	Property type: boolean
     */
     get disabled(): boolean;

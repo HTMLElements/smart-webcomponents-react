@@ -22,7 +22,7 @@ require('../source/modules/smart.filterbuilder');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Specifies or retrieves the current animation mode. When this property is set to 'none', all animation effects are disabled. Setting it to other supported values enables the corresponding animation behavior.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Adds more operations, that can be used in the filter bilder's conditions structure.
+	    /** Enhances the set of available operations that can be used within the filter builder's condition structure, allowing for more flexible and complex filtering criteria.
 	    *	Property type: {name: string, caption: string, icon: string}[]
 	    */
 	    get customOperations() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.customOperations = value;
 	        }
 	    }
-	    /** Enables or disables the context menu.
+	    /** Determines whether the context menu (typically accessed via right-click) is available to users. Setting this option to true allows users to open the context menu, while setting it to false disables the menu and prevents it from appearing.
 	    *	Property type: boolean
 	    */
 	    get disableContextMenu() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.disableContextMenu = value;
 	        }
 	    }
-	    /** Enables or disables the element.
+	    /** Specifies whether the element is active and interactive (enabled) or inactive and non-interactive (disabled). When enabled, users can interact with the element; when disabled, the element appears visually inactive and cannot be interacted with.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Array with filtered fields and their settings.
+	    /** An array containing filtered field objects, where each object defines a specific field and its associated configuration settings. This includes details such as the field name, data type, validation rules, display properties, and any additional options relevant to how the field should be handled or presented.
 	    *	Property type: any
 	    */
 	    get fields() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.fields = value;
 	        }
 	    }
-	    /** Sets or gets the format string of the editor of fields with type 'date'.
+	    /** Specifies or retrieves the format string used by the editor for fields of type 'date'. This determines how date values are displayed and parsed within the editor, such as the order of day, month, and year.
 	    *	Property type: string
 	    */
 	    get formatStringDate() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.formatStringDate = value;
 	        }
 	    }
-	    /** Sets or gets the format string of the editor of fields with type 'datetime'.
+	    /** Sets or retrieves the format string used by the editor for fields of type 'datetime', specifying how date and time values are displayed and edited within the field. This determines the input and display format (e.g., 'YYYY-MM-DD HH:mm:ss') for users interacting with 'datetime' fields.
 	    *	Property type: string
 	    */
 	    get formatStringDateTime() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.formatStringDateTime = value;
 	        }
 	    }
-	    /** Sets hint in form of popup message.
+	    /** Displays a helpful popup message as a tooltip or hint to guide the user when interacting with the form element.
 	    *	Property type: string
 	    */
 	    get hint() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.hint = value;
 	        }
 	    }
-	    /** Defines icon's representatino as characters.
+	    /** Specifies the icon's visual representation using character symbols (such as Unicode or font glyphs), allowing the icon to be displayed as a character within text elements.
 	    *	Property type: FilterBuilderIcons
 	    */
 	    get icons() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.icons = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Handles the retrieval or assignment of the unlockKey property, which serves as the authorization token required to activate and access the product’s full features. Setting this property provides the necessary key to unlock the product, while getting it returns the current unlock key value in use.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Specifies or retrieves the current language code (e.g., 'en', 'es', 'fr') for the component. This property works together with the messages property to determine which set of localized messages to display, enabling multilingual support. When setting the language, the corresponding messages are loaded automatically based on the selected language code.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback, related to localization module.
+	    /** Callback function associated with the localization module, typically used to handle events or responses related to language translation, locale changes, or loading localized resources within the application.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Defines maximum number of allowed conditions in the element.
+	    /** Specifies the maximum number of conditions that can be applied to this element. If the number of conditions exceeds this limit, additional conditions will not be accepted or processed.
 	    *	Property type: number | null
 	    */
 	    get maxConditions() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.maxConditions = value;
 	        }
 	    }
-	    /** Defines maximum number of allowed conditions in group.
+	    /** Specifies the maximum number of conditions that can be included within a single group. This sets an upper limit to how many conditions are allowed in each group, ensuring that no group exceeds the defined threshold.
 	    *	Property type: number | null
 	    */
 	    get maxConditionsPerGroup() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.maxConditionsPerGroup = value;
 	        }
 	    }
-	    /** Defines maximum level of grouping in the FilterBuilder.
+	    /** Specifies the highest number of nested grouping levels allowed within the FilterBuilder, setting a limit on how deeply filters can be grouped and combined.
 	    *	Property type: number | null
 	    */
 	    get maxLevel() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.maxLevel = value;
 	        }
 	    }
-	    /** Defines field names of the filtered element.
+	    /** Specifies the names of the fields within the element that has been filtered, allowing you to identify which attributes are included as part of the filtered results.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** If the element is readonly, users cannot interact with it.
+	    /** When an element has the "readonly" attribute, its value cannot be modified by the user; however, the element can still receive focus and its content can be selected or copied. Interactivity such as editing or input is disabled, but users may still interact with the element in non-editing ways.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -209,7 +209,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** In restrictedMode set to true, adding of new groups and groups editing by user interaction are denied.
+	    /** When 'restrictedMode' is set to 'true', users are prevented from adding new groups or editing existing groups through the user interface. This means all group management actions must be performed programmatically or by users with elevated permissions; standard user interactions for creating or modifying groups are disabled.
 	    *	Property type: boolean
 	    */
 	    get restrictedMode() {
@@ -220,7 +220,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.restrictedMode = value;
 	        }
 	    }
-	    /** Enables or disables the display of the icons.
+	    /** Controls whether the icons are visible or hidden in the user interface. When enabled, icons are displayed; when disabled, icons are not shown.
 	    *	Property type: boolean
 	    */
 	    get showIcons() {
@@ -231,7 +231,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.showIcons = value;
 	        }
 	    }
-	    /** Determines the theme. Theme defines the look of the element
+	    /** Specifies the theme to be applied, which controls the overall appearance and style of the element, including colors, fonts, and other visual properties.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -242,7 +242,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** When set to true, this property prevents the element from receiving keyboard focus, meaning users cannot navigate to or interact with the element using the Tab key or other focus-related methods.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -253,7 +253,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** The value is represented by multidimensional array. The array contains group operators and conditions. Each group can contain nested structures at multiple levels.
+	    /** The value is structured as a multidimensional array designed to represent complex logical conditions. Each element of the array is either a group operator (such as AND, OR, NOT) or a condition. Groups can themselves contain arrays of conditions and/or further groups, allowing for multiple levels of nesting. This hierarchical structure enables the representation of intricate, compound logic expressions through nested combinations of operators and conditions.
 	    *	Property type: string[]
 	    */
 	    get value() {
@@ -264,7 +264,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.value = value;
 	        }
 	    }
-	    /** Callback used to format the content of the value fields.
+	    /** A callback function that is invoked to customize the formatting of value field contents before they are displayed. This allows you to control how data is presented within the value fields by modifying the output as needed.
 	    *	Property type: any
 	    */
 	    get valueFormatFunction() {
@@ -275,7 +275,7 @@ require('../source/modules/smart.filterbuilder');
 	            this.nativeElement.valueFormatFunction = value;
 	        }
 	    }
-	    /** Sets the placeholder text used in the condition's value box in case the value is not set.
+	    /** Specifies the placeholder text that appears in the condition’s value input field when no value has been entered. This text provides guidance or an example to users about the expected input.
 	    *	Property type: string
 	    */
 	    get valuePlaceholder() {
@@ -294,7 +294,7 @@ require('../source/modules/smart.filterbuilder');
 	    get eventListeners() {
 	        return ["onChange", "onEditorClose", "onEditorClosing", "onEditorOpen", "onEditorOpening", "onItemClick", "onOpen", "onOpening", "onClose", "onClosing", "onCreate", "onReady"];
 	    }
-	    /** Adds new condition in particular group.
+	    /** Adds a new condition to a specified group, enabling further customization or logic within that group's configuration.
 	    * @param {string | HTMLElement} parentGroup. A string, representing the id of the item or an HTML Element referencing this condition.
 	    * @param {any[]} data. An array, representing condition. Condition's element's role is related to their position in the condition's array. At index 0 - field name, index 1 - condition's opertor, index 2 - condition's value.
 	    */
@@ -308,7 +308,7 @@ require('../source/modules/smart.filterbuilder');
 	            });
 	        }
 	    }
-	    /** Adds new group in particular parent group.
+	    /** Creates a new group within a specified parent group, establishing a hierarchical relationship between the new group and its designated parent.
 	    * @param {string | HTMLElement} parentGroup. A string, representing the id of the item or an HTML Element referencing this group.
 	    * @param {string} data. A string, representing the group operator.
 	    */
@@ -322,7 +322,7 @@ require('../source/modules/smart.filterbuilder');
 	            });
 	        }
 	    }
-	    /** Removes condition.
+	    /** Removes the specified condition from the configuration or dataset, ensuring that any rules, filters, or logic associated with this condition are no longer applied. This operation helps update or simplify the criteria used within the system.
 	    * @param {string | HTMLElement} item. A string, representing the id of the item or an HTML Element referencing this condition.
 	    */
 	    removeCondition(item) {
@@ -335,7 +335,7 @@ require('../source/modules/smart.filterbuilder');
 	            });
 	        }
 	    }
-	    /** Deletes group and all of  it's children
+	    /** Deletes the specified group along with all of its child elements recursively. This action is irreversible and will remove the group and all nested items associated with it from the system.
 	    * @param {string | HTMLElement} item. A string, representing the id of the item or an HTML Element referencing this group.
 	    */
 	    removeGroup(item) {
@@ -348,7 +348,7 @@ require('../source/modules/smart.filterbuilder');
 	            });
 	        }
 	    }
-	    /** Returns a string representation of the filter builder's value.
+	    /** Returns a string that represents the current configuration or criteria defined in the filter builder. This output can be used for display, debugging, or serialization purposes, providing a readable summary of the filter builder’s selected fields, conditions, and values.
 	    * @param {boolean} useLabels?. Controls the way of string representation. In mode without labels the value object is stringified only.
 	    * @returns {string}
 	  */
@@ -356,7 +356,7 @@ require('../source/modules/smart.filterbuilder');
 	        const result = this.nativeElement.toString(useLabels);
 	        return result;
 	    }
-	    /** Updates condition.
+	    /** Updates the existing condition by modifying its properties based on the provided input. This typically involves validating the input data, locating the target condition, applying any changes, and saving the updated condition. Returns the modified condition upon successful completion.
 	    * @param {string | HTMLElement} item. A string, representing the id of the item or an HTML Element referencing targeted condition.
 	    * @param {any[]} data. An array, representing condition. Condition's element's role is related to their position in the condition's array. At index 0 - field name, index 1 - condition's opertor, index 2 - condition's value.
 	    */
@@ -370,7 +370,7 @@ require('../source/modules/smart.filterbuilder');
 	            });
 	        }
 	    }
-	    /** Updates group
+	    /** Updates the details of an existing group, such as its name, description, or membership settings. Use this endpoint to modify group information.
 	    * @param {string | HTMLElement} item. A string, representing the id of the item or an HTML Element referencing this group.
 	    * @param {string} data. A string, representing the group operator.
 	    */

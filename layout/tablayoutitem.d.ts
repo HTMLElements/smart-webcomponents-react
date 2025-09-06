@@ -19,37 +19,37 @@ export declare class TabLayoutItem extends React.Component<React.HTMLAttributes<
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Enables or disables the element.
+    /** Determines whether the element is interactive or not. When enabled, users can interact with the element; when disabled, the element becomes inactive and unresponsive to user actions.
     *	Property type: boolean
     */
     get disabled(): boolean;
     set disabled(value: boolean);
-    /** Sets or gets the modifiers of the Layout item.
+    /** Gets or sets the modifier properties (such as alignment, padding, spacing, or styling options) applied to the Layout item, allowing you to customize its appearance and behavior.
     *	Property type: any
     */
     get modifiers(): any;
     set modifiers(value: any);
-    /** Determines the min size of the item.
+    /** Specifies the minimum allowable size for the item, ensuring that it cannot be resized or rendered smaller than this value.
     *	Property type: number
     */
     get min(): number;
     set min(value: number);
-    /** Determines the label of the item.
+    /** Specifies the text or name displayed as the label for the item. This value is shown to users as the item's identifier or title in user interfaces.
     *	Property type: string
     */
     get label(): string;
     set label(value: string);
-    /** Determines the group orientation.
+    /** Specifies the alignment and direction in which the group’s elements are arranged, such as horizontal or vertical orientation.
     *	Property type: TabLayoutItemOrientation | string
     */
     get orientation(): TabLayoutItemOrientation | string;
     set orientation(value: TabLayoutItemOrientation | string);
-    /** Determines the size of the item.
+    /** Specifies the overall dimensions of the item, such as its width, height, or length, to define how much space the item occupies.
     *	Property type: any
     */
     get size(): any;
     set size(value: any);
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, this property prevents the element from receiving keyboard focus, meaning users will not be able to access the element using the Tab key or other keyboard navigation methods.
     *	Property type: boolean
     */
     get unfocusable(): boolean;

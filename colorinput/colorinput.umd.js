@@ -22,7 +22,7 @@ require('../source/modules/smart.colorinput');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Specifies or retrieves the current animation mode. When this property is set to 'none', all animations are disabled. Otherwise, the specified animation mode determines how animations are displayed.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Determines the delay before the drop down opens to show the matches from the auto complete operation. The delay is measured in miliseconds.
+	    /** Specifies the amount of time, in milliseconds, to wait before displaying the dropdown menu that shows matching suggestions from the autocomplete operation. This delay begins after the user stops typing, allowing you to control how quickly the autocomplete dropdown appears in response to user input.
 	    *	Property type: number
 	    */
 	    get autoCompleteDelay() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.autoCompleteDelay = value;
 	        }
 	    }
-	    /** Determines the data source ( that represent valid colors ) that will be loaded to the Input. The dataSource can be an array of strings or objects where the attributes represent the properties of a List Item. For example label, value. It can also be a callback that returns an Array of items as previously described.
+	    /** Specifies the source of data that provides the available color options to be loaded into the Input component. The dataSource property accepts one of the following formats:- 'Array of strings': Each string represents a valid color value.- 'Array of objects': Each object should contain attributes (such as label and value) that define the display properties and value of each color option in the list.- 'Callback function': A function that returns an array of items in either of the above formats (strings or objects with the specified attributes).This flexibility allows you to populate the Input with color choices from static lists or dynamic sources, ensuring seamless integration with various data structures.
 	    *	Property type: any
 	    */
 	    get dataSource() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.dataSource = value;
 	        }
 	    }
-	    /** Enables or disables the element.
+	    /** Determines whether the element is interactive or not. When enabled, users can interact with the element; when disabled, the element becomes non-interactive and may appear visually subdued.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Determines the colors that will be displayed and their layout.
+	    /** Specifies the color palette to be used, including the individual colors and their arrangement or positioning within the user interface. This setting controls both the selection of colors and how they are visually organized or applied throughout the application.
 	    *	Property type: ColorInputDisplayMode | string
 	    */
 	    get displayMode() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.displayMode = value;
 	        }
 	    }
-	    /** Determines the position of the drop down button.
+	    /** Specifies the placement of the dropdown button relative to its parent element, such as aligning it to the left, right, top, or bottom. This setting controls where the dropdown button will appear within the interface.
 	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.dropDownButtonPosition = value;
 	        }
 	    }
-	    /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
+	    /** Specifies the height of the dropdown menu. By default, this value is an empty string, which means the dropdown's height is determined by the associated CSS variable. If a specific height is provided, it will override the default CSS variable, allowing you to directly control the dropdown's height through this property.
 	    *	Property type: string | number
 	    */
 	    get dropDownHeight() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.dropDownHeight = value;
 	        }
 	    }
-	    /** Sets the width of the drop down. By default it's set to an empty string. In this case the width of the drop down is controlled by a CSS variable.
+	    /** Specifies the width of the dropdown menu. By default, this property is set to an empty string (""), which means the dropdown's width will be determined by the value of a corresponding CSS variable rather than an explicit pixel or percentage value. You can override the default behavior by providing a specific width (e.g., "200px", "50%") to directly control the dropdown’s size. If left empty, ensure the relevant CSS variable is defined to maintain consistent styling.
 	    *	Property type: string | number
 	    */
 	    get dropDownWidth() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.dropDownWidth = value;
 	        }
 	    }
-	    /** Sets the purpose of the input and what, if any, permission the user agent has to provide automated assistance in filling out the element's input when in a form, as well as guidance to the browser as to the type of information expected in the element. This value corresponds to the standard HTML autocomplete attribute and can be set to values such as 'on', 'name', 'organization', 'street-address', etc.
+	    /** Specifies the expected type of input for the form element and informs the browser about the purpose of the field. This allows the user agent (such as a web browser or password manager) to offer relevant, automated suggestions or autofill options to the user, based on previously entered or stored data. This property corresponds to the standard HTML autocomplete attribute, which accepts values like 'on' (enables autofill), 'off' (disables autofill), 'name', 'email', 'organization', 'street-address', and many others. Setting this attribute properly enhances accessibility, improves user experience, and ensures that the browser presents the correct input suggestions for each form field.
 	    *	Property type: string
 	    */
 	    get inputPurpose() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.inputPurpose = value;
 	        }
 	    }
-	    /** Determines the maximum number of matched items that should be visible inside the drop down as a result of a new autoComplete query. By default the maximum number of 8 items can be displayed inside the drop down.
+	    /** Specifies the maximum number of items that can be displayed in the dropdown list as results of a new autoComplete query. When a user enters a search term, only up to this number of matching items will be shown in the dropdown. By default, a maximum of 8 items are visible, ensuring that the dropdown remains manageable and user-friendly. If there are more matching items than the specified maximum, only the first set will be displayed.
 	    *	Property type: number
 	    */
 	    get items() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.items = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Sets or retrieves the unlockKey, a unique code or token required to unlock and activate access to the product’s full features.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Defines or retrieves the current language code (e.g., 'en', 'fr'), which determines the locale used for displaying messages. This property works together with the messages property to select the appropriate set of localized messages for the specified language.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+	    /** Callback function that allows you to customize the formatting of messages returned by the Localization Module. Use this to modify, localize, or adjust the appearance of messages before they are delivered to the user interface.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Defines or retrieves an object containing localized string values used throughout the widget’s user interface. This property allows you to customize or translate text elements, such as labels, tooltips, and messages, enabling support for multiple languages. It should be used together with the locale property to ensure that the correct set of localized strings is applied based on the selected language or region.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Determines the minimum number of characters inside the input in order to trigger the autocomplete functionality that will open the drop down and show the matched items.
+	    /** Specifies the minimum number of characters a user must enter into the input field before the autocomplete functionality is activated. Once this threshold is reached, the dropdown menu will open and display the list of matching items based on the user's input.
 	    *	Property type: number
 	    */
 	    get minLength() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.minLength = value;
 	        }
 	    }
-	    /** Sets or gets the name attribute for the element. Name is used when submiting data inside an HTML form.
+	    /** Sets or retrieves the value of the element’s name attribute. The name attribute uniquely identifies the element within an HTML form and is used as the key when the form data is submitted to the server. This allows the submitted data to be organized and referenced by the specified name.
 	    *	Property type: string
 	    */
 	    get name() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.name = value;
 	        }
 	    }
-	    /** Determines whether the drop down is opened or not.
+	    /** Specifies whether the dropdown menu is currently open (visible) or closed (hidden).
 	    *	Property type: boolean
 	    */
 	    get opened() {
@@ -209,7 +209,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.opened = value;
 	        }
 	    }
-	    /** Determines the placeholder of the input.
+	    /** Specifies the placeholder text that appears within the input field when it is empty, providing a hint or example to guide users on the expected input format.
 	    *	Property type: string
 	    */
 	    get placeholder() {
@@ -220,7 +220,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.placeholder = value;
 	        }
 	    }
-	    /** Sets or gets the query that is used to filter the items. Query is used by the autoComplete operation. Empty string means that all items from the data source will be displayed and no filter query is applied.
+	    /** Defines or retrieves the filter query used to narrow down the displayed items. This query is utilized by the autoComplete operation to show only items that match the specified criteria. If the query is set to an empty string, no filtering is applied, and all items from the data source are displayed.
 	    *	Property type: string | number
 	    */
 	    get query() {
@@ -231,7 +231,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.query = value;
 	        }
 	    }
-	    /** Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation.
+	    /** Specifies the query mode used for autocomplete operations. This property defines how the autocomplete engine interprets and matches user input against available data, determining the matching algorithm and search behavior (such as prefix, infix, or fuzzy matching) for generating autocomplete suggestions.
 	    *	Property type: ColorQueryMode | string
 	    */
 	    get queryMode() {
@@ -242,7 +242,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.queryMode = value;
 	        }
 	    }
-	    /** Determines whether the user can enter text inside the input or not. Determines whether the element acts as a ComboBox or a DropDownList if a dataSource is provided.
+	    /** Specifies whether the input field is editable by the user. If set to true, the user can type text directly into the input. If set to false, the input becomes read-only, and the user can only select from the provided options. When a dataSource is supplied, this property also determines the component's behavior:  - If editable is true, the element functions as a ComboBox, allowing users to enter custom values or select from the list.  - If editable is false, the element acts as a DropDownList, restricting selection to the available options in the dataSource only.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -253,7 +253,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Sets or retrieves a value that determines whether the element's content alignment is configured for right-to-left languages, such as Arabic or Hebrew. This ensures proper layout and text direction for locales that require right-to-left reading order.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -264,7 +264,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Determines the theme for the element. Themes define the look of the elements.
+	    /** Specifies the visual theme to be applied to the element. The selected theme controls the element's overall appearance, including colors, fonts, backgrounds, and other stylistic properties, to ensure a consistent look and feel across the user interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -275,7 +275,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** If set to true, the element will be excluded from keyboard navigation and cannot receive focus via the Tab key or programmatically.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -286,7 +286,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Sets or gets the value of the element.
+	    /** Sets or retrieves the current value of the element, allowing you to either update its content programmatically or access its existing value for processing. This is commonly used with form elements such as input, textarea, and select to manage user input dynamically.
 	    *	Property type: string
 	    */
 	    get value() {
@@ -297,7 +297,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.value = value;
 	        }
 	    }
-	    /** Determines what will be displayed inside the color picker's action section.
+	    /** Specifies the content or controls that will appear within the action section of the color picker component. This determines which buttons, options, or interface elements are available to the user when interacting with the color picker’s action area.
 	    *	Property type: ColorValueDisplayMode | string
 	    */
 	    get valueDisplayMode() {
@@ -308,7 +308,7 @@ require('../source/modules/smart.colorinput');
 	            this.nativeElement.valueDisplayMode = value;
 	        }
 	    }
-	    /** Determines the format of the color. Whether it's in HEX, RGB or RGBA. By default it shows the color depending on the displayMode.
+	    /** Specifies the format in which the color value is represented. Supported formats include HEX, RGB, and RGBA. By default, the color format is automatically selected based on the current displayMode setting.
 	    *	Property type: ColorValueFormat | string
 	    */
 	    get valueFormat() {
@@ -327,7 +327,7 @@ require('../source/modules/smart.colorinput');
 	    get eventListeners() {
 	        return ["onChange", "onCreate", "onReady"];
 	    }
-	    /** Closes the drop down.
+	    /** Closes the dropdown menu, hiding all currently visible options and returning the component to its default, collapsed state.
 	    */
 	    close() {
 	        if (this.nativeElement.isRendered) {
@@ -339,7 +339,7 @@ require('../source/modules/smart.colorinput');
 	            });
 	        }
 	    }
-	    /** Opens the drop down.
+	    /** Displays the dropdown menu, allowing the user to view and select available options.
 	    */
 	    open() {
 	        if (this.nativeElement.isRendered) {
@@ -351,7 +351,7 @@ require('../source/modules/smart.colorinput');
 	            });
 	        }
 	    }
-	    /** Selects the text inside the input or if it is readonly then the element is focused.
+	    /** Selects the text inside the input element. If the input is set to readonly, the element will be focused instead, without selecting the text.
 	    */
 	    select() {
 	        if (this.nativeElement.isRendered) {

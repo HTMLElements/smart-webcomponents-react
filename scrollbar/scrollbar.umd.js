@@ -22,7 +22,7 @@ require('../source/modules/smart.scrollbar');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Specifies the current animation mode for the component. You can retrieve the current mode or assign a new one. Setting this property to 'none' disables all animations; other values will enable and determine the type of animation applied.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Enables or disables the element.
+	    /** Determines whether the element is interactive or inactive. When enabled, users can interact with the element as intended. When disabled, the element becomes unresponsive to user input and typically appears visually distinct to indicate its inactive state.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Sets or gets the scrollbar's largestep. The value is increased/decreased with this largestep when the user presses the left mouse button in the area between a scrollbar button and thumb.
+	    /** Defines or retrieves the value of the scrollbar's large step increment. This large step value determines how much the scrollbar's position changes when the user clicks in the track area between the scrollbar's thumb (slider) and one of its arrow buttons. When the left mouse button is pressed in this area, the scrollbar advances or retreats by the specified large step amount, enabling quicker navigation through the content compared to single-step arrow button clicks.
 	    *	Property type: number
 	    */
 	    get largeStep() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.largeStep = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Gets or sets the 'unlockKey' property, which is a unique key used to activate or unlock access to the product’s features or functionality.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Specifies or retrieves the current language setting. This property determines which language is used for displaying messages, working in conjunction with the messages property to select the appropriate set of localized text based on the specified language code (e.g., "en", "fr", "es").
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback, related to localization module.
+	    /** Invokes a callback function associated with the localization module, typically used to handle events or actions such as language changes, text translations, or updates to localized content within the application.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Sets or gets the scrollbar's maximum value.
+	    /** Specifies or retrieves the maximum scrollable value of the scrollbar, determining the highest position to which the scrollbar thumb can be moved. This value defines the upper limit of the scrollable content range.
 	    *	Property type: number
 	    */
 	    get max() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.max = value;
 	        }
 	    }
-	    /** Sets or gets the type of used mechanical action. The mechanical action defines in which moment the value of the element will be updated.
+	    /** Specifies or retrieves the type of mechanical action applied to the element. Mechanical action determines the exact moment when the element's value is updated—such as immediately upon interaction, after a confirmation (like releasing a button), or according to specific user actions. This property allows you to control how and when changes to the element’s value are registered and processed within the application.
 	    *	Property type: DragMechanicalAction | string
 	    */
 	    get mechanicalAction() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.mechanicalAction = value;
 	        }
 	    }
-	    /** Sets an object with string values, related to the different states of passwords strength.
+	    /** Defines an object containing string values that represent the various states of password strength (e.g., weak, medium, strong). Each key in the object corresponds to a specific strength level, allowing for customized messages or labels based on the user's password strength status.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Sets or gets the scrollbar's minimum value.
+	    /** Defines or retrieves the lowest possible value that the scrollbar can represent, determining the starting point of the scrollbar's range.
 	    *	Property type: number
 	    */
 	    get min() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.min = value;
 	        }
 	    }
-	    /** Sets or gets the scrollbar's orientation
+	    /** Specifies or retrieves the orientation of the scrollbar, determining whether it is displayed horizontally or vertically.
 	    *	Property type: Orientation | string
 	    */
 	    get orientation() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.orientation = value;
 	        }
 	    }
-	    /** If the element is readonly, users cannot interact with it.
+	    /** If the element has the readonly attribute, users will be able to see its value but will not be able to modify, edit, or otherwise interact with its contents through input actions. However, the element may still be focusable and its value can be changed programmatically using scripts.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Sets or retrieves a value that specifies whether the element's content alignment is optimized for languages that use right-to-left (RTL) scripts, such as Arabic or Hebrew. When enabled, the element's layout, text direction, and associated styles are adjusted to properly support RTL locales.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Sets or gets scrollbar buttons visibility.
+	    /** Controls the visibility of scrollbar buttons. When set, this property determines whether the scrollbar's increment and decrement buttons (commonly arrow buttons at the ends of the scrollbar) are shown or hidden. It can be used to either display or hide these buttons programmatically, and can also be queried to retrieve the current visibility state.
 	    *	Property type: boolean
 	    */
 	    get showButtons() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.showButtons = value;
 	        }
 	    }
-	    /** Sets or gets the scrollbar's step. The value is increased/decreased with this step when the user presses a scrollbar button.
+	    /** Defines or retrieves the increment by which the scrollbar's value changes when a user clicks on the scrollbar's arrow (stepper) buttons. This value determines how much the scroll position increases or decreases with each button press, allowing for precise control over scrolling granularity.
 	    *	Property type: number
 	    */
 	    get step() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.step = value;
 	        }
 	    }
-	    /** Determines the theme. Theme defines the look of the element
+	    /** Specifies the theme to be applied to the element. The selected theme controls the visual appearance, including colors, typography, and overall styling, ensuring a consistent and cohesive look for the element within the user interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** When set to true, this property prevents the element from receiving keyboard focus, making it unreachable via tab navigation or programmatically using focus methods.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -209,7 +209,7 @@ require('../source/modules/smart.scrollbar');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Sets or gets the widget's value.
+	    /** Sets a new value for the widget or retrieves its current value, depending on how the method is invoked. This allows you to programmatically update the widget's data or access its existing data as needed.
 	    *	Property type: number
 	    */
 	    get value() {
@@ -228,7 +228,7 @@ require('../source/modules/smart.scrollbar');
 	    get eventListeners() {
 	        return ["onChange", "onCreate", "onReady"];
 	    }
-	    /** Redraws the element.
+	    /** Re-renders the element by updating its visual presentation on the screen, ensuring that any recent changes to its properties, styles, or content are accurately reflected in the user interface.
 	    */
 	    refresh() {
 	        if (this.nativeElement.isRendered) {

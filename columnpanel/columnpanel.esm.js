@@ -30,7 +30,7 @@ class ColumnPanel extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Configures or retrieves the current animation mode for the element. When set to 'none', all animations are disabled and the element will update instantly without any animated transitions. Use this property to enable, disable, or specify different animation behaviors as needed.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class ColumnPanel extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Determines the data source that will be loaded to the column panel.
+    /** Specifies the data source from which content will be retrieved and displayed in the column panel. This setting determines what data is loaded and shown within the column panel interface.
     *	Property type: ColumnPanelDataSource[]
     */
     get dataSource() {
@@ -52,7 +52,7 @@ class ColumnPanel extends React.Component {
             this.nativeElement.dataSource = value;
         }
     }
-    /** Enables or disables the column panel.
+    /** Determines whether the column panel is active. When enabled, the column panel is displayed, allowing users to view and manage available columns. When disabled, the column panel is inactive.
     *	Property type: boolean
     */
     get disabled() {
@@ -63,7 +63,7 @@ class ColumnPanel extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Sets or retrieves the 'unlockKey' value, a unique key required to unlock and grant access to the product’s protected features or content. Use this property to securely store or obtain the unlock key as part of the product activation process.
     *	Property type: string
     */
     get unlockKey() {
@@ -74,7 +74,7 @@ class ColumnPanel extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Gets or sets the current language used for displaying messages or content. This property works together with the messages property, which contains localized text for each supported language. Selecting a language updates the displayed messages to their corresponding translations defined in the messages object.
     *	Property type: string
     */
     get locale() {
@@ -85,7 +85,7 @@ class ColumnPanel extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+    /** Callback function that allows you to define or modify the formatting of messages returned by the Localization Module. Use this to customize how localized messages are displayed or structured before they are delivered to the application interface.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -96,7 +96,7 @@ class ColumnPanel extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Handles the setting or retrieval of an object containing customizable strings used throughout the widget interface, enabling localization of text elements. This property works in tandem with the locale property to provide language-specific translations, ensuring the widget displays appropriate text based on the user's selected language or region.
     *	Property type: any
     */
     get messages() {
@@ -107,7 +107,7 @@ class ColumnPanel extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** If the element is readonly, users cannot interact with it.
+    /** When an element is set to "readonly," users cannot modify its value or content. However, they can still focus on the element (for example, by tabbing to it) and select its text. Unlike disabled elements—which are neither interactive nor focusable—a readonly element remains accessible for review but does not allow user edits.
     *	Property type: boolean
     */
     get readonly() {
@@ -118,7 +118,7 @@ class ColumnPanel extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Gets or sets a value that specifies whether the element's layout direction is set to right-to-left, enabling proper alignment and display for languages and locales that use right-to-left text, such as Arabic or Hebrew.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -129,7 +129,7 @@ class ColumnPanel extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** If this property is set to true, the element will be unfocusable, meaning users will not be able to focus on it using keyboard navigation (such as the Tab key) or by clicking on it.
     *	Property type: boolean
     */
     get unfocusable() {

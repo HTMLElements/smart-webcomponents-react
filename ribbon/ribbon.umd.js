@@ -22,7 +22,7 @@ require('../source/modules/smart.ribbon');
 	        }
 	        return this._id;
 	    }
-	    /** Determines whether the tab item is disabled.
+	    /** Specifies whether the tab item is disabled and unresponsive to user interaction. When set to true, the tab cannot be selected or activated by the user.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Determines the label of the tab item.
+	    /** Specifies the text displayed as the label for the tab item, allowing users to identify and select the corresponding tab in the interface.
 	    *	Property type: string
 	    */
 	    get label() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.label = value;
 	        }
 	    }
-	    /** Determines whether the tab item is selected.
+	    /** Indicates whether the tab item is currently active and selected by the user. When set to true, this tab will be visually highlighted and its associated content will be displayed.
 	    *	Property type: boolean
 	    */
 	    get selected() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.selected = value;
 	        }
 	    }
-	    /** Determines the ribbon group of the tab item
+	    /** Specifies the ribbon group to which the tab item belongs, enabling organization and grouping of related commands within the ribbon interface.
 	    *	Property type: any
 	    */
 	    get ribbonGroups() {
@@ -222,7 +222,7 @@ require('../source/modules/smart.ribbon');
 	        }
 	        return this._id;
 	    }
-	    /** Determines the label of the ribbon group.
+	    /** Specifies the text or title displayed as the label for the ribbon group, helping users identify the purpose or category of the grouped controls within the ribbon interface.
 	    *	Property type: string
 	    */
 	    get label() {
@@ -233,7 +233,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.label = value;
 	        }
 	    }
-	    /** Determines the icon of the ribbon group.
+	    /** Specifies the icon displayed for the ribbon group. This property defines the visual symbol or image that represents the group within the ribbon interface, enhancing usability and quick identification for users.
 	    *	Property type: string
 	    */
 	    get icon() {
@@ -244,7 +244,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.icon = value;
 	        }
 	    }
-	    /** Determines the class of the ribbon group.
+	    /** Specifies the CSS class applied to the ribbon group, which controls its appearance and styling. Use this property to customize the look and feel of the ribbon group by assigning one or more class names.
 	    *	Property type: string
 	    */
 	    get cssClass() {
@@ -255,7 +255,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.cssClass = value;
 	        }
 	    }
-	    /** Determines the ribbon items of the ribbon group.
+	    /** Defines the collection of items displayed within the ribbon group, specifying the individual controls, buttons, menus, or tools that appear as part of the ribbon interface. This property allows customization of the content and arrangement of the ribbon group elements.
 	    *	Property type: any
 	    */
 	    get ribbonItems() {
@@ -266,7 +266,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.ribbonItems = value;
 	        }
 	    }
-	    /** Determines the direction of the ribbon group.
+	    /** Specifies the orientation of the ribbon group, such as horizontal or vertical, affecting how its contained items are arranged and displayed within the user interface.
 	    *	Property type: RibbonGroupDirection | string
 	    */
 	    get direction() {
@@ -277,7 +277,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.direction = value;
 	        }
 	    }
-	    /** Determines the settings of the dialog launcher of the ribbon group.
+	    /** Defines the configuration options for the dialog launcher button within the ribbon group, specifying its appearance, behavior, and associated actions when activated by the user.
 	    *	Property type: RibbonGroupDialogLauncher
 	    */
 	    get dialogLauncher() {
@@ -288,7 +288,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.dialogLauncher = value;
 	        }
 	    }
-	    /** Determines the size, below which the ribbon group will be wrapped.
+	    /** Specifies the minimum width (in pixels) at which the ribbon group will be displayed on a single line. If the available space becomes smaller than this value, the ribbon group will automatically wrap to a new line to maintain a responsive layout.
 	    *	Property type: RibbonGroupWrapSize | string
 	    */
 	    get wrapSize() {
@@ -455,7 +455,7 @@ require('../source/modules/smart.ribbon');
 	        }
 	        return this._id;
 	    }
-	    /** Determines whether the ribbon item is disabled.
+	    /** Specifies whether the ribbon item is disabled and unresponsive to user interactions. If set to 'true', the ribbon item will appear visually inactive and cannot be clicked or selected by the user. If 'false', the item remains enabled and fully interactive.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -466,7 +466,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Determines the label of the ribbon item.
+	    /** Specifies the text displayed as the label on the ribbon item, providing users with a clear description or name for the ribbon element.
 	    *	Property type: string
 	    */
 	    get label() {
@@ -477,7 +477,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.label = value;
 	        }
 	    }
-	    /** Determines the type of the ribbon item.
+	    /** Specifies the category or function of the ribbon item, such as button, dropdown, separator, or other UI element types. This property helps define how the ribbon item behaves and is displayed within the ribbon interface.
 	    *	Property type: RibbonItemType | string
 	    */
 	    get type() {
@@ -488,7 +488,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.type = value;
 	        }
 	    }
-	    /** Determines the template of the ribbon item. Accepts HTMLTemplateElement, an id of an HTMLTemplateElement or a Function.
+	    /** Specifies the template used to render the ribbon item. This property accepts one of the following:- An HTMLTemplateElement instance.- The id (string) of an existing HTMLTemplateElement in the DOM.- A function that returns either a template string or an HTML element.This allows you to customize the appearance and content of the ribbon item by providing a static template, referencing a template by id, or generating templates dynamically through a function.
 	    *	Property type: string
 	    */
 	    get template() {
@@ -499,7 +499,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.template = value;
 	        }
 	    }
-	    /** Determines the size of the ribbon item.
+	    /** Specifies the dimensions or size configuration (such as small, medium, or large) for the ribbon item, affecting its visual appearance and layout within the ribbon interface.
 	    *	Property type: RibbonItemSize | string
 	    */
 	    get size() {
@@ -521,7 +521,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.sizeChanged = value;
 	        }
 	    }
-	    /** Determines the allowed sizes of the ribbon item.
+	    /** Specifies the permissible dimensions (such as small, medium, or large) that the ribbon item can be displayed in. This setting controls which size options are available for the ribbon item’s appearance within the user interface.
 	    *	Property type: any
 	    */
 	    get allowedSizes() {
@@ -532,7 +532,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.allowedSizes = value;
 	        }
 	    }
-	    /** Determines the icon of the ribbon item.
+	    /** Specifies the icon displayed on the ribbon item. This property sets the visual symbol or graphic that represents the ribbon item in the user interface, allowing users to quickly identify its function. The icon can typically be defined using an icon name, image URL, or SVG markup, depending on the framework or library in use.
 	    *	Property type: string
 	    */
 	    get icon() {
@@ -543,7 +543,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.icon = value;
 	        }
 	    }
-	    /** Determines the settings of the ribbon item. The settings will be applied as properties if the ribbon item is set to a Smart Element.
+	    /** Controls the configuration options for the ribbon item. When the ribbon item is designated as a Smart Element, these settings are applied as its properties, allowing for dynamic customization of its appearance and behavior within the ribbon interface.
 	    *	Property type: RibbonItemSettings
 	    */
 	    get settings() {
@@ -554,7 +554,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.settings = value;
 	        }
 	    }
-	    /** Determines the class of the ribbon item.
+	    /** Specifies the CSS class or classes to be applied to the ribbon item, allowing for customized styling and appearance. This property enables developers to control the visual presentation of individual ribbon items by assigning one or more class names.
 	    *	Property type: string
 	    */
 	    get cssClass() {
@@ -565,7 +565,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.cssClass = value;
 	        }
 	    }
-	    /** Sets a click event handler for the ribbon item.
+	    /** Assigns a custom function to be executed when the ribbon item is clicked, enabling the implementation of specific actions or behaviors in response to user interaction.
 	    *	Property type: any
 	    */
 	    get onItemClick() {
@@ -576,7 +576,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.onItemClick = value;
 	        }
 	    }
-	    /** Sets a change event handler for the ribbon item.
+	    /** Registers a handler function that will be triggered when the ribbon item's value or state changes, allowing you to respond dynamically to user interactions or programmatic updates.
 	    *	Property type: any
 	    */
 	    get onItemChange() {
@@ -587,7 +587,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.onItemChange = value;
 	        }
 	    }
-	    /** Determines the tooltip of the ribbon item.
+	    /** Specifies the text that appears as a tooltip when users hover over the ribbon item, providing additional information or guidance about its function.
 	    *	Property type: string
 	    */
 	    get tooltip() {
@@ -754,7 +754,7 @@ require('../source/modules/smart.ribbon');
 	        }
 	        return this._id;
 	    }
-	    /** Determines whether the ribbon is collapsible.
+	    /** Specifies whether the ribbon interface can be collapsed or expanded by the user, allowing for a more compact or fully visible display as needed.
 	    *	Property type: any
 	    */
 	    get collapsible() {
@@ -765,7 +765,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.collapsible = value;
 	        }
 	    }
-	    /** Determines the tab items of the ribbon.
+	    /** Specifies the individual tab items to be displayed within the ribbon interface. Each tab item typically represents a distinct category or section, allowing users to easily navigate and access grouped commands or features within the ribbon.
 	    *	Property type: any
 	    */
 	    get dataSource() {
@@ -776,7 +776,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.dataSource = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is disabled.
+	    /** Specifies or retrieves whether the element is disabled, preventing user interaction and making it unresponsive to mouse and keyboard events. When set to true, the element cannot be activated or receive input focus.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -787,7 +787,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Determines the file menu options of the ribbon.
+	    /** Specifies the available file menu options displayed within the ribbon interface, defining which actions (such as New, Open, Save, Print, etc.) users can access from the file menu.
 	    *	Property type: RibbonFileMenu
 	    */
 	    get fileMenu() {
@@ -798,7 +798,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.fileMenu = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Sets or retrieves the value of the unlockKey property, which is used to authenticate and authorize access to unlock the product. The unlockKey typically functions as a secure code or token required to enable full product functionality.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -809,7 +809,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Determines the locale of the ribbon.
+	    /** Specifies the localization settings for the ribbon, determining the language and regional formatting (such as date, time, and number formats) used for displaying text and other interface elements.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -820,7 +820,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Determines the messages of the ribbon
+	    /** Specifies the text and content displayed in the ribbon's message area, allowing customization of informational or notification messages shown to users within the ribbon interface.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -831,7 +831,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Specifies or retrieves a value that determines whether the element’s alignment is optimized for right-to-left (RTL) languages, such as Arabic or Hebrew. This affects the element’s text direction, layout flow, and alignment to accommodate locales that use right-to-left scripts.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -842,7 +842,7 @@ require('../source/modules/smart.ribbon');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Determines the selected tab.
+	    /** Specifies which tab is currently selected and active in the tab navigation component, typically by its index or identifier. This property controls which tab's content is visible to the user.
 	    *	Property type: any
 	    */
 	    get selectedTab() {
@@ -861,7 +861,7 @@ require('../source/modules/smart.ribbon');
 	    get eventListeners() {
 	        return ["onCollapse", "onCollapsing", "onDialogLauncherClick", "onExpand", "onExpanding", "onFileButtonClick", "onFileMenuOpen", "onFileMenuClose", "onFileMenuItemClick", "onSelect", "onSelecting", "onCreate", "onReady"];
 	    }
-	    /** Adds a new ribbon tab to the ribbon. The tab can be added as an object, HTMLElement or id to an HTMLElement.
+	    /** Adds a new tab to the application's ribbon interface. The tab can be specified in one of three ways: as a configuration object defining the tab's properties, as an existing HTMLElement to be used as the tab, or as a string representing the id of an existing HTMLElement to be added as the tab. This provides flexibility in how ribbon tabs are created and integrated.
 	    * @param {any} tab. The ribbon tab to be added.
 	    */
 	    addTab(tab) {
@@ -874,7 +874,7 @@ require('../source/modules/smart.ribbon');
 	            });
 	        }
 	    }
-	    /** Adds a new group to a ribbon tab. The group can be added as an object, HTMLElement or id to an HTMLElement.
+	    /** Enhances a ribbon tab by adding a new group. The group can be specified in one of the following ways: as an object defining its properties, as a direct reference to an HTMLElement, or as a string representing the id of an existing HTMLElement. This flexibility allows you to create the group dynamically, use an already created DOM element, or reference an element by its id.
 	    * @param {any} tab. The id, index or HTMLElement  of the parent ribbon tab.
 	    * @param {any} group. The ribbon group to be added.
 	    */
@@ -888,7 +888,7 @@ require('../source/modules/smart.ribbon');
 	            });
 	        }
 	    }
-	    /** Adds a new ribbon item to a ribbon group. The item can be added as an object, HTMLElement or id to an HTMLElement.
+	    /** Adds a new item to a specified ribbon group in the ribbon interface. The new item can be provided in one of the following forms: as a configuration object, as an actual HTMLElement, or by specifying the id of an existing HTMLElement. This offers flexibility in how ribbon items are defined and incorporated into the ribbon group.
 	    * @param {string | number | HTMLElement} tab. The id, index or HTMLElement  of the parent ribbon tab.
 	    * @param {string | HTMLElement} group. The id or HTMLElement of the parent ribbon group.
 	    * @param {any} item. The ribbon item to be added.
@@ -903,7 +903,7 @@ require('../source/modules/smart.ribbon');
 	            });
 	        }
 	    }
-	    /** Collapses the ribbon.
+	    /** Minimizes the ribbon interface, hiding its commands and options, to provide more workspace on the screen.
 	    */
 	    collapse() {
 	        if (this.nativeElement.isRendered) {
@@ -915,7 +915,7 @@ require('../source/modules/smart.ribbon');
 	            });
 	        }
 	    }
-	    /** Expands the ribbon.
+	    /** Expands the ribbon interface to reveal additional tools, features, and options that are otherwise hidden from view. This action increases the available workspace by displaying the full set of ribbon commands and controls.
 	    */
 	    expand() {
 	        if (this.nativeElement.isRendered) {
@@ -927,7 +927,7 @@ require('../source/modules/smart.ribbon');
 	            });
 	        }
 	    }
-	    /** Removes a ribbon tab from the ribbon.
+	    /** Removes a specified tab from the ribbon interface, effectively hiding it and its associated commands from the user’s view. This action ensures that the tab and its contents are no longer accessible within the ribbon navigation.
 	    * @param {string | number} ribbonTab. The id or index of the ribbon tab to be removed.
 	    */
 	    removeTab(ribbonTab) {
@@ -940,7 +940,7 @@ require('../source/modules/smart.ribbon');
 	            });
 	        }
 	    }
-	    /** Removes a ribbon group from a ribbon tab.
+	    /** Removes a specified ribbon group from the selected ribbon tab, effectively deleting that group's controls and functionalities from the tab's interface.
 	    * @param {string | number} ribbonTabIndex?. The id or index of the parent ribbon tab.
 	    * @param {string | number} ribbonGroup?. The id or index of the ribbon group to be removed.
 	    */
@@ -954,7 +954,7 @@ require('../source/modules/smart.ribbon');
 	            });
 	        }
 	    }
-	    /** Removes a ribbon item from a ribbon group.
+	    /** Removes a specified ribbon item from its parent ribbon group, effectively deleting the item from the group and updating the user interface accordingly. This operation ensures that the ribbon group no longer displays or interacts with the removed item.
 	    * @param {string | number} ribbonTabIndex?. The id or index of the parent ribbon tab.
 	    * @param {string | number} ribbonGroup?. The id or index of the parent ribbon group.
 	    * @param {string | number} ribbonItem?. The id or index of the ribbon item to be removed.
@@ -969,7 +969,7 @@ require('../source/modules/smart.ribbon');
 	            });
 	        }
 	    }
-	    /** Selects a ribbon tab.
+	    /** Activates the specified ribbon tab, bringing its contents into focus and making its associated controls and options accessible to the user.
 	    * @param {string | number} ribbonTabIndex. The index of the ribbon tab to be selected.
 	    */
 	    selectTab(ribbonTabIndex) {

@@ -32,7 +32,7 @@ class Scheduler extends React.Component {
         }
         return this._id;
     }
-    /** Determines the scroll speed while dragging an event.
+    /** Specifies how quickly the calendar view scrolls vertically or horizontally when a user drags an event near the edge of the view. Adjusting this value controls the speed at which the calendar auto-scrolls during drag-and-drop event operations, enhancing user navigation for long or densely populated calendars.
     *	Property type: number
     */
     get autoScrollStep() {
@@ -43,7 +43,7 @@ class Scheduler extends React.Component {
             this.nativeElement.autoScrollStep = value;
         }
     }
-    /** Determines whether the all day cells in Day and Week views automatically change their height depending on the events count in these cells.
+    /** Controls whether the height of all-day cells in the Day and Week calendar views automatically adjusts based on the number of events scheduled in each cell. When enabled, all-day cells will dynamically expand or contract in height to fit all contained events; when disabled, the cell height remains fixed regardless of the number of events.
     *	Property type: boolean
     */
     get autoHeightAllDayCells() {
@@ -54,7 +54,7 @@ class Scheduler extends React.Component {
             this.nativeElement.autoHeightAllDayCells = value;
         }
     }
-    /** Defines an array of objects with start and end fields, where start and end are Date objects. For example: [{  'start': '2022-10-25T12:00.000Z', 'end': '2022-10-25T13:00.000Z' }].
+    /** Specifies an array of objects, each representing a time interval with start and end properties. Both the start and end fields are ISO 8601 formatted date-time strings (e.g., "2022-10-25T12:00:00.000Z") that indicate the beginning and end of the interval, respectively. Example:'''json[  {    "start": "2022-10-25T12:00:00.000Z",    "end": "2022-10-25T13:00:00.000Z"  }]'''This format is typically used to represent a list of time ranges, where each object defines one range with a precise start and end timestamp in UTC.
     *	Property type: any
     */
     get available() {
@@ -65,7 +65,7 @@ class Scheduler extends React.Component {
             this.nativeElement.available = value;
         }
     }
-    /** Determines the color scheme for the event background selector in the event window editor.
+    /** Specifies the color scheme used for the event background selector within the event window editor, defining the appearance and color options available for users when customizing the background of event windows.
     *	Property type: string[]
     */
     get colorScheme() {
@@ -76,7 +76,7 @@ class Scheduler extends React.Component {
             this.nativeElement.colorScheme = value;
         }
     }
-    /** Determines the current time of the Scheduler to use for the current time indicator functionality. By default the current time is Today.
+    /** Specifies the reference time that the Scheduler uses to display the current time indicator. By default, this is set to the current date and time (today). You can customize this value to display the indicator at a specific time, which is useful for testing or demonstrating features independent of the actual system clock.
     *	Property type: string | Date
     */
     get currentTime() {
@@ -87,7 +87,7 @@ class Scheduler extends React.Component {
             this.nativeElement.currentTime = value;
         }
     }
-    /** Enables/Disables the current time indicator. Current time indicator shows the current time in the appropriate view cells.
+    /** Enables or disables the display of the current time indicator within the view. When enabled, a visual marker or line is shown on the relevant view cells to highlight the present time, helping users easily identify the current point in the schedule or calendar interface.
     *	Property type: boolean
     */
     get currentTimeIndicator() {
@@ -98,7 +98,7 @@ class Scheduler extends React.Component {
             this.nativeElement.currentTimeIndicator = value;
         }
     }
-    /** Determines the refresh interval in seconds for the currentTimeIndicator.
+    /** Specifies the frequency, in seconds, at which the currentTimeIndicator is updated or refreshed. This setting controls how often the indicator reflects the current time, allowing you to adjust the real-time accuracy of the display.
     *	Property type: number
     */
     get currentTimeIndicatorInterval() {
@@ -109,7 +109,7 @@ class Scheduler extends React.Component {
             this.nativeElement.currentTimeIndicatorInterval = value;
         }
     }
-    /** Determines the context menu items that are visible when the Context Menu is opened.
+    /** Specifies which items will be displayed in the context menu when it is activated by the user, allowing you to control the visibility of specific context menu options based on the current application state or user actions.
     *	Property type: any[]
     */
     get contextMenuDataSource() {
@@ -120,7 +120,7 @@ class Scheduler extends React.Component {
             this.nativeElement.contextMenuDataSource = value;
         }
     }
-    /** Determines whether the clipboard shortcuts for copy/paste/cut action of events are visible in the Scheduler context menu or not.
+    /** Specifies whether clipboard shortcuts (copy, paste, and cut actions) are displayed in the Scheduler's context menu. When enabled, users can access and perform clipboard operations directly from the context menu for scheduled events. Disabling this option hides clipboard shortcut commands from the menu.
     *	Property type: boolean
     */
     get contextMenuClipboardActions() {
@@ -131,7 +131,7 @@ class Scheduler extends React.Component {
             this.nativeElement.contextMenuClipboardActions = value;
         }
     }
-    /** Allows to customize the content of the event elements. It can be an HTMLTemplateElement that will be applied to all events or it's id as a string or a function that will be called for each event with the following parameters: eventContent - the content holder for the event,eventObj - the event object.. When using an HTMLTemplateElement it's possible to add property bindings inside the template that will be mapped to the corresponding object properties.
+    /** Enables customization of the content displayed within event elements. This option accepts one of the following:- An 'HTMLTemplateElement' to define the layout and content for all event elements. Property bindings within the template can be used, and they will automatically map to the relevant properties of each event object.- The 'id' (as a string) of an 'HTMLTemplateElement', which will be used for rendering all events.- A custom function to generate event content dynamically. This function is called for each event and receives the following parameters:  - 'eventContent' – The content container element for the specific event.  - 'eventObj' – The JavaScript object representing the event’s data.Using an 'HTMLTemplateElement' allows you to leverage property bindings (e.g., '{{propertyName}}') within the template, enabling dynamic insertion of event-specific values when rendering each event element.
     *	Property type: any
     */
     get eventTemplate() {
@@ -142,7 +142,7 @@ class Scheduler extends React.Component {
             this.nativeElement.eventTemplate = value;
         }
     }
-    /** Allows to customize the content of the event collector elements. It can be an HTMLTemplateElement that will be applied to all events or it's id as a string or a function that will be called for each event with the following parameters: eventContent - the content holder for the event,eventObj - the event object.. When using an HTMLTemplateElement it's possible to add property bindings inside the template that will be mapped to the corresponding object properties.
+    /** Allows you to customize the content displayed by event collector elements. The customization can be provided in one of the following forms:- 'HTMLTemplateElement': Directly supply an 'HTMLTemplateElement'. This template will be cloned and applied to all event collector entries. You can define property bindings within the template, and these will be mapped to the corresponding properties of the event object for each entry.- 'String (Template ID)': Provide the string ID of an 'HTMLTemplateElement' present in the DOM. The element with this ID will be used as the template as described above.- 'Function': Provide a function that will be invoked for each event. This function receives the following parameters:  - 'eventContent': The container element for the event's content, which you can modify or populate.  - 'eventObj': The event data object itself, allowing you to access event-specific information.When using a template, dynamic property bindings are supported—you can reference fields from the 'eventObj' directly within your template markup.This flexibility allows you to fully control the structure, layout, and dynamic content of each event as it is rendered by the event collector.
     *	Property type: any
     */
     get eventCollectorTemplate() {
@@ -153,7 +153,7 @@ class Scheduler extends React.Component {
             this.nativeElement.eventCollectorTemplate = value;
         }
     }
-    /**  Determines how the events inside the Scheduler are rendered.classic - the events are arranged next to each other and try to fit inside the cells.modern - the events obey the CSS property that determines their size and if there's not enough space inside the cell for all events to appear, an event collector is created to hold the rest of the events. On mobile phones only collectors are created.
+    /** Determines the rendering style for events displayed within the Scheduler component.      classic &ndash; Events are visually arranged side-by-side within each cell, with their sizes adjusted to ensure they fit entirely within the cell boundaries. If multiple events overlap in the same time slot, they are compressed horizontally to avoid overflow and remain fully visible within the cell.        modern &ndash; Events adhere to their specified CSS size properties, such as height and width, rather than automatically resizing to fit the cell. If there are more events than can visibly fit within a cell, an "event collector" (typically a counter or indicator) is displayed that, when clicked, reveals the hidden events in a popup or modal. On mobile devices, due to limited screen space, only event collectors are shown within each cell, requiring the user to tap to view the full list of events.
     *	Property type: SchedulerEventRenderMode | string
     */
     get eventRenderMode() {
@@ -164,7 +164,7 @@ class Scheduler extends React.Component {
             this.nativeElement.eventRenderMode = value;
         }
     }
-    /** Allows to customize the content of the event menu items (tooltip). When clicked on an event element an event menu with details opens. It can be an HTMLTemplateElement that will be applied to all events or it's id as a string or a function that will be called for each event with the following parameters: eventContent - the content holder for the event,eventObj - the event object.. When using an HTMLTemplateElement it's possible to add property bindings inside the template that will be mapped to the corresponding object properties.
+    /** Enables the customization of the content displayed within the event menu tooltip. When a user clicks on an event element, a menu opens showing detailed information about that event. You can define this content in one of three ways:- 'HTMLTemplateElement': Provide a template element that will be applied to all events. Inside the template, you can use property bindings referencing the event object’s properties for dynamic content generation.- 'String (Template ID)': Pass the ID of an 'HTMLTemplateElement' as a string to use that template for all event tooltips.- 'Function': Supply a callback function that is invoked for each event. This function receives the following parameters:  - 'eventContent': The container element or node where the event’s menu content should be rendered or modified.  - 'eventObj': The event data object with all event properties.  Using an HTMLTemplateElement allows you to seamlessly bind event properties within the template’s markup, making it easy to display custom information for each event.This option gives you full flexibility to design and control the appearance and content of the event details menu, ensuring it matches your application's needs and styling.
     *	Property type: any
     */
     get eventTooltipTemplate() {
@@ -175,7 +175,7 @@ class Scheduler extends React.Component {
             this.nativeElement.eventTooltipTemplate = value;
         }
     }
-    /** Allows to customize the content of the timeline cells. It can be an HTMLTemplateElement that will be applied to all cells or it's id as a string or a function that will be called for each cell with the following parameters: cellContent - the content holder for the cell,cellDate - the cell date.. When using an HTMLTemplateElement it's possible to add property bindings inside the template that will be mapped to the value of the cell.
+    /** Enables customization of the timeline cell content. This option accepts one of the following:- 'HTMLTemplateElement': A template element whose content will be used for all timeline cells. When using a template, you can define property bindings within the template, which will be replaced with the corresponding values for each cell at render time.- 'String (template ID)': The ID of an HTMLTemplateElement defined elsewhere in the DOM. The referenced template's content will be applied to all cells.- 'Function': A callback function that will be invoked for each cell. The function receives the following parameters:  - 'cellContent': The container element for the cell’s content.  - 'cellDate': A date object representing the specific date of the cell.This flexibility allows you to either use a standard HTML template for all cells or provide a custom rendering function to dynamically generate cell content based on cell data. When using an HTMLTemplateElement, you can include dynamic bindings within the template, which will be populated with the appropriate cell values during rendering.
     *	Property type: any
     */
     get cellTemplate() {
@@ -186,7 +186,7 @@ class Scheduler extends React.Component {
             this.nativeElement.cellTemplate = value;
         }
     }
-    /** Determines the currently visible date for the Scheduler.
+    /** Specifies the date that is currently displayed in the Scheduler view, allowing you to control which day, week, or month is shown to users. This property can be set programmatically to change the visible date or used to track which date the user is viewing in the Scheduler interface.
     *	Property type: string | Date
     */
     get dateCurrent() {
@@ -197,7 +197,7 @@ class Scheduler extends React.Component {
             this.nativeElement.dateCurrent = value;
         }
     }
-    /** Sets the Schedulers's Data Export options.
+    /** Configures the data export settings for the Scheduler, including file format, export range, and additional export-related options.
     *	Property type: SchedulerDataExport
     */
     get dataExport() {
@@ -208,7 +208,7 @@ class Scheduler extends React.Component {
             this.nativeElement.dataExport = value;
         }
     }
-    /** Determines the events that will be loaded inside the Timeline. Each event represents an object that should contain the following properties:
+    /** Specifies the list of events that will be displayed within the Timeline component. Each event must be represented as an object with the following required properties:
     *	Property type: SchedulerEvent[]
     */
     get dataSource() {
@@ -219,7 +219,7 @@ class Scheduler extends React.Component {
             this.nativeElement.dataSource = value;
         }
     }
-    /** A callback that can be used to customize the text inside the date selector located in the header. The callback has one parameter - the current date.
+    /** A callback function that allows you to customize the text displayed within the date selector in the header section. This function receives a single parameter—the currently selected date—enabling you to return a custom string based on the date value. Use this callback to modify how the date appears in the header, such as formatting the date, adding prefixes or suffixes, or localizing the displayed value.
     *	Property type: any
     */
     get dateSelectorFormatFunction() {
@@ -230,7 +230,7 @@ class Scheduler extends React.Component {
             this.nativeElement.dateSelectorFormatFunction = value;
         }
     }
-    /** Determines the day format of the dates in the timeline.
+    /** Specifies the display format for the day component of dates shown in the timeline. This setting controls how days are rendered, such as numeric (e.g., "12"), abbreviated (e.g., "Mon"), or full weekday names (e.g., "Monday"), to match the desired presentation style in the timeline.
     *	Property type: SchedulerDayFormat | string
     */
     get dayFormat() {
@@ -241,7 +241,7 @@ class Scheduler extends React.Component {
             this.nativeElement.dayFormat = value;
         }
     }
-    /** Enables or disables the element.
+    /** Determines whether the element is interactive or non-interactive. When enabled, the element can receive user input and respond to events. When disabled, the element becomes inactive, preventing user interaction and applying any default disabled styling.
     *	Property type: boolean
     */
     get disabled() {
@@ -252,7 +252,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Disables auto scrolling of the timeline while dragging/resizing an event.
+    /** Prevents the timeline from automatically scrolling when you drag or resize an event, ensuring that the visible timeline remains stationary during these interactions.
     *	Property type: boolean
     */
     get disableAutoScroll() {
@@ -263,7 +263,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disableAutoScroll = value;
         }
     }
-    /** Disables dragging of events.
+    /** Prevents users from dragging and repositioning events within the calendar interface. Events will remain fixed in their original positions, and any attempt to move them via drag-and-drop functionality will be disabled.
     *	Property type: boolean
     */
     get disableDrag() {
@@ -274,7 +274,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disableDrag = value;
         }
     }
-    /** Disables dropping of events.
+    /** Prevents events from being removed or discarded when system resources are limited or when buffer overflows occur. All incoming events will be retained and processed, ensuring no loss of event data.
     *	Property type: boolean
     */
     get disableDrop() {
@@ -285,7 +285,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disableDrop = value;
         }
     }
-    /** Disables resizing of events.
+    /** Prevents users from resizing events within the calendar interface, ensuring event durations remain fixed and cannot be adjusted through drag-and-drop or other resizing actions.
     *	Property type: boolean
     */
     get disableResize() {
@@ -296,7 +296,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disableResize = value;
         }
     }
-    /** Disables the cell selection.
+    /** Prevents users from selecting or highlighting the contents of the cell, disabling any cell selection functionality.
     *	Property type: boolean
     */
     get disableSelection() {
@@ -307,7 +307,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disableSelection = value;
         }
     }
-    /** Disables the window editor for the events.
+    /** Prevents the event window editor from opening, effectively disabling the ability for users to view or modify event details through the window interface.
     *	Property type: boolean
     */
     get disableWindowEditor() {
@@ -318,7 +318,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disableWindowEditor = value;
         }
     }
-    /** Disables the context menu of the events and cells.
+    /** Prevents the default context menu from appearing when users right-click on events or cells. This disables the standard browser context menu and any custom right-click actions for these elements.
     *	Property type: boolean
     */
     get disableContextMenu() {
@@ -329,7 +329,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disableContextMenu = value;
         }
     }
-    /** Disables the event menu that appears when an event/collector has been clicked.
+    /** Prevents the event menu from appearing when a user clicks on an event or collector. This setting effectively disables the popup menu that typically provides event-related options or actions upon selection, ensuring that no event menu is shown during user interaction.
     *	Property type: boolean
     */
     get disableEventMenu() {
@@ -340,7 +340,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disableEventMenu = value;
         }
     }
-    /** Disables the view menu that allows to select the current Scheduler view.
+    /** Prevents users from accessing the view selection menu in the Scheduler, thereby disabling the ability to switch between different Scheduler views (such as day, week, or month).
     *	Property type: boolean
     */
     get disableViewMenu() {
@@ -351,7 +351,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disableViewMenu = value;
         }
     }
-    /** Disables the date menu that allows to select the current Scheduler date.
+    /** Prevents the date selection menu from appearing, disabling the user's ability to change the current Scheduler date through the interface.
     *	Property type: boolean
     */
     get disableDateMenu() {
@@ -362,7 +362,7 @@ class Scheduler extends React.Component {
             this.nativeElement.disableDateMenu = value;
         }
     }
-    /** A callback that can be used to customize the drag feedback that appears when an event is dragged.
+    /** A callback function that allows you to define and customize the visual feedback displayed to users while an event is being dragged. This enables you to modify the appearance or content of the drag preview element according to your application's requirements.
     *	Property type: any
     */
     get dragFeedbackFormatFunction() {
@@ -373,7 +373,7 @@ class Scheduler extends React.Component {
             this.nativeElement.dragFeedbackFormatFunction = value;
         }
     }
-    /** Determines the offset for the drag feedback from the pointer.
+    /** Specifies the distance and direction that the drag feedback widget is shifted relative to the user’s pointer during a drag operation. This offset customizes where the feedback appears in relation to the pointer, allowing for better visual alignment or to avoid obscuring elements beneath the pointer.
     *	Property type: any
     */
     get dragOffset() {
@@ -384,7 +384,7 @@ class Scheduler extends React.Component {
             this.nativeElement.dragOffset = value;
         }
     }
-    /** Determines the filtering condition for the events.The filter property takes an array of objects or a function. Each object represents a single filtering condition with the following attributes: name - the name of the Scheduler event property that will be filtered by.value - the filtering condition value. The value will be used to compare the events based on the filterMode, for example: [{ name: 'price', value: 25 }]. The value can also be a function. The function accepts a single arguemnt - the value that corresponds to the filtered attribute. The function allows to apply custom condition that is different from the default filter modes. It should return true ( if the evnet passes the filtering condition ) or false ( if the event does not meet the filtering condition ). Here's an example: [{ name: 'roomId', value: (id) => ['2', '3'].indexOf(id + '') > -1 }]. In the example the events that do not have a 'roomId' property that is equal to '2' or '3' will be filtered out.. If a function is set to the filter property instead, it allows to completely customize the filtering logic. The function passes a single argument - each Scheduler event that will be displayed. The function should return true ( if the condition is met ) or false ( if not ).
+    /** Specifies the filtering criteria for events in the Scheduler. The filter property supports two formats: an 'array of filter objects' or a 'custom filtering function'.'Array of Filter Objects'  Each object in the array represents a distinct filtering rule, and must include the following attributes:- 'name': The name of the Scheduler event property to filter by (for example, '"price"' or '"roomId"').- 'value': The condition against which the event property will be evaluated. This can be:  - A static value—used as the comparison target based on the current 'filterMode'. For example:    '''json    [{ "name": "price", "value": 25 }]    '''    This filters events to only those where the 'price' property matches '25'.  - A function—enables advanced, custom filtering logic for that property. The function receives the value of the specified event property and should return 'true' (to keep the event) or 'false' (to exclude the event).      Example:    '''js    [      { name: 'roomId', value: (id) => ['2', '3'].includes(String(id)) }    ]    '''    This example filters in only the events whose 'roomId' property is ''2'' or ''3''. All other events are filtered out.'Function as Filter'  Alternatively, you may assign a function directly to the 'filter' property for full control over filtering logic. This callback function receives each Scheduler event as its single argument and should return 'true' to include or 'false' to exclude the event.  Example:'''jsfilter: (event) => event.status === 'confirmed' && event.attendees.length > 2'''This custom function ensures only confirmed events with more than two attendees are shown in the Scheduler.'Summary:'  - Use an 'array of filter objects' for property-based filtering, supporting simple values or custom functions for each attribute.- Use a 'function' for comprehensive, event-level filtering based on any combination of criteria.This flexibility allows you to implement straightforward or highly customized filtering logic to match your application's requirements.
     *	Property type: any
     */
     get filter() {
@@ -395,7 +395,7 @@ class Scheduler extends React.Component {
             this.nativeElement.filter = value;
         }
     }
-    /** Determines whether Scheduler's filtering is enabled or not.
+    /** Specifies whether filtering functionality is enabled for the Scheduler component. When set to true, users can filter scheduled items based on defined criteria; when false, filtering options are disabled and all items are displayed without filtering.
     *	Property type: any
     */
     get filterable() {
@@ -406,7 +406,7 @@ class Scheduler extends React.Component {
             this.nativeElement.filterable = value;
         }
     }
-    /** Determines the filter mode.
+    /** Specifies the method used to filter or process data, such as applying different algorithms or rules to control how information is displayed, sorted, or selected. The chosen filter mode affects how results are generated and presented.
     *	Property type: FilterMode | string
     */
     get filterMode() {
@@ -417,7 +417,7 @@ class Scheduler extends React.Component {
             this.nativeElement.filterMode = value;
         }
     }
-    /** A getter that returns  an array of all Scheduler events.
+    /** A getter method that retrieves and returns an array containing all event objects currently managed by the Scheduler. Each event object in the array represents a scheduled event with its associated properties and details.
     *	Property type: SchedulerEvent[]
     */
     get events() {
@@ -428,7 +428,7 @@ class Scheduler extends React.Component {
             this.nativeElement.events = value;
         }
     }
-    /** Determines the first day of week for the Scheduler. By default it's Sunday.
+    /** Specifies which day will be considered the first day of the week in the Scheduler component. By default, this is set to Sunday. You can configure this setting to start the week on any preferred day (e.g., Monday, Tuesday) to better match regional and user preferences. This affects how weeks are displayed and navigated within the Scheduler.
     *	Property type: number
     */
     get firstDayOfWeek() {
@@ -439,7 +439,7 @@ class Scheduler extends React.Component {
             this.nativeElement.firstDayOfWeek = value;
         }
     }
-    /** Allows to customize the footer of the Scheduler. It can be an HTMLTemplateElement, it's id as a string or a function with the following parameters: footerContainer - the footer container..
+    /** Enables customization of the Scheduler's footer area. The footer content can be provided in one of the following ways:- As an HTMLTemplateElement.- By specifying the id of an existing HTML template as a string.- By passing a function with the following parameter:  - footerContainer – The container element for the footer, which you can use to programmatically modify or populate the footer’s content.This flexibility allows you to define the Scheduler's footer using markup, template references, or custom logic as needed.
     *	Property type: any
     */
     get footerTemplate() {
@@ -450,7 +450,7 @@ class Scheduler extends React.Component {
             this.nativeElement.footerTemplate = value;
         }
     }
-    /** Determines whether the events will be grouped by date.
+    /** Indicates whether events should be organized and displayed based on their associated dates, grouping all events that occur on the same date together.
     *	Property type: boolean
     */
     get groupByDate() {
@@ -461,7 +461,7 @@ class Scheduler extends React.Component {
             this.nativeElement.groupByDate = value;
         }
     }
-    /** Determines the grouping orientation.
+    /** Specifies the direction or axis along which items are grouped, such as horizontal or vertical, affecting how elements are arranged and displayed within the interface.
     *	Property type: SchedulerGroupOrientation | string
     */
     get groupOrientation() {
@@ -472,7 +472,7 @@ class Scheduler extends React.Component {
             this.nativeElement.groupOrientation = value;
         }
     }
-    /** Allows to customize the content of the group cells that are visible inside the header. It can be an HTMLTemplateElement that will be applied to all cells or it's id as a string or a function that will be called for each group cell with the following parameters: cellContent - the content holder for the group cell.cellObj - the group cell object.. When using an HTMLTemplateElement it's possible to add property bindings inside the template that will be mapped to the corresponding object properties.
+    /** Enhances customization for group cell headers by allowing you to define how each group cell is rendered within the header section. You can specify one of the following as the template:- 'HTMLTemplateElement': Supply an HTML '' element that will be applied to all group header cells. Within your template, you can use property bindings that correspond to properties of the group cell object. These bindings will be automatically populated with the respective values for each cell.- 'Template ID (String)': Provide the 'id' attribute of an existing HTML '' element. The identified template will be used for rendering all group header cells.- 'Custom Function': Specify a function that will be called for each group cell. The function will receive two parameters:  - 'cellContent': A DOM element that acts as a container for the group cell’s content.  - 'cellObj': The data object associated with the current group cell.This approach gives you full flexibility to display custom content, styles, and data for group header cells according to your requirements. If you use an HTMLTemplateElement, you can leverage dynamic property bindings that map directly to the properties of each group cell’s data object.
     *	Property type: any
     */
     get groupTemplate() {
@@ -483,7 +483,7 @@ class Scheduler extends React.Component {
             this.nativeElement.groupTemplate = value;
         }
     }
-    /** Determines the resources that the events are grouped by.
+    /** Specifies the resource type or category by which events are organized or grouped, enabling the display and management of events according to associated resources (such as users, rooms, equipment, or custom entities). This setting determines how events are visually separated and filtered within the application based on their linked resources.
     *	Property type: any
     */
     get groups() {
@@ -494,7 +494,7 @@ class Scheduler extends React.Component {
             this.nativeElement.groups = value;
         }
     }
-    /** Determines the end hour that will be displayed in 'day' and 'week' views.
+    /** Specifies the latest hour that will be visible on the calendar in both 'day' and 'week' views. Events scheduled after this hour will not be displayed in these views.
     *	Property type: number
     */
     get hourEnd() {
@@ -505,7 +505,7 @@ class Scheduler extends React.Component {
             this.nativeElement.hourEnd = value;
         }
     }
-    /** Determines the start hour that will be displayed in 'day' and 'week' views.
+    /** Specifies the starting hour of the visible time range in the 'day' and 'week' calendar views. Events or time slots before this hour will not be shown in these views.
     *	Property type: number
     */
     get hourStart() {
@@ -516,7 +516,7 @@ class Scheduler extends React.Component {
             this.nativeElement.hourStart = value;
         }
     }
-    /** Determines the formatting of hours inside the element.
+    /** Specifies how hours are displayed within the element, including aspects such as 12-hour or 24-hour format, inclusion of leading zeros, and any relevant separators or annotations (e.g., AM/PM).
     *	Property type: SchedulerHourFormat | string
     */
     get hourFormat() {
@@ -527,7 +527,7 @@ class Scheduler extends React.Component {
             this.nativeElement.hourFormat = value;
         }
     }
-    /** Allows to customize the header of the Scheduler. It can be an HTMLTemplateElement, it's id as a string or a function with the following parameters: headerContent - the header container..
+    /** Enables customization of the Scheduler's header. The header can be specified in one of the following ways:- As an HTMLTemplateElement, allowing you to define a reusable template for the header's content.- As a string representing the id of an existing HTML template element in the DOM.- As a function that provides advanced customization. The function receives the following parameter:  - headerContent: The container element for the header, which you can modify or populate as needed.This flexibility lets you tailor the Scheduler's header to fit your specific design or functional requirements.
     *	Property type: any
     */
     get headerTemplate() {
@@ -538,7 +538,7 @@ class Scheduler extends React.Component {
             this.nativeElement.headerTemplate = value;
         }
     }
-    /**  Determines the position of the Date selector inside the Header of the element.
+    /** Specifies the placement of the Date selector within the Header section of the component, allowing you to control where the Date selector appears relative to other header elements.
     *	Property type: SchedulerHeaderDatePosition | string
     */
     get headerDatePosition() {
@@ -549,7 +549,7 @@ class Scheduler extends React.Component {
             this.nativeElement.headerDatePosition = value;
         }
     }
-    /**  Determines the styling of the Header navigation controls.
+    /** Defines and customizes the appearance and layout of the header navigation controls, including their colors, fonts, spacing, and interactive states. This setting allows you to adjust how navigation elements are presented in the header section of the application or website.
     *	Property type: SchedulerHeaderNavigationStyle | string
     */
     get headerNavigationStyle() {
@@ -560,7 +560,7 @@ class Scheduler extends React.Component {
             this.nativeElement.headerNavigationStyle = value;
         }
     }
-    /**  Determines the position of the view selector control inside the Header of the element.
+    /** Specifies the exact location of the view selector control within the header section of the element, allowing you to control where the selector appears in relation to other header components.
     *	Property type: SchedulerHeaderViewPosition | string
     */
     get headerViewPosition() {
@@ -571,7 +571,7 @@ class Scheduler extends React.Component {
             this.nativeElement.headerViewPosition = value;
         }
     }
-    /** Determines whether the 'All Day' container with the all day events is hidden or not.
+    /** Specifies whether the 'All Day' container—which displays events scheduled to last the entire day—is visible or hidden. When set to true, the container and its all-day events will not be displayed; when false, they will be shown.
     *	Property type: boolean
     */
     get hideAllDay() {
@@ -582,7 +582,7 @@ class Scheduler extends React.Component {
             this.nativeElement.hideAllDay = value;
         }
     }
-    /** Determines whether the days set by 'nonworkingDays' property are hidden or not.
+    /** Specifies whether the days defined in the 'nonworkingDays' property should be visually hidden from view (e.g., not displayed in the calendar or schedule UI), rather than simply marked as non-working. When set to true, all days listed in 'nonworkingDays' will be completely omitted from the display. When set to false, these days remain visible but may be styled differently to indicate their non-working status.
     *	Property type: boolean
     */
     get hideNonworkingWeekdays() {
@@ -593,7 +593,7 @@ class Scheduler extends React.Component {
             this.nativeElement.hideNonworkingWeekdays = value;
         }
     }
-    /** Determines whether other month days are visible when view is set to month. When enabled, events that start on other month days are not displayed and the cells that represent such days do not allow the creation of new events on them. Also dragging and droping an event on other month days is not allowed. Reszing is also affected. Events can end on other month days, but cannot start on one.
+    /** Enhances the calendar's month view by controlling the visibility and interactivity of "other month" days—those that do not belong to the currently displayed month. When this option is enabled:- Days from previous or next months are displayed as inactive background cells.- Events 'cannot' be created, dragged, or dropped onto these "other month" days.- Events that 'start' on "other month" days are hidden; only events that 'end' on these days may be partially shown.- Resizing of events cannot begin or end on "other month" days.- Overall, "other month" days serve purely as visual placeholders, preventing user interaction or event association.
     *	Property type: boolean
     */
     get hideOtherMonthDays() {
@@ -604,7 +604,7 @@ class Scheduler extends React.Component {
             this.nativeElement.hideOtherMonthDays = value;
         }
     }
-    /** Determines whether the 'Today' button is hidden or not.
+    /** Specifies whether the 'Today' button is visible in the user interface. When set to true, the 'Today' button will be hidden; when set to false, the button will be displayed.
     *	Property type: boolean
     */
     get hideTodayButton() {
@@ -615,7 +615,7 @@ class Scheduler extends React.Component {
             this.nativeElement.hideTodayButton = value;
         }
     }
-    /** Determines whether the checkable items in the view selection menu are hidden or not.
+    /** Controls the visibility of checkable items within the view selection menu. When enabled, checkable items are hidden from the menu; when disabled, checkable items are displayed, allowing users to select or deselect individual views.
     *	Property type: boolean
     */
     get hideViewMenuCheckableItems() {
@@ -626,7 +626,7 @@ class Scheduler extends React.Component {
             this.nativeElement.hideViewMenuCheckableItems = value;
         }
     }
-    /** Determines whether the weekend days are hidden or not.
+    /** Specifies whether weekend days (typically Saturday and Sunday) should be displayed or hidden in the calendar view. If set to true, weekend days will be hidden; if set to false, weekend days will be visible.
     *	Property type: boolean
     */
     get hideWeekend() {
@@ -637,7 +637,7 @@ class Scheduler extends React.Component {
             this.nativeElement.hideWeekend = value;
         }
     }
-    /** Determines the location of the legend inside the Scheduler. By default the location is inside the footer but it can also reside in the header.
+    /** Specifies where the legend is displayed within the Scheduler component. By default, the legend appears in the footer section, but it can be configured to display in the header instead. This setting allows you to customize the placement of the legend to better fit your application's layout and user experience requirements.
     *	Property type: SchedulerLegendLocation | string
     */
     get legendLocation() {
@@ -648,7 +648,7 @@ class Scheduler extends React.Component {
             this.nativeElement.legendLocation = value;
         }
     }
-    /** Determines the position of the legend. By default it's positioned to the near side but setting it to 'far' will change that.
+    /** Specifies the placement of the legend within the chart area. By default, the legend appears on the 'near' side (typically aligned to the left or top, depending on chart orientation). Setting this property to 'far' positions the legend on the opposite side (right or bottom), allowing customization of the legend's location to better suit your layout needs.
     *	Property type: SchedulerLegendPosition | string
     */
     get legendPosition() {
@@ -659,7 +659,7 @@ class Scheduler extends React.Component {
             this.nativeElement.legendPosition = value;
         }
     }
-    /** Determines the layout of the legend items.
+    /** Specifies how the legend items are arranged within the chart, such as organizing them in a horizontal row, vertical column, or a customized layout. This property controls the visual structure and ordering of items displayed in the legend.
     *	Property type: SchedulerLegendLayout | string
     */
     get legendLayout() {
@@ -670,7 +670,7 @@ class Scheduler extends React.Component {
             this.nativeElement.legendLayout = value;
         }
     }
-    /** Determines the number of items when the legend switches automatically from horizontal list to menu.
+    /** Specifies the maximum number of items that can be displayed in the legend as a horizontal list. If the number of legend items exceeds this value, the legend will automatically switch to a dropdown menu format for better readability and usability.
     *	Property type: number
     */
     get legendLayoutMenuBreakpoint() {
@@ -681,7 +681,7 @@ class Scheduler extends React.Component {
             this.nativeElement.legendLayoutMenuBreakpoint = value;
         }
     }
-    /** Determines the mouse wheel step. When this property is set to a positive number, the scroll step with mouse wheel or trackpad will depend on the property value.
+    /** Controls the scroll increment when using the mouse wheel or trackpad. Setting this property to a positive number specifies the distance (in pixels, lines, or a defined unit) that the content will scroll with each wheel or trackpad movement. A higher value increases the scroll distance per step, while a lower value results in finer, more precise scrolling.
     *	Property type: number
     */
     get mouseWheelStep() {
@@ -692,7 +692,7 @@ class Scheduler extends React.Component {
             this.nativeElement.mouseWheelStep = value;
         }
     }
-    /** Determines weather or not horizontal scrollbar is shown.
+    /** Specifies whether the horizontal scrollbar is visible. If set to true, a horizontal scrollbar will appear when the content overflows the container’s width; if false, the scrollbar will be hidden regardless of overflow.
     *	Property type: HorizontalScrollBarVisibility | string
     */
     get horizontalScrollBarVisibility() {
@@ -703,7 +703,7 @@ class Scheduler extends React.Component {
             this.nativeElement.horizontalScrollBarVisibility = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Sets or retrieves the 'unlockKey', a unique value required to unlock and access the product’s full features or functionality.
     *	Property type: string
     */
     get unlockKey() {
@@ -714,7 +714,7 @@ class Scheduler extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /**  Determines the language of the Scheduler.
+    /** Specifies the language and regional settings used to display all interface elements, dates, and messages within the Scheduler component. This setting ensures that the Scheduler is localized according to the selected language.
     *	Property type: string
     */
     get locale() {
@@ -725,7 +725,7 @@ class Scheduler extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Detetmines the maximum view date for the Scheduler.
+    /** Determines the latest date that can be displayed or selected in the Scheduler, effectively setting an upper limit for the Scheduler's visible or selectable date range.
     *	Property type: string | Date
     */
     get max() {
@@ -736,7 +736,7 @@ class Scheduler extends React.Component {
             this.nativeElement.max = value;
         }
     }
-    /** Detetmines the maximum number of events per Scheduler cell. By default this property is null which means that the number of events per cell is automatically determined by the size of the events.
+    /** Specifies the maximum number of events that can be displayed in each Scheduler cell. If this property is set to null (the default value), the Scheduler automatically calculates how many events can fit in a cell based on the available space and the size of each event. Setting a specific value overrides this behavior and limits the number of visible events per cell to the specified maximum. Events exceeding this limit may be hidden or grouped into an overflow indicator, depending on the Scheduler’s configuration.
     *	Property type: number | null
     */
     get maxEventsPerCell() {
@@ -747,7 +747,7 @@ class Scheduler extends React.Component {
             this.nativeElement.maxEventsPerCell = value;
         }
     }
-    /** Detetmines the minimum view date for the Scheduler.
+    /** Specifies the earliest date that can be displayed or selected in the Scheduler. This property restricts navigation and date selection to dates on or after the defined minimum view date.
     *	Property type: string | Date
     */
     get min() {
@@ -758,7 +758,7 @@ class Scheduler extends React.Component {
             this.nativeElement.min = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the element that can be localized. Used in conjunction with the property locale.
+    /** Defines or retrieves an object containing all the text strings displayed by the element, allowing for easy localization of the user interface. This property should be used together with the locale property to dynamically present content in the user's preferred language or region. Each key in the object represents a specific string that can be customized or translated as needed."
     *	Property type: any
     */
     get messages() {
@@ -769,7 +769,7 @@ class Scheduler extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Determines the minute formatting inside the Scheduler.
+    /** Specifies how minutes are displayed and formatted within the Scheduler component. This setting controls the appearance of minute values in time slots, event times, and related areas, ensuring consistency in how minutes are presented to users (e.g., "5", "05", or "5 min").
     *	Property type: MinuteFormat | string
     */
     get minuteFormat() {
@@ -780,7 +780,7 @@ class Scheduler extends React.Component {
             this.nativeElement.minuteFormat = value;
         }
     }
-    /** Determines the month name formatting inside the Scheduler.
+    /** Specifies the format in which month names are displayed within the Scheduler component. This setting controls whether full month names (e.g., "January"), abbreviated names (e.g., "Jan"), or custom formats appear in the Scheduler's interface wherever month names are shown.
     *	Property type: MonthFormat | string
     */
     get monthFormat() {
@@ -791,7 +791,7 @@ class Scheduler extends React.Component {
             this.nativeElement.monthFormat = value;
         }
     }
-    /** Determines the nonworking days of the week from 0 to 6, where 0 is the first day of the week and 6 is the last day. Nonworking days will be colored differently inside the Timeline. The color is determined by a CSS variable.
+    /** Specifies which days of the week are considered nonworking, using an array of numbers from 0 to 6, where 0 represents the first day of the week (e.g., Sunday or Monday, depending on your locale), and 6 represents the last day. These designated nonworking days will be visually distinguished within the Timeline component by applying a different background color. The specific color used for nonworking days is controlled by a configurable CSS variable, allowing for easy theming and customization.
     *	Property type: any
     */
     get nonworkingDays() {
@@ -802,7 +802,7 @@ class Scheduler extends React.Component {
             this.nativeElement.nonworkingDays = value;
         }
     }
-    /** Determines the nonworking hours of the day. Hours are represented as numbers inside an array, however ranges of hours can be defined as an array with starting and ending hour separated by a comma. In the timline the cells that represent nonworking days are colored differently from the rest.
+    /** Specifies the nonworking hours within a day. The nonworking hours are defined using an array, where each element represents either a single hour (as a number) or a range of hours (as an array containing the start and end hours, separated by a comma). For example, '[0, [13, 15], 23]' marks hour 0, hours 13 through 15 (inclusive), and hour 23 as nonworking. On the timeline, cells corresponding to these nonworking hours are visually distinguished by a different color from the working hours.
     *	Property type: any
     */
     get nonworkingHours() {
@@ -813,7 +813,7 @@ class Scheduler extends React.Component {
             this.nativeElement.nonworkingHours = value;
         }
     }
-    /** Determines the interval (in seconds) at which the element will check for notifications.
+    /** Specifies the time interval, in seconds, at which the element will automatically check for new notifications. This value controls how frequently the element polls for updates, with shorter intervals resulting in more frequent checks.
     *	Property type: number
     */
     get notificationInterval() {
@@ -824,7 +824,7 @@ class Scheduler extends React.Component {
             this.nativeElement.notificationInterval = value;
         }
     }
-    /** Determines the visibility of the resize handles.
+    /** Controls whether the resize handles are visible to the user, allowing them to resize the element. When enabled, resize handles will appear on the edges or corners of the element; when disabled, resize handles will be hidden and resizing will not be possible via the user interface.
     *	Property type: ResizeHandlesVisibility | string
     */
     get resizeHandlesVisibility() {
@@ -835,7 +835,7 @@ class Scheduler extends React.Component {
             this.nativeElement.resizeHandlesVisibility = value;
         }
     }
-    /** Determines the rate at which the element will refresh it's content on element resize. By default it's refresh immediately. This property is used for element resize throttling
+    /** ''  Specifies how frequently the element's content should update (refresh) when the element is resized. By default, the content refreshes immediately on every resize event. Adjusting this property enables throttling, which limits the rate of refreshes and can improve performance by reducing unnecessary updates during rapid or continuous resizing. You can set it to a time interval (in milliseconds) to control the minimum delay between refresh operations.
     *	Property type: number
     */
     get resizeInterval() {
@@ -846,7 +846,7 @@ class Scheduler extends React.Component {
             this.nativeElement.resizeInterval = value;
         }
     }
-    /** An array of resources that can be assigned to the events.
+    /** An array containing resource objects that can be allocated or linked to specific events. Each resource represents an entity—such as a person, room, or asset—that can be associated with one or more events for scheduling or organizational purposes.
     *	Property type: SchedulerResource[]
     */
     get resources() {
@@ -857,7 +857,7 @@ class Scheduler extends React.Component {
             this.nativeElement.resources = value;
         }
     }
-    /** Defines an array of dates that are not allowed to have events on. Events that overlap restricted Dates or start/end on them will not be displayed.
+    /** Specifies an array of restricted dates on which events are not permitted. Any events that overlap with these restricted dates, or that start or end on these dates, will be excluded from display and unavailable for scheduling.
     *	Property type: any
     */
     get restrictedDates() {
@@ -868,7 +868,7 @@ class Scheduler extends React.Component {
             this.nativeElement.restrictedDates = value;
         }
     }
-    /** Defines an array of hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed.
+    /** Specifies an array of restricted hours during which events are not permitted to be scheduled. Any event that overlaps with, starts, or ends within these restricted hours will be excluded from display. This ensures that no events are shown during the designated unavailable time periods.
     *	Property type: any
     */
     get restrictedHours() {
@@ -879,7 +879,7 @@ class Scheduler extends React.Component {
             this.nativeElement.restrictedHours = value;
         }
     }
-    /** Defines an array of dates and hours that are not allowed to have events on. Events that overlap restricted Hours or start/end on them will not be displayed. Each array item is an Object and requires 2 fields - date and hours. For example: { date: new Date(2023, 10, 1), hours: [[0, 6], 12, [20, 23]] }. The hours define a range of restricted hours similartly to the restricted hours property, the date defines a date where the restricted hours will be applied.
+    /** Defines an array of time restrictions specifying when events are not permitted. Each element in the array is an object that must include two fields: date and hours.- The 'date' field indicates the specific day on which the restriction applies (e.g., 'new Date(2023, 10, 1)').- The 'hours' field specifies one or more restricted hours within that day. This is an array where each item represents a restricted period, defined either as:  - a single hour (e.g., '12', which restricts only the hour 12:00–13:00), or  - an array of two numbers specifying a start and end hour in 24-hour format (e.g., '[0, 6]' restricts from 00:00 up to, but not including, 06:00; '[20, 23]' restricts from 20:00 up to, but not including, 23:00).Events that have any portion overlapping these restricted hours—either beginning, ending, or entirely contained within them—will be excluded and not displayed.'Example:'  '''js{  date: new Date(2023, 10, 1),  hours: [[0, 6], 12, [20, 23]]}'''This restricts events from being scheduled on November 1, 2023, between midnight and 6 AM, exactly at 12 PM–1 PM, and from 8 PM to 11 PM.Use this array to block out specific times when events should not be allowed, similar to the 'restrictedHours' property, but with restrictions tied to specific calendar dates.
     *	Property type: any
     */
     get restricted() {
@@ -890,7 +890,7 @@ class Scheduler extends React.Component {
             this.nativeElement.restricted = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or retrieves a value that determines whether the element’s alignment is configured for right-to-left (RTL) text direction, which is commonly used in locales with RTL languages such as Arabic or Hebrew. This property ensures proper text and layout orientation to support languages that are read from right to left.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -901,7 +901,7 @@ class Scheduler extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /**  Determines the position of the date navigation navigation buttons inside the header of the element.
+    /** Specifies the placement of the date navigation buttons within the element’s header, determining where buttons such as “Previous”, “Next”, or “Today” appear in relation to other header content.
     *	Property type: SchedulerScrollButtonsPosition | string
     */
     get scrollButtonsPosition() {
@@ -912,7 +912,7 @@ class Scheduler extends React.Component {
             this.nativeElement.scrollButtonsPosition = value;
         }
     }
-    /** Enables/Disables the current time shader. If enabled all cells that represent past time will be shaded.
+    /** Controls the activation of the current time shader. When enabled, all cells representing times that have already passed will be visually shaded to distinguish them from upcoming times. Disabling this option will remove the shading, displaying all time cells with the default appearance.
     *	Property type: boolean
     */
     get shadeUntilCurrentTime() {
@@ -923,7 +923,7 @@ class Scheduler extends React.Component {
             this.nativeElement.shadeUntilCurrentTime = value;
         }
     }
-    /** Determines whether the resource legend is visible or not. The Legend shows the resources and their items in the footer section of the Scheduler. If filterable is enabled it is possible to filter by resource items by clicking on the corresponding resource item from the legend.
+    /** Controls the visibility of the resource legend in the Scheduler component. When enabled, the resource legend appears in the footer section and displays a list of resources along with their respective items. If the filterable option is set to true, users can click on any resource item within the legend to filter the Scheduler view by that specific resource, making it easier to focus on relevant events or data.
     *	Property type: boolean
     */
     get showLegend() {
@@ -934,7 +934,7 @@ class Scheduler extends React.Component {
             this.nativeElement.showLegend = value;
         }
     }
-    /** Determines the name of the resource data item property that will be used for sorting the resource data defined as the resource.dataSource.
+    /** Specifies the property name within each resource data item (defined by resource.dataSource) that will be used to sort the resources. This determines the field by which the resource data is ordered when displayed or processed.
     *	Property type: string
     */
     get sortBy() {
@@ -945,7 +945,7 @@ class Scheduler extends React.Component {
             this.nativeElement.sortBy = value;
         }
     }
-    /** Allows to define a custom sorting function that will be used to sort the resource data. The sortFunction is used when sortOrder is set to custom.
+    /** Enables you to specify a custom sorting function that determines the order in which resource data is sorted. The provided sortFunction will be invoked whenever the sortOrder property is set to custom. This allows for full control over the sorting logic, accommodating complex or specialized sorting requirements beyond the default sort options.
     *	Property type: any
     */
     get sortFunction() {
@@ -956,7 +956,7 @@ class Scheduler extends React.Component {
             this.nativeElement.sortFunction = value;
         }
     }
-    /** Determines the sorting order of the resource data items. When set to custom, a custom sorting function has to be defined for the sortFunction property. The asc stands for 'ascending' while desc means 'descending' sorting order.
+    /** Specifies how the resource data items should be sorted. Acceptable values are asc for ascending order and desc for descending order. If set to custom, you must also provide a custom sorting function using the sortFunction property. The chosen sorting order determines how the data items are organized and displayed.
     *	Property type: SchedulerSortOrder | string
     */
     get sortOrder() {
@@ -967,7 +967,7 @@ class Scheduler extends React.Component {
             this.nativeElement.sortOrder = value;
         }
     }
-    /** Determines the repeating delay of the repeat buttons inside the header of the element. Such buttons are the Date navigation buttons and the view scroll buttons.
+    /** Specifies the interval, in milliseconds, between repeated activation events when a repeat button within the element's header is held down. This applies to buttons such as the date navigation controls and the view scrolling buttons, allowing users to quickly navigate by holding the button instead of clicking multiple times.
     *	Property type: number
     */
     get spinButtonsDelay() {
@@ -978,7 +978,7 @@ class Scheduler extends React.Component {
             this.nativeElement.spinButtonsDelay = value;
         }
     }
-    /** Determines the initial delay of the repeat buttons inside the header of the element. Such buttons are the Date navigation buttons and the view scroll buttons.
+    /** Specifies the initial delay (in milliseconds) before the repeat buttons located in the header of the element begin to trigger repeated actions when held down. These repeat buttons include the date navigation buttons (e.g., previous/next date) and the view scroll buttons. Setting this value controls how long a user must hold down the button before the action starts repeating automatically.
     *	Property type: number
     */
     get spinButtonsInitialDelay() {
@@ -989,7 +989,7 @@ class Scheduler extends React.Component {
             this.nativeElement.spinButtonsInitialDelay = value;
         }
     }
-    /** Defines the statuses that will be available for selection thourgh the window editor for the events.
+    /** Specifies the list of status options that users can select from when managing events through the window editor interface. These statuses help categorize or track the current state of each event.
     *	Property type: SchedulerStatuse[]
     */
     get statuses() {
@@ -1000,7 +1000,7 @@ class Scheduler extends React.Component {
             this.nativeElement.statuses = value;
         }
     }
-    /** Sets or gets the element's visual theme.
+    /** Gets or sets the visual theme of the element, allowing you to customize its appearance (such as color scheme, style, or look) according to the specified theme value.
     *	Property type: string
     */
     get theme() {
@@ -1011,7 +1011,7 @@ class Scheduler extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** A format function for the Header of the Timeline. Allows to modify the date labels in the header cells.
+    /** A formatting function specifically for the Timeline Header. This function enables customization of the text displayed as date labels within the header cells, allowing you to modify the appearance or format of dates (e.g., changing date formats, adding prefixes/suffixes, or translating labels) according to your requirements.
     *	Property type: any
     */
     get timelineHeaderFormatFunction() {
@@ -1022,7 +1022,7 @@ class Scheduler extends React.Component {
             this.nativeElement.timelineHeaderFormatFunction = value;
         }
     }
-    /** Determines the date scale for the timeline cells.
+    /** Specifies the time interval (such as days, weeks, or months) used to label and organize each cell within the timeline, controlling how dates are displayed and grouped.
     *	Property type: SchedulerTimelineDayScale | string
     */
     get timelineDayScale() {
@@ -1033,7 +1033,7 @@ class Scheduler extends React.Component {
             this.nativeElement.timelineDayScale = value;
         }
     }
-    /** Enables/Disables the tick marks next to the time cells in the vertical header of the element. Time header appears in 'day' and 'week' views.
+    /** Controls the visibility of tick marks displayed next to the time labels in the vertical header of the element. These tick marks appear in the time header section, which is shown only in 'day' and 'week' views. Enabling this option will show tick marks for each time cell; disabling it will hide them.
     *	Property type: boolean
     */
     get timeRulerTicks() {
@@ -1044,7 +1044,7 @@ class Scheduler extends React.Component {
             this.nativeElement.timeRulerTicks = value;
         }
     }
-    /** Determines the timeZone for the element. By default if the local time zone is used if the property is not set.
+    /** Specifies the time zone to be applied to the element. If this property is not set, the element defaults to using the user's local time zone.
     *	Property type: SchedulerTimeZone | string
     */
     get timeZone() {
@@ -1055,7 +1055,7 @@ class Scheduler extends React.Component {
             this.nativeElement.timeZone = value;
         }
     }
-    /** Allows to display additional timeZones at once along with the default that is set via the timeZone property. Accepts an array values that represent the ids of valid time zones. The possbile time zones can be viewed in the timeZone property description. By default the local time zone is displayed.
+    /** Enables the display of multiple time zones simultaneously, in addition to the default time zone specified by the timeZone property. This property accepts an array of string values, where each value corresponds to a valid time zone identifier. The complete list of supported time zone identifiers can be found in the timeZone property documentation. By default, only the user's local time zone is shown if no additional time zones are provided.
     *	Property type: any
     */
     get timeZones() {
@@ -1066,7 +1066,7 @@ class Scheduler extends React.Component {
             this.nativeElement.timeZones = value;
         }
     }
-    /** Determines the delay ( in miliseconds) before the tooltip/menu appears.
+    /** Specifies the delay, in milliseconds, before the tooltip or menu is displayed after a triggering event (such as hover or click). This allows you to control how quickly the tooltip or menu appears, enhancing user experience and preventing accidental activations.
     *	Property type: number
     */
     get tooltipDelay() {
@@ -1077,7 +1077,7 @@ class Scheduler extends React.Component {
             this.nativeElement.tooltipDelay = value;
         }
     }
-    /** Determines the offset ot the tooltip/menu.
+    /** Specifies the distance (in pixels or other units) by which the tooltip or menu is shifted from its default position relative to its target element. Adjusting this value changes how far the tooltip or menu appears from the target, allowing for precise placement and improved visual alignment.
     *	Property type: number[]
     */
     get tooltipOffset() {
@@ -1088,7 +1088,7 @@ class Scheduler extends React.Component {
             this.nativeElement.tooltipOffset = value;
         }
     }
-    /** Determines weather or not vertical scrollbar is shown.
+    /** Specifies whether the vertical scrollbar is visible, allowing users to scroll content vertically when necessary. Set to true to display the vertical scrollbar, or false to hide it.
     *	Property type: VerticalScrollBarVisibility | string
     */
     get verticalScrollBarVisibility() {
@@ -1099,7 +1099,7 @@ class Scheduler extends React.Component {
             this.nativeElement.verticalScrollBarVisibility = value;
         }
     }
-    /** Determines the current view. The property accepts view values that are defined in the views property. Custom views should contain a valid value that will be set as the current view.
+    /** Specifies the currently active view. This property accepts one of the view values defined in the views property. When using custom views, ensure each custom view includes a unique value property; this value will be assigned to the current view and used to control which view is displayed.
     *	Property type: string
     */
     get view() {
@@ -1110,7 +1110,7 @@ class Scheduler extends React.Component {
             this.nativeElement.view = value;
         }
     }
-    /** Indicates the current Scheduler viewType. Custom views must contain a valid type property that corresponds to one of the view types. This property should not be set.
+    /** Specifies the current view type of the Scheduler component (e.g., 'day', 'week', 'month'). When defining custom views, ensure that each view includes a valid type property matching one of the supported view types. Note: This property is managed internally by the Scheduler and should not be set manually in your configuration.
     *	Property type: SchedulerViewType | string
     */
     get viewType() {
@@ -1121,7 +1121,7 @@ class Scheduler extends React.Component {
             this.nativeElement.viewType = value;
         }
     }
-    /** Determines the viewing date range of the timeline. The property should be set to an array of strings or view objects. When you set it to a string, you should use any of the following: 'day', 'week', 'month', 'agenda', 'timelineDay', 'timelineWeek', 'timelineMonth'. Custom views can be defined as objects instead of strings. The view object should contain the following properties: label - the label for the view.value - the value for the view. The value is the unique identifier for the view.type - the type of view. The type should be one of the default allowed values for a view.hideWeekend - an Optional property that allows to hide the weekend only for this specific view.hideNonworkingWeekdays - an Optional property that allows to hide the nonwrking weekdays for this specific view.shortcutKey - an Optional property that allows to set a custom shortcut key for the view.hideHours - an Optional property applicable only to timelineWeek view that allows to hide the hour cells and only show the day cells.
+    /** Specifies the range of dates displayed in the timeline view. This property accepts an array containing either predefined view strings or custom view objects.'Usage:'- If you set an element to a string, use one of the following built-in view identifiers:   ''day'', ''week'', ''month'', ''agenda'', ''timelineDay'', ''timelineWeek'', ''timelineMonth''.- To define a custom view, provide an object with the properties detailed below.'Custom View Object Properties:'- 'label' _(string, required)_: The display name shown for the view in the UI.- 'value' _(string, required)_: A unique identifier for the view.- 'type' _(string, required)_: The underlying view type. Must match one of the default view types listed above.- 'hideWeekend' _(boolean, optional)_: If set to 'true', weekends will be hidden for this specific view.- 'hideNonworkingWeekdays' _(boolean, optional)_: If set to 'true', non-working weekdays (e.g., Monday–Friday) will be hidden for this view.- 'shortcutKey' _(string, optional)_: Assigns a custom keyboard shortcut for switching to this view.- 'hideHours' _(boolean, optional; timelineWeek only)_: If set to 'true', the timelineWeek view will display only day cells, hiding hour cells.By configuring this property, you have full control over which timeline views are available to users and how each view behaves. Use strings for standard views and objects when you need to define custom labels, behaviors, or shortcuts.
     *	Property type: SchedulerViews | string
     */
     get views() {
@@ -1132,7 +1132,7 @@ class Scheduler extends React.Component {
             this.nativeElement.views = value;
         }
     }
-    /** Determines type of the view selector located in the header of the element.
+    /** Specifies the type of view selector that appears in the element's header, which controls how content is displayed (e.g., as a list, grid, or table view). This setting determines the layout options available to the user within the header section of the component.
     *	Property type: SchedulerViewSelectorType | string
     */
     get viewSelectorType() {
@@ -1143,7 +1143,7 @@ class Scheduler extends React.Component {
             this.nativeElement.viewSelectorType = value;
         }
     }
-    /** Determines the Start Date rule. The Week and TimelineWeek views start by default from the current date taking into account the firstDayOfWeek property. When this property is set to 'dateCurrent', these views will start from the value of the 'dateCurrent'.
+    /** Configures the rule used to determine the start date in Week and TimelineWeek views. By default, these views start from the current date, factoring in the value specified by the 'firstDayOfWeek' property. If the 'startDateRule' property is set to 'dateCurrent', the Week and TimelineWeek views will instead start from the date provided in the 'dateCurrent' property, overriding the default behavior.
     *	Property type: SchedulerViewStartDay | string
     */
     get viewStartDay() {
@@ -1154,7 +1154,7 @@ class Scheduler extends React.Component {
             this.nativeElement.viewStartDay = value;
         }
     }
-    /** Determines the format of the week days inside the element.
+    /** Specifies how the names of the weekdays are displayed within the element (e.g., full names, short names, or initials).
     *	Property type: WeekDayFormat | string
     */
     get weekdayFormat() {
@@ -1165,7 +1165,7 @@ class Scheduler extends React.Component {
             this.nativeElement.weekdayFormat = value;
         }
     }
-    /** Determines the format of the dates inside the timeline header when they represent years.
+    /** Specifies the date format used to display years within the timeline header. This setting controls how year values are rendered (e.g., "YYYY", "YY", or "yyyy") when the header represents years, ensuring consistent and readable date presentation.
     *	Property type: YearFormat | string
     */
     get yearFormat() {
@@ -1176,7 +1176,7 @@ class Scheduler extends React.Component {
             this.nativeElement.yearFormat = value;
         }
     }
-    /** Sets or gets if the element can be focused.
+    /** Determines whether the element can receive keyboard focus. When set, the element becomes focusable and can be targeted using keyboard navigation (e.g., with the Tab key). When retrieved, it returns the current focusable state of the element.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -1187,7 +1187,7 @@ class Scheduler extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Determines the maximum number of redo/undo steps that will be remembered by the Scheduler. When the number is reached the oldest records are removed in order to add new.
+    /** Specifies the maximum number of redo and undo actions that the Scheduler will retain in its history. Once this limit is reached, the oldest actions are automatically discarded to make room for new ones, ensuring that only the most recent actions up to the defined maximum are available for undo or redo operations.
     *	Property type: number
     */
     get undoRedoSteps() {
@@ -1198,7 +1198,7 @@ class Scheduler extends React.Component {
             this.nativeElement.undoRedoSteps = value;
         }
     }
-    /** A function that can be used to completly customize the popup Window that is used to edit events. The function has the following arguments: target - the target popup Window that is about to be opened.type - the type of the window. The type determines the purpose of the window. The default type is an empty string which means that it's the default event editing window. The other type is 'confirm' ( confirmation window) that appears when clicking on a repeating event. eventObj - the event object that is going to be edited.
+    /** This function allows you to fully customize the popup window that appears when editing events. It gives you complete control over the appearance, content, and behavior of the popup based on the event context. The function is called with the following arguments:      target – The popup window element that is about to be displayed. You can modify or replace this element to change how the popup looks and functions.        type – A string indicating the purpose of the popup window. The default value is an empty string (''), which signifies the standard event editing window. If the value is 'confirm', the popup serves as a confirmation dialog, typically shown when interacting with repeating events (e.g., asking whether to edit a single occurrence or the series).        eventObj – The event data object associated with the event being edited or confirmed. This object contains all relevant details about the event, allowing you to display or edit its properties within the popup.  Use this function to precisely tailor the event editing or confirmation experience in your application’s UI.
     *	Property type: any
     */
     get windowCustomizationFunction() {
@@ -1217,7 +1217,7 @@ class Scheduler extends React.Component {
     get eventListeners() {
         return ["onBeginUpdate", "onEndUpdate", "onChange", "onItemChange", "onItemChanging", "onItemClick", "onItemInsert", "onItemRemove", "onItemUpdate", "onViewChange", "onViewChanging", "onEventShortcutKey", "onDateChange", "onDragStart", "onDragEnd", "onDropoverCell", "onResizeStart", "onResizeEnd", "onEditDialogOpening", "onEditDialogOpen", "onEditDialogClose", "onEditDialogClosing", "onContextMenuOpening", "onContextMenuOpen", "onContextMenuClose", "onContextMenuClosing", "onEventMenuOpening", "onEventMenuOpen", "onEventMenuClose", "onEventMenuClosing", "onDateMenuOpen", "onDateMenuClose", "onViewMenuOpen", "onViewMenuClose", "onNotificationOpen", "onNotificationClose", "onCreate", "onReady"];
     }
-    /** Adds an event to the Scheduler. Accepts an event object of the following format (same as the dataSource format): { label?: string, dateStart: date, dateEnd: date, description?: string, id?: string | number, class?: string, backgroundColor?: string, color?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], allDay?: boolean, disableDrag?: boolean, disableResize?: boolean, repeat?: { repeatFreq: string, repeatInterval: number, repeatOn?: number | number[] | date, repeatEnd?: number | date, exceptions?: { date: date, dateStart?: date, dateEnd?: date, hidden?: boolean, backgroundColor?: string, status?: string, label?: string, description?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], disableDrag?: boolean, disableResize?: boolean }[] }, status?: string }
+    /** Adds a new event to the Scheduler component. This method accepts a single event object, structured according to the Scheduler’s dataSource format. The event object supports a comprehensive set of properties, allowing for detailed configuration of event details, appearance, recurrence, and behavior:{  label?: string,                       // The event title/label (optional)  dateStart: date,                      // Start date and time (required)  dateEnd: date,                        // End date and time (required)  description?: string,                 // Additional event details (optional)  id?: string | number,                 // Unique event identifier (optional)  class?: string,                       // CSS class for custom styling (optional)  backgroundColor?: string,             // Background color (any CSS color value)  color?: string,                       // Text color (any CSS color value)  notifications?: [                     // Array of notification objects for reminders (optional)    {      interval: number,                 // Reminder interval in minutes/hours/days      type?: string,                    // Type of notification (email, popup, etc.)      time: number[]                    // Specific times (in minutes, relative to event start)    }  ],  allDay?: boolean,                     // Marks the event as an all-day event (optional)  disableDrag?: boolean,                // Prevents dragging/moving this event (optional)  disableResize?: boolean,              // Prevents resizing this event (optional)  repeat?: {                            // Recurrence rules (optional)    repeatFreq: string,                 // Frequency type: 'daily', 'weekly', 'monthly', etc.    repeatInterval: number,             // Interval for the repeat frequency (e.g., every 2 days)    repeatOn?: number | number[] | date,// Specific days or dates for recurrence pattern    repeatEnd?: number | date,          // Number of recurrences or end date    exceptions?: [                      // Dates or instances to exclude or modify (optional)      {        date: date,                     // Exception date (required)        dateStart?: date,               // Optional exception start time        dateEnd?: date,                 // Optional exception end time        hidden?: boolean,               // Whether this instance is hidden        backgroundColor?: string,       // Custom color for the exception        status?: string,                // Custom status        label?: string,                 // Custom label        description?: string,           // Custom description        notifications?: [               // Custom notifications for this exception          {            interval: number,            type?: string,            time: number[]          }        ],        disableDrag?: boolean,          // Disable dragging for this occurrence        disableResize?: boolean         // Disable resizing for this occurrence      }    ]  },  status?: string                       // Custom status for the event (optional)}**Summary:**  This flexible structure allows you to configure simple or complex events with custom colors, notifications, recurrences (including exceptions), interaction restrictions, and more. All properties are optional unless otherwise marked as required. The event object you provide will be added to the Scheduler and rendered according to the specified options.
     * @param {any} eventObj. An object describing a Scheduler event that is not already present in the element.
     */
     addEvent(eventObj) {
@@ -1230,7 +1230,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Adds a new view. Example: scheduler.addView('week', 'My View', 'myView', false, false, 10); scheduler.setView('myView');
+    /** Enhances the scheduler by allowing you to define and register a custom view.  For example: `scheduler.addView('week', 'My View', 'myView', false, false, 10);`  Here, the parameters specify the base view type ('week'), display name ('My View'), unique view ID ('myView'), two boolean options (such as visibility or default state), and a numeric parameter (such as duration or step).  You can then activate the new view with `scheduler.setView('myView');`.  This enables developers to quickly add personalized calendar views that suit specific application needs.
     * @param {string} type. The view type.
     * @param {string} label. The view's label displayed in the header.
     * @param {string} value. The view's value used to identify the view.
@@ -1248,7 +1248,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Starts an update operation. This is appropriate when calling multiple methods or set multiple properties at once.
+    /** Initiates an update operation, allowing you to group multiple method calls or set multiple properties simultaneously. This ensures that all changes are applied together, which can improve performance and prevent intermediate states from being visible during the update process. Use this when you need to batch updates for efficiency or consistency.
     */
     beginUpdate() {
         if (this.nativeElement.isRendered) {
@@ -1260,7 +1260,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Creates an event and adds it to the Scheduler.
+    /** Creates a new event with specified details (such as title, date, time, and description) and adds it to the Scheduler’s event list, making it available for viewing, editing, and management within the scheduling interface.
     * @param {string} label. Event label.
     * @param {string} value. Event value.
     * @param {string} dateStart. Event date start.
@@ -1277,7 +1277,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Ends the update operation. This method will resume the rendering and will refresh the element.
+    /** Finalizes the update operation, allowing the component to resume its normal rendering process. This method triggers a re-render of the element, ensuring that all recent changes are reflected in the UI.
     */
     endUpdate() {
         if (this.nativeElement.isRendered) {
@@ -1289,14 +1289,14 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Returns an array of the start and end view dates.
+    /** Returns an array containing the start and end dates that define the current visible date range in the view. The first element is the start date, and the second element is the end date.
     * @returns {Date[]}
   */
     getViewDates() {
         const result = this.nativeElement.getViewDates();
         return result;
     }
-    /** Refereshes the Scheduler by recalculating the Scrollbars.
+    /** Refreshes the Scheduler by recalculating and updating the scrollbars to ensure proper alignment and visibility based on the current content and layout changes.
     * @param {boolean} fullRefresh?. If set the Scheduler will be re-rendered completely.
     */
     refresh(fullRefresh) {
@@ -1309,7 +1309,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Exports the events from the Scheduler.
+    /** Exports all scheduled events from the Scheduler component, allowing you to download or transfer event data in a supported format (e.g., JSON, CSV, or iCal) for external use, backup, or integration with other applications.
     * @param {string} dataFormat. Determines the format of the exported file. The following values are available: <ul><li><b>pdf</b></li><li><b>xlsx</b></li><li><b>html</b></li><li><b>iCal</b></li></ul>
     * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer to the Smart Export Documentation.
     * @param {any} dataCallback?. A callback that allows to change the exported data.
@@ -1324,21 +1324,21 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Returns a JSON representation of the events inside the Scheduler.
+    /** Returns a detailed JSON object containing all the events currently managed by the Scheduler, including properties such as event IDs, titles, start and end times, locations, descriptions, and any custom metadata associated with each event. This allows for programmatic access to the full list of scheduled events for use in external applications or integrations.
     * @returns {any}
   */
     getDataSource() {
         const result = this.nativeElement.getDataSource();
         return result;
     }
-    /** Returns a JSON representation of the resources inside the Scheduler.
+    /** Returns a JSON-encoded object containing the detailed data for all resources managed by the Scheduler, including their unique identifiers, properties, and current state. This allows client applications to programmatically access and manipulate the full list of Scheduler resources in a structured format.
     * @returns {any}
   */
     getResources() {
         const result = this.nativeElement.getResources();
         return result;
     }
-    /** Gets a date from coordinates
+    /** Retrieves a date value based on the provided coordinate data, typically by mapping spatial or grid coordinates to a corresponding date in a dataset or timeline.
     * @param {number} x. X coordinate.
     * @param {number} y. Y coordinate.
     * @returns {string}
@@ -1347,7 +1347,7 @@ class Scheduler extends React.Component {
         const result = this.nativeElement.getDateFromCoordinates(x, y);
         return result;
     }
-    /** Gets whether a cell is all day cell from coordinates
+    /** Determines if the cell at the specified coordinates represents an "all-day" cell, typically used for events that span the entire day in a calendar view.
     * @param {number} x. X coordinate.
     * @param {number} y. Y coordinate.
     * @returns {boolean}
@@ -1356,14 +1356,14 @@ class Scheduler extends React.Component {
         const result = this.nativeElement.getIsAllDayCellFromCoordinates(x, y);
         return result;
     }
-    /** Returns the current state of the Scheduler. Includes the current dateCurernt, dataSource and timeZone properties.
+    /** Returns an object representing the current state of the Scheduler. This includes the following properties:  - dateCurrent: The Scheduler’s currently selected or displayed date.  - dataSource: The data source currently used to populate the Scheduler events or appointments.  - timeZone: The time zone setting currently applied to the Scheduler.  Use this method to retrieve a snapshot of the Scheduler’s core settings at any given moment.
     * @returns {any}
   */
     getState() {
         const result = this.nativeElement.getState();
         return result;
     }
-    /** Removes a previously saved state of the element form LocalStorage according to it's id. Requires an id to be set to the element.
+    /** Removes a previously stored state of the element from LocalStorage using its assigned id as the key. An id attribute must be set on the element for this function to work correctly.
     */
     clearState() {
         if (this.nativeElement.isRendered) {
@@ -1375,7 +1375,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Loads a previously saved state of the element or checks LocalStorage for any saved states if no argument is passed to the method.
+    /** Retrieves a previously saved state of the element. If a specific state is provided as an argument, it loads that state. If no argument is passed, the method checks LocalStorage for any existing saved states and loads the most recent one if available.
     * @param {any[]} state?. An Array containing a valid structure of Scheduler events. If no state is provided, the element will check localStorage for a saved state.
     */
     loadState(state) {
@@ -1388,7 +1388,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Saves the current events of the element to LocalStorage. Requires an id to be set to the element.
+    /** Stores the current event data associated with the element in LocalStorage. Note: The element must have a unique id attribute set for this functionality to work correctly.
     * @param {any[]} state?. An Array containing a valid structure of Scheduler events.
     */
     saveState(state) {
@@ -1401,7 +1401,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Sets the Scheduler's view. Example: scheduler.addView('week', 'My View', 'myView', false, false, 10); scheduler.setView('myView');
+    /** Specifies and activates a custom view for the Scheduler component. For example, the code scheduler.addView('week', 'My View', 'myView', false, false, 10); creates a new view named "My View" of type "week" with the identifier "myView". The parameters control the view's properties, such as its type, display name, unique id, and other options. The following method, scheduler.setView('myView');, then switches the Scheduler to display the newly defined custom view.
     * @param {string} view?. The view's value. For example: 'day'.
     */
     setView(view) {
@@ -1414,7 +1414,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Checks whether the Scheduler contains the event.
+    /** Determines if a specific event is present within the Scheduler's collection of scheduled events. Returns true if the event exists; otherwise, returns false.
     * @param {any} eventObj. A Scheduler event object.
     * @returns {boolean}
   */
@@ -1422,7 +1422,7 @@ class Scheduler extends React.Component {
         const result = this.nativeElement.containsEvent(eventObj);
         return result;
     }
-    /** Inserts an event as object of the following format (same as the dataSource format): { label?: string, dateStart: date, dateEnd: date, description?: string, id?: string | number, class?: string, backgroundColor?: string, color?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], allDay?: boolean, disableDrag?: boolean, disableResize?: boolean, repeat?: { repeatFreq: string, repeatInterval: number, repeatOn?: number | number[] | date, repeatEnd?: number | date, exceptions?: { date: date, dateStart?: date, dateEnd?: date, hidden?: boolean, backgroundColor?: string, status?: string, label?: string, description?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], disableDrag?: boolean, disableResize?: boolean }[] }, status?: string }
+    /** Inserts an event object following the dataSource format. The event object supports a comprehensive set of properties for defining event details, appearance, recurrence, and behavior. The structure is as follows:{  label?: string,                   // (Optional) Title or name of the event  dateStart: date,                  // Start date and time of the event (Date object or ISO string)  dateEnd: date,                    // End date and time of the event (Date object or ISO string)  description?: string,             // (Optional) Detailed description of the event  id?: string | number,             // (Optional) Unique identifier for the event  class?: string,                   // (Optional) CSS class for custom styling  backgroundColor?: string,         // (Optional) Event background color (CSS color value)  color?: string,                   // (Optional) Text color for the event (CSS color value)  notifications?: [                 // (Optional) Array of notification settings for reminders    {      interval: number,             // Time interval before the event to trigger the notification (in minutes)      type?: string,                // (Optional) Type of notification (e.g., 'email', 'alert')      time: number[]                // Array of specific times (in minutes) for notifications    }  ],  allDay?: boolean,                 // (Optional) If true, the event lasts all day  disableDrag?: boolean,            // (Optional) If true, dragging/rescheduling is disabled for this event  disableResize?: boolean,          // (Optional) If true, resizing is disabled for this event  repeat?: {                        // (Optional) Recurrence configuration for repeating events    repeatFreq: string,             // Frequency of repetition ('daily', 'weekly', 'monthly', etc.)    repeatInterval: number,         // Number of intervals between repeats (e.g., every 2 days)    repeatOn?: number | number[] | date,   // (Optional) Specific days/dates the event repeats on    repeatEnd?: number | date,      // (Optional) End condition: number of occurrences or end date    exceptions?: [                  // (Optional) List of exceptions to recurrence rules      {        date: date,                 // Date of exception        dateStart?: date,           // (Optional) Start time for the exception        dateEnd?: date,             // (Optional) End time for the exception        hidden?: boolean,           // (Optional) If true, this occurrence is not displayed        backgroundColor?: string,   // (Optional) Custom background color for this occurrence        status?: string,            // (Optional) Status for this occurrence (e.g., 'cancelled')        label?: string,             // (Optional) Custom label for this occurrence        description?: string,       // (Optional) Custom description for this occurrence        notifications?: [{ interval: number, type?: string, time: number[] }], // (Optional) Notifications for this occurrence        disableDrag?: boolean,      // (Optional) Disable drag for this single occurrence        disableResize?: boolean     // (Optional) Disable resize for this single occurrence      }    ]  },  status?: string                   // (Optional) Current status of the event (e.g., 'pending', 'confirmed')}**Notes:**- Properties marked as optional (`?`) can be omitted.- The structure is fully compatible with dataSource arrays commonly used in calendar or scheduling components.- The object supports advanced event recurrence and exception handling for maximum flexibility in scheduling applications.
     * @param {any} eventObj. An object describing a Scheduler event that is not already present in the element.
     * @param {number} index?. A number that represents the index to insert the event at. If not provided the event is inserted at the end of the list.
     */
@@ -1436,7 +1436,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Updates an event object of the following format (same as the dataSource format): { label?: string, dateStart: date, dateEnd: date, description?: string, id?: string | number, class?: string, backgroundColor?: string, color?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], allDay?: boolean, disableDrag?: boolean, disableResize?: boolean, repeat?: { repeatFreq: string, repeatInterval: number, repeatOn?: number | number[] | date, repeatEnd?: number | date, exceptions?: { date: date, dateStart?: date, dateEnd?: date, hidden?: boolean, backgroundColor?: string, status?: string, label?: string, description?: string, notifications?: { interval: numeric, type?: string, time: number[] }[], disableDrag?: boolean, disableResize?: boolean }[] }, status?: string }
+    /** Updates an event object that follows the structure below. The event object format matches the dataSource format used by the application. Each property is described for clarity:{  label?: string,                  // (optional) The title or name of the event.  dateStart: date,                 // The start date and time of the event (Date object or valid date string).  dateEnd: date,                   // The end date and time of the event (Date object or valid date string).  description?: string,            // (optional) Detailed information or notes about the event.  id?: string | number,            // (optional) A unique identifier for the event (string or number).  class?: string,                  // (optional) CSS class(es) to style the event in the UI.  backgroundColor?: string,        // (optional) Background color for the event, specified as a CSS color value.  color?: string,                  // (optional) Text color for the event, specified as a CSS color value.  notifications?: [                // (optional) Array of notification settings for the event.    {      interval: number,            // Time interval before an event for sending a notification (in minutes/hours).      type?: string,               // (optional) Notification type (e.g., "email", "popup").      time: number[]               // Array of times (in minutes/hours) to trigger the notification.    }  ],  allDay?: boolean,                // (optional) Indicates if the event spans the entire day.  disableDrag?: boolean,           // (optional) Prevents the event from being moved via drag-and-drop in the UI.  disableResize?: boolean,         // (optional) Prevents the event from being resized in the UI.  repeat?: {                       // (optional) Recurrence settings for repeating events.    repeatFreq: string,            // Frequency of repetition (e.g., "daily", "weekly", "monthly").    repeatInterval: number,        // The interval between repetitions (e.g., every 2 days).    repeatOn?: number | number[] | date,  // (optional) Specific days or dates when the event repeats (e.g., day of week).    repeatEnd?: number | date,     // (optional) End of the recurrence - number of occurrences or a specific date.    exceptions?: [                 // (optional) List of exceptions/dates when the event does not occur or details of modified occurrences.      {        date: date,                // The exception date (date when event does not occur or is modified).        dateStart?: date,          // (optional) Modified start date/time for the exception occurrence.        dateEnd?: date,            // (optional) Modified end date/time for the exception occurrence.        hidden?: boolean,          // (optional) If true, hides this occurrence.        backgroundColor?: string,  // (optional) Background color override for this occurrence.        status?: string,           // (optional) Custom status for this occurrence.        label?: string,            // (optional) Custom label/title for this occurrence.        description?: string,      // (optional) Custom description for this occurrence.        notifications?: [          // (optional) Notification settings specifically for this occurrence.          {            interval: number,            type?: string,            time: number[]          }        ],        disableDrag?: boolean,     // (optional) Prevents this occurrence from being dragged in the UI.        disableResize?: boolean    // (optional) Prevents this occurrence from being resized in the UI.      }    ]  },  status?: string                  // (optional) The current status of the event (e.g., "confirmed", "tentative", "cancelled").}When updating the event object, all or some of these properties can be included based on which attributes need to be modified. This flexible structure allows for basic one-time events, as well as complex recurring events with customized properties and exceptions.
     * @param {any} index. A number that represents the index of an event or a Scheduler event object.
     * @param {any} eventObj. An object describing a Scheduler event. The properties of this object will be applied to the desired event.
     */
@@ -1450,7 +1450,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Removes an existing event.
+    /** Deletes a specified event from the system, permanently removing its associated data and making it no longer accessible or visible to users.
     * @param {any} index. A number that represents the index of an event or the actual event object to be removed.
     */
     removeEvent(index) {
@@ -1463,7 +1463,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Returns an array of all exceptions of the target repeating event.
+    /** Returns an array containing all exception instances associated with the specified recurring event. Each exception represents a single occurrence within the event series that differs from the original recurrence pattern, such as modified dates, details, or cancellations.
     * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
     * @returns {any}
   */
@@ -1471,7 +1471,7 @@ class Scheduler extends React.Component {
         const result = this.nativeElement.getEventExceptions(eventObj);
         return result;
     }
-    /** Adds an event exception to a repeating event. The exception occurences for a repeating event can be gathered via the following methods: occurencesoccurrencesBetweenoccurrenceAfteroccurrenceBefore.  Example usage: scheduler.addEventException(eventObj, { date: occuranceDate, dateStart: newDateStart, dateEnd: newDateEnd, label: 'Exception' });
+    /** Adds an exception to a recurring event, allowing you to modify or override specific occurrences in a repeating event series. Event exceptions are useful for handling changes such as rescheduling a single meeting in a weekly series, skipping a date, or altering event details for one instance without affecting the entire series.You can retrieve the individual occurrences of a recurring event using the following methods:  occurrences: Returns an array of all occurrences for a recurring event.  occurrencesBetween(startDate, endDate): Returns all occurrences that fall within the specified date range.  occurrenceAfter(date): Returns the first occurrence after the given date.  occurrenceBefore(date): Returns the last occurrence before the given date.To add an exception, call addEventException with the event object and a configuration object specifying the desired changes for a particular occurrence (such as a new date or label):Example usage:scheduler.addEventException(eventObj, {  date: occurrenceDate,              // Date of the occurrence to override  dateStart: newDateStart,           // New start date/time for this exception  dateEnd: newDateEnd,               // New end date/time for this exception  label: 'Exception'                 // (Optional) Label or description for this exception});This will create a customized exception for the specified recurrence, ensuring only the selected occurrence is modified while all other instances remain unaffected.
     * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
     * @param {any} exceptionObj. An event object that describes an exception. Exception event objects must have a <b>date</b> attribute of type Date which indicates the date of occurence.
     */
@@ -1485,7 +1485,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Updates an event exception of a repeating event. The exception occurences for a repeating event can be gathered via the following methods: occurencesoccurrencesBetweenoccurrenceAfteroccurrenceBefore.  Example usage: scheduler.updateEventException(eventObj, dateOfOccurance, { dateStart: newDateStart, dateEnd: newDateEnd, label: 'Updated Exception' });
+    /** Updates a single exception occurrence within a recurring event series.To retrieve the specific exception occurrences of a repeating event, you can use these methods:  occurrences: Returns all instances of the recurring event, including exceptions.  occurrencesBetween: Retrieves event occurrences that fall within a specified date range.  occurrenceAfter: Finds the next occurrence after a given date.  occurrenceBefore: Finds the previous occurrence before a given date.Use the updateEventException method to modify the details of a particular occurrence (exception) in a recurring event series. Supply:  eventObj - The original recurring event object.  dateOfOccurrence - The date/time identifying the specific occurrence to update.  changes - An object specifying the updates for this exception (such as new start/end times, label, etc.).Example usage:scheduler.updateEventException(  eventObj,   dateOfOccurrence,   { dateStart: newDateStart, dateEnd: newDateEnd, label: 'Updated Exception' });This call will update only the specified exception occurrence, leaving the rest of the recurring series unchanged.
     * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
     * @param {any} exceptionRef. The index, id, an occurence date of the exception or an object reference of an existing Scheduler repeating event exception.
     * @param {any} exceptionObj. An event object that describes an exception. All attributes of an exception can be updated except the occurance date (the <b>date</b> attribute).
@@ -1500,7 +1500,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Removes an exception from a repeating event.
+    /** Removes a specified exception instance from a recurring event series, thereby restoring the affected occurrence to match the original recurring pattern.
     * @param {any} eventObj. The index, id or an object reference of an existing repeating Scheduler event.
     * @param {any} index. The index, id, occurance date or an object reference of an event exception that belongs to the target repeating event.
     */
@@ -1514,7 +1514,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Opens the popup Window for specific event Editing.
+    /** Opens a popup window that allows users to view and edit the details of a selected event. This enables modification of event information such as title, date, time, location, and other relevant attributes.
     * @param {any} index. A number that represents the index of a event or the actual event object to be edited.
     */
     openWindow(index) {
@@ -1527,7 +1527,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Closes the popup window.
+    /** Closes the currently open popup window, removing it from view and returning focus to the main application interface.
     */
     closeWindow() {
         if (this.nativeElement.isRendered) {
@@ -1539,7 +1539,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Prepares the Scheduler for printing by opening the browser's Print Preview.
+    /** Prepares the Scheduler component for printing by formatting its layout and content for optimal print output, then triggers the browser’s Print Preview dialog for the user to review and print the schedule.
     */
     print() {
         if (this.nativeElement.isRendered) {
@@ -1551,7 +1551,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Scrolls the Scheduler to a Date.
+    /** Scrolls the Scheduler component to display the specified date. This method ensures that the view is brought to the appropriate date slot, making it visible to the user. If the date is not currently in view, the Scheduler will automatically scroll horizontally or vertically as needed to reveal the target date.
     * @param {Date} date. The date to scroll to.
     * @param {boolean} strictScroll?. Determines whether to scroll strictly to the date or not. This mean sthat the Scheduler wll scroll to the begining of the cell that corresponds to the target date.
     * @param {boolean} autoScroll?. Calculates the scroll positions and element bounds, then adds an offset to scroll within the middle of the view.
@@ -1566,7 +1566,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Navigates the Scheduler to a Date.
+    /** Transitions the Scheduler interface to display and focus on a specific date selected by the user.
     * @param {Date} date. The date to navigate to.
     */
     navigateToDate(date) {
@@ -1579,7 +1579,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Scrolls the Scheduler to an event.
+    /** Smoothly scrolls the Scheduler component to bring the specified event into view, ensuring it is visible to the user in the current viewport.
     * @param {any} index. The index of a Scheduler event or the actual event object to scroll to.
     */
     scrollToEvent(index) {
@@ -1592,7 +1592,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Opens a custom notification.
+    /** Displays a custom notification to the user, allowing you to specify the message content, style, and behavior. This function enables dynamic alerts or updates within the application’s user interface.
     * @param {string} message. The notification message.
     * @param {any} toastSettings. Smart.Toast settings to be applied to the Toast element when opening the notification.
     */
@@ -1606,7 +1606,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Closes all notifications.
+    /** Dismisses and removes all currently active notifications from view, ensuring that no notification messages remain visible to the user.
     */
     closeNotifications() {
         if (this.nativeElement.isRendered) {
@@ -1618,7 +1618,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Returns all occurances of an event.
+    /** Returns a list of all instances where the specified event occurs within the data set. Each occurrence is represented as an individual object or record, providing detailed information about that specific event instance. This enables comprehensive tracking and analysis of every time the event takes place.
     * @param {any} eventObj. A Scheduler evnet object.
     * @param {number} count. The number of occurances to return. By default 100 date occurances of the event are returned.
     */
@@ -1632,7 +1632,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Returns all occurances of an event between two dates.
+    /** Returns a list of all occurrences of a specified event that take place within the given start and end date range, inclusive. Each occurrence includes detailed event information and falls between the provided dates.
     * @param {any} eventObj. A Scheduler event object.
     * @param {Date} dateFrom. The start date.
     * @param {Date} dateTo. The end date.
@@ -1647,7 +1647,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Returns the first occurance of an event after a date.
+    /** Returns the first occurrence of an event that takes place after the specified date. This function searches through the list of events and retrieves the earliest event whose date is strictly later than the provided reference date. If no such event exists, it returns null or an appropriate default value.
     * @param {any} eventObj. A Scheduler event object.
     * @param {number} date. The date after which the first occurance of the event will be returned.
     */
@@ -1661,7 +1661,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Returns the last occurance of an event before a date.
+    /** Returns the most recent occurrence of the specified event that occurred before the given date.
     * @param {any} eventObj. A Scheduler event object.
     * @param {number} date. The date before which the first occurance of the event will be returned.
     */
@@ -1675,7 +1675,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Returns the dateStart/dateEnd of a timeline cell.
+    /** Returns the start and end dates (dateStart/dateEnd) for a specific timeline cell, representing the time interval covered by that cell on the timeline.
     * @param {HTMLElement} cell. A Scheduler timeline cell element.
     * @returns {any}
   */
@@ -1683,7 +1683,7 @@ class Scheduler extends React.Component {
         const result = this.nativeElement.getCellDateRange(cell);
         return result;
     }
-    /** Opens the tooltip(event menu) for an event.
+    /** Displays the tooltip (event menu) associated with a specific event, providing additional information and context about the selected event when triggered.
     * @param {any} eventObj. A Scheduler event object or it's index.
     */
     openEventTooltip(eventObj) {
@@ -1696,7 +1696,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Closes the event tooltip (event menu).
+    /** Closes and hides the event tooltip (also known as the event menu), removing it from view and preventing further interactions until it is reopened.
     */
     closeEventTooltip() {
         if (this.nativeElement.isRendered) {
@@ -1708,7 +1708,7 @@ class Scheduler extends React.Component {
             });
         }
     }
-    /** Returns true or false whether the date is restricted or not.
+    /** Determines if the specified date is restricted. Returns true if the date falls within the set of restricted dates; otherwise, returns false.
     * @param {Date} date. A Date object.
     * @returns {boolean}
   */
@@ -1716,7 +1716,7 @@ class Scheduler extends React.Component {
         const result = this.nativeElement.isDateRestricted(date);
         return result;
     }
-    /** Returns true or false whether the hour is restricted or not.
+    /** Determines whether the specified hour is restricted. Returns true if the hour falls within a restricted period; otherwise, returns false.
     * @param {number | Date} hour. A number that represents an hour ( 0 to 23 ) or a Date object.
     * @returns {boolean}
   */
@@ -1724,7 +1724,7 @@ class Scheduler extends React.Component {
         const result = this.nativeElement.isHourRestricted(hour);
         return result;
     }
-    /** Returns true or false whether the event is restricted or not.
+    /** Determines if the event is restricted by returning a boolean value: true if the event has access restrictions, or false if it is open to all users.
     * @param {any} eventObj. A Scheduler event  object or a direct event HTMLElement instance.
     * @returns {boolean}
   */
@@ -1732,28 +1732,28 @@ class Scheduler extends React.Component {
         const result = this.nativeElement.isEventRestricted(eventObj);
         return result;
     }
-    /** Deletes the current undo/redo history.
+    /** Removes all existing entries from the undo and redo history, clearing any previous actions and preventing the user from undoing or redoing changes made prior to this operation.
     * @returns {boolean}
   */
     deleteUndoRedoHistory() {
         const result = this.nativeElement.deleteUndoRedoHistory();
         return result;
     }
-    /** Indicates whether it is possible to redo an action.
+    /** Specifies whether the action can be redone, indicating if there is a subsequent step available in the redo history that allows the user to reverse a previous undo operation.
     * @returns {boolean}
   */
     canRedo() {
         const result = this.nativeElement.canRedo();
         return result;
     }
-    /** Indicates whether it is possbile to undo an action.
+    /** Specifies whether the most recent action can be undone by the user. If set to true, the user has the option to revert or reverse the previous action; if false, the action cannot be undone.
     * @returns {boolean}
   */
     canUndo() {
         const result = this.nativeElement.canUndo();
         return result;
     }
-    /** Redo the next event modification.
+    /** Revert the changes made to the upcoming event modification, restoring the event to its previous state.
     * @param {number} step?. A step to redo to.
     * @returns {boolean}
   */
@@ -1761,13 +1761,27 @@ class Scheduler extends React.Component {
         const result = this.nativeElement.redo(step);
         return result;
     }
-    /** Undo the last event modification.
+    /** Revert the most recent changes made to the event, restoring it to its previous state.
     * @param {number} step?. A step to undo to.
     * @returns {boolean}
   */
     undo(step) {
         const result = this.nativeElement.undo(step);
         return result;
+    }
+    /** Sets the locale of a component.
+    * @param {string} locale. The locale abbreviation. For example: 'de'.
+    * @param {any} messages?. Object containing the locale messages.
+    */
+    setLocale(locale, messages) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setLocale(locale, messages);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setLocale(locale, messages);
+            });
+        }
     }
     constructor(props) {
         super(props);

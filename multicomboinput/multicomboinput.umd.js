@@ -22,7 +22,7 @@ require('../source/modules/smart.multicomboinput');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Sets or retrieves the animation mode for the element. When the property is set to 'none', all animations are disabled, and any ongoing or future animations will not be executed. For any other value, the corresponding animation behavior will be applied based on the specified mode.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Determines the delay before the drop down opens to show the matches from the auto complete operation. The delay is measured in miliseconds.
+	    /** Specifies the amount of time, in milliseconds, to wait before displaying the dropdown menu that shows matching suggestions from the autocomplete operation. This delay begins after the user stops typing, allowing for smoother user experience and reducing unnecessary searches.
 	    *	Property type: number
 	    */
 	    get autoCompleteDelay() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.autoCompleteDelay = value;
 	        }
 	    }
-	    /** Enables or disables the close buttons when multiple items are selected.
+	    /** Controls the visibility of close buttons when multiple items are selected. If enabled, close buttons will be displayed for each selected item, allowing users to remove individual items. If disabled, close buttons will be hidden, preventing users from removing selected items individually.
 	    *	Property type: boolean
 	    */
 	    get hideInputTagsCloseButton() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.hideInputTagsCloseButton = value;
 	        }
 	    }
-	    /** Enables or disables whether when an item has a 'color' property set, the tag of that item will set automatically the background to that color.
+	    /** Controls whether the background color of an item's tag is automatically set to match the value specified in the item's 'color' property. When enabled, if an item has a 'color' property defined, its tag background will automatically use that color. When disabled, the tag background will not be affected by the 'color' property.
 	    *	Property type: boolean
 	    */
 	    get colorItems() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.colorItems = value;
 	        }
 	    }
-	    /** Determines the data source that will be loaded to the MutliInput. The dataSource can be an array of strings/numbers or objects where the attributes represent the properties of a List Item. For example label, value. It can also be a callback that returns an Array of items as previously described.
+	    /** Specifies the source of data to be displayed in the MultiInput component. The dataSource can accept multiple formats:- An array of strings or numbers, where each entry is used as both the display value and the selection value of a list item.- An array of objects, where each object represents a list item. The object’s attributes (such as label and value) define the display text and internal value of each item.- A callback function that returns an array in either of the formats listed above.Use this property to flexibly provide static data or implement dynamic data loading for the MultiInput component.
 	    *	Property type: any
 	    */
 	    get dataSource() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.dataSource = value;
 	        }
 	    }
-	    /** Enables or disables the element.
+	    /** Specifies whether the element is interactive or inactive. When enabled, users can interact with the element; when disabled, the element is non-interactive and typically rendered with a visually distinct, disabled appearance.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Determines the position of the drop down button.
+	    /** Specifies the alignment or placement of the dropdown button relative to its parent element or container, such as positioning it to the left, right, center, or at a custom location within the interface. This property controls where the dropdown button will appear within its context.
 	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.dropDownButtonPosition = value;
 	        }
 	    }
-	    /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
+	    /** Specifies the height of the dropdown menu. By default, this property is set to an empty string, which means the dropdown’s height is determined by a corresponding CSS variable rather than a fixed value. If a specific height value is provided, it will override the CSS variable and directly set the dropdown’s height.
 	    *	Property type: string | number
 	    */
 	    get dropDownHeight() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.dropDownHeight = value;
 	        }
 	    }
-	    /** Sets the width of the drop down. By default it's set to an empty string. In this case the width of the drop down is controlled by a CSS variable.
+	    /** Specifies the width of the dropdown menu. By default, this property is set to an empty string, which means the dropdown's width will be determined by the corresponding CSS variable (typically a custom property defined in your stylesheet). You can override this behavior by providing a specific width value (such as "200px", "50%", etc.), which will directly set the dropdown's width instead of relying on the CSS variable.
 	    *	Property type: string | number
 	    */
 	    get dropDownWidth() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.dropDownWidth = value;
 	        }
 	    }
-	    /** Sets the purpose of the input and what, if any, permission the user agent has to provide automated assistance in filling out the element's input when in a form, as well as guidance to the browser as to the type of information expected in the element. This value corresponds to the standard HTML autocomplete attribute and can be set to values such as 'on', 'name', 'organization', 'street-address', etc.
+	    /** Specifies the expected type of information for the input element—such as a user's name, email, or address—and guides the browser on how to provide relevant autofill suggestions when the element is used within a form. This property maps directly to the standard HTML autocomplete attribute. By setting values like 'on', 'off', 'name', 'email', 'organization', or 'street-address', you can instruct the browser on whether, and how, to assist the user with automated form filling. Proper use of this property enhances both the accuracy and security of autofill features, as well as improving the overall user experience.
 	    *	Property type: string
 	    */
 	    get inputPurpose() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.inputPurpose = value;
 	        }
 	    }
-	    /** Determines the maximum number of matched items that should be visible inside the drop down as a result of a new autoComplete query. By default the maximum number of 8 items can be displayed inside the drop down.
+	    /** Specifies the maximum number of matching items to display in the dropdown menu when a new autoComplete query is performed. By default, up to 8 items will be visible in the dropdown at any one time. If more matches are found, only the first 8 will be shown, while additional results can be accessed through scrolling or pagination, depending on the implementation.
 	    *	Property type: number
 	    */
 	    get items() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.items = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Gets or sets the 'unlockKey' property, which is a unique code required to activate or unlock the product's full features. Use this key to enable product access or retrieve the current key assigned to the product.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Specifies or retrieves the current language setting. This property works together with the messages property to display content or interface text in the selected language. When the language is set, the corresponding messages from the messages object will be used for localization.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+	    /** A callback function that allows you to define a custom formatting for messages returned by the Localization Module, enabling you to modify message content, structure, or presentation before they are displayed or processed by your application.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Specifies or retrieves an object containing strings used for localization within the widget. This property allows you to define custom, translatable text for various user interface elements, ensuring that the widget can display content in different languages. It is used in combination with the locale property to adapt the widget's text to the selected language or regional setting.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Determines the minimum number of characters inside the input in order to trigger the autocomplete functionality that will open the drop down and show the matched items.
+	    /** Specifies the minimum number of characters a user must enter into the input field before the autocomplete feature activates. Once this threshold is reached, the dropdown will open and display a list of items that match the entered text.
 	    *	Property type: number
 	    */
 	    get minLength() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.minLength = value;
 	        }
 	    }
-	    /** Sets or gets the name attribute for the element. Name is used when submiting data inside an HTML form.
+	    /** Sets or retrieves the value of the element's name attribute. The name attribute uniquely identifies form elements when data is submitted to the server, enabling key-value pairs to be correctly processed. This is essential in HTML forms to ensure each input's data is associated with its corresponding name.
 	    *	Property type: string
 	    */
 	    get name() {
@@ -209,7 +209,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.name = value;
 	        }
 	    }
-	    /** Determines whether the drop down is opened or not.
+	    /** Specifies whether the dropdown menu is currently open (visible) or closed (hidden).
 	    *	Property type: boolean
 	    */
 	    get opened() {
@@ -220,7 +220,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.opened = value;
 	        }
 	    }
-	    /** Determines the placeholder of the input.
+	    /** Specifies the placeholder text displayed inside the input field when it is empty, providing a hint or example of the expected input value to the user.
 	    *	Property type: string
 	    */
 	    get placeholder() {
@@ -231,7 +231,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.placeholder = value;
 	        }
 	    }
-	    /** Enables or disables whether drop-down items are rendered as pills.
+	    /** Controls whether the items in the drop-down menu are visually displayed as pill-shaped elements. When enabled, each item will have a rounded, pill-like appearance. When disabled, items will use the default style.
 	    *	Property type: boolean
 	    */
 	    get pills() {
@@ -242,7 +242,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.pills = value;
 	        }
 	    }
-	    /** Sets or gets the query that is used to filter the items. Query is used by the autoComplete operation. Empty string means that all items from the data source will be displayed and no filter query is applied.
+	    /** Defines or retrieves the search query used to filter items in the data source. This query is utilized by the autoComplete operation to determine which items are displayed based on user input. If the value is set to an empty string, all items from the data source are shown and no filtering is applied.
 	    *	Property type: string | number
 	    */
 	    get query() {
@@ -253,7 +253,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.query = value;
 	        }
 	    }
-	    /** Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation.
+	    /** Specifies the autocomplete query mode, which defines how user input is matched against available options during the autocomplete operation. This property selects the matching algorithm used to filter and suggest results based on the entered query, such as prefix matching, exact matching, or fuzzy searching.
 	    *	Property type: MultiComboInputQueryMode | string
 	    */
 	    get queryMode() {
@@ -264,7 +264,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.queryMode = value;
 	        }
 	    }
-	    /** Determines whether ot not the user can enter text inside the input. if dropDownButtonPosition is set to 'left' or 'right' then readonly determines whether the element acts as a ComboBox or a DropDownList if a dataSource is provided.
+	    /** Determines whether the user can enter or edit text within the input field. When the dropDownButtonPosition property is set to either 'left' or 'right', the readonly property controls the component's behavior when a dataSource is provided:  - If readonly is false, the element functions as a ComboBox, allowing users to type custom values as well as select from the list.- If readonly is true, the element behaves as a DropDownList, restricting the user to select only from the available options without the ability to enter custom text.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -275,7 +275,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Configures or retrieves the value that determines whether the element's alignment is adjusted to support right-to-left (RTL) languages and scripts, such as Arabic or Hebrew. When enabled, the element's layout and text direction are oriented to accommodate RTL reading order for proper localization.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -286,7 +286,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Determines the delimiter between the tags in the input field.
+	    /** Specifies the character or string used to separate individual tags within the input field. This delimiter defines how the input is parsed into distinct tags when users enter multiple values.
 	    *	Property type: string
 	    */
 	    get separator() {
@@ -297,7 +297,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.separator = value;
 	        }
 	    }
-	    /** Determines whether only a single item can be selected.
+	    /** Specifies if selection is restricted to a single item at a time, preventing users from selecting multiple items simultaneously.
 	    *	Property type: boolean
 	    */
 	    get singleSelect() {
@@ -308,7 +308,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.singleSelect = value;
 	        }
 	    }
-	    /** Determines whether an additional item is displayed as the first item in the options list, which allows to select/unselect all items.
+	    /** Controls the display of an extra option at the top of the options list, which enables users to select or deselect all items with a single action. When enabled, this option appears as the first item, providing a convenient way to manage the entire selection at once.
 	    *	Property type: boolean
 	    */
 	    get selectAll() {
@@ -319,7 +319,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.selectAll = value;
 	        }
 	    }
-	    /** Gets or sets an array of selected values.
+	    /** Gets or sets an array containing the currently selected values.  This property allows you to retrieve the list of selected items or update the selection by assigning a new array of values. Each value in the array corresponds to an item that has been selected.
 	    *	Property type: any
 	    */
 	    get selectedValues() {
@@ -330,7 +330,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.selectedValues = value;
 	        }
 	    }
-	    /** Determines whether the items are sorted alphabetically or not
+	    /** Specifies whether the items are arranged in alphabetical order. If set to true, the items will be sorted from A to Z; if false, the original order will be preserved.
 	    *	Property type: boolean
 	    */
 	    get sorted() {
@@ -341,7 +341,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.sorted = value;
 	        }
 	    }
-	    /** Determines the sorting algorithm - ascending(asc) or descending(desc) if sort is enabled.
+	    /** Specifies the sorting algorithm to be used when sort is enabled. Accepts either asc for ascending order or desc for descending order, determining how the data will be organized.
 	    *	Property type: string
 	    */
 	    get sortDirection() {
@@ -352,7 +352,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.sortDirection = value;
 	        }
 	    }
-	    /** Determines whether the input field will contain tags for each selected item from the popup or just one that shows the number of selected items.
+	    /** Specifies how selected items are displayed in the input field: either as individual tags for each selected item from the popup, or as a single tag that displays the total number of items selected.
 	    *	Property type: MultiComboInputInputTagsMode | string
 	    */
 	    get inputTagsMode() {
@@ -363,7 +363,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.inputTagsMode = value;
 	        }
 	    }
-	    /** Determines the theme for the element. Themes define the look of the elements.
+	    /** Specifies the visual theme to apply to the element. The selected theme controls the element’s overall appearance, including colors, fonts, and styles, ensuring consistency with the application's design scheme.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -374,7 +374,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** Determines the input type. Input type determines what input can be entered.
+	    /** Specifies the type of input that the field accepts, such as text, email, password, number, or date. The selected input type defines both the format of data that can be entered by the user and the behavior of the input field, including related validation and the appearance of the on-screen keyboard (on supported devices).
 	    *	Property type: string
 	    */
 	    get type() {
@@ -385,7 +385,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.type = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** When set to true, this property prevents the element from receiving keyboard focus. As a result, users will not be able to navigate to the element using the Tab key or other keyboard navigation methods.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -396,7 +396,7 @@ require('../source/modules/smart.multicomboinput');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Sets or gets the value of the element.
+	    /** Sets or retrieves the current value of the element. When used as a setter, it assigns the specified value to the element (such as updating the text in an input field or the selected option in a dropdown). When used as a getter, it returns the element’s current value.
 	    *	Property type: string
 	    */
 	    get value() {
@@ -415,7 +415,7 @@ require('../source/modules/smart.multicomboinput');
 	    get eventListeners() {
 	        return ["onChange", "onCreate", "onReady"];
 	    }
-	    /** Closes the drop down.
+	    /** Closes the dropdown menu by hiding its content and updating its state to indicate that it is no longer visible or active.
 	    */
 	    close() {
 	        if (this.nativeElement.isRendered) {
@@ -427,7 +427,7 @@ require('../source/modules/smart.multicomboinput');
 	            });
 	        }
 	    }
-	    /** Ensures that the active ( selected ) item is always visible.
+	    /** Guarantees that the currently selected item remains within the visible area of the container, automatically scrolling as needed to bring the active item into view whenever selection changes.
 	    */
 	    ensureVisible() {
 	        if (this.nativeElement.isRendered) {
@@ -439,7 +439,7 @@ require('../source/modules/smart.multicomboinput');
 	            });
 	        }
 	    }
-	    /** Opens the drop down.
+	    /** Displays the dropdown menu, allowing users to view and select available options.
 	    */
 	    open() {
 	        if (this.nativeElement.isRendered) {
@@ -451,7 +451,7 @@ require('../source/modules/smart.multicomboinput');
 	            });
 	        }
 	    }
-	    /** Selects the text inside the input or if it is readonly then the element is focused.
+	    /** Selects all the text within the input field. If the input field is set to readonly, the method will focus the element instead, since text selection is not allowed for readonly inputs.
 	    */
 	    select() {
 	        if (this.nativeElement.isRendered) {

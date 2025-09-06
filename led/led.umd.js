@@ -22,7 +22,7 @@ require('../source/modules/smart.led');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Sets or retrieves the current animation mode. When this property is set to 'none', all animations are disabled, and elements will display or update instantly without any transition effects. For other values, the specified animation mode will determine how visual changes are animated.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Sets or gets the check state.
+	    /** Gets the current check state or sets it to a specified value, typically used for checkbox, radio button, or similar UI elements. The check state indicates whether the element is checked, unchecked, or (if supported) in an indeterminate state.
 	    *	Property type: boolean
 	    */
 	    get checked() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.checked = value;
 	        }
 	    }
-	    /** Determines when the element fires a click event.
+	    /** Specifies the conditions under which the element will trigger a click event, allowing you to control when and how user interactions or programmatic actions cause the click event to be fired.
 	    *	Property type: ClickMode | string
 	    */
 	    get clickMode() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.clickMode = value;
 	        }
 	    }
-	    /** Enables or disables the LED.
+	    /** Controls the LED's power state by enabling (turning on) or disabling (turning off) the LED.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Sets the content for the 'false' state.
+	    /** Specifies the content to be displayed when the state is set to 'false'.
 	    *	Property type: string
 	    */
 	    get falseContent() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.falseContent = value;
 	        }
 	    }
-	    /** Sets custom template for LED's false state.
+	    /** Defines a custom template that determines the LED's appearance or behavior when it is in the "off" or false state.
 	    *	Property type: any
 	    */
 	    get falseTemplate() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.falseTemplate = value;
 	        }
 	    }
-	    /** Sets the LED to indeterminate state.
+	    /** Configures the LED to display an indeterminate state, typically represented by a blinking or animated pattern to indicate ongoing activity or a process with an unknown completion time. This is useful for scenarios where the system cannot determine or communicate a specific status or progress value.
 	    *	Property type: boolean
 	    */
 	    get indeterminate() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.indeterminate = value;
 	        }
 	    }
-	    /** Sets the content for the 'null' state.
+	    /** Defines the content to be displayed when the component is in a 'null' or empty state, such as when no data is available or the value is undefined.
 	    *	Property type: string
 	    */
 	    get indeterminateContent() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.indeterminateContent = value;
 	        }
 	    }
-	    /** Sets a custom template for LED's indeterminate state.
+	    /** Defines a custom template to visually represent the LED component when it is in an indeterminate state, allowing you to specify the appearance or behavior of the LED during this undefined or transitional state.
 	    *	Property type: any
 	    */
 	    get indeterminateTemplate() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.indeterminateTemplate = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Sets or retrieves the unlockKey, a unique identifier or code required to unlock access to the product. This property allows you to manage product access by specifying or obtaining the key needed for unlocking restricted features or content.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Specifies or retrieves the current language setting for localization purposes. This property works together with the messages property to display interface text and messages in the selected language. When you set this property, the corresponding localized messages from messages are used throughout the application.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+	    /** A callback function that allows you to customize the formatting of messages returned by the Localization Module. Use this to modify or enhance localized messages—such as applying custom templates, injecting dynamic content, or adjusting formatting—before they are delivered to the user interface.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Defines or retrieves an object containing localized strings used by the widget's user interface, such as labels, messages, and tooltips. This property works in tandem with the locale property to enable support for multiple languages, allowing developers to customize text displayed to users based on their selected language or region.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Sets or gets the name attribute for the element. Name is used when submiting HTML forms.
+	    /** Sets or retrieves the value of the element's name attribute. The name attribute is used to identify form elements when submitting HTML forms, allowing their values to be sent to the server as key-value pairs. This attribute is essential for collecting user input in form processing.
 	    *	Property type: string
 	    */
 	    get name() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.name = value;
 	        }
 	    }
-	    /** If the widgets is readonly, the users cannot iteract with the element.
+	    /** If the widget is set to read-only, users will be unable to interact with the element or modify its contents. All input and editing functionalities will be disabled, ensuring that the information displayed remains unchanged by the user.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Sets or retrieves the value that determines whether the element’s content is aligned to support languages that use right-to-left (RTL) scripts, such as Arabic or Hebrew. This property ensures proper text direction and alignment for locales requiring RTL formatting.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Sets the shape of LED.
+	    /** Specifies the geometric shape or appearance of the LED component, such as circle, square, rectangle, or custom shapes. This setting determines how the LED will be visually rendered in the user interface.
 	    *	Property type: LedShape | string
 	    */
 	    get shape() {
@@ -209,7 +209,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.shape = value;
 	        }
 	    }
-	    /** Determines the theme. Theme defines the look of the element
+	    /** Specifies the theme to be applied, which controls the visual appearance—such as colors, fonts, and styles—of the element. The selected theme ensures a consistent and cohesive look and feel across the user interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -220,7 +220,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** Sets the content for the 'true' state.
+	    /** Specifies the content that will be displayed or rendered when the associated state is evaluated as 'true'.
 	    *	Property type: string
 	    */
 	    get trueContent() {
@@ -231,7 +231,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.trueContent = value;
 	        }
 	    }
-	    /** Sets custom template for LED's true state.
+	    /** Specifies a custom template that defines the behavior or appearance of the LED when its state is set to "true" (on). Use this template to customize how the LED should be displayed or controlled when activated.
 	    *	Property type: any
 	    */
 	    get trueTemplate() {
@@ -242,7 +242,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.trueTemplate = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** When set to true, this property prevents the element from receiving keyboard focus, making it inaccessible via tab navigation or scripting methods such as element.focus().
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -253,7 +253,7 @@ require('../source/modules/smart.led');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Sets or gets the element's value.
+	    /** Sets a new value for the element or retrieves its current value, depending on whether an argument is provided. This is commonly used for form elements such as input, select, or textarea to programmatically update or access their contents.
 	    *	Property type: string
 	    */
 	    get value() {

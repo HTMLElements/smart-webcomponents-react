@@ -22,7 +22,7 @@ require('../source/modules/smart.tooltip');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Allows you to specify or retrieve the current animation mode. Set this property to 'none' to disable all animations. When assigned other valid values, it enables the corresponding animation effects for the element or component.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Determines how to align the tooltip.
+	    /** Specifies the alignment of the tooltip relative to its target element, such as positioning it above, below, to the left, or to the right of the target. This setting controls where the tooltip appears in relation to the element it is associated with.
 	    *	Property type: string
 	    */
 	    get align() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.align = value;
 	        }
 	    }
-	    /** Gets or sets whether a tooltip's arrow will be shown.
+	    /** Determines whether the tooltip's arrow is displayed. Setting this property to true will show the arrow pointing to the anchor element, while setting it to false will hide the arrow. This enhances tooltip visibility and contextual association with the target element.
 	    *	Property type: boolean
 	    */
 	    get arrow() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.arrow = value;
 	        }
 	    }
-	    /** Sets the position of the arrow.
+	    /** Specifies the location or alignment of the arrow relative to its parent element, determining where the arrow will appear (such as top, bottom, left, right, or center) within the component or tooltip.
 	    *	Property type: TooltipArrowDirection | string
 	    */
 	    get arrowDirection() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.arrowDirection = value;
 	        }
 	    }
-	    /** Gets or sets whether a tooltip's arrow will be shown.
+	    /** Determines whether the tooltip's arrow is displayed. When set to true, an arrow will appear pointing from the tooltip to its target element; when set to false, the tooltip will be shown without an arrow. This property can be used to customize the visual connection between the tooltip and its anchor element.
 	    *	Property type: number
 	    */
 	    get delay() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.delay = value;
 	        }
 	    }
-	    /** Enables or disables the tooltip.
+	    /** Controls whether the tooltip is displayed. When enabled, the tooltip appears when users hover over or interact with the associated element. When disabled, the tooltip is hidden and does not appear under any circumstances.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Sets an offset by X and Y.
+	    /** Specifies the horizontal (X) and vertical (Y) offset values, allowing you to adjust the position of an element relative to its original location. The X value shifts the element left or right, while the Y value moves it up or down.
 	    *	Property type: number[]
 	    */
 	    get offset() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.offset = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Sets or retrieves the unlockKey used to grant access to the product. The unlockKey acts as an authorization token or code required to unlock and enable the product’s features.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Specifies or retrieves the current language setting. This property determines which set of localized messages from the messages property will be used. Changing this value updates the displayed content to match the selected language.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback, related to localization module.
+	    /** Callback function associated with the localization module, typically invoked to handle language changes, region-specific formatting, or to update interface text based on the selected locale.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property language.
+	    /** Defines or retrieves an object containing the localized text strings used within the widget interface. This property allows you to customize the displayed text for different languages or regions, and works together with the language property to support localization and internationalization of the widget's UI elements.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Sets or gets the way of triggering the tooltip.
+	    /** Specifies or retrieves the method by which the tooltip is activated, such as on hover, focus, or click events.
 	    *	Property type: TooltipOpenMode | string
 	    */
 	    get openMode() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.openMode = value;
 	        }
 	    }
-	    /** Gets or sets the position of the tooltip.
+	    /** Specifies or retrieves the placement of the tooltip relative to its associated element. This determines where the tooltip appears, such as above, below, to the left, or to the right of the target element.
 	    *	Property type: TooltipPosition | string
 	    */
 	    get position() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.position = value;
 	        }
 	    }
-	    /** Sets the element which triggers the tooltip.
+	    /** Specifies the HTML element that will act as the trigger for displaying the tooltip. When the user interacts with this element (such as by hovering, focusing, or clicking—depending on configuration), the tooltip will appear.
 	    *	Property type: string | HTMLElement
 	    */
 	    get selector() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.selector = value;
 	        }
 	    }
-	    /** Determines the theme. Theme defines the look of the element
+	    /** Specifies the theme applied to the element. The theme controls the element’s overall appearance, including colors, fonts, and stylistic details, ensuring a consistent visual presentation throughout the interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** Sets custom tooltip template.
+	    /** Specifies a custom template for rendering the tooltip content, allowing you to define the layout, styling, and dynamic data displayed within the tooltip.
 	    *	Property type: any
 	    */
 	    get tooltipTemplate() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.tooltipTemplate = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** When set to true, this property prevents the element from receiving keyboard focus, making it inaccessible through keyboard navigation such as the Tab key.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -209,7 +209,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Sets or gets the widget's value.
+	    /** Gets the current value of the widget or sets a new value for the widget. This property allows you to retrieve the widget's existing value or update it programmatically.
 	    *	Property type: string
 	    */
 	    get value() {
@@ -220,7 +220,7 @@ require('../source/modules/smart.tooltip');
 	            this.nativeElement.value = value;
 	        }
 	    }
-	    /** Sets or gets the visibility of the tooltip.
+	    /** Controls whether the tooltip is visible or hidden. When set, this property determines if the tooltip is displayed to the user; when accessed, it returns the current visibility status of the tooltip.
 	    *	Property type: boolean
 	    */
 	    get visible() {
@@ -239,7 +239,7 @@ require('../source/modules/smart.tooltip');
 	    get eventListeners() {
 	        return ["onOpen", "onOpening", "onClose", "onClosing", "onCreate", "onReady"];
 	    }
-	    /** Closes smart-tooltip.
+	    /** Closes the smart-tooltip component, removing the tooltip from view and disabling any tooltip functionality associated with the target element.
 	    */
 	    close() {
 	        if (this.nativeElement.isRendered) {
@@ -251,7 +251,7 @@ require('../source/modules/smart.tooltip');
 	            });
 	        }
 	    }
-	    /** Opens smart-tooltip.
+	    /** Displays the smart-tooltip component, providing contextual information or guidance to the user when triggered.
 	    */
 	    open() {
 	        if (this.nativeElement.isRendered) {
@@ -263,7 +263,7 @@ require('../source/modules/smart.tooltip');
 	            });
 	        }
 	    }
-	    /** Toggles smart-tooltip.
+	    /** Enables or disables the smart-tooltip component, controlling whether tooltips are displayed or hidden for the specified elements. This toggle function allows developers to dynamically show or hide helpful tooltip information in the user interface based on user interaction or application state.
 	    */
 	    toggle() {
 	        if (this.nativeElement.isRendered) {
@@ -275,7 +275,7 @@ require('../source/modules/smart.tooltip');
 	            });
 	        }
 	    }
-	    /** Clears the content of the Tooltip.
+	    /** Removes all content currently displayed within the Tooltip, restoring it to an empty state and ensuring no text, HTML, or interactive elements remain visible.
 	    */
 	    clear() {
 	        if (this.nativeElement.isRendered) {

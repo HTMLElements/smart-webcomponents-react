@@ -30,7 +30,7 @@ class Pager extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Specifies or retrieves the current animation mode. When this property is set to 'none', all animations are disabled. Assigning any other valid value enables the corresponding animation mode.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class Pager extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Handles pager's elipsis. Ellipsis buttons are displayed as indicators and additional help to navigate between pages.
+    /** "Manages the display of ellipsis ("...") within the pagination component. Ellipsis buttons appear when there are too many pages to show at once, serving as visual indicators that more pages are available. These buttons help users quickly navigate to distant pages by indicating page ranges that are not currently displayed."
     *	Property type: PagerAutoEllipsis | string
     */
     get autoEllipsis() {
@@ -52,7 +52,7 @@ class Pager extends React.Component {
             this.nativeElement.autoEllipsis = value;
         }
     }
-    /** Enables or disables the pager.
+    /** Controls whether the pager functionality is active. When enabled, the pager allows navigation through paginated content; when disabled, all content may be displayed at once without pagination.
     *	Property type: boolean
     */
     get disabled() {
@@ -63,7 +63,7 @@ class Pager extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Retrieves or assigns the unlockKey, a unique code required to activate and access the product's full features.
     *	Property type: string
     */
     get unlockKey() {
@@ -74,7 +74,7 @@ class Pager extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or retrieves the current language code (e.g., 'en', 'fr', 'es'). This property determines which set of messages from the messages object will be used for localization or internationalization purposes. Update this property to change the active language displayed to users.
     *	Property type: string
     */
     get locale() {
@@ -85,7 +85,7 @@ class Pager extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback, related to localization module.
+    /** Callback function associated with the localization module, typically used to handle events or processes such as updating language resources, switching locales, or applying translated content within the application.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -96,7 +96,7 @@ class Pager extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Defines or retrieves an object containing localized strings used within the widget interface. This property enables the customization of widget text for different languages and regions, allowing for internationalization. It is typically used alongside the locale property to display the appropriate language-specific text based on the user's locale setting.
     *	Property type: any
     */
     get messages() {
@@ -107,7 +107,7 @@ class Pager extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Handles the position of the navigation buttons.
+    /** Manages the placement and alignment of navigation buttons within the user interface, determining their exact position (e.g., top, bottom, left, or right) to ensure optimal usability and layout consistency.
     *	Property type: LayoutPosition | string
     */
     get navigationButtonsPosition() {
@@ -118,7 +118,7 @@ class Pager extends React.Component {
             this.nativeElement.navigationButtonsPosition = value;
         }
     }
-    /** Gets/sets current page index.
+    /** Retrieves or updates the index of the currently active page. This value indicates which page is currently being displayed, where the index is zero-based (i.e., the first page has an index of 0). Setting this property changes the current page to the specified index.
     *	Property type: number
     */
     get pageIndex() {
@@ -129,7 +129,7 @@ class Pager extends React.Component {
             this.nativeElement.pageIndex = value;
         }
     }
-    /** Defines the number of page index selectors.
+    /** Specifies the total number of page index selectors (such as page numbers or navigation dots) displayed in the pagination component, allowing users to navigate between different pages of content.
     *	Property type: number
     */
     get pageIndexSelectors() {
@@ -140,7 +140,7 @@ class Pager extends React.Component {
             this.nativeElement.pageIndexSelectors = value;
         }
     }
-    /** Gets/sets total number of items displayed on page.
+    /** Retrieves or updates the maximum number of items displayed per page. This determines how many items are visible to the user on a single page of results, commonly used for pagination controls.
     *	Property type: number
     */
     get pageSize() {
@@ -151,7 +151,7 @@ class Pager extends React.Component {
             this.nativeElement.pageSize = value;
         }
     }
-    /** Defines the data source of the element's page size selector drop down.
+    /** Specifies the data source that populates the options available in the element’s page size selector dropdown menu. This determines which page size choices are presented to the user for selection.
     *	Property type: number[]
     */
     get pageSizeSelectorDataSource() {
@@ -162,7 +162,7 @@ class Pager extends React.Component {
             this.nativeElement.pageSizeSelectorDataSource = value;
         }
     }
-    /** The number of pages in the element.
+    /** Specifies the total count of pages contained within the element, typically used for pagination or indicating how many discrete sections or views are available.
     *	Property type: number
     */
     get pagesCount() {
@@ -173,7 +173,7 @@ class Pager extends React.Component {
             this.nativeElement.pagesCount = value;
         }
     }
-    /** If the element is readonly, users cannot interact with it.
+    /** When the element is set to readonly, users can view its content but cannot modify or input any data. Interaction such as typing, editing, or changing the value is disabled, although users may still be able to highlight and copy the text.
     *	Property type: boolean
     */
     get readonly() {
@@ -184,7 +184,7 @@ class Pager extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or retrieves a value that specifies whether the element’s layout is aligned to support right-to-left (RTL) languages, such as Arabic or Hebrew, by enabling RTL text direction and alignment based on the specified locale.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -195,7 +195,7 @@ class Pager extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Controlls displaying of the 'first' and 'last' navigation buttons.
+    /** Controls the visibility of the 'First' and 'Last' navigation buttons, allowing you to show or hide these buttons in the navigation component.
     *	Property type: boolean
     */
     get showFirstLastNavigationButtons() {
@@ -206,7 +206,7 @@ class Pager extends React.Component {
             this.nativeElement.showFirstLastNavigationButtons = value;
         }
     }
-    /** Displays text content in navigation buttons instead default icons.
+    /** Replaces the default icon-based navigation buttons with buttons that display descriptive text labels, making navigation options clearer and more accessible to users.
     *	Property type: boolean
     */
     get showNavigationButtonLabels() {
@@ -217,7 +217,7 @@ class Pager extends React.Component {
             this.nativeElement.showNavigationButtonLabels = value;
         }
     }
-    /** Determines whether the navigation input is displayed.
+    /** Controls the visibility of the navigation input, specifying whether the navigation input component should be shown or hidden in the user interface.
     *	Property type: boolean
     */
     get showNavigationInput() {
@@ -228,7 +228,7 @@ class Pager extends React.Component {
             this.nativeElement.showNavigationInput = value;
         }
     }
-    /** Determines whether the page index selectors are displayed.
+    /** Specifies whether the page index selectors (such as numbered page buttons or links that allow users to navigate between pages) are visible in the user interface. If set to true, the page index selectors will be displayed; if set to false, they will be hidden.
     *	Property type: boolean
     */
     get showPageIndexSelectors() {
@@ -239,7 +239,7 @@ class Pager extends React.Component {
             this.nativeElement.showPageIndexSelectors = value;
         }
     }
-    /** Determines whether the page size selector is displayed.
+    /** Specifies whether the page size selector control is visible to the user, allowing them to choose the number of items displayed per page.
     *	Property type: boolean
     */
     get showPageSizeSelector() {
@@ -250,7 +250,7 @@ class Pager extends React.Component {
             this.nativeElement.showPageSizeSelector = value;
         }
     }
-    /** Controlls displaying of the 'previous' and 'next' navigation buttons.
+    /** Controls the visibility of the 'Previous' and 'Next' navigation buttons, determining whether users can navigate backward or forward through the content.
     *	Property type: boolean
     */
     get showPrevNextNavigationButtons() {
@@ -261,7 +261,7 @@ class Pager extends React.Component {
             this.nativeElement.showPrevNextNavigationButtons = value;
         }
     }
-    /** Determines whether the page summary is displayed.
+    /** Specifies whether the page summary section is visible to users. If set to true, the summary will be displayed at the top of the page; if false, the summary section will be hidden.
     *	Property type: boolean
     */
     get showSummary() {
@@ -272,7 +272,7 @@ class Pager extends React.Component {
             this.nativeElement.showSummary = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the theme to be applied to the element. The theme setting controls the overall appearance—including colors, fonts, and visual styles—ensuring a consistent look and feel across the component.
     *	Property type: string
     */
     get theme() {
@@ -283,7 +283,7 @@ class Pager extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, this property prevents the element from receiving keyboard focus, meaning users will be unable to select the element using the Tab key or other keyboard navigation methods.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -294,7 +294,7 @@ class Pager extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Gets/sets total number of records whose pagination the Pager controls. Useful when the Pager is part of a more complex element or application.
+    /** Gets or sets the total number of records available for pagination, which determines how many pages the Pager will display and manage. This property is particularly useful when the Pager is integrated into a larger component or application that handles data fetching, as it allows the Pager to correctly calculate page counts and navigation based on the overall dataset size.
     *	Property type: number
     */
     get totalRecords() {
@@ -313,7 +313,7 @@ class Pager extends React.Component {
     get eventListeners() {
         return ["onChange", "onPageSizeChanged", "onCreate", "onReady"];
     }
-    /** Selects first item.
+    /** Selects the first item in the list or array. This operation targets the element at index 0, retrieving or highlighting it as the initially chosen value.
     */
     first() {
         if (this.nativeElement.isRendered) {
@@ -325,7 +325,7 @@ class Pager extends React.Component {
             });
         }
     }
-    /** Selects last item.
+    /** Selects the last item in the list or array. This operation retrieves the final element from a collection, regardless of its length. If the list is empty, no item will be selected.
     */
     last() {
         if (this.nativeElement.isRendered) {
@@ -337,7 +337,7 @@ class Pager extends React.Component {
             });
         }
     }
-    /** Navigates to particular item.
+    /** Navigates to a specified item within the collection, allowing direct access based on a unique identifier or index.
     * @param {any} pageIndex.
     */
     navigateTo(pageIndex) {
@@ -350,7 +350,7 @@ class Pager extends React.Component {
             });
         }
     }
-    /** Selects next pager item.
+    /** Advances the pagination control to the next available page, allowing users to view additional content.
     */
     next() {
         if (this.nativeElement.isRendered) {
@@ -362,7 +362,7 @@ class Pager extends React.Component {
             });
         }
     }
-    /** Selects previous pager item.
+    /** Navigates to the previous page in a paginated list or component by selecting the preceding pager item.
     */
     prev() {
         if (this.nativeElement.isRendered) {

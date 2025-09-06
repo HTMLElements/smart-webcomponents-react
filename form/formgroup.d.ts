@@ -19,17 +19,17 @@ export declare class FormGroup extends React.Component<React.HTMLAttributes<Elem
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Sets or gets the form columns.
+    /** Gets or sets the number of columns used to layout the form fields, allowing for multi-column form arrangements.
     *	Property type: number
     */
     get columns(): number;
     set columns(value: number);
-    /** Sets the Form control data field. The control's inner input's name is set to the dataField value and in the FormGroup it is accessible through the dataField value.
+    /** Defines the data field associated with the form control. The inner input element’s name attribute will be set to the specified dataField value, ensuring correct binding and form data serialization. Additionally, this value determines how the control is referenced within the FormGroup, making the form control’s value accessible via the dataField key in the form’s data model.
     *	Property type: string
     */
     get dataField(): string;
     set dataField(value: string);
-    /** Gets or Sets the Form control's label.
+    /** Retrieves or updates the text displayed as the label for the form control, allowing you to specify or modify the descriptive text shown to users alongside the input element.
     *	Property type: string
     */
     get label(): string;
@@ -39,7 +39,7 @@ export declare class FormGroup extends React.Component<React.HTMLAttributes<Elem
     */
     get controls(): Control[];
     set controls(value: Control[]);
-    /** Sets or Gets the labels position.
+    /** Specifies or retrieves the position of the labels relative to their associated element. This property can be used to define where labels are displayed, such as above, below, to the left, or to the right of the element.
     *	Property type: {(value: string): void}
     */
     get onStatusChanges(): {
@@ -48,7 +48,7 @@ export declare class FormGroup extends React.Component<React.HTMLAttributes<Elem
     set onStatusChanges(value: {
         (value: string): void;
     });
-    /** Makes the form readonly.
+    /** Sets the form to read-only mode, preventing users from editing or modifying any of the input fields while still allowing them to view the current values.
     *	Property type: {(value: any): void}
     */
     get onValueChanges(): {
@@ -57,17 +57,17 @@ export declare class FormGroup extends React.Component<React.HTMLAttributes<Elem
     set onValueChanges(value: {
         (value: any): void;
     });
-    /** Shows / hides the colon after the labels.
+    /** Toggles the visibility of the colon character that appears immediately after label text, allowing you to choose whether or not a colon is displayed following each label.
     *	Property type: FormGroupLabelPosition | string
     */
     get labelPosition(): FormGroupLabelPosition | string;
     set labelPosition(value: FormGroupLabelPosition | string);
-    /** Shows / hides validation summary.
+    /** Controls the visibility of the validation summary, allowing you to display or hide a summary of form validation errors to users.
     *	Property type: boolean
     */
     get readonly(): boolean;
     set readonly(value: boolean);
-    /** Gets or Sets the Form value.
+    /** Retrieves the current value of the form or updates it with a new value. This property can be used to access the form's data or set it programmatically.
     *	Property type: boolean
     */
     get showColonAfterLabel(): boolean;
@@ -90,21 +90,21 @@ export declare class FormGroup extends React.Component<React.HTMLAttributes<Elem
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
-    /** Adds a control to the Form.
+    /** Inserts a new input control (such as a text box, dropdown, or checkbox) into the Form, allowing users to provide or select additional information as part of their submission.
     * @param {any} controlOptions. Control options. The control options description is available in the <em>controls</em> property.
     */
     addControl(controlOptions: any): void;
-    /** Gets a control by its name(dataField).
+    /** Retrieves a specific control from the collection using its name, as specified by the dataField parameter. This function searches for a control whose name matches the provided dataField value and returns the corresponding control object, allowing you to access or manipulate its properties and methods.
     * @param {string} dataField. dataField of a FormControl or FormGroup
     * @returns {Control}
   */
     getControl(dataField: string): any;
-    /** Inserts a control to the Form.
+    /** Adds a user interface control (such as a text box, dropdown, or button) to the specified Form, enabling users to input or interact with form data. This operation dynamically updates the Form’s layout and may include assigning default properties, event handlers, and positioning options for the new control.
     * @param {number} index. Control insert index
     * @param {any} controlOptions. Control options. The control options description is available in the <em>controls</em> property.
     */
     insertControl(index: number, controlOptions: any): void;
-    /** Remove a control from the Form.
+    /** Removes a specified control element from the Form, effectively deleting it from the Form’s structure and user interface. This operation detaches the control, ensuring it is no longer available for user interaction or data capture. Use this action to dynamically update the Form’s contents based on user actions or application logic.
     * @param {any} controlOptions. Control options. The control options description is available in the <em>controls</em> property.
     */
     removeControl(controlOptions: any): void;

@@ -35,105 +35,105 @@ export declare class Layout extends React.Component<React.HTMLAttributes<Element
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Sets or retrieves the current animation mode for the element. When this property is set to 'none', all animations are disabled and no animation effects will be applied. Use this property to enable, disable, or specify different animation behaviors.
     *	Property type: Animation | string
     */
     get animation(): Animation | string;
     set animation(value: Animation | string);
-    /** Determines the options that will be available for selection inside the context menu.
+    /** Specifies the list of selectable options that will appear within the context menu, allowing users to interact with or perform actions based on their selection.
     *	Property type: any
     */
     get contextMenuDataSource(): any;
     set contextMenuDataSource(value: any);
-    /** Enables or disables the element.
+    /** Determines whether the element is interactive or inactive. When enabled, the element can receive user input and respond to actions. When disabled, the element becomes non-interactive and does not respond to user input or events.
     *	Property type: boolean
     */
     get disabled(): boolean;
     set disabled(value: boolean);
-    /** Sets or gets Layout's data source.
+    /** Sets or retrieves the data source associated with the Layout component. This property allows you to define the input data that the Layout will use to render its content, or to access the current data source being used.
     *	Property type: any
     */
     get dataSource(): any;
     set dataSource(value: any);
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Sets or retrieves the unlockKey, a unique code or token required to grant access to and activate the product’s full functionality.
     *	Property type: string
     */
     get unlockKey(): string;
     set unlockKey(value: string);
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Specifies or retrieves the current language setting. This property is typically used together with the messages property to display localized content based on the selected language. Setting this value changes which language messages are used, while getting it returns the currently active language code (e.g., "en", "fr", "es").
     *	Property type: string
     */
     get locale(): string;
     set locale(value: string);
-    /** Sets an object with string values, related to the different states of passwords strength.
+    /** Defines an object containing string values that represent messages or labels corresponding to various password strength states (e.g., "weak", "medium", "strong"). This is typically used to provide user feedback on password strength during password creation or validation processes.
     *	Property type: any
     */
     get messages(): any;
     set messages(value: any);
-    /** Sets or gets Layout's main orientation. The orientation is applied to all Splitters inside the Layout unless they have their orientation explicitly set in the dataSource.
+    /** Sets or retrieves the main orientation of the Layout component. This orientation determines how child Splitters within the Layout are arranged—either horizontally or vertically—by default. All Splitters inside the Layout will inherit this orientation unless a specific orientation is defined for them individually in the dataSource configuration.
     *	Property type: Orientation | string
     */
     get orientation(): Orientation | string;
     set orientation(value: Orientation | string);
-    /** If the element is readonly, users cannot interact with it.
+    /** If the element is set to "readonly", users cannot modify its value, but they can still highlight and copy its contents. However, they cannot type, edit, or otherwise change the value within the field. The field remains focusable and selectable, but direct user input is disabled.
     *	Property type: boolean
     */
     get readonly(): boolean;
     set readonly(value: boolean);
-    /** Determines whether splitting is live or not.
+    /** Indicates whether the splitting process occurs in real-time (live) or is performed as a pre-processed operation before use.
     *	Property type: boolean
     */
     get allowLiveSplit(): boolean;
     set allowLiveSplit(value: boolean);
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or retrieves a value that determines whether the element's layout direction is configured for right-to-left (RTL) languages, such as Arabic or Hebrew, enabling proper alignment and rendering for locales that use RTL text.
     *	Property type: boolean
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
-    /** Determines the selected item.
+    /** Specifies which item is currently selected from a list or collection. This property typically holds the identifier, index, or value of the selected item, allowing the application to reference or display the chosen option.
     *	Property type: any
     */
     get selectedIndex(): any;
     set selectedIndex(value: any);
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the theme to be applied. The theme controls the overall appearance and style of the element, including colors, fonts, and visual layout, ensuring a consistent look and feel across the user interface.
     *	Property type: string
     */
     get theme(): string;
     set theme(value: string);
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, this property prevents the element from receiving keyboard focus, making it impossible for users to select the element using tab navigation or other focus-related interactions.
     *	Property type: boolean
     */
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
     get properties(): string[];
-    /**  This event is triggered after resizing is completed.
+    /**  This event is triggered immediately after the user has finished resizing an element or window. It signals that the resizing action is complete, allowing you to perform any necessary updates or actions in response to the new size.
     *  @param event. The custom event. 	*/
     onResize?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a change regarding the Layout's state has occured, such as inserting a new item, removing an item, etc.
+    /**  This event is triggered whenever there is a change in the Layout's state. Examples include actions such as adding a new item, removing an existing item, or any other modification that alters the structure or arrangement of the Layout.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	type)
     *   item - The Splitter item that was the target of a change.
     *   type - A description of the operation that has cause the change.
     */
     onStateChange?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when the selection is changed.
+    /**  This event is triggered whenever the user changes the current selection, such as by highlighting different text or choosing a new item from a list. It occurs immediately after the selection has been modified, allowing you to respond to changes in user input or interface focus.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	oldSelectedIndex, 	selectedIndex)
     *   oldSelectedIndex - The Splitter item that was previously selected.
     *   selectedIndex - The Splitter item that is currently selected.
     */
     onChange?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a the context menu is about to be closed. The operation can be canceled by calling event.preventDefault() in the event handler function.
+    /**  This event is triggered right before the context menu is closed. Within the event handler, you can call event.preventDefault() to cancel the closing operation, allowing you to execute custom logic or prevent the menu from closing based on certain conditions.
     *  @param event. The custom event. 	*/
     onClosing?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a the context menu is closed.
+    /**  This event is triggered when the context menu is closed by the user, either by selecting an option or clicking outside the menu.
     *  @param event. The custom event. 	*/
     onClose?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a the context menu is about to be opened. The operation can be canceled by calling event.preventDefault() in the event handler function.
+    /**  This event is fired just before the context menu appears, typically when a user right-clicks on an element. By calling event.preventDefault() within the event handler, you can prevent the default context menu from opening, allowing you to implement a custom context menu or handle the action in a different way.
     *  @param event. The custom event. 	*/
     onOpening?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when a the context menu is opened.
+    /**  This event is triggered whenever the context menu (typically accessed by right-clicking or a similar user action) is opened by the user.
     *  @param event. The custom event. 	*/
     onOpen?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when an option from the context menu has been clicked.
+    /**  This event is triggered whenever a user selects and clicks an option from the context menu. It occurs after the user has opened the context menu—typically via right-click or a long press—and chosen a specific menu item. The event provides details about the selected option, enabling you to handle custom actions or respond dynamically based on the user's selection.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	target, 	item, 	label, 	value)
     *   target - The Splitter item that was the target of the context menu opening.
     *   item - The Context menu item that was clicked.
@@ -148,19 +148,19 @@ export declare class Layout extends React.Component<React.HTMLAttributes<Element
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
-    /** Returns a Layout item according to the index that is passed.
+    /** Returns the Layout item located at the specified index within the collection. The index is passed as a parameter, and the function retrieves the corresponding Layout item from the list or array. This allows you to access a particular Layout item by its position in the sequence.
     * @param {number | string} index. The index of an item.
     */
     getItem(index: number | string): void;
-    /** Refreshes the Layout
+    /** Automatically updates and redraws the layout to reflect any recent changes, ensuring all components are properly arranged and displayed according to the latest data or configuration.
     */
     refresh(): void;
-    /** Inserts a new item inside the Layout.
+    /** Inserts a new item element into the Layout component, positioning it within the existing structure according to the component's layout configuration. This action updates the Layout to include the new item as part of its content, ensuring proper rendering and alignment with other elements.
     * @param {any} type. The index of an item to be removed or an instance of JQX.SplitterItem.
     * @param {string | undefined} position?. A string that represents the position where the new item will be created.
     */
     createLayoutItem(type: any, position?: string | undefined): void;
-    /** Moves all children from one item to another.
+    /** Transfers all child elements or nodes from a specified source item to a designated target item, effectively moving the entire group of children so they become nested under the target item instead of the source.
     * @param {any} oldItem. The source item that will have it's content removed.
     * @param {any} newItem. The host item that will have it's content replaced.
     */

@@ -22,7 +22,7 @@ require('../source/modules/smart.cardview');
 	        }
 	        return this._id;
 	    }
-	    /** Toggles the button for adding new cards.
+	    /** Controls the visibility and functionality of the button used to add new cards to the interface. When enabled, users can click the button to create and add additional cards; when disabled, the button is hidden or inactive, preventing new card additions.
 	    *	Property type: boolean
 	    */
 	    get addNewButton() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.addNewButton = value;
 	        }
 	    }
-	    /** Allows reordering by dragging cards.
+	    /** Enables users to rearrange the order of cards within the interface by clicking and dragging individual cards to new positions. This drag-and-drop functionality provides an intuitive way to customize the card sequence.
 	    *	Property type: boolean
 	    */
 	    get allowDrag() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.allowDrag = value;
 	        }
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Specifies or retrieves the current animation mode. When this property is set to 'none', all animations are disabled. Setting it to other valid values enables the corresponding animation behavior.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Describes the height for each card.
+	    /** Specifies the height value assigned to each card component, determining how tall each card will appear within the user interface.
 	    *	Property type: number | null
 	    */
 	    get cardHeight() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.cardHeight = value;
 	        }
 	    }
-	    /** Describes the orientation of the card cells.
+	    /** Specifies the layout direction of the card cells, determining whether they are arranged horizontally (side by side) or vertically (stacked one above the other) within the container. This setting controls the visual organization of the cards.
 	    *	Property type: Orientation | string
 	    */
 	    get cellOrientation() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.cellOrientation = value;
 	        }
 	    }
-	    /** Allows collapsing the card content.
+	    /** Enables users to expand or collapse the card’s content, allowing for a more compact view when the content is hidden and revealing additional details when expanded.
 	    *	Property type: boolean
 	    */
 	    get collapsible() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.collapsible = value;
 	        }
 	    }
-	    /** Describes the columns properties:label - Sets the column namedataField - Sets the dataField nameicon - Sets the icon for the columnformatSettings - Sets the settings about the format for the current columnformatFunction - Function for customizing the value
+	    /** Specifies the configuration properties for table columns:  label — Defines the display name or header text for the column as shown in the user interface.  dataField — Specifies the key or property name in the data source that this column should display.  icon — Allows you to assign an icon (e.g., as a URL or icon class) to be displayed in the column header or alongside cell values.  formatSettings — Provides formatting options for the column's values, such as date/time formats, number precision, or custom display rules.  formatFunction — Accepts a callback function to apply custom transformations or styling to the column's cell values before rendering.
 	    *	Property type: CardViewColumn[]
 	    */
 	    get columns() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.columns = value;
 	        }
 	    }
-	    /** Describes which data field to be set as cover.
+	    /** Specifies the data field that should be used as the cover image or primary visual representation for the item.
 	    *	Property type: string
 	    */
 	    get coverField() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.coverField = value;
 	        }
 	    }
-	    /** Describes the cover image fit property.
+	    /** Provides detailed information about the 'cover image fit' property, which defines how a cover image is resized or scaled to fit within its container. This property determines whether the image should fill, contain, cover, or be otherwise adjusted to cover the allotted space, often corresponding to CSS 'object-fit' values such as 'cover', 'contain', or 'fill'.
 	    *	Property type: CardViewCoverMode | string
 	    */
 	    get coverMode() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.coverMode = value;
 	        }
 	    }
-	    /** Determines the data source for the item that will be displayed inside the card.
+	    /** Specifies the origin or endpoint from which the item's data is retrieved for display within the card component. This property defines where the card fetches its content, such as a local data object, a remote API, or a database, ensuring the card displays up-to-date and relevant information.
 	    *	Property type: any
 	    */
 	    get dataSource() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.dataSource = value;
 	        }
 	    }
-	    /** Sets the grid's data source settings when the dataSource property is set to an Array or URL.
+	    /** Configures the grid's data source options, specifying how data should be loaded and managed when the dataSource property is assigned either an array of data objects or a remote data endpoint (URL). This includes settings for data retrieval, formatting, paging, sorting, and other data-related behaviors.
 	    *	Property type: DataSourceSettings
 	    */
 	    get dataSourceSettings() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.dataSourceSettings = value;
 	        }
 	    }
-	    /** Allows the edit option for the cards.
+	    /** Enables the functionality for users to edit the content of individual cards. When this option is active, users can modify card details such as titles, descriptions, and other editable fields directly within the card interface.
 	    *	Property type: boolean
 	    */
 	    get editable() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.editable = value;
 	        }
 	    }
-	    /** Sets or gets the header position. The header contains the Customize, Filter, Sort, and Search buttons.
+	    /** Sets or retrieves the position of the header section within the component. The header typically includes interactive elements such as the Customize, Filter, Sort, and Search buttons, allowing users to tailor the content display, apply filters, change sorting options, and perform searches.
 	    *	Property type: CardViewHeaderPosition | string
 	    */
 	    get headerPosition() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.headerPosition = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Sets or retrieves the unlockKey value, a unique key required to unlock and gain access to the product's full features or content. Use this property to assign a new unlock key or to obtain the current key in use.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the locale. Used in conjunction with the property messages.
+	    /** Sets or retrieves the current locale (language and regional settings) to be used by the component. This is typically used together with the messages property, which provides localized text or translations for different locales. By specifying the locale, the component displays messages, labels, and other text elements in the appropriate language and format.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Defines or retrieves an object containing the text strings displayed by the widget, allowing these strings to be customized for different languages. This property works in conjunction with the locale property to enable localization, so you can provide translations for various UI elements based on the user's selected language or region. Use this option to specify or override default widget labels and messages for internationalization purposes.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Determines or retrieves whether the element’s text direction is set to right-to-left (RTL), allowing proper alignment and rendering for languages and locales that use RTL scripts (such as Arabic or Hebrew). This ensures the element displays content correctly for users in RTL language environments.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -209,7 +209,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Determines the theme. Theme defines the look of the element
+	    /** Specifies the theme to be applied to the element. The selected theme controls the overall visual appearance, including colors, fonts, spacing, and style variations, ensuring a consistent and cohesive look for the element within the user interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -220,7 +220,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** Describes the scrolling behavior of the element.
+	    /** Provides detailed configuration for how the element responds to user scrolling actions, specifying whether content scrolls automatically, remains stationary, or follows other predefined scrolling behaviors.
 	    *	Property type: Scrolling | string
 	    */
 	    get scrolling() {
@@ -231,7 +231,7 @@ require('../source/modules/smart.cardview');
 	            this.nativeElement.scrolling = value;
 	        }
 	    }
-	    /** Describes which data field to be set as title.
+	    /** Specifies the data field that should be used as the title, typically for labeling or displaying the main identifier of an item.
 	    *	Property type: string
 	    */
 	    get titleField() {
@@ -250,7 +250,7 @@ require('../source/modules/smart.cardview');
 	    get eventListeners() {
 	        return ["onFilter", "onSort", "onOpen", "onOpening", "onClose", "onClosing", "onDragStart", "onDragging", "onDragEnd", "onCreate", "onReady"];
 	    }
-	    /** Adds filtering
+	    /** Enables advanced filtering functionality, allowing users to refine and display data based on specific criteria such as category, date range, status, or custom attributes. This feature improves data navigation and helps users quickly locate relevant information.
 	    * @param {string[]} filters. Filter information
 	    * @param {string} operator?. Logical operator between the filters of different fields
 	    */
@@ -264,7 +264,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Adds a new record
+	    /** Creates and inserts a new record into the database or data collection, initializing all required fields with the provided values.
 	    * @param {number | string} recordId?. The id of the record to add
 	    * @param {any} data?. The data of the record to add
 	    * @param {string} position?. The position to add the record to. Possible values: 'first' and 'last'.
@@ -279,7 +279,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Adds sorting
+	    /** Enables sorting functionality, allowing users to arrange data in ascending or descending order based on specified fields or columns. This feature enhances the user experience by making it easier to organize, locate, and analyze information within lists or tables.
 	    * @param {[] | string} dataFields. The data field(s) to sort by
 	    * @param {[] | string} orderBy. The sort direction(s) to sort the data field(s) by
 	    */
@@ -293,7 +293,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Begins an edit operation
+	    /** Initiates an edit transaction, allowing changes to be made to the data. This operation typically marks the start of a sequence where modifications can be performed, and may require committing or canceling the changes to finalize or discard the edits.
 	    * @param {number | string} recordId. The id of the record to edit
 	    */
 	    beginEdit(recordId) {
@@ -306,7 +306,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Ends the current edit operation and discards changes
+	    /** Terminates the ongoing edit session and reverts any unsaved changes, ensuring that all modifications made during the current operation are discarded and the original state is restored.
 	    */
 	    cancelEdit() {
 	        if (this.nativeElement.isRendered) {
@@ -318,7 +318,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Closes any open header panel (drop down)
+	    /** Closes any currently open header panel, such as a dropdown menu or navigation panel, ensuring that all header-related overlays are hidden from view.
 	    */
 	    closePanel() {
 	        if (this.nativeElement.isRendered) {
@@ -330,7 +330,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Ends the current edit operation and saves changes
+	    /** Finalizes the current editing session by committing all modifications made and persisting the changes to the data source or storage.
 	    */
 	    endEdit() {
 	        if (this.nativeElement.isRendered) {
@@ -342,7 +342,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Makes sure a record is visible by scrolling to it. If succcessful, the method returns the HTML element of the record's card.
+	    /** Ensures that a specified record is brought into view by automatically scrolling to its position on the page. If the operation is successful, the method returns the HTML element representing the card associated with that record, allowing for further manipulation or interaction within the DOM.
 	    * @param {number | string} recordId. The id of the record to scroll to
 	    * @returns {HTMLElement}
 	  */
@@ -350,7 +350,7 @@ require('../source/modules/smart.cardview');
 	        const result = this.nativeElement.ensureVisible(recordId);
 	        return result;
 	    }
-	    /** Opens the "Customize cards" header panel (drop down)
+	    /** Opens the "Customize Cards" dropdown panel, allowing users to access and modify card display settings.
 	    */
 	    openCustomizePanel() {
 	        if (this.nativeElement.isRendered) {
@@ -362,7 +362,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Opens the "Filter" header panel (drop down)
+	    /** Displays the "Filter" header panel as a drop-down menu, allowing users to view and select filtering options for the current data set.
 	    */
 	    openFilterPanel() {
 	        if (this.nativeElement.isRendered) {
@@ -374,7 +374,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Opens the "Sort" header panel (drop down)
+	    /** Displays the "Sort" header panel as a dropdown menu, allowing users to select sorting options for the current data view.
 	    */
 	    openSortPanel() {
 	        if (this.nativeElement.isRendered) {
@@ -386,7 +386,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Removes filtering
+	    /** Removes any active filters, displaying the full, unfiltered dataset.
 	    */
 	    removeFilter() {
 	        if (this.nativeElement.isRendered) {
@@ -398,7 +398,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Removes a record
+	    /** Deletes a specific record from the database or data collection, permanently removing all associated data for that entry.
 	    * @param {number | string} recordId. The id of the record to remove
 	    */
 	    removeRecord(recordId) {
@@ -411,7 +411,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Removes sorting
+	    /** Disables any active sorting on the data, reverting the items to their original order.
 	    */
 	    removeSort() {
 	        if (this.nativeElement.isRendered) {
@@ -423,7 +423,7 @@ require('../source/modules/smart.cardview');
 	            });
 	        }
 	    }
-	    /** Shows a column
+	    /** Displays a single vertical column within the layout, typically used to organize content or interface elements in a structured manner. This column can contain text, images, or other components, and its appearance (such as width, alignment, and styling) can be customized through additional properties or CSS classes.
 	    * @param {string} dataField. The data field of the column
 	    */
 	    showColumn(dataField) {
@@ -433,6 +433,48 @@ require('../source/modules/smart.cardview');
 	        else {
 	            this.nativeElement.whenRendered(() => {
 	                this.nativeElement.showColumn(dataField);
+	            });
+	        }
+	    }
+	    /** Applies sorting to the CardView based on the specified data field. You can either add sorting by providing a valid sortOrder (such as 'asc' or 'desc'), or remove sorting from a column by setting the sortOrder parameter to null. This allows dynamic adjustment of CardView sorting criteria, enabling users to sort data as needed or clear sorting on individual columns.
+	    * @param {string} dataField. The data field of the column to sort, e.g., 'firstName'.
+	    * @param {string | null} sortOrder. Sort order to apply: 'asc' for ascending, 'desc' for descending, or null to remove sorting.
+	    */
+	    sortBy(dataField, sortOrder) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.sortBy(dataField, sortOrder);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.sortBy(dataField, sortOrder);
+	            });
+	        }
+	    }
+	    /** Enhances and applies custom filter criteria to a specific column within the cardview. Accepts both single and multiple filter expressions, allowing for complex filtering logic using logical operators such as "and" and "or". For example, to filter the "lastName" column for values that contain either "burke" or "peterson", use: `cardview.setFilter('lastName', ['CONTAINS "burke"', 'or', 'CONTAINS "peterson"'])`. The method also supports numeric filters (e.g., `GREATER_THAN 100`), a variety of comparison operators (such as `EQUALS`, `LESS_THAN`, `STARTS_WITH`, etc.), and can be used to combine different conditions for precise data selection.
+	    * @param {string} dataField. The data field name of the column to filter, e.g., 'firstName'.
+	    * @param {string} filter. The filter expression(s) to apply. Examples include 'startsWith B', ['contains Andrew or contains Nancy'], or ['quantity', '<= 3 and >= 8']. Supported operators: '=', 'EQUAL', '<>', 'NOT_EQUAL', '!=', '<', 'LESS_THAN', '>', 'GREATER_THAN', '<=', 'LESS_THAN_OR_EQUAL', '>=', 'GREATER_THAN_OR_EQUAL', 'starts with', 'STARTS_WITH', 'ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS', 'DOES_NOT_CONTAIN', 'NULL', 'NOT_NULL'.
+	    */
+	    setFilter(dataField, filter) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.setFilter(dataField, filter);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.setFilter(dataField, filter);
+	            });
+	        }
+	    }
+	    /** Sets the locale of a component.
+	    * @param {string} locale. The locale abbreviation. For example: 'de'.
+	    * @param {any} messages?. Object containing the locale messages.
+	    */
+	    setLocale(locale, messages) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.setLocale(locale, messages);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.setLocale(locale, messages);
 	            });
 	        }
 	    }

@@ -34,7 +34,7 @@ export declare class MenuItemsGroup extends React.Component<React.HTMLAttributes
     */
     get checkMode(): MenuCheckMode | string;
     set checkMode(value: MenuCheckMode | string);
-    /** Enables or disables element.
+    /** Specifies whether the element is enabled or disabled. When set to true, the element is disabled and cannot be interacted with by the user; when set to false, the element remains enabled and fully interactive.
     *	Property type: boolean
     */
     get disabled(): boolean;

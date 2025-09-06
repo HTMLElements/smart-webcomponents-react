@@ -22,7 +22,7 @@ require('../source/modules/smart.textarea');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Configures or retrieves the current animation mode. When set to 'none', all animations are disabled, resulting in instant transitions with no visual effects. Otherwise, the property determines the type or style of animation used for transitions or dynamic effects.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Determines the delay before the drop down opens to show the matches from the auto complete operation. The delay is measured in miliseconds.
+	    /** Specifies the amount of time, in milliseconds, to wait before displaying the dropdown list of matching results after the user initiates the autocomplete operation. This delay helps control how quickly the matches appear, improving user experience and performance when fetching or filtering suggestions.
 	    *	Property type: number
 	    */
 	    get autoCompleteDelay() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.autoCompleteDelay = value;
 	        }
 	    }
-	    /** Determines the data source that will be loaded to the Input. The dataSource can be an array of strings/numbers or objects where the attributes represent the properties of a List Item. For example label, value. It can also be a callback that returns an Array of items as previously described.
+	    /** Specifies the source of data to be loaded into the Input component. The dataSource can accept the following formats:- An array of strings or numbers, where each value will be used as a list item.- An array of objects, where each object represents a list item with specific properties such as label (display text) and value (underlying value).- A callback function that returns an array of items in one of the formats described above.This flexibility allows you to provide simple lists or more complex data structures for Input population, as well as load data asynchronously or dynamically when needed.
 	    *	Property type: any
 	    */
 	    get dataSource() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.dataSource = value;
 	        }
 	    }
-	    /** Enables or disables the element.
+	    /** Determines whether the element is interactive or inactive. When enabled, users can interact with the element (e.g., click, type, or select). When disabled, the element is visible but does not respond to user interactions.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Determines the position of the drop down button.
+	    /** Specifies the placement of the dropdown button relative to its parent element, such as aligning it to the left, right, top, or bottom. This property controls where the dropdown button appears within the interface.
 	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.dropDownButtonPosition = value;
 	        }
 	    }
-	    /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
+	    /** Specifies the height of the dropdown menu. By default, this property is set to an empty string, which means the dropdown's height is determined by a corresponding CSS variable. If a specific value is provided, it will override the CSS variable and explicitly set the dropdown's height.
 	    *	Property type: string | number
 	    */
 	    get dropDownHeight() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.dropDownHeight = value;
 	        }
 	    }
-	    /** Sets the width of the drop down. By default it's set to an empty string. In this case the width of the drop down is controlled by a CSS variable.
+	    /** Specifies the width of the dropdown menu. By default, this property is set to an empty string (""), which means the dropdown’s width will be determined by the associated CSS variable (typically via a custom property such as --dropdown-width). To override the default behavior, you can explicitly set a specific width (e.g., "200px", "100%", etc.), which will be applied directly to the dropdown. If left as an empty string, the component remains responsive to changes in the relevant CSS variable.
 	    *	Property type: string | number
 	    */
 	    get dropDownWidth() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.dropDownWidth = value;
 	        }
 	    }
-	    /** Sets the purpose of the input and what, if any, permission the user agent has to provide automated assistance in filling out the element's input when in a form, as well as guidance to the browser as to the type of information expected in the element. This value corresponds to the standard HTML autocomplete attribute and can be set to values such as 'on', 'name', 'organization', 'street-address', etc.
+	    /** Defines the expected type of data for this input field and specifies whether, and to what extent, the browser or user agent is allowed to offer autofill assistance. This attribute aligns with the standard HTML autocomplete attribute, providing guidance to browsers for streamlining data entry and enhancing user experience. Acceptable values indicate the type of information anticipated, such as 'on' (enable autocomplete), 'off' (disable autocomplete), 'name' (full name), 'organization' (company or organization name), 'street-address' (street address), among others. Proper use of this attribute ensures accurate and secure autofill behavior in web forms.
 	    *	Property type: string
 	    */
 	    get inputPurpose() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.inputPurpose = value;
 	        }
 	    }
-	    /** Determines the maximum number of matched items that should be visible inside the drop down as a result of a new autoComplete query. By default the maximum number of 8 items can be displayed inside the drop down.
+	    /** Specifies the maximum number of items that can be displayed in the dropdown list when a new autoComplete query is performed. This setting controls how many matched results are visible to the user at one time within the dropdown. By default, up to 8 matching items will be shown in the dropdown menu.
 	    *	Property type: number
 	    */
 	    get items() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.items = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Defines the 'unlockKey' property, which is used to retrieve or assign the unique key required to unlock access to the product. This property can be read to obtain the current unlock key or set to specify a new key for unlocking the product.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Specifies or retrieves the current language code, typically following ISO 639-1 standards (e.g., "en" for English, "fr" for French). This property is used alongside the messages property to determine which set of localized messages should be displayed or accessed based on the selected language.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+	    /** A callback function that allows you to define a custom format for messages returned by the Localization Module. Use this function to modify or enhance the appearance, structure, or content of localized messages before they are delivered to the application.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Defines or retrieves an object containing text strings used within the widget that support localization. This property enables you to customize the widget’s displayed text for different languages or regions. It is typically used together with the locale property to provide translations and localize the widget’s interface.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Determines the minimum number of characters inside the input in order to trigger the autocomplete functionality that will open the drop down and show the matched items.
+	    /** Specifies the minimum number of characters a user must type into the input field before the autocomplete functionality is activated. Once this threshold is reached, the dropdown will open and display a list of items that match the entered text.
 	    *	Property type: number
 	    */
 	    get minLength() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.minLength = value;
 	        }
 	    }
-	    /** Sets or gets the name attribute for the element. Name is used when submiting data inside an HTML form.
+	    /** Gets or sets the 'name' attribute of the element. The 'name' attribute assigns an identifier to the element, which is used when submitting form data. When a form is submitted, the value of each input element with a 'name' attribute is included in the form data, using the 'name' as the key. This allows server-side scripts to reference the data by name.
 	    *	Property type: string
 	    */
 	    get name() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.name = value;
 	        }
 	    }
-	    /** Determines whether the drop down is opened or not.
+	    /** Specifies whether the dropdown menu is currently visible (open) or hidden (closed).
 	    *	Property type: boolean
 	    */
 	    get opened() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.opened = value;
 	        }
 	    }
-	    /** Determines the placeholder of the input.
+	    /** Specifies the placeholder text that appears inside the input field when it is empty, providing a hint or example to guide the user on what to enter.
 	    *	Property type: string
 	    */
 	    get placeholder() {
@@ -209,7 +209,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.placeholder = value;
 	        }
 	    }
-	    /** Sets or gets the query that is used to filter the items. Query is used by the autoComplete operation. Empty string means that all items from the data source will be displayed and no filter query is applied.
+	    /** Specifies or retrieves the search query used to filter items within the data source. This query determines which items are displayed during the autoComplete operation. If the query is an empty string, the filter is not applied, and all items from the data source will be shown.
 	    *	Property type: string | number
 	    */
 	    get query() {
@@ -220,7 +220,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.query = value;
 	        }
 	    }
-	    /** Determines the auto complete query mode. This property also determines the matching algorithm for the autocomplete operation.
+	    /** Specifies the autocomplete query mode, which defines how user input is matched to suggestions. This property controls the underlying matching algorithm—such as prefix, infix, or fuzzy matching—used to generate autocomplete results, thereby influencing the relevance and style of suggestions presented to the user.
 	    *	Property type: TextAreaQueryMode | string
 	    */
 	    get queryMode() {
@@ -231,7 +231,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.queryMode = value;
 	        }
 	    }
-	    /** Determines whether ot not the user can enter text inside the input. if dropDownButtonPosition is set to 'left' or 'right' then readonly determines whether the element acts as a ComboBox or a DropDownList if a dataSource is provided.
+	    /** Specifies whether the user can enter text into the input field. When the dropDownButtonPosition property is set to 'left' or 'right', the readonly property controls the component’s behavior—if a dataSource is provided:- When readonly is false, the input functions as a ComboBox, allowing users to both type custom values and select from the dropdown list.- When readonly is true, the input behaves as a DropDownList, restricting users to select only from the available options in the dropdown and preventing any text input.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -242,7 +242,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Determines whether ot not the user can resize the Textarea.
+	    /** Specifies whether the user is allowed to manually resize the Textarea component, enabling or disabling drag-to-resize functionality in the interface.
 	    *	Property type: TextAreaResize | string
 	    */
 	    get resize() {
@@ -253,7 +253,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.resize = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Sets or retrieves a value that determines whether the element’s alignment is adjusted to support right-to-left (RTL) languages, such as Arabic or Hebrew. When enabled, this property ensures that text direction and layout are suitable for locales that use right-to-left scripts.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -264,7 +264,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Enables or disables the rich text formatting.
+	    /** Allows you to toggle rich text formatting on or off, enabling users to apply styles such as bold, italics, lists, and other text enhancements when enabled, or restricting input to plain text when disabled.
 	    *	Property type: boolean
 	    */
 	    get richText() {
@@ -275,7 +275,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.richText = value;
 	        }
 	    }
-	    /** Determines whether the items are sorted alphabetically or not
+	    /** Specifies whether the items are arranged in alphabetical order. When set to true, the items will be automatically sorted from A to Z based on their names or labels; when set to false, the items will retain their original order as provided.
 	    *	Property type: boolean
 	    */
 	    get sorted() {
@@ -286,7 +286,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.sorted = value;
 	        }
 	    }
-	    /** Determines the sorting algorithm - ascending(asc) or descending(desc) if sort is enabled.
+	    /** Specifies the sorting order to be applied when the sort option is enabled. Accepts either ascending (asc) to sort items from lowest to highest, or descending (desc) to sort items from highest to lowest.
 	    *	Property type: string
 	    */
 	    get sortDirection() {
@@ -297,7 +297,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.sortDirection = value;
 	        }
 	    }
-	    /** Determines the theme for the element. Themes define the look of the elements.
+	    /** Specifies the visual theme applied to the element. The selected theme controls the appearance, including colors, fonts, and overall styling, ensuring a consistent look and feel across the element's user interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -308,7 +308,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** Determines the input type. Input type determines what input can be entered.
+	    /** Specifies the type of data that the input field accepts (e.g., text, number, email, password). Setting the input type helps control the kind of information users can enter, enables appropriate on-screen keyboards on mobile devices, and allows browsers to provide built-in validation for certain data formats.
 	    *	Property type: string
 	    */
 	    get type() {
@@ -319,7 +319,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.type = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** When set to true, this property prevents the element from receiving keyboard focus, making it impossible to navigate to the element using the Tab key or programmatic focus methods (such as element.focus()).
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -330,7 +330,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Sets the TextArea users. Expects an array of objects. Each object should have an id and name properties. When you press the 'at' key, you can enter an user from a dropdown.
+	    /** Defines the list of users available for mentioning in the TextArea component. Expects an array where each element is an object containing both id and name properties (e.g., { id: string | number, name: string }). When users type the '@' character, a dropdown appears, allowing them to select a user from this array to mention within the TextArea.
 	    *	Property type: any[]
 	    */
 	    get users() {
@@ -341,7 +341,7 @@ require('../source/modules/smart.textarea');
 	            this.nativeElement.users = value;
 	        }
 	    }
-	    /** Sets or gets the value of the element.
+	    /** Sets or retrieves the current value of the element, allowing you to programmatically update or access the element's value property. This is commonly used for form controls such as input, select, and textarea elements.
 	    *	Property type: string
 	    */
 	    get value() {
@@ -360,7 +360,7 @@ require('../source/modules/smart.textarea');
 	    get eventListeners() {
 	        return ["onChange", "onChanging", "onCreate", "onReady"];
 	    }
-	    /** Closes the drop down.
+	    /** Closes the dropdown menu, hiding its list of selectable options from view.
 	    */
 	    close() {
 	        if (this.nativeElement.isRendered) {
@@ -372,7 +372,7 @@ require('../source/modules/smart.textarea');
 	            });
 	        }
 	    }
-	    /** Ensures that the active ( selected ) item is always visible.
+	    /** Guarantees that the currently active (selected) item remains in view within the scrollable area, automatically scrolling as needed to prevent it from being hidden or obscured.
 	    */
 	    ensureVisible() {
 	        if (this.nativeElement.isRendered) {
@@ -384,14 +384,14 @@ require('../source/modules/smart.textarea');
 	            });
 	        }
 	    }
-	    /** Returns an array of users mentioned in the Textarea's value.
+	    /** Returns an array containing information about all users who are mentioned (e.g., with “@username”) within the value of the Textarea. Each user object in the array represents a unique user mention detected in the Textarea's current content.
 	    * @returns {any[]}
 	  */
 	    getMentions() {
 	        const result = this.nativeElement.getMentions();
 	        return result;
 	    }
-	    /** Opens the drop down.
+	    /** Expands the drop-down menu, displaying its list of selectable options to the user.
 	    */
 	    open() {
 	        if (this.nativeElement.isRendered) {
@@ -403,7 +403,7 @@ require('../source/modules/smart.textarea');
 	            });
 	        }
 	    }
-	    /** Selects the text inside the input or if it is readonly then the element is focused.
+	    /** Enhances user interaction with input elements by selecting all the text within the input field. If the input element has the readonly attribute, the function instead sets focus on the element without selecting the text, since selection is not allowed for readonly inputs. This ensures an appropriate response whether the input is editable or not.
 	    */
 	    select() {
 	        if (this.nativeElement.isRendered) {

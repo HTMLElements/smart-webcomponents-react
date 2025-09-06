@@ -33,7 +33,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.checked = value;
 	        }
 	    }
-	    /** Enables or disables element.
+	    /** Controls whether the element is enabled or disabled. When set to true, the element is interactive and can receive user input; when set to false, the element is disabled, preventing user interaction and applying a disabled appearance as appropriate.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -288,7 +288,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.checkMode = value;
 	        }
 	    }
-	    /** Enables or disables element.
+	    /** Specifies whether the element is enabled or disabled. When set to true, the element is disabled and cannot be interacted with by the user; when set to false, the element remains enabled and fully interactive.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -521,7 +521,7 @@ require('../source/modules/smart.listmenu');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Specifies or retrieves the current animation mode. When set to 'none', all animations are completely disabled; otherwise, the selected animation mode is enabled. Use this property to control whether animations play or are suppressed within the component.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -532,7 +532,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Determines whether the element becomes focused on hover or not.
+	    /** Controls whether the element automatically receives keyboard focus when a user hovers the mouse pointer over it. If enabled, the element will become the active focus target on hover, allowing for keyboard interactions without requiring a click. If disabled, hovering does not change the focus state.
 	    *	Property type: boolean
 	    */
 	    get autoFocusOnMouseenter() {
@@ -543,7 +543,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.autoFocusOnMouseenter = value;
 	        }
 	    }
-	    /** Allows top-level ListMenu items to be checkable.
+	    /** Enables top-level items within the ListMenu to support checkable states, allowing users to select or deselect these menu items with a checkbox or similar indicator. This feature provides enhanced interactivity by letting users clearly mark individual ListMenu options as checked or unchecked.
 	    *	Property type: boolean
 	    */
 	    get checkable() {
@@ -554,7 +554,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.checkable = value;
 	        }
 	    }
-	    /** Sets or gets whether checkboxes and radio buttons can be displayed in the top level menu groups. This property is applicable only to the ListMenu itself, and not its smart-menu-item/smart-menu-items-group subitems. See also the property checkable.
+	    /** Controls whether checkboxes and radio buttons can appear in the top-level groups of the ListMenu. This property applies exclusively to the ListMenu component itself, and does not affect subitems within smart-menu-item or smart-menu-items-group elements. For related functionality, refer to the checkable property.
 	    *	Property type: boolean
 	    */
 	    get checkboxes() {
@@ -565,7 +565,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.checkboxes = value;
 	        }
 	    }
-	    /** Sets the check mode of top-level ListMenu items(groups).
+	    /** Configures the selection behavior (check mode) for top-level ListMenu items (groups). This determines whether menu items can be selected individually, allow multiple selections, or behave like radio buttons, affecting how users interact with the menu.
 	    *	Property type: MenuCheckMode | string
 	    */
 	    get checkMode() {
@@ -576,7 +576,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.checkMode = value;
 	        }
 	    }
-	    /** Determines the data source that will be loaded to the ListMenu. The data source represents an array of objects with the following properties: label - a string representing the text content of the item.value - the value of the item.shortcut - a string representing a shortuct for the item. It will be displayed inside the item.items - allows to define an array of sub menu items.
+	    /** Specifies the data source to be displayed in the ListMenu component. The data source must be an array of objects, where each object represents a menu item with the following properties:      label: string – The text displayed for the menu item.        value: any – The unique value or identifier associated with the menu item.        shortcut: string (optional) – A keyboard shortcut or hint displayed alongside the menu item.        items: array (optional) – An array of submenu item objects, each following the same structure, allowing for the creation of nested or hierarchical menus.  This structure enables the ListMenu to render both simple and multi-level menus, providing flexibility in how menu options and their shortcuts are presented to users.
 	    *	Property type: any
 	    */
 	    get dataSource() {
@@ -587,7 +587,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.dataSource = value;
 	        }
 	    }
-	    /** Enables or disables the element.
+	    /** Determines whether the element is interactive or not. When enabled, users can interact with the element. When disabled, the element becomes non-interactive and typically appears visually distinct (e.g., grayed out) to indicate its inactive state.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -598,7 +598,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Displays or hides the loading indicator. Loading indicator is hidden by default.
+	    /** Controls the visibility of the loading indicator. By default, the loading indicator is hidden; setting this option to true will display the indicator, while setting it to false will hide it.
 	    *	Property type: boolean
 	    */
 	    get displayLoadingIndicator() {
@@ -609,7 +609,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.displayLoadingIndicator = value;
 	        }
 	    }
-	    /** Determines the field in the data source that corresponds to an item's label.
+	    /** Specifies which field in the data source should be used as the label for each item. This determines the text that will be displayed to represent the item in the user interface.
 	    *	Property type: string
 	    */
 	    get displayMember() {
@@ -620,7 +620,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.displayMember = value;
 	        }
 	    }
-	    /** Sets custom outer container where the minimized dropdown will be appednded. By default it is in the ListMenu. The value of the property can be an HTML element or the id of an HTML element.
+	    /** Specifies a custom outer container to which the minimized dropdown will be appended. By default, the dropdown is appended to the ListMenu container. You can set this property to either an HTML element or a string representing the ID of an HTML element.
 	    *	Property type: string | HTMLElement
 	    */
 	    get dropDownAppendTo() {
@@ -631,7 +631,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.dropDownAppendTo = value;
 	        }
 	    }
-	    /** If this property is enabled, when the element's minimized dropdown is opened, a transparent overlay is positioned between the dropdown and the rest of the document.
+	    /** If this property is enabled, opening the element's minimized dropdown will display a transparent overlay that covers the area between the dropdown and the rest of the page content. This overlay visually separates the dropdown from other elements on the page and can also intercept clicks to prevent interactions with content outside the dropdown until it is closed.
 	    *	Property type: boolean
 	    */
 	    get dropDownOverlay() {
@@ -642,7 +642,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.dropDownOverlay = value;
 	        }
 	    }
-	    /** Sets or gets the opening direction of the ListMenu minimized dropdown.
+	    /** Specifies or retrieves the direction in which the ListMenu's minimized dropdown expands when opened, such as upward or downward. This property determines the alignment and positioning of the dropdown relative to the ListMenu component.
 	    *	Property type: MenuDropDownPosition | string
 	    */
 	    get dropDownPosition() {
@@ -653,7 +653,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.dropDownPosition = value;
 	        }
 	    }
-	    /** Enables or disables scrolling using the mouse wheel through overflowing menu items.
+	    /** Controls whether users can scroll through menu items that overflow the visible area by using the mouse wheel. When enabled, using the mouse wheel will navigate vertically through menu items not currently visible within the menu’s viewport. When disabled, mouse wheel scrolling will have no effect on overflowing menu content.
 	    *	Property type: boolean
 	    */
 	    get enableMouseWheelAction() {
@@ -664,7 +664,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.enableMouseWheelAction = value;
 	        }
 	    }
-	    /** Determines whether menu item filtering is enabled. When enabled a filter input is shown at the top of the element. Only items in the current view can be filtered.
+	    /** Controls the activation of menu item filtering functionality. When enabled, a filter input field appears at the top of the menu component, allowing users to search and display only the menu items that match the entered query. Note that filtering is limited to items currently rendered or visible in the menu's current view; items not present in the view will not be affected by the filter.
 	    *	Property type: boolean
 	    */
 	    get filterable() {
@@ -675,7 +675,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.filterable = value;
 	        }
 	    }
-	    /** Determines the placeholder for the filter input.
+	    /** Specifies the placeholder text displayed inside the filter input field, guiding users on the expected input or action.
 	    *	Property type: string
 	    */
 	    get filterInputPlaceholder() {
@@ -686,7 +686,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.filterInputPlaceholder = value;
 	        }
 	    }
-	    /** Determines the MenuItem property that will be used as a filtering criteria. By default the label property is used. It can be set to 'value' if the user wants to filter by the 'value' property or 'textContent' if the user wants to filter by text inside the MenuItem's content or any other property.
+	    /** Specifies which property of the MenuItem will be used as the filtering criterion. By default, the filtering is performed using the label property of each MenuItem. You can change this setting to use other properties instead, such as value if you want to filter based on the MenuItem's value property, or textContent if you prefer to filter using the text content within the MenuItem. Additionally, you may specify any other property name to customize the filtering behavior according to your application's requirements.
 	    *	Property type: string
 	    */
 	    get filterMember() {
@@ -697,7 +697,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.filterMember = value;
 	        }
 	    }
-	    /** Determines the filtering mode.
+	    /** Specifies the method used to filter or process data, such as selecting items based on certain criteria, applying search terms, or excluding specific values. This setting controls how data is displayed or retrieved according to the selected filtering mode.
 	    *	Property type: FilterMode | string
 	    */
 	    get filterMode() {
@@ -708,7 +708,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.filterMode = value;
 	        }
 	    }
-	    /** If enabled, the items will be grouped by their first letter and sorted.
+	    /** If enabled, the items will be organized into groups based on the first letter of each item's name. Within each group, the items will be sorted alphabetically.
 	    *	Property type: boolean
 	    */
 	    get grouped() {
@@ -719,7 +719,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.grouped = value;
 	        }
 	    }
-	    /** Determines the field in the data source that corresponds to an item group's subitems collection.
+	    /** Specifies the name of the field within the data source that contains the collection of subitems associated with each item group. This field is used to retrieve and bind the subitems for display or processing within the application.
 	    *	Property type: string
 	    */
 	    get itemsMember() {
@@ -730,7 +730,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.itemsMember = value;
 	        }
 	    }
-	    /** Determines the text that will be displayed next to the loading indicator when the loader is visible and it's position is top or bottom.
+	    /** Specifies the text to display alongside the loading indicator when the loader is visible and positioned at the top or bottom of the container. This text provides context or feedback to users during loading operations.
 	    *	Property type: string
 	    */
 	    get loadingIndicatorPlaceholder() {
@@ -741,7 +741,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.loadingIndicatorPlaceholder = value;
 	        }
 	    }
-	    /** Determines the position of the loading indicator inside the element.
+	    /** Specifies the exact location where the loading indicator will appear within the parent element. This controls whether the loading indicator is displayed at the top, center, bottom, or another defined position inside the element’s boundaries.
 	    *	Property type: VerticalAlignment | string
 	    */
 	    get loadingIndicatorPosition() {
@@ -752,7 +752,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.loadingIndicatorPosition = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Defines or retrieves the unlockKey property, a unique identifier or code required to unlock and grant access to the product’s features or content.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -763,7 +763,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Specifies or retrieves the current language code (such as "en", "fr", or "es"), which determines the set of localized messages to use from the messages property. This property ensures that the appropriate language-specific messages are displayed to users based on their language selection or system settings.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -774,7 +774,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+	    /** A callback function that allows you to define custom formatting for messages returned by the Localization Module. Use this to modify how localized strings are generated and displayed, such as altering text templates, injecting dynamic values, or adjusting message structure before they are delivered to your application.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -785,7 +785,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Defines or retrieves an object containing localized strings used throughout the widget’s interface. This property is intended to facilitate internationalization by allowing you to provide translations for various UI text elements. It is typically used in combination with the locale property, which determines the currently active language or regional format.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -796,7 +796,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Allows to load a custom minimize icon from an HTMLTemplateElement.The property acceps the id of an HTMLTemplateElement or it's direct instance.
+	    /** Enables the use of a custom minimize icon by specifying an HTMLTemplateElement. This property accepts either the ID of an HTMLTemplateElement (as a string) or a direct reference to the HTMLTemplateElement instance. The content of the provided template will be rendered in place of the default minimize icon.
 	    *	Property type: string
 	    */
 	    get minimizeIconTemplate() {
@@ -807,7 +807,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.minimizeIconTemplate = value;
 	        }
 	    }
-	    /** Determines the minimum width of the ListMenu at which it will switch from normal to minimized mode. If set to null, the ListMenu does not minimize automatically.
+	    /** Specifies the minimum width, in pixels, that the ListMenu must reach before automatically switching from its normal (expanded) mode to minimized mode. If this value is set to null, the ListMenu will remain in its normal mode regardless of its width and will not minimize automatically.
 	    *	Property type: number | null
 	    */
 	    get minimizeWidth() {
@@ -818,7 +818,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.minimizeWidth = value;
 	        }
 	    }
-	    /** Sets or gets the ListMenu's scroll buttons behavior.
+	    /** Defines or retrieves the behavior of the ListMenu's scroll buttons, specifying how they appear and function when the menu content exceeds the visible area. This property controls whether scroll buttons are shown, when they become visible, and how users can interact with them to navigate through the list.
 	    *	Property type: Overflow | string
 	    */
 	    get overflow() {
@@ -829,7 +829,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.overflow = value;
 	        }
 	    }
-	    /** If the element is readonly, users cannot interact with it.
+	    /** If the element has the "readonly" attribute, users can view its content but cannot modify or edit it. While the element remains focusable and its text can be selected or copied, any user attempts to change its value will be blocked, ensuring the data remains unchanged.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -840,7 +840,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Specifies or retrieves a value that determines whether the element's text and layout direction are set to support right-to-left (RTL) languages, such as Arabic or Hebrew. When enabled, the element and its contents will display text and align elements according to RTL conventions.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -851,7 +851,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Determines whether to use scrollbar or scrollButtons when content overflows an element's box.
+	    /** Specifies whether to display a traditional scrollbar or custom scroll buttons when the content exceeds the boundaries of an element’s container. This setting controls the method users can use to navigate overflow content within the element.
 	    *	Property type: ListMenuScrollMode | string
 	    */
 	    get scrollMode() {
@@ -862,7 +862,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.scrollMode = value;
 	        }
 	    }
-	    /** Determines the theme. Theme defines the look of the element
+	    /** Specifies the visual theme to apply to the element. The selected theme controls the element’s overall appearance, including colors, fonts, and styling, ensuring a consistent look and feel throughout the user interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -873,7 +873,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** When set to true, the element becomes unfocusable, meaning it cannot receive input focus via keyboard navigation (such as the Tab key), mouse clicks, or scripting methods.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -884,7 +884,7 @@ require('../source/modules/smart.listmenu');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Determines the field in the data source that corresponds to an item's value.
+	    /** Specifies the name of the field in the data source whose value will be assigned as the item's value property. This field is used to uniquely identify each item within the data collection.
 	    *	Property type: string
 	    */
 	    get valueMember() {
@@ -903,7 +903,7 @@ require('../source/modules/smart.listmenu');
 	    get eventListeners() {
 	        return ["onExpand", "onItemCheckChange", "onItemClick", "onScrollBottomReached", "onSwipeleft", "onSwiperight", "onCreate", "onReady"];
 	    }
-	    /** Adds an item to the list.
+	    /** Appends a new item to the end of the existing list, expanding the list by one element.
 	    * @param {HTMLElement} Item. A jqx-menu-item to add to the List Menu.
 	    * @param {HTMLElement | string} Parent?. The jqx-menu-items-group (or its id or numeric path) to add the item to.
 	    */
@@ -917,7 +917,7 @@ require('../source/modules/smart.listmenu');
 	            });
 	        }
 	    }
-	    /** Navigates to the previous page (smart-menu-items-group).
+	    /** Navigates to the previous page within the group of menu items (`smart-menu-items-group`). This function moves the user’s focus or view to the preceding set of menu options, enabling seamless backward navigation in multi-page or scrollable menu interfaces.
 	    * @param {boolean} animation?. If set to false, disables collapse animation even if animation is enabled for the element
 	    */
 	    back(animation) {
@@ -930,7 +930,7 @@ require('../source/modules/smart.listmenu');
 	            });
 	        }
 	    }
-	    /** Navigates to a particular page (smart-menu-items-group).
+	    /** Navigates the user to a specific page or section within the application identified as "smart-menu-items-group." This action typically triggers a transition or redirect, bringing the "smart-menu-items-group" content into view for the user. Suitable for menu navigation or directing users to targeted groups within a menu structure.
 	    * @param {string} id. The id or numeric path of a page (jqx-menu-items-group).
 	    */
 	    changePage(id) {
@@ -943,7 +943,7 @@ require('../source/modules/smart.listmenu');
 	            });
 	        }
 	    }
-	    /** Checks an item.
+	    /** Marks an item as checked, indicating that it has been selected or completed. This action typically updates the item's status property (e.g., `checked: true`) within the JSON data.
 	    * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group (or its id or numeric path).
 	    */
 	    checkItem(item) {
@@ -956,7 +956,7 @@ require('../source/modules/smart.listmenu');
 	            });
 	        }
 	    }
-	    /** Gets an item by its id or numeric path.
+	    /** Retrieves a specific item using either its unique identifier (ID) or a numeric path that locates the item within a hierarchical structure.
 	    * @param {string} id. The id or numeric path of an item
 	    * @returns {HTMLElement}
 	  */
@@ -964,7 +964,7 @@ require('../source/modules/smart.listmenu');
 	        const result = this.nativeElement.getItem(id);
 	        return result;
 	    }
-	    /** Maximizes the List Menu.
+	    /** Expands the List Menu to its maximum available size, displaying all menu items for full visibility and easier selection.
 	    */
 	    maximize() {
 	        if (this.nativeElement.isRendered) {
@@ -976,7 +976,7 @@ require('../source/modules/smart.listmenu');
 	            });
 	        }
 	    }
-	    /** Minimizes the List Menu. An icon is displayed and the menu is hidden when minimized.
+	    /** Collapses the List Menu to save screen space. When minimized, the full menu is hidden and replaced with a single icon, allowing users to expand the menu again if needed. This improves the user interface by providing a cleaner, less cluttered appearance while maintaining quick access to menu options.
 	    */
 	    minimize() {
 	        if (this.nativeElement.isRendered) {
@@ -988,7 +988,7 @@ require('../source/modules/smart.listmenu');
 	            });
 	        }
 	    }
-	    /** Removes an item.
+	    /** Removes a specified item from the collection or list. If the item exists, it is deleted; otherwise, no changes are made. This operation typically identifies the item by its unique key, index, or value.
 	    * @param {HTMLElement | string} item. The jqx-menu-item/jqx-menu-items-group (or its id or numeric path) to remove.
 	    */
 	    removeItem(item) {
@@ -1001,7 +1001,7 @@ require('../source/modules/smart.listmenu');
 	            });
 	        }
 	    }
-	    /** Unchecks an item.
+	    /** Removes the checkmark from a selected item, resetting its state to unchecked or unselected. This action is typically used to indicate that the item is not active, chosen, or included in a selection.
 	    * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group (or its id or numeric path).
 	    */
 	    uncheckItem(item) {

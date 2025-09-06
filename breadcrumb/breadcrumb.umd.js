@@ -22,7 +22,7 @@ require('../source/modules/smart.breadcrumb');
 	        }
 	        return this._id;
 	    }
-	    /** Enables or disables the "Add new item" (+) button.
+	    /** Controls the visibility and functionality of the "Add new item" (+) button. When enabled, users can click the button to create and add new items. When disabled, the button is hidden or inactive, preventing the addition of new items.
 	    *	Property type: boolean
 	    */
 	    get addNewItem() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.addNewItem = value;
 	        }
 	    }
-	    /** Enables or disables the dragging of breadcrumb items.
+	    /** Controls whether users can drag and reorder breadcrumb items. When enabled, breadcrumb items become draggable, allowing users to change their order within the breadcrumb navigation. When disabled, breadcrumb items remain static and cannot be moved.
 	    *	Property type: boolean
 	    */
 	    get allowDrag() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.allowDrag = value;
 	        }
 	    }
-	    /** Enables or disables the dropping of dragged breadcrumb items.
+	    /** Allows you to control whether users can drop dragged breadcrumb items onto the breadcrumb navigation. When enabled, users can rearrange breadcrumb items by dragging and dropping them; when disabled, dropping is prevented.
 	    *	Property type: boolean
 	    */
 	    get allowDrop() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.allowDrop = value;
 	        }
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Specifies or retrieves the current animation mode. When set to 'none', all animations are disabled. Otherwise, this property determines how animations are applied to the element.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Show/Hide the close button of breadcrumb items.
+	    /** Controls the visibility of the close (remove) button on individual breadcrumb items, allowing users to optionally display or hide the button for removing specific items from the breadcrumb navigation.
 	    *	Property type: boolean
 	    */
 	    get closeButtons() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.closeButtons = value;
 	        }
 	    }
-	    /** Determines the data source to load breadcrumb items from. The Array should contain objects. Each object defines a single breadcrumb item.
+	    /** Specifies the data source used to populate the breadcrumb items. The data should be provided as an array of objects, where each object represents an individual breadcrumb item with its corresponding properties, such as label, link, and any additional attributes required for display or navigation.
 	    *	Property type: {label: string, value: string}[]
 	    */
 	    get dataSource() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.dataSource = value;
 	        }
 	    }
-	    /** Enables or disables the Breadcrumb.
+	    /** Controls whether the Breadcrumb navigation component is disabled. When enabled, the Breadcrumb provides users with a navigational trail;
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Sets or gets the template of breadcrumb items. The value of this property can be the id of an HTMLTemplateElement or the HTMLTemplateElement itself. If set to null, no template is applied.
+	    /** Defines the template used to render each breadcrumb item. This property accepts either the ID of an '' element (as a string) or a reference to an actual 'HTMLTemplateElement'. When specified, the template determines the structure and content of each breadcrumb item. If set to 'null', the default rendering is used and no custom template is applied.
 	    *	Property type: any
 	    */
 	    get itemTemplate() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.itemTemplate = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Sets or retrieves the value of the unlockKey property, a unique key required to unlock and access the product's features. Use this property to specify the unlock key when enabling product access, or to obtain the current unlock key associated with the product.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Sets or retrieves the current language code (e.g., "en", "fr", "es") used for localization. This property works together with the messages property to select and display the appropriate translation strings based on the specified language.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Defines or retrieves an object containing all user-facing text strings within the widget that can be localized. This object allows customization of the widget’s displayed text in different languages and works in conjunction with the locale property to support internationalization and localization. Use this property to provide translations for messages, labels, and other interface text in the widget.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Determines the minimum width of the Breadcrumb at which it will switch from normal to minimized mode. If set to null, the Breadcrumb does not minimize automatically.
+	    /** Specifies the minimum width (in pixels) at which the Breadcrumb component transitions from its normal display to a minimized mode. If this value is set to null, the Breadcrumb will always remain in its normal mode and will not automatically minimize, regardless of the container's width.
 	    *	Property type: number
 	    */
 	    get minimizeWidth() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.breadcrumb');
 	            this.nativeElement.minimizeWidth = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** When set to true, this property prevents the element from receiving keyboard focus or being selected using keyboard navigation (such as with the Tab key). As a result, users will not be able to focus on this element using standard keyboard interactions.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -173,7 +173,7 @@ require('../source/modules/smart.breadcrumb');
 	    get eventListeners() {
 	        return ["onClose", "onClosing", "onDragEnd", "onDragging", "onAddNewItem", "onCreate", "onReady"];
 	    }
-	    /** Adds an item.
+	    /** Adds a new item to the collection. The item is appended to the end of the array or list, increasing the total number of items by one. If additional properties (such as item details or metadata) are required, ensure they are included in the request.
 	    * @param {any} itemDetails. An Object with the fields "index", "label", and "value".
 	    */
 	    addItem(itemDetails) {
@@ -186,7 +186,7 @@ require('../source/modules/smart.breadcrumb');
 	            });
 	        }
 	    }
-	    /** Restores the Breadcrumb from minimized state back to normal.
+	    /** Restores the Breadcrumb component from its minimized or collapsed state to its full, expanded view, making all breadcrumb navigation links visible to the user.
 	    */
 	    maximize() {
 	        if (this.nativeElement.isRendered) {
@@ -198,7 +198,7 @@ require('../source/modules/smart.breadcrumb');
 	            });
 	        }
 	    }
-	    /** Minimizes the Breadcrumb.
+	    /** Collapses the breadcrumb navigation into a minimal or condensed state, reducing its visual footprint on the page while still maintaining navigational functionality. This is typically used to save space or enhance the user interface on smaller screens.
 	    */
 	    minimize() {
 	        if (this.nativeElement.isRendered) {
@@ -210,7 +210,7 @@ require('../source/modules/smart.breadcrumb');
 	            });
 	        }
 	    }
-	    /** Removes an item.
+	    /** Removes a specified item from the collection. If the item exists, it will be deleted; otherwise, no action is taken.
 	    * @param {HTMLElement} item. The item to remove.
 	    */
 	    removeItem(item) {

@@ -18,32 +18,32 @@ export declare class LayoutItem extends React.Component<React.HTMLAttributes<Ele
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Enables or disables the element.
+    /** Specifies whether the element is active and interactive (enabled) or inactive and non-interactive (disabled). When disabled, users cannot interact with or modify the element.
     *	Property type: boolean
     */
     get disabled(): boolean;
     set disabled(value: boolean);
-    /** Sets or gets the modifiers of the Layout item.
+    /** Sets or retrieves the modifiers applied to the Layout item, allowing you to customize its appearance or behavior, such as spacing, alignment, or other layout-related properties.
     *	Property type: any
     */
     get modifiers(): any;
     set modifiers(value: any);
-    /** Determines the min size of the item.
+    /** Specifies the minimum allowed size for the item. This value sets the smallest dimensions (such as width or height) that the item can be resized or displayed at within its container.
     *	Property type: number
     */
     get min(): number;
     set min(value: number);
-    /** Determines the label of the item.
+    /** Specifies the text or caption displayed as the item's label. This value is used to identify or describe the item in the user interface.
     *	Property type: string
     */
     get label(): string;
     set label(value: string);
-    /** Determines the size of the item.
+    /** Specifies the dimensions of the item, such as width, height, or overall scale, to control how large or small the item appears within the interface.
     *	Property type: any
     */
     get size(): any;
     set size(value: any);
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, this property prevents the element from receiving keyboard focus, making it inaccessible through keyboard navigation such as the Tab key.
     *	Property type: boolean
     */
     get unfocusable(): boolean;

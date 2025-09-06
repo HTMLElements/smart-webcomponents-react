@@ -474,7 +474,7 @@ class MultilineTextBox extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Specifies the animation mode for the component. When this property is set to 'none', all animations are disabled. Setting it to other supported values enables the corresponding animation effects. Use this property to control whether and how animations are applied.
     *	Property type: Animation | string
     */
     get animation() {
@@ -485,7 +485,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Determines whether and how the value should be automatically capitalized as it is entered/edited by the user.
+    /** Specifies if and in what manner user-entered text should be automatically capitalized during input or editing. This setting controls the automatic transformation of text—for example, capitalizing the first letter of each word, each sentence, or all characters—based on the selected capitalization behavior.
     *	Property type: MultilineTextBoxAutoCapitalize | string
     */
     get autoCapitalize() {
@@ -496,7 +496,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.autoCapitalize = value;
         }
     }
-    /** Determines whether the value of the control can be automatically completed by the browser.
+    /** Specifies whether the browser is allowed to automatically fill in the value of the input control based on the user's previously entered data, such as usernames, passwords, or addresses. When enabled, this facilitates autofill and streamlines user input by suggesting or completing values according to stored information.
     *	Property type: MultiLineTextBoxAutoComplete | string
     */
     get autoComplete() {
@@ -507,7 +507,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.autoComplete = value;
         }
     }
-    /** Determines whether element will auto expand when the input overflows vertically.
+    /** Controls whether the element automatically increases its height to accommodate input that exceeds its current vertical space. When enabled, the element will expand vertically as more content is entered, preventing scrollbars from appearing.
     *	Property type: boolean
     */
     get autoExpand() {
@@ -518,7 +518,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.autoExpand = value;
         }
     }
-    /** Determines whether the input should be focused when the page is loaded.
+    /** Specifies whether the input element should automatically receive focus when the page finishes loading, allowing users to start interacting with it immediately without manually clicking or tabbing into the field.
     *	Property type: boolean
     */
     get autoFocus() {
@@ -529,7 +529,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.autoFocus = value;
         }
     }
-    /** The cols attribute specifies the visible width of a input. If it is specified, it must be a positive integer. If it is not specified, the default value is 20.
+    /** The cols attribute sets the visible width (measured in average character columns) of a textarea input field in a form. Its value must be a positive integer, determining how many characters are visible in a single row. If the cols attribute is not provided, the textarea defaults to displaying 20 character columns in width. Note: The cols attribute is not applicable to  elements; it is specific to  elements.
     *	Property type: number
     */
     get cols() {
@@ -540,7 +540,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.cols = value;
         }
     }
-    /** Enables or disables the element.
+    /** Controls whether the element is active or inactive. When enabled, the element can interact with user input; when disabled, the element is unresponsive and typically appears visually distinct to indicate its inactive state.
     *	Property type: boolean
     */
     get disabled() {
@@ -551,7 +551,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Specifies how the characters are displayed inside the input.
+    /** Defines the visual presentation of the characters entered within the input field, such as whether they are shown as plain text, masked (e.g., as asterisks for passwords), or styled in a particular way. This setting determines how users see their input while typing or viewing the form.
     *	Property type: TextBoxDisplayMode | string
     */
     get displayMode() {
@@ -562,7 +562,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.displayMode = value;
         }
     }
-    /** Determines the behavior on "Enter" key.
+    /** Specifies how the application responds when the "Enter" key is pressed, such as submitting a form, adding a new line, or triggering a specific action.
     *	Property type: MultilineTextBoxEnterKeyBehavior | string
     */
     get enterKeyBehavior() {
@@ -573,7 +573,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.enterKeyBehavior = value;
         }
     }
-    /** The form element that the element is associated with (its "form owner"). The value of the attribute must be the ID of a form element in the same document.
+    /** Specifies the form element with which this element is associated, known as its "form owner." The value of this attribute must be the ID of an existing  element within the same HTML document. This allows input or button elements to be associated with a form, even if they are not nested inside the form tag itself.
     *	Property type: string
     */
     get form() {
@@ -584,7 +584,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.form = value;
         }
     }
-    /** Sets additional helper text below the element. Appears only when the element is focused.
+    /** Provides supplementary helper text displayed beneath the element. This text becomes visible only when the element is focused, offering users additional guidance or context during interaction.
     *	Property type: any
     */
     get hint() {
@@ -595,7 +595,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.hint = value;
         }
     }
-    /** Controls horizontal scrollbar's visibility.
+    /** Determines whether the horizontal scrollbar is visible, hidden, or displayed automatically based on the content's width.
     *	Property type: HorizontalScrollBarVisibility | string
     */
     get horizontalScrollBarVisibility() {
@@ -606,7 +606,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.horizontalScrollBarVisibility = value;
         }
     }
-    /** Sets the purpose of the input and what, if any, permission the user agent has to provide automated assistance in filling out the element's input when in a form, as well as guidance to the browser as to the type of information expected in the element. This value corresponds to the standard HTML autocomplete attribute and can be set to values such as 'on', 'name', 'organization', 'street-address', etc.
+    /** Specifies the expected purpose of the input field and determines whether the browser (user agent) is allowed to offer automated assistance, such as autofill suggestions, when the element is used within a form. This property maps directly to the standard HTML autocomplete attribute, enabling the browser to understand what kind of information should be entered into the field. Accepted values include 'on', 'off', or context-specific keywords such as 'name', 'email', 'organization', or 'street-address'. Setting an appropriate value improves user experience by allowing the browser to assist in accurately and efficiently filling out form fields with relevant data.
     *	Property type: string
     */
     get inputPurpose() {
@@ -617,7 +617,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.inputPurpose = value;
         }
     }
-    /** Sets label above the element. The label is displayed above the input and it's always visible.
+    /** Positions the label above the input element. The label will always be visible and displayed above the input field, providing clear identification for the corresponding input regardless of user interaction or input state.
     *	Property type: string
     */
     get label() {
@@ -628,7 +628,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.label = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Defines or retrieves the unlockKey value used to authenticate and grant access to the product's locked features. This property acts as a security credential required to unlock and utilize restricted functionality within the product.
     *	Property type: string
     */
     get unlockKey() {
@@ -639,7 +639,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Defines or retrieves the current language code (e.g., "en", "fr", "es") to be used for localization. This property works together with the messages property, allowing the application to display the appropriate translations based on the selected language. When setting this value, ensure that corresponding translations exist within the messages object for consistent multilingual support.
     *	Property type: string
     */
     get locale() {
@@ -650,7 +650,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+    /** A callback function that allows you to define custom formatting for messages returned by the Localization Module. Use this to modify message content, structure, or placeholders before they are displayed to users, enabling tailored localization outputs that meet specific application or user requirements.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -661,7 +661,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets or gets the maximum number of characters that the user can enter.
+    /** Specifies or retrieves the maximum number of characters allowed in the input field. If set, users cannot enter more characters than this limit.
     *	Property type: number
     */
     get maxLength() {
@@ -672,7 +672,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.maxLength = value;
         }
     }
-    /** Sets or gets the minimum number of characters that the user can enter.
+    /** Specifies or retrieves the minimum number of characters that a user is required to enter in the input field. If the user enters fewer characters than the specified minimum, the input will be considered invalid.
     *	Property type: number
     */
     get minLength() {
@@ -683,7 +683,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.minLength = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Defines or retrieves an object containing key-value pairs for all user-facing strings within the widget, enabling text customization and localization. This property works in conjunction with the locale property to display translated content according to the selected language or locale. Use this to provide translated strings for different languages, ensuring your widget can support internationalization.
     *	Property type: any
     */
     get messages() {
@@ -694,7 +694,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets the name attribute for the element. Name is used when submiting HTML forms.
+    /** Defines or retrieves the value of the element’s name attribute. The name attribute uniquely identifies form elements when submitting an HTML form, enabling the form data to be correctly organized and transmitted to the server. This is essential for backend processing and data association.
     *	Property type: string
     */
     get name() {
@@ -705,7 +705,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.name = value;
         }
     }
-    /** The placeholder text that is displayed when no value is applied to the element.
+    /** Specifies the placeholder text that appears inside the element when it is empty or no value has been entered. This text serves as a hint or example to guide users on the expected input format or content.
     *	Property type: string
     */
     get placeholder() {
@@ -716,7 +716,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.placeholder = value;
         }
     }
-    /** If enabled the users cannot iteract with the element.
+    /** If enabled, users will be prevented from interacting with the element. This means that all user actions, such as clicks, typing, or other input events, will be disabled for this element.
     *	Property type: boolean
     */
     get readonly() {
@@ -727,7 +727,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
-    /** Specifies that the user must fill in a value before submitting a form that contains the element.
+    /** Indicates that the user is required to enter a value in this field before the form can be submitted. If the field is left empty, the form submission will be blocked and the user will be prompted to provide a valid input. This ensures that essential information is collected before processing the form.
     *	Property type: boolean
     */
     get required() {
@@ -738,7 +738,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.required = value;
         }
     }
-    /** Enables/ disables the resizing of the element. If enabled a resizing indicator appears in the bottom corner of the input area.
+    /** Controls whether the user can resize the element. When enabled, a resize handle appears in the bottom-right corner of the input area, allowing the user to manually adjust its size. If disabled, the element remains a fixed size and no resize indicator is shown.
     *	Property type: boolean
     */
     get resizable() {
@@ -749,7 +749,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.resizable = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Specifies or retrieves a value that determines whether the element’s alignment is configured for right-to-left (RTL) languages, ensuring proper display and support for locales that use RTL fonts and text direction (such as Arabic or Hebrew).
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -760,7 +760,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** The number of visible text lines for the control.
+    /** Specifies the number of text lines that are visible within the control at one time. This determines the vertical size of the control and how much content is displayed to the user without scrolling.
     *	Property type: number
     */
     get rows() {
@@ -771,7 +771,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.rows = value;
         }
     }
-    /** Specifies whether the content of the input will be selected on focus.
+    /** Determines if the entire content of the input field will be automatically highlighted (selected) when the input gains focus, allowing users to easily replace or copy the existing text.
     *	Property type: boolean
     */
     get selectAllOnFocus() {
@@ -782,7 +782,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.selectAllOnFocus = value;
         }
     }
-    /** Indicates the index of the last character in the current selection.
+    /** Specifies the position (zero-based index) of the last character within the currently selected text range. This value represents the character immediately after the end of the selection; if no text is selected, it is equal to the starting index of the selection.
     *	Property type: number
     */
     get selectionEnd() {
@@ -793,7 +793,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.selectionEnd = value;
         }
     }
-    /** Indicates the index to the first character in the current selection.
+    /** Specifies the zero-based index position of the first character included in the current text selection. This value represents where the selection begins within the overall string or text content.
     *	Property type: number
     */
     get selectionStart() {
@@ -804,7 +804,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.selectionStart = value;
         }
     }
-    /** Specifies whether the element is to have its spelling and grammar checked or not.
+    /** Indicates whether the element's text should be checked for spelling and grammar errors by the browser. When enabled, the browser will highlight possible mistakes and may provide correction suggestions to the user.
     *	Property type: boolean
     */
     get spellCheck() {
@@ -815,7 +815,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.spellCheck = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the theme to be applied, which controls the overall appearance and styling of the element, including colors, fonts, and other visual properties.
     *	Property type: string
     */
     get theme() {
@@ -826,7 +826,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, the element is not focusable, meaning it cannot receive focus via keyboard navigation, mouse interaction, or scripting.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -837,7 +837,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Sets or gets the value of the element.
+    /** Provides functionality to retrieve (get) the current value of the element or assign (set) a new value to it. This is commonly used for form elements such as input fields, textareas, or select elements, allowing you to programmatically access or modify the user's input or the element's content.
     *	Property type: string
     */
     get value() {
@@ -848,7 +848,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.value = value;
         }
     }
-    /** Controls vertical scrollbar's visibility.
+    /** Determines whether the vertical scrollbar is displayed, hidden, or automatically shown based on the content's overflow within the container. This property allows you to control how and when users can scroll vertically.
     *	Property type: VerticalScrollBarVisibility | string
     */
     get verticalScrollBarVisibility() {
@@ -859,7 +859,7 @@ class MultilineTextBox extends React.Component {
             this.nativeElement.verticalScrollBarVisibility = value;
         }
     }
-    /** Indicates how the control wraps text.
+    /** Specifies the behavior of the control when handling long text input, determining whether the text automatically wraps onto a new line or remains on a single line, allowing for improved readability and layout management.
     *	Property type: MultilineTextBoxWrap | string
     */
     get wrap() {
@@ -878,7 +878,7 @@ class MultilineTextBox extends React.Component {
     get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
-    /** Focuses the element.
+    /** Sets keyboard and interaction focus to the element, making it the active target for user input and accessibility tools. This enables users to interact with the element (e.g., typing in a field or activating controls) and allows screen readers to announce its presence.
     */
     focus() {
         if (this.nativeElement.isRendered) {
@@ -890,7 +890,7 @@ class MultilineTextBox extends React.Component {
             });
         }
     }
-    /** The method is used to reset the value of the element box to it's initial state.
+    /** This method resets the value of the element box to its original, default state as defined upon initialization. Any user input or programmatically modified content will be cleared, returning the element box to its initial configuration.
     */
     reset() {
         if (this.nativeElement.isRendered) {
@@ -902,7 +902,7 @@ class MultilineTextBox extends React.Component {
             });
         }
     }
-    /** Returns the currenctly selected text.
+    /** Returns the text currently selected by the user within the active input field, textarea, or document. If no text is selected, the function returns an empty string.
     * @param {string} displayMode. If <b>displayMode</b> is set to 'escaped', the value returned from the method contains escaped special characters.
     * @returns {string}
   */
@@ -910,7 +910,7 @@ class MultilineTextBox extends React.Component {
         const result = this.nativeElement.selection(displayMode);
         return result;
     }
-    /** Selects a certain part of the input text. If no arguments are specified the whole text will be selected.
+    /** Extracts a specified portion of the input text based on the provided arguments, such as start and end positions or a pattern. If no arguments are given, the entire input text is selected by default. This function enables precise control over which segment of the text is retrieved or manipulated.
     * @param {any} rangeFrom?. Determines the start index of the text selection.
     * @param {any} rangeTo?. Determines the end index of the text selection.
     */

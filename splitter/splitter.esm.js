@@ -30,7 +30,7 @@ class SplitterItem extends React.Component {
         }
         return this._id;
     }
-    /** Enables or disables the element.
+    /** Determines whether the element is interactive or not. When enabled, users can interact with the element; when disabled, the element is non-interactive and typically appears visually dimmed or grayed out.
     *	Property type: boolean
     */
     get disabled() {
@@ -41,7 +41,7 @@ class SplitterItem extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Determines of the item is collapsed or not.
+    /** Indicates whether the item is currently collapsed ('true') or expanded ('false'). This property controls the visibility of the item's content in collapsible interfaces or components.
     *	Property type: boolean
     */
     get collapsed() {
@@ -52,7 +52,7 @@ class SplitterItem extends React.Component {
             this.nativeElement.collapsed = value;
         }
     }
-    /** Determines of the item can be collapsed. If set to false, the item can't be collapsed
+    /** Specifies whether the item is collapsible. If set to true, the item can be expanded or collapsed by the user. If set to false, the item remains permanently expanded and cannot be collapsed.
     *	Property type: boolean
     */
     get collapsible() {
@@ -63,7 +63,7 @@ class SplitterItem extends React.Component {
             this.nativeElement.collapsible = value;
         }
     }
-    /** Determines the content of the splitter items
+    /** Specifies the elements or components that are displayed within each section (item) of the splitter layout. This property defines what content will appear in each resizable panel managed by the splitter.
     *	Property type: boolean
     */
     get locked() {
@@ -74,7 +74,7 @@ class SplitterItem extends React.Component {
             this.nativeElement.locked = value;
         }
     }
-    /** Determines of the item can be resized or not.
+    /** Specifies whether the item can be resized by the user. If set to true, resizing is enabled; if set to false, the item's size remains fixed.
     *	Property type: string
     */
     get max() {
@@ -85,7 +85,7 @@ class SplitterItem extends React.Component {
             this.nativeElement.max = value;
         }
     }
-    /** Determines the max size of the item.
+    /** Specifies the maximum allowable size for the item. Values exceeding this limit will not be accepted or processed.
     *	Property type: string
     */
     get min() {
@@ -96,7 +96,7 @@ class SplitterItem extends React.Component {
             this.nativeElement.min = value;
         }
     }
-    /** Determines the min size of the item
+    /** Specifies the minimum allowed size (in the relevant unit) for the item, preventing it from shrinking below this value during layout or resizing.
     *	Property type: string
     */
     get size() {
@@ -115,7 +115,7 @@ class SplitterItem extends React.Component {
     get eventListeners() {
         return ["onCreate", "onReady"];
     }
-    /** Collapses the item.
+    /** Collapses the item, hiding its content or child elements from view. This action reduces the item's visible footprint, typically as part of an expandable/collapsible user interface component such as an accordion or dropdown.
     * @param {string} far. If set to true the item will collapse to it's far side ( to the right for vertical splitter and down for horizontal)
     */
     collapse(far) {
@@ -128,7 +128,7 @@ class SplitterItem extends React.Component {
             });
         }
     }
-    /** Expands the item if it's collapsed.
+    /** Expands the item to display its hidden content or details when it is currently in a collapsed (hidden) state.
     */
     expand() {
         if (this.nativeElement.isRendered) {
@@ -140,7 +140,7 @@ class SplitterItem extends React.Component {
             });
         }
     }
-    /** Locks the item so it can no longer change it's size.
+    /** Prevents the item from being resized, ensuring its dimensions remain fixed and cannot be altered by the user or through code.
     */
     lock() {
         if (this.nativeElement.isRendered) {
@@ -152,7 +152,7 @@ class SplitterItem extends React.Component {
             });
         }
     }
-    /** Unlocks a previously locked item.
+    /** Unlocks access to an item that was previously restricted or unavailable, allowing full interaction or use of its features.
     */
     unlock() {
         if (this.nativeElement.isRendered) {
@@ -320,7 +320,7 @@ class SplitterBar extends React.Component {
     get eventListeners() {
         return ["onCreate", "onReady"];
     }
-    /** Hides the splitter bar.
+    /** Conceals the splitter bar element from view, preventing users from seeing or interacting with it within the user interface.
     */
     hide() {
         if (this.nativeElement.isRendered) {
@@ -332,7 +332,7 @@ class SplitterBar extends React.Component {
             });
         }
     }
-    /** Unhides a splitter bar.
+    /** Reveals a previously hidden splitter bar, allowing users to resize or adjust the layout between adjacent panels or sections within the user interface.
     */
     show() {
         if (this.nativeElement.isRendered) {
@@ -344,7 +344,7 @@ class SplitterBar extends React.Component {
             });
         }
     }
-    /** Locks the splitter bar.
+    /** Prevents the splitter bar from being moved or adjusted by the user, ensuring it remains fixed in its current position.
     */
     lock() {
         if (this.nativeElement.isRendered) {
@@ -356,7 +356,7 @@ class SplitterBar extends React.Component {
             });
         }
     }
-    /** Unlocks the splitter bar.
+    /** Enables user interaction with the splitter bar, allowing users to drag and resize adjacent panels or sections within the interface.
     */
     unlock() {
         if (this.nativeElement.isRendered) {
@@ -517,7 +517,7 @@ class Splitter extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Specifies or retrieves the current animation mode. When the property is set to 'none', all animations are disabled, resulting in static display without transition effects. Assigning any other valid value enables the corresponding animation mode.
     *	Property type: Animation | string
     */
     get animation() {
@@ -528,7 +528,7 @@ class Splitter extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Determines how the items are arranged inside the Splitter. Possible values:   end - all items will fit the size of the Splitter. When inserting a new item the space required for the item to fit will be deducted from it's neighbour. proportional - all items will fit the size of the Splitter. When inserting a new item the space required for it to fit will be the result from the proportional deduction of the size from the rest of the items inside the element. overflow - the items inside the Splitter will not fit it's size. Instead they overflow by taking the exact amount of space they need and a scrollbar is displayed in order to view the content.
+    /** Specifies how items are positioned and resized within the Splitter component.Possible values:      end &ndash; All items are resized to fit exactly within the available space of the Splitter. When a new item is inserted, the required space is taken from the adjacent (neighboring) item, adjusting their sizes so that the total size remains constant and nothing overflows.        proportional &ndash; All items expand or contract proportionally to occupy the full size of the Splitter. When a new item is added, the space it needs is proportionally deducted from the existing items, maintaining their relative sizes within the total available space.        overflow &ndash; Items are not resized to fit the Splitter. Instead, each item retains its natural size, even if the total size exceeds the Splitter’s dimensions. In this case, a scrollbar will appear, allowing users to scroll and view all the content that overflows beyond the visible area.
     *	Property type: SplitterAutoFitMode | string
     */
     get autoFitMode() {
@@ -539,7 +539,7 @@ class Splitter extends React.Component {
             this.nativeElement.autoFitMode = value;
         }
     }
-    /** Enables or disables the element.
+    /** Determines whether the element is interactive or inactive. When enabled, users can interact with the element; when disabled, the element is non-interactive and typically appears visually distinct (e.g., grayed out) to indicate its inactive state.
     *	Property type: boolean
     */
     get disabled() {
@@ -550,7 +550,7 @@ class Splitter extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Sets or gets splitter's data source.
+    /** Configures or retrieves the data source for the splitter component. When setting, it specifies the structure and content (such as panels or sections) that will be managed and displayed within the splitter. When getting, it returns the current data source used by the splitter.
     *	Property type: any
     */
     get dataSource() {
@@ -561,7 +561,7 @@ class Splitter extends React.Component {
             this.nativeElement.dataSource = value;
         }
     }
-    /** A getter that returns an array of all Splitter items.
+    /** A getter method that retrieves and returns an array containing all the current Splitter items. This allows you to access the complete list of items managed by the Splitter component.
     *	Property type: any
     */
     get items() {
@@ -572,7 +572,7 @@ class Splitter extends React.Component {
             this.nativeElement.items = value;
         }
     }
-    /** If set the element keeps the same proportions of the items after the whole element has been resized regardless of the size property unit ( pixels or percentages) of the items.
+    /** When enabled, this setting ensures that all items within the element maintain their original aspect ratios relative to each other whenever the element is resized. This behavior is preserved regardless of whether the size properties of the items are defined in pixels, percentages, or other units. In other words, resizing the overall element will proportionally scale all its child items, keeping their relative dimensions consistent.
     *	Property type: boolean
     */
     get keepProportionsOnResize() {
@@ -583,7 +583,7 @@ class Splitter extends React.Component {
             this.nativeElement.keepProportionsOnResize = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Sets or retrieves the unlockKey value used to authorize and enable access to the product's features. When setting, this key unlocks the product for use. When getting, it returns the currently assigned unlockKey.
     *	Property type: string
     */
     get unlockKey() {
@@ -594,7 +594,7 @@ class Splitter extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Specifies the language to be used for displaying messages. This property can be set to change the current language or retrieved to identify the active language. It works in conjunction with the messages property, which contains localized message strings for each supported language. Adjusting this property enables seamless switching between different language options in the application’s user interface.
     *	Property type: string
     */
     get locale() {
@@ -605,7 +605,7 @@ class Splitter extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback, related to localization module.
+    /** Callback function associated with the localization module, typically used to handle language changes, translate content, or process localization-related events within the application.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -616,7 +616,7 @@ class Splitter extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets an object with string values, related to the different states of passwords strength.
+    /** Defines an object that maps password strength states to their corresponding string values. Each key in the object represents a specific password strength level (such as "weak," "medium," or "strong"), and its value provides the associated descriptive label or message to display to users. This allows for customizable text based on the current password strength state.
     *	Property type: any
     */
     get messages() {
@@ -627,7 +627,7 @@ class Splitter extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets splitter's orientation.
+    /** Sets or retrieves the orientation of the splitter, determining whether it is displayed vertically (dividing the area into left and right sections) or horizontally (dividing the area into top and bottom sections).
     *	Property type: Orientation | string
     */
     get orientation() {
@@ -638,7 +638,7 @@ class Splitter extends React.Component {
             this.nativeElement.orientation = value;
         }
     }
-    /** If the element is readonly, users cannot interact with it.
+    /** When the element has the 'readonly' attribute, users can view its value but cannot modify, edit, or otherwise change its contents. However, the element may still be focused and its content can be selected and copied by the user. No direct interaction—such as typing, pasting, or deleting—is allowed.
     *	Property type: boolean
     */
     get readonly() {
@@ -649,7 +649,7 @@ class Splitter extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
-    /** Determines the resize mode of the splitter. Possible values are:  - None - resizing is disabled.  - Adjacent - only the two adjacent items between the target splitter bar are being affected. This is the default behavior.  - End - only the first item( left or top according to the orientation) of the target Splitter bar and the last item are affected.  Proportional - all of the items positioned in the direction to which the splitter bar is dragged will be affected. For example, when a splitter bar is dragged to the right all the items positioned on it's the right side will be affected. The items will obtain a proportional size corresponding to their current size.
+    /** 'Specifies how the splitter handles resizing when a user drags the splitter bar. The available modes are:'- 'None:' Resizing is disabled; splitter bars cannot be moved.- 'Adjacent (default):' Only the two panels immediately adjacent to the splitter bar are resized when the bar is dragged. Other panels remain unchanged.- 'End:' Dragging the splitter bar affects only the first panel (located at the left or top, depending on splitter orientation) and the last panel. All intermediate panels between these two remain unaffected.- 'Proportional:' All panels located in the direction the splitter bar is dragged (for example, all panels to the right if dragging right, or below if dragging down) are resized proportionally. The new sizes are calculated based on the current size ratios of these panels, ensuring they maintain their proportional widths or heights relative to each other after resizing.'Use this property to control which panels are resized and how space is distributed when users interact with the splitter.'
     *	Property type: SplitterResizeMode | string
     */
     get resizeMode() {
@@ -660,7 +660,7 @@ class Splitter extends React.Component {
             this.nativeElement.resizeMode = value;
         }
     }
-    /** Determines the resize step during reisizing
+    /** Specifies the increment or decrement value by which the element's size changes during a resize operation. This value controls how much the element grows or shrinks with each resizing step, allowing for precise adjustments.
     *	Property type: number
     */
     get resizeStep() {
@@ -671,7 +671,7 @@ class Splitter extends React.Component {
             this.nativeElement.resizeStep = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Gets or sets a value that specifies whether the element's alignment should accommodate right-to-left (RTL) languages, such as Arabic or Hebrew. When enabled, the element's content and layout will adjust to support RTL text direction, ensuring proper display for locales that use right-to-left scripts.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -682,7 +682,7 @@ class Splitter extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** When enabled the resizing operation happens live. By default this feature is not enabled and the user sees a hightlighted bar while dragging instead of the actual splitter bar.
+    /** When this feature is enabled, the resizing operation updates the layout in real-time as the user drags the splitter, providing immediate visual feedback. By default, live resizing is disabled; instead, a highlighted guide bar appears during the drag operation, showing where the splitter will be positioned once the user releases the mouse button. The actual layout is only updated after the drag is complete.
     *	Property type: boolean
     */
     get liveResize() {
@@ -693,7 +693,7 @@ class Splitter extends React.Component {
             this.nativeElement.liveResize = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the theme for the element. The theme determines the overall appearance, including colors, fonts, and styling, to ensure a consistent and visually appealing look.
     *	Property type: string
     */
     get theme() {
@@ -704,7 +704,7 @@ class Splitter extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** If set to true, the element will be excluded from keyboard navigation and cannot receive focus via keyboard or mouse interactions.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -723,7 +723,7 @@ class Splitter extends React.Component {
     get eventListeners() {
         return ["onCollapse", "onExpand", "onResizeStart", "onResizeEnd", "onCreate", "onReady"];
     }
-    /** Appends a new node.
+    /** Appends a new node to the end of the current list or container, adding it as the last child element. This operation updates the data structure to include the newly added node as the final element in the sequence.
     * @param {Node} node. The node to append
     */
     appendChild(node) {
@@ -736,7 +736,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Collapses splitter item.
+    /** Collapses the specified splitter panel, minimizing its size and hiding its content within the container or layout.
     * @param {any} item. number indicating the index of the item or an isntance of JQX.SplitterItem
     * @param {boolean} far?. Indicates whether the item should collapse to it's far or near side
     */
@@ -750,7 +750,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Expands the splitter item if possible (if there's enough space available).
+    /** Attempts to expand the splitter item, provided sufficient space is available. The expansion is only performed if there is enough remaining space in the container to accommodate the item's increased size.
     * @param {any} item. number indicating the index of the item or an isntance of JQX.SplitterItem
     */
     expand(item) {
@@ -763,7 +763,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Hides a splitter bar
+    /** Conceals the splitter bar element from view, preventing users from interacting with or resizing the associated panels.
     * @param {number} splitterBar. A JQX.SplitterBar instance.
     * @returns {number}
   */
@@ -771,7 +771,7 @@ class Splitter extends React.Component {
         const result = this.nativeElement.hideBar(splitterBar);
         return result;
     }
-    /** Insert a new Splitter item at a given position.
+    /** Inserts a new Splitter component into the specified position within the layout, allowing the user to divide and resize adjacent sections of the interface.
     * @param {number} index. The index at which a new item will be inserted.
     * @param {any} details. An Object or string used as content if the splitter item.
     */
@@ -785,7 +785,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Inserts the specified "smart-splitter-item" node before the reference "smart-splitter-item" node.
+    /** Inserts the specified "smart-splitter-item" node into the DOM immediately before the reference "smart-splitter-item" node, ensuring that the new element appears directly before the reference node within the splitter container. This operation preserves the order of splitter items and updates their layout accordingly.
     * @param {Node} newNode. The  "jqx-splitter-item" node to insert.
     * @param {Node | null} referenceNode?. The "jqx-splitter-item" node before which newNode is inserted.
     * @returns {Node}
@@ -794,7 +794,7 @@ class Splitter extends React.Component {
         const result = this.nativeElement.insertBefore(newNode, referenceNode);
         return result;
     }
-    /** Locks a splitter item so it's size can't change.
+    /** Prevents a splitter item from being resized by the user, ensuring that its current size remains fixed and unchangeable during layout adjustments.
     * @param {number} index. The index of a Splitter Bar or it's instance.
     */
     lockItem(index) {
@@ -807,7 +807,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Locks a splitter bar so it can't be dragged.
+    /** Prevents the splitter bar from being moved by disabling user drag interactions, effectively locking its position and ensuring that adjacent panes cannot be resized.
     * @param {number} index. The index of a Splitter Bar or it's instance.
     */
     lockBar(index) {
@@ -820,7 +820,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Removes a Splitter item.
+    /** Removes a Splitter item from the layout, detaching it from its parent container and updating the interface accordingly. This action permanently deletes the specified Splitter component and any associated layout adjustments.
     * @param {number} index. An item to be removed.
     */
     removeAt(index) {
@@ -833,7 +833,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Removes all items from the Splitter
+    /** Clears all items currently contained within the Splitter component, effectively resetting it to an empty state. This operation removes every panel, section, or child element inside the Splitter, leaving no content displayed.
     */
     removeAll() {
         if (this.nativeElement.isRendered) {
@@ -845,7 +845,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Removes a child "smart-splitter-item" node.
+    /** Removes a child node of type "smart-splitter-item" from its parent element in the DOM, effectively deleting the specified splitter pane and updating the layout accordingly.
     * @param {Node} node. The "jqx-splitter-item" node to remove.
     * @returns {Node}
   */
@@ -853,7 +853,7 @@ class Splitter extends React.Component {
         const result = this.nativeElement.removeChild(node);
         return result;
     }
-    /** Refreshes the Splitter
+    /** Reloads and updates the Splitter component, re-rendering its layout and recalculating its size and position to reflect any recent changes to its content, configuration, or container.
     */
     refresh() {
         if (this.nativeElement.isRendered) {
@@ -865,7 +865,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Unhides a Splitter Bar
+    /** Reveals a previously hidden splitter bar, allowing users to resize adjacent panes or sections within the interface.
     * @param {number} splitterBar. An instance of a splitter bar.
     */
     showBar(splitterBar) {
@@ -878,7 +878,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Unlocks a previously locked splitter item.
+    /** Enables access to a splitter item that was previously locked, allowing users to interact with or modify the item as intended. This action removes any restrictions, making the splitter fully functional within the application.
     * @param {number} item. The index of a Splitter Item or it's instance.
     */
     unlockItem(item) {
@@ -891,7 +891,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Unlocks a previously locked splitter bar.
+    /** Enables user interaction with a previously disabled or locked splitter bar, allowing users to adjust the size of adjacent panes or panels by dragging the splitter.
     * @param {number} item. The index of a Splitter Bar or it's instance.
     */
     unlockBar(item) {
@@ -904,7 +904,7 @@ class Splitter extends React.Component {
             });
         }
     }
-    /** Updates the properties of a Splitter item inside the Splitter.
+    /** Updates the configuration of a specific Splitter item within a Splitter component, allowing changes to its properties such as size, orientation, minimum and maximum limits, or other customizable options. This enables dynamic adjustment of the Splitter item's behavior and appearance within the parent Splitter layout.
     * @param {any} item. The index of a JQX.SplitterItem or it's instance.
     * @param {any} settings. An object containing the properties of a JQX.SplitterItem.
     */

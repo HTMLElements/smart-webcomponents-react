@@ -18,7 +18,7 @@ export declare class TreeItem extends React.Component<React.HTMLAttributes<Eleme
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Enables or disables element.
+    /** Controls whether the element is enabled (interactive) or disabled (non-interactive). When disabled, the element cannot be interacted with by the user and may appear visually dimmed or inactive.
     *	Property type: boolean
     */
     get disabled(): boolean;
@@ -53,7 +53,7 @@ export declare class TreeItem extends React.Component<React.HTMLAttributes<Eleme
     */
     get value(): any;
     set value(value: any);
-    /** Disables user interaction with the item.
+    /** Prevents users from interacting with the item, disabling all actions such as clicking, tapping, dragging, or keyboard input. The item will not respond to any user-generated events while this setting is enabled.
     *	Property type: boolean
     */
     get readonly(): boolean;

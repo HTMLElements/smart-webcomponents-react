@@ -24,7 +24,7 @@ export declare class Validator extends React.Component<React.HTMLAttributes<Elem
     */
     get rules(): ValidatorRule[];
     set rules(value: ValidatorRule[]);
-    /** A valid CSS selector of an element on the page to be used as a container for validation error messages.
+    /** Specifies a valid CSS selector that identifies the HTML element on the page which will serve as the container for displaying validation error messages. This selector determines where the error messages will appear within the user interface.
     *	Property type: string
     */
     get validationSummarySelector(): string;
@@ -37,10 +37,10 @@ export declare class Validator extends React.Component<React.HTMLAttributes<Elem
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
-    /** Clears the error messages.
+    /** Removes all error messages from the current context, ensuring that no error notifications are displayed to the user. This action resets the error state, allowing for a clean user experience without residual error indicators.
     */
     reset(): void;
-    /** Opens the dropDown.
+    /** Displays the drop-down menu, making its list of options visible to the user.
     * @param {Function} result?. A callback function to call when validating inputs.
     */
     validate(result?: Function): void;

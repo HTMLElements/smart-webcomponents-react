@@ -26,16 +26,16 @@ export declare class SplitterBar extends React.Component<React.HTMLAttributes<El
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
-    /** Hides the splitter bar.
+    /** Conceals the splitter bar element from view, preventing users from seeing or interacting with it within the user interface.
     */
     hide(): void;
-    /** Unhides a splitter bar.
+    /** Reveals a previously hidden splitter bar, allowing users to resize or adjust the layout between adjacent panels or sections within the user interface.
     */
     show(): void;
-    /** Locks the splitter bar.
+    /** Prevents the splitter bar from being moved or adjusted by the user, ensuring it remains fixed in its current position.
     */
     lock(): void;
-    /** Unlocks the splitter bar.
+    /** Enables user interaction with the splitter bar, allowing users to drag and resize adjacent panels or sections within the interface.
     */
     unlock(): void;
     constructor(props: any);

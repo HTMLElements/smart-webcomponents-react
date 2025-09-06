@@ -30,7 +30,7 @@ class TimePicker extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Controls the animation mode for the component. When set to 'none', all animations are disabled. When set to other supported values, animations will be enabled according to the specified mode. This property can be used to either retrieve the current animation mode or update it dynamically.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class TimePicker extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Sets or gets whether after selecting hours, the element will automatically switch to minute selection.
+    /** Determines whether, after selecting the hour, the component will automatically advance to the minute selection view. When enabled, users will be guided directly to choose minutes immediately after choosing an hour, streamlining the time selection process. This option can be set or retrieved programmatically.
     *	Property type: boolean
     */
     get autoSwitchToMinutes() {
@@ -52,7 +52,7 @@ class TimePicker extends React.Component {
             this.nativeElement.autoSwitchToMinutes = value;
         }
     }
-    /** Enables or disables the element.
+    /** Specifies whether the element is active and can be interacted with by the user. When enabled, the element responds to user actions; when disabled, the element appears visually inactive and does not accept user input or interaction.
     *	Property type: boolean
     */
     get disabled() {
@@ -63,7 +63,7 @@ class TimePicker extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Determines whether the footer section of the element is visible or not.
+    /** Specifies whether the footer section of the element is displayed to the user. If set to true, the footer will be visible; if false, the footer will be hidden.
     *	Property type: boolean
     */
     get footer() {
@@ -74,7 +74,7 @@ class TimePicker extends React.Component {
             this.nativeElement.footer = value;
         }
     }
-    /** Sets or gets the footer template. The value of this property can be the id of an HTMLTemplateElement or the HTMLTemplateElement itself. If set to null, a default, empty, template is applied.
+    /** Specifies or retrieves the footer template used by the component. This property accepts either the ID of an existing HTMLTemplateElement or a direct reference to an HTMLTemplateElement object. When assigning an ID, the component will search the DOM for a template with the corresponding ID and use it as the footer template. If a direct reference is provided, that template will be used. If the value is set to null, the component will revert to its default behavior by applying an empty template to the footer area.
     *	Property type: string | HTMLTemplateElement
     */
     get footerTemplate() {
@@ -85,7 +85,7 @@ class TimePicker extends React.Component {
             this.nativeElement.footerTemplate = value;
         }
     }
-    /** Determines the hour selection format.
+    /** Specifies the format used for selecting hours, such as 12-hour (AM/PM) or 24-hour (military) time.
     *	Property type: TimePickerFormat | string
     */
     get format() {
@@ -96,7 +96,7 @@ class TimePicker extends React.Component {
             this.nativeElement.format = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Sets or retrieves the unlockKey, a unique value required to activate or grant access to the product's features. This key is used to validate and unlock product functionality.
     *	Property type: string
     */
     get unlockKey() {
@@ -107,7 +107,7 @@ class TimePicker extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Specifies or retrieves the current language setting. This property is typically used together with the messages property to determine which language version of the messages should be displayed or retrieved. When setting the language, the corresponding localized messages from the messages collection will be used.
     *	Property type: string
     */
     get locale() {
@@ -118,7 +118,7 @@ class TimePicker extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+    /** A callback function that allows you to customize the formatting of messages returned by the Localization Module. Use this to modify how localized text is structured, such as adding dynamic values, adjusting syntax, or applying custom formatting rules before the message is displayed to the user.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -129,7 +129,7 @@ class TimePicker extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property language.
+    /** Defines or retrieves an object containing string resources used throughout the widget interface, which can be localized to support different languages and regions. This property works in tandem with the language property to display text in the user's preferred language, enabling comprehensive internationalization of the widget's UI elements and messages.
     *	Property type: any
     */
     get messages() {
@@ -140,7 +140,7 @@ class TimePicker extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets the step when selecting minutes.
+    /** Specifies or retrieves the increment value (in minutes) used when adjusting or selecting the minute portion of a time input. This determines the intervals by which minutes can be increased or decreased, such as allowing selection at every 5 minutes (e.g., 0, 5, 10, 15, etc.) instead of every 1 minute.
     *	Property type: number
     */
     get minuteInterval() {
@@ -151,7 +151,7 @@ class TimePicker extends React.Component {
             this.nativeElement.minuteInterval = value;
         }
     }
-    /** Sets or gets the name attribute for the element. Name is used when submiting HTML forms.
+    /** Sets or retrieves the name attribute of the element. The name attribute identifies the element when submitting HTML forms, allowing its value to be included as a key in the form data sent to the server. This is essential for server-side processing and distinguishing between multiple form fields.
     *	Property type: string
     */
     get name() {
@@ -162,7 +162,7 @@ class TimePicker extends React.Component {
             this.nativeElement.name = value;
         }
     }
-    /** Disables user interaction with the element.
+    /** Prevents any user interactions with the element, such as clicking, tapping, focusing, or selecting content. While disabled, the element will not respond to mouse, keyboard, or touch events, and interactive features (like links or form inputs) will not be accessible.
     *	Property type: boolean
     */
     get readonly() {
@@ -173,7 +173,7 @@ class TimePicker extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Gets or sets a value that specifies whether the element is aligned to support right-to-left (RTL) languages and scripts, such as Arabic or Hebrew. When enabled, the element's alignment and layout are adjusted to accommodate right-to-left text direction for proper localization.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -184,7 +184,7 @@ class TimePicker extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Determines the view that is currently being shown. By default the hours view is visible.
+    /** Specifies which view is currently displayed to the user. By default, the hours view is initially shown unless a different view is set. This property controls the visible section of the interface, such as hours, minutes, or other available views.
     *	Property type: TimePickerSelection | string
     */
     get selection() {
@@ -195,7 +195,7 @@ class TimePicker extends React.Component {
             this.nativeElement.selection = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the visual theme to be applied to the element. The selected theme controls the overall appearance, including colors, fonts, and styling, ensuring a consistent look and feel for the element within the user interface.
     *	Property type: string
     */
     get theme() {
@@ -206,7 +206,7 @@ class TimePicker extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, this property makes the element unfocusable, preventing it from receiving keyboard or mouse focus during user interaction or via scripting.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -217,7 +217,7 @@ class TimePicker extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Sets or gets the value of the element. The value can be a valid Date object or a string representing a valid time.
+    /** Sets or retrieves the value of the element. The value can be provided as a valid Date object or as a string formatted to represent a valid time (e.g., "14:30" for 2:30 PM). When setting, ensure the input matches the expected format; when getting, the returned value will reflect the current time value of the element.
     *	Property type: any
     */
     get value() {
@@ -228,7 +228,7 @@ class TimePicker extends React.Component {
             this.nativeElement.value = value;
         }
     }
-    /** Determines whether the element is in landscape or portrait mode.
+    /** Determines the current orientation of the element, indicating whether its width is greater than its height (landscape mode) or its height is greater than its width (portrait mode). This property allows developers to adapt layout and styles based on how the element is displayed.
     *	Property type: ViewLayout | string
     */
     get view() {
@@ -247,7 +247,7 @@ class TimePicker extends React.Component {
     get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
-    /** Sets the hours.
+    /** Specifies the hour component of the time value, typically as an integer ranging from 0 (midnight) to 23 (11 PM). This property or method updates the hours portion while leaving the minutes, seconds, and milliseconds unchanged, unless otherwise specified.
     * @param {number} hours. The hours to set.
     */
     setHours(hours) {
@@ -260,7 +260,7 @@ class TimePicker extends React.Component {
             });
         }
     }
-    /** Sets the minutes.
+    /** Specifies the value for the minutes component of a time, typically as an integer between 0 and 59. This is used to set or update the minute portion of a time-related field.
     * @param {number} minutes. The minutes to set.
     */
     setMinutes(minutes) {

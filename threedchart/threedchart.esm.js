@@ -30,7 +30,7 @@ class ThreeDChart extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'.
+    /** Gets or sets the animation mode for the component. If the property is set to 'none', all animations are disabled. Otherwise, enabling this property allows animations to play based on the selected mode.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Determines the rate of the animation. The default animation rate is 1
+    /** Specifies the speed at which the animation progresses. A rate of 1 represents the normal playback speed. Values greater than 1 will make the animation play faster, while values less than 1 will slow it down. By default, the animation rate is set to 1.
     *	Property type: number
     */
     get animationSpeed() {
@@ -52,7 +52,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.animationSpeed = value;
         }
     }
-    /** Sets whether the chart will rotate automatically.
+    /** Determines if the chart automatically rotates through its data or views without user interaction. When enabled, the chart will transition between different data points or perspectives at set intervals.
     *	Property type: boolean
     */
     get autoRotate() {
@@ -63,7 +63,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.autoRotate = value;
         }
     }
-    /** Sets the speed of the automatic rotation.
+    /** Defines the speed at which the object or element automatically rotates. A higher value increases the rotation rate, while a lower value slows it down. Typically measured in degrees or radians per second, depending on implementation.
     *	Property type: number
     */
     get autoRotateSpeed() {
@@ -74,7 +74,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.autoRotateSpeed = value;
         }
     }
-    /** Sets the chart's background color. For example: '#DDFFE8'
+    /** Specifies the background color of the chart area using a valid CSS color value. Accepts formats such as hexadecimal (e.g., '#DDFFE8'), RGB, RGBA, HSL, HSLA, or named colors. For example, setting this property to '#DDFFE8' applies a light green background to the chart.
     *	Property type: string | null
     */
     get backgroundColor() {
@@ -85,7 +85,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.backgroundColor = value;
         }
     }
-    /** Sets the chart's background to a static linear gradient. The property must be set to an Array of Strings in the format: 'offset, color'
+    /** Configures the chart's background with a fixed linear gradient. To use this property, provide an array of strings, each representing a color stop in the format: '"offset, color"'. Here, 'offset' is a percentage (e.g., '0%', '100%') indicating the position of the color stop along the gradient, and 'color' is any valid CSS color value. The array should have at least two entries to define the gradient's start and end colors. For example:  '["0%, #fff", "100%, #ccc"]'.
     *	Property type: any[]
     */
     get backgroundGradient() {
@@ -96,7 +96,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.backgroundGradient = value;
         }
     }
-    /** Sets the chart's background to a static image. For example: 'https://www.htmlelements.com/demos/images/stars.jpg'
+    /** Specifies a static image as the background of the chart. You can provide the URL of an image (e.g., 'https://www.htmlelements.com/demos/images/stars.jpg'), which will be displayed behind the chart elements and remain fixed regardless of chart interactions such as zooming or panning.
     *	Property type: string
     */
     get backgroundImage() {
@@ -107,7 +107,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.backgroundImage = value;
         }
     }
-    /** Sets the chart's background to a dynamic background image which rotates with the camera. The property must be set an Array of 6 images. All images must have aspect ratio 1:1
+    /** Defines the chart's background as a dynamic, camera-synchronized image that rotates in tandem with the viewer's perspective. This property requires an array containing exactly six images, each representing one face of a cube map (for example: front, back, left, right, top, bottom). All provided images must be square, with a 1:1 aspect ratio, to ensure seamless rendering and correct alignment in the 3D environment.
     *	Property type: any[]
     */
     get backgroundTexture() {
@@ -118,7 +118,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.backgroundTexture = value;
         }
     }
-    /** Sets the camera's position. The property must be set to an {x, y, z} object.
+    /** Specifies the camera's position in 3D space. This property requires an object with three numeric properties: '{ x, y, z }', each representing the camera's coordinates along the respective axes. For example: '{ x: 0, y: 10, z: 50 }'.
     *	Property type: ThreeDChartCameraPosition
     */
     get cameraPosition() {
@@ -129,7 +129,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.cameraPosition = value;
         }
     }
-    /** Sets the intial camera zoom. The default value is 1
+    /** Specifies the initial zoom level of the camera when the view is first loaded. A value of 1 represents the default, unzoomed state. Higher values zoom in, showing a closer view, while lower values zoom out, displaying a wider area.
     *	Property type: number
     */
     get cameraZoom() {
@@ -140,7 +140,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.cameraZoom = value;
         }
     }
-    /** Sets the caption (title) of the chart.
+    /** Defines the main title, or caption, that appears at the top of the chart, providing a clear and descriptive label for the chart’s content or purpose.
     *	Property type: string
     */
     get caption() {
@@ -151,7 +151,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.caption = value;
         }
     }
-    /** Sets the chart's color pallete. jqxChart suppports 32 color schemes from 'scheme01' to 'scheme32'.
+    /** Defines the color palette used for the chart's visual elements. jqxChart supports 32 distinct color schemes, selectable by specifying a scheme name from 'scheme01' through 'scheme32'. Each scheme applies a predefined set of colors to the chart’s data series and components, allowing for easy customization of the chart's appearance.
     *	Property type: ThreeDChartColorScheme | string
     */
     get colorScheme() {
@@ -162,7 +162,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.colorScheme = value;
         }
     }
-    /** Sets the chart's controls settings.
+    /** Configures the settings for the chart's interactive controls, such as filters, sliders, and buttons, allowing customization of their appearance and behavior.
     *	Property type: any
     */
     get controlsSettings() {
@@ -173,7 +173,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.controlsSettings = value;
         }
     }
-    /** Allows substituting default items with custom 3D Objects. The property must be set to an Array of Objects in the format: { groupIndex, serieIndex, itemIndex, modelUrl }
+    /** Enables you to replace default items with custom 3D objects. To use this property, provide an array of objects, each specifying the location and source of a custom model in the following format:  '{ groupIndex, serieIndex, itemIndex, modelUrl }'.  - 'groupIndex': Index of the group containing the item to replace  - 'serieIndex': Index of the series within the group  - 'itemIndex': Index of the specific item within the series  - 'modelUrl': URL or path to the custom 3D model file to use as a replacement  Each object in the array defines a substitution for a specific default item.
     *	Property type: any[]
     */
     get customModels() {
@@ -184,7 +184,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.customModels = value;
         }
     }
-    /** Sets the chart's data source.
+    /** Specifies the data source that populates the chart, determining the information displayed in the chart's visualization. This property accepts an array or object containing the data points or records to be rendered on the chart.
     *	Property type: any[]
     */
     get dataSource() {
@@ -195,7 +195,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.dataSource = value;
         }
     }
-    /** Sets the description text of the chart.
+    /** Specifies the descriptive text displayed on the chart, providing additional context or information to help users understand the chart's purpose, data, or insights. This text typically appears as a caption or annotation within or near the chart area.
     *	Property type: string
     */
     get description() {
@@ -206,7 +206,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.description = value;
         }
     }
-    /** Enables or disables the chart.
+    /** Specifies whether the chart is visible or hidden. When set to true, the chart will be displayed; when set to false, the chart will be disabled.
     *	Property type: boolean
     */
     get disabled() {
@@ -217,7 +217,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Sets whether the chart's toolbar is enabled.
+    /** Determines whether the chart's toolbar is displayed, allowing users to access interactive features such as exporting, zooming, or changing chart settings. Set to 'true' to show the toolbar, or 'false' to hide it.
     *	Property type: boolean
     */
     get enableControlsToolbar() {
@@ -239,7 +239,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.controlsToolbarItems = value;
         }
     }
-    /** Sets the chart's grid options.
+    /** Configures the appearance and behavior of the chart’s grid, including properties such as visibility, line style, color, spacing, and axis alignment.
     *	Property type: any
     */
     get gridOptions() {
@@ -250,7 +250,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.gridOptions = value;
         }
     }
-    /** Sets whether the legend will be created based on the chart's series or serie groups. "auto" - the legend index will change depending on the Chart type
+    /** Specifies whether the legend is generated based on individual chart series or grouped series. When set to "auto", the legend adapts dynamically—using series or series groups as the basis—depending on the current chart type. This ensures the legend remains relevant to how data is visually organized in each chart configuration.
     *	Property type: ThreeDChartLegendIndex | string
     */
     get legendIndex() {
@@ -261,7 +261,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.legendIndex = value;
         }
     }
-    /** Sets the legend's layout.
+    /** Specifies the arrangement of items within the legend, such as whether they are displayed in a horizontal row or a vertical column. This property controls the visual layout and orientation of the legend entries in the chart.
     *	Property type: any
     */
     get legendLayout() {
@@ -272,7 +272,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.legendLayout = value;
         }
     }
-    /** Sets the light color of the 3D Scene.
+    /** Defines the color of the lighting used within the 3D scene, affecting the appearance and shading of all objects rendered in the environment. Adjusting this value changes how surfaces reflect light, influencing the overall mood and visibility in the scene. Use a valid color format (e.g., hexadecimal, RGB, or named color).
     *	Property type: string
     */
     get lightColor() {
@@ -283,7 +283,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.lightColor = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Gets or sets the unlockKey property, which serves as the authentication key required to activate or access the product’s full features. Use this property to specify a valid unlock key for product authorization, or retrieve the currently assigned key.
     *	Property type: string
     */
     get unlockKey() {
@@ -294,7 +294,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the locale. Used in conjunction with the property messages.
+    /** Sets or retrieves the current locale (language and regional settings) for the component. This property is used together with the messages property to determine which localized messages or translations should be displayed. Changing the locale will update the component’s language-specific content accordingly.
     *	Property type: string
     */
     get locale() {
@@ -305,7 +305,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Defines or retrieves an object containing the set of user interface strings displayed by the widget, enabling support for multiple languages. This property works together with the locale property to allow localization, ensuring that text within the widget adapts appropriately to the selected language or region. Each key-value pair in the object represents a specific UI string that can be customized or translated as needed.
     *	Property type: any
     */
     get messages() {
@@ -316,7 +316,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets a value indicating whether the Chart's layout is mirrored.
+    /** Gets or sets a boolean value that determines whether the Chart's layout is displayed in a mirrored (flipped horizontally) orientation. When enabled, the positions of chart elements such as axes, labels, and data series are reversed to create a mirrored effect.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -327,7 +327,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Determines the selection mode.
+    /** Specifies how items can be selected within the component, such as allowing single selection, multiple selections, or disabling selection altogether.
     *	Property type: ThreeDChartSelectionMode | string
     */
     get selectionMode() {
@@ -338,7 +338,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.selectionMode = value;
         }
     }
-    /** The seriesGroups property is used to describe all series displayed on the chart. jqxChart supports multiple series of different types and series grouping. Each series group may have its own Value Axis (Y-axis) which allows you to have values with different scales displayed on the same chart at the same time. It also allows you to display multiple series types together on the same chart. For example, you can display all series in one group as lines and the series in a second group as columns. seriesGroups is an array of objects where each object represents one group.
+    /** The 'seriesGroups' property defines the configuration for all data series displayed on the jqxChart. This property allows you to organize multiple series into separate groups, with each group potentially using a different chart type (such as line, column, or area) and having its own dedicated value axis (Y-axis). This enables the visualization of data with varying value ranges or units of measure on the same chart, making it possible to compare disparate datasets simultaneously.Each element in the 'seriesGroups' array is an object representing a single series group. Within each group object, you can specify the type of chart to be used for the series in that group (for example, '"type": "line"' or '"type": "column"'), define the configuration for the group's value axis, and provide the specific series data to be plotted. This flexible structure allows you to, for example, display all series in one group as lines, while rendering series in another group as columns—each with independently scaled Y-axes.In summary, 'seriesGroups' is an array of group configuration objects, and each group defines the chart type, associated value axis, and a collection of series to be rendered together within that group. This design supports advanced charting scenarios, such as displaying both temperature (on one Y-axis) and rainfall (on a separate Y-axis) within the same chart, using different series visualizations.
     *	Property type: ThreeDChartSeriesGroup[]
     */
     get seriesGroups() {
@@ -349,7 +349,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.seriesGroups = value;
         }
     }
-    /** Determines whether to show grid connecting lines when a chart item is hovered over.
+    /** Specifies whether the grid connecting lines should be displayed when a user hovers over a chart item. When enabled, grid lines related to the hovered data point will become visible, providing visual emphasis and aiding in data interpretation.
     *	Property type: boolean
     */
     get showConnectionLines() {
@@ -360,7 +360,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.showConnectionLines = value;
         }
     }
-    /** Determines whether to show or hide the chart series legend.
+    /** Specifies whether the chart series legend should be displayed or hidden. When set to true, the legend appears on the chart, helping users identify different data series. When set to false, the legend is not shown.
     *	Property type: boolean
     */
     get showLegend() {
@@ -371,7 +371,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.showLegend = value;
         }
     }
-    /** Determines whether to show or hide the chart series legend table.
+    /** Specifies whether the chart’s series legend table is displayed. When set to true, the legend table appears, providing a visual key that identifies each data series within the chart. When set to false, the legend table is hidden, and no series identifiers are shown. This setting helps control the visibility of the chart legend for improved readability or a cleaner presentation.
     *	Property type: boolean
     */
     get showLegendTable() {
@@ -382,7 +382,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.showLegendTable = value;
         }
     }
-    /** Enables or disables the chart tooltips.
+    /** Controls the visibility of chart tooltips. When enabled, tooltips appear to display additional information when users hover over or interact with chart elements; when disabled, tooltips are hidden and no additional data is shown on interaction.
     *	Property type: boolean
     */
     get showToolTips() {
@@ -393,7 +393,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.showToolTips = value;
         }
     }
-    /** Sets the padding of the chart's title (caption).
+    /** Specifies the amount of space (padding) between the chart title (caption) and the edges of the chart area, allowing you to control the distance around the title for better visual separation and readability.
     *	Property type: ThreeDChartPadding
     */
     get titlePadding() {
@@ -404,7 +404,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.titlePadding = value;
         }
     }
-    /** Tooltip data formatting settings for the values in the serie.
+    /** Configuration options for formatting how the series values appear within tooltips. These settings control the display format, such as number precision, prefixes, suffixes, units, and other stylistic options specific to the values shown in the series tooltips.
     *	Property type: {(value?: any, index?: number, series?: any): string}
     */
     get toolTipFormatFunction() {
@@ -415,7 +415,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.toolTipFormatFunction = value;
         }
     }
-    /** Tooltip line color. By default it is set to the hovered item's color
+    /** Defines the color of the tooltip's guideline or border that appears when hovering over chart elements. By default, this color matches the color of the item currently being hovered over. You can customize this property to use a specific color regardless of the hovered item's color.
     *	Property type: ThreeDChartFormatSettings
     */
     get toolTipFormatSettings() {
@@ -426,7 +426,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.toolTipFormatSettings = value;
         }
     }
-    /** An object with settings about the Chart's y-axis (value axis).
+    /** An object containing configuration settings for the y-axis (value axis) of the Chart. This includes properties such as axis labels, scaling options, tick marks, grid lines, range limits (minimum and maximum values), formatting, and other visual or functional parameters that control how the y-axis is displayed and behaves.
     *	Property type: string | null
     */
     get toolTipLineColor() {
@@ -437,7 +437,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.toolTipLineColor = value;
         }
     }
-    /** Sets the Chart's xAxis.
+    /** Configures the properties of the chart's x-axis, such as its scale, labels, range, and appearance. This setting determines how data is displayed and organized along the horizontal axis of the chart.
     *	Property type: ThreeDChartValueAxis
     */
     get valueAxis() {
@@ -448,7 +448,7 @@ class ThreeDChart extends React.Component {
             this.nativeElement.valueAxis = value;
         }
     }
-    /** Sets the Chart's zAxis.
+    /** Defines the properties and configuration options for the Chart's z-axis, which controls the depth dimension in 3D charts. This setting allows you to specify parameters such as limits, labels, scaling, and appearance of the z-axis, enabling better representation and visualization of data in three-dimensional charts.
     *	Property type: ThreeDChartXAxis
     */
     get xAxis() {
@@ -478,7 +478,7 @@ class ThreeDChart extends React.Component {
     get eventListeners() {
         return ["onItemClick", "onShow", "onHide", "onSelect", "onUnselect", "onRangeSelectionChanged", "onRangeSelectionChanging", "onRefreshBegin", "onRefreshEnd", "onResizeBegin", "onResizeEnd", "onCreate", "onReady"];
     }
-    /** Adds a new color sheme. If a scheme with the same name already exists, the method will update its colors.
+    /** Adds a new color scheme to the collection. If a scheme with the specified name already exists, this method will update its color values instead of creating a duplicate. This ensures that each color scheme name remains unique, and existing schemes can be modified by providing the same name with new color definitions.
     * @param {string} schemeName. The name of the custom color scheme.
     * @param {any[]} colorsArray. An array of color values.
     */
@@ -492,7 +492,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Begins an update of the chart. The chart will not be rendered until the endUpdate method is called.
+    /** Initiates an update operation on the chart, allowing multiple changes to be made without triggering a re-render after each modification. The chart’s rendering is deferred until the endUpdate method is called, at which point all accumulated updates are rendered in a single batch for improved performance.
     */
     beginUpdate() {
         if (this.nativeElement.isRendered) {
@@ -504,7 +504,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Ends an update of the chart. The chart will be rendered after the endUpdate method is called.
+    /** Signals the completion of a batch update to the chart. Once the `endUpdate` method is called, all pending changes made since the last update will be processed, and the chart will be re-rendered to reflect these updates. This helps optimize performance by minimizing unnecessary redraws during multiple consecutive changes.
     * @param {boolean} refresh?. If set to true, the chart will complete a full refresh.
     */
     endUpdate(refresh) {
@@ -517,7 +517,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Returns the colors of a color scheme by name. If the scheme doesn't exist the method returns undefined.
+    /** Retrieves the color palette associated with the specified color scheme name. If a color scheme with the provided name does not exist, the method returns undefined instead of a color palette.
     * @param {string} schemeName. The name of the color scheme.
     * @returns {any[]}
   */
@@ -525,7 +525,7 @@ class ThreeDChart extends React.Component {
         const result = this.nativeElement.getColorScheme(schemeName);
         return result;
     }
-    /** Gets the item with the specified indexes.
+    /** Retrieves the item located at the specified index or indices within the collection. If multiple indexes are provided, the method accesses nested items accordingly.
     * @param {number | null} groupIndex?. Series group index.
     * @param {number | null} serieIndex?. Series index.
     * @param {number | null} itemIndex?. Item (data point) index.
@@ -535,7 +535,7 @@ class ThreeDChart extends React.Component {
         const result = this.nativeElement.getItemByIndexes(groupIndex, serieIndex, itemIndex);
         return result;
     }
-    /** Gets an arrat of the items with the specified indexes. Leaving an index null will return all items that match the other indexes.
+    /** Returns an array of items that correspond to the specified indexes. If a particular index is set to null, the function will include all items that match the other provided indexes for that position. This allows for flexible selection based on partial index specification.
     * @param {number | null} groupIndex?. Series group index.
     * @param {number | null} serieIndex?. Series index.
     * @param {number | null} itemIndex?. Item (data point) index.
@@ -545,42 +545,42 @@ class ThreeDChart extends React.Component {
         const result = this.nativeElement.getItemsByIndexes(groupIndex, serieIndex, itemIndex);
         return result;
     }
-    /** Gets the indexes of the hidden series.
+    /** Retrieves an array containing the indexes of all currently hidden series within the dataset. Each index corresponds to a series that is not visible in the chart or visualization.
     * @returns {{ groupIndex: number, serieIndex: number, itemIndex: number }[]}
   */
     getHidden() {
         const result = this.nativeElement.getHidden();
         return result;
     }
-    /** Gets the selected items.
+    /** Retrieves the currently selected items from the collection, returning them as an array. If no items are selected, an empty array is returned.
     * @returns {any[]}
   */
     getSelection() {
         const result = this.nativeElement.getSelection();
         return result;
     }
-    /** Gets the rendered values of the valueAxis labels.
+    /** Retrieves the displayed values of the valueAxis labels after they have been processed and rendered, reflecting any formatting, transformations, or customizations applied during chart rendering.
     * @returns {any}
   */
     getValueAxisLabels() {
         const result = this.nativeElement.getValueAxisLabels();
         return result;
     }
-    /** Gets the rendered values of the xAxis labels.
+    /** Retrieves the fully rendered and formatted values of the xAxis labels as they appear on the chart, including any applied styles, formatting, or transformations.
     * @returns {any}
   */
     getXAxisLabels() {
         const result = this.nativeElement.getXAxisLabels();
         return result;
     }
-    /** Gets the rendered values of the zAxis labels.
+    /** Retrieves the displayed text values of the zAxis labels as they appear on the chart, including any formatting or transformations applied during rendering.
     * @returns {any}
   */
     getZAxisLabels() {
         const result = this.nativeElement.getZAxisLabels();
         return result;
     }
-    /** Hides all items of a chart group.
+    /** Conceals all items within a specified chart group, making them invisible in the chart display. This action does not delete the items; it simply hides them from view while retaining their data and configuration.
     * @param {number} groupIndex. Series group index.
     */
     hideGroup(groupIndex) {
@@ -593,7 +593,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Hides a chart item.
+    /** Hides a specific chart item from view, making it invisible in the rendered chart without deleting the underlying data or configuration. This action can be used to temporarily remove a chart element such as a data series, bar, line, or point from display, while preserving its state for later use or re-display.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @param {number} itemIndex?. Item (data point) index.
@@ -608,7 +608,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Hides all items of a chart serie.
+    /** Hides all data points belonging to a specific chart series from view, making the entire series invisible on the chart while preserving its data in the underlying structure.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     */
@@ -622,7 +622,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Refreshes the content of the chart element after a property or data update.
+    /** Automatically updates and redraws the chart element to reflect the latest changes whenever its properties or underlying data are modified. This ensures that the displayed chart remains accurate and up-to-date following any updates.
     */
     refresh() {
         if (this.nativeElement.isRendered) {
@@ -634,7 +634,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Removes an existing color scheme. If the scheme does not exist, the method has no effect.
+    /** Removes a specified color scheme from the collection. If the color scheme with the given identifier does not exist, this method performs no action and does not raise an error.
     * @param {string} schemeName. The name of the custom color scheme.
     */
     removeColorScheme(schemeName) {
@@ -647,7 +647,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Exports the chart's content as JPEG image.
+    /** Exports the chart’s current visual content as a JPEG image file, enabling users to save or share the chart in a widely supported image format.
     * @param {string} fileName?. File name.
     * @param {boolean} includeLegend?. Sets whether the legend will be part of the saved file.
     * @param {boolean} includeCaption?. Sets whether the caption will be part of the saved file.
@@ -662,7 +662,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Exports the chart's content as PNG image.
+    /** Exports the current chart as a PNG image file, capturing all visible elements and formatting. This allows users to download and share the chart as a high-quality raster image suitable for presentations, reports, or further editing.
     * @param {string} fileName?. File name.
     * @param {boolean} includeLegend?. Sets whether the legend will be part of the saved file.
     * @param {boolean} includeCaption?. Sets whether the caption will be part of the saved file.
@@ -677,7 +677,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Exports the chart's content as PDF file.
+    /** Exports the current chart content as a PDF file, allowing users to easily save or share a high-quality, print-ready version of the chart. This function preserves the chart's visual elements, layout, and data in the resulting PDF document.
     * @param {string} fileName?. File name.
     * @param {boolean} includeLegend?. Sets whether the legend will be part of the saved file.
     * @param {boolean} includeCaption?. Sets whether the caption will be part of the saved file.
@@ -692,7 +692,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Selects a chart item. If selectionMode is 'one', the previous item will be unselected.
+    /** Selects a chart item. If selectionMode is set to 'one', selecting a new item will automatically deselect any previously selected item, ensuring that only one item is selected at a time.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @param {number} itemIndex?. Item (data point) index.
@@ -707,7 +707,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Shows all items of a chart group.
+    /** Displays every item belonging to a specific chart group, providing a comprehensive view of all elements associated with that group.
     * @param {number} groupIndex. Series group index.
     */
     showGroup(groupIndex) {
@@ -720,7 +720,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Shows a chart item.
+    /** Displays a single data item within a chart, representing a specific value or data point on the graph for visualization purposes.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @param {number} itemIndex?. Item (data point) index.
@@ -735,7 +735,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Shows all items of a chart serie.
+    /** Displays all data points contained within a chart series, providing a comprehensive view of each individual value represented in the selected series.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     */
@@ -749,7 +749,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Sets the camera position to its position during the initialization.
+    /** Restores the camera to its original position as defined during the initial setup or scene initialization. This function reverts any changes made to the camera’s position during runtime, ensuring it returns to the exact coordinates specified at the start.
     */
     setDefaultPosition() {
         if (this.nativeElement.isRendered) {
@@ -761,7 +761,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Sets the camera mode. Different camera modes change the control actions of the mouse. Available modes are 'zoom', 'pan' and 'default'.
+    /** Configures the camera's interaction mode, which determines how mouse actions affect the camera's view. The available modes are:- 'zoom': Mouse movements control zooming in and out of the scene.- 'pan': Mouse movements allow the camera to move (pan) horizontally and vertically across the scene.- 'default': Mouse interactions follow the standard behavior defined for the camera. Selecting a mode alters how users navigate or manipulate the view within the application using their mouse.
     * @param {string} mode. Camera mode.
     */
     setCameraMode(mode) {
@@ -774,7 +774,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Sets the camera position.
+    /** Defines the exact coordinates and orientation of the camera within the 3D scene, determining from which viewpoint the scene is rendered.
     * @param {number} x. X coordinate.
     * @param {number} y. Y coordinate.
     * @param {number} z. Z coordinate.
@@ -790,7 +790,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Sets the camera zoom.
+    /** Adjusts the zoom level of the camera, allowing you to change how close or far the view appears. A higher value increases magnification and provides a closer, more detailed view of the scene, while a lower value zooms out to show a wider area.
     * @param {number} level. Zoom level.
     * @param {boolean} animation?. Animation Enabled
     */
@@ -804,7 +804,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Unelects a chart item.
+    /** Deselects a previously selected chart item, removing any highlighting or focus state applied to it. This action restores the item to its default, unselected appearance within the chart.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @param {number} itemIndex?. Item (data point) index.
@@ -819,7 +819,7 @@ class ThreeDChart extends React.Component {
             });
         }
     }
-    /** Updates the values of the chart series without full refresh of the entire chart. The method should be used for animation of frequently changing values.
+    /** Efficiently updates the data values of the existing chart series without triggering a complete redraw of the entire chart. This method is ideal for animating rapidly changing data points, ensuring smooth transitions and improved performance by only modifying the necessary elements within the chart.
     */
     update() {
         if (this.nativeElement.isRendered) {

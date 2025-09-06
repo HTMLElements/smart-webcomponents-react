@@ -22,7 +22,7 @@ require('../source/modules/smart.element');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Configures or retrieves the current animation mode for the element. When set to 'none', all animations are disabled, resulting in immediate changes without transition effects. Otherwise, valid values enable corresponding animation behaviors during state changes.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Enables or disables the accordion. Disabled elements can not be interacted with.
+	    /** Determines whether the accordion component is enabled or disabled. When set to disabled, all interactive elements within the accordion are inactive, preventing user interaction such as expanding or collapsing sections. Disabled sections appear visually distinct to indicate their non-interactive state.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Returns true when the rendering is completed. Otherwise returns false
+	    /** Returns true if the rendering process has successfully completed; otherwise, returns false, indicating that rendering is still in progress or has not started.
 	    *	Property type: boolean
 	    */
 	    get isRendered() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.isRendered = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Sets or retrieves the unlockKey value, a unique identifier or code required to unlock access to the product. This property is used to control and verify access permissions for the product.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Sets or retrieves the current language used for message localization. This property works together with the messages property, allowing you to display content in the selected language by loading the appropriate message translations.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+	    /** A callback function that allows you to customize the formatting of messages returned by the Localization Module before they are delivered to the user. Use this to apply additional formatting, integrate dynamic content, or adjust message structure based on application requirements.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Defines or retrieves an object containing all the display strings within the widget that can be localized for different languages. This property works together with the locale property to enable internationalization by allowing you to specify custom strings that will be shown to users based on their selected language or region. Use this option to provide translations or override default interface text in the widget.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Callback called when the element is attached to the DOM.
+	    /** Callback function that is executed when the element has been successfully added and attached to the DOM tree. This is typically used to perform setup tasks, initialize event listeners, or trigger actions that require the element to be present in the document.
 	    *	Property type: any
 	    */
 	    get onAttached() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.onAttached = value;
 	        }
 	    }
-	    /** Callback called when the element is detached from the DOM.
+	    /** This callback function is invoked when the element is removed from the DOM, allowing you to handle cleanup operations or perform specific actions in response to the element’s detachment.
 	    *	Property type: any
 	    */
 	    get onDetached() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.onDetached = value;
 	        }
 	    }
-	    /** Callback called when the element is created.
+	    /** Callback function that is invoked after the element has been successfully created and initialized. This allows you to perform custom actions or setup immediately upon the element's creation.
 	    *	Property type: any
 	    */
 	    get onCreated() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.onCreated = value;
 	        }
 	    }
-	    /** Callback called when the element is attached to the DOM for first time. It can be used for property initialization.
+	    /** This callback is invoked once, when the element is first added to the DOM. It is an ideal place to perform initial setup tasks, such as initializing properties, setting up event listeners, or rendering initial content.
 	    *	Property type: any
 	    */
 	    get onRender() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.onRender = value;
 	        }
 	    }
-	    /** Callback called when the element is rendered.
+	    /** Callback function invoked immediately after the element has been rendered to the DOM. This allows you to perform additional logic or side effects once the rendering is complete.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Determines if the element is readonly or not. If the element true, users cannot interact with it.
+	    /** Specifies whether the element is read-only. When set to true, the element cannot be modified or interacted with by users—its value cannot be changed, and input events are disabled. When set to false, the element is fully interactive and users can input or edit its content.
 	    *	Property type: ElementRenderMode | string
 	    */
 	    get renderMode() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.renderMode = value;
 	        }
 	    }
-	    /** Determines whether the element is automatically rendered or is rendered after calling the render method.
+	    /** Specifies if the element is displayed automatically upon initialization, or if it requires an explicit call to the render method before it appears in the user interface.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Specifies or retrieves whether the element's text direction and alignment are set to support right-to-left (RTL) languages, such as Arabic or Hebrew. When enabled, the element's content is displayed in a manner consistent with RTL language conventions.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.element');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** Determines the theme. Theme defines the look of the element
+	    /** Specifies the theme to be applied, which controls the visual appearance and style of the element, including aspects such as colors, fonts, and overall layout.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -206,7 +206,7 @@ require('../source/modules/smart.element');
 	    get eventListeners() {
 	        return ["onResize", "onStyleChanged", "onCreate", "onReady"];
 	    }
-	    /** Unwatches the element.
+	    /** Stops monitoring the specified element for changes or events. After calling this function, any previously set watchers or observers for the element will be removed, and no further updates or callbacks will be triggered in response to changes involving this element.
 	    */
 	    unwatch() {
 	        if (this.nativeElement.isRendered) {
@@ -218,7 +218,7 @@ require('../source/modules/smart.element');
 	            });
 	        }
 	    }
-	    /** Renders the element.
+	    /** Displays the specified element on the page by generating its associated HTML and inserting it into the Document Object Model (DOM). This process ensures the element is visible and interactive for users.
 	    * @param {any[]} properties. Properties array to watch for changes.
 	    * @param {any} propertyChangedCallback. function(propertyName: string, oldValue: any, newValue: any)
 	    */
@@ -232,7 +232,7 @@ require('../source/modules/smart.element');
 	            });
 	        }
 	    }
-	    /** Watch for property changes.
+	    /** Monitor and detect any changes to property values in real time, enabling responsive updates or triggering specific actions whenever a property's state is modified.
 	    * @param {any} renderCallback. Callback which is called, when the rendering is completed.
 	    */
 	    whenRendered(renderCallback) {

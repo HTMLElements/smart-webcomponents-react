@@ -22,78 +22,78 @@ export declare class CountryInput extends React.Component<React.HTMLAttributes<E
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Enables or disables the element.
+    /** Specifies whether the element is active and interactive (enabled) or inactive and non-interactive (disabled). When disabled, the element cannot be focused, clicked, or edited by the user.
     *	Property type: boolean
     */
     get disabled(): boolean;
     set disabled(value: boolean);
-    /** Sets additional class names to the Input drop down.
+    /** Allows you to specify extra CSS class names that will be applied to the Input dropdown element, enabling further customization of its appearance and styling.
     *	Property type: any
     */
     get dropDownClassList(): any;
     set dropDownClassList(value: any);
-    /** Determines the position of the drop down button.
+    /** Specifies the placement of the dropdown button relative to its parent element, such as aligning it to the left, right, top, or bottom. This controls where the dropdown button appears in the user interface.
     *	Property type: DropDownButtonPosition | string
     */
     get dropDownButtonPosition(): DropDownButtonPosition | string;
     set dropDownButtonPosition(value: DropDownButtonPosition | string);
-    /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
+    /** Specifies the height of the dropdown component. By default, this value is set to an empty string, which means the dropdown’s height will be determined by a corresponding CSS variable. If a specific value is provided, it will override the CSS variable and explicitly set the dropdown’s height.
     *	Property type: string | number
     */
     get dropDownHeight(): string | number;
     set dropDownHeight(value: string | number);
-    /** Sets the width of the drop down. By default it's set to an empty string. In this case the width of the drop down is controlled by a CSS variable.
+    /** Specifies the width of the dropdown menu. By default, this property is set to an empty string, which means the dropdown's width will be determined by a designated CSS variable rather than a fixed value. You can set this property to a specific CSS width value (e.g., "200px" or "50%") to override the default behavior and directly control the dropdown's width. If left empty, ensure the relevant CSS variable is properly defined to maintain consistent styling.
     *	Property type: string | number
     */
     get dropDownWidth(): string | number;
     set dropDownWidth(value: string | number);
-    /** Sets or gets the name attribute for the element. Name is used when submiting data inside an HTML form.
+    /** Specifies or retrieves the value of the element’s name attribute. This attribute uniquely identifies the element within form data, allowing its value to be included when the form is submitted. The name attribute is essential for correctly grouping and processing user input on the server side during form submission.
     *	Property type: string
     */
     get name(): string;
     set name(value: string);
-    /** Determines whether the drop down is opened or not.
+    /** Indicates whether the dropdown menu is currently open or closed. This property returns true if the dropdown is visible to the user, and false if it is hidden.
     *	Property type: boolean
     */
     get opened(): boolean;
     set opened(value: boolean);
-    /** Sets or gets an array of country codes which will be used instead of the default one with all countries. The country code should be ISO 3166-1 alpha-2 codes(https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+    /** Defines or retrieves an array of country codes to override the default list of all countries. Each country code in the array must be a valid ISO 3166-1 alpha-2 code (see: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), which consists of a two-letter uppercase abbreviation representing each country (e.g., 'US' for United States, 'FR' for France). Use this property to specify a custom subset of countries as needed.
     *	Property type: any
     */
     get onlyCountries(): any;
     set onlyCountries(value: any);
-    /** Determines the placeholder of the input.
+    /** Specifies the placeholder text that appears inside the input field when it is empty, providing a hint to the user about the expected input format or content.
     *	Property type: string
     */
     get placeholder(): string;
     set placeholder(value: string);
-    /** Sets or gets the selected country of the element. The country code should be ISO 3166-1 alpha-2 codes(https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+    /** Gets or sets the currently selected country for the element. The value should be provided as an ISO 3166-1 alpha-2 country code (for example, "US" for the United States or "FR" for France). For the complete list of valid country codes, refer to the ISO 3166-1 alpha-2 standard: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2.
     *	Property type: string
     */
     get selectedCountry(): string;
     set selectedCountry(value: string);
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Gets or sets a value that determines whether the element's alignment supports right-to-left (RTL) locales and text direction, typically used for languages such as Arabic or Hebrew. When enabled, the element's content aligns according to RTL layout standards.
     *	Property type: boolean
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
-    /** Determines the theme for the element. Themes define the look of the elements.
+    /** Specifies the theme to be applied to the element. The selected theme controls the visual style, including colors, typography, and other design attributes, ensuring consistency with the overall user interface.
     *	Property type: string
     */
     get theme(): string;
     set theme(value: string);
-    /** If is set to true, the element cannot be focused.
+    /** If set to true, the element will be excluded from keyboard navigation and cannot receive focus via the Tab key or other focus-related interactions.
     *	Property type: boolean
     */
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
-    /** Sets or gets the value of the element.
+    /** Sets a new value for the element or retrieves its current value, depending on whether an argument is provided. Use this to programmatically update or access the content, state, or data associated with the element (such as the value of an input field or the text of a form control).
     *	Property type: string
     */
     get value(): string;
     set value(value: string);
     get properties(): string[];
-    /**  This event is triggered when the selection is changed.
+    /**  This event is triggered whenever the current selection within the component changes, such as when a user selects a different item or option. It allows you to respond programmatically to selection changes, for example by updating related UI elements or processing the newly selected value.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	label, 	oldLabel, 	oldValue, 	value)
     *   label - The label of the new selected item.
     *   oldLabel - The label of the item that was previously selected before the event was triggered.
@@ -101,13 +101,13 @@ export declare class CountryInput extends React.Component<React.HTMLAttributes<E
     *   value - The value of the new selected item.
     */
     onChange?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered on each key up event of the Input, if the value is changed.
+    /**  This event is triggered every time a key is released within the Input field, but only if the input’s value has changed since the last event. This allows you to respond specifically to user input modifications rather than all key releases.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value)
     *   oldValue - The previous value before it was changed.
     *   value - The new value.
     */
     onChanging?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered when the user clicks on an item from the popup list.
+    /**  This event is triggered whenever a user selects an item by clicking on it within the popup list. It allows you to respond to user interactions by executing custom logic—such as updating the UI or retrieving additional data—immediately after an item is chosen from the displayed list of options.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	item, 	label, 	value)
     *   item - The item that was clicked.
     *   label - The label of the item that was clicked.
@@ -121,16 +121,16 @@ export declare class CountryInput extends React.Component<React.HTMLAttributes<E
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
-    /** Closes the drop down.
+    /** Closes the dropdown menu, hiding all currently visible options and returning the component to its inactive state.
     */
     close(): void;
-    /** Ensures that the active ( selected ) item is always visible.
+    /** Guarantees that the currently active (selected) item remains within the visible area of its container, automatically scrolling as needed to keep the item in view.
     */
     ensureVisible(): void;
-    /** Opens the drop down.
+    /** Displays the drop-down menu, allowing users to view and select available options from the list.
     */
     open(): void;
-    /** Selects the text inside the input or if it is readonly then the element is focused.
+    /** Selects the text within the input field. If the input field is set to readonly, it will instead focus the element without selecting the text.
     */
     select(): void;
     constructor(props: any);

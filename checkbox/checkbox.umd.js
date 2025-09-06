@@ -22,7 +22,7 @@ require('../source/modules/smart.button');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Specifies the animation mode for the component. You can retrieve the current mode or assign a new one. Setting this property to 'none' will disable all animations; assigning other valid values will enable the corresponding animation effects.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Sets or gets the checked state.
+	    /** Sets or retrieves the checked state of the component. If set to true, the component appears checked (selected); if false, it appears unchecked. Useful for managing selection or toggle controls such as checkboxes or radio buttons.
 	    *	Property type: boolean
 	    */
 	    get checked() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.checked = value;
 	        }
 	    }
-	    /** Determines which part of the element can be used to toggle it.
+	    /** Specifies the area or region of the element that users can interact with to expand, collapse, or toggle its state. This property defines which part of the element responds to toggle actions, such as clicks or taps.
 	    *	Property type: CheckMode | string
 	    */
 	    get checkMode() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.checkMode = value;
 	        }
 	    }
-	    /** Sets the click mode of the checkbox.
+	    /** Specifies how the checkbox responds to user click interactions, such as toggling its checked state or triggering related events.
 	    *	Property type: ClickMode | string
 	    */
 	    get clickMode() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.clickMode = value;
 	        }
 	    }
-	    /** Enables or disables the checkbox.
+	    /** Determines whether the checkbox is interactive or not. When set to true, the checkbox is enabled and the user can select or deselect it. When set to false, the checkbox is disabled, preventing any user interaction.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Sets or gets the elements's innerHTML.
+	    /** Sets or retrieves the HTML markup contained within the element. When set, it updates the element’s contents by parsing the specified HTML string and replacing any existing child nodes. When accessed, it returns a string representing the element’s current HTML content.
 	    *	Property type: string
 	    */
 	    get innerHTML() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.innerHTML = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Specifies or retrieves the unlockKey used to activate or grant access to the product. This key serves as a security credential required to unlock and use the product’s features.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Sets or retrieves the current language code (e.g., 'en', 'fr') used for localization. This property works together with the messages property to select and display the appropriate set of localized messages based on the specified language.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+	    /** A callback function that allows you to define a custom formatting logic for messages returned by the Localization Module. Use this to adjust message content, structure, or variables before the final output is presented to the user.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Defines or retrieves an object containing localized strings used throughout the widget’s interface. This property allows you to customize the text displayed by the widget for different languages or regions. It works in conjunction with the locale property, which determines the current language, ensuring that the appropriate set of strings is applied based on the selected locale.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Sets or gets the name attribute for the element. Name is used when submiting HTML forms.
+	    /** Sets or retrieves the value of the element’s name attribute. The name attribute identifies form elements when submitting HTML forms, allowing their values to be sent to the server as key-value pairs. This is essential for server-side processing of form data.
 	    *	Property type: string
 	    */
 	    get name() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.name = value;
 	        }
 	    }
-	    /** If the element is readonly, users cannot interact with it.
+	    /** When the element is set to readonly, users can view its content but are unable to modify or edit it. However, the element may still receive focus and allow text selection or copying, depending on the element's type and browser behavior. User interaction that changes the value or state of the element is disabled.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Gets or sets a value that determines whether the element’s layout is aligned to support right-to-left (RTL) languages, such as Arabic or Hebrew, ensuring proper text direction and alignment for users in those locales.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** When set to true, the element is rendered non-focusable, meaning it cannot receive keyboard or programmatic focus. This prevents users from navigating to the element using the keyboard (e.g., with the Tab key) or through scripts.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Determines the theme. Theme defines the look of the element
+	    /** Specifies the theme to be applied to the element. The selected theme controls the element’s visual appearance, including colors, fonts, and overall style, ensuring a consistent and cohesive look throughout the interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.button');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** Sets or gets the value of the element.
+	    /** Retrieves the current value of the element or assigns a new value to it. This property allows you to programmatically read or update the element’s value—for example, reading user input from a form field or setting a default value dynamically.
 	    *	Property type: string
 	    */
 	    get value() {

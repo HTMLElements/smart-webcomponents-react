@@ -30,7 +30,7 @@ class Chart extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'.
+    /** Specifies or retrieves the current animation mode. When the property is set to 'none', all animations are disabled and no animation effects will be applied. For other supported values, the property enables the corresponding animation behavior.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class Chart extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Determines the animation duration in milliseconds. The value must be between 0 and 5000. If it is outside of this range jqxChart will reset it to the default value.
+    /** Specifies the duration of the animation, in milliseconds. Acceptable values range from 0 to 5000 inclusive. If a value outside this range is provided, jqxChart will automatically revert the animation duration to its default setting.
     *	Property type: number
     */
     get animationDuration() {
@@ -52,7 +52,7 @@ class Chart extends React.Component {
             this.nativeElement.animationDuration = value;
         }
     }
-    /** Sets the chart's background color. For example: '#DDFFE8'
+    /** Specifies the color used for the chart’s background. Accepts any valid CSS color format, such as hexadecimal (e.g., '#DDFFE8'), RGB (e.g., 'rgb(221,255,232)'), or color names (e.g., 'lightgreen'). This property controls the area behind all chart elements, providing visual distinction or branding.
     *	Property type: string | null
     */
     get backgroundColor() {
@@ -63,7 +63,7 @@ class Chart extends React.Component {
             this.nativeElement.backgroundColor = value;
         }
     }
-    /** Sets the chart's background image. For example: 'https://www.htmlelements.com/demos/images/carousel-large-1.jpg'
+    /** Specifies the URL of an image to be used as the chart’s background. For example, setting this property to 'https://www.htmlelements.com/demos/images/carousel-large-1.jpg' will display that image as the backdrop behind the chart elements. This allows you to customize the chart’s appearance with any image of your choice.
     *	Property type: string
     */
     get backgroundImage() {
@@ -74,7 +74,7 @@ class Chart extends React.Component {
             this.nativeElement.backgroundImage = value;
         }
     }
-    /** Sets the chart's border color. For example: '#098700'
+    /** Defines the color of the chart's border. Accepts any valid CSS color value, such as a hexadecimal code (e.g., "#098700"), RGB, RGBA, HSL, or named color. This property allows you to customize the appearance of the chart's outline to match your application's design.
     *	Property type: string | null
     */
     get borderLineColor() {
@@ -85,7 +85,7 @@ class Chart extends React.Component {
             this.nativeElement.borderLineColor = value;
         }
     }
-    /** Sets the chart's border line width.
+    /** Specifies the thickness, in pixels, of the chart’s border line. A higher value results in a thicker border around the chart area.
     *	Property type: number
     */
     get borderLineWidth() {
@@ -96,7 +96,7 @@ class Chart extends React.Component {
             this.nativeElement.borderLineWidth = value;
         }
     }
-    /** Sets the caption (title) of the chart.
+    /** Defines the main title displayed at the top of the chart, providing a concise summary or description of the chart's data or purpose.
     *	Property type: string
     */
     get caption() {
@@ -107,7 +107,7 @@ class Chart extends React.Component {
             this.nativeElement.caption = value;
         }
     }
-    /** Determines whether to clip plotted elements that overflow the axis boundaries.
+    /** Specifies whether plotted elements that extend beyond the axis boundaries should be visually clipped (hidden) rather than drawn outside the plotting area. When enabled, any portion of the elements that overflows the axis limits will not be displayed.
     *	Property type: boolean
     */
     get clip() {
@@ -118,7 +118,7 @@ class Chart extends React.Component {
             this.nativeElement.clip = value;
         }
     }
-    /** Sets the chart's color pallete. jqxChart suppports 32 color schemes from 'scheme01' to 'scheme32'.
+    /** Defines the color palette used for rendering the chart elements. jqxChart supports 32 built-in color schemes, which can be specified by setting this property to a string value from 'scheme01' to 'scheme32'. Each scheme applies a predefined set of colors to series, data points, and chart backgrounds, allowing you to easily customize the chart's appearance.
     *	Property type: ChartColorScheme | string
     */
     get colorScheme() {
@@ -129,7 +129,7 @@ class Chart extends React.Component {
             this.nativeElement.colorScheme = value;
         }
     }
-    /** Enables or disables overlapping of the column series.
+    /** Controls whether the columns in the series are displayed overlapping each other or spaced apart. When enabled, columns from different series will overlap along the category axis. When disabled, columns will be shown side by side without overlapping.
     *	Property type: boolean
     */
     get columnSeriesOverlap() {
@@ -140,7 +140,7 @@ class Chart extends React.Component {
             this.nativeElement.columnSeriesOverlap = value;
         }
     }
-    /** Gets or sets the color of the crosshairs lines. The 'enableCrosshairs' property should be 'true'.
+    /** Specifies the color of the crosshairs lines displayed on the chart. This property is only effective when the 'enableCrosshairs' option is set to 'true'. Use a valid CSS color value (e.g., hex, RGB, or color name) to customize the appearance of the crosshairs.
     *	Property type: string | null
     */
     get crosshairsColor() {
@@ -151,7 +151,7 @@ class Chart extends React.Component {
             this.nativeElement.crosshairsColor = value;
         }
     }
-    /** Gets or sets the dash style of the crosshairs lines. The style is a series of numbers indicating line length followed by space length. The 'enableCrosshairs' property should be 'true'. For example: '3,3'
+    /** Specifies the dash pattern for the crosshairs lines by accepting a comma-separated sequence of numbers. Each number represents the length (in pixels) of dashes and gaps, alternating between line segments and spaces. For example, a value of "3,3" will create a dashed line with 3 pixels of line followed by 3 pixels of space, repeating along the length of the crosshair. This property is only effective when the "enableCrosshairs" property is set to true.
     *	Property type: string
     */
     get crosshairsDashStyle() {
@@ -162,7 +162,7 @@ class Chart extends React.Component {
             this.nativeElement.crosshairsDashStyle = value;
         }
     }
-    /** Gets or sets the width of the crosshairs lines. The 'enableCrosshairs' property should be 'true'
+    /** Sets or retrieves the thickness (in pixels) of the crosshair lines displayed on the chart. This property is only effective when 'enableCrosshairs' is set to 'true'; otherwise, the crosshair lines will not be shown regardless of this value.
     *	Property type: number
     */
     get crosshairsLineWidth() {
@@ -173,7 +173,7 @@ class Chart extends React.Component {
             this.nativeElement.crosshairsLineWidth = value;
         }
     }
-    /** Sets the chart's data source.
+    /** Specifies the data set to be used as the source for the chart, determining which values and categories will be displayed. This property should be assigned an array or object containing the chart’s data points.
     *	Property type: any[]
     */
     get dataSource() {
@@ -184,7 +184,7 @@ class Chart extends React.Component {
             this.nativeElement.dataSource = value;
         }
     }
-    /** Sets the description text of the chart.
+    /** Specifies the descriptive text that appears on the chart, providing context or additional information to help users understand the chart’s content and purpose.
     *	Property type: string
     */
     get description() {
@@ -195,7 +195,7 @@ class Chart extends React.Component {
             this.nativeElement.description = value;
         }
     }
-    /** Enables or disables the chart.
+    /** Determines whether the chart is visible and interactive. Set to true to display and activate the chart; set to false to deactivate it.
     *	Property type: boolean
     */
     get disabled() {
@@ -206,7 +206,7 @@ class Chart extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Determines the drawing function of jqxChart. When the property is set, you can override the jqxChart's drawing.
+    /** Specifies the custom drawing function for jqxChart. By setting this property, you can override the default rendering behavior of jqxChart and implement your own drawing logic. This allows you to customize how chart elements are displayed according to your specific requirements.
     *	Property type: any
     */
     get draw() {
@@ -217,7 +217,7 @@ class Chart extends React.Component {
             this.nativeElement.draw = value;
         }
     }
-    /** Function for custom drawing before the caption and other chart elements.
+    /** Allows you to draw custom graphics on the chart canvas before rendering the caption and all other standard chart elements. Use this function to add background visuals, watermarks, or any additional graphics that should appear beneath the main chart components.
     *	Property type: any
     */
     get drawBefore() {
@@ -228,7 +228,7 @@ class Chart extends React.Component {
             this.nativeElement.drawBefore = value;
         }
     }
-    /** Determines if the animation of the axes text is enabled.
+    /** Specifies whether the animation effect for the axis labels (text displayed along the axes) is enabled or disabled. When set to true, the axis labels will animate during rendering or updates; when set to false, the labels will remain static.
     *	Property type: boolean
     */
     get enableAxisTextAnimation() {
@@ -239,7 +239,7 @@ class Chart extends React.Component {
             this.nativeElement.enableAxisTextAnimation = value;
         }
     }
-    /** Enables or disables the crosshairs lines. The lines are displayed in line and area series when you move over a data point.
+    /** Controls the visibility of crosshair lines on the chart. When enabled, vertical and/or horizontal lines appear as you hover over data points in line and area series, helping to highlight the precise location of your cursor in relation to the data. Disabling this option will hide these crosshair indicators.
     *	Property type: boolean
     */
     get enableCrosshairs() {
@@ -250,7 +250,7 @@ class Chart extends React.Component {
             this.nativeElement.enableCrosshairs = value;
         }
     }
-    /** Determines whether to display the chart using greyscale colors.
+    /** Specifies whether the chart should be rendered using greyscale colors instead of the default color palette. When enabled, all chart elements (such as bars, lines, or areas) will appear in shades of grey rather than in color.
     *	Property type: boolean
     */
     get greyScale() {
@@ -261,7 +261,7 @@ class Chart extends React.Component {
             this.nativeElement.greyScale = value;
         }
     }
-    /** Sets the legend's layout.
+    /** Specifies the arrangement of items within the legend, such as displaying them in a vertical stack, a horizontal row, or a custom configuration. This property determines how legend entries are organized and presented in the chart.
     *	Property type: any
     */
     get legendLayout() {
@@ -272,7 +272,7 @@ class Chart extends React.Component {
             this.nativeElement.legendLayout = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Sets or retrieves the unlockKey, a unique code or token required to unlock and access the full features of the product. Use this property to assign an unlock key for activation or to obtain the current key that allows authorized access.
     *	Property type: string
     */
     get unlockKey() {
@@ -283,7 +283,7 @@ class Chart extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the locale. Used in conjunction with the property messages.
+    /** Specifies or retrieves the current locale setting, which determines the language and regional formatting used by the component. This property works together with the messages property to display localized text and content based on the selected locale.
     *	Property type: string
     */
     get locale() {
@@ -294,7 +294,7 @@ class Chart extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Localization object containing culture-specific properties required for formatting currencies, numbers and dates.
+    /** A comprehensive localization object that includes culture-specific properties necessary for accurately formatting currencies, numbers, dates, and other locale-dependent values according to regional conventions.
     *	Property type: ChartLocalization
     */
     get localization() {
@@ -305,7 +305,7 @@ class Chart extends React.Component {
             this.nativeElement.localization = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Configures or retrieves an object containing all user-facing text strings displayed by the widget, enabling localization into different languages. This property is used together with the locale option to provide translated text based on the selected language, ensuring the widget’s interface adapts to users’ regional preferences.
     *	Property type: any
     */
     get messages() {
@@ -316,7 +316,7 @@ class Chart extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets the left, top, right and bottom padding of the Chart.
+    /** Specifies the amount of padding to apply to the left, top, right, and bottom sides of the Chart, creating space between the chart's content and its outer edges. This padding can be used to adjust the position of the chart elements and prevent them from overlapping with the chart's border or surrounding elements.
     *	Property type: Padding
     */
     get padding() {
@@ -327,7 +327,7 @@ class Chart extends React.Component {
             this.nativeElement.padding = value;
         }
     }
-    /** Determines the rendering engine used to display the chart. When the property is set to an empty string, jqxChart will automatically select an optimal rendering engine depending on the browser capabilities.
+    /** Specifies the rendering engine responsible for displaying the chart. If this property is left as an empty string, jqxChart will automatically detect and select the most suitable rendering engine based on the browser’s capabilities (such as SVG, Canvas, or VML). This ensures optimal performance and compatibility across different browsers.
     *	Property type: ChartRenderEngine | string
     */
     get renderEngine() {
@@ -338,7 +338,7 @@ class Chart extends React.Component {
             this.nativeElement.renderEngine = value;
         }
     }
-    /** Sets or gets a value indicating whether the Chart's layout is mirrored.
+    /** Gets or sets a boolean value that determines whether the chart's layout is displayed in a mirrored (reversed) orientation. When set to true, all chart elements, such as axes and data series, are rendered as a mirror image of the default layout.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -349,7 +349,7 @@ class Chart extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** The seriesGroups property is used to describe all series displayed on the chart. jqxChart supports multiple series of different types and series grouping. Each series group may have its own Value Axis (Y-axis) which allows you to have values with different scales displayed on the same chart at the same time. It also allows you to display multiple series types together on the same chart. For example, you can display all series in one group as lines and the series in a second group as columns. seriesGroups is an array of objects where each object represents one group.
+    /** The 'seriesGroups' property defines the configuration for all data series displayed within the chart. jqxChart supports visualizing multiple series, even of different chart types, by organizing them into groups called "series groups." Each series group is an object within the 'seriesGroups' array, and allows you to configure a set of series that will share common settings, such as the chart type, value axis (Y-axis), and appearance options.Importantly, each series group can have its own independently configured value axis (Y-axis). This flexibility enables you to plot data series with different value ranges or units on the same chart, as each group’s Y-axis can be scaled and labeled differently. Additionally, you can mix different visualization types (such as 'line', 'area', or 'column')—for instance, displaying one group as lines while representing another as columns—providing richer and more informative data presentations.In summary, the 'seriesGroups' property is an array where:- Each element is an object defining a series group.- Each group specifies its chart type and contains its own array of series, along with settings for axes, styling, and more.- Multiple series groups enable the chart to display series of different types and with different Y-axis scales simultaneously.This property is essential for building complex and customizable charts that present heterogeneous data in a clear and visually compelling way.
     *	Property type: ChartSeriesGroup[]
     */
     get seriesGroups() {
@@ -360,7 +360,7 @@ class Chart extends React.Component {
             this.nativeElement.seriesGroups = value;
         }
     }
-    /** Determines whether to display the chart's border line.
+    /** Specifies whether a visible border line should be rendered around the chart area. Set this option to true to display the border, or false to hide it.
     *	Property type: boolean
     */
     get showBorderLine() {
@@ -371,7 +371,7 @@ class Chart extends React.Component {
             this.nativeElement.showBorderLine = value;
         }
     }
-    /** Determines whether to show or hide the chart series legend.
+    /** Specifies whether the chart series legend should be displayed or hidden. When set to true, the legend appears on the chart, providing information about each data series. When set to false, the legend is not shown, resulting in a cleaner chart without series labels.
     *	Property type: boolean
     */
     get showLegend() {
@@ -382,7 +382,7 @@ class Chart extends React.Component {
             this.nativeElement.showLegend = value;
         }
     }
-    /** Enables or disables the chart tooltips.
+    /** Controls the visibility of chart tooltips by enabling or disabling them. When enabled, informational tooltips appear when users hover over or interact with chart elements; when disabled, tooltips are hidden and no additional information is displayed on interaction.
     *	Property type: boolean
     */
     get showToolTips() {
@@ -393,7 +393,7 @@ class Chart extends React.Component {
             this.nativeElement.showToolTips = value;
         }
     }
-    /** Determines whether to show a composite tooltip containing information for all series.
+    /** Specifies whether to display a single, combined tooltip that presents information for all data series at the hovered data point, instead of individual tooltips for each series.
     *	Property type: boolean
     */
     get showToolTipsOnAllSeries() {
@@ -404,7 +404,7 @@ class Chart extends React.Component {
             this.nativeElement.showToolTipsOnAllSeries = value;
         }
     }
-    /** Determines the set of default background, line, text and band colors that will be used in the Chart.
+    /** Specifies the default set of colors to be applied to various chart elements, including the background, lines, text, and bands. These colors will be automatically used for the corresponding components in the chart unless individually overridden, ensuring a consistent visual theme throughout the chart.
     *	Property type: string
     */
     get theme() {
@@ -415,7 +415,7 @@ class Chart extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Sets the padding of the chart's title (caption).
+    /** Specifies the amount of space (padding) applied around the chart’s title (caption), controlling the distance between the title text and the edges of its container. This affects the overall appearance and readability of the chart title.
     *	Property type: Padding
     */
     get titlePadding() {
@@ -426,7 +426,7 @@ class Chart extends React.Component {
             this.nativeElement.titlePadding = value;
         }
     }
-    /** Tooltip background color.
+    /** Specifies the background color of the tooltip element, which appears when a user hovers over or focuses on a target component. This setting determines the visual background behind the tooltip text.
     *	Property type: string | null
     */
     get toolTipBackground() {
@@ -437,7 +437,7 @@ class Chart extends React.Component {
             this.nativeElement.toolTipBackground = value;
         }
     }
-    /** Determines the tooltip hide delay in milliseconds.
+    /** Specifies the duration, in milliseconds, to wait before hiding the tooltip after a user interaction (such as mouseleave or blur) occurs. This delay allows the tooltip to remain visible for a short period before disappearing, improving the user experience.
     *	Property type: {(value?: any, index?: number, series?: any): string}
     */
     get toolTipFormatFunction() {
@@ -448,7 +448,7 @@ class Chart extends React.Component {
             this.nativeElement.toolTipFormatFunction = value;
         }
     }
-    /** Tooltip line color.
+    /** Specifies the color of the lines (borders or dividers) displayed within the tooltip, such as axis markers or grid lines, enhancing tooltip visibility and aesthetics. Accepts any valid CSS color value (e.g., hexadecimal, RGB, or color name).
     *	Property type: number
     */
     get toolTipHideDelay() {
@@ -459,7 +459,7 @@ class Chart extends React.Component {
             this.nativeElement.toolTipHideDelay = value;
         }
     }
-    /** Determines the tooltip show delay in milliseconds. Values may range from 0 to 10000 [ms].
+    /** Specifies the delay, in milliseconds, before a tooltip appears after a triggering event (such as mouse hover or focus). Acceptable values range from 0 to 10,000 milliseconds (ms), where 0 shows the tooltip immediately and 10,000 sets a maximum delay of 10 seconds.
     *	Property type: string | null
     */
     get toolTipLineColor() {
@@ -470,7 +470,7 @@ class Chart extends React.Component {
             this.nativeElement.toolTipLineColor = value;
         }
     }
-    /** An object with settings about the Chart's y-axis (value axis).
+    /** An object containing configuration settings for the chart's y-axis (also known as the value axis). This includes options for labels, scaling, grid lines, tick marks, axis titles, formatting, and other properties that control the appearance and behavior of the y-axis.
     *	Property type: number
     */
     get toolTipShowDelay() {
@@ -481,7 +481,7 @@ class Chart extends React.Component {
             this.nativeElement.toolTipShowDelay = value;
         }
     }
-    /** Sets the Chart's xAxis.
+    /** Configures the x-axis properties of the chart, including its scale, labels, formatting, and appearance. This determines how data is displayed horizontally on the chart.
     *	Property type: ChartValueAxis
     */
     get valueAxis() {
@@ -511,7 +511,7 @@ class Chart extends React.Component {
     get eventListeners() {
         return ["onAnnotationClick", "onAnnotationMouseenter", "onAnnotationMouseleave", "onClick", "onMouseout", "onMouseover", "onRangeSelectionChanged", "onRangeSelectionChanging", "onRefreshBegin", "onRefreshEnd", "onToggle", "onCreate", "onReady"];
     }
-    /** Adds a new color sheme. If a scheme with the same name already exists, the method will update its colors.
+    /** Enhances the application's color scheme functionality by allowing you to add a new color scheme. If a color scheme with the specified name already exists, this method updates its color values instead of creating a duplicate. This ensures seamless management and updating of color schemes within the application.
     * @param {string} schemeName. The name of the custom color scheme.
     * @param {any[]} colorsArray. An array of color values.
     */
@@ -525,7 +525,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Returns the colors of a color scheme by name. If the scheme doesn't exist the method returns undefined.
+    /** Returns the list of colors associated with the specified color scheme name. If the specified scheme does not exist, the method returns undefined.
     * @param {string} schemeName. The name of the color scheme.
     * @returns {any[]}
   */
@@ -533,7 +533,7 @@ class Chart extends React.Component {
         const result = this.nativeElement.getColorScheme(schemeName);
         return result;
     }
-    /** Gets the rendered coordinates of a data point element.
+    /** Retrieves the on-screen (pixel) coordinates where a specific data point element is rendered within the visualization. This allows you to determine the exact position of the data point as displayed to the user.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @param {number} itemIndex. Item (data point) index.
@@ -543,7 +543,7 @@ class Chart extends React.Component {
         const result = this.nativeElement.getItemCoord(groupIndex, serieIndex, itemIndex);
         return result;
     }
-    /** Gets the number of rendered items in a specific serie.
+    /** Retrieves the total count of items that have been rendered within a specified series. This includes only those items currently visible or present in the rendered output for the given series.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @returns {number}
@@ -552,7 +552,7 @@ class Chart extends React.Component {
         const result = this.nativeElement.getItemsCount(groupIndex, serieIndex);
         return result;
     }
-    /** Gets the rendered coordinates and values of the valueAxis labels.
+    /** Retrieves the computed coordinates (positions) and corresponding values of the labels displayed along the valueAxis after rendering. This includes the exact pixel positions and the label values as they appear on the axis within the rendered chart, allowing for precise placement and manipulation of these labels in the UI.
     * @param {number} groupIndex. Series group index.
     * @returns {any}
   */
@@ -560,7 +560,7 @@ class Chart extends React.Component {
         const result = this.nativeElement.getValueAxisLabels(groupIndex);
         return result;
     }
-    /** Gets the rendered rectangle coordinates of the valueAxis of specific serie group.
+    /** Retrieves the pixel coordinates and dimensions (as a rectangle) of the value axis associated with a specified series group after rendering. This includes the axis's position (x, y) and size (width, height) within the chart area, enabling precise alignment, customization, or interaction with the value axis for the targeted series group.
     * @param {number} groupIndex. Series group index.
     * @returns {DOMRect}
   */
@@ -568,7 +568,7 @@ class Chart extends React.Component {
         const result = this.nativeElement.getValueAxisRect(groupIndex);
         return result;
     }
-    /** Gets the valueAxis (vertical axis)'s value.
+    /** Retrieves the current value of the vertical axis (valueAxis), which represents the data values plotted along the y-axis of the chart.
     * @param {number} offset. Vertical offset.
     * @param {number} groupIndex. Series group index.
     * @returns {any}
@@ -577,7 +577,7 @@ class Chart extends React.Component {
         const result = this.nativeElement.getValueAxisValue(offset, groupIndex);
         return result;
     }
-    /** Gets the rendered coordinates and values of the xAxis labels.
+    /** Retrieves the calculated screen coordinates and corresponding values for each label displayed on the xAxis after rendering. This includes both the label text/value and its precise position within the rendered chart, enabling advanced positioning or custom interactions with the xAxis labels.
     * @param {number} groupIndex. Series group index.
     * @returns {any}
   */
@@ -585,7 +585,7 @@ class Chart extends React.Component {
         const result = this.nativeElement.getXAxisLabels(groupIndex);
         return result;
     }
-    /** Gets the rendered rectangle coordinates of the x-Axis of specific serie group.
+    /** Retrieves the rendered bounding rectangle coordinates (position and dimensions) of the x-axis associated with a specified series group. This includes properties such as top, left, width, and height, allowing precise placement and measurement of the x-axis within the chart layout.
     * @param {number} groupIndex. Series group index.
     * @returns {DOMRect}
   */
@@ -593,7 +593,7 @@ class Chart extends React.Component {
         const result = this.nativeElement.getXAxisRect(groupIndex);
         return result;
     }
-    /** Gets the xAxis (horizontal axis)'s value.
+    /** Retrieves the current value or position of the xAxis (horizontal axis), representing the horizontal coordinate in the relevant context (such as a chart, graph, or UI component). This value typically corresponds to the data point's horizontal placement or the current state of the axis.
     * @param {number} offset. Horizontal offset.
     * @param {number} groupIndex. Series group index.
     * @returns {any}
@@ -602,7 +602,7 @@ class Chart extends React.Component {
         const result = this.nativeElement.getXAxisValue(offset, groupIndex);
         return result;
     }
-    /** Hides a chart serie. The result of calling this function is same as the user unchecking the legend box of a chart serie.
+    /** Programmatically hides a chart series from view. This function produces the same effect as if the user manually unchecked the corresponding series in the chart's legend, making the series invisible on the chart without deleting its data.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @param {number} itemIndex?. Item (data point) index. Applicable to pie and donut series only.
@@ -617,7 +617,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Hides the current tooltip if visible.
+    /** Hides the currently displayed tooltip, if one is visible, by removing it from view and ensuring it is no longer accessible to the user.
     * @param {number} hideDelay?. Hide delay.
     */
     hideToolTip(hideDelay) {
@@ -630,7 +630,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Prints the chart.
+    /** Generates a printer-friendly version of the current chart and sends it to the print dialog, allowing the user to print a physical copy or save it as a PDF.
     */
     print() {
         if (this.nativeElement.isRendered) {
@@ -642,7 +642,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Refreshes the content of the chart element after a property or data update.
+    /** Automatically updates and redraws the chart element to reflect the latest changes made to its properties or data, ensuring the displayed information is current and accurate.
     */
     refresh() {
         if (this.nativeElement.isRendered) {
@@ -654,7 +654,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Removes an existing color scheme. If the scheme does not exist, the method has no effect.
+    /** Removes a specified color scheme from the system. If the color scheme with the given identifier does not exist, this method performs no action and does not produce an error.
     * @param {string} schemeName. The name of the custom color scheme.
     */
     removeColorScheme(schemeName) {
@@ -667,7 +667,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Exports the chart's content as JPEG image.
+    /** Exports the current chart as a JPEG image file, capturing all visible chart elements and data in the image for easy sharing or saving.
     * @param {string} fileName?. File name.
     */
     saveAsJPEG(fileName) {
@@ -680,7 +680,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Exports the chart's content as PNG image.
+    /** Exports the current chart, including all visual elements and data, as a PNG image file. This allows users to save or download a snapshot of the chart in a widely supported image format for sharing, reporting, or offline use.
     * @param {string} fileName?. File name.
     */
     saveAsPNG(fileName) {
@@ -693,7 +693,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Exports the chart's content as PDF.
+    /** Generates and exports the current chart content as a PDF file, preserving the chart’s layout, styles, and data for easy sharing or printing.
     * @param {string} fileName?. File name.
     * @param {string} pageOrientation?. PDF page orientation. <strong>Possible values:</strong> 'portrait' (default), 'landscape'.
     */
@@ -707,7 +707,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Shows a hidden chart serie. The result of calling this function is same as the user checking the legend box of a chart serie.
+    /** Reveals a previously hidden chart series, making it visible on the chart. Calling this function programmatically has the same effect as a user manually selecting (checking) the corresponding legend item to display the series.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @param {number} itemIndex?. Item (data point) index. Applicable to pie and donut series only.
@@ -722,7 +722,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Shows a the tooltip for a particular data point.
+    /** Displays a tooltip containing detailed information for a specific data point, typically when the user hovers over or selects that point on a chart or graph.
     * @param {number} groupIndex. Series group index.
     * @param {number} serieIndex. Series index.
     * @param {number} itemIndex. Item (data point) index.
@@ -739,7 +739,7 @@ class Chart extends React.Component {
             });
         }
     }
-    /** Updates the values of the chart series without full refresh of the entire chart. The method should be used for animation of frequently changing values.
+    /** Efficiently updates the values of the chart series in real-time without requiring a complete chart re-render. This method is ideal for animating and reflecting rapidly changing data, ensuring smooth visual transitions and better performance during frequent updates.
     */
     update() {
         if (this.nativeElement.isRendered) {

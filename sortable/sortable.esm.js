@@ -30,7 +30,7 @@ class Sortable extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Defines or retrieves the current animation mode. When this property is set to 'none', all animations are disabled and elements will transition instantly without any animated effects. Use this property to enable, disable, or customize the animation behavior of components.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class Sortable extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Enables or disables sorting.
+    /** Controls whether items can be sorted. When enabled, users can rearrange items by sorting them; when disabled, sorting functionality is not available.
     *	Property type: boolean
     */
     get disabled() {
@@ -52,7 +52,7 @@ class Sortable extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Sets or gets the way a sortable item can be dragged - by dragging the item itself ('item') or by dragging a handle that appears next to the item ('handle').
+    /** Determines how a sortable item can be dragged within the list. When set to 'item', users can drag the entire item itself to reorder it. When set to 'handle', a specific drag handle is displayed next to each item, and only dragging this handle will reorder the item. This property can be both retrieved (get) and modified (set) to control the user’s drag interaction method.
     *	Property type: SortableDragMode | string
     */
     get dragMode() {
@@ -63,7 +63,7 @@ class Sortable extends React.Component {
             this.nativeElement.dragMode = value;
         }
     }
-    /** Sets or gets the the position of the drag handle relative to its respective sortable item. Applicable only when dragMode is 'handle'.
+    /** Sets or retrieves the position of the drag handle in relation to its associated sortable item. This property is only applicable when the dragMode option is set to 'handle', meaning that the user can initiate dragging only by interacting with the specified handle within the sortable item. Use this option to define where the handle appears (e.g., 'left', 'right', 'top', or 'bottom') relative to the item, allowing for precise customization of the drag-and-drop interface.
     *	Property type: SortableHandlePosition | string
     */
     get handlePosition() {
@@ -74,7 +74,7 @@ class Sortable extends React.Component {
             this.nativeElement.handlePosition = value;
         }
     }
-    /** Sets or gets whether a sortable item's drag handle is always visible or is shown when the item is hovered. Applicable only when dragMode is 'handle'.
+    /** Determines whether the drag handle of a sortable item is always visible or only appears when the item is hovered over. This property is applicable only if dragMode is set to 'handle'. Use this setting to control the visibility of the item’s drag handle for user interaction.
     *	Property type: SortableHandleVisibility | string
     */
     get handleVisibility() {
@@ -85,7 +85,7 @@ class Sortable extends React.Component {
             this.nativeElement.handleVisibility = value;
         }
     }
-    /** Sets or gets a selector to determine the sortable items by. By default, sortable items are all children of the smart-sortable custom element.
+    /** Specifies or retrieves a CSS selector used to identify which elements within the container are sortable items. By default, all direct child elements of the 'smart-sortable' custom element are considered sortable. You can customize this selector to restrict sortable functionality to specific child elements based on their class, tag, or other attributes.
     *	Property type: string | null
     */
     get items() {
@@ -96,7 +96,7 @@ class Sortable extends React.Component {
             this.nativeElement.items = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Sets or retrieves the unlockKey, a unique value required to activate or grant access to the product's features. This property enables locking and unlocking the product based on its assigned key.
     *	Property type: string
     */
     get unlockKey() {
@@ -107,7 +107,7 @@ class Sortable extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Specifies or retrieves the current language code (e.g., 'en', 'fr', 'es'). This property determines which set of localized messages from the messages property will be used for displaying text or content. It ensures the correct language is applied throughout the application's interface.
     *	Property type: string
     */
     get locale() {
@@ -118,7 +118,7 @@ class Sortable extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback, related to localization module.
+    /** Callback function associated with the localization module, typically used to handle language or region-specific content updates or responses within the application.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -129,7 +129,7 @@ class Sortable extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Defines or retrieves an object containing the localized strings that are displayed in the widget's user interface. This property allows you to customize all text elements for different languages and regions. It should be used together with the locale property to ensure the widget presents the appropriate translations based on the selected locale.
     *	Property type: any
     */
     get messages() {
@@ -140,7 +140,7 @@ class Sortable extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets the direction sortable items are stacked and can be dragged.
+    /** Sets or retrieves the orientation (horizontal or vertical) in which sortable items are arranged and can be reordered by dragging. This determines whether items are stacked in a row or a column when using the sortable functionality.
     *	Property type: Orientation | string
     */
     get mode() {
@@ -151,7 +151,7 @@ class Sortable extends React.Component {
             this.nativeElement.mode = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Gets or sets a value that specifies whether the element's text direction is set to right-to-left (RTL), enabling proper alignment and layout for languages and locales that use right-to-left scripts, such as Arabic or Hebrew.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -170,7 +170,7 @@ class Sortable extends React.Component {
     get eventListeners() {
         return ["onDragEnd", "onCreate", "onReady"];
     }
-    /** Moves a sortable item from one index to another.
+    /** Relocates a sortable item within a list from its current index to a specified target index, updating the order of items accordingly.
     * @param {number} fromIndex?. The original index of the item.
     * @param {number} toIndex?. The index to move the item to.
     */
@@ -184,7 +184,7 @@ class Sortable extends React.Component {
             });
         }
     }
-    /** Re-evaluates the items that can be sorted. Useful after items have been added to or removed from the custom element.
+    /** Recalculates the list of sortable items within the custom element. This method should be called whenever items are dynamically added or removed to ensure that all current items are properly recognized and can be sorted as expected.
     */
     updateItems() {
         if (this.nativeElement.isRendered) {

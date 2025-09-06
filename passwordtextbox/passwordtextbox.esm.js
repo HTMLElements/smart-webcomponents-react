@@ -30,7 +30,7 @@ class PasswordTextBox extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Specifies or retrieves the current animation mode. When set to 'none', all animations are disabled. If set to any other supported value, animations will be enabled according to the specified mode.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Specifies that the element should be focused when the page is loaded.
+    /** Indicates that the element will automatically receive keyboard focus as soon as the page is loaded, allowing users to interact with it immediately without clicking or tabbing to it. This is often used to improve accessibility and streamline user interaction with form fields or interactive elements.
     *	Property type: boolean
     */
     get autoFocus() {
@@ -52,7 +52,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.autoFocus = value;
         }
     }
-    /** Enables or disables the element.
+    /** Determines whether the element is interactive or inactive. When enabled, users can interact with the element; when disabled, the element becomes unresponsive to user actions such as clicks or input.
     *	Property type: boolean
     */
     get disabled() {
@@ -63,7 +63,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Specifies the behavior on "Enter" key press. Default mode is "submit".
+    /** Defines the action that occurs when the "Enter" key is pressed within the input field. By default, the mode is set to "submit", meaning pressing "Enter" will attempt to submit the associated form. You can customize this behavior by specifying alternative modes, such as preventing form submission or triggering a custom handler.
     *	Property type: EnterKeyBehavior | string
     */
     get enterKeyBehavior() {
@@ -74,7 +74,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.enterKeyBehavior = value;
         }
     }
-    /** The form that the element is associated with (its "form owner"). The value of the attribute must be the ID of a form element in the same document.
+    /** Specifies the form element with which this element is associated (referred to as its "form owner"). The value of this attribute should be the id of a  element within the same HTML document. This allows the element to be associated with a form even if it is not nested inside the  tags.
     *	Property type: string
     */
     get form() {
@@ -85,7 +85,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.form = value;
         }
     }
-    /** Sets additional helper text below the element. Appears only when the element is focused.
+    /** Displays supplemental helper text beneath the element, visible only while the element is focused. This text provides additional guidance or context to users during interaction.
     *	Property type: any
     */
     get hint() {
@@ -96,7 +96,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.hint = value;
         }
     }
-    /** Sets label above the element. The label is displayed above the input and it's always visible.
+    /** Displays a label positioned above the input element. This label remains persistently visible, providing a clear and accessible description of the input’s purpose at all times.
     *	Property type: string
     */
     get label() {
@@ -107,7 +107,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.label = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Gets or sets the unlockKey, a unique key required to activate and access the product. Use this property to retrieve the current unlock key or assign a new one to enable product unlocking functionality.
     *	Property type: string
     */
     get unlockKey() {
@@ -118,7 +118,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Specifies or retrieves the current language setting. This property determines which set of localized text strings from the messages property is used for display. When you set the language, the corresponding messages are shown to users in that language. When you get the language, it returns the currently active language code.
     *	Property type: string
     */
     get locale() {
@@ -129,7 +129,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+    /** Callback function that allows you to customize the formatting of messages returned by the Localization Module. This enables you to modify or enhance localized message strings—such as adding dynamic data, adjusting placeholders, or changing text structure—before they are displayed to users.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -140,7 +140,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets or gets the maximum number of characters that the user can enter.
+    /** Specifies or retrieves the maximum number of characters allowed in the input field. If set, the user cannot enter more characters than this limit. This constraint helps enforce data validation and control the input length.
     *	Property type: number
     */
     get maxLength() {
@@ -151,7 +151,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.maxLength = value;
         }
     }
-    /** Sets an object with string values, related to the different states of passwords strength.
+    /** Defines an object where each property corresponds to a specific password strength state, with associated string values that describe or label each state (e.g., "weak," "moderate," "strong"). This object is typically used to display feedback messages or labels reflecting the current strength of a user's password during input.
     *	Property type: any
     */
     get messages() {
@@ -162,7 +162,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets the minimum number of characters that the user can enter.
+    /** Specifies or retrieves the minimum number of characters required for user input. When set, the user must enter at least this many characters for the input to be considered valid.
     *	Property type: number
     */
     get minLength() {
@@ -173,7 +173,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.minLength = value;
         }
     }
-    /** Sets or gets the name attribute for the element. Name is used when submiting HTML forms.
+    /** Sets or retrieves the value of the element's name attribute. The name attribute is used to identify form fields when submitting HTML forms, allowing the data entered in the element to be included in the form's submission with the specified name as the key. This is essential for server-side processing of form data.
     *	Property type: string
     */
     get name() {
@@ -184,7 +184,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.name = value;
         }
     }
-    /** With this property the user can set a custom callback function that determines the password strength. The returned string from the function determines the how strong the current password is. The string should be one of the following: 'short', 'weak', 'far', 'good', 'strong'.
+    /** With this property, you can specify a custom callback function that evaluates the strength of a password. The function should accept the current password as input and return a string representing the assessed strength level. The returned string must be one of the following predefined values: 'short', 'weak', 'far', 'good', or 'strong'. This value will be used by the component to indicate how secure the entered password is according to your custom logic.
     *	Property type: any
     */
     get passwordStrength() {
@@ -195,7 +195,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.passwordStrength = value;
         }
     }
-    /** The placeholder text that is displayed when no value is applied to the element.
+    /** This is the text that appears within the element when it is empty, serving as a prompt or hint to the user about the expected input. Once the user enters a value, this placeholder text disappears.
     *	Property type: string
     */
     get placeholder() {
@@ -206,7 +206,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.placeholder = value;
         }
     }
-    /** Specifies that the user must fill in a value before submitting a form that contains the element.
+    /** Enhances the requirement that the user must provide a value for this element before the form can be submitted. If this field is left empty, the form submission will be blocked and the user will be prompted to enter a value. This ensures that the input is mandatory, helping maintain data completeness and integrity.
     *	Property type: boolean
     */
     get required() {
@@ -217,7 +217,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.required = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or retrieves a value specifying whether the element’s alignment is adjusted to support right-to-left (RTL) languages, such as Arabic or Hebrew. When enabled, the element’s content and layout are adapted for proper display in locales that use right-to-left text direction.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -228,7 +228,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Specifies whether the content of the input will be selected on focus.
+    /** Determines if the entire content of the input field should be automatically highlighted (selected) when the input receives focus, making it easier for users to quickly replace or copy the content.
     *	Property type: boolean
     */
     get selectAllOnFocus() {
@@ -239,7 +239,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.selectAllOnFocus = value;
         }
     }
-    /** Determines whether the password icon is visible.
+    /** Specifies whether the password icon (such as an eye symbol to show or hide password text) is displayed in the input field.
     *	Property type: boolean
     */
     get showPasswordIcon() {
@@ -250,7 +250,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.showPasswordIcon = value;
         }
     }
-    /** Determines whether a tooltip which shows the password's strength will be shown.
+    /** Specifies whether a tooltip displaying the password strength indicator will be visible to the user during password entry. When enabled, this tooltip provides real-time feedback on the strength of the entered password.
     *	Property type: boolean
     */
     get showPasswordStrength() {
@@ -261,7 +261,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.showPasswordStrength = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the visual theme to be applied. The theme controls the overall appearance and style—including colors, fonts, and backgrounds—of the element for a consistent look and feel.
     *	Property type: string
     */
     get theme() {
@@ -272,7 +272,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Determines whether Tooltip's arrow will be shown or not.
+    /** Specifies whether the Tooltip component should display an arrow pointing to the target element. Setting this option to true will show the arrow, while false will hide it.
     *	Property type: boolean
     */
     get tooltipArrow() {
@@ -283,7 +283,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.tooltipArrow = value;
         }
     }
-    /** Determines the delay before the tooltip appears in miliseconds.
+    /** Specifies the amount of time, in milliseconds, to wait before displaying the tooltip after a user interaction (such as hovering or focusing on an element).
     *	Property type: number
     */
     get tooltipDelay() {
@@ -294,7 +294,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.tooltipDelay = value;
         }
     }
-    /** Determines the position of the tooltip.
+    /** Specifies the placement of the tooltip relative to the target element, such as "top", "bottom", "left", or "right". This controls where the tooltip will appear when it is displayed.
     *	Property type: PasswordTextBoxTooltipPosition | string
     */
     get tooltipPosition() {
@@ -305,7 +305,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.tooltipPosition = value;
         }
     }
-    /** Sets a custom template for the content of the tooltip.
+    /** Specifies a custom template for rendering the tooltip’s content, allowing you to define the layout, formatting, and dynamic data within the tooltip. This enables greater control over the appearance and behavior of the tooltip beyond the default content.
     *	Property type: string
     */
     get tooltipTemplate() {
@@ -316,7 +316,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.tooltipTemplate = value;
         }
     }
-    /** If true, the element cannot be focused.
+    /** Indicates whether the element should be excluded from keyboard navigation and cannot receive focus. If set to true, users will not be able to focus on the element using the keyboard or mouse interactions.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -327,7 +327,7 @@ class PasswordTextBox extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Sets or gets the value of the element.
+    /** Sets a new value for the element or retrieves its current value, depending on whether an argument is provided. Useful for updating or accessing the element’s data within a form or component.
     *	Property type: string
     */
     get value() {
@@ -346,7 +346,7 @@ class PasswordTextBox extends React.Component {
     get eventListeners() {
         return ["onChange", "onChanging", "onCreate", "onReady"];
     }
-    /** Focuses the element.
+    /** Sets keyboard focus to the specified element, making it the active element on the page and enabling user input or interaction through the keyboard. This is commonly used to improve accessibility, guide user workflow, or trigger specific UI behaviors.
     */
     focus() {
         if (this.nativeElement.isRendered) {
@@ -358,7 +358,7 @@ class PasswordTextBox extends React.Component {
             });
         }
     }
-    /** The method is used to reset input to it's initial value.
+    /** This method resets the input field to its initial value, discarding any changes made by the user and restoring the input's original state as specified when the component or element was first rendered.
     */
     reset() {
         if (this.nativeElement.isRendered) {

@@ -22,7 +22,7 @@ require('../source/modules/smart.path');
 	        }
 	        return this._id;
 	    }
-	    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+	    /** Specifies the animation mode for the element. When this property is set to 'none', all animations are disabled. Otherwise, you can set it to other supported values to enable different animation behaviors. When retrieving this property, it returns the current animation mode.
 	    *	Property type: Animation | string
 	    */
 	    get animation() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.animation = value;
 	        }
 	    }
-	    /** Determines the data source for the item that will be displayed inside the drop down.
+	    /** Specifies the source of the data that will populate the items shown within the dropdown menu. This property defines where and how the dropdown retrieves its list of selectable options, such as from a static array, a remote API, or a data store.
 	    *	Property type: any
 	    */
 	    get dataSource() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.dataSource = value;
 	        }
 	    }
-	    /** Enables or disables the element.
+	    /** Determines whether the element is active and interactive (enabled) or inactive and non-interactive (disabled). When enabled, users can interact with the element as intended. When disabled, the element is visually distinct and does not respond to user input or actions.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Sets or gets the displayMember. The displayMember specifies the name of an object property to display. The name is contained in the collection specified by the 'dataSource' property.
+	    /** Sets or retrieves the displayMember property. The displayMember property specifies the name of the object property that should be displayed for each item in the collection referenced by the 'dataSource' property. When rendering items from the dataSource, the value of the specified property (displayMember) is shown in the UI, allowing you to control which attribute of each object is presented to the user.
 	    *	Property type: string
 	    */
 	    get displayMember() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.displayMember = value;
 	        }
 	    }
-	    /** Sets the parent container of the dropDown (the popup). Used when a CSS property of unknown parent is interfering with the visibility of the dropDown.
+	    /** Specifies the parent container element for the dropDown (popup) component. This property is useful when a CSS property—such as overflow, z-index, or positioning—from an ancestor element unexpectedly affects the dropDown’s visibility or display. By explicitly setting the parent container, you can ensure that the dropDown is rendered within a controlled context, preventing visibility issues caused by styles on unknown or undesired parent elements.
 	    *	Property type: any
 	    */
 	    get dropDownAppendTo() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.dropDownAppendTo = value;
 	        }
 	    }
-	    /** Sets the height of the drop down. Default value of empty string means that CSS variables are used. This property should be used when the browser doesn't support CSS variables.
+	    /** Specifies the height of the dropdown menu. If set to an empty string (the default), the component relies on CSS variables to determine the height. Use this property to explicitly define the dropdown height in pixels or other valid CSS units when targeting browsers that do not support CSS variables. This ensures consistent appearance across all browsers.
 	    *	Property type: string | number
 	    */
 	    get dropDownHeight() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.dropDownHeight = value;
 	        }
 	    }
-	    /** Sets the max height of the drop down. Default value of empty string means that CSS variables are used. This property should be used when the browser doesn't support CSS variables.
+	    /** Specifies the maximum height of the dropdown menu. By default, this property is set to an empty string, allowing the component to use CSS variables for height control. If the browser does not support CSS variables, you can set this property to a specific pixel, em, or rem value (e.g., "300px", "20em") to manually define the maximum height. This ensures proper rendering and usability of the dropdown across all browsers.
 	    *	Property type: string | number
 	    */
 	    get dropDownMaxHeight() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.dropDownMaxHeight = value;
 	        }
 	    }
-	    /** Sets the max width of the drop down. Default value of empty string means that CSS variables are used. This property should be used when the browser doesn't support CSS variables.
+	    /** Specifies the maximum width of the dropdown menu. When set to an empty string (the default), the component relies on CSS variables to determine the dropdown's width. Use this property to explicitly set a max width (e.g., "300px" or "100%") in situations where CSS variables are not supported by the browser. This ensures consistent dropdown sizing across all environments.
 	    *	Property type: string | number
 	    */
 	    get dropDownMaxWidth() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.dropDownMaxWidth = value;
 	        }
 	    }
-	    /** Sets the min height of the drop down. Default value of empty string means that CSS variables are used. This property should be used when the browser doesn't support CSS variables.
+	    /** Specifies the minimum height of the dropdown menu. By default, this property is set to an empty string, which means that the component will use CSS variables to determine the minimum height. If you need to support browsers that do not support CSS variables, you can manually set a value for this property to ensure consistent rendering.
 	    *	Property type: string | number
 	    */
 	    get dropDownMinHeight() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.dropDownMinHeight = value;
 	        }
 	    }
-	    /** Sets the min width of the drop down. Default value of empty string means that CSS variables are used. This property should be used when the browser doesn't support CSS variables.
+	    /** Specifies the minimum width of the dropdown component. By default, this property is an empty string (""), which allows the component to use CSS variables for determining its width. If you need to support browsers that do not support CSS variables, you can set this property directly to a specific width value (e.g., "200px"). This overrides the default behavior and ensures consistent rendering across all browsers.
 	    *	Property type: string | number
 	    */
 	    get dropDownMinWidth() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.dropDownMinWidth = value;
 	        }
 	    }
-	    /** If this property is enabled, when the element's dropdown is opened, a transparent overlay is positioned between the dropdown and the rest of the document.
+	    /** When this property is enabled, opening the element’s dropdown will display a transparent overlay that covers the area between the dropdown and the rest of the page. This overlay prevents interaction with the underlying content while the dropdown is open, ensuring the user's focus remains on the dropdown menu.
 	    *	Property type: boolean
 	    */
 	    get dropDownOverlay() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.dropDownOverlay = value;
 	        }
 	    }
-	    /** Determines the vertical position of the dropDown. 'Auto' means its automatically determined depending on the viewport size.
+	    /** Specifies the vertical placement of the dropDown menu. When set to 'Auto', the dropDown will automatically choose either a top or bottom position based on available space in the viewport to ensure it remains fully visible.
 	    *	Property type: DropDownPosition | string
 	    */
 	    get dropDownPosition() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.dropDownPosition = value;
 	        }
 	    }
-	    /** Sets the width of the drop down. Default value of empty string means that CSS variables are used. This property should be used when the browser doesn't support CSS variables.
+	    /** Specifies the width of the dropdown component. By default, this property is set to an empty string, which means the dropdown's width is determined by CSS variables. You should set this property explicitly only if you need to override the CSS variable-based width—typically in browsers that do not support CSS variables. Providing a value (e.g., "200px" or "50%") will directly set the dropdown's width via inline styles, ensuring compatibility with older browsers.
 	    *	Property type: string | number
 	    */
 	    get dropDownWidth() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.dropDownWidth = value;
 	        }
 	    }
-	    /** Sets additional helper text below the element.
+	    /** Provides supplementary helper text displayed below the element, offering extra guidance or information to the user.
 	    *	Property type: string
 	    */
 	    get hint() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.hint = value;
 	        }
 	    }
-	    /** Sets the element as an indicator.
+	    /** Designates the element as an indicator, typically used to visually highlight status, progress, or other relevant information on the user interface. This attribute helps identify the element's role for styling, accessibility, or scripting purposes.
 	    *	Property type: boolean
 	    */
 	    get indicator() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.indicator = value;
 	        }
 	    }
-	    /** A getter that returns an array of all Path items.
+	    /** Returns an array containing all Path objects available within the collection. Each Path object represents a distinct path item, and the array includes every Path currently stored or defined.
 	    *	Property type: any[]
 	    */
 	    get items() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.items = value;
 	        }
 	    }
-	    /** Sets label above the element.
+	    /** Positions a descriptive label directly above the associated form element, providing clear context or instructions for the user.
 	    *	Property type: string
 	    */
 	    get label() {
@@ -209,7 +209,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.label = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Gets or sets the unlockKey property, which is a unique code used to unlock and activate the product’s full features. Setting this value provides access to restricted functionality, while retrieving it allows you to verify the currently assigned unlock key.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -220,7 +220,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Specifies or retrieves the current language setting. This property determines which set of localized messages from the messages property will be used or returned. Changing the language value updates the displayed content to match the corresponding entries in messages.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -231,7 +231,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Specifies or retrieves an object containing the localized strings used throughout the widget, enabling support for multiple languages. This property works together with the locale property to display the widget's text in the chosen language. Use it to customize or override default interface text for internationalization purposes.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -242,7 +242,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** The name of the control.
+	    /** Specifies the unique identifier or label assigned to the control, which is used to reference and distinguish it from other elements within the form or user interface.
 	    *	Property type: string
 	    */
 	    get name() {
@@ -253,7 +253,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.name = value;
 	        }
 	    }
-	    /** Determines whether the popup is opened or closed
+	    /** Indicates the current state of the popup, specifying whether it is visible (opened) or hidden (closed) to the user.
 	    *	Property type: boolean
 	    */
 	    get opened() {
@@ -264,7 +264,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.opened = value;
 	        }
 	    }
-	    /** Determines the element's placeholder.
+	    /** Specifies the placeholder text that appears inside the element when it is empty, providing a hint or example of the expected input.
 	    *	Property type: string
 	    */
 	    get placeholder() {
@@ -275,7 +275,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.placeholder = value;
 	        }
 	    }
-	    /** Determines the format of the path. Follows specific operation system criteria by changing the drive,folder separators.
+	    /** Specifies the format of the file path according to the operating system’s conventions. Adjusts elements such as drive letters, folder separators (e.g., forward slashes '/' for Unix-based systems or backslashes '\' for Windows), and other path components to ensure compatibility with the selected platform.
 	    *	Property type: PathFormat | string
 	    */
 	    get pathFormat() {
@@ -286,7 +286,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.pathFormat = value;
 	        }
 	    }
-	    /** Disables user interaction with the element.
+	    /** Prevents users from interacting with the element by disabling all mouse, keyboard, and touch events. The element will not respond to clicks, focus, or any other input actions. Visual indicators (such as grayed-out appearance) may also be applied to show that the element is inactive.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -297,7 +297,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Specifies or retrieves a value that determines whether the element’s text direction and alignment are set to support right-to-left (RTL) languages, such as Arabic or Hebrew. When enabled, the element’s content will be displayed in a manner appropriate for locales that use RTL scripts.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -308,7 +308,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Determines the theme. Theme defines the look of the element
+	    /** Specifies the visual theme to be applied, which controls the overall appearance, including colors, fonts, and styling of the element. The chosen theme defines how the element is visually presented to users.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -319,7 +319,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** If this property is set to true, the element will be excluded from the tab order and cannot receive keyboard focus or be interacted with using standard focus navigation methods.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -330,7 +330,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** The value of the Path control.
+	    /** Represents the current value or data stored in the Path control, typically indicating the file system path, URL, or navigation route selected or entered by the user. This value is used to reference a specific location within the application or external resources.
 	    *	Property type: string
 	    */
 	    get value() {
@@ -341,7 +341,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.value = value;
 	        }
 	    }
-	    /** Determines the value member of an item. Stored as value in the item object.
+	    /** Specifies which property of the item object should be used as its value. This property's value is stored in the item object under the "value" key and is typically used for identification, selection, or submitting data.
 	    *	Property type: string
 	    */
 	    get valueMember() {
@@ -352,7 +352,7 @@ require('../source/modules/smart.path');
 	            this.nativeElement.valueMember = value;
 	        }
 	    }
-	    /** Determines whether or not the element wraps to a new line if overflows. If set the Path can be wrapped on multiple lines.
+	    /** Controls whether the element automatically moves to a new line when its content exceeds the available horizontal space. When enabled, the element (such as a Path) will wrap onto multiple lines instead of overflowing its container. This ensures that long content is displayed without being cut off or causing horizontal scrolling.
 	    *	Property type: boolean
 	    */
 	    get wrap() {
@@ -371,7 +371,7 @@ require('../source/modules/smart.path');
 	    get eventListeners() {
 	        return ["onBrowseButtonClick", "onChange", "onClose", "onClosing", "onDropDownButtonClick", "onItemClick", "onOpen", "onOpening", "onCreate", "onReady"];
 	    }
-	    /** Closes the dropDown.
+	    /** Closes the drop-down menu, hiding its content from view and preventing user interaction until it is opened again.
 	    */
 	    close() {
 	        if (this.nativeElement.isRendered) {
@@ -383,7 +383,7 @@ require('../source/modules/smart.path');
 	            });
 	        }
 	    }
-	    /** Opens the dropDown.
+	    /** Displays the drop-down menu, making its list of selectable options visible to the user.
 	    */
 	    open() {
 	        if (this.nativeElement.isRendered) {
@@ -395,7 +395,7 @@ require('../source/modules/smart.path');
 	            });
 	        }
 	    }
-	    /** Set's the Path element to 'emptyPath' state and changes the value to '////'.
+	    /** Sets the Path element to the 'emptyPath' state by updating its value to '////', indicating that the path is intentionally left empty or reset to its default state.
 	    */
 	    setToEmptyPath() {
 	        if (this.nativeElement.isRendered) {
@@ -407,7 +407,7 @@ require('../source/modules/smart.path');
 	            });
 	        }
 	    }
-	    /** Set's the Path element to 'notAPath' state and changes the value to '//'.
+	    /** Sets the Path element's state to 'notAPath' and updates its value to '//', indicating that the current content does not represent a valid path.
 	    */
 	    setToNotAPath() {
 	        if (this.nativeElement.isRendered) {

@@ -19,42 +19,42 @@ export declare class TabLayoutGroup extends React.Component<React.HTMLAttributes
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Enables or disables the element.
+    /** Specifies whether the element is interactive and can be used by the user. When enabled, the element responds to user actions; when disabled, the element is inactive and cannot be interacted with.
     *	Property type: boolean
     */
     get disabled(): boolean;
     set disabled(value: boolean);
-    /** Sets or gets the modifiers of the Layout item.
+    /** Gets the current modifiers applied to the Layout item, or sets new modifiers to customize its appearance and behavior. Modifiers may include properties such as alignment, spacing, padding, or visibility.
     *	Property type: any
     */
     get modifiers(): any;
     set modifiers(value: any);
-    /** Determines the min size of the item.
+    /** Specifies the minimum allowable size for the item. This value ensures that the item's dimensions do not shrink below the defined threshold, helping maintain layout consistency and usability.
     *	Property type: number
     */
     get min(): number;
     set min(value: number);
-    /** Determines the label of the item.
+    /** Specifies the text that will be displayed as the item's label, providing a descriptive name or title for the user interface element.
     *	Property type: string
     */
     get label(): string;
     set label(value: string);
-    /** Determines the group orientation.
+    /** Specifies the orientation (horizontal or vertical) of the group, defining how its child elements are arranged within the component. This setting affects the layout and flow direction of the grouped items.
     *	Property type: TabLayoutGroupOrientation | string
     */
     get orientation(): TabLayoutGroupOrientation | string;
     set orientation(value: TabLayoutGroupOrientation | string);
-    /** Determines the position of the tab items group.
+    /** Specifies the alignment or placement of the group of tab items within the tab container. This determines whether the tabs are positioned, for example, at the start, center, end, or distributed evenly along the container.
     *	Property type: TabLayoutGroupPosition | string
     */
     get position(): TabLayoutGroupPosition | string;
     set position(value: TabLayoutGroupPosition | string);
-    /** Determines the size of the item.
+    /** Specifies the dimensions or overall scale of the item, such as its width, height, or length. This property defines how large or small the item appears or is rendered within the user interface or layout.
     *	Property type: any
     */
     get size(): any;
     set size(value: any);
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, this property prevents the element from receiving keyboard focus, meaning it cannot be selected or navigated to using the Tab key or other keyboard navigation methods.
     *	Property type: boolean
     */
     get unfocusable(): boolean;

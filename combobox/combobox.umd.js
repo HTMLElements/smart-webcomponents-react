@@ -466,7 +466,7 @@ require('../source/modules/smart.combobox');
 	        }
 	        return this._id;
 	    }
-	    /** Used only when dropDownOpenMode is set to 'auto'. Determines the delay before the opened drop down closes if the pointer is not over the element.
+	    /** This property is applicable only when dropDownOpenMode is set to 'auto'. It specifies the amount of time (in milliseconds) the dropdown will remain open after the pointer leaves the element, before it automatically closes. If the pointer is not hovering over the dropdown or its trigger element, the dropdown will close after this delay.
 	    *	Property type: number
 	    */
 	    get autoCloseDelay() {
@@ -477,7 +477,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.autoCloseDelay = value;
 	        }
 	    }
-	    /** Determines the autocomplete mode. Auto complete modes filter the items from the dataSource and show only those that match the input.
+	    /** Specifies the autocomplete mode for the input field. The selected mode defines how the component filters and displays items from the dataSource, showing only those entries that match the user's input according to the chosen matching strategy. This setting directly impacts the suggestions presented to the user as they type.
 	    *	Property type: AutoComplete | string
 	    */
 	    get autoComplete() {
@@ -488,7 +488,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.autoComplete = value;
 	        }
 	    }
-	    /** Determines the delay before the drop down opens to show the matches from the auto complete operation. The delay is measured in miliseconds.
+	    /** Specifies the amount of time, in milliseconds, to wait after the user input before displaying the dropdown list of autocomplete suggestions. This delay helps control how quickly the suggestions appear, allowing for smoother user experience and reducing unnecessary searches as the user types.
 	    *	Property type: number
 	    */
 	    get autoCompleteDelay() {
@@ -499,7 +499,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.autoCompleteDelay = value;
 	        }
 	    }
-	    /** Allows the user to define a custom key name ( or multiple key names) to open that popup with.
+	    /** Enables users to specify one or more custom key names that will trigger the opening of the popup when pressed. This allows for flexible keyboard shortcuts tailored to user preferences or application requirements.
 	    *	Property type: string[]
 	    */
 	    get autoOpenShortcutKey() {
@@ -510,7 +510,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.autoOpenShortcutKey = value;
 	        }
 	    }
-	    /** Determines the data source that will be loaded to the ComboBox. The dataSource can be an array of strings/numbers or objects where the attributes represent the properties of a List Item. For example label, value, group. It can also be a callback that returns an Array of items as previously described.
+	    /** Specifies the source of data to populate the ComboBox. The dataSource can be provided in several formats:- An array of strings or numbers, where each item becomes a selectable option in the ComboBox.- An array of objects, where each object represents a list item and its properties define the displayed information and associated value (e.g., label for display text, value for the underlying value, and optionally group to categorize items).- A callback function that returns an array of items in either of the above formats, enabling dynamic or asynchronous data loading.This flexible dataSource configuration allows the ComboBox to support simple lists, categorized lists, or dynamically retrieved data.
 	    *	Property type: any
 	    */
 	    get dataSource() {
@@ -521,7 +521,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dataSource = value;
 	        }
 	    }
-	    /** Enables or disables the combo box.
+	    /** Controls whether the combo box is active or inactive. When enabled, users can interact with the combo box to select or enter a value. When disabled, the combo box is non-interactive and appears grayed out, preventing any user input or selection.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -532,7 +532,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Determines whether an indicator will appear during filtering and remote item loading.
+	    /** Specifies whether a visual indicator (such as a loading spinner or progress bar) will be displayed while filtering data locally or when retrieving items from a remote source. This helps inform users that a filtering operation or data fetch is in progress.
 	    *	Property type: boolean
 	    */
 	    get displayLoadingIndicator() {
@@ -543,7 +543,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.displayLoadingIndicator = value;
 	        }
 	    }
-	    /** Sets or gets the displayMember. The displayMember specifies the name of a property to display. The name is contained in the collection specified by the 'dataSource' property.
+	    /** Sets or retrieves the displayMember property. The displayMember property defines the specific field name within each data object in the collection provided by the 'dataSource' property. This field's value is used for displaying items in the UI component, allowing you to control which attribute of your data objects is shown to the user.
 	    *	Property type: string
 	    */
 	    get displayMember() {
@@ -554,7 +554,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.displayMember = value;
 	        }
 	    }
-	    /** Determines the drop down parent. The expected value is CSS Selector, ID or 'body'. The drop down can be removed from the body of the element and continue to work in another container. This is usefull when one of the parents of the element doesn't allow overflowing, by settings this property to 'body' the drop down will be appended to the DOM and the popup will open/close as usual. dropDownAppendTo can be a string representing the id of an HTML element on the page or a direct reference to that element. Reseting it back to null will take the drop down back to it's original place.
+	    /** Specifies the parent container for the dropdown element. The dropDownAppendTo property accepts a CSS selector string, an element's ID, the string value 'body', or a direct reference to an HTML element. By default, the dropdown is appended to its original parent in the DOM. However, if one of the containing elements has CSS properties (such as overflow: hidden) that restrict the dropdown's visibility, you can set this property—commonly to 'body'—to append the dropdown directly to the &lt;body&gt; element and ensure it displays properly.Possible values:- A CSS selector string (e.g., '.container' or '#mainDiv')- The string 'body'- A direct reference to an existing HTML element- An element's ID (as a string)- null (to reset and move the dropdown back to its original parent)This property improves compatibility in layouts with restricted overflow by allowing the dropdown to be rendered in a container of your choosing. Resetting dropDownAppendTo to null restores the dropdown to its initial placement within the DOM.
 	    *	Property type: string
 	    */
 	    get dropDownAppendTo() {
@@ -565,7 +565,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownAppendTo = value;
 	        }
 	    }
-	    /** Determines the position of the drop down button.
+	    /** Specifies the location of the dropdown button relative to its associated input field or container. Possible positions may include "left," "right," "top," or "bottom," allowing developers to control where the dropdown button appears in the user interface.
 	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
@@ -576,7 +576,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownButtonPosition = value;
 	        }
 	    }
-	    /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
+	    /** Specifies the height of the dropdown menu. By default, this property is set to an empty string, which means the dropdown’s height will be determined by the corresponding CSS variable. If a specific value is provided, it will override the CSS variable and set the dropdown height explicitly.
 	    *	Property type: string | number
 	    */
 	    get dropDownHeight() {
@@ -587,7 +587,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownHeight = value;
 	        }
 	    }
-	    /** Sets the maximum Height of the drop down. By default it's set to an empty string. In this case the maxHeight of the drop down is controlled by a CSS variable.
+	    /** Specifies the maximum height of the dropdown menu. By default, this value is set to an empty string, which means the dropdown's max-height will be controlled by a CSS variable instead of an explicit value. If you provide a specific value (e.g., "300px" or "50vh"), it will override the default CSS variable and directly set the maximum height of the dropdown.
 	    *	Property type: string | number
 	    */
 	    get dropDownMaxHeight() {
@@ -598,7 +598,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownMaxHeight = value;
 	        }
 	    }
-	    /** Sets the maximum Width of the drop down. By default it's set to an empty string. In this case the maxWidth of the drop down is controlled by a CSS variable.
+	    /** Defines the maximum width of the dropdown menu. By default, this value is set to an empty string, which means the dropdown's maximum width will be determined by a corresponding CSS variable. If a specific value is provided (e.g., "300px" or "50%"), it will override the CSS variable and directly set the maximum width of the dropdown.
 	    *	Property type: string | number
 	    */
 	    get dropDownMaxWidth() {
@@ -609,7 +609,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownMaxWidth = value;
 	        }
 	    }
-	    /** Sets the minimum Height of the drop down. By default it's set to an empty string. In this case the minHeight of the drop down is controlled by a CSS variable.
+	    /** Defines the minimum height of the dropdown component. By default, this property is set to an empty string, which means the dropdown's minimum height is determined by a corresponding CSS variable. If a specific value is provided for this property, it will override the CSS variable and explicitly set the dropdown's minimum height.
 	    *	Property type: string | number
 	    */
 	    get dropDownMinHeight() {
@@ -620,7 +620,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownMinHeight = value;
 	        }
 	    }
-	    /** Sets the minimum Width of the drop down. By default it's set to an empty string. In this case the minWidth of the drop down is controlled by a CSS variable.
+	    /** Specifies the minimum width of the dropdown component. By default, this property is set to an empty string (""). When left unset, the dropdown’s minimum width is determined by a CSS variable, allowing for flexible styling through external stylesheets. To override the CSS value, assign a specific width value (e.g., "200px" or "10rem") to this property.
 	    *	Property type: string | number
 	    */
 	    get dropDownMinWidth() {
@@ -631,7 +631,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownMinWidth = value;
 	        }
 	    }
-	    /** Determines how the drop down is going to open.
+	    /** Specifies the direction or animation in which the dropdown menu will appear when activated, such as opening upwards, downwards, or with a specific transition effect.
 	    *	Property type: DropDownOpenMode | string
 	    */
 	    get dropDownOpenMode() {
@@ -642,7 +642,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownOpenMode = value;
 	        }
 	    }
-	    /** If this property is enabled, when the element's dropdown is opened, a transparent overlay is positioned between the dropdown and the rest of the document. The purpose of the overlay is to make sure that clicking anywhere outside the popup will will target the overlay and not the DOM.
+	    /** If this property is enabled, opening the element's dropdown will insert a transparent overlay between the dropdown and the rest of the document. This overlay covers the entire viewport except for the dropdown itself, capturing all click events outside the dropdown. As a result, any clicks outside the popup will interact with the overlay instead of other elements on the page, allowing you to reliably detect and handle outside clicks (such as to close the dropdown) without unintentionally triggering other DOM elements.
 	    *	Property type: boolean
 	    */
 	    get dropDownOverlay() {
@@ -653,7 +653,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownOverlay = value;
 	        }
 	    }
-	    /** Determines the placeholder for the drop down, displayed when there are no items in it.
+	    /** Specifies the text or content to be shown in the dropdown as a placeholder when the dropdown contains no selectable items. This placeholder provides guidance or context to the user, indicating that there are currently no available options.
 	    *	Property type: string
 	    */
 	    get dropDownPlaceholder() {
@@ -664,7 +664,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownPlaceholder = value;
 	        }
 	    }
-	    /** Determines the position of the drop down when opened.
+	    /** Specifies the placement of the dropdown menu relative to its trigger element when opened (e.g., above, below, left, or right). This setting controls where the dropdown appears on the screen in relation to the element that activates it.
 	    *	Property type: DropDownPosition | string
 	    */
 	    get dropDownPosition() {
@@ -675,7 +675,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownPosition = value;
 	        }
 	    }
-	    /** Sets the width of the drop down. By default it's set to an empty string. In this case the width of the drop down is controlled by a CSS variable.
+	    /** Specifies the width of the dropdown menu. By default, this property is set to an empty string, allowing the dropdown's width to be determined by the associated CSS variable (typically via custom properties or theme settings). If a value is provided, it overrides the CSS variable and directly sets the dropdown's width.
 	    *	Property type: string | number
 	    */
 	    get dropDownWidth() {
@@ -686,7 +686,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.dropDownWidth = value;
 	        }
 	    }
-	    /** Determines the behavior of the element when Escape key is pressed.
+	    /** Specifies how the element should respond when the Escape key is pressed by the user. This property allows you to define actions such as closing a modal, dismissing a dialog, or triggering a custom event when the Escape key is detected while the element is focused or active.
 	    *	Property type: ComboBoxEscKeyMode | string
 	    */
 	    get escKeyMode() {
@@ -697,7 +697,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.escKeyMode = value;
 	        }
 	    }
-	    /** Determines whether filtering is enabled.
+	    /** Specifies whether the filtering feature is active. When set to true, users can apply filters to narrow down displayed data; when false, filtering options are disabled and all data is shown without restriction.
 	    *	Property type: boolean
 	    */
 	    get filterable() {
@@ -708,7 +708,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.filterable = value;
 	        }
 	    }
-	    /** Determines the placeholder for the drop down list filter input field.
+	    /** Specifies the placeholder text displayed inside the dropdown list’s filter input field, guiding users on what to enter when searching or filtering options.
 	    *	Property type: string
 	    */
 	    get filterInputPlaceholder() {
@@ -719,7 +719,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.filterInputPlaceholder = value;
 	        }
 	    }
-	    /** Determines the filtering mode of the Combo box.
+	    /** Specifies the filtering behavior for the Combo Box, controlling how user input is matched against the available options (e.g., contains, starts with, or exact match). This property determines which options are displayed in the dropdown list as the user types.
 	    *	Property type: FilterMode | string
 	    */
 	    get filterMode() {
@@ -730,7 +730,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.filterMode = value;
 	        }
 	    }
-	    /** If enabled, the items will be grouped by their first letter. Can't be applied if the dataSource already contains groups.
+	    /** When enabled, this option automatically groups the items based on the first letter of each item's value or label. Note: This grouping feature is only available if the dataSource does not already include predefined groups. If the dataSource is already grouped, this setting will have no effect.
 	    *	Property type: boolean
 	    */
 	    get grouped() {
@@ -741,7 +741,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.grouped = value;
 	        }
 	    }
-	    /** Determines which attribute from the dataSource object will be used as the group member for the items. If not set, by default 'group' property is used from the source object. groupMember is especially usefull when loading the data from a JSON file as a dataSource for the ListBox and there's a specific property that should be used to group the items.
+	    /** Specifies which attribute of the dataSource object should be used to group items in the ListBox. By default, if this property (groupMember) is not set, the ListBox will use the 'group' property from each dataSource item to organize groups. This property is particularly useful when loading data from a JSON file, allowing you to designate a specific property from your data objects to determine the grouping of items—especially if your JSON structure uses a different property name for grouping.
 	    *	Property type: string
 	    */
 	    get groupMember() {
@@ -752,7 +752,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.groupMember = value;
 	        }
 	    }
-	    /** Sets additional helper text below the element. The hint is visible only when the element is focused.
+	    /** Displays supplementary helper text beneath the element. This hint is visible exclusively when the element is in focus, providing contextual guidance to users as they interact with the field.
 	    *	Property type: string
 	    */
 	    get hint() {
@@ -763,7 +763,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.hint = value;
 	        }
 	    }
-	    /** Determines the visibility of the horizontal Scroll bar inside the drop down.
+	    /** Controls whether the horizontal scroll bar is displayed within the dropdown menu when the content exceeds the available width.
 	    *	Property type: HorizontalScrollBarVisibility | string
 	    */
 	    get horizontalScrollBarVisibility() {
@@ -774,7 +774,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.horizontalScrollBarVisibility = value;
 	        }
 	    }
-	    /** Represents the property name of a List item. Determines the value of the input when a ListItem is selected. Usefull in cases where the user wants to display for example the value of an item instead of it's label. By default the label is displayed in the input.
+	    /** Represents the property name of a List item whose value will be displayed in the input field when a ListItem is selected. This allows developers to control which property of each item is shown in the input, such as displaying the item's value instead of its label. By default, the label property is used for display. This option is useful when you want to customize the displayed content, for example, to show a unique identifier or value rather than the descriptive label.
 	    *	Property type: string
 	    */
 	    get inputMember() {
@@ -785,7 +785,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.inputMember = value;
 	        }
 	    }
-	    /** Sets the purpose of the input and what, if any, permission the user agent has to provide automated assistance in filling out the element's input when in a form, as well as guidance to the browser as to the type of information expected in the element. This value corresponds to the standard HTML autocomplete attribute and can be set to values such as 'on', 'name', 'organization', 'street-address', etc.
+	    /** Specifies the expected type of information for the input field and informs the browser about the nature of the data to be entered. This guidance allows user agents (such as browsers and password managers) to determine if they can provide automated assistance—like autofilling relevant values—when the element is used in a form. The value assigned to this property directly maps to the standard HTML autocomplete attribute. Common values include 'on' (enable autocomplete), 'off' (disable autocomplete), 'name' (full name), 'organization' (company or organization), 'email', 'street-address', and many others, as specified by the HTML standard. Using an appropriate value improves user experience, enhances accessibility, and helps maintain privacy and security standards within web forms.
 	    *	Property type: string
 	    */
 	    get inputPurpose() {
@@ -796,7 +796,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.inputPurpose = value;
 	        }
 	    }
-	    /** IncrementalSearchDelay property specifies the time-interval in milliseconds until the previous search query is cleared. The timer starts when the user stops typing. A new query can be started only when the delay has passed.
+	    /** The 'IncrementalSearchDelay' property defines the duration, in milliseconds, to wait after the user stops typing before clearing the previous search query. This timer begins as soon as the user finishes typing. During this delay period, no new search query will be initiated. Only after the specified delay has elapsed will the current search input be cleared, allowing a new search query to be started. This helps to optimize performance and user experience by preventing unnecessary or premature queries while the user is still entering their search terms.
 	    *	Property type: number
 	    */
 	    get incrementalSearchDelay() {
@@ -807,7 +807,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.incrementalSearchDelay = value;
 	        }
 	    }
-	    /** Sets ot gets the mode of the incremental search mode. Incremental search is enabled by default. Typing while the drop down is focused starts the incremental search.
+	    /** Configures or retrieves the current mode of incremental search. By default, incremental search is enabled, allowing users to type while the dropdown is focused to quickly filter and highlight matching options. Modifying this setting controls how user input is processed for searching within the dropdown list.
 	    *	Property type: SearchMode | string
 	    */
 	    get incrementalSearchMode() {
@@ -818,7 +818,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.incrementalSearchMode = value;
 	        }
 	    }
-	    /** Sets the height for all list items. Used only when virtualization is enabled.
+	    /** Specifies the height (in pixels) for each list item when rendering the list. This property is only applicable when list virtualization is enabled, as it helps optimize rendering performance by allowing the component to calculate and render only the visible items.
 	    *	Property type: number
 	    */
 	    get itemHeight() {
@@ -829,7 +829,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.itemHeight = value;
 	        }
 	    }
-	    /** Determines the item width measuring algorithm.
+	    /** Specifies the algorithm used to calculate the width of each item. This setting determines how the width of an item is measured, such as using the item's intrinsic content size, a fixed value, or a percentage of the container. Adjust this parameter to control how item widths are determined within the layout.
 	    *	Property type: ListItemMeasureMode | string
 	    */
 	    get itemMeasureMode() {
@@ -840,7 +840,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.itemMeasureMode = value;
 	        }
 	    }
-	    /** A getter that returns an array of all List items inside the drop down.
+	    /** A getter method that retrieves and returns an array containing all list ('') elements currently present within the dropdown menu. This allows you to easily access and manipulate every item displayed in the dropdown.
 	    *	Property type: {label: string, value: string}[]
 	    */
 	    get items() {
@@ -851,7 +851,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.items = value;
 	        }
 	    }
-	    /** The itemTemplate property is a string that represents the id of an HTMLTemplateElement in the DOM.  It's used to set a customize the content of the list items.
+	    /** The itemTemplate property is a string that specifies the ID of an HTMLTemplateElement present in the DOM. This template is used to define and customize the structure and content of individual list items, allowing developers to control how each item appears when rendered in the list.
 	    *	Property type: any
 	    */
 	    get itemTemplate() {
@@ -862,7 +862,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.itemTemplate = value;
 	        }
 	    }
-	    /** Sets a little text label above the element.
+	    /** Displays a small text label positioned above the element, typically used to provide context, instructions, or additional information to users.
 	    *	Property type: string
 	    */
 	    get label() {
@@ -873,7 +873,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.label = value;
 	        }
 	    }
-	    /** Determines the text that will be displayed next to the loading indicator when the loader is visible and it's position is top or bottom.
+	    /** Specifies the text that appears alongside the loading indicator when the loader is visible and positioned at the top or bottom of the component. This text provides users with contextual information or status updates during loading.
 	    *	Property type: string
 	    */
 	    get loadingIndicatorPlaceholder() {
@@ -884,7 +884,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.loadingIndicatorPlaceholder = value;
 	        }
 	    }
-	    /** Determines the position of the loading indicator.
+	    /** Specifies the exact location on the user interface where the loading indicator will be displayed, such as at the top, center, or bottom of the screen or component.
 	    *	Property type: VerticalAlignment | string
 	    */
 	    get loadingIndicatorPosition() {
@@ -895,7 +895,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.loadingIndicatorPosition = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Sets or retrieves the unlockKey, a unique value required to grant access to the product’s premium features or activate its full functionality.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -906,7 +906,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Specifies or retrieves the current language setting for the component. This property determines which language is used when displaying content from the messages property, allowing for localization and internationalization of displayed messages. Set this property to a supported language code (e.g., "en", "fr") to load the corresponding translations from the messages object.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -917,7 +917,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+	    /** A callback function that allows you to customize the formatting of messages returned by the Localization Module. Use this callback to modify message text, apply dynamic values, or implement custom formatting logic before the localized messages are delivered to your application.
 	    *	Property type: any
 	    */
 	    get localizeFormatFunction() {
@@ -928,7 +928,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.localizeFormatFunction = value;
 	        }
 	    }
-	    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+	    /** Specifies or retrieves an object containing localized string values used within the widget’s user interface. This property enables the customization and translation of UI text for different languages or regions. It is intended to be used together with the locale property, allowing you to easily provide or update localized strings according to the selected locale.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -939,7 +939,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Determines the minimum number of characters inside the input in order to trigger the autocomplete functionality
+	    /** Specifies the minimum number of characters a user must enter in the input field before the autocomplete feature is activated and suggestions are displayed.
 	    *	Property type: number
 	    */
 	    get minLength() {
@@ -950,7 +950,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.minLength = value;
 	        }
 	    }
-	    /** Determines the maximum number of characters inside the input.
+	    /** Specifies the maximum number of characters that can be entered into the input field. Any additional characters beyond this limit will not be accepted. This helps enforce data validation and consistency for user input.
 	    *	Property type: number
 	    */
 	    get maxLength() {
@@ -961,7 +961,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.maxLength = value;
 	        }
 	    }
-	    /** Sets or gets the name attribute for the element. Name is used when submiting HTML forms.
+	    /** Sets or retrieves the value of the element's name attribute. The name attribute uniquely identifies form elements when submitting HTML forms, allowing the form data to be organized and accessed by name on the server side. This attribute is essential for grouping form controls and accurately transmitting user input during form submission.
 	    *	Property type: string
 	    */
 	    get name() {
@@ -972,7 +972,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.name = value;
 	        }
 	    }
-	    /** Determines whether the popup is opened or closed
+	    /** Specifies whether the popup is currently visible (open) or hidden (closed) in the user interface.
 	    *	Property type: boolean
 	    */
 	    get opened() {
@@ -983,7 +983,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.opened = value;
 	        }
 	    }
-	    /** Determines the input's placeholder.
+	    /** Specifies the placeholder text that appears inside the input field when it is empty, providing guidance or example content to the user.
 	    *	Property type: string
 	    */
 	    get placeholder() {
@@ -994,7 +994,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.placeholder = value;
 	        }
 	    }
-	    /** Disables user interaction with the element.
+	    /** Prevents any user interactions with the element, including clicking, tapping, selecting, hovering, or focusing. While this is enabled, the element will not respond to mouse, keyboard, or touch events, effectively making it non-interactive for users.
 	    *	Property type: boolean
 	    */
 	    get readonly() {
@@ -1005,7 +1005,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.readonly = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Specifies or retrieves a value that determines whether the element’s text direction is set to support right-to-left (RTL) languages, such as Arabic or Hebrew. When enabled, the element and its content are aligned according to RTL formatting, ensuring proper display for locales that use right-to-left scripts.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -1016,7 +1016,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Determines whether the resize indicator in the bottom right corner of the drop down is visible or not. This property is used in conjunction with resizeMode.
+	    /** Controls the visibility of the resize indicator located in the bottom-right corner of the dropdown component. When this property is set to true, users will see a handle allowing them to resize the dropdown area. This property should be used together with the resizeMode property to define both the availability and behavior of the resizing feature.
 	    *	Property type: boolean
 	    */
 	    get resizeIndicator() {
@@ -1027,7 +1027,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.resizeIndicator = value;
 	        }
 	    }
-	    /** Determines whether the dropDown can be resized or not. When resizing is enabled, a resize bar appears on the top/bottom side of the drop down.
+	    /** Specifies whether the drop-down menu is resizable by the user. If resizing is enabled, a resize bar will be displayed along the top or bottom edge of the drop-down, allowing users to click and drag to adjust its height. Disabling this option removes the resize bar and prevents any manual resizing of the drop-down component.
 	    *	Property type: ResizeMode | string
 	    */
 	    get resizeMode() {
@@ -1038,7 +1038,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.resizeMode = value;
 	        }
 	    }
-	    /** Determines what will be displayed in the input.
+	    /** Specifies the content or value that will appear within the input field, either as a default value, user-entered data, or dynamically generated content. This setting controls what the user sees and interacts with inside the input element.
 	    *	Property type: SelectionDisplayMode | string
 	    */
 	    get selectionDisplayMode() {
@@ -1049,7 +1049,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.selectionDisplayMode = value;
 	        }
 	    }
-	    /** Sets or gets the selected indexes. Selected indexes represents an array of the indexes of the items that should be selected.
+	    /** Sets or retrieves the selected indexes. The selected indexes property is an array containing the numeric indexes of the items that are currently selected. Each value in the array corresponds to the position of a selected item within the overall list or collection. Assigning a new array to this property updates the selection state to match the specified indexes; retrieving it returns the current selection as an array of indexes.
 	    *	Property type: number[]
 	    */
 	    get selectedIndexes() {
@@ -1060,7 +1060,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.selectedIndexes = value;
 	        }
 	    }
-	    /** Sets or gets elected indexes. Selected values represents the values of the items that should be selected.
+	    /**   "Sets or retrieves the currently selected indexes. The 'selected' property holds an array of the indices corresponding to the items that are marked as selected. When setting this property, provide an array of indexes to specify which items should be selected. When getting this property, it returns the array of indexes for the currently selected items."
 	    *	Property type: string[]
 	    */
 	    get selectedValues() {
@@ -1071,7 +1071,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.selectedValues = value;
 	        }
 	    }
-	    /** Determines how many items can be selected.
+	    /** Specifies the maximum number of items that a user is allowed to select at one time. If this value is set to 1, only single selection is permitted; higher values allow multiple selections up to the defined limit.
 	    *	Property type: ListSelectionMode | string
 	    */
 	    get selectionMode() {
@@ -1082,7 +1082,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.selectionMode = value;
 	        }
 	    }
-	    /** Determines whether the items are sorted alphabetically or not
+	    /** Specifies whether the items are arranged in alphabetical order. If set to true, the items will be sorted alphabetically; if false, the original order will be preserved.
 	    *	Property type: boolean
 	    */
 	    get sorted() {
@@ -1093,7 +1093,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.sorted = value;
 	        }
 	    }
-	    /** Determines sorting direction - ascending(asc) or descending(desc)
+	    /** Specifies the sorting order for data, allowing you to choose between ascending ("asc") for lowest-to-highest or alphabetical A–Z sorting, and descending ("desc") for highest-to-lowest or Z–A sorting.
 	    *	Property type: string
 	    */
 	    get sortDirection() {
@@ -1104,7 +1104,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.sortDirection = value;
 	        }
 	    }
-	    /** Determines the theme for the element. Themes define the look of the elements.
+	    /** Specifies the visual theme to be applied to the element. The selected theme controls the element’s appearance, including colors, fonts, and other stylistic properties, ensuring a consistent look and feel across the user interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -1115,7 +1115,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** Sets a custom content for the tokens when selectionDisplayMode is set to 'tokens'. Tokens are used only for multiple selection.
+	    /** Defines the custom content to display within each token when the selectionDisplayMode is set to "tokens". Tokens visually represent selected items in a multi-select interface and are only applicable when multiple selection is enabled. Use this option to customize how each token appears, such as displaying specific text, icons, or additional data for each selected item.
 	    *	Property type: any
 	    */
 	    get tokenTemplate() {
@@ -1126,7 +1126,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.tokenTemplate = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** If set to true, the element will not be able to receive keyboard or mouse focus, making it inaccessible via tab navigation or programmatic focus methods.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -1137,7 +1137,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Sets or gets the value.
+	    /** Provides functionality to retrieve (get) or assign (set) the current value of the property. When used as a getter, it returns the property's current value. When used as a setter, it updates the property with the specified value.
 	    *	Property type: string
 	    */
 	    get value() {
@@ -1148,7 +1148,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.value = value;
 	        }
 	    }
-	    /** Determines the value member of an item. Stored as value in the item object. Similar to groupMember, valueMember is especially usefull when using data from a JSON file as a dataSource for the ListBox and there's a specific property that should be used for the value the items.
+	    /** Specifies which property of each item object should be used as the value for that item. The value designated by valueMember will be stored in the item's value field. This property functions similarly to groupMember, but is focused on identifying the value rather than the group. valueMember is particularly useful when populating a ListBox from a JSON data source, as it allows you to specify which property of your data objects should serve as the unique value for each item in the ListBox.
 	    *	Property type: string
 	    */
 	    get valueMember() {
@@ -1159,7 +1159,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.valueMember = value;
 	        }
 	    }
-	    /** Determines the visibility of the vertical scroll bar.
+	    /** Controls whether the vertical scroll bar is displayed within the content area, allowing users to scroll vertically when the content extends beyond the visible region.
 	    *	Property type: VerticalScrollBarVisibility | string
 	    */
 	    get verticalScrollBarVisibility() {
@@ -1170,7 +1170,7 @@ require('../source/modules/smart.combobox');
 	            this.nativeElement.verticalScrollBarVisibility = value;
 	        }
 	    }
-	    /** Determines weather or not Virtualization is used for the Combo box. Virtualization allows a huge amount of items to be loaded to the List box while preserving the performance. For example a milion items can be loaded to the list box.
+	    /** Determines whether virtualization is enabled for the ComboBox. When virtualization is enabled, the ComboBox can efficiently display a very large number of items—such as a million—by only rendering the visible items in the ListBox and dynamically loading items as needed. This significantly improves performance and reduces memory usage, especially with large data sets.
 	    *	Property type: boolean
 	    */
 	    get virtualized() {
@@ -1189,7 +1189,7 @@ require('../source/modules/smart.combobox');
 	    get eventListeners() {
 	        return ["onChange", "onClose", "onClosing", "onItemClick", "onOpen", "onOpening", "onResizeStart", "onResizeEnd", "onScrollBottomReached", "onScrollTopReached", "onTokenClick", "onCreate", "onReady"];
 	    }
-	    /** Appends a ListItem to the end of the list of items inside element.
+	    /** Appends a new ListItem element to the end of the existing list of items within the specified container element, thereby updating the list to include the newly added item as its last entry.
 	    * @param {Node} node. A ListItem element that should be added to the rest of the items as the last item.
 	    * @returns {Node}
 	  */
@@ -1197,7 +1197,7 @@ require('../source/modules/smart.combobox');
 	        const result = this.nativeElement.appendChild(node);
 	        return result;
 	    }
-	    /** Adds a new item(s).
+	    /** Creates and appends one or more new items to the collection or list.
 	    * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
 	    */
 	    add(item) {
@@ -1210,7 +1210,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Removes all items from the drop down list.
+	    /** Removes all existing items from the dropdown list, resulting in an empty list with no selectable options displayed to the user.
 	    */
 	    clearItems() {
 	        if (this.nativeElement.isRendered) {
@@ -1222,7 +1222,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Unselects all items.
+	    /** Deselects all currently selected items, ensuring that no items remain selected. This action clears any existing selections and resets the selection state.
 	    */
 	    clearSelection() {
 	        if (this.nativeElement.isRendered) {
@@ -1234,7 +1234,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Closes the dropDown list.
+	    /** Closes the currently open drop-down list, hiding all available options from view and returning the component to its collapsed state. This action ensures that the drop-down menu is no longer visible to the user.
 	    */
 	    close() {
 	        if (this.nativeElement.isRendered) {
@@ -1246,7 +1246,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Performs a data bind. This can be used to refresh the data source.
+	    /** Initiates a data binding process, connecting UI components to the underlying data source. This method refreshes the data source, ensuring that any changes made to the data are reflected in the user interface. It can be used to update displayed information after modifying, adding, or deleting data.
 	    */
 	    dataBind() {
 	        if (this.nativeElement.isRendered) {
@@ -1258,7 +1258,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Ensures the desired item is visible by scrolling to it.
+	    /** Scrolls the target item into view within its container, automatically adjusting the scroll position as needed to make sure the entire item is fully visible to the user.
 	    * @param {HTMLElement | string} item. A list item or value of the desired item to be visible.
 	    */
 	    ensureVisible(item) {
@@ -1271,7 +1271,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Returns an item instance from the dropDown list.
+	    /** Returns a specific item instance from the dropDown list, allowing you to access the properties and methods of the selected list item. This can be used to retrieve information about the item, such as its value, label, or index within the dropDown.
 	    * @param {string} value. The value of an item from the drop down list.
 	    * @returns {HTMLElement}
 	  */
@@ -1279,7 +1279,7 @@ require('../source/modules/smart.combobox');
 	        const result = this.nativeElement.getItem(value);
 	        return result;
 	    }
-	    /** Inserts a new item at a specified position.
+	    /** Inserts a new item into the array at the specified index position, shifting existing elements to the right to accommodate the new item.
 	    * @param {number} position. The position where the item must be inserted.
 	    * @param {any} item. Describes the properties of the item that will be inserted. You can also pass an array of items.
 	    */
@@ -1293,7 +1293,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Inserts a new ListItem before another in the list.
+	    /** Inserts a new ListItem element directly before a specified existing ListItem within the list, preserving the order of the remaining items.
 	    * @param {Node} node. A ListItem element that should be added before the referenceItem in the list.
 	    * @param {Node | null} referenceNode. A ListItem element that acts as the reference item before which a new item is about to be inserted. The referenceNode must be in the same list as the node.
 	    * @returns {Node}
@@ -1302,7 +1302,7 @@ require('../source/modules/smart.combobox');
 	        const result = this.nativeElement.insertBefore(node, referenceNode);
 	        return result;
 	    }
-	    /** Opens the dropDown list.
+	    /** Displays and expands the drop-down list, making all available options visible for selection.
 	    */
 	    open() {
 	        if (this.nativeElement.isRendered) {
@@ -1314,7 +1314,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Removes an item at a specified position.
+	    /** Removes the item located at the specified index or position within a collection (such as an array or list). After removal, the collection is updated so that subsequent items shift to fill the gap, ensuring contiguous indexing.
 	    * @param {number} position. The position of the removed item.
 	    */
 	    removeAt(position) {
@@ -1327,7 +1327,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Removes a ListItem from the list of items inside element.
+	    /** Removes a specified ListItem from the collection of items contained within the given element, updating the list to reflect the deletion.
 	    * @param {Node} node. A ListItem element that is part of the list of items inside the element.
 	    * @returns {Node}
 	  */
@@ -1335,7 +1335,7 @@ require('../source/modules/smart.combobox');
 	        const result = this.nativeElement.removeChild(node);
 	        return result;
 	    }
-	    /** Selects an item from the dropDown list.
+	    /** Selects a specified item from the dropdown list, allowing users to choose one option from the available choices. This action updates the dropdown’s current selection and can trigger any associated event handlers or changes in the application’s state.
 	    * @param {string | HTMLElement} item. A string, representing the value of the item or an HTML Element referencing an item from the list
 	    */
 	    select(item) {
@@ -1348,7 +1348,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Unselects an item from the dropDown list.
+	    /** Deselects a specified item from the dropdown list, removing its selected state and reverting the dropdown to reflect that the item is no longer chosen by the user.
 	    * @param {string | HTMLElement} item. A string, representing the value of the item or an HTML Element referencing an item from the list
 	    */
 	    unselect(item) {
@@ -1361,7 +1361,7 @@ require('../source/modules/smart.combobox');
 	            });
 	        }
 	    }
-	    /** Updates an item from the dropDown list.
+	    /** Updates the selected item in the dropDown list with new data or attributes. This action modifies the existing item rather than adding or removing items from the list, ensuring that any changes are reflected immediately in the user interface. Specify the target item and the updated values to complete the operation.
 	    * @param {number} position. The position where the item must be updated.
 	    * @param {any} value. The value of the updated item.
 	    */

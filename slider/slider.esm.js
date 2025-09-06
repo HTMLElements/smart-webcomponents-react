@@ -30,7 +30,7 @@ class Slider extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Sets or retrieves the current animation mode. When this property is set to 'none', all animations are disabled. Use other valid values to enable and control different animation behaviors.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class Slider extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** With the coerce property true and clicking the track, the thumb and value are moved and set to the nearest value allowed by the interval property.
+    /** When the coerce property is set to true and the user clicks on the track, the slider thumb and its value will automatically snap to the nearest valid position based on the interval property. This ensures that the selected value always aligns with the allowed increments defined by interval.
     *	Property type: boolean
     */
     get coerce() {
@@ -52,7 +52,7 @@ class Slider extends React.Component {
             this.nativeElement.coerce = value;
         }
     }
-    /** Sets or gets whether custom ticks at (possibly) uneven interval will be plotted. The ticks to be plotted are defined with the property customTicks.
+    /** Controls whether to display custom ticks on the axis, even if they are placed at uneven intervals. The specific positions of these custom ticks are defined by the customTicks property. Use this option to enable or disable the rendering of user-defined tick marks instead of automatically generated ones.
     *	Property type: boolean
     */
     get customInterval() {
@@ -63,7 +63,7 @@ class Slider extends React.Component {
             this.nativeElement.customInterval = value;
         }
     }
-    /** If customInterval is enabled, sets a list of ticks to be plotted. If coerce is set to true, the value will snap to these ticks.
+    /** When customInterval is enabled, you can define a specific list of tick values to be displayed on the plot axis. If coerce is set to true, any input value will automatically adjust (or "snap") to the nearest specified tick value from this list, ensuring that only those defined tick marks are selected or displayed.
     *	Property type: number[]
     */
     get customTicks() {
@@ -74,7 +74,7 @@ class Slider extends React.Component {
             this.nativeElement.customTicks = value;
         }
     }
-    /** Sets or gets the pattern which labels are displayed in when mode is 'date'.
+    /** Sets or retrieves the format pattern used to display labels when the mode property is set to 'date'. This pattern determines how dates will appear in the labels, such as the order of day, month, and year, as well as the specific separators or formatting conventions applied.
     *	Property type: string
     */
     get dateLabelFormatString() {
@@ -85,7 +85,7 @@ class Slider extends React.Component {
             this.nativeElement.dateLabelFormatString = value;
         }
     }
-    /** Sets or gets the char to use as the decimal separator in numeric values.
+    /** Specifies or retrieves the character used as the decimal separator in numeric values. This determines which symbol (such as a period "." or a comma ",") separates the integer part from the fractional part of a number when displaying or parsing numeric data.
     *	Property type: string
     */
     get decimalSeparator() {
@@ -96,7 +96,7 @@ class Slider extends React.Component {
             this.nativeElement.decimalSeparator = value;
         }
     }
-    /** Enables or disables the widget.
+    /** Determines whether the widget is active and available for user interaction. When enabled, the widget is fully functional; when disabled, it becomes inactive and unresponsive to user input.
     *	Property type: boolean
     */
     get disabled() {
@@ -107,7 +107,7 @@ class Slider extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Enables or disables incrementing/decrementing the value using the mouse wheel in jqxSlider.
+    /** Controls whether users can change the jqxSlider value by scrolling the mouse wheel. When enabled, scrolling the wheel while hovering over the slider will increment or decrement its value. Disabling this option prevents value changes via the mouse wheel interaction.
     *	Property type: boolean
     */
     get enableMouseWheelAction() {
@@ -118,7 +118,7 @@ class Slider extends React.Component {
             this.nativeElement.enableMouseWheelAction = value;
         }
     }
-    /** Determines what values the thumb snaps to.
+    /** Specifies the set of predefined values or intervals that the slider's thumb will automatically align or "snap" to when moved by the user, ensuring precise selection and preventing arbitrary positioning.
     *	Property type: string | number
     */
     get interval() {
@@ -129,7 +129,7 @@ class Slider extends React.Component {
             this.nativeElement.interval = value;
         }
     }
-    /** Sets the direction of the slider. If is true - positions of the slider's begin and end are changed.
+    /** Determines the orientation of the slider. When set to true, the positions of the slider’s start and end points are reversed, effectively flipping the slider’s direction from its default state. This can be useful for right-to-left layouts or custom UI requirements.
     *	Property type: boolean
     */
     get inverted() {
@@ -140,7 +140,7 @@ class Slider extends React.Component {
             this.nativeElement.inverted = value;
         }
     }
-    /** A callback function that can be used to format the values displayed on the slider labels and tooltip.
+    /** A callback function that receives the slider’s current value as an argument and returns a formatted string, which will be displayed on the slider’s labels and tooltip. This allows you to customize how the slider values appear to users, such as adding units, controlling decimal precision, or applying localization.
     *	Property type: any
     */
     get labelFormatFunction() {
@@ -151,7 +151,7 @@ class Slider extends React.Component {
             this.nativeElement.labelFormatFunction = value;
         }
     }
-    /** Sets or gets the widget's label visibility.
+    /** Controls the visibility of the widget's label by allowing you to set or retrieve its current state (visible or hidden). Use this property to show or hide the label as needed.
     *	Property type: LabelsVisibility | string
     */
     get labelsVisibility() {
@@ -162,7 +162,7 @@ class Slider extends React.Component {
             this.nativeElement.labelsVisibility = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Defines or retrieves the unlockKey, a unique value used to authorize and enable access to the product’s features.
     *	Property type: string
     */
     get unlockKey() {
@@ -173,7 +173,7 @@ class Slider extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the locale. Used in conjunction with the property messages.
+    /** Specifies or retrieves the current locale setting, which determines the language and regional formatting used by the component. This property works in conjunction with the messages property to provide localized content, ensuring that labels, messages, and other text elements are displayed according to the selected locale.
     *	Property type: string
     */
     get locale() {
@@ -184,7 +184,7 @@ class Slider extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback, related to localization module.
+    /** Callback function associated with the localization module, typically used to handle language changes, update localized content, or respond to localization-related events within the application.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -195,7 +195,7 @@ class Slider extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Enables or disables the usage of logarithmic scale in the widget.
+    /** Determines whether the widget displays data using a logarithmic scale or a linear scale. When enabled, values on the widget are plotted using a logarithmic scale, which is useful for visualizing data that spans several orders of magnitude. When disabled, a standard linear scale is used.
     *	Property type: boolean
     */
     get logarithmicScale() {
@@ -206,7 +206,7 @@ class Slider extends React.Component {
             this.nativeElement.logarithmicScale = value;
         }
     }
-    /** Sets or gets the maximum value of the widget.
+    /** Specifies or retrieves the maximum allowable value that the widget can accept. This property defines the upper limit for user input or the widget’s range, ensuring that values entered or selected cannot exceed this maximum threshold.
     *	Property type: string | number
     */
     get max() {
@@ -217,7 +217,7 @@ class Slider extends React.Component {
             this.nativeElement.max = value;
         }
     }
-    /** Sets or gets the type of used mechanical action.
+    /** Specifies or retrieves the type of mechanical action being applied. This property determines the operational behavior or interaction mode of the mechanism (e.g., momentary, toggle, or latching). Use this to configure how the mechanism responds to user input or system events.
     *	Property type: DragMechanicalAction | string
     */
     get mechanicalAction() {
@@ -228,7 +228,7 @@ class Slider extends React.Component {
             this.nativeElement.mechanicalAction = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Defines or retrieves an object containing the strings used within the widget that can be localized (translated into different languages). This property works together with the locale setting to display the widget's text elements in the appropriate language for the user. Use this property to customize or override default text labels based on the selected locale.
     *	Property type: any
     */
     get messages() {
@@ -239,7 +239,7 @@ class Slider extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets the minimum value of the widget.
+    /** Defines or retrieves the widget’s minimum allowed value. This property determines the lowest value a user can input or select within the widget. Setting this value restricts input to be no less than the specified minimum.
     *	Property type: string | number
     */
     get min() {
@@ -250,7 +250,7 @@ class Slider extends React.Component {
             this.nativeElement.min = value;
         }
     }
-    /** Sets or gets whether the widget works with numbers or dates.
+    /** Specifies whether the widget is configured to handle numerical values or date values. When set, this determines if the widget processes input and displays output as numbers or as dates. When retrieved, it indicates the current mode—number or date—in which the widget is operating.
     *	Property type: ScaleMode | string
     */
     get mode() {
@@ -261,7 +261,7 @@ class Slider extends React.Component {
             this.nativeElement.mode = value;
         }
     }
-    /** Sets or gets the element's name, which is used as a reference when the data is submitted.
+    /** Sets or retrieves the element's name attribute, which serves as a key to identify the element's value when a form is submitted. This name is used to reference the data in the server-side processing, ensuring that the submitted value can be correctly associated with this specific element.
     *	Property type: string
     */
     get name() {
@@ -272,7 +272,7 @@ class Slider extends React.Component {
             this.nativeElement.name = value;
         }
     }
-    /** Sets the orientation of the widget.
+    /** Specifies the layout direction of the widget, determining whether its content is arranged horizontally, vertically, or in another defined orientation. This property affects how child elements are displayed within the widget.
     *	Property type: Orientation | string
     */
     get orientation() {
@@ -283,7 +283,7 @@ class Slider extends React.Component {
             this.nativeElement.orientation = value;
         }
     }
-    /** Determines the number of digits after the decimal point. Applicable only when scaleType is 'integer'.
+    /** Specifies how many digits should be displayed after the decimal point in numeric values. This setting is only effective when the scaleType property is set to 'integer'; it has no effect for other scale types.
     *	Property type: number
     */
     get precisionDigits() {
@@ -294,7 +294,7 @@ class Slider extends React.Component {
             this.nativeElement.precisionDigits = value;
         }
     }
-    /** Enables or disables the slider to be in range mode. If is  set to true, the range is represented between two thumbs.
+    /** Enables or disables the slider's range mode. When set to true, the slider displays two thumbs, allowing users to select a value range between a minimum and maximum. If set to false, only a single thumb is shown for selecting one value.
     *	Property type: boolean
     */
     get rangeSlider() {
@@ -305,7 +305,7 @@ class Slider extends React.Component {
             this.nativeElement.rangeSlider = value;
         }
     }
-    /** When the slider is read only the users cannot drag or click in the fill of the slider.
+    /** When the slider is set to read-only, users cannot interact with it; this means they are unable to drag the slider thumb or click on the track (including the filled portion) to change its value. The slider's current value remains visible, but it cannot be modified through user input.
     *	Property type: boolean
     */
     get readonly() {
@@ -316,7 +316,7 @@ class Slider extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Specifies or retrieves a value that determines whether the element’s content alignment supports right-to-left text direction, typically used for languages such as Arabic or Hebrew. This setting ensures the element renders content in accordance with right-to-left locale conventions.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -327,7 +327,7 @@ class Slider extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Sets the position of the widget's scales.
+    /** Specifies the alignment or placement of the widget's scale indicators (such as axes, ticks, or labels) relative to the widget, determining where and how the scales appear within the widget's layout.
     *	Property type: ScalePosition | string
     */
     get scalePosition() {
@@ -338,7 +338,7 @@ class Slider extends React.Component {
             this.nativeElement.scalePosition = value;
         }
     }
-    /** Sets the type of the slider's scale.
+    /** Defines the style of the slider's scale, such as linear or logarithmic, which determines how values are distributed along the slider track.
     *	Property type: ScaleType | string
     */
     get scaleType() {
@@ -349,7 +349,7 @@ class Slider extends React.Component {
             this.nativeElement.scaleType = value;
         }
     }
-    /** Enables or disables scientific notation.
+    /** Specifies whether numerical values should be displayed in scientific notation (e.g., 1.23e+4) instead of standard decimal notation. Set to true to enable scientific notation, or false to display numbers in regular decimal format.
     *	Property type: boolean
     */
     get scientificNotation() {
@@ -360,7 +360,7 @@ class Slider extends React.Component {
             this.nativeElement.scientificNotation = value;
         }
     }
-    /** Enables or disables displaying of the buttons.
+    /** Controls whether the buttons are visible or hidden. When enabled, the buttons will be displayed in the user interface; when disabled, the buttons will be hidden from view.
     *	Property type: boolean
     */
     get showButtons() {
@@ -371,7 +371,7 @@ class Slider extends React.Component {
             this.nativeElement.showButtons = value;
         }
     }
-    /** Enables or disables displaying of the thumb label.
+    /** Controls whether the thumb label is visible or hidden. When enabled, the thumb label will be displayed; when disabled, it will be hidden. This option allows you to show or hide the label that appears above the slider's thumb to indicate its current value.
     *	Property type: boolean
     */
     get showThumbLabel() {
@@ -382,7 +382,7 @@ class Slider extends React.Component {
             this.nativeElement.showThumbLabel = value;
         }
     }
-    /** Enables or disables displaying of the tooltip.
+    /** Controls whether the tooltip is visible. When enabled, the tooltip will be displayed; when disabled, the tooltip will be hidden.
     *	Property type: boolean
     */
     get showTooltip() {
@@ -393,7 +393,7 @@ class Slider extends React.Component {
             this.nativeElement.showTooltip = value;
         }
     }
-    /** Enables or disables displaying of the units.
+    /** Controls whether units (such as px, %, em, etc.) are visible alongside values. When enabled, the units are displayed; when disabled, values are shown without their corresponding units.
     *	Property type: boolean
     */
     get showUnit() {
@@ -404,7 +404,7 @@ class Slider extends React.Component {
             this.nativeElement.showUnit = value;
         }
     }
-    /** Determining how many significant digits are in a number. Applicable only when scaleType is 'integer'.
+    /** Identifies the number of significant digits present in a given number. This option is applicable only when the scaleType property is set to 'integer', ensuring that the operation is performed exclusively on integer values.
     *	Property type: number
     */
     get significantDigits() {
@@ -415,7 +415,7 @@ class Slider extends React.Component {
             this.nativeElement.significantDigits = value;
         }
     }
-    /** Sets or gets the element's visual theme.
+    /** Specifies or retrieves the visual theme applied to the element, determining its overall appearance—such as colors, fonts, and styles—according to the selected theme configuration.
     *	Property type: string
     */
     get theme() {
@@ -426,7 +426,7 @@ class Slider extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Sets or gets the position of the thumb label.
+    /** Sets or retrieves the current position of the thumb label on the slider control, indicating the value selected by the user. This property allows you to programmatically update the thumb label’s position or access its current location to reflect user interactions.
     *	Property type: Position | string
     */
     get thumbLabelPosition() {
@@ -437,7 +437,7 @@ class Slider extends React.Component {
             this.nativeElement.thumbLabelPosition = value;
         }
     }
-    /** Sets or gets the position of the ticks in jqxSlider widget.
+    /** Determines or retrieves the placement of tick marks on the jqxSlider widget. This property allows you to specify where the ticks appear on the slider—such as at the top, bottom, left, or right—enhancing user interaction and slider orientation.
     *	Property type: TicksPosition | string
     */
     get ticksPosition() {
@@ -448,7 +448,7 @@ class Slider extends React.Component {
             this.nativeElement.ticksPosition = value;
         }
     }
-    /** Sets or gets the visibility of the ticks.
+    /** Controls whether the ticks are visible or hidden. When set, this property determines if tick marks on the component are displayed; when retrieved, it indicates the current visibility status of the ticks.
     *	Property type: TicksVisibility | string
     */
     get ticksVisibility() {
@@ -459,7 +459,7 @@ class Slider extends React.Component {
             this.nativeElement.ticksVisibility = value;
         }
     }
-    /** Sets or gets the position of the tooltip in jqxSlider widget.
+    /** Specifies or retrieves the position of the tooltip displayed on the jqxSlider widget. This property determines where the tooltip appears relative to the slider handle, such as above, below, left, or right of the handle. Use this option to customize the tooltip placement to enhance user experience.
     *	Property type: Position | string
     */
     get tooltipPosition() {
@@ -470,7 +470,7 @@ class Slider extends React.Component {
             this.nativeElement.tooltipPosition = value;
         }
     }
-    /** Sets or gets if the element can be focused.
+    /** Determines whether the element is focusable by the user (e.g., via keyboard navigation) or retrieves the current focusable state of the element. If set to true, the element can receive focus; if false, it cannot.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -481,7 +481,7 @@ class Slider extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Sets or gets the name of unit used in jqxSlider widget.
+    /** Specifies or retrieves the unit label displayed on the jqxSlider widget, indicating the measurement or value type (such as 'px', '%', 'kg', etc.) associated with the slider's current position. This property allows you to define or access the text shown next to the slider value.
     *	Property type: string
     */
     get unit() {
@@ -492,7 +492,7 @@ class Slider extends React.Component {
             this.nativeElement.unit = value;
         }
     }
-    /** Sets the value's validation by min/max. If 'strict' is applied, the value is always validated by min and max. If 'interaction' is applied, programmatic value changes are not coerced to min/max and if min/max are changed, resulting in the current value being out of range, the value is not coerced, and no change event is fired.
+    /** Configures how the value is validated against the specified minimum and maximum limits.  - When set to 'strict', all value assignments—whether made by user interaction or programmatically—are automatically validated and coerced to remain within the min and max bounds.  - When set to 'interaction', only values entered or changed by user interaction are validated and coerced to the min and max limits. Programmatic value changes are not automatically adjusted, and if the min or max is updated such that the current value falls outside the new range, the value remains unchanged. In this mode, no change event is triggered when values remain out of bounds following these updates.
     *	Property type: Validation | string
     */
     get validation() {
@@ -503,7 +503,7 @@ class Slider extends React.Component {
             this.nativeElement.validation = value;
         }
     }
-    /** Sets or gets the value of the jqxSlider widget. The property is used when the rangeSlider property is set to false.
+    /** Sets or retrieves the current value of the jqxSlider widget. This property is applicable only when the rangeSlider option is set to false, meaning the slider operates in single-value mode rather than as a range selector. When you use this property, you can either specify a new value for the slider or obtain the current value the slider is set to.
     *	Property type: any
     */
     get value() {
@@ -514,7 +514,7 @@ class Slider extends React.Component {
             this.nativeElement.value = value;
         }
     }
-    /** Sets or gets the value of the jqxSlider widget. The property is used when the rangeSlider property is set to true.
+    /** Gets or sets the current value of the jqxSlider widget. When the rangeSlider property is set to true, this property manages the values for both slider handles, typically as an array representing the selected range. For a single-value slider, it represents the selected value. Use this property to programmatically retrieve or update the slider's value(s).
     *	Property type: number[]
     */
     get values() {
@@ -525,7 +525,7 @@ class Slider extends React.Component {
             this.nativeElement.values = value;
         }
     }
-    /** Sets or gets the word length. Applicable only when scaleType is 'integer'.
+    /** Sets or retrieves the word length value, which determines the number of bits used to represent each integer value. This property is only relevant when scaleType is set to 'integer'. If scaleType has any other value, this property is ignored.
     *	Property type: WordLength | string
     */
     get wordLength() {
@@ -544,7 +544,7 @@ class Slider extends React.Component {
     get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
-    /** Focuses the slider.
+    /** Sets the keyboard focus to the slider element, enabling users to interact with the slider using keyboard controls such as arrow keys, page up/down, and home/end. This facilitates accessibility and allows improved navigation for users relying on keyboard input.
     */
     focus() {
         if (this.nativeElement.isRendered) {
@@ -556,14 +556,14 @@ class Slider extends React.Component {
             });
         }
     }
-    /** Gets the optimal size of the widget.
+    /** Retrieves the most suitable width and height dimensions for the widget based on its content, layout constraints, and current configuration. Use this method to determine the preferred size the widget should be rendered to ensure optimal display and usability.
     * @returns {any}
   */
     getOptimalSize() {
         const result = this.nativeElement.getOptimalSize();
         return result;
     }
-    /** Get/set the value of the slider.
+    /** Retrieves or assigns the current value of the slider component. When used as a getter, it returns the slider’s present value. When used as a setter, it updates the slider to the specified value and triggers any associated change events or callbacks.
     * @param {string | number | number[] | string[]} value?. The value to be set. If no parameter is passed, returns the displayed value of the slider.
     * @returns {string}
   */

@@ -30,7 +30,7 @@ class CircularProgressBar extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Specifies or retrieves the current animation mode. When set to 'none', all animations are disabled. For other values, animations are enabled according to the specified mode.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Enables or disables the element.
+    /** Specifies whether the element is interactive and can be used by the user. When enabled, the element is active and can receive user input; when disabled, the element is inactive and user interaction is prevented.
     *	Property type: boolean
     */
     get disabled() {
@@ -52,7 +52,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Sets the value of the Circular Progress bar to indeterminate state(null) and starts the animation.
+    /** Sets the value of the Circular Progress bar to an indeterminate state (null), indicating that progress is ongoing without a specific completion percentage. This action also initiates the progress bar’s continuous animation, signaling that a task is in progress but the duration or endpoint is unknown.
     *	Property type: {(value: number): string}
     */
     get formatFunction() {
@@ -63,7 +63,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.formatFunction = value;
         }
     }
-    /** Sets the filling direction of the Circular Progress Bar.
+    /** Specifies the direction in which the Circular Progress Bar fills as progress increases, such as clockwise or counterclockwise.
     *	Property type: boolean
     */
     get indeterminate() {
@@ -74,7 +74,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.indeterminate = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Retrieves or assigns the unlockKey, a unique value required to unlock access to the product features or content.
     *	Property type: boolean
     */
     get inverted() {
@@ -85,7 +85,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.inverted = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Specifies or retrieves the current language in use. This property is typically used together with the messages property to determine which set of localized messages should be displayed based on the selected language. Setting this property changes the language context for retrieving appropriate translated content.
     *	Property type: string
     */
     get unlockKey() {
@@ -96,7 +96,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Callback, related to localization module.
+    /** Callback function associated with the localization module, typically used to handle events or processes such as language changes, translation updates, or formatting adjustments based on user locale.
     *	Property type: string
     */
     get locale() {
@@ -107,7 +107,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Sets progress bars maximum possible value.
+    /** Defines the maximum value that the progress bar can represent, determining the upper limit for the progress indicator. Values above this threshold will be capped at this maximum.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -118,7 +118,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Defines or retrieves an object containing customizable strings used throughout the widget’s user interface, enabling support for multiple languages. This property works together with the locale property to provide localized text displayed in the widget, such as labels, tooltips, and messages. Use this object to supply translations and override the default UI text for different languages or regions.
     *	Property type: number
     */
     get max() {
@@ -129,7 +129,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.max = value;
         }
     }
-    /** Sets progress bars minimum possible value.
+    /** Defines the lowest value that the progress bar can represent, establishing the starting point of the progress range. This value determines the minimum limit for the progress indicator.
     *	Property type: any
     */
     get messages() {
@@ -140,7 +140,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Enables/Disabled the label for the Progress Bar.
+    /** Controls whether the label is displayed on the Progress Bar. When enabled, the label will be shown; when disabled, the label will be hidden.
     *	Property type: number
     */
     get min() {
@@ -151,7 +151,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.min = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or retrieves a value that determines whether the element’s alignment supports right-to-left (RTL) text direction, which is commonly used in languages such as Arabic or Hebrew. This property ensures the element displays content appropriately for RTL locales.
     *	Property type: boolean
     */
     get showProgressValue() {
@@ -162,7 +162,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.showProgressValue = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the theme to be applied to the element, controlling its overall visual appearance—including colors, fonts, and styling. The selected theme determines how the element is displayed, ensuring consistency with the application's design guidelines.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -173,7 +173,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, this property prevents the element from receiving keyboard focus, making it inaccessible via tab navigation or programmatic focus calls.
     *	Property type: string
     */
     get theme() {
@@ -184,7 +184,7 @@ class CircularProgressBar extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Sets or gets the value of the progress bar
+    /** Sets or retrieves the current numerical value of the progress bar, representing the completion level of the task as a number within the defined minimum and maximum range.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -363,7 +363,7 @@ class ProgressBar extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Sets or retrieves the current animation mode for the element. When this property is set to 'none', all animations are disabled and the element will not perform any animated transitions. Otherwise, specifying a different value enables the corresponding animation behavior.
     *	Property type: Animation | string
     */
     get animation() {
@@ -374,7 +374,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Enables or disables the element.
+    /** Specifies whether the element is active and interactive (enabled) or inactive and unresponsive to user input (disabled). When set to true, the element is disabled and cannot be interacted with; when set to false, the element remains enabled and fully functional.
     *	Property type: boolean
     */
     get disabled() {
@@ -385,7 +385,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Sets the value of the Progress bar to indeterminate state(null) and starts the animation.
+    /** Sets the Progress bar’s value to the indeterminate state (by assigning null), which triggers and starts the loading animation. In the indeterminate state, the Progress bar does not display a fixed value but instead shows a continuous animation to indicate ongoing activity or loading without specifying progress percentage.
     *	Property type: boolean
     */
     get indeterminate() {
@@ -396,7 +396,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.indeterminate = value;
         }
     }
-    /** Sets the filling direction of the Progress Bar.
+    /** Specifies the direction in which the Progress Bar fills as its value increases, such as left to right, right to left, top to bottom, or bottom to top.
     *	Property type: boolean
     */
     get inverted() {
@@ -407,7 +407,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.inverted = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Gets or sets the unlockKey property, which serves as the authorization code required to activate and access the product’s full features.
     *	Property type: {(value: number): string}
     */
     get formatFunction() {
@@ -418,7 +418,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.formatFunction = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Defines or retrieves the current language setting for the component. This property determines which language is used for displaying text and messages, and works together with the messages property to select the appropriate localized strings. Adjusting this property updates the displayed language dynamically based on the provided message translations.
     *	Property type: string
     */
     get unlockKey() {
@@ -429,7 +429,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Callback, related to localization module.
+    /** Callback function associated with the localization module, typically invoked to handle language changes, load localized resources, or update content based on the selected locale.
     *	Property type: string
     */
     get locale() {
@@ -440,7 +440,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Sets progress bars maximum possible value.
+    /** Defines the highest value that the progress bar can represent, establishing the upper limit for progress tracking. This value determines when the progress bar is considered 100% complete.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -451,7 +451,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets an object with string values, related to the different states of passwords strength.
+    /** Defines an object containing string values that represent the various states of password strength (e.g., "weak", "medium", "strong"). These values can be used to display contextual feedback to users based on the evaluated strength of their password.
     *	Property type: number
     */
     get max() {
@@ -462,7 +462,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.max = value;
         }
     }
-    /** Sets progress bars minimum possible value.
+    /** Defines the lowest allowable value for the progress bar, representing the starting point from which progress is measured. This sets the minimum boundary for the progress indicator’s range.
     *	Property type: any
     */
     get messages() {
@@ -473,7 +473,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets the orientation of the progress bar
+    /** Specifies whether the progress bar is displayed horizontally or vertically. Adjusting this property changes the direction in which the progress indicator fills.
     *	Property type: number
     */
     get min() {
@@ -484,7 +484,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.min = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Specifies or retrieves a value that determines whether the element's alignment supports right-to-left (RTL) text direction, typically used for languages such as Arabic or Hebrew. When enabled, the element's content and layout will be adjusted to accommodate RTL locales.
     *	Property type: Orientation | string
     */
     get orientation() {
@@ -495,7 +495,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.orientation = value;
         }
     }
-    /** Enables/Disabled the label for the Progress Bar.
+    /** Controls the visibility of the label for the Progress Bar. When enabled, the label will be displayed; when disabled, the label will be hidden.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -506,7 +506,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the theme that controls the visual style and appearance of the element, including aspects such as colors, fonts, and overall design. Selecting a theme customizes how the element is displayed to users.
     *	Property type: boolean
     */
     get showProgressValue() {
@@ -517,7 +517,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.showProgressValue = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** If set to true, this property prevents the element from receiving keyboard focus, making it unreachable via keyboard navigation such as the Tab key.
     *	Property type: string
     */
     get theme() {
@@ -528,7 +528,7 @@ class ProgressBar extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Sets or gets the value of the progress bar
+    /** Retrieves the current value of the progress bar or sets it to a specified value, updating the visual representation accordingly. This value typically indicates the progress of a task as a numeric value within a defined range (e.g., 0 to 100).
     *	Property type: boolean
     */
     get unfocusable() {

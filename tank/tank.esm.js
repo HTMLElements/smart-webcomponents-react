@@ -30,7 +30,7 @@ class Tank extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Controls the animation mode by setting or retrieving its current state. When set to 'none', all animations are disabled and transitions will not occur. Use this property to enable, disable, or modify animation behavior according to your application's requirements.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class Tank extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** If is set to true all values coerce to the interval, set in the interval property.
+    /** When set to true, all values will be automatically adjusted (coerced) to fit within the range specified by the interval property. This ensures that any value outside the defined interval is converted to the nearest valid value within that range.
     *	Property type: boolean
     */
     get coerce() {
@@ -52,7 +52,7 @@ class Tank extends React.Component {
             this.nativeElement.coerce = value;
         }
     }
-    /** Sets or gets whether custom ticks at (possibly) uneven interval will be plotted. The ticks to be plotted are defined with the property customTicks.
+    /** Controls whether custom tick marks, which may be spaced at uneven intervals, are displayed on the axis. The specific positions of these ticks are specified using the customTicks property. This option can be used to enable or disable the rendering of these custom-defined ticks.
     *	Property type: boolean
     */
     get customInterval() {
@@ -63,7 +63,7 @@ class Tank extends React.Component {
             this.nativeElement.customInterval = value;
         }
     }
-    /** If customInterval is enabled, sets a list of ticks to be plotted. If coerce is set to true, the value will snap to these ticks.
+    /** If customInterval is enabled, this option provides a specific list of tick values to display on the plot's axis, overriding any automatically calculated intervals. When coerce is set to true, user inputs or plotted values will automatically adjust (or "snap") to the nearest tick in this list, ensuring all values align precisely with one of the specified ticks.
     *	Property type: number[]
     */
     get customTicks() {
@@ -74,7 +74,7 @@ class Tank extends React.Component {
             this.nativeElement.customTicks = value;
         }
     }
-    /** Sets or gets the pattern which labels are displayed in when mode is 'date'.
+    /** Specifies or retrieves the pattern used to format labels when the mode property is set to 'date'. This pattern determines how date labels are displayed to the user (for example, "MM/DD/YYYY" or "dd MMM, yyyy").
     *	Property type: string
     */
     get dateLabelFormatString() {
@@ -85,7 +85,7 @@ class Tank extends React.Component {
             this.nativeElement.dateLabelFormatString = value;
         }
     }
-    /** Sets or gets the char to use as the decimal separator in numeric values.
+    /** Specifies or retrieves the character used as the decimal separator in numeric values. This determines how decimal points are displayed when formatting or parsing numbers (e.g., use "." for 12.34 or "," for 12,34, depending on locale or formatting requirements).
     *	Property type: string
     */
     get decimalSeparator() {
@@ -96,7 +96,7 @@ class Tank extends React.Component {
             this.nativeElement.decimalSeparator = value;
         }
     }
-    /** Enables or disables the widget.
+    /** Determines whether the widget is active and visible to users. When enabled, the widget functions normally and is displayed in the user interface; when disabled, the widget is hidden or inactive, preventing user interaction.
     *	Property type: boolean
     */
     get disabled() {
@@ -107,7 +107,7 @@ class Tank extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** When cooerce property is true, all values coerce to the interval's value.
+    /** When the 'coerce' property is set to 'true', any input values that fall outside the specified interval will be automatically adjusted ("coerced") to the nearest boundary value of the interval. This ensures that all resulting values strictly adhere to the defined range, preventing any out-of-bounds input.
     *	Property type: string | number
     */
     get interval() {
@@ -118,7 +118,7 @@ class Tank extends React.Component {
             this.nativeElement.interval = value;
         }
     }
-    /** Sets the direction of the tank. If is true - positions of the tank's begin and end are changed.
+    /** Defines the orientation of the tank. When set to true, the positions of the tank's front and rear are swapped, effectively reversing its direction.
     *	Property type: boolean
     */
     get inverted() {
@@ -129,7 +129,7 @@ class Tank extends React.Component {
             this.nativeElement.inverted = value;
         }
     }
-    /** A callback function that can be used to format the values displayed on the tank labels.
+    /** A user-defined callback function that formats the values shown on the tank labels before they are displayed. This function receives the raw value as an argument and should return the formatted string to be rendered on the label, allowing for custom display logic such as unit conversion, number formatting, or localization.
     *	Property type: any
     */
     get labelFormatFunction() {
@@ -140,7 +140,7 @@ class Tank extends React.Component {
             this.nativeElement.labelFormatFunction = value;
         }
     }
-    /** Sets or gets the widget's label visibility
+    /** Controls the visibility of the widget's label. When set, this property determines whether the label is displayed or hidden. When retrieved, it indicates the current visibility state of the label.
     *	Property type: LabelsVisibility | string
     */
     get labelsVisibility() {
@@ -151,7 +151,7 @@ class Tank extends React.Component {
             this.nativeElement.labelsVisibility = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Retrieves or assigns the unlockKey property, which serves as a security token or code required to activate and access the product's full functionality.
     *	Property type: string
     */
     get unlockKey() {
@@ -162,7 +162,7 @@ class Tank extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the locale. Used in conjunction with the property messages.
+    /** Specifies the current locale for the application. This property determines language and regional formatting, and works together with the messages property to provide appropriate translations and locale-specific content. Use this property to get or set the active locale for displaying messages and other localized resources.
     *	Property type: string
     */
     get locale() {
@@ -173,7 +173,7 @@ class Tank extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback, related to localization module.
+    /** Callback function associated with the localization module. This callback is triggered during localization operations, such as language selection, translation processing, or locale updates, to handle custom logic or respond to localization events within the application.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -184,7 +184,7 @@ class Tank extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Enables or disables the usage of logarithmic scale in the widget.
+    /** Determines whether the widget displays data using a logarithmic scale. When enabled, values are plotted on a logarithmic scale instead of a linear scale, which can help visualize data with a wide range of values. When disabled, the widget uses a standard linear scale.
     *	Property type: boolean
     */
     get logarithmicScale() {
@@ -195,7 +195,7 @@ class Tank extends React.Component {
             this.nativeElement.logarithmicScale = value;
         }
     }
-    /** Sets or gets the maximum value of the widget.
+    /** Gets or sets the maximum allowable value for the widget, defining the upper limit that users can select or enter.
     *	Property type: string | number
     */
     get max() {
@@ -206,7 +206,7 @@ class Tank extends React.Component {
             this.nativeElement.max = value;
         }
     }
-    /** Sets or gets the type of used mechanical action.
+    /** Defines or retrieves the specific type of mechanical action being applied. This property allows you to specify what kind of mechanical action to use (such as momentary, toggle, or latching), or to query the current mechanical action configuration.
     *	Property type: DragMechanicalAction | string
     */
     get mechanicalAction() {
@@ -217,7 +217,7 @@ class Tank extends React.Component {
             this.nativeElement.mechanicalAction = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Defines or retrieves an object containing the localizable text strings used throughout the widget interface. This property allows you to customize the widget’s displayed messages for different languages and regions. It is typically used together with the locale property to support internationalization and provide translations based on the user’s locale settings.
     *	Property type: any
     */
     get messages() {
@@ -228,7 +228,7 @@ class Tank extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets the minimum value of the widget.
+    /** Defines or retrieves the minimum allowable value for the widget. When setting this property, it restricts user input so that values below the specified minimum are not permitted. When getting this property, it returns the current minimum value constraint of the widget.
     *	Property type: string | number
     */
     get min() {
@@ -239,7 +239,7 @@ class Tank extends React.Component {
             this.nativeElement.min = value;
         }
     }
-    /** Sets or gets whether the widget works with numbers or dates.
+    /** Determines whether the widget processes and displays numeric values or date values. This property can be set to configure the expected data type (numbers or dates), and can also be accessed to check the current mode of the widget.
     *	Property type: ScaleMode | string
     */
     get mode() {
@@ -250,7 +250,7 @@ class Tank extends React.Component {
             this.nativeElement.mode = value;
         }
     }
-    /** Sets or gets the element's name, which is used as a reference when the data is submitted.
+    /** Defines or retrieves the element's name attribute. This name uniquely identifies the element within a form and is used as the key when the form data is submitted to the server, allowing the associated value to be referenced and processed.
     *	Property type: string
     */
     get name() {
@@ -261,7 +261,7 @@ class Tank extends React.Component {
             this.nativeElement.name = value;
         }
     }
-    /** Sets the orientation of the widget
+    /** Specifies the layout direction of the widget, determining whether its content is arranged horizontally, vertically, or in another supported orientation.
     *	Property type: Orientation | string
     */
     get orientation() {
@@ -272,7 +272,7 @@ class Tank extends React.Component {
             this.nativeElement.orientation = value;
         }
     }
-    /** Determines the number of digits after the decimal point. Applicable only when scaleType is 'integer'.
+    /** Specifies the number of digits to display after the decimal point in numeric values. This setting is only applicable when scaleType is set to 'integer'.
     *	Property type: number
     */
     get precisionDigits() {
@@ -283,7 +283,7 @@ class Tank extends React.Component {
             this.nativeElement.precisionDigits = value;
         }
     }
-    /** If the widgets is readonly, the users cannot iteract with the element.
+    /** If the widget is set to read-only, users will not be able to interact with or modify the element's content. Any input or actions from users will be disabled, ensuring that the widget's state remains unchanged.
     *	Property type: boolean
     */
     get readonly() {
@@ -294,7 +294,7 @@ class Tank extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Gets or sets a value that specifies whether the element’s content is aligned to accommodate right-to-left (RTL) languages, such as Arabic or Hebrew. When enabled, the element’s alignment and text direction are adjusted for proper display in RTL locales.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -305,7 +305,7 @@ class Tank extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Sets the position of the widget's scales.
+    /** Specifies the placement of the widget’s scales relative to its main content, determining where the scale markers or labels appear within the widget interface (e.g., top, bottom, left, or right).
     *	Property type: ScalePosition | string
     */
     get scalePosition() {
@@ -316,7 +316,7 @@ class Tank extends React.Component {
             this.nativeElement.scalePosition = value;
         }
     }
-    /** Sets the type of the tank's scale.
+    /** Specifies the measurement system used for the tank's scale, such as linear, logarithmic, or custom, which determines how values are displayed and interpreted on the tank's indicator.
     *	Property type: ScaleType | string
     */
     get scaleType() {
@@ -327,7 +327,7 @@ class Tank extends React.Component {
             this.nativeElement.scaleType = value;
         }
     }
-    /** Enables or disables scientific notation.
+    /** Determines whether numerical values are displayed using scientific notation (e.g., 1.23e+6 instead of 1230000). Set to true to enable scientific notation, or false to display numbers in standard decimal format.
     *	Property type: boolean
     */
     get scientificNotation() {
@@ -338,7 +338,7 @@ class Tank extends React.Component {
             this.nativeElement.scientificNotation = value;
         }
     }
-    /** Enables or disables displaying of the thumb label.
+    /** Controls whether the thumb label is visible or hidden. When enabled, the thumb label will be displayed alongside the slider's handle, providing users with a visual indicator of the current value. When disabled, the thumb label will not appear.
     *	Property type: boolean
     */
     get showThumbLabel() {
@@ -349,7 +349,7 @@ class Tank extends React.Component {
             this.nativeElement.showThumbLabel = value;
         }
     }
-    /** Enables or disables displaying of the tooltip.
+    /** Controls whether the tooltip is visible to the user. When enabled, the tooltip will be displayed; when disabled, the tooltip will be hidden.
     *	Property type: boolean
     */
     get showTooltip() {
@@ -360,7 +360,7 @@ class Tank extends React.Component {
             this.nativeElement.showTooltip = value;
         }
     }
-    /** Enables or disables displaying of the units.
+    /** Controls whether unit labels (such as "kg", "cm", "°C") are shown alongside values. Set to true to display units next to values, or false to hide them.
     *	Property type: boolean
     */
     get showUnit() {
@@ -371,7 +371,7 @@ class Tank extends React.Component {
             this.nativeElement.showUnit = value;
         }
     }
-    /** Determining how many significant digits are in a number. Applicable only when scaleType is 'integer'.
+    /** Calculates the number of significant digits present in a given number. This process is only relevant and performed when the scaleType property is set to 'integer'. This property should be used to ensure numerical data integrity and appropriate formatting for integer-based values.
     *	Property type: number
     */
     get significantDigits() {
@@ -382,7 +382,7 @@ class Tank extends React.Component {
             this.nativeElement.significantDigits = value;
         }
     }
-    /** Sets or gets the element's visual theme.
+    /** Sets or retrieves the visual theme applied to the element, determining its overall appearance such as color scheme, typography, and style variants. This property allows dynamic customization of the element’s look to match different design requirements or user preferences.
     *	Property type: string
     */
     get theme() {
@@ -393,7 +393,7 @@ class Tank extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Sets or gets the position of the thumb label.
+    /** Sets or retrieves the current position of the thumb label, typically representing the value indicator on a slider or range input. This property allows you to programmatically control or access the exact location of the label relative to the slider track.
     *	Property type: Position | string
     */
     get thumbLabelPosition() {
@@ -404,7 +404,7 @@ class Tank extends React.Component {
             this.nativeElement.thumbLabelPosition = value;
         }
     }
-    /** Sets or gets the position of the ticks in jqxTank widget.
+    /** Defines or retrieves the placement of the tick marks in the jqxTank widget, specifying where the ticks are displayed relative to the tank (e.g., near, far, or both sides). This property allows you to control the visual positioning of the tick indicators along the scale of the jqxTank widget.
     *	Property type: TicksPosition | string
     */
     get ticksPosition() {
@@ -415,7 +415,7 @@ class Tank extends React.Component {
             this.nativeElement.ticksPosition = value;
         }
     }
-    /** Sets or gets the visibility of the ticks.
+    /** Controls whether the ticks are visible or hidden. This property allows you to enable (show) or disable (hide) the display of tick marks on the relevant component. When set, it determines if ticks are rendered; when accessed, it returns the current visibility state of the ticks.
     *	Property type: TicksVisibility | string
     */
     get ticksVisibility() {
@@ -426,7 +426,7 @@ class Tank extends React.Component {
             this.nativeElement.ticksVisibility = value;
         }
     }
-    /** Sets or gets the position of the tooltip in jqxTank widget.
+    /** Specifies or retrieves the position of the tooltip displayed on the jqxTank widget. This property determines where the tooltip appears relative to the tank control (e.g., top, bottom, left, or right). Use this option to customize the tooltip's placement for improved user experience and interface alignment.
     *	Property type: Position | string
     */
     get tooltipPosition() {
@@ -437,7 +437,7 @@ class Tank extends React.Component {
             this.nativeElement.tooltipPosition = value;
         }
     }
-    /** Sets or gets if the element can be focused.
+    /** Determines whether the element is focusable by setting or retrieving its ability to receive keyboard or mouse focus. If set to true, the element can be targeted by user interactions such as tab navigation or clicking.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -448,7 +448,7 @@ class Tank extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Sets or gets the name of unit used in jqxTank widget.
+    /** Specifies or retrieves the unit label displayed on the jqxTank widget, indicating the measurement unit (e.g., "°C", "kg", "psi") associated with the tank's value. This property allows you to customize the text that appears alongside the value in the widget for better context and readability.
     *	Property type: string
     */
     get unit() {
@@ -459,7 +459,7 @@ class Tank extends React.Component {
             this.nativeElement.unit = value;
         }
     }
-    /** Sets the value's validation by min/max. If 'strict' is applied, the value is always validated by min and max. If 'interaction' is applied, programmatic value changes are not coerced to min/max and if min/max are changed, resulting in the current value being out of range, the value is not coerced, and no change event is fired.
+    /** Enhances value validation using minimum and maximum boundaries.  - When set to 'strict', all values—whether changed by user interaction or programmatically—are always constrained within the defined min and max limits. Any attempt to set a value outside this range will automatically adjust (coerce) it to the closest valid boundary.- When set to 'interaction', only values changed by user interaction (such as form input) are validated against min and max. Programmatic updates can set values outside this range, and if the min or max properties are later adjusted such that the current value falls out of bounds, the existing value remains unchanged and is not coerced. In these cases, no change event is triggered.
     *	Property type: Validation | string
     */
     get validation() {
@@ -470,7 +470,7 @@ class Tank extends React.Component {
             this.nativeElement.validation = value;
         }
     }
-    /** Sets or gets the value of the jqxTank widget.
+    /** Gets the current value of the jqxTank widget or sets it to a specified value. This property or method enables you to retrieve the widget's current position (value) or assign a new value programmatically, allowing for dynamic interaction and control over the jqxTank component.
     *	Property type: any
     */
     get value() {
@@ -481,7 +481,7 @@ class Tank extends React.Component {
             this.nativeElement.value = value;
         }
     }
-    /** Sets or gets the word length. Applicable only when scaleType is 'integer'.
+    /** Specifies or retrieves the word length used for numeric representation. This property is relevant only when the scaleType is set to 'integer'. In such cases, it determines the number of bits allocated for each integer value. For other scaleType values, this setting has no effect.
     *	Property type: WordLength | string
     */
     get wordLength() {
@@ -500,7 +500,7 @@ class Tank extends React.Component {
     get eventListeners() {
         return ["onChange", "onCreate", "onReady"];
     }
-    /** Focuses the tank.
+    /** Locks the keyboard and mouse input exclusively on the tank component, ensuring that all user interactions are directed to the tank (such as movement and firing controls) while disabling interactions with other interface elements.
     */
     focus() {
         if (this.nativeElement.isRendered) {
@@ -512,14 +512,14 @@ class Tank extends React.Component {
             });
         }
     }
-    /** Gets the optimal size of the widget.
+    /** Retrieves the recommended dimensions (width and height) for the widget based on its content and layout constraints, ensuring optimal display and usability.
     * @returns {any}
   */
     getOptimalSize() {
         const result = this.nativeElement.getOptimalSize();
         return result;
     }
-    /** Get/set the value of the tank.
+    /** Retrieves or updates the current value stored in the tank. Use this property to access the tank’s value (such as its level, volume, or contents) or to assign a new value to it.
     * @param {string | number} value?. The value to be set. If no parameter is passed, returns the displayed value of the tank.
     * @returns {string}
   */

@@ -18,22 +18,22 @@ export declare class RibbonTab extends React.Component<React.HTMLAttributes<Elem
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Determines whether the tab item is disabled.
+    /** Specifies whether the tab item is disabled and unresponsive to user interaction. When set to true, the tab cannot be selected or activated by the user.
     *	Property type: boolean
     */
     get disabled(): boolean;
     set disabled(value: boolean);
-    /** Determines the label of the tab item.
+    /** Specifies the text displayed as the label for the tab item, allowing users to identify and select the corresponding tab in the interface.
     *	Property type: string
     */
     get label(): string;
     set label(value: string);
-    /** Determines whether the tab item is selected.
+    /** Indicates whether the tab item is currently active and selected by the user. When set to true, this tab will be visually highlighted and its associated content will be displayed.
     *	Property type: boolean
     */
     get selected(): boolean;
     set selected(value: boolean);
-    /** Determines the ribbon group of the tab item
+    /** Specifies the ribbon group to which the tab item belongs, enabling organization and grouping of related commands within the ribbon interface.
     *	Property type: any
     */
     get ribbonGroups(): any;

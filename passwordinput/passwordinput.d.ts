@@ -20,74 +20,74 @@ export declare class PasswordInput extends React.Component<React.HTMLAttributes<
     private nativeElement;
     private componentRef;
     get id(): string;
-    /** Enables or disables the element.
+    /** Determines whether the element is interactive or inactive. When enabled, the element can be used and respond to user actions; when disabled, the element is not interactive and will not respond to user input.
     *	Property type: boolean
     */
     get disabled(): boolean;
     set disabled(value: boolean);
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Sets or retrieves the unlockKey, a unique identifier or code required to unlock and grant access to the product’s features or content.
     *	Property type: string
     */
     get unlockKey(): string;
     set unlockKey(value: string);
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Specifies or retrieves the current language setting. This property is typically used together with the messages property to provide localization support, determining which set of translated messages or labels are displayed based on the selected language code (e.g., 'en', 'fr', 'es').
     *	Property type: string
     */
     get locale(): string;
     set locale(value: string);
-    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+    /** Specifies a callback function that allows you to customize the formatting of messages returned by the Localization Module. Use this callback to modify or enhance how localized strings are generated or displayed before they are delivered to your application.
     *	Property type: any
     */
     get localizeFormatFunction(): any;
     set localizeFormatFunction(value: any);
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Defines or retrieves an object containing text strings used throughout the widget interface, enabling support for localization. This property works together with the locale property to display the widget's content in different languages by providing translations for UI elements such as labels, messages, and tooltips.
     *	Property type: any
     */
     get messages(): any;
     set messages(value: any);
-    /** Determines the minimum number of characters inside the input in order to trigger the autocomplete functionality that will open the drop down and show the matched items.
+    /** Specifies the minimum number of characters a user must type into the input field before the autocomplete feature activates. Once this threshold is reached, the dropdown will open and display a list of items that match the entered text.
     *	Property type: number
     */
     get minLength(): number;
     set minLength(value: number);
-    /** Sets or gets the name attribute for the element. Name is used when submiting data inside an HTML form.
+    /** Specifies or retrieves the value of the element's name attribute. The name attribute is used to identify form fields when submitting data via an HTML form, allowing the data to be sent as key-value pairs where the name serves as the key. This attribute is essential for server-side processing and differentiating between multiple inputs within the same form.
     *	Property type: string
     */
     get name(): string;
     set name(value: string);
-    /** Determines the placeholder of the input.
+    /** Specifies the placeholder text displayed inside the input field when it is empty, providing a hint or example of the expected input value.
     *	Property type: string
     */
     get placeholder(): string;
     set placeholder(value: string);
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Sets or retrieves a value that specifies whether the element's alignment is configured to support right-to-left (RTL) languages, such as Arabic or Hebrew. When enabled, this ensures that text direction and layout are adjusted appropriately for locales that use RTL scripts.
     *	Property type: boolean
     */
     get rightToLeft(): boolean;
     set rightToLeft(value: boolean);
-    /** Determines the theme for the element. Themes define the look of the elements.
+    /** Specifies the visual theme to be applied to the element. Themes control the overall appearance, including colors, fonts, spacing, and stylistic details, ensuring a consistent look and feel across elements.
     *	Property type: string
     */
     get theme(): string;
     set theme(value: string);
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, this property prevents the element from receiving keyboard focus, making it unreachable via the keyboard (e.g., Tab key) and inaccessible by assistive technologies that rely on focus.
     *	Property type: boolean
     */
     get unfocusable(): boolean;
     set unfocusable(value: boolean);
-    /** Sets or gets the value of the element.
+    /** Sets a new value for the element or retrieves the current value of the element, depending on how the method or property is used. This is commonly used for form elements such as input fields, textareas, or select elements, allowing you to programmatically update or access their contents.
     *	Property type: string
     */
     get value(): string;
     set value(value: string);
     get properties(): string[];
-    /**  This event is triggered when the value is changed and the focus moved out of the element.
+    /**  This event is triggered when the value of the element has been modified by the user and the element loses focus (i.e., when the user finishes editing and clicks or tabs away from the element).
     *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value)
     *   oldValue - The previous value.
     *   value - The new value.
     */
     onChange?: ((event?: Event) => void) | undefined;
-    /**  This event is triggered on each key up event of the PasswordInput, if the value is changed.
+    /**  This event is triggered each time a key is released within the PasswordInput field, but only if the input value has changed as a result of the key press.
     *  @param event. The custom event. 	Custom event was created with: event.detail(	oldValue, 	value)
     *   oldValue - The previous value before it was changed.
     *   value - The new value.
@@ -100,7 +100,7 @@ export declare class PasswordInput extends React.Component<React.HTMLAttributes<
     *  @param event. The custom event. 	*/
     onReady?: ((event?: Event) => void) | undefined;
     get eventListeners(): string[];
-    /** Selects the text inside the input or if it is readonly then the element is focused.
+    /** Enhances the input field interaction by selecting all text within the input when it is editable. If the input is set to readonly, the element receives focus without selecting its text. This ensures intuitive behavior based on the input's current state.
     */
     select(): void;
     constructor(props: any);

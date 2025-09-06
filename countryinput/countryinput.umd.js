@@ -22,7 +22,7 @@ require('../source/modules/smart.countryinput');
 	        }
 	        return this._id;
 	    }
-	    /** Enables or disables the element.
+	    /** Specifies whether the element is active and interactive (enabled) or inactive and non-interactive (disabled). When disabled, the element cannot be focused, clicked, or edited by the user.
 	    *	Property type: boolean
 	    */
 	    get disabled() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.disabled = value;
 	        }
 	    }
-	    /** Sets additional class names to the Input drop down.
+	    /** Allows you to specify extra CSS class names that will be applied to the Input dropdown element, enabling further customization of its appearance and styling.
 	    *	Property type: any
 	    */
 	    get dropDownClassList() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.dropDownClassList = value;
 	        }
 	    }
-	    /** Determines the position of the drop down button.
+	    /** Specifies the placement of the dropdown button relative to its parent element, such as aligning it to the left, right, top, or bottom. This controls where the dropdown button appears in the user interface.
 	    *	Property type: DropDownButtonPosition | string
 	    */
 	    get dropDownButtonPosition() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.dropDownButtonPosition = value;
 	        }
 	    }
-	    /** Sets the height of the drop down. By default it's set to an empty string. In this case the height of the drop down is controlled by a CSS variable.
+	    /** Specifies the height of the dropdown component. By default, this value is set to an empty string, which means the dropdown’s height will be determined by a corresponding CSS variable. If a specific value is provided, it will override the CSS variable and explicitly set the dropdown’s height.
 	    *	Property type: string | number
 	    */
 	    get dropDownHeight() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.dropDownHeight = value;
 	        }
 	    }
-	    /** Sets the width of the drop down. By default it's set to an empty string. In this case the width of the drop down is controlled by a CSS variable.
+	    /** Specifies the width of the dropdown menu. By default, this property is set to an empty string, which means the dropdown's width will be determined by a designated CSS variable rather than a fixed value. You can set this property to a specific CSS width value (e.g., "200px" or "50%") to override the default behavior and directly control the dropdown's width. If left empty, ensure the relevant CSS variable is properly defined to maintain consistent styling.
 	    *	Property type: string | number
 	    */
 	    get dropDownWidth() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.dropDownWidth = value;
 	        }
 	    }
-	    /** Sets or gets the name attribute for the element. Name is used when submiting data inside an HTML form.
+	    /** Specifies or retrieves the value of the element’s name attribute. This attribute uniquely identifies the element within form data, allowing its value to be included when the form is submitted. The name attribute is essential for correctly grouping and processing user input on the server side during form submission.
 	    *	Property type: string
 	    */
 	    get name() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.name = value;
 	        }
 	    }
-	    /** Determines whether the drop down is opened or not.
+	    /** Indicates whether the dropdown menu is currently open or closed. This property returns true if the dropdown is visible to the user, and false if it is hidden.
 	    *	Property type: boolean
 	    */
 	    get opened() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.opened = value;
 	        }
 	    }
-	    /** Sets or gets an array of country codes which will be used instead of the default one with all countries. The country code should be ISO 3166-1 alpha-2 codes(https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+	    /** Defines or retrieves an array of country codes to override the default list of all countries. Each country code in the array must be a valid ISO 3166-1 alpha-2 code (see: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), which consists of a two-letter uppercase abbreviation representing each country (e.g., 'US' for United States, 'FR' for France). Use this property to specify a custom subset of countries as needed.
 	    *	Property type: any
 	    */
 	    get onlyCountries() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.onlyCountries = value;
 	        }
 	    }
-	    /** Determines the placeholder of the input.
+	    /** Specifies the placeholder text that appears inside the input field when it is empty, providing a hint to the user about the expected input format or content.
 	    *	Property type: string
 	    */
 	    get placeholder() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.placeholder = value;
 	        }
 	    }
-	    /** Sets or gets the selected country of the element. The country code should be ISO 3166-1 alpha-2 codes(https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+	    /** Gets or sets the currently selected country for the element. The value should be provided as an ISO 3166-1 alpha-2 country code (for example, "US" for the United States or "FR" for France). For the complete list of valid country codes, refer to the ISO 3166-1 alpha-2 standard: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2.
 	    *	Property type: string
 	    */
 	    get selectedCountry() {
@@ -132,7 +132,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.selectedCountry = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Gets or sets a value that determines whether the element's alignment supports right-to-left (RTL) locales and text direction, typically used for languages such as Arabic or Hebrew. When enabled, the element's content aligns according to RTL layout standards.
 	    *	Property type: boolean
 	    */
 	    get rightToLeft() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.rightToLeft = value;
 	        }
 	    }
-	    /** Determines the theme for the element. Themes define the look of the elements.
+	    /** Specifies the theme to be applied to the element. The selected theme controls the visual style, including colors, typography, and other design attributes, ensuring consistency with the overall user interface.
 	    *	Property type: string
 	    */
 	    get theme() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.theme = value;
 	        }
 	    }
-	    /** If is set to true, the element cannot be focused.
+	    /** If set to true, the element will be excluded from keyboard navigation and cannot receive focus via the Tab key or other focus-related interactions.
 	    *	Property type: boolean
 	    */
 	    get unfocusable() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.countryinput');
 	            this.nativeElement.unfocusable = value;
 	        }
 	    }
-	    /** Sets or gets the value of the element.
+	    /** Sets a new value for the element or retrieves its current value, depending on whether an argument is provided. Use this to programmatically update or access the content, state, or data associated with the element (such as the value of an input field or the text of a form control).
 	    *	Property type: string
 	    */
 	    get value() {
@@ -184,7 +184,7 @@ require('../source/modules/smart.countryinput');
 	    get eventListeners() {
 	        return ["onChange", "onChanging", "onItemClick", "onCreate", "onReady"];
 	    }
-	    /** Closes the drop down.
+	    /** Closes the dropdown menu, hiding all currently visible options and returning the component to its inactive state.
 	    */
 	    close() {
 	        if (this.nativeElement.isRendered) {
@@ -196,7 +196,7 @@ require('../source/modules/smart.countryinput');
 	            });
 	        }
 	    }
-	    /** Ensures that the active ( selected ) item is always visible.
+	    /** Guarantees that the currently active (selected) item remains within the visible area of its container, automatically scrolling as needed to keep the item in view.
 	    */
 	    ensureVisible() {
 	        if (this.nativeElement.isRendered) {
@@ -208,7 +208,7 @@ require('../source/modules/smart.countryinput');
 	            });
 	        }
 	    }
-	    /** Opens the drop down.
+	    /** Displays the drop-down menu, allowing users to view and select available options from the list.
 	    */
 	    open() {
 	        if (this.nativeElement.isRendered) {
@@ -220,7 +220,7 @@ require('../source/modules/smart.countryinput');
 	            });
 	        }
 	    }
-	    /** Selects the text inside the input or if it is readonly then the element is focused.
+	    /** Selects the text within the input field. If the input field is set to readonly, it will instead focus the element without selecting the text.
 	    */
 	    select() {
 	        if (this.nativeElement.isRendered) {

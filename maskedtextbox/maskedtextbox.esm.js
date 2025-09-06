@@ -30,7 +30,7 @@ class MaskedTextBox extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Specifies or retrieves the current animation mode for the element. When set to 'none', all animations are disabled for the element, resulting in immediate changes without any animated transitions. If another value is assigned, the corresponding animation mode will be applied, controlling how transitions or visual effects are rendered.
     *	Property type: Animation | string
     */
     get animation() {
@@ -41,7 +41,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Determines whether promptChar can be entered as valid input by the user.
+    /** Checks if the specified promptChar character is recognized as a valid input, allowing the user to enter it into the field. If promptChar is considered valid, it will be accepted and processed as part of the user’s input; otherwise, it will be rejected.
     *	Property type: boolean
     */
     get allowPromptAsInput() {
@@ -52,7 +52,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.allowPromptAsInput = value;
         }
     }
-    /** Determines whether the input accepts characters only from the ASCII character set.
+    /** Specifies whether the input field restricts user entries to characters within the standard ASCII character set (codes 0–127), excluding all non-ASCII symbols, accented letters, and characters from other languages.
     *	Property type: boolean
     */
     get asciiOnly() {
@@ -63,7 +63,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.asciiOnly = value;
         }
     }
-    /** Specifies whether the input should be focused when the page is loaded.
+    /** Determines if the input element automatically receives focus when the page loads, allowing users to begin typing immediately without manually selecting the field.
     *	Property type: boolean
     */
     get autoFocus() {
@@ -74,7 +74,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.autoFocus = value;
         }
     }
-    /** Determines whether the mask is shown/hidden on focus/blur even if placeholder is not set.
+    /** Controls whether the input mask is displayed or hidden when the input field receives or loses focus, regardless of whether a placeholder is specified. This setting applies even if no placeholder attribute is present on the input element.
     *	Property type: boolean
     */
     get autoShowMask() {
@@ -85,7 +85,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.autoShowMask = value;
         }
     }
-    /** Determines whether literals and prompt characters are copied to the clipboard on cut/copy operations.
+    /** Specifies whether formatting characters (such as literals and prompt symbols) included in an input mask are also copied to the clipboard when performing cut or copy operations. If enabled, both the user's input and the input mask characters will be included in the clipboard data; if disabled, only the user's input is copied.
     *	Property type: MaskedTextBoxCutCopyMaskFormat | string
     */
     get cutCopyMaskFormat() {
@@ -96,7 +96,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.cutCopyMaskFormat = value;
         }
     }
-    /** Enables or disables the element.
+    /** Determines whether the element is interactive or inactive. When enabled, users can interact with the element; when disabled, the element appears dimmed and does not respond to user input.
     *	Property type: boolean
     */
     get disabled() {
@@ -107,7 +107,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Specifies the behavior on "Enter" key press. Default mode is "submit".
+    /** Defines the action performed when the "Enter" key is pressed. Possible values include "submit" (submits the form), "newline" (inserts a new line), or "none" (no action). The default value is "submit".
     *	Property type: EnterKeyBehavior | string
     */
     get enterKeyBehavior() {
@@ -118,7 +118,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.enterKeyBehavior = value;
         }
     }
-    /** Determines whether the prompt character in the input mask is hidden when the masked text box isn't focused anymore.
+    /** Controls whether the prompt character in the input mask is hidden when the masked text box loses focus. When set to true, the prompt character will not be visible in the textbox after it loses focus; when set to false, the prompt character remains visible even when the textbox is not focused. This helps manage what users see when interacting with the masked input field.
     *	Property type: boolean
     */
     get hidePromptOnLeave() {
@@ -129,7 +129,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.hidePromptOnLeave = value;
         }
     }
-    /** Sets additional helper text below the element. The hint is visible only when the element is focused.
+    /** Displays supplementary helper text beneath the element. This hint appears exclusively when the element is focused, providing contextual guidance to the user during input or interaction. The helper text is hidden when the element is not focused, ensuring a clean interface when not needed.
     *	Property type: string
     */
     get hint() {
@@ -140,7 +140,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.hint = value;
         }
     }
-    /** Determines whether new user input overwrites the existing input value or not.
+    /** Specifies whether new user input will replace the current input value entirely, or if it will be appended to or combined with the existing value. When enabled, any new input overwrites the existing content; when disabled, new input is added to the existing value without removing it.
     *	Property type: boolean
     */
     get isOverwriteMode() {
@@ -151,7 +151,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.isOverwriteMode = value;
         }
     }
-    /** Sets label above the element. The label is always visible.
+    /** Displays a label positioned above the element. The label remains constantly visible, providing clear identification for the associated element at all times.
     *	Property type: string
     */
     get label() {
@@ -162,7 +162,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.label = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Defines or retrieves the unlockKey, a unique identifier or code required to activate and access the product's full features.
     *	Property type: string
     */
     get unlockKey() {
@@ -173,7 +173,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Specifies or retrieves the current language setting for the application or component. This property determines which set of localized messages from the messages object will be used for display, enabling support for multiple languages. When you set the language, the corresponding message translations from the messages property are applied automatically.
     *	Property type: string
     */
     get locale() {
@@ -184,7 +184,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+    /** A callback function that allows you to customize the formatting of messages returned by the Localization Module. Use this to modify translated strings—such as injecting dynamic values, changing case, or applying additional formatting—before they are displayed to users.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -195,7 +195,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Defines the mask for the input.
+    /** Specifies the input mask pattern that determines the allowed format and structure of user input. This ensures that the entered data matches the required criteria, such as a phone number, date, or custom format.
     *	Property type: string
     */
     get mask() {
@@ -206,7 +206,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.mask = value;
         }
     }
-    /** Indicates whether all required fields of the mask have been populated or not.
+    /** Specifies whether every required field defined by the mask has been filled in with valid data. Returns true if all required fields are populated; otherwise, returns false.
     *	Property type: boolean
     */
     get maskCompleted() {
@@ -217,7 +217,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.maskCompleted = value;
         }
     }
-    /** Indicates whether all required and optional fields of the mask have been populated or not.
+    /** Specifies whether every required and optional field defined by the mask has been filled with a value. If true, all fields that the mask references are populated; if false, at least one referenced field remains unset.
     *	Property type: boolean
     */
     get maskFull() {
@@ -228,7 +228,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.maskFull = value;
         }
     }
-    /** Determines the maximum number of characters that the user can enter.
+    /** Specifies the upper limit on the number of characters that a user is allowed to input. If the user attempts to enter more characters than this limit, additional input will be prevented or ignored. This property is commonly used in form fields to enforce data length constraints and ensure consistent data entry.
     *	Property type: number
     */
     get maxLength() {
@@ -239,7 +239,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.maxLength = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Defines or retrieves an object containing customizable text strings used within the widget, allowing for localization of user interface elements. This property works in conjunction with the locale property to provide translations and adapt the widget's display language to different regions or languages. Use this to specify or override default labels, messages, or prompts shown in the widget.
     *	Property type: any
     */
     get messages() {
@@ -250,7 +250,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Sets or gets the name attribute for the element. Name is used when submiting HTML forms.
+    /** Sets or retrieves the value of the element's name attribute. The name attribute identifies the element within an HTML form, ensuring its value is included in the form data sent to the server upon submission. This is essential for correctly processing user input on the backend.
     *	Property type: string
     */
     get name() {
@@ -261,7 +261,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.name = value;
         }
     }
-    /** A string that appears inside the input when there's no value and mask.
+    /** Specifies the placeholder text displayed in the input field when both the value and mask properties are unset or empty. This text provides users with a hint or example of the expected input format until they enter a value.
     *	Property type: string
     */
     get placeholder() {
@@ -272,7 +272,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.placeholder = value;
         }
     }
-    /** Determines the prompt char that is used for the mask of the element.
+    /** Specifies the character used as the placeholder in the input mask for the element. This character indicates where user input is expected within the input field.
     *	Property type: string
     */
     get promptChar() {
@@ -283,7 +283,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.promptChar = value;
         }
     }
-    /** If the element is readonly, the users cannot iteract with the element.
+    /** When the element is set to readonly, users can view its content but cannot modify or interact with it in any way. This ensures that the element’s value remains unchanged by user input, while still being visible on the page.
     *	Property type: boolean
     */
     get readonly() {
@@ -294,7 +294,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
-    /** Determines whether the parsing of user input should stop after the first invalid character or not.
+    /** Specifies whether the parsing process should immediately halt upon encountering the first invalid character in the user input, or continue attempting to parse the remaining input.
     *	Property type: boolean
     */
     get rejectInputOnFirstFailure() {
@@ -305,7 +305,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.rejectInputOnFirstFailure = value;
         }
     }
-    /** Specifies that the input must be filled in before submitting a form
+    /** Indicates that this input field is required and cannot be left empty; users must provide a value before the form can be successfully submitted.
     *	Property type: boolean
     */
     get required() {
@@ -316,7 +316,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.required = value;
         }
     }
-    /** Determines whether an input character that matches the prompt character should reset the current selected value in the input or not. Applicable only when allowPromptAsInput is enabled.
+    /** Controls whether entering a character in the input field that matches the prompt character will reset the currently selected value. This setting is relevant only when allowPromptAsInput is enabled, meaning the prompt character can be used as user input. When enabled, if the user types the prompt character, the input’s selected value will be cleared; otherwise, the value remains unchanged.
     *	Property type: boolean
     */
     get resetOnPrompt() {
@@ -327,7 +327,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.resetOnPrompt = value;
         }
     }
-    /** Determines whether hitting space character resets the currently selected value from the input or not.
+    /** Specifies whether pressing the spacebar will clear the currently selected value in the input field. When set to true, pressing the space key will reset (clear) the selection; when set to false, the value remains unchanged.
     *	Property type: boolean
     */
     get resetOnSpace() {
@@ -338,7 +338,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.resetOnSpace = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Specifies or retrieves a Boolean value that determines whether the element’s content is aligned to support right-to-left (RTL) languages, such as Arabic or Hebrew. When set to true, the element’s text direction and alignment are adjusted to display content appropriately for RTL locales.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -349,7 +349,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Specifies whether the value of the input will be selected on focus or not.
+    /** Determines if the entire value of the input field will be automatically highlighted (selected) when the input receives focus, allowing users to easily replace or copy the existing content.
     *	Property type: boolean
     */
     get selectAllOnFocus() {
@@ -360,7 +360,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.selectAllOnFocus = value;
         }
     }
-    /** Determines whether the value of the input should contain or not the prompt/literals of the mask.
+    /** Specifies whether the value entered in the input field should include or exclude the static characters (prompts and literals) defined by the input mask. When enabled, the resulting value will contain these mask characters; otherwise, only the user input (without mask characters) will be stored.
     *	Property type: MaskedTextBoxTextMaskFormat | string
     */
     get textMaskFormat() {
@@ -371,7 +371,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.textMaskFormat = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the visual theme to be applied. The theme controls the overall appearance—including colors, fonts, and style—of the element, ensuring a consistent and customizable look and feel.
     *	Property type: string
     */
     get theme() {
@@ -382,7 +382,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** If this property is set to true, the element will be excluded from keyboard navigation and cannot receive focus, either by tabbing or programmatically.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -393,7 +393,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Sets or gets the value of the element.
+    /** Gets the current value of the element or sets a new value for the element, depending on how the method is used. When called without arguments, it returns the element's current value. When provided with a value as an argument, it updates the element with the specified value. Commonly used with form input elements.
     *	Property type: string
     */
     get value() {
@@ -404,7 +404,7 @@ class MaskedTextBox extends React.Component {
             this.nativeElement.value = value;
         }
     }
-    /** Callback function that allows to set custom validation on the value. If the function returns false then the value of the input is treated as not valid.
+    /** A callback function that enables you to define custom validation logic for the input value. This function receives the input value as an argument and should return a boolean value: return true if the value is considered valid, or false if it is invalid. If the function returns false, the input will be treated as invalid and may trigger corresponding validation error messages or prevent form submission. Use this to implement validations that go beyond the default rules.
     *	Property type: any
     */
     get validation() {
@@ -423,7 +423,7 @@ class MaskedTextBox extends React.Component {
     get eventListeners() {
         return ["onChange", "onChanging", "onValidation", "onCreate", "onReady"];
     }
-    /** Focuses the element.
+    /** Sets keyboard and screen reader focus to the specified element, making it the active element for user interactions such as typing or accessibility navigation.
     */
     focus() {
         if (this.nativeElement.isRendered) {
@@ -435,7 +435,7 @@ class MaskedTextBox extends React.Component {
             });
         }
     }
-    /** Blurs the element.
+    /** Applies a blur effect to the element, causing its content and any child elements to appear out of focus by softening edges and details. The degree of blur can typically be adjusted to achieve the desired level of visual obscurity.
     */
     blur() {
         if (this.nativeElement.isRendered) {

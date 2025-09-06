@@ -41,7 +41,7 @@ class MenuItem extends React.Component {
             this.nativeElement.checked = value;
         }
     }
-    /** Enables or disables element.
+    /** Controls whether the element is enabled or disabled. When set to true, the element is interactive and can receive user input; when set to false, the element is disabled, preventing user interaction and applying a disabled appearance as appropriate.
     *	Property type: boolean
     */
     get disabled() {
@@ -296,7 +296,7 @@ class MenuItemsGroup extends React.Component {
             this.nativeElement.checkMode = value;
         }
     }
-    /** Enables or disables element.
+    /** Specifies whether the element is enabled or disabled. When set to true, the element is disabled and cannot be interacted with by the user; when set to false, the element remains enabled and fully interactive.
     *	Property type: boolean
     */
     get disabled() {
@@ -529,7 +529,7 @@ class Menu extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Sets or retrieves the current animation mode. When this property is set to 'none', all animations are disabled and the element remains static. Otherwise, animations will be enabled according to the specified mode.
     *	Property type: Animation | string
     */
     get animation() {
@@ -540,7 +540,7 @@ class Menu extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Determines delay (in milliseconds) before a Menu dropdown is closed when leaving the Menu with the mouse. Applicable only when selectionMode is 'mouseenter'.
+    /** Specifies the delay, in milliseconds, before the Menu dropdown is closed after the mouse cursor leaves the Menu area. This setting is only effective when the selectionMode property is set to 'mouseenter'. Adjusting this value can help prevent the dropdown from closing too quickly when the mouse briefly leaves the Menu.
     *	Property type: number
     */
     get autoCloseDelay() {
@@ -551,7 +551,7 @@ class Menu extends React.Component {
             this.nativeElement.autoCloseDelay = value;
         }
     }
-    /** If set to true, on mouseenter, the element receives focus automatically.
+    /** If set to true, the element will automatically receive focus when the user's mouse pointer enters (hovers over) it, triggering a mouseenter event. This allows keyboard interactions or focus styles to activate without requiring a manual click or tab action from the user.
     *	Property type: boolean
     */
     get autoFocusOnMouseenter() {
@@ -562,7 +562,7 @@ class Menu extends React.Component {
             this.nativeElement.autoFocusOnMouseenter = value;
         }
     }
-    /** Allows top-level Menu items (immediate children of the Menu) to be checkable. Sublevels are controlled by setting checkable to the respective smart-menu-items-group.
+    /** Enables checkboxes for top-level menu items (the direct children of the main Menu component), allowing users to select or deselect these items. To make submenu items (nested within menu groups) checkable, set the checkable property individually on the corresponding smart-menu-items-group elements. This allows for granular control over which menu levels support checkable states.
     *	Property type: boolean
     */
     get checkable() {
@@ -573,7 +573,7 @@ class Menu extends React.Component {
             this.nativeElement.checkable = value;
         }
     }
-    /** Sets or gets whether checkboxes and radio buttons can be displayed in the Menu. This property is applicable only to the Menu itself, and not its smart-menu-item/smart-menu-items-group subitems. See also the property checkable.
+    /** Controls whether checkboxes and radio buttons can be shown within the Menu component. This property applies exclusively to the main Menu, not to its subitems (i.e., smart-menu-item or smart-menu-items-group). Use this property to enable or disable the display of selectable options directly in the Menu.  For further customization of individual items, refer to the checkable property.
     *	Property type: boolean
     */
     get checkboxes() {
@@ -584,7 +584,7 @@ class Menu extends React.Component {
             this.nativeElement.checkboxes = value;
         }
     }
-    /** Sets the check mode of top-level Menu items (immediate children of the Menu). checkMode can be set to 'checkbox', 'radioButton', or a comma-separated list containing 'checkbox', 'radioButton', or 'none' (e.g. 'checkbox, radioButton, none, checkbox'). When set to a list, each value in the list is applied to groups of Menu items separated by an item with separator (item after the one with separator is the start of a new checkMode context). Sublevels are controlled by setting checkMode to the respective smart-menu-items-group.
+    /** Sets the selection mode (check mode) for the top-level Menu items, which are the immediate children of the Menu component. The 'checkMode' property determines how these menu items can be toggled or selected:- Possible values for 'checkMode' are:    - ''checkbox'': Menu items can be checked and unchecked independently (multiple selections allowed).    - ''radioButton'': Menu items are mutually exclusive (only one can be selected at a time, like radio buttons).    - ''none'': Menu items have no checkable or selectable state.You can also assign a comma-separated list of these values (for example, ''checkbox, radioButton, none, checkbox''). If a list is provided, each value corresponds to a group of top-level menu items. These groups are separated by menu separators (special items acting as visual dividers). The first value in the list applies to the first group of menu items, the second value to the next group (after the first separator), and so on. When a separator is encountered, it signals the start of a new checkMode context, applying the next value in the list to subsequent items.Note: This 'checkMode' property only affects the top-level menu items. To control check modes for submenus or nested groups, set the 'checkMode' property individually on each smart-menu-items-group (the group component representing submenu levels).
     *	Property type: MenuCheckMode | string
     */
     get checkMode() {
@@ -595,7 +595,7 @@ class Menu extends React.Component {
             this.nativeElement.checkMode = value;
         }
     }
-    /** Sets the document event which closes any open Menu drop downs (or the Menu itself when mode is 'dropDown').
+    /** Defines the document-level event that triggers the closure of all open menu dropdowns, or the entire menu if the mode property is set to 'dropDown'. This event ensures that any active menu or submenu is properly closed when the specified user interaction occurs (e.g., clicking outside the menu).
     *	Property type: MenuCloseAction | string
     */
     get closeAction() {
@@ -606,7 +606,7 @@ class Menu extends React.Component {
             this.nativeElement.closeAction = value;
         }
     }
-    /** Determines the data source that will be loaded to the Menu. The data source represents an array of objects with the following properties: label - a string representing the text content of the item.value - the value of the item.shortcut - a string representing a shortuct for the item. It will be displayed inside the item.items - allows to define an array of sub menu items.
+    /** Specifies the data source for the Menu component. The data source should be provided as an array of objects, where each object represents a menu item with the following properties:- 'label': *(string, required)* — The text displayed for the menu item.- 'value': *(any, required)* — The unique value associated with the menu item, used for identification or selection.- 'shortcut': *(string, optional)* — A keyboard shortcut hint displayed alongside the menu item, helping users discover quick access keys.- 'items': *(array, optional)* — An array of objects representing sub-menu items, allowing for nested menus and hierarchical structures. Each sub-menu item follows the same structure as a top-level menu item.By configuring the data source in this format, you enable dynamic and flexible rendering of complex menu structures.
     *	Property type: any
     */
     get dataSource() {
@@ -617,7 +617,7 @@ class Menu extends React.Component {
             this.nativeElement.dataSource = value;
         }
     }
-    /** Enables or disables element.
+    /** Controls whether the element is active and interactive (enabled) or inactive and non-interactive (disabled). When disabled, users cannot interact with the element.
     *	Property type: boolean
     */
     get disabled() {
@@ -628,7 +628,7 @@ class Menu extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Determines the field in the data source that corresponds to an item's label.
+    /** Specifies which field in the data source should be used as the item's label. This determines the text value displayed for each item in the UI by mapping it to the corresponding property from your data.
     *	Property type: string
     */
     get displayMember() {
@@ -639,7 +639,7 @@ class Menu extends React.Component {
             this.nativeElement.displayMember = value;
         }
     }
-    /** Sets custom outer container, where all dropdown containers must be appended. By default they are inside the menu. The value of the property can be an HTML element or the id of an HTML element. In mode 'dropDown', the property dropDownAppendTo also controls the parent element of the whole Menu. The open method works relatively to the original place of the Menu in the DOM.
+    /** Here is a revised and enhanced version of your description:Specifies a custom outer container to which all dropdown containers will be appended. By default, dropdown elements are appended inside the menu itself. You can assign this property an HTML element directly, or provide the id of an existing HTML element (as a string).When the menu is in mode 'dropDown', the dropDownAppendTo property not only determines where the dropdowns are appended, but also controls the parent container of the entire menu. Note that the open method will open the menu relative to its original position within the DOM, regardless of the value of dropDownAppendTo.Use this property to customize the DOM structure, for example, to ensure that dropdowns are rendered within a specific container for layout, styling, or layering purposes.
     *	Property type: string | HTMLElement
     */
     get dropDownAppendTo() {
@@ -650,7 +650,7 @@ class Menu extends React.Component {
             this.nativeElement.dropDownAppendTo = value;
         }
     }
-    /** If this property is enabled, when an element's dropdown is opened, a transparent overlay is positioned between the dropdown and the rest of the document.
+    /** When this property is enabled, opening an element’s dropdown will display a transparent overlay that covers the area between the dropdown and the rest of the page. This overlay prevents interaction with other page elements while the dropdown is open, helping to focus the user’s attention on the dropdown content.
     *	Property type: boolean
     */
     get dropDownOverlay() {
@@ -661,7 +661,18 @@ class Menu extends React.Component {
             this.nativeElement.dropDownOverlay = value;
         }
     }
-    /** Determines the opening direction of Menu dropdowns.
+    /** When this property is set and the Menu is in drop-down mode, the Menu's position will be anchored to the ID set by this property.
+    *	Property type: string
+    */
+    get dropDownAnchor() {
+        return this.nativeElement ? this.nativeElement.dropDownAnchor : undefined;
+    }
+    set dropDownAnchor(value) {
+        if (this.nativeElement) {
+            this.nativeElement.dropDownAnchor = value;
+        }
+    }
+    /** Specifies the direction in which the menu dropdown will appear when opened (e.g., above, below, left, or right relative to the triggering element), allowing customization of dropdown placement to enhance user interface layout and usability.
     *	Property type: MenuDropDownPosition | string
     */
     get dropDownPosition() {
@@ -672,7 +683,7 @@ class Menu extends React.Component {
             this.nativeElement.dropDownPosition = value;
         }
     }
-    /** A getter that returns an array of all Menu items.
+    /** A getter method that retrieves and returns an array containing all current Menu item objects, allowing access to the complete list of menu entries managed by the application.
     *	Property type: any
     */
     get items() {
@@ -683,7 +694,7 @@ class Menu extends React.Component {
             this.nativeElement.items = value;
         }
     }
-    /** Determines the field in the data source that corresponds to an item group's subitems collection.
+    /** Specifies the field name in the data source that contains the collection of subitems associated with each item group. This property allows the component to identify and retrieve subitems for each group by referencing the appropriate data field.
     *	Property type: string
     */
     get itemsMember() {
@@ -694,7 +705,7 @@ class Menu extends React.Component {
             this.nativeElement.itemsMember = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Retrieves or assigns the unlockKey, a unique code required to activate and access the product's full features.
     *	Property type: string
     */
     get unlockKey() {
@@ -705,7 +716,7 @@ class Menu extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Specifies or retrieves the current language setting for the component. This property determines which language is used when displaying text from the messages property, allowing for dynamic localization and internationalization of the user interface. When the language is changed, the corresponding localized messages are retrieved from the messages object.
     *	Property type: string
     */
     get locale() {
@@ -716,7 +727,7 @@ class Menu extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+    /** A callback function that allows you to customize the formatting of messages returned by the Localization Module. Use this to modify how localized strings are generated or displayed, such as adjusting placeholders, applying additional formatting, or handling special localization rules before the message is returned.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -727,7 +738,7 @@ class Menu extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Specifies or retrieves an object containing the set of strings used within the widget interface that can be localized for different languages. This property works together with the locale property to enable internationalization by allowing developers to customize or translate UI text according to the user's language preferences.
     *	Property type: any
     */
     get messages() {
@@ -738,7 +749,7 @@ class Menu extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Used to load a custom minimize icon from an HTMLTemplateElement object. The HTMLTemplateElement is selected by it's id.
+    /** Loads a custom minimize icon from an HTMLTemplateElement selected by its ID. The element’s inner HTML is used as the icon’s template, allowing for flexible and reusable icon customization within the application.
     *	Property type: string
     */
     get minimizeIconTemplate() {
@@ -749,7 +760,7 @@ class Menu extends React.Component {
             this.nativeElement.minimizeIconTemplate = value;
         }
     }
-    /** Determines the minimum width of the Menu at which it will switch from normal to minimized mode. If set to null, the Menu does not minimize automatically.
+    /** Specifies the minimum width (in pixels) at which the Menu transitions from its normal (expanded) state to a minimized (collapsed) mode. When the Menu’s container width falls below this threshold, the minimized mode is automatically activated. If set to null, the Menu will remain in its normal state regardless of width and will not minimize automatically.
     *	Property type: number
     */
     get minimizeWidth() {
@@ -760,7 +771,7 @@ class Menu extends React.Component {
             this.nativeElement.minimizeWidth = value;
         }
     }
-    /** Determines the menu's display mode.
+    /** Specifies how the menu is visually presented to users, such as in a horizontal, vertical, dropdown, or collapsible format. Adjusting this setting allows customization of the menu’s layout and interaction style.
     *	Property type: MenuMode | string
     */
     get mode() {
@@ -771,7 +782,7 @@ class Menu extends React.Component {
             this.nativeElement.mode = value;
         }
     }
-    /** Opens or closes thte menu when it's in 'dropDown' mode.
+    /** Toggles the menu’s visibility when it is set to 'dropDown' mode, allowing users to open or close the menu as needed.
     *	Property type: boolean
     */
     get opened() {
@@ -782,7 +793,7 @@ class Menu extends React.Component {
             this.nativeElement.opened = value;
         }
     }
-    /** Sets or gets the menu's scroll buttons behavior. Applicable only when dropDownAppendTo is not null.
+    /** Defines how the menu's scroll buttons behave when navigating through its items. This property is effective only if dropDownAppendTo is set to a value other than null. If dropDownAppendTo is null, the scroll button behavior setting is ignored.
     *	Property type: Overflow | string
     */
     get overflow() {
@@ -793,7 +804,7 @@ class Menu extends React.Component {
             this.nativeElement.overflow = value;
         }
     }
-    /** If set to true, prevents the closing of the Menu or its dropdowns when Menu items are checked/unchecked.
+    /** If set to true, the Menu and its dropdowns will remain open when a Menu item is checked or unchecked, rather than automatically closing upon selection. This allows users to make multiple selections without the Menu closing each time an item is toggled.
     *	Property type: boolean
     */
     get preventCloseOnCheck() {
@@ -804,7 +815,7 @@ class Menu extends React.Component {
             this.nativeElement.preventCloseOnCheck = value;
         }
     }
-    /** If the element is readonly, users cannot interact with it.
+    /** When the element is set to "readonly," users can view its content but are unable to modify or edit the value. However, users may still interact with the element in limited ways, such as selecting and copying its content. The element remains focusable, but any attempts to change its data will be ignored.
     *	Property type: boolean
     */
     get readonly() {
@@ -815,7 +826,7 @@ class Menu extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Specifies or retrieves whether the element’s alignment is configured to support locales that use right-to-left (RTL) text direction, such as Arabic or Hebrew. When enabled, the element’s content and layout are adjusted for proper display in RTL languages.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -826,7 +837,7 @@ class Menu extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Determines the menu's selection mode.
+    /** Specifies how users can select items within the menu, such as allowing single selection, multiple selections, or no selection.
     *	Property type: MenuSelectionMode | string
     */
     get selectionMode() {
@@ -837,7 +848,7 @@ class Menu extends React.Component {
             this.nativeElement.selectionMode = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the theme to be applied. The selected theme controls the visual appearance and styling of the element, including colors, fonts, spacing, and other design aspects.
     *	Property type: string
     */
     get theme() {
@@ -848,7 +859,7 @@ class Menu extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** If is set to true, the element cannot be focused.
+    /** When set to true, the element is removed from the tab order and cannot be focused using keyboard navigation or script.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -859,7 +870,7 @@ class Menu extends React.Component {
             this.nativeElement.unfocusable = value;
         }
     }
-    /** Determines the field in the data source that corresponds to an item's value.
+    /** Specifies which field in the data source should be used as the value for each item. This property maps a particular key or column from your data to represent the item's value in the component, enabling proper identification, selection, and data binding.
     *	Property type: string
     */
     get valueMember() {
@@ -872,13 +883,13 @@ class Menu extends React.Component {
     }
     // Gets the properties of the React component.
     get properties() {
-        return ["animation", "autoCloseDelay", "autoFocusOnMouseenter", "checkable", "checkboxes", "checkMode", "closeAction", "dataSource", "disabled", "displayMember", "dropDownAppendTo", "dropDownOverlay", "dropDownPosition", "items", "itemsMember", "unlockKey", "locale", "localizeFormatFunction", "messages", "minimizeIconTemplate", "minimizeWidth", "mode", "opened", "overflow", "preventCloseOnCheck", "readonly", "rightToLeft", "selectionMode", "theme", "unfocusable", "valueMember"];
+        return ["animation", "autoCloseDelay", "autoFocusOnMouseenter", "checkable", "checkboxes", "checkMode", "closeAction", "dataSource", "disabled", "displayMember", "dropDownAppendTo", "dropDownOverlay", "dropDownAnchor", "dropDownPosition", "items", "itemsMember", "unlockKey", "locale", "localizeFormatFunction", "messages", "minimizeIconTemplate", "minimizeWidth", "mode", "opened", "overflow", "preventCloseOnCheck", "readonly", "rightToLeft", "selectionMode", "theme", "unfocusable", "valueMember"];
     }
     // Gets the events of the React component.
     get eventListeners() {
         return ["onClose", "onClosing", "onCollapse", "onCollapsing", "onExpand", "onExpanding", "onItemCheckChange", "onItemClick", "onOpen", "onOpening", "onCreate", "onReady"];
     }
-    /** Adds an item to the menu.
+    /** Adds a new item to the menu by appending the specified entry, including its label, action, and any associated properties, to the existing menu structure. This allows dynamic expansion of the menu options displayed to users.
     * @param {HTMLElement} Item. A jqx-menu-item to add to the Menu.
     * @param {HTMLElement | string} Parent?. The jqx-menu-items-group or its id or numeric path to add the item to.
     */
@@ -892,7 +903,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Checks an item.
+    /** Marks the specified item as checked or selected, updating its status to indicate it is active, enabled, or chosen.
     * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group or its id or numeric path.
     */
     checkItem(item) {
@@ -905,7 +916,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Clears all Menu items.
+    /** Removes all existing items from the Menu, resulting in an empty Menu with no selectable options.
     */
     clear() {
         if (this.nativeElement.isRendered) {
@@ -917,7 +928,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Clicks on an item programatically.
+    /** Simulates a user click event on a specified item programmatically, triggering any associated event handlers or actions as if the item were clicked manually by the user.
     * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group or its id or numeric path.
     */
     clickItem(item) {
@@ -930,7 +941,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Closes the Menu when mode is 'dropDown'.
+    /** Automatically closes the Menu when the mode property is set to 'dropDown', ensuring that the menu is dismissed upon selection or when clicking outside the menu area. This behavior provides a streamlined user experience consistent with standard dropdown functionality.
     */
     close() {
         if (this.nativeElement.isRendered) {
@@ -942,7 +953,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Collapses an item.
+    /** Collapses a currently expanded item, hiding its content from view and displaying only the header or summary. This is typically used in expandable/collapsible components such as accordions or dropdown menus.
     * @param {HTMLElement | string} item?. jqx-menu-item/jqx-menu-items-group or its id or numeric path. If no item is passed, all open items are collapsed.
     * @param {boolean} animation?. If set to false, disables collapse animation even if animation is enabled for the element.
     */
@@ -956,7 +967,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Expands an item.
+    /** Displays the detailed content or additional information of an item by expanding its view, typically used in accordions, dropdowns, or collapsible sections.
     * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group or its id or numeric path.
     * @param {boolean} animation?. If set to false, disables expand animation even if animation is enabled for the element.
     */
@@ -970,7 +981,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Gets an item by its id or numeric path.
+    /** Retrieves a specific item using either its unique identifier (ID) or a numeric path value. This allows you to access an item directly by providing its assigned ID or by specifying its position within a structured path.
     * @param {string} id. The id or numeric path of an item
     * @returns {HTMLElement}
   */
@@ -978,7 +989,7 @@ class Menu extends React.Component {
         const result = this.nativeElement.getItem(id);
         return result;
     }
-    /** Maximizes the Menu.
+    /** Expands the menu to display all available options, maximizing its visibility and accessibility for the user.
     */
     maximize() {
         if (this.nativeElement.isRendered) {
@@ -990,7 +1001,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Minimizes the Menu.
+    /** Collapses the navigation menu to its minimized or compact state, reducing its visible size to save screen space while still providing access to essential menu options.
     */
     minimize() {
         if (this.nativeElement.isRendered) {
@@ -1002,7 +1013,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Opens the Menu when mode is 'dropDown'.
+    /** Opens the Menu component only when the mode property is set to 'dropDown'. In this mode, the Menu will become visible in a dropdown format, allowing users to interact with its items. If mode is set to any other value, the Menu will not open.
     * @param {number} left. Horizontal position
     * @param {number} top. Vertical position
     */
@@ -1016,7 +1027,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Removes an item from the menu.
+    /** Removes a specified item from the menu, updating the menu structure to reflect the change. This action ensures the targeted menu item is no longer displayed or accessible within the menu interface.
     * @param {HTMLElement | string} item. The jqx-menu-item/jqx-menu-items-group or its id or numeric path to remove.
     */
     removeItem(item) {
@@ -1029,7 +1040,7 @@ class Menu extends React.Component {
             });
         }
     }
-    /** Unchecks an item.
+    /** Unselects or removes the checkmark from a selected item, indicating that it is no longer active, chosen, or included in the current selection.
     * @param {HTMLElement | string} item. jqx-menu-item/jqx-menu-items-group (or its id or numeric path)
     */
     uncheckItem(item) {

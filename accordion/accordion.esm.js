@@ -30,7 +30,7 @@ class AccordionItem extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets header's arrow position. If the value is 'none' the arrow is not shown.
+    /** Specifies or retrieves the position of the arrow indicator within the header. Accepts values such as 'left', 'right', or 'none'. When set to 'none', the arrow will not be displayed in the header.
     *	Property type: AccordionItemArrow | string
     */
     get arrow() {
@@ -41,7 +41,7 @@ class AccordionItem extends React.Component {
             this.nativeElement.arrow = value;
         }
     }
-    /** Sets or gets the content if the item.
+    /** Sets or retrieves the content of the item. Use this property to assign new content to the item or to access its current content value.
     *	Property type: boolean
     */
     get expanded() {
@@ -52,7 +52,7 @@ class AccordionItem extends React.Component {
             this.nativeElement.expanded = value;
         }
     }
-    /** Sets or gets the expanded state.
+    /** Gets or sets whether the element is in its expanded or collapsed state. When set to true, the element is expanded and its content is visible; when false, the element is collapsed and its content is hidden.
     *	Property type: boolean
     */
     get focused() {
@@ -63,7 +63,7 @@ class AccordionItem extends React.Component {
             this.nativeElement.focused = value;
         }
     }
-    /** Sets or gets the focus state.
+    /** Gets or sets whether the element currently has input focus. When set to true, the element receives focus; when set to false, the element loses focus. This property reflects the element's current focus state within the user interface.
     *	Property type: string
     */
     get label() {
@@ -230,7 +230,7 @@ class Accordion extends React.Component {
         }
         return this._id;
     }
-    /** Sets or gets the animation mode. Animation is disabled when the property is set to 'none'
+    /** Configures or retrieves the current animation mode. When set to 'none', all animations are disabled, resulting in instant transitions without animated effects. Setting this property to other supported values enables different animation behaviors.
     *	Property type: Animation | string
     */
     get animation() {
@@ -241,7 +241,7 @@ class Accordion extends React.Component {
             this.nativeElement.animation = value;
         }
     }
-    /** Determines the data source that will be loaded to the Accordion.
+    /** Specifies the data source to be loaded and displayed within the Accordion component. This property defines the collection of items or structured data that populates each section or panel of the Accordion, enabling dynamic rendering of its contents. The data source can typically be provided as an array of objects, JSON data, or via a remote endpoint depending on configuration.
     *	Property type: any
     */
     get dataSource() {
@@ -252,7 +252,7 @@ class Accordion extends React.Component {
             this.nativeElement.dataSource = value;
         }
     }
-    /** Enables or disables the accordion. Disabled elements can not be interacted with.
+    /** Controls whether the accordion component is enabled or disabled. When set to disabled, all interactive functionality is turned off—users cannot expand, collapse, or interact with any accordion sections. Disabled accordions appear visually inactive to indicate their non-interactive state.
     *	Property type: boolean
     */
     get disabled() {
@@ -263,7 +263,7 @@ class Accordion extends React.Component {
             this.nativeElement.disabled = value;
         }
     }
-    /** Sets or gets the expanded item indexes. Using this property items can be expanded by passing in their indexes. The number of expanded items is limited by the expandMode.
+    /** Sets or retrieves the indexes of currently expanded items. By assigning an array of item indexes to this property, you can programmatically expand those specific items. The maximum number of items that can be expanded at once depends on the value specified in the expandMode property (for example, single or multiple expansion modes). When getting this property, it returns an array of the indexes of all expanded items.
     *	Property type: number[]
     */
     get expandedIndexes() {
@@ -274,7 +274,7 @@ class Accordion extends React.Component {
             this.nativeElement.expandedIndexes = value;
         }
     }
-    /** Sets or gets the expand mode. Expand mode determines how the items will expand or collapse.
+    /** Sets or retrieves the current expand mode. The expand mode specifies how list or group items behave when expanding or collapsing—such as allowing multiple items to expand simultaneously or restricting expansion to a single item at a time.
     *	Property type: AccordionExpandMode | string
     */
     get expandMode() {
@@ -285,7 +285,7 @@ class Accordion extends React.Component {
             this.nativeElement.expandMode = value;
         }
     }
-    /** Sets or gets the unlockKey which unlocks the product.
+    /** Retrieves or assigns the 'unlockKey' property, which serves as the access credential required to unlock and activate the product's full features.
     *	Property type: string
     */
     get unlockKey() {
@@ -296,7 +296,7 @@ class Accordion extends React.Component {
             this.nativeElement.unlockKey = value;
         }
     }
-    /** Sets or gets the language. Used in conjunction with the property messages.
+    /** Sets or retrieves the current language code (e.g., "en", "fr") for the component. This property works together with the messages property to determine which language-specific messages or translations are displayed. Use this to localize your application content based on user preference or locale.
     *	Property type: string
     */
     get locale() {
@@ -307,7 +307,7 @@ class Accordion extends React.Component {
             this.nativeElement.locale = value;
         }
     }
-    /** Callback used to customize the format of the messages that are returned from the Localization Module.
+    /** A callback function that allows you to customize the formatting of messages returned by the Localization Module. Use this to modify or enhance localized message output—such as applying dynamic content, adjusting text structure, or handling language-specific variations—before the messages are delivered to the client application.
     *	Property type: any
     */
     get localizeFormatFunction() {
@@ -318,7 +318,7 @@ class Accordion extends React.Component {
             this.nativeElement.localizeFormatFunction = value;
         }
     }
-    /** Sets or gets an object specifying strings used in the widget that can be localized. Used in conjunction with the property locale.
+    /** Specifies or retrieves an object containing the localized strings used throughout the widget interface. This allows you to define custom translations for various UI elements in different languages. Used together with the locale property to enable localization and internationalization support within the widget.
     *	Property type: any
     */
     get messages() {
@@ -329,7 +329,7 @@ class Accordion extends React.Component {
             this.nativeElement.messages = value;
         }
     }
-    /** Determines if the element is readonly or not. If the element true, users cannot interact with it.
+    /** Indicates whether the element is read-only. When set to true, the element cannot be modified or interacted with by users; its value is fixed and user input is disabled. If false, the element remains editable and interactive.
     *	Property type: boolean
     */
     get readonly() {
@@ -340,7 +340,7 @@ class Accordion extends React.Component {
             this.nativeElement.readonly = value;
         }
     }
-    /** Enables or disables accordion reordering.
+    /** Controls whether users can reorder accordion items by dragging and dropping them. When enabled, items within the accordion component can be rearranged interactively; when disabled, the order of items remains fixed.
     *	Property type: boolean
     */
     get reorder() {
@@ -351,7 +351,7 @@ class Accordion extends React.Component {
             this.nativeElement.reorder = value;
         }
     }
-    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+    /** Specifies or retrieves a value that determines whether the element is aligned to accommodate right-to-left (RTL) languages and scripts, such as Arabic or Hebrew. This property ensures the element’s layout and text direction are properly adjusted to support RTL localization.
     *	Property type: boolean
     */
     get rightToLeft() {
@@ -362,7 +362,7 @@ class Accordion extends React.Component {
             this.nativeElement.rightToLeft = value;
         }
     }
-    /** Determines the theme. Theme defines the look of the element
+    /** Specifies the theme to be applied, which controls the overall appearance and visual style of the element, including aspects such as colors, fonts, and background.
     *	Property type: string
     */
     get theme() {
@@ -373,7 +373,7 @@ class Accordion extends React.Component {
             this.nativeElement.theme = value;
         }
     }
-    /** Determines whether the element can be focused or not.
+    /** Specifies whether the element is capable of receiving keyboard focus, allowing users to navigate to it using the keyboard (such as the Tab key) and interact with it through assistive technologies.
     *	Property type: boolean
     */
     get unfocusable() {
@@ -392,8 +392,8 @@ class Accordion extends React.Component {
     get eventListeners() {
         return ["onCollapse", "onCollapsing", "onDragEnd", "onDragStart", "onExpand", "onExpanding", "onCreate", "onReady"];
     }
-    /** Collapses an item at a specified index.
-    * @param {number} position. The index of the collapsed item.
+    /** Collapses the item located at the specified index, hiding its associated content or details from view. This action typically updates the user interface to indicate that the item is no longer expanded.
+    * @param {number} position. Index of the item to collapse.
     */
     collapse(position) {
         if (this.nativeElement.isRendered) {
@@ -405,8 +405,8 @@ class Accordion extends React.Component {
             });
         }
     }
-    /** Expands an item at a specified index.
-    * @param {number} position. The index of the expanded item.
+    /** Expands the item located at the specified index in the collection, making its detailed content visible or accessible to the user.
+    * @param {number} position. Index of the item to expand.
     */
     expand(position) {
         if (this.nativeElement.isRendered) {
@@ -418,9 +418,9 @@ class Accordion extends React.Component {
             });
         }
     }
-    /** Inserts a new item at a specified index.
-    * @param {number} index. The index where the item must be inserted.
-    * @param {any} item. An object containing the values for the properties of the new item to be inserted.
+    /** Inserts a new item into the array at the specified index, shifting existing elements to the right to accommodate the new entry. If the specified index is out of range, the operation will either append the item to the end or return an error, depending on the implementation.
+    * @param {number} index. Index where the new item will be inserted.
+    * @param {any} item. Object representing the new item's properties.
     */
     insert(index, item) {
         if (this.nativeElement.isRendered) {
@@ -432,8 +432,8 @@ class Accordion extends React.Component {
             });
         }
     }
-    /** Removes an item at a specified index.
-    * @param {number} position. The index of the item to be removed.
+    /** Removes the item located at the specified index from the array, shifting subsequent items one position to the left. The array's length is reduced by one, and the removed item is no longer accessible.
+    * @param {number} position. Index of the item to remove.
     */
     removeAt(position) {
         if (this.nativeElement.isRendered) {
@@ -445,9 +445,9 @@ class Accordion extends React.Component {
             });
         }
     }
-    /** Updates an item from the element.
-    * @param {number} index. The index of the item to be updated.
-    * @param {any} settings. An object containing the values for the properties of the item that will be updated.
+    /** Replaces the item at the given index in the collection with an updated version, incorporating the specified new property values while preserving any unchanged properties.
+    * @param {number} index. Index of the item to update.
+    * @param {any} settings. Object containing updated property values for the item.
     */
     update(index, settings) {
         if (this.nativeElement.isRendered) {
@@ -456,6 +456,20 @@ class Accordion extends React.Component {
         else {
             this.nativeElement.whenRendered(() => {
                 this.nativeElement.update(index, settings);
+            });
+        }
+    }
+    /** Sets the locale of a component.
+    * @param {string} locale. The locale abbreviation. For example: 'de'.
+    * @param {any} messages?. Object containing the locale messages.
+    */
+    setLocale(locale, messages) {
+        if (this.nativeElement.isRendered) {
+            this.nativeElement.setLocale(locale, messages);
+        }
+        else {
+            this.nativeElement.whenRendered(() => {
+                this.nativeElement.setLocale(locale, messages);
             });
         }
     }

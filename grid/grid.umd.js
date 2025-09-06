@@ -22,7 +22,7 @@ require('../source/modules/smart.grid');
 	        }
 	        return this._id;
 	    }
-	    /** An object containing settings related to the grid's appearance.
+	    /** An object that defines configurable options for customizing the visual appearance of the grid, including properties such as line color, spacing, background style, and border visibility.
 	    *	Property type: GridAppearance
 	    */
 	    get appearance() {
@@ -33,7 +33,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.appearance = value;
 	        }
 	    }
-	    /** An object containing settings related to the grid's AI integration.
+	    /** An object that defines configuration options for integrating AI capabilities within the grid component. This includes settings for enabling AI features, specifying AI service endpoints, setting authentication credentials, and customizing how the grid interacts with AI-powered functionalities.
 	    *	Property type: GridAi
 	    */
 	    get ai() {
@@ -44,7 +44,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.ai = value;
 	        }
 	    }
-	    /** An object containing settings related to the grid's behavior.
+	    /** An object that defines configuration options controlling the grid’s behavior, such as layout properties, sorting and filtering capabilities, selection modes, and responsiveness settings.
 	    *	Property type: GridBehavior
 	    */
 	    get behavior() {
@@ -55,7 +55,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.behavior = value;
 	        }
 	    }
-	    /** Sets or gets the id of the current user. Has to correspond to the id of an item from the users property/array. Depending on the current user, different privileges are enabled. If no current user is set, privileges depend on the element's properties.
+	    /** Sets or retrieves the id of the currently active user. This value must match the id of one of the entries in the users property or array. The active user's privileges and access rights are determined based on their corresponding user object. If no current user is specified (i.e., the id is unset or invalid), the default privileges for the element will apply according to its properties, potentially restricting or allowing access based on default settings.
 	    *	Property type: string | number
 	    */
 	    get currentUser() {
@@ -66,7 +66,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.currentUser = value;
 	        }
 	    }
-	    /** Describes the column header settings.
+	    /** Provides configuration options for customizing the appearance, labels, alignment, and behavior of column headers in a data table or grid.
 	    *	Property type: GridColumnHeader
 	    */
 	    get columnHeader() {
@@ -77,7 +77,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.columnHeader = value;
 	        }
 	    }
-	    /** The clipboard property is used to enable/disable clipboard operations with Ctrl+C, Ctrl+X and Ctrl+V keyboard navigations..
+	    /** The clipboard property controls whether users can perform clipboard operations—such as copying (Ctrl+C), cutting (Ctrl+X), and pasting (Ctrl+V)—using keyboard shortcuts within the application. Setting this property to true enables these keyboard shortcuts for clipboard actions; setting it to false disables them, preventing users from using keyboard navigation for copying, cutting, or pasting content.
 	    *	Property type: GridClipboard
 	    */
 	    get clipboard() {
@@ -88,7 +88,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.clipboard = value;
 	        }
 	    }
-	    /** The columns property is used to describe all columns displayed in the grid.
+	    /** The columns property defines the collection of columns displayed within the Smart.Grid component. Each column configuration specifies how data is presented and interacted with. Through this property, you can control essential aspects such as column headers, data field bindings, sorting, filtering, formatting, alignment, visibility, and more. The columns property gives you full control over the structure, appearance, and behavior of the grid's columns, enabling advanced customization of both data presentation and user experience.
 	    *	Property type: {label: string, dataField: string}[] | string[] | number | GridColumn[]
 	    */
 	    get columns() {
@@ -99,7 +99,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.columns = value;
 	        }
 	    }
-	    /** Context Menu is the drop-down menu displayed after right-clicking a Grid row. It allows you to delete row, edit cell or row depending on the edit mode. The 'contextMenuItemCustom' dataSource option allows you to add custom menu item to the context menu. You can replace the context menu by using the 'selector' property and setting it to ID of a Smart.Menu component.
+	    /** The Context Menu is the drop-down menu that appears when a user right-clicks on a row within the Grid. This menu provides quick access to actions such as deleting a row or editing a cell or entire row, depending on the current editing mode configured for the Grid. You can customize the Context Menu by using the 'contextMenuItemCustom' option in the Grid's dataSource. This option lets you add your own custom menu items to enhance or extend the menu's functionality.Additionally, if you want to completely replace the default context menu with your own, you can use the 'selector' property. Set this property to the ID of a Smart.Menu component to display your custom menu when the user right-clicks on a row in the Grid.
 	    *	Property type: GridContextMenu
 	    */
 	    get contextMenu() {
@@ -110,7 +110,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.contextMenu = value;
 	        }
 	    }
-	    /** Column Menu is the drop-down menu displayed after clicking the column header's drop-down button, which is displayed when you hover the column header. It allows you to customize column settings. For example: Sort, Filter or Group the Grid by the current column.
+	    /** The Column Menu is a contextual drop-down menu that appears when you click the drop-down button in a column header, which becomes visible upon hovering over the header. This menu provides various options for customizing the behavior and appearance of the selected column. Common actions include sorting the grid by the column, applying filters to show or hide specific data, and grouping the grid rows based on the column’s values. The Column Menu offers an intuitive way for users to interact with and tailor the data grid to meet their specific needs.
 	    *	Property type: GridColumnMenu
 	    */
 	    get columnMenu() {
@@ -121,7 +121,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.columnMenu = value;
 	        }
 	    }
-	    /** Describes the settings of the column groups.
+	    /** Provides a detailed configuration of column group settings, including group names, ordering, visibility, and any hierarchical relationships between columns within the group.
 	    *	Property type: GridColumnGroup[]
 	    */
 	    get columnGroups() {
@@ -143,7 +143,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.dropDownMode = value;
 	        }
 	    }
-	    /** Sets or gets details about conditional formatting to be applied to the Grid's cells.
+	    /** Defines or retrieves the rules and settings for conditional formatting applied to the Grid's cells, allowing you to customize cell appearance (such as background color, font style, or icons) based on specific conditions or cell values.
 	    *	Property type: GridConditionalFormatting[]
 	    */
 	    get conditionalFormatting() {
@@ -154,7 +154,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.conditionalFormatting = value;
 	        }
 	    }
-	    /** Sets the Grid Charting Data Visualization.
+	    /** Configures the data and display settings for the Grid Chart, enabling data visualization in a tabular grid format. This includes specifying the structure, appearance, and interactive features of the chart to present complex data clearly and intuitively.
 	    *	Property type: GridCharting
 	    */
 	    get charting() {
@@ -165,7 +165,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.charting = value;
 	        }
 	    }
-	    /** Sets the TreeGrid checkboxes.
+	    /** Configures the checkbox options for the TreeGrid component, allowing you to enable or customize checkbox display, selection behavior, and interaction within the hierarchical grid structure.
 	    *	Property type: GridCheckBoxes
 	    */
 	    get checkBoxes() {
@@ -176,7 +176,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.checkBoxes = value;
 	        }
 	    }
-	    /** Sets the Grid Data Export options.
+	    /** Configures the export settings for grid data, including file format, selected columns, data range, export style, and additional export preferences.
 	    *	Property type: GridDataExport
 	    */
 	    get dataExport() {
@@ -187,7 +187,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.dataExport = value;
 	        }
 	    }
-	    /** Sets the grid's data source. The value of dataSource can be an instance of JQX.DataAdapter or an Array.
+	    /** Specifies the source from which the grid retrieves its data. The dataSource property accepts either an instance of JQX.DataAdapter for advanced data management and operations, or a standard Array containing the data records to be displayed in the grid. This flexibility allows developers to connect the grid to various data formats and structures, making data binding straightforward and versatile.
 	    *	Property type: any
 	    */
 	    get dataSource() {
@@ -198,7 +198,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.dataSource = value;
 	        }
 	    }
-	    /** Sets the grid's data source settings when the dataSource property is set to an Array or URL.
+	    /** Configures the grid’s data source when the dataSource property is assigned either a JavaScript array (for local data) or a URL (for remote data). This setting determines how the grid retrieves and displays its data, supporting both direct array binding and remote data fetching via HTTP requests.
 	    *	Property type: GridDataSourceSettings
 	    */
 	    get dataSourceSettings() {
@@ -209,7 +209,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.dataSourceSettings = value;
 	        }
 	    }
-	    /** Describes the grid's editing settings.
+	    /** Provides comprehensive configuration options for controlling the grid's editing behavior, including enabling or disabling editing features, specifying editing modes (such as inline, popup, or batch), setting validation rules, and customizing editors for specific columns.
 	    *	Property type: GridEditing
 	    */
 	    get editing() {
@@ -220,7 +220,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.editing = value;
 	        }
 	    }
-	    /** Describes the grid's filtering settings.
+	    /** Provides detailed configuration options for the grid's filtering functionality, including filter types, default filter values, filter operators, and custom filter logic for columns. This determines how data within the grid can be searched, narrowed, or displayed based on user-defined criteria.
 	    *	Property type: GridFiltering
 	    */
 	    get filtering() {
@@ -231,7 +231,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.filtering = value;
 	        }
 	    }
-	    /** Describes the footer settings of the grid.
+	    /** Provides configuration options for customizing the appearance and behavior of the grid's footer, including visibility, content, styling, and layout settings.
 	    *	Property type: GridFooter
 	    */
 	    get footer() {
@@ -242,7 +242,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.footer = value;
 	        }
 	    }
-	    /** Sets or gets whether Excel-like formulas can be passed as cell values. Formulas are always preceded by the = sign and are re-evaluated when cell values are changed. This feature depends on the third-party free plug-in formula-parser (the file formula-parser.min.js has to be referenced).
+	    /** Enables or retrieves the ability to use Excel-style formulas as cell values within the table. Formulas must begin with an equal sign (=) and will be automatically recalculated whenever the referenced cell values are updated. This functionality relies on the third-party, free formula-parser plugin, so you must include the file 'formula-parser.min.js' in your project for this feature to work properly.
 	    *	Property type: boolean
 	    */
 	    get formulas() {
@@ -253,7 +253,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.formulas = value;
 	        }
 	    }
-	    /** Describes the grid's grouping settings.
+	    /** Provides detailed configuration options for the grid's data grouping functionality, specifying how rows are grouped, the grouping criteria, and related display settings within the grid.
 	    *	Property type: GridGrouping
 	    */
 	    get grouping() {
@@ -264,7 +264,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.grouping = value;
 	        }
 	    }
-	    /** Describes the settings for the group header.
+	    /** Provides configuration options that define the appearance and behavior of the group header, including properties such as text, style, alignment, and visibility settings.
 	    *	Property type: GridGroupHeader
 	    */
 	    get groupHeader() {
@@ -275,7 +275,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.groupHeader = value;
 	        }
 	    }
-	    /** Describes the header settings of the grid.
+	    /** Provides detailed configuration options for the grid's header, including display settings, styling, visibility, and customization of header rows and columns.
 	    *	Property type: GridHeader
 	    */
 	    get header() {
@@ -286,7 +286,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.header = value;
 	        }
 	    }
-	    /** An object containing settings related to the grid's layout.
+	    /** An object that defines configuration options for the layout of the grid, including properties such as the number of columns, row and column spacing, alignment, and overall grid arrangement. This object allows you to customize the appearance and structure of the grid according to your requirements.
 	    *	Property type: GridLayout
 	    */
 	    get layout() {
@@ -297,7 +297,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.layout = value;
 	        }
 	    }
-	    /** Sets or gets the unlockKey which unlocks the product.
+	    /** Sets or retrieves the unlockKey used to authorize and access the full functionality of the product. The unlockKey serves as a security credential to enable locked or premium features.
 	    *	Property type: string
 	    */
 	    get unlockKey() {
@@ -308,7 +308,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.unlockKey = value;
 	        }
 	    }
-	    /** Sets or gets the language. Used in conjunction with the property messages.
+	    /** Specifies the language code to be used for displaying messages. When set, it determines which localized messages from the messages property are shown to the user. This property can be used to retrieve the current language or update it dynamically at runtime.
 	    *	Property type: string
 	    */
 	    get locale() {
@@ -319,7 +319,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.locale = value;
 	        }
 	    }
-	    /** Keys handling. You can define a key like "Enter": "Tab" or set a function as a value. When the key is pressed, it will be mapped to the other key, action such as 'copy', 'copyPrev', 'copyNext' or 'delete' or just a function defined in your document.
+	    /** 'Key Handling:'  You can customize how key presses are handled by defining key mappings within the configuration. For each key (e.g., '"Enter"'), you can assign:- 'Another key as the value' (e.g., '"Enter": "Tab"'): When the specified key is pressed, it will be treated as if the mapped key was pressed instead.- 'A predefined action' (e.g., ''copy'', ''copyPrev'', ''copyNext'', ''delete''): When the key is pressed, the associated action will be executed.- 'A custom function': Assign a function as the value to execute custom logic whenever the key is pressed.This allows you to remap keys, trigger built-in actions, or define entirely custom behaviors based on key events in your application.
 	    *	Property type: any
 	    */
 	    get keys() {
@@ -330,7 +330,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.keys = value;
 	        }
 	    }
-	    /** Sets the messages values.
+	    /** Assigns values to the messages property, which typically contains an array or object representing individual messages or notifications. This function or setting updates the content, ensuring that the correct message data is stored or displayed.
 	    *	Property type: any
 	    */
 	    get messages() {
@@ -341,7 +341,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.messages = value;
 	        }
 	    }
-	    /** Callback function(chart: JQX.Chart) called when the chart has been initialized. You can use this function to customize the Chart element settings.
+	    /** Callback function (chart: JQX.Chart) invoked after the chart has been fully initialized. Use this function to perform additional configuration or customization of the chart instance, such as modifying chart options, adding event listeners, or updating data before the chart is rendered to the user. This allows you to tailor the chart's appearance and behavior to meet specific application requirements.
 	    *	Property type: {(cell: GridCell): void}
 	    */
 	    get onCellValue() {
@@ -352,7 +352,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onCellValue = value;
 	        }
 	    }
-	    /** Callback function() called when the grid has been rendered.
+	    /** A callback function that is executed immediately after the grid has finished rendering, allowing you to perform additional actions or updates once the grid display is complete.
 	    *	Property type: {(cells: GridCell[], oldValues: any[], values: any[], confirm: {(commit: boolean): void}): void}
 	    */
 	    get onCellUpdate() {
@@ -363,7 +363,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onCellUpdate = value;
 	        }
 	    }
-	    /** Callback function() called when the grid has been rendered for first time and bindings are completed. The component is ready.
+	    /** Callback function invoked after the grid has been rendered for the first time and all data bindings have been completed. At this point, the component is fully initialized and ready for interaction or further manipulation.
 	    *	Property type: {(cell: GridCell): void}
 	    */
 	    get onCellRender() {
@@ -374,7 +374,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onCellRender = value;
 	        }
 	    }
-	    /** Describes the paging settings.
+	    /** Provides detailed configuration options for managing pagination, including parameters such as the number of items per page, current page index, and total number of pages. This section ensures efficient data retrieval and navigation across multiple pages of results.
 	    *	Property type: {(id: string, dataField: string, value: any): boolean}
 	    */
 	    get onCellBeginEdit() {
@@ -385,7 +385,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onCellBeginEdit = value;
 	        }
 	    }
-	    /** Describes the pager settings.
+	    /** Provides detailed configuration options for pager controls, including settings for page size, navigation buttons, and display style. These options determine how pagination is displayed and how users interact with paged content in the interface.
 	    *	Property type: {(id: string, dataField: string, value: any, oldValue: any, data: any): void}
 	    */
 	    get onCellEditRequest() {
@@ -396,7 +396,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onCellEditRequest = value;
 	        }
 	    }
-	    /** Sets the row details.
+	    /** Configures or updates the detailed information or content associated with a specific row, often used to display additional data or expanded views for that row.
 	    *	Property type: {(id: string, dataField: string, value: any): boolean}
 	    */
 	    get onCellValueChanged() {
@@ -407,7 +407,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onCellValueChanged = value;
 	        }
 	    }
-	    /** Sets or gets the rows  CSS class rules. Different CSS class names are conditionally applied. Example: rowCSSRules: { 'cell-class-1': settings =&gt; settings.data.quantity === 5, 'cell-class-2': settings =&gt; settings.data.quantity &lt; 5, 'cell-class-3': settings =&gt; settings.data.quantity &gt; 5 }.  The settings object contains the following properties: index, data, row, api.
+	    /** Sets or gets the CSS class rules for table rows. This property allows you to conditionally apply different CSS class names to rows based on custom logic. You provide an object where the keys are CSS class names and the values are functions that determine whether the class should be applied to a particular row.Each function receives a settings object with the following properties:- 'index': The numerical index of the current row.- 'data': The data object for the current row.- 'row': The raw row element or reference (depending on the implementation).- 'api': A reference to the table's API for advanced operations.'Example usage:''''jsrowCSSRules: {  'cell-class-1': settings => settings.data.quantity === 5,  'cell-class-2': settings => settings.data.quantity   'cell-class-3': settings => settings.data.quantity > 5}'''In this example, based on the 'quantity' property of the row's data, a different CSS class will be applied to that row. Multiple rules can be defined, and each will be evaluated for every row. If the function returns 'true', the corresponding class will be added to the row.
 	    *	Property type: {(): void}
 	    */
 	    get onBeforeInit() {
@@ -418,7 +418,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onBeforeInit = value;
 	        }
 	    }
-	    /** Sets or gets the value indicating whether the element is aligned to support locales using right-to-left fonts.
+	    /** Gets or sets a value that determines whether the element's alignment is configured for right-to-left (RTL) languages, ensuring proper layout and text direction for locales such as Arabic or Hebrew.
 	    *	Property type: {(): void}
 	    */
 	    get onInit() {
@@ -429,7 +429,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onInit = value;
 	        }
 	    }
-	    /** The rows property is used to describe all rows displayed in the grid.
+	    /** The rows property contains an array of objects, with each object representing a single row in the grid. This property defines all the data entries that are rendered and displayed as rows within the grid component. Each element in the rows array should align with the column definitions, ensuring that the grid displays structured and consistent data across all rows.
 	    *	Property type: {(): void}
 	    */
 	    get onAfterInit() {
@@ -440,7 +440,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onAfterInit = value;
 	        }
 	    }
-	    /** Sets the scroll mode settings.
+	    /** Configures the scroll mode behavior, allowing you to define how scrolling is handled within the component or page. This setting determines options such as smooth or instant scrolling, vertical or horizontal direction, and any custom scroll-related parameters.
 	    *	Property type: any
 	    */
 	    get onChartInit() {
@@ -451,7 +451,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onChartInit = value;
 	        }
 	    }
-	    /** Describes the summary row settings.
+	    /** Provides detailed configuration options for displaying and customizing the summary row, including its appearance, position, aggregation methods, and which columns are summarized.
 	    *	Property type: any
 	    */
 	    get onRender() {
@@ -462,7 +462,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRender = value;
 	        }
 	    }
-	    /** Sets the grid's state settings.
+	    /** Configures the grid's state-related settings, including properties such as selection, sorting, filtering, pagination, and layout. This determines how the grid maintains and restores its current state during user interactions or when the page is reloaded.
 	    *	Property type: any
 	    */
 	    get onLoad() {
@@ -473,7 +473,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onLoad = value;
 	        }
 	    }
-	    /** Describes the selection settings.
+	    /** Provides detailed configuration options for user selection behavior, including parameters such as selection mode (single or multiple), default selections, selection limits, and customizable callbacks for selection events.
 	    *	Property type: {(event: KeyboardEvent): void}
 	    */
 	    get onKey() {
@@ -484,7 +484,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onKey = value;
 	        }
 	    }
-	    /** Describes sorting settings.
+	    /** Provides detailed configuration options for controlling how data is sorted, including criteria such as sorting field, order (ascending or descending), and support for multiple sort keys.
 	    *	Property type: {(index: number, row: GridRow): void}
 	    */
 	    get onRowInit() {
@@ -495,7 +495,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowInit = value;
 	        }
 	    }
-	    /** Sets the grid users. Expects an array with 'id', 'name' and optionally 'color' and 'image' properties.
+	    /** Defines the users displayed on the grid. Expects an array of user objects, where each object must include an 'id' (unique identifier) and a 'name' (display name). Optionally, each user object can also include a 'color' (for customizing the user's appearance) and an 'image' (URL or path to the user's avatar image).
 	    *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
 	    */
 	    get onRowDetailInit() {
@@ -506,7 +506,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowDetailInit = value;
 	        }
 	    }
-	    /** Sets the grid's image and filter upload settings for the image and attachment columns.
+	    /** Configures the upload settings for images and attachments in the grid's image and attachment columns, including options for file type restrictions, size limits, and image filters to be applied during the upload process.
 	    *	Property type: {(index: number, row: GridRow, details: HTMLElement): void}
 	    */
 	    get onRowDetailUpdated() {
@@ -517,7 +517,7 @@ require('../source/modules/smart.grid');
 	            this.nativeElement.onRowDetailUpdated = value;
 	        }
 	    }
-	    /** Sets the current data view. The possible values are 'grid', 'kanban' and 'card'.
+	    /** Specifies the layout mode for displaying data within the interface. Acceptable values are:- ''grid'': Presents items in a tabular, spreadsheet-like format with rows and columns.- ''kanban'': Arranges items into columns representing workflow stages, similar to task boards.- ''card'': Displays each item as an individual card, typically used for concise summaries or visual grouping.Choose one of these values to determine how data is visually organized and presented to the user.
 	    *	Property type: {(index: number, row: GridRow, history: any[]): void}
 	    */
 	    get onRowHistory() {
@@ -833,10 +833,10 @@ require('../source/modules/smart.grid');
 	    get eventListeners() {
 	        return ["onBeginEdit", "onBatchChange", "onBatchCancel", "onChange", "onColumnClick", "onColumnDoubleClick", "onColumnResize", "onColumnDragStart", "onColumnChange", "onColumnDragging", "onColumnDragEnd", "onColumnReorder", "onCommentAdd", "onCommentRemove", "onContextMenuItemClick", "onRowDragStart", "onRowDragging", "onRowDragEnd", "onRowReorder", "onRowExpand", "onRowCollapse", "onRowClick", "onRowDoubleClick", "onRowResize", "onRowStarred", "onCellClick", "onCellDoubleClick", "onEndEdit", "onFilter", "onGroup", "onOpenColumnDialog", "onCloseColumnDialog", "onResize", "onRowTap", "onCellTap", "onPage", "onSort", "onScrollBottomReached", "onScrollTopReached", "onCreate", "onReady"];
 	    }
-	    /** Adds a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
-	    * @param {any} data. row data matching the data source
-	    * @param {boolean} insertAtBottom?. Determines whether to add the new row to the bottom or top of the collection. The default value is 'true'
-	    * @param {{(row: GridRow): void}} callback?. Sets a callback function, which is called after the new row is added. The callback's argument is the new row.
+	    /** Inserts a new row into the grid interface. When batch editing mode is enabled, the new row exists only temporarily within the current batch session and will not be permanently stored until the user explicitly saves all changes made during the session. If the batch edit session is discarded, the newly added row will not be saved.
+	    * @param {any} data. An object representing the row data, matching the structure of the grid's data source.
+	    * @param {boolean} insertAtBottom?. Determines whether the new row is added at the bottom (true) or top (false) of the grid. Defaults to true.
+	    * @param {{(row: GridRow): void}} callback?. A callback function invoked after the row is successfully added. Receives the newly added row as an argument.
 	    */
 	    addRow(data, insertAtBottom, callback) {
 	        if (this.nativeElement.isRendered) {
@@ -848,35 +848,35 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Adds a new row and puts it into edit mode. When batch editing is enabled, the row is not saved until the batch edit is saved.
-	    * @param {string} position?. 'near' or 'far'
+	    /** Inserts a new row into the grid and automatically activates edit mode for that row, allowing users to begin entering data right away. If batch editing is enabled, any changes made will be temporarily stored and will not be saved to the data source until the batch edit session is explicitly committed. This helps prevent partial or unsaved changes from being applied before the user finalizes all edits in the session.
+	    * @param {string} position?. Specifies the position where the new row will be added. Acceptable values are 'near' (top) or 'far' (bottom).
 	    * @returns {boolean}
 	  */
 	    addNewRow(position) {
 	        const result = this.nativeElement.addNewRow(position);
 	        return result;
 	    }
-	    /** Adds a new column.
-	    * @param {any} column. A Grid column object. See 'columns' property.
+	    /** Dynamically adds a new column to the grid at runtime, allowing users to modify the grid’s structure without requiring a page reload. This enables real-time updates to the grid layout based on user actions or application logic.
+	    * @param {any} column. A column definition or array of columns to add. Refer to the grid's 'columns' property for the expected structure.
 	    * @returns {boolean}
 	  */
 	    addNewColumn(column) {
 	        const result = this.nativeElement.addNewColumn(column);
 	        return result;
 	    }
-	    /** Adds a new unbound row to the top or bottom. Unbound rows are not part of the Grid's dataSource. They become part of the dataSource, after an unbound row is edited.
-	    * @param {number} count. The count of unbound rows.
-	    * @param {string} position?. 'near' or 'far'
+	    /** Adds one or more unbound rows to the grid, positioned at either the top or the bottom, as specified. Unbound rows are not initially included in the grid’s data source; instead, they serve as editable placeholders. Once a user enters or modifies data in these rows, the new values are incorporated into the grid’s data source, making the unbound rows part of the main dataset. This feature is useful for allowing users to quickly add new entries or perform custom calculations directly within the grid interface.
+	    * @param {number} count. The number of unbound rows to add.
+	    * @param {string} position?. The position to insert the unbound rows. Accepts 'near' for top or 'far' for bottom.
 	    * @returns {boolean}
 	  */
 	    addUnboundRow(count, position) {
 	        const result = this.nativeElement.addUnboundRow(count, position);
 	        return result;
 	    }
-	    /** Adds a filter to a column. This method will apply a filter to the Grid data. Example for adding multiple filters to a column: grid.addFilter('lastName', ['CONTAINS "burke"', 'or', 'CONTAINS "peterson"']). Example for adding single filter to a column: grid.addFilter('lastName', 'CONTAINS "burke"'). Example for adding numeric filter:  grid.addFilter('quantity', '&lt;= 5')
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
-	    * @param {string} filter. Filter expression like: 'startsWith B'. Example 2: ['contains Andrew or contains Nancy'], Example 3:  ['quantity', '&lt;= 3 and &gt;= 8'].  Filter conditions which you can use in the expressions: '=', 'EQUAL','&lt;&gt;', 'NOT_EQUAL', '!=', '&lt;', 'LESS_THAN','&gt;', 'GREATER_THAN', '&lt;=', 'LESS_THAN_OR_EQUAL', '&gt;=', 'GREATER_THAN_OR_EQUAL','starts with', 'STARTS_WITH','ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS','DOES_NOT_CONTAIN', 'NULL','NOT_NULL'
-	    * @param {boolean} refreshFilters?. Set this to false, if you will use multiple 'addFilter' calls. By doing this, you will avoid unnecessary renders.
+	    /** Enhances and applies custom filter criteria to a specific column within the data grid. Accepts both single and multiple filter expressions, allowing for complex filtering logic using logical operators such as "and" and "or". For example, to filter the "lastName" column for values that contain either "burke" or "peterson", use: `grid.addFilter('lastName', ['CONTAINS "burke"', 'or', 'CONTAINS "peterson"'])`. The method also supports numeric filters (e.g., `GREATER_THAN 100`), a variety of comparison operators (such as `EQUALS`, `LESS_THAN`, `STARTS_WITH`, etc.), and can be used to combine different conditions for precise data selection.
+	    * @param {string} dataField. The data field name of the column to filter, e.g., 'firstName'.
+	    * @param {string} filter. The filter expression(s) to apply. Examples include 'startsWith B', ['contains Andrew or contains Nancy'], or ['quantity', '<= 3 and >= 8']. Supported operators: '=', 'EQUAL', '<>', 'NOT_EQUAL', '!=', '<', 'LESS_THAN', '>', 'GREATER_THAN', '<=', 'LESS_THAN_OR_EQUAL', '>=', 'GREATER_THAN_OR_EQUAL', 'starts with', 'STARTS_WITH', 'ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS', 'DOES_NOT_CONTAIN', 'NULL', 'NOT_NULL'.
+	    * @param {boolean} refreshFilters?. If set to false, allows multiple filters to be added without triggering unnecessary renders. Useful when applying multiple filters sequentially.
 	    */
 	    addFilter(dataField, filter, refreshFilters) {
 	        if (this.nativeElement.isRendered) {
@@ -888,8 +888,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Groups the Grid by a data field. This method will add a group to the Grid when grouping is enabled.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    /** Organizes the grid rows into groups based on the values in the specified column's data field. This functionality requires that grouping is enabled on the grid component. When activated, rows sharing the same value in the chosen column will be visually grouped together, allowing for easier data analysis and navigation.
+	    * @param {string} dataField. The data field of the column to group by, e.g., 'firstName'.
 	    */
 	    addGroup(dataField) {
 	        if (this.nativeElement.isRendered) {
@@ -901,9 +901,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sorts the Grid by a data field. This method will add a sorting to the Grid when sorting is enabled.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
-	    * @param {string} sortOrder. column's sort order. Use 'asc' or 'desc'.
+	    /** Enhances the grid's data display by applying a sorting order based on the specified column's data field. This function requires sorting to be enabled on the grid and sorts the rows according to the selected column's values, either in ascending or descending order as specified. If sorting is not enabled, this operation will have no effect.
+	    * @param {string} dataField. The data field of the column to sort, e.g., 'firstName'.
+	    * @param {string} sortOrder. The sort direction to apply. Use 'asc' for ascending or 'desc' for descending.
 	    */
 	    addSort(dataField, sortOrder) {
 	        if (this.nativeElement.isRendered) {
@@ -915,7 +915,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Auto-sizes grid rows. This method will update the height of all Grid rows.
+	    /** Dynamically resizes each grid row to fit its content, ensuring that text and elements are fully visible without being cut off or overlapping. This enhances readability and provides a more user-friendly and visually consistent grid layout.
 	    */
 	    autoSizeRows() {
 	        if (this.nativeElement.isRendered) {
@@ -927,7 +927,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Auto-sizes grid columns. This method will update the width of all Grid columns.
+	    /** Dynamically resizes the width of each grid column based on its content and header label, so that all cell values and headers are fully visible without clipping or excessive whitespace. This ensures an optimal and polished display by automatically fitting columns to their widest required size.
 	    */
 	    autoSizeColumns() {
 	        if (this.nativeElement.isRendered) {
@@ -939,8 +939,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Auto-sizes grid column. This method will update the width of a Grid column by measuring the cells and column header label width.
-	    * @param {string} dataField?. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    /** Automatically resizes an individual grid column to precisely fit its content by dynamically measuring the widest content among its cells and header label, and adjusting the column width accordingly for optimal display without unnecessary extra space or truncation.
+	    * @param {string} dataField?. The data field name of the column to auto-size, e.g., 'firstName'. Optional; if omitted, no action is taken.
 	    */
 	    autoSizeColumn(dataField) {
 	        if (this.nativeElement.isRendered) {
@@ -952,14 +952,14 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** This method returns true, if all rows in the Grid are selected.
+	    /** Returns a boolean value that indicates whether every row in the grid is currently selected. This means the method will return true only if all rows within the grid have been selected; otherwise, it returns false.
 	    * @returns {boolean}
 	  */
 	    areAllRowsSelected() {
 	        const result = this.nativeElement.areAllRowsSelected();
 	        return result;
 	    }
-	    /** Starts an update operation. This is appropriate when calling multiple methods or set multiple properties at once.
+	    /** Pauses Grid rendering and UI refresh operations, allowing you to make multiple property changes or method calls without triggering repeated re-renders. This is particularly useful for optimizing performance during batch updates. After you finish making all necessary changes, call 'endUpdate()' to resume rendering and apply all updates to the UI.
 	    */
 	    beginUpdate() {
 	        if (this.nativeElement.isRendered) {
@@ -971,9 +971,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Begins row, cell or column. This method allows you to programmatically start a cell, row or column editing. After calling it, an editor HTMLElement will be created and displayed in the Grid.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} dataField?. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    /** Initiates edit mode on a specified row, cell, or column within the grid programmatically. Triggers the appropriate editor component to appear in the Grid UI, allowing users to modify the data directly within the selected grid area.
+	    * @param {string | number} rowId. The unique identifier of the row to edit.
+	    * @param {string} dataField?. The column's data field to edit. Optional for full row editing.
 	    */
 	    beginEdit(rowId, dataField) {
 	        if (this.nativeElement.isRendered) {
@@ -985,7 +985,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Clears all filters. Refreshes the view and updates all filter input components.
+	    /** Removes all active filters from the Grid, restoring the original unfiltered data view. After clearing the filters, the Grid data is automatically refreshed to display all records, and any filter input fields are reset to their default, empty state.
 	    */
 	    clearFilter() {
 	        if (this.nativeElement.isRendered) {
@@ -997,7 +997,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Clears all data groups. Refreshes the view and updates the DataGrid component.
+	    /** Restores the grid to its original, ungrouped state by removing all active row groupings. All grouped rows are expanded and displayed as individual rows, and the Grid view automatically refreshes to reflect these changes.
 	    */
 	    clearGroups() {
 	        if (this.nativeElement.isRendered) {
@@ -1009,7 +1009,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Clears all sorting. Refreshes the view and updates the DataGrid component.
+	    /** Removes all active sorting from the Grid columns, resetting them to their unsorted state and restoring the data to its original order as initially loaded or received.
 	    */
 	    clearSort() {
 	        if (this.nativeElement.isRendered) {
@@ -1021,7 +1021,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Clears the selection that user have made. All row, cell and column selection highlights will be removed.
+	    /** Clears all current selections within the grid, including rows, cells, and columns. This action removes any visual highlights or selection indicators, ensuring that no items remain selected in the interface.
 	    */
 	    clearSelection() {
 	        if (this.nativeElement.isRendered) {
@@ -1033,7 +1033,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Cancels the editing. This method closes the cell editor and cancels the changes.
+	    /** Cancels the ongoing edit operation by closing any active editor interface and reverting all unsaved changes made during the current session. This action ensures that no modifications are saved and the data returns to its original state prior to editing.
 	    */
 	    cancelEdit() {
 	        if (this.nativeElement.isRendered) {
@@ -1045,8 +1045,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Checks a TreeGrid row. This method updates the row's check-box.
-	    * @param {string | number} rowId. row bound id
+	    /** Selects and checks the checkbox for a specified TreeGrid row, visually indicating that the row is active or selected. This action updates the row's state to reflect user selection and may trigger related event handlers or selection-dependent functionality within the TreeGrid.
+	    * @param {string | number} rowId. The unique identifier of the row to check.
 	    */
 	    checkRow(rowId) {
 	        if (this.nativeElement.isRendered) {
@@ -1058,7 +1058,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Checks all TreeGrid or Grouping rows. This method updates all check-boxes in the TreeGrid or Grouping rows.
+	    /** Selects and checks all checkboxes associated with rows in a TreeGrid or grouped data structure, ensuring that every row, including nested and grouped items, is marked as selected. This process guarantees comprehensive selection across all hierarchical levels and groupings within the dataset.
 	    */
 	    checkAllRows() {
 	        if (this.nativeElement.isRendered) {
@@ -1070,7 +1070,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Clears the user selection and empties the data source. The Grid will display 'No Rows' in the view.
+	    /** Removes all rows and associated data from the Grid, and clears any current user selections. After performing this action, the Grid will display a 'No Rows' message to indicate that it is empty.
 	    */
 	    clearRows() {
 	        if (this.nativeElement.isRendered) {
@@ -1082,7 +1082,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Closes the column drop-down menu.
+	    /** Closes the currently open column menu in a data grid or table interface. This action is typically triggered by user interactions such as right-clicking on a column header or clicking a column menu button, allowing users to dismiss the column-specific options or actions menu.
 	    */
 	    closeMenu() {
 	        if (this.nativeElement.isRendered) {
@@ -1094,8 +1094,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Collapses a TreeGrid or Grouping row.
-	    * @param {string | number} rowId. row bound id
+	    /** Collapses a designated TreeGrid or grouping row, effectively hiding all of its nested child rows from view. This action allows users to condense hierarchical data structures, making it easier to navigate and focus on higher-level information within the grid.
+	    * @param {string | number} rowId. The unique identifier of the row to collapse.
 	    */
 	    collapseRow(rowId) {
 	        if (this.nativeElement.isRendered) {
@@ -1107,7 +1107,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Collapses all TreeGrid or Grouping rows.
+	    /** Collapses all currently expanded rows within the TreeGrid or Grouping components, reducing the dataset display to only show parent rows or top-level groups. This action hides all child rows and nested data, providing a simplified, minimized overview of the dataset structure.
 	    */
 	    collapseAllRows() {
 	        if (this.nativeElement.isRendered) {
@@ -1119,9 +1119,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Creates a Chart, when charting is enabled.
-	    * @param {string} type. Chart's type
-	    * @param {any} dataSource?. Chart's data source
+	    /** Generates a visual chart representation based on the current data within the Grid. Chart generation requires that the charting feature is enabled in the system configuration. This function allows users to visualize the Grid's dataset in supported chart formats.
+	    * @param {string} type. Type of chart to create (e.g., 'pie', 'bar', 'line').
+	    * @param {any} dataSource?. The data source for the chart. If omitted, the Grid's current dataset is used.
 	    */
 	    createChart(type, dataSource) {
 	        if (this.nativeElement.isRendered) {
@@ -1133,9 +1133,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Delete a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
-	    * @param {string | number} rowId. row bound id
-	    * @param {{(row: GridRow): void}} callback?. Sets a callback function, which is called after the row is deleted. The callback's argument is the deleted row.
+	    /** Removes a specific row from the Grid component. If batch editing is enabled, the row will be marked for deletion but the change will not be permanently applied until the batch is saved. This means the deletion is pending and can be reverted before saving.
+	    * @param {string | number} rowId. The unique identifier of the row to delete.
+	    * @param {{(row: GridRow): void}} callback?. Function executed after row deletion. Receives the deleted row as a parameter.
 	    */
 	    deleteRow(rowId, callback) {
 	        if (this.nativeElement.isRendered) {
@@ -1147,16 +1147,16 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Scrolls to a row or cell. This method scrolls to a row or cell, when scrolling is necessary. If pagination is enabled, it will automatically change the page.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} dataField?. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    /** Scrolls the Grid to ensure that a specific row or cell is visible to the user. If the target row or cell is located on a different page, the Grid will automatically navigate to the appropriate page and then scroll to the desired position. This ensures that the requested row or cell is brought into view, regardless of its current visibility or page location.
+	    * @param {string | number} rowId. The unique identifier of the row.
+	    * @param {string} dataField?. The column's data field to focus on. If omitted, scrolls to the row only.
 	    * @returns {boolean}
 	  */
 	    ensureVisible(rowId, dataField) {
 	        const result = this.nativeElement.ensureVisible(rowId, dataField);
 	        return result;
 	    }
-	    /** Ends the editing. This method confirms all changes and closes the opened cell editor(s).
+	    /** Completes the editing process by applying all pending changes, saving the updated content, and closing any open editor instances. This action ensures that all modifications are confirmed and no unsaved edits remain.
 	    */
 	    endEdit() {
 	        if (this.nativeElement.isRendered) {
@@ -1168,8 +1168,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Ends the update operation. This method will resume the rendering and will refresh the Grid.
-	    * @param {boolean} refresh?. The flag that control the calls of the refresh method.
+	    /** Restores the Grid's normal rendering process and updates the user interface following a call to beginUpdate(). Use endUpdate() to apply any changes made during the update suspension and ensure the Grid displays the latest data and layout.
+	    * @param {boolean} refresh?. If true, forces a full Grid refresh after updates.
 	    */
 	    endUpdate(refresh) {
 	        if (this.nativeElement.isRendered) {
@@ -1181,8 +1181,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Expands a TreeGrid or Grouping row. For example, if you want to expand the first group, then its second sub grup, then the first sub sub group, you can use: grid.expandRow('0.1.0');
-	    * @param {string | number} rowId. row bound id
+	    /** Expands a specific row in a TreeGrid or grouped table to reveal its associated child rows. You can expand nested groups or hierarchical levels by specifying the row key using dot notation (e.g., "0.2.1" for the child of a nested group). This allows for precise targeting and interactive exploration of hierarchical data structures within the grid.
+	    * @param {string | number} rowId. The unique identifier of the row to expand.
 	    */
 	    expandRow(rowId) {
 	        if (this.nativeElement.isRendered) {
@@ -1194,8 +1194,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Expands rows to a given group level. For example 'grid.expandRowsToGroupLevel(1);' means that all groups at the root level will be expanded.
-	    * @param {number} level. row group level
+	    /** Expands all grouped rows in the grid up to the specified group level. For instance, executing `grid.expandRowsToGroupLevel(1);` will expand all groups at the root (level 1), making their immediate child rows visible. Groups nested within these child rows remain collapsed unless the group level parameter is increased. This function is useful for programmatically controlling the grid's row expansion state based on grouping hierarchy.
+	    * @param {number} level. The group level up to which the rows should be expanded. Level 0 is the root, level 1 is the first nested group, and so forth.
 	    */
 	    expandRowsToGroupLevel(level) {
 	        if (this.nativeElement.isRendered) {
@@ -1207,7 +1207,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Expands all TreeGrid or Grouping rows.
+	    /** Expands all rows within the grid that utilize TreeGrid or grouping functionality, automatically revealing every nested child row at all levels of hierarchy and making the complete data structure fully visible. This ensures that all parent and descendant rows are displayed, allowing users to view the entire nested dataset without manual expansion.
 	    */
 	    expandAllRows() {
 	        if (this.nativeElement.isRendered) {
@@ -1219,10 +1219,10 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Exports the Grid data to .XLSX, .PDF, .JSON, .XML, .CSV, .TSV, .HTML, .JPEG or .PNG. The method uses the options of the dataExport property.
-	    * @param {string} Dataformat. 'xlsx', 'pdf', 'json', 'xml', 'csv', 'tsv', 'html', 'png', 'jpeg'.
-	    * @param {any} callback?. A callback that allows to format the exported data based on a condition. For additional details, refer to the Smart Export Documentation.
-	    * @param {any} dataCallback?. A callback that allows to change the exported data.
+	    /** This function allows you to export the grid's data into various supported file formats, including .XLSX, .PDF, .JSON, .XML, .CSV, .TSV, .HTML, .JPEG, and .PNG. The way the data is exported—such as file formatting, included columns or rows, applied filters, and export settings—is determined by the options set in the grid’s dataExport property. This ensures that the exported file matches your specified requirements and preferences.
+	    * @param {string} Dataformat. Specifies the export format. Supported formats: 'xlsx', 'pdf', 'json', 'xml', 'csv', 'tsv', 'html', 'png', 'jpeg'.
+	    * @param {any} callback?. Optional. A function that formats the exported values conditionally. See Smart Export Documentation for details.
+	    * @param {any} dataCallback?. Optional. A function to modify the entire exported data object prior to export.
 	    */
 	    exportData(Dataformat, callback, dataCallback) {
 	        if (this.nativeElement.isRendered) {
@@ -1234,27 +1234,27 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Finds entries by using a query and returns an array of row ids. Example: const rows = grid.find('nancy'); returns all rows that have 'nancy' value. Example 2: const rows = grid.find('nancy, davolio'); returns all rows that have 'nancy' and 'davolio' values in the same row. Example 3: const rows = grid.find(5, 'quantity', '>'); returns all rows where the value of the 'quantity' field is > 5.
-	    * @param {string} query. Search query
-	    * @param {string} dataField?. Column data field.
-	    * @param {string} condition?. Conditions which you can use in the expressions: '=', 'EQUAL','&lt;&gt;', 'NOT_EQUAL', '!=', '&lt;', 'LESS_THAN','&gt;', 'GREATER_THAN', '&lt;=', 'LESS_THAN_OR_EQUAL', '&gt;=', 'GREATER_THAN_OR_EQUAL','starts with', 'STARTS_WITH','ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS','DOES_NOT_CONTAIN', 'NULL','NOT_NULL'
+	    /** Searches the grid for rows that match the specified query criteria and returns an array containing the IDs of all matching rows. Supports multiple search modes, including:- Searching for values in any column (global search)- Searching specific columns by name- Applying comparison operators (e.g., equals, contains, less than, greater than) for advanced filteringThis functionality allows for flexible and precise row selection based on user-defined search parameters.
+	    * @param {string} query. The search string or value to find within the grid rows.
+	    * @param {string} dataField?. Optional. Specifies the column data field to restrict the search to.
+	    * @param {string} condition?. Optional. Condition to apply for the search. Supported conditions: '=', 'EQUAL', '<>', 'NOT_EQUAL', '!=', '<', 'LESS_THAN', '>', 'GREATER_THAN', '<=', 'LESS_THAN_OR_EQUAL', '>=', 'GREATER_THAN_OR_EQUAL', 'starts with', 'STARTS_WITH', 'ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS', 'DOES_NOT_CONTAIN', 'NULL', 'NOT_NULL'.
 	    * @returns {any[]}
 	  */
 	    find(query, dataField, condition) {
 	        const result = this.nativeElement.find(query, dataField, condition);
 	        return result;
 	    }
-	    /** Finds entries by using a query and returns an array of cells. Each cell in the array is also an array in this format: [id, dataField, value]. Example: const cells = grid.findCells('nancy'); returns all cells that have 'nancy' value. Example 2: const cells = grid.findCells('nancy, davolio'); returns all cells that have 'nancy' and 'davolio' values.
-	    * @param {string} query. Search query. You can enter multiple search strings, by using ','. Example: 'nancy, davolio'
+	    /** Scans the grid to identify all cells that match the specified query. Returns an array of arrays, where each inner array represents a matching cell and contains the following information: the row ID, the data field (column name), and the cell's value. The query supports searching for multiple values by separating them with commas; each value will be matched independently against the cells.
+	    * @param {string} query. The search string or multiple comma-separated strings to find in grid cells.
 	    * @returns {any[]}
 	  */
 	    findCells(query) {
 	        const result = this.nativeElement.findCells(query);
 	        return result;
 	    }
-	    /** Filter by all columns. This method works like a global filter and applies a filter to all grid columns.
-	    * @param {string} query. Filter query to filter by.
-	    * @param {string} dataType?. Optionally filter by a specific data type like 'string', 'boolean', 'date', 'number'.
+	    /** Applies a global filter that searches for the provided query across all columns in the grid, returning rows that contain a match in any column. Optionally, you can limit the filtering to specific data types—such as 'string', 'boolean', 'date', or 'number'—so that only columns of the selected type(s) are considered when matching the query. This allows for more precise and targeted filtering behavior.
+	    * @param {string} query. The filter expression to apply to all columns.
+	    * @param {string} dataType?. Optional. Filter rows only by columns matching this data type: 'string', 'boolean', 'date', 'number'.
 	    */
 	    filterBy(query, dataType) {
 	        if (this.nativeElement.isRendered) {
@@ -1266,8 +1266,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Navigates to a page, when paging is enabled.
-	    * @param {number} index. page index
+	    /** Programmatically navigates the grid to a specified page index, provided that paging is enabled. Use this method to set the current page of the grid, allowing you to jump to a particular page in response to user actions or custom logic. The page index is zero-based, where 0 refers to the first page."
+	    * @param {number} index. The zero-based index of the page to navigate to.
 	    */
 	    goToPage(index) {
 	        if (this.nativeElement.isRendered) {
@@ -1279,7 +1279,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Navigates to the next page, when grid paging is enabled.
+	    /** Advances to the next page of data in the grid when paging functionality is enabled. If the grid is currently displaying the last available page, this action will have no effect and the page will remain unchanged.
 	    */
 	    nextPage() {
 	        if (this.nativeElement.isRendered) {
@@ -1291,7 +1291,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Navigates to the prev page, when grid paging is enabled.
+	    /** Triggers navigation to the previous page in the grid when paging functionality is enabled. If the grid is currently displaying the first page, the operation is ignored and the page remains unchanged. This ensures that navigation does not attempt to move before the first available page.
 	    */
 	    prevPage() {
 	        if (this.nativeElement.isRendered) {
@@ -1303,7 +1303,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Navigates to the first page, when grid paging is enabled.
+	    /** Navigates to the first page of the data grid when paging functionality is enabled. This action resets the current page index to the first page, displaying the initial set of records in the grid.
 	    */
 	    firstPage() {
 	        if (this.nativeElement.isRendered) {
@@ -1315,7 +1315,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Navigates to the last page, when grid paging is enabled.
+	    /** Navigates directly to the final page of the data grid when paging functionality is enabled, allowing users to quickly access the last set of records displayed in the grid.
 	    */
 	    lastPage() {
 	        if (this.nativeElement.isRendered) {
@@ -1327,9 +1327,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Focuses and selects a cell or row. The keyboard navigation starts from the focused cell or row. Any previously applied selection will be cleared after calling this method.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} dataField?. column bound data field
+	    /** Sets focus on and selects a specified cell or an entire row within the grid, clearing any previous selections. This action also updates the keyboard navigation's starting point to the newly focused cell or row, ensuring that subsequent navigation actions will originate from this location.
+	    * @param {string | number} rowId. The unique identifier of the row to focus and select.
+	    * @param {string} dataField?. Optional. The data field (column key) of the cell to focus within the specified row. If omitted, the entire row is selected.
 	    */
 	    focusAndSelect(rowId, dataField) {
 	        if (this.nativeElement.isRendered) {
@@ -1341,8 +1341,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Iterates through each row in the grid and calls the callback for each row. This is similar to the forEach method on a JavaScript array. This is called for each row, ignoring grouping, filtering or sorting applied in the Grid.
-	    * @param {any} rowCallback. Callback function with a row object as parameter. Example: grid.forEachRow((row) => { console.log(row.id) });
+	    /** Executes a callback function for each individual row in the grid's underlying dataset, regardless of any grouping, filtering, or sorting currently applied to the grid view. This method iterates over all raw data rows, ensuring that the callback is called on every entry as it exists in the original data source, not just the rows that are visible or active in the grid's current state.
+	    * @param {any} rowCallback. A callback function that receives a row object as its parameter. Example: grid.forEachRow(row => console.log(row.id));
 	    */
 	    forEachRow(rowCallback) {
 	        if (this.nativeElement.isRendered) {
@@ -1354,8 +1354,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Similar to forEachRow. Iterates through each row in the grid and calls the callback for each row. This method takes into account filtering and sorting applied to the Grid.
-	    * @param {any} rowCallback. Callback function with a row object as parameter. Example: grid.forEachRow((row) => { console.log(row.id) });
+	    /** Executes a callback function for each row that is currently visible in the grid after all active filters and sorting have been applied. This method operates strictly on the rows as they appear in the current grid view, ensuring that hidden, filtered out, or unsorted rows are excluded. The iteration respects the latest grid state, guaranteeing that only rows displayed to the user are processed by the callback function.
+	    * @param {any} rowCallback. A callback function that receives a row object as its parameter. Example: grid.forEachRowAfterFilterAndSort(row => console.log(row.id));
 	    */
 	    forEachRowAfterFilterAndSort(rowCallback) {
 	        if (this.nativeElement.isRendered) {
@@ -1367,222 +1367,222 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Gets the maximum position of the vertical scrollbar. You can use this method in combination with the setVerticalScrollValue to apply a new scroll position.
+	    /** Returns the maximum allowable scroll position for the grid's vertical scrollbar. This value represents the greatest vertical offset to which users can scroll within the grid's content area. It can be used to determine the scrollable range or to programmatically set the vertical scrollbar to its lowest (bottom-most) position.
 	    * @returns {number}
 	  */
 	    getVerticalScrollMax() {
 	        const result = this.nativeElement.getVerticalScrollMax();
 	        return result;
 	    }
-	    /** Gets the position of the vertical scrollbar.
+	    /** Returns the current vertical scroll position of the grid, representing the number of pixels the grid’s content has been scrolled vertically from the top. This value corresponds to the position of the grid's vertical scrollbar and can be used to determine how far users have scrolled down within the grid.
 	    * @returns {number}
 	  */
 	    getVerticalScrollValue() {
 	        const result = this.nativeElement.getVerticalScrollValue();
 	        return result;
 	    }
-	    /** Gets the maximum position of the horizontal scrollbar. You can use this method in combination with the setHorizontalScrollValue to apply a new scroll position.
+	    /** Returns the maximum horizontal scroll offset for the grid’s horizontal scrollbar. This value represents the furthest distance (in pixels) that the grid content can be scrolled horizontally. It is useful for programmatically setting, adjusting, or resetting the grid’s horizontal scroll position to ensure full content visibility or to align with specific scroll actions.
 	    * @returns {number}
 	  */
 	    getHorizontalScrollMax() {
 	        const result = this.nativeElement.getHorizontalScrollMax();
 	        return result;
 	    }
-	    /** Gets the position of the horizontal scrollbar.
+	    /** Retrieves the current horizontal scroll offset of the grid's horizontal scrollbar, indicating how far the grid content has been scrolled from the left edge in pixels. This value can be used to determine the current scroll position or to programmatically control grid scrolling behavior.
 	    * @returns {number}
 	  */
 	    getHorizontalScrollValue() {
 	        const result = this.nativeElement.getHorizontalScrollValue();
 	        return result;
 	    }
-	    /** Gets the columns array. Each item in the array contains the column properties which are dynamically set by the user interaction and the columns initialization data properties such as: 'label', 'dataField', 'dataType', 'visible'.
+	    /** Retrieves an array of column objects representing every column currently configured in the grid. Each column object contains key properties, including:- `label`: The display name of the column as shown in the grid header.- `dataField`: The underlying data field or key this column is bound to in the dataset.- `dataType`: The type of data displayed in the column (e.g., string, number, date).- `visible`: A boolean indicating whether the column is currently visible in the grid.- Additional dynamic state properties, such as the current sort order, filter status, or column width, reflecting any user customizations or interactions.This comprehensive array allows developers to access both the static configuration and real-time state of each column in the grid.
 	    * @returns {any}
 	  */
 	    getColumns() {
 	        const result = this.nativeElement.getColumns();
 	        return result;
 	    }
-	    /** Gets the editing cell(s), when the grid is editing.
+	    /** Returns an array containing information about all cells that are currently in edit mode within the grid. Each entry in the array typically includes details such as the row and column identifiers for each editable cell, allowing developers to precisely identify and interact with cells that are being edited.
 	    * @returns {any[]}
 	  */
 	    getEditCells() {
 	        const result = this.nativeElement.getEditCells();
 	        return result;
 	    }
-	    /** Gets the groups array.
+	    /** Fetches an array of group objects that define the current grouping configuration of the grid. Each group object contains information about the field being grouped by, the group criteria, and any sub-grouping details, providing a comprehensive representation of how the grid's data is organized into groups.
 	    * @returns {any[]}
 	  */
 	    getGroups() {
 	        const result = this.nativeElement.getGroups();
 	        return result;
 	    }
-	    /** Gets an array of columns with applied sorting. Each member in the array is with column's data field used as a key and 'sortOrder' and 'sortIndex' as a value.
+	    /** Returns an object that details the columns currently sorted within a data table. Each key in the object corresponds to a column’s data field name. The value for each key is an object containing:- `sortOrder`: Specifies the sorting direction for the column, either `'asc'` for ascending or `'desc'` for descending.- `sortIndex`: Indicates the column’s priority in multi-column sorting, with lower numbers representing higher priority.This structure allows you to easily determine which columns are sorted, their order of precedence, and the sorting direction applied to each.
 	    * @returns {{[dataField: string]: { sortOrder: string, sortIndex: number }}}
 	  */
 	    getSortedColumns() {
 	        const result = this.nativeElement.getSortedColumns();
 	        return result;
 	    }
-	    /** Gets the selection.
+	    /** Returns an object representing the current selection state of the grid. This includes arrays listing the IDs of selected rows, the identifiers of selected columns, and the coordinates (row ID and data field) of selected cells. Additionally, it specifies the cell that is currently focused by providing its row ID and data field.
 	    * @returns {any}
 	  */
 	    getSelection() {
 	        const result = this.nativeElement.getSelection();
 	        return result;
 	    }
-	    /** Gets an Array where each item is an Array of row id and row data. If the Grid is used in virtual mode, the row data parameter is empty object, because the data is loaded on demand.
+	    /** Returns an array in which each element is a two-element array: the first element is the unique row ID, and the second element is the data object associated with that row. When operating in virtual mode, the data object may be empty if the row’s data has not yet been loaded, as data is retrieved on demand.
 	    * @returns {any[]}
 	  */
 	    getSelectedRows() {
 	        const result = this.nativeElement.getSelectedRows();
 	        return result;
 	    }
-	    /** Gets an Array where each item contains the row data.
+	    /** Returns an array containing the data objects corresponding to each row currently selected in the grid. Each object in the array represents the underlying data for one selected row, allowing you to access and manipulate the specific records the user has chosen.
 	    * @returns {any[]}
 	  */
 	    getSelectedRowsData() {
 	        const result = this.nativeElement.getSelectedRowsData();
 	        return result;
 	    }
-	    /** Gets the selected row ids.
+	    /** Returns an array containing the unique identifiers (IDs) of all rows currently selected by the user within the grid component. Each element in the array corresponds to the ID of a selected row, allowing you to easily reference or manipulate the selected grid items programmatically.
 	    * @returns {any[]}
 	  */
 	    getSelectedRowIds() {
 	        const result = this.nativeElement.getSelectedRowIds();
 	        return result;
 	    }
-	    /** Gets the selected row indexes.
+	    /** Returns an array containing the indices of the rows that are currently selected in the grid. Each element in the array represents the zero-based position of a selected row, allowing you to identify which rows the user has chosen. If no rows are selected, the array will be empty.
 	    * @returns {any[]}
 	  */
 	    getSelectedRowIndexes() {
 	        const result = this.nativeElement.getSelectedRowIndexes();
 	        return result;
 	    }
-	    /** Gets the selected cells. The method returns an array of cell. Each cell is an array with row id, column data field and cell value.
+	    /** Returns an array of selected cells, where each cell is represented as an array structured as [row ID, column field, cell value].  - **Row ID**: The unique identifier for the row containing the cell.  - **Column field**: The data field name (or key) corresponding to the column of the cell.  - **Cell value**: The actual value contained within the cell.  This structure allows you to easily identify and access the position and value of each selected cell within the data set.
 	    * @returns {any[]}
 	  */
 	    getSelectedCells() {
 	        const result = this.nativeElement.getSelectedCells();
 	        return result;
 	    }
-	    /** Gets an array of columns with applied filters.
+	    /** Returns an array of objects representing the columns that currently have active filters applied. Each object contains details about the filter and is associated with its corresponding column by the column's data field as the key. This allows you to identify which columns are being filtered and access the filter configurations for each.
 	    * @returns {any}
 	  */
 	    getFilteredColumns() {
 	        const result = this.nativeElement.getFilteredColumns();
 	        return result;
 	    }
-	    /** Gets an array of rows, which are visible and match the applied filter.
+	    /** Returns an array containing the data for all rows currently visible in the grid, after applying any active filters. Only rows that meet the filter criteria and are not hidden by filtering will be included in the array. This allows developers to access the up-to-date, filtered data as presented to the user in the grid interface.
 	    * @returns {any}
 	  */
 	    getVisibleRows() {
 	        const result = this.nativeElement.getVisibleRows();
 	        return result;
 	    }
-	    /** Gets the result of the getVisibleRows or the rows hierarchy, when the Grid is in TreeGrid/Grouping mode.
+	    /** Returns an array of row objects. By default, this represents the currently visible rows after any filters have been applied. When used in TreeGrid or Grouping mode, the array instead reflects the hierarchical structure of rows, including parent-child relationships, according to the current expand/collapse state of groups or tree nodes.
 	    * @returns {any}
 	  */
 	    getViewRows() {
 	        const result = this.nativeElement.getViewRows();
 	        return result;
 	    }
-	    /** Gets a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
+	    /** Retrieves a detailed JSON object that encapsulates the entire current state of the grid. This includes the active sorting and filtering criteria, column visibility and order, which rows are expanded, any grouping configurations, current pagination settings, and the selection state of rows or cells. The resulting state object is suitable for persisting the grid configuration (such as saving to local storage or a database) and can be used to completely restore the grid to the same state at a later time.
 	    * @returns {any}
 	  */
 	    getState() {
 	        const result = this.nativeElement.getState();
 	        return result;
 	    }
-	    /** Gets the changes from the batch edit.
+	    /** Retrieves a comprehensive summary of all changes performed during a batch edit operation. Returns an object with separate arrays for added, updated, and deleted rows. Each array contains detailed objects that include the row ID and pertinent data fields, such as the previous and new values for updates, full data for additions, and identifying information for deletions. This structure allows you to easily track and process all modifications made in the batch.
 	    * @returns {{ upDated: [{ id: string, dataField: string, oldValue: Object, newValue: Object }], deleted: [{id: string, data: Object}], added: [{id: string, data: Object}] }}
 	  */
 	    getBatchEditChanges() {
 	        const result = this.nativeElement.getBatchEditChanges();
 	        return result;
 	    }
-	    /** Gets a value of a cell.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    /** Retrieves the value stored in a specific cell of a data grid or table by specifying the unique row ID and the corresponding column data field. This function allows precise access to individual cell data, enabling targeted data retrieval based on both row and column identifiers.
+	    * @param {string | number} rowId. The unique identifier of the row containing the cell.
+	    * @param {string} dataField. The data field name of the column (e.g., 'firstName').
 	    * @returns {any}
 	  */
 	    getCellValue(rowId, dataField) {
 	        const result = this.nativeElement.getCellValue(rowId, dataField);
 	        return result;
 	    }
-	    /** Gets a column. Returns a Grid column object.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    /** Retrieves the column object corresponding to the specified data field. This returned object includes all relevant properties and configuration settings for that column, such as its header label, data type, formatting options, sorting behavior, visibility, and any custom properties defined in the column schema.
+	    * @param {string} dataField. The data field name of the column to retrieve.
 	    * @returns {GridColumn}
 	  */
 	    getColumn(dataField) {
 	        const result = this.nativeElement.getColumn(dataField);
 	        return result;
 	    }
-	    /** Gets a value of a column.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
-	    * @param {string} propertyName. The property name.
+	    /** Fetches the value of a specified property from a particular column, where the column is identified by its data field name. This function allows you to access detailed configuration or metadata associated with a column in a data structure, such as a table or grid, by referencing the column’s data field.
+	    * @param {string} dataField. The data field name of the column.
+	    * @param {string} propertyName. The name of the column property to retrieve (e.g., 'freeze', 'visible', 'width').
 	    * @returns {any}
 	  */
 	    getColumnProperty(dataField, propertyName) {
 	        const result = this.nativeElement.getColumnProperty(dataField, propertyName);
 	        return result;
 	    }
-	    /** Gets a value of a row.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} propertyName. The property name.
+	    /** Retrieves the value of a specified property from a database row identified by its unique row ID. This function locates the row using the provided row ID and returns the value associated with the given property key within that row. If the property does not exist, it returns null or an appropriate default value.
+	    * @param {string | number} rowId. The unique identifier of the row.
+	    * @param {string} propertyName. The name of the row property to retrieve.
 	    * @returns {any}
 	  */
 	    getRowProperty(rowId, propertyName) {
 	        const result = this.nativeElement.getRowProperty(rowId, propertyName);
 	        return result;
 	    }
-	    /** Gets a row. Returns a Grid row object.
-	    * @param {string | number} rowId. row bound id
+	    /** Returns the complete row object from the Grid for the row corresponding to the given row ID, including all its associated data and properties.
+	    * @param {string | number} rowId. The unique identifier of the row.
 	    * @returns {GridRow}
 	  */
 	    getRow(rowId) {
 	        const result = this.nativeElement.getRow(rowId);
 	        return result;
 	    }
-	    /** Gets a row by its index. Returns a Grid row object.
-	    * @param {number} rowIndex. row bound index
+	    /** Returns the Grid row object at the given zero-based row index, allowing access to all data and properties associated with that specific row. The index parameter should be an integer starting from 0, where 0 corresponds to the first row in the Grid.
+	    * @param {number} rowIndex. The zero-based index of the row in the grid.
 	    * @returns {GridRow}
 	  */
 	    getRowByIndex(rowIndex) {
 	        const result = this.nativeElement.getRowByIndex(rowIndex);
 	        return result;
 	    }
-	    /** Gets the Data source data associated to the row.
-	    * @param {string | number} rowId. row bound id
+	    /** Fetches the original data source object directly linked to the given row ID, allowing access to all underlying data fields for that specific row as stored in the source dataset.
+	    * @param {string | number} rowId. The unique identifier of the row.
 	    * @returns {any}
 	  */
 	    getRowData(rowId) {
 	        const result = this.nativeElement.getRowData(rowId);
 	        return result;
 	    }
-	    /** Gets the Row's id by a row index.
-	    * @param {number} rowIndex. row index
+	    /** Returns the unique identifier (row ID) associated with the row at the specified zero-based index. This allows you to access or reference a particular row in the data set by its position within the collection, where the first row has an index of 0.
+	    * @param {number} rowIndex. The zero-based index of the row.
 	    * @returns {string | number}
 	  */
 	    getRowId(rowIndex) {
 	        const result = this.nativeElement.getRowId(rowIndex);
 	        return result;
 	    }
-	    /** Gets whether a column's drop-down menu is opened.
+	    /** Determines whether any column’s drop-down menu is currently open and visible within the grid component. This can be used to control grid interactions or UI behaviors that depend on the state of column drop-down menus.
 	    * @returns {boolean}
 	  */
 	    hasMenu() {
 	        const result = this.nativeElement.hasMenu();
 	        return result;
 	    }
-	    /** This method returns true, if any rows in the Grid are selected.
+	    /** Checks whether any rows in the grid are currently selected by the user. This property or method returns a boolean value: `true` if at least one row is selected, and `false` if no rows are selected. It is typically used to enable or disable actions that depend on row selection, such as editing or deleting entries.
 	    * @returns {boolean}
 	  */
 	    hasSelectedRows() {
 	        const result = this.nativeElement.hasSelectedRows();
 	        return result;
 	    }
-	    /** Hides the Details of a Row, when row details are enabled.
-	    * @param {string | number} rowId. row bound id
+	    /** Conceals the details section for the specified row in the grid when the row details feature is enabled, effectively collapsing or hiding any expanded information or custom content associated with that row. This function ensures that only the main data for the row is visible, while any additional details remain hidden until explicitly shown again.
+	    * @param {string | number} rowId. The unique identifier of the row whose details should be hidden.
 	    */
 	    hideDetail(rowId) {
 	        if (this.nativeElement.isRendered) {
@@ -1594,8 +1594,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Highlights a column. Highlights a Grid column.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    /** Highlights all cells within the column corresponding to the specified data field. If this method is called again with the same data field, it toggles the highlight by removing it if already applied, or reapplying it if previously removed.
+	    * @param {string} dataField. The data field name of the column to highlight.
 	    */
 	    highlightColumn(dataField) {
 	        if (this.nativeElement.isRendered) {
@@ -1607,10 +1607,10 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Highlights a cell. Calling the method a second time toggle the highlight state.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
-	    * @param {string} className?. CSS Class Name
+	    /** Emphasizes a specific cell within the grid, identified by its row ID and column data field. Invoking this method again on the same cell will toggle the highlight on or off. You can optionally specify a CSS class to apply custom styling to the highlighted cell, allowing for personalized visual differentiation.
+	    * @param {string | number} rowId. The unique identifier of the row containing the cell.
+	    * @param {string} dataField. The data field name of the column.
+	    * @param {string} className?. Optional CSS class name for custom highlight styling.
 	    */
 	    highlightCell(rowId, dataField, className) {
 	        if (this.nativeElement.isRendered) {
@@ -1622,9 +1622,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Highlights a row. Calling the method a second time toggle the highlight state.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} className?. CSS Class Name
+	    /** Enhances visibility of the table row corresponding to the provided row ID by applying a highlight effect. Invoking this method a second time on the same row will remove the highlight, effectively toggling its state. Optionally, you can supply a custom CSS class to override the default highlight styling for tailored appearance.
+	    * @param {string | number} rowId. The unique identifier of the row to highlight.
+	    * @param {string} className?. Optional CSS class name for custom highlight styling.
 	    */
 	    highlightRow(rowId, className) {
 	        if (this.nativeElement.isRendered) {
@@ -1636,10 +1636,10 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Inserts a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
-	    * @param {any} data. row data matching the data source
-	    * @param {number} index?. Determines the insert index. The default value is the last index.
-	    * @param {{(row: GridRow): void}} callback?. Sets a callback function, which is called after the new row is added. The callback's argument is the new row.
+	    /** Adds a new row to the grid using the provided data object. If batch editing mode is active, the row will be added only as a pending change and will not be permanently committed to the data source until the batch is saved. You may optionally specify the index at which the new row should be inserted; if omitted, the row will be added at the default position (usually at the end). Additionally, you can provide a callback function that will be executed after the row has been successfully added to the grid.
+	    * @param {any} data. The data object for the new row, matching the grid's data source schema.
+	    * @param {number} index?. The zero-based index at which to insert the new row. Defaults to the last position if omitted.
+	    * @param {{(row: GridRow): void}} callback?. Optional callback function executed after the row is inserted, receiving the newly added row object.
 	    */
 	    insertRow(data, index, callback) {
 	        if (this.nativeElement.isRendered) {
@@ -1651,16 +1651,16 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Loads a previously saved Grid state. You can pass a state name when there is a state which was previously saved with the saveState(stateName) method call or a state object returned by the saveState or getState method calls. The state object is required to be a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
-	    * @param {any} state. state name or state object
+	    /** Restored a previously saved grid state by accepting either the name of the saved state or a state object. The state object can include detailed settings such as current sorting and filtering criteria, column visibility and order, expanded or collapsed row status, grouping configurations, paging information (such as current page and page size), and selected rows. This allows the grid to be reconfigured exactly as it was when the state was saved, providing a consistent user experience across sessions.
+	    * @param {any} state. A state name (string) previously saved or a state object representing the grid configuration to load.
 	    * @returns {any}
 	  */
 	    loadState(state) {
 	        const result = this.nativeElement.loadState(state);
 	        return result;
 	    }
-	    /** Opens a column drop-down menu.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    /** Displays the drop-down menu associated with the column specified by the provided data field identifier, allowing users to access additional actions or settings related to that column.
+	    * @param {string} dataField. The data field name of the column whose menu to open.
 	    */
 	    openMenu(dataField) {
 	        if (this.nativeElement.isRendered) {
@@ -1672,9 +1672,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Opens a context menu. Note that context menu should be enabled.
-	    * @param {number} left. Left Position.
-	    * @param {number} top. Top Position.
+	    /** Displays the context menu at the given (left, top) screen coordinates. Ensure that context menu functionality is enabled in the grid settings for this method to work.
+	    * @param {number} left. The left position (in pixels) where the context menu should appear.
+	    * @param {number} top. The top position (in pixels) where the context menu should appear.
 	    */
 	    openContextMenu(left, top) {
 	        if (this.nativeElement.isRendered) {
@@ -1686,7 +1686,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Opens the Grid when the 'dropDownMode' property is true.
+	    /** Displays the grid’s drop-down user interface when the 'dropDownMode' property is set to true, allowing users to interact with additional grid options or filters presented within the drop-down.
 	    */
 	    openDropDown() {
 	        if (this.nativeElement.isRendered) {
@@ -1698,7 +1698,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Closes the Grid when the 'dropDownMode' property is true.
+	    /** Closes the grid's drop-down user interface when the 'dropDownMode' property is set to true, ensuring that any open drop-down menus within the grid are dismissed automatically. This helps maintain a streamlined user experience by hiding drop-down elements when they are no longer needed or when specific actions are triggered.
 	    */
 	    closeDropDown() {
 	        if (this.nativeElement.isRendered) {
@@ -1710,7 +1710,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Prints the Grid data. The method uses the options of the dataExport property. When printed, the Grid will not display any scrollbars so all rows and columns will be displayed. The grid will auto resize width and height to fit all contents. To customize the printing options, you can use  the dataExport property.
+	    /** Generates a printed version of the Grid’s data using the configuration specified in the dataExport property. During printing, the Grid automatically hides scrollbars and adjusts its width and height to ensure that all rows and columns are fully visible on the page, regardless of their original size. This ensures that the entire content of the Grid is included in the printout without any truncation or the need for scrolling. To customize aspects such as page layout, formatting, or which data is included in the print output, adjust the parameters within the dataExport property.
 	    */
 	    print() {
 	        if (this.nativeElement.isRendered) {
@@ -1722,7 +1722,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Renders the grid. This method will make a full-refresh like in the initial Grid creation. It will create Rows, Columns and Cells HTML Elements and then refresh the Grid layout.
+	    /** Triggers a full re-render of the Grid, similar to when it is first initialized. This method reconstructs all underlying HTML elements for rows, columns, and cells from scratch, ensuring a fresh and accurate representation of the data. After rebuilding these elements, it also updates and refreshes the Grid layout to reflect any structural changes. This is useful when foundational data or configuration has changed and a partial update is not sufficient.
 	    */
 	    refresh() {
 	        if (this.nativeElement.isRendered) {
@@ -1734,7 +1734,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Refreshes the grid with the current property values. This method will refresh the Grid layout.
+	    /** Enhances the Grid display by refreshing its layout to reflect the latest property values, dynamically updating only the necessary elements. This approach optimizes performance by avoiding a complete teardown and reconstruction of all Grid elements, ensuring a smoother and more efficient user experience.
 	    */
 	    refreshView() {
 	        if (this.nativeElement.isRendered) {
@@ -1746,7 +1746,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Refreshes the grid cells in view. The method is useful for live-updates of cell values.
+	    /** Refreshes only the cells that are currently visible within the Grid’s viewport, rather than updating the entire Grid. This is especially useful for implementing real-time updates or live data feeds, as it enables efficient, seamless rendering of new cell values without triggering a full Grid refresh or losing the user's scroll position.
 	    */
 	    resetState() {
 	        if (this.nativeElement.isRendered) {
@@ -1758,9 +1758,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Resets the Grid state.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
-	    * @param {boolean} refreshFilters?. Set this to false, if you need to make multiple removeFilter calls.
+	    /** Restores the Grid to its original default configuration by removing all user-applied settings, including sorting, filtering, grouping, and selected rows or cells. This action clears any user interactions, ensuring the Grid displays data with no custom modifications.
+	    * @param {string} dataField. The data field of the column from which to remove the filter, e.g., 'firstName'.
+	    * @param {boolean} refreshFilters?. If set to false, delays the filter refresh to allow multiple filters to be removed before updating the Grid.
 	    */
 	    removeFilter(dataField, refreshFilters) {
 	        if (this.nativeElement.isRendered) {
@@ -1772,8 +1772,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Removes a column filter.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    /** Removes the filter currently applied to the specified column. Optionally, you can delay the filter refresh process, allowing you to remove filters from multiple columns before triggering an update. This helps optimize performance when batch-processing multiple filter removals.
+	    * @param {string} dataField. The data field of the group to remove, e.g., 'firstName'.
 	    */
 	    removeGroup(dataField) {
 	        if (this.nativeElement.isRendered) {
@@ -1785,8 +1785,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Removes a group by data field. This method will remove a group to the Grid when grouping is enabled.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
+	    /** Removes grouping from the Grid for the specified data field. This method is only applicable when grouping functionality is enabled in the Grid. When called, it will ungroup the records currently grouped by the given field, and the Grid will update to display the data without that grouping criterion.
+	    * @param {string} dataField. The data field of the column whose sorting you want to remove, e.g., 'firstName'.
 	    */
 	    removeSort(dataField) {
 	        if (this.nativeElement.isRendered) {
@@ -1798,7 +1798,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Removes a sorting by data field. This method will remove a sorting from a Grid column.
+	    /** Removes any active sorting from the specified column. Use this method to clear the sort order applied to a particular data field, returning the column to its default, unsorted state. This is useful when you want to reset or update the sorting configuration for individual columns within a data table.
 	    */
 	    refreshSort() {
 	        if (this.nativeElement.isRendered) {
@@ -1810,7 +1810,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Re-sorts the Grid by using the already applied column sortings and re-renders the Grid.
+	    /** Applies the current sorting settings again to the data and updates the Grid display to reflect any changes, ensuring the data is presented according to the latest sorting configuration.
 	    */
 	    revertBatchEdit() {
 	        if (this.nativeElement.isRendered) {
@@ -1822,10 +1822,10 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Reverts the batch edit changes. This method cancels all changes made by the end-user.
-	    * @param {string | number} dataField. The data field or column index of the first grid column.
-	    * @param {string | number} referenceDataField. The data field or column index of the second grid column.
-	    * @param {boolean} insertAfter?. Determines whether to insert the first column after the reference column.
+	    /** Reverts the Grid to its previous state by discarding all unsaved batch editing changes made by the user. Any modifications entered during the current batch editing session will be canceled, restoring the Grid’s data to its last committed state.
+	    * @param {string | number} dataField. The data field or index of the column to move.
+	    * @param {string | number} referenceDataField. The data field or index of the target column used as reference for repositioning.
+	    * @param {boolean} insertAfter?. If true, inserts the first column after the reference column; otherwise, inserts it before.
 	    */
 	    reorderColumns(dataField, referenceDataField, insertAfter) {
 	        if (this.nativeElement.isRendered) {
@@ -1837,17 +1837,17 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Reorders two DataGrid columns.
-	    * @param {string} name?. state name
+	    /** Reorders two columns in the Grid by moving the specified source column to a new position either before or after the target reference column. This allows for customizable column arrangements by programmatically shifting the position of columns within the Grid.
+	    * @param {string} name?. Optional name to associate with the saved state.
 	    * @returns {any}
 	  */
 	    saveState(name) {
 	        const result = this.nativeElement.saveState(name);
 	        return result;
 	    }
-	    /** Saves the Grid state and returns a JSON object with the following fields: 'sort', 'columns', 'expandedRows', 'filter', 'groups', 'paging', 'selectedCells', 'selectedrows'. The 'sort' represents an object which contains the sorted columns. Each key in that json object is the column's dataField item which has sortOrder: string and sortIndex: int properties. The sortOrder could be either 'asc' or 'desc'. Similarly, the filter object contains the filtered columns. Each key in that object is a column data field and each value has 'filters' array property with the applied filters to the column. The 'columns' property contains an array of columns with saved properties such as visible, width and freeze. The 'expandedRows' property contains the indexes of the expanded rows. The 'groups' property contains the grouped column data fields and the selectedCells and selectedRows include information about the cells or rows selection. These depend on the selection mode used in the Grid. The 'paging' object includes the sub-properties 'count', 'index' and 'size' which determine the count of pages, the current page's index and the page size.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
-	    * @param {string | null} sortOrder. column's sort order. Use 'asc', 'desc' or null.
+	    /** Captures and returns the current state of the Grid as a comprehensive JSON object. The state includes details such as applied sorting and filtering criteria, columns configuration (order, visibility, and sizing), currently expanded rows, grouping settings, paging information (current page, page size), and user selections. Optionally, you can provide a name parameter to uniquely identify and reference the saved state for future retrieval or restoration.
+	    * @param {string} dataField. The data field of the column to sort, e.g., 'firstName'.
+	    * @param {string | null} sortOrder. Sort order to apply: 'asc' for ascending, 'desc' for descending, or null to remove sorting.
 	    */
 	    sortBy(dataField, sortOrder) {
 	        if (this.nativeElement.isRendered) {
@@ -1859,9 +1859,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sorts the Grid by a data field. This method will add or remove sorting, when sorting is enabled. To remove the sorting, use 'null' for the sortOrder parameter.
-	    * @param {string | number} dataField. The data field or column index of the first grid column.
-	    * @param {string | number} referenceDataField. The data field or column index of the second grid column.
+	    /** Applies sorting to the Grid based on the specified data field. You can either add sorting by providing a valid sortOrder (such as 'asc' or 'desc'), or remove sorting from a column by setting the sortOrder parameter to null. This allows dynamic adjustment of Grid sorting criteria, enabling users to sort data as needed or clear sorting on individual columns.
+	    * @param {string | number} dataField. The data field or index of the first column.
+	    * @param {string | number} referenceDataField. The data field or index of the second column.
 	    */
 	    swapColumns(dataField, referenceDataField) {
 	        if (this.nativeElement.isRendered) {
@@ -1873,7 +1873,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Swaps two DataGrid columns.
+	    /** Swaps the positions of two specified columns within the Grid layout, effectively changing their order of appearance. This operation updates the Grid so that the selected columns exchange places, while the data and structure of other columns remain unchanged.
 	    */
 	    saveBatchEdit() {
 	        if (this.nativeElement.isRendered) {
@@ -1885,9 +1885,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Saves the batch edit changes. This method confirms the editing changes made by the end-user.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} dataField?. column bound data field
+	    /** Saves and applies all batch editing changes made by the end-user, persisting the updates permanently to the Grid's underlying data source. This operation commits all modifications (such as additions, deletions, and edits) performed during the batch editing session, ensuring that the Grid data source accurately reflects the latest user input.
+	    * @param {string | number} rowId. The identifier of the row to select.
+	    * @param {string} dataField?. Optional data field of the column to select a specific cell.
 	    */
 	    select(rowId, dataField) {
 	        if (this.nativeElement.isRendered) {
@@ -1899,11 +1899,11 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Selects a row, cell or column.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} dataField. column bound data field
-	    * @param {string | number} endRowId. row bound id
-	    * @param {string} endDataField. column bound data field
+	    /** Specifies the selection of a particular row, column, or cell within a data table. If a data field (representing a column) is provided along with a row identifier, the selection targets a specific cell at the intersection of the given row and column. If only a row identifier is supplied without a data field, the entire row is selected. Similarly, providing only a data field without a row identifier selects the entire column.
+	    * @param {string | number} rowId. The starting row ID of the selection range.
+	    * @param {string} dataField. The starting column data field of the selection range.
+	    * @param {string | number} endRowId. The ending row ID of the selection range.
+	    * @param {string} endDataField. The ending column data field of the selection range.
 	    */
 	    selectRange(rowId, dataField, endRowId, endDataField) {
 	        if (this.nativeElement.isRendered) {
@@ -1915,9 +1915,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Selects a range of rows, cells or columns. The result of the method depends on the selection configuration of the Grid.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string | number} endRowId. row bound id
+	    /** Selects a rectangular range of cells within the grid, defined by specifying both the starting and ending row IDs as well as the data field keys (columns). The selection includes all cells that fall within the rectangle formed by these start and end points. The behavior and outcome of this selection may vary based on the current selection mode of the Grid component (for example, whether it supports cell, row, or column selection)."
+	    * @param {string | number} rowId. The starting row ID of the selection range.
+	    * @param {string | number} endRowId. The ending row ID of the selection range.
 	    */
 	    selectRowsRange(rowId, endRowId) {
 	        if (this.nativeElement.isRendered) {
@@ -1929,8 +1929,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Selects a range of rows.
-	    * @param {(string | number)[]} rowId. Array of row ids
+	    /** Selects all consecutive rows, inclusive, between the specified start and end row IDs. Both the start and end IDs are included in the selection, and only rows with IDs that fall within this continuous range will be selected.
+	    * @param {(string | number)[]} rowId. Array of row IDs to select.
 	    */
 	    selectRows(rowId) {
 	        if (this.nativeElement.isRendered) {
@@ -1942,7 +1942,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Selects multiple rows by their ids.
+	    /** Selects multiple rows by accepting an array of row IDs, allowing you to specify and manipulate several rows simultaneously based on their unique identifiers.
 	    */
 	    selectAllRows() {
 	        if (this.nativeElement.isRendered) {
@@ -1954,8 +1954,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Selects all rows.
-	    * @param {number[]} rowIndex. Array of row indexes
+	    /** Selects every row that is currently visible in the Grid, including only those rows that meet the active filters, sorting, and pagination settings. Hidden or filtered-out rows are not selected.
+	    * @param {number[]} rowIndex. An array of zero-based row indexes to select.
 	    */
 	    selectRowsByIndex(rowIndex) {
 	        if (this.nativeElement.isRendered) {
@@ -1967,10 +1967,10 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Selects multiple rows by their index.
-	    * @param {string} query. Search query
-	    * @param {string} dataField?. Column data field.
-	    * @param {string} condition?. Conditions which you can use in the expressions: '=', 'EQUAL','&lt;&gt;', 'NOT_EQUAL', '!=', '&lt;', 'LESS_THAN','&gt;', 'GREATER_THAN', '&lt;=', 'LESS_THAN_OR_EQUAL', '&gt;=', 'GREATER_THAN_OR_EQUAL','starts with', 'STARTS_WITH','ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS','DOES_NOT_CONTAIN', 'NULL','NOT_NULL'
+	    /** Enhances selection functionality by allowing users to select multiple rows within the Grid component, using their zero-based index positions. This means you can specify one or more row indices (starting from 0 for the first row) to programmatically select the corresponding rows in the Grid.
+	    * @param {string} query. The search query or value to filter by.
+	    * @param {string} dataField?. Optional column data field to apply the query against.
+	    * @param {string} condition?. Optional condition operator. Supported values include '=', 'EQUAL', '<>', 'NOT_EQUAL', '!=', '<', 'LESS_THAN', '>', 'GREATER_THAN', '<=', 'LESS_THAN_OR_EQUAL', '>=', 'GREATER_THAN_OR_EQUAL', 'starts with', 'STARTS_WITH', 'ends with', 'ENDS_WITH', '', 'EMPTY', 'CONTAINS', 'DOES_NOT_CONTAIN', 'NULL', 'NOT_NULL'.
 	    */
 	    selectRowsByQuery(query, dataField, condition) {
 	        if (this.nativeElement.isRendered) {
@@ -1982,7 +1982,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Selects rows by using a query. Example: grid.selectRowsByQuery('nancy'); selects all rows that have 'nancy' value. Example 2: grid.selectRowsByQuery('nancy, davolio'); selects all rows that have 'nancy' and 'davolio' values in the same row. Example 3: grid.selectRowsByQuery(5, 'quantity', '>'); selects all rows where the value of the 'quantity' field is > 5.
+	    /** Selects rows from a dataset based on a specified query expression. This allows you to filter rows by applying conditions to the values in one or more columns. Supported conditions include equality (equals), partial matches (contains), comparison operators (greater than, less than), prefix matching (starts with), and more. The query expression enables flexible filtering, so only rows that meet the defined criteria are returned.
 	    * @param {(string | number)[]} rowIds. Array of row ids
 	    * @param {string[]} dataFields. Array of data fields.
 	    */
@@ -1996,7 +1996,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Selects multiple cells by their ids and dataFields. Example: grid.selectCells([0, 1, 2], ['firstName', 'quantity', 'date']); - selects the 'firstName', 'quantity' and 'date' cells from the first, second and third rows.
+	    /** Allows you to select multiple cells within a grid by specifying arrays of row indices (cell ids) and corresponding column data fields.  For example: `grid.selectCells([0, 1, 2], ['firstName', 'quantity', 'date']);`  This will select the cells located at the intersection of:- Row 0 and the 'firstName' column,- Row 1 and the 'quantity' column,- Row 2 and the 'date' column.Each element in the id array matches with the element in the dataFields array by position, ensuring precise cell selection across different rows and columns. This method is useful for batch selection or applying simultaneous actions to multiple, non-contiguous cells.
 	    * @param {string} query. Search query
 	    */
 	    selectCellsByQuery(query) {
@@ -2009,10 +2009,10 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Selects cells by using a query. Example: grid.selectCellsByQuery('nancy'); selects all cells that have 'nancy' value. Example 2: grid.selectCellsByQuery('nancy, davolio'); selects all cells that have 'nancy' and 'davolio' values in the same row.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
-	    * @param {string | number | Date | boolean} value. New Cell value.
+	    /** Selects grid cells based on a query string.  - Example 1: `grid.selectCellsByQuery('nancy');` selects all cells in the grid whose value is exactly 'nancy'.- Example 2: `grid.selectCellsByQuery('nancy, davolio');` selects all cells within rows where both 'nancy' and 'davolio' values appear in any columns of the same row.The query can be a single value or a comma-separated list of values. When multiple values are specified, only rows containing all the specified values (regardless of column order) will have their cells selected.
+	    * @param {string | number} rowId. The unique identifier of the row containing the cell.
+	    * @param {string} dataField. The data field of the column where the cell is located (e.g., 'firstName').
+	    * @param {string | number | Date | boolean} value. The new value to assign to the cell.
 	    */
 	    setCellValue(rowId, dataField, value) {
 	        if (this.nativeElement.isRendered) {
@@ -2024,7 +2024,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sets a new value to a cell.
+	    /** Assigns a new value to a specific cell within a data table, targeting the cell by its unique row ID and the corresponding column's data field name. This allows precise updating of individual cell contents based on row and column identifiers.
 	    * @param {GridColumn[]} columns. Columns array.
 	    */
 	    setColumns(columns) {
@@ -2037,10 +2037,10 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sets new columns to the Grid. The grid will redraw all the column headers, and then redraw all of the rows. By using 'setColumns', the grid will compare the new columns passed as argument to the method with existing columns. The Grid will automatically create new columns, keep old columns if they already exist and remove columns which are not in the 'setColumns' method argument. The benefit of that is that the state of the column like(sort, filter, width or other) will be kept, if the column exsits after the new columns are applied.
-	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
-	    * @param {string} propertyName. The column property's name.
-	    * @param {any} value. The new property value.
+	    /** Sets the columns displayed in the Grid to a new set defined by the provided argument. When 'setColumns' is called, the Grid compares the new columns array with the currently displayed columns. It will add any new columns, retain existing columns that are still present, and remove columns that are not included in the new array. After updating the columns, the Grid automatically redraws all column headers and refreshes all rows to reflect the changes. Importantly, any state associated with existing columns—such as sort order, filters, column width, and other configurable options—will be preserved for columns that remain after the update. This ensures that users do not lose their settings when columns are changed dynamically.
+	    * @param {string} dataField. The dataField identifier of the column (e.g., 'firstName').
+	    * @param {string} propertyName. The name of the column property to set (e.g., 'freeze', 'visible', 'width').
+	    * @param {any} value. The new value to assign to the specified column property.
 	    */
 	    setColumnProperty(dataField, propertyName, value) {
 	        if (this.nativeElement.isRendered) {
@@ -2052,10 +2052,10 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sets a property to a column.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} propertyName. The row property's name.
-	    * @param {any} value. The new property value.
+	    /** Sets or updates a specific property of a column identified by its dataField. This function allows you to dynamically modify column settings, such as freezing the column, toggling its visibility, adjusting its width, and altering other configurable attributes at runtime. Use this method to programmatically change how individual columns are displayed or behave within your data grid or table component.
+	    * @param {string | number} rowId. The unique identifier of the row to modify.
+	    * @param {string} propertyName. The name of the row property to set (e.g., 'freeze', 'expanded', 'customProperty').
+	    * @param {any} value. The new value to assign to the specified row property.
 	    */
 	    setRowProperty(rowId, propertyName, value) {
 	        if (this.nativeElement.isRendered) {
@@ -2067,9 +2067,9 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sets a property to a row.
-	    * @param {string | number} rowId. row bound id
-	    * @param {{background?: string, color?: string, fontSize?: string, fontFamily?: string, textDecoration?: string, fontStyle?: string, fontWeight?: string}} rowStyle. The row style object. The object may have one or all of the following properties: 'background', 'color', 'fontSize', 'fontFamily', 'textDecoration', 'fontStyle', 'fontWeight'.
+	    /** Updates or sets a specific property of a table row identified by its unique rowId. This function allows you to dynamically modify row attributes—for example, toggling the frozen state, applying custom styling, or adding arbitrary metadata—enabling flexible and responsive UI changes at the row level.
+	    * @param {string | number} rowId. The unique identifier of the row to style.
+	    * @param {{background?: string, color?: string, fontSize?: string, fontFamily?: string, textDecoration?: string, fontStyle?: string, fontWeight?: string}} rowStyle. An object specifying CSS style properties and values to apply to the entire row.
 	    */
 	    setRowStyle(rowId, rowStyle) {
 	        if (this.nativeElement.isRendered) {
@@ -2081,10 +2081,10 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sets a style to a row.
-	    * @param {string | number} rowId. row bound id
-	    * @param {string} dataField. Column bound field name.
-	    * @param {{background?: string, color?: string, fontSize?: string, fontFamily?: string, textDecoration?: string, fontStyle?: string, fontWeight?: string}} rowStyle. The cell style object. The object may have one or all of the following properties: 'background', 'color', 'fontSize', 'fontFamily', 'textDecoration', 'fontStyle', 'fontWeight'.
+	    /** Allows you to apply custom CSS styles to a specific table row, identified by its unique rowId. Supported style properties include background color, text color, font size, font family, text decoration, font style, and font weight. This enables granular control over the appearance of individual rows in your table, ensuring consistency with your application's design requirements.
+	    * @param {string | number} rowId. The unique identifier of the row containing the cell.
+	    * @param {string} dataField. The dataField (column) name of the cell to style.
+	    * @param {{background?: string, color?: string, fontSize?: string, fontFamily?: string, textDecoration?: string, fontStyle?: string, fontWeight?: string}} rowStyle. An object specifying CSS style properties and values to apply to the specific cell.
 	    */
 	    setCellStyle(rowId, dataField, rowStyle) {
 	        if (this.nativeElement.isRendered) {
@@ -2096,7 +2096,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sets a style to a row.
+	    /** Enhances a specific table cell's appearance by applying custom CSS styles, targeting the cell using both its unique rowId and the dataField (column identifier). You can specify a range of style properties, including background color, text color, font size, font family, text decoration, font style, and font weight, allowing precise control over the cell’s visual presentation.
 	    * @param {string} label. The label to be displayed in the dropdown button.
 	    */
 	    setDropDownLabel(label) {
@@ -2109,7 +2109,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sets the label of the Grid when the 'dropDownMode' property is true.
+	    /** Specifies the label text displayed for the Grid component when the 'dropDownMode' property is enabled. This label helps users identify the purpose or content of the Grid when it appears in drop-down mode.
 	    * @param {number} value. The new scroll position
 	    */
 	    setVerticalScrollValue(value) {
@@ -2122,7 +2122,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sets the position of the vertical scrollbar. You can use this method in combination with the getVerticalScrollValue and getVerticalScrollMax.
+	    /** Sets the current position of the vertical scrollbar within a scrollable container or component. This method allows you to programmatically control the vertical scroll offset, typically specified in pixels or logical units from the top of the content. It can be used in conjunction with the getVerticalScrollValue method to retrieve the current scroll position, and with getVerticalScrollMax to determine the maximum scrollable value. This is useful for synchronizing scrolling behavior, implementing custom scroll controls, or restoring a previous scroll position.
 	    * @param {number} value. The new scroll position
 	    */
 	    setHorizontalScrollValue(value) {
@@ -2135,7 +2135,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Sets the position of the horizontal scrollbar. You can use this method in combination with the getHorizontalScrollValue and getHorizontalScrollMax.
+	    /** Sets the current position of the horizontal scrollbar within a scrollable container. This method allows you to programmatically adjust the horizontal scroll offset, enabling smooth navigation or custom scroll behavior. It can be used in combination with getHorizontalScrollValue to retrieve the current scroll position, and with getHorizontalScrollMax to determine the maximum scrollable distance. This is useful for implementing features such as custom scrolling controls, restoring previous scroll positions, or synchronizing scrolling across multiple elements.
 	    */
 	    closeSidePanel() {
 	        if (this.nativeElement.isRendered) {
@@ -2147,7 +2147,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Closes the Grid's side panel.
+	    /** Closes the side panel component of the Grid interface, hiding any currently displayed content or options and returning the Grid to its default view.
 	    * @param {any} content. This is the content which will be displayed in the side panel. It can be String, HTML Element, HTML Template Element or Component
 	    * @param {number} width?. This is the width of the side panel
 	    * @param {any} callback?. Function called when the panel is opened. It can be used for dynamically showing content and initializing it.
@@ -2162,7 +2162,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Shows the side panel of the Grid.
+	    /** Displays the Grid's side panel, providing access to additional settings, filters, and customization options related to the Grid's content and layout.
 	    * @param {string | number} rowId. row bound id
 	    */
 	    showDetail(rowId) {
@@ -2175,7 +2175,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Shows the Details of a Row, when row details are enabled.
+	    /** Renders an in-depth view of a selected row when the row details feature is activated in the grid configuration. This allows users to access and interact with additional information or actions related to the chosen row.
 	    * @param {string | number} rowId. row bound id
 	    * @param {string} dataField. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
 	    * @param {string} value. The message to be shown below the cell
@@ -2190,7 +2190,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Shows an overlay message below a cell. This method can be used for onboarding tips or in scenarios when you want to display custom messages to the user.
+	    /** Displays a visually distinct overlay message positioned directly beneath a specific cell. This method is ideal for providing contextual onboarding tips, user guidance, or delivering custom messages tailored to the user's current interaction. It enhances user experience by presenting timely and relevant information without interrupting workflow.
 	    * @param {string | number} rowId. row bound id
 	    * @param {any} data. row data matching the data source
 	    * @param {{(row: GridRow): void}} callback?. Sets a callback function, which is called after the row is updated. The callback's argument is the updated row.
@@ -2205,7 +2205,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Updates a row. When batch editing is enabled, the row is not saved until the batch edit is saved.
+	    /** Updates the data of a specific row identified by its unique row ID. When batch editing mode is enabled, the changes to the row are temporarily staged and will not be permanently saved to the data source until the user explicitly commits or saves the batch of edits. This ensures that multiple changes can be reviewed and either all applied or discarded together, rather than being immediately written to the underlying data.
 	    * @param {string | number} rowId. row bound id
 	    * @param {string} dataField?. column bound data field. For example, if you have a column with dataField: 'firstName', set 'firstName' here.
 	    */
@@ -2219,7 +2219,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Unselects a row, cell or column.
+	    /** Deselects a previously selected row, cell, or column within the data grid, removing any associated highlight or selection state.
 	    * @param {string | number} rowId. row bound id
 	    */
 	    uncheckRow(rowId) {
@@ -2232,7 +2232,7 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Unchecks a TreeGrid row. Sets its check-box to false.
+	    /** Unchecks a specific row in the TreeGrid by setting its associated checkbox to an unchecked (false) state. This visually updates the checkbox in the UI and updates the row’s checked status in the underlying data model.
 	    */
 	    uncheckAllRows() {
 	        if (this.nativeElement.isRendered) {
@@ -2244,8 +2244,8 @@ require('../source/modules/smart.grid');
 	            });
 	        }
 	    }
-	    /** Unchecks all TreeGrid or Grouping rows. Sets all check-boxes to false.
-	    * @param {string | number} rowId. row bound id
+	    /** Resets the checked state of all rows in a TreeGrid or GroupingGrid by setting every checkbox to unchecked (`false`). This action ensures that no rows remain selected or checked, effectively deselecting all items in the grid.
+	    * @param {string | number} rowId. The ID of the row to toggle expand/collapse state.
 	    */
 	    toggleRow(rowId) {
 	        if (this.nativeElement.isRendered) {
@@ -2254,6 +2254,35 @@ require('../source/modules/smart.grid');
 	        else {
 	            this.nativeElement.whenRendered(() => {
 	                this.nativeElement.toggleRow(rowId);
+	            });
+	        }
+	    }
+	    /** Toggles the expanded or collapsed state of a TreeGrid row specified by the provided row ID. If the target row is currently collapsed, this action will expand it to reveal its child rows. Conversely, if the row is expanded, it will collapse and hide any child rows. Use this function to dynamically show or hide hierarchical data within the TreeGrid based on user interaction or programmatic control.
+	    * @param {string} dataField. The dataField of the Column.
+	    * @param {number} columnWidth?. The width of the Column.
+	    * @param {any} initColumn?. callback for set up of the column.
+	    */
+	    transpose(dataField, columnWidth, initColumn) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.transpose(dataField, columnWidth, initColumn);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.transpose(dataField, columnWidth, initColumn);
+	            });
+	        }
+	    }
+	    /** Transposes the Grid.
+	    * @param {string} locale. The locale abbreviation. For example: 'de'.
+	    * @param {any} messages?. Object containing the locale messages.
+	    */
+	    setLocale(locale, messages) {
+	        if (this.nativeElement.isRendered) {
+	            this.nativeElement.setLocale(locale, messages);
+	        }
+	        else {
+	            this.nativeElement.whenRendered(() => {
+	                this.nativeElement.setLocale(locale, messages);
 	            });
 	        }
 	    }
