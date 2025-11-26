@@ -1,0 +1,814 @@
+import 'smart-webcomponents-react/source/styles/smart.default.css';
+import './App.css';
+import React, { useEffect, useRef } from "react";
+import { Grid } from "smart-webcomponents-react/grid";
+import "./App.css";
+
+const dataSource = [
+  {
+    City: "New York",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 22, PM10: 40, NO2: 18, O3: 30 },
+    Weather: "Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 72,
+    "Main Pollutant": "PM2.5",
+    Temperature: 22,
+  },
+  {
+    City: "Los Angeles",
+    "Air Quality": "Unhealthy",
+    "Air Quality Metrics": { "PM2.5": 70, PM10: 90, NO2: 42, O3: 65 },
+    Weather: "Sunny",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 132,
+    "Main Pollutant": "PM10",
+    Temperature: 29,
+  },
+  {
+    City: "Chicago",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 14, PM10: 22, NO2: 10, O3: 20 },
+    Weather: "Windy",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 45,
+    "Main Pollutant": "PM2.5",
+    Temperature: 16,
+  },
+  {
+    City: "Houston",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 28, PM10: 45, NO2: 22, O3: 33 },
+    Weather: "Humid",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 78,
+    "Main Pollutant": "PM2.5",
+    Temperature: 27,
+  },
+  {
+    City: "Phoenix",
+    "Air Quality": "Unhealthy for Sensitive Groups",
+    "Air Quality Metrics": { "PM2.5": 48, PM10: 65, NO2: 25, O3: 55 },
+    Weather: "Hot",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 102,
+    "Main Pollutant": "PM2.5",
+    Temperature: 34,
+  },
+  {
+    City: "Philadelphia",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 20, PM10: 38, NO2: 19, O3: 27 },
+    Weather: "Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 68,
+    "Main Pollutant": "PM2.5",
+    Temperature: 20,
+  },
+  {
+    City: "San Antonio",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 11, PM10: 18, NO2: 9, O3: 15 },
+    Weather: "Clear",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 40,
+    "Main Pollutant": "PM10",
+    Temperature: 26,
+  },
+  {
+    City: "San Diego",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 9, PM10: 15, NO2: 8, O3: 13 },
+    Weather: "Sunny",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 35,
+    "Main Pollutant": "PM2.5",
+    Temperature: 24,
+  },
+  {
+    City: "Dallas",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 26, PM10: 44, NO2: 21, O3: 32 },
+    Weather: "Clear",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 74,
+    "Main Pollutant": "PM2.5",
+    Temperature: 28,
+  },
+  {
+    City: "San Jose",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 12, PM10: 20, NO2: 11, O3: 19 },
+    Weather: "Partly Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 42,
+    "Main Pollutant": "PM2.5",
+    Temperature: 21,
+  },
+  {
+    City: "Austin",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 23, PM10: 41, NO2: 16, O3: 28 },
+    Weather: "Sunny",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 70,
+    "Main Pollutant": "PM2.5",
+    Temperature: 30,
+  },
+  {
+    City: "Jacksonville",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 10, PM10: 18, NO2: 9, O3: 16 },
+    Weather: "Rainy",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 39,
+    "Main Pollutant": "PM10",
+    Temperature: 23,
+  },
+  {
+    City: "Fort Worth",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 27, PM10: 42, NO2: 20, O3: 30 },
+    Weather: "Clear",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 75,
+    "Main Pollutant": "PM2.5",
+    Temperature: 26,
+  },
+  {
+    City: "Columbus",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 13, PM10: 21, NO2: 12, O3: 17 },
+    Weather: "Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 43,
+    "Main Pollutant": "PM10",
+    Temperature: 15,
+  },
+  {
+    City: "Charlotte",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 24, PM10: 39, NO2: 17, O3: 29 },
+    Weather: "Humid",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 72,
+    "Main Pollutant": "PM2.5",
+    Temperature: 25,
+  },
+  {
+    City: "San Francisco",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 9, PM10: 14, NO2: 10, O3: 18 },
+    Weather: "Foggy",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 34,
+    "Main Pollutant": "PM2.5",
+    Temperature: 17,
+  },
+  {
+    City: "Indianapolis",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 29, PM10: 48, NO2: 23, O3: 31 },
+    Weather: "Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 80,
+    "Main Pollutant": "PM2.5",
+    Temperature: 18,
+  },
+  {
+    City: "Seattle",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 8, PM10: 13, NO2: 6, O3: 14 },
+    Weather: "Rainy",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 30,
+    "Main Pollutant": "PM10",
+    Temperature: 12,
+  },
+  {
+    City: "Denver",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 25, PM10: 40, NO2: 18, O3: 27 },
+    Weather: "Clear",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 72,
+    "Main Pollutant": "PM2.5",
+    Temperature: 19,
+  },
+  {
+    City: "Washington",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 21, PM10: 36, NO2: 20, O3: 26 },
+    Weather: "Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 68,
+    "Main Pollutant": "PM2.5",
+    Temperature: 18,
+  },
+  {
+    City: "Boston",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 11, PM10: 19, NO2: 10, O3: 14 },
+    Weather: "Cold",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 40,
+    "Main Pollutant": "PM10",
+    Temperature: 8,
+  },
+  {
+    City: "El Paso",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 30, PM10: 55, NO2: 19, O3: 36 },
+    Weather: "Dry",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 85,
+    "Main Pollutant": "PM10",
+    Temperature: 31,
+  },
+  {
+    City: "Nashville",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 12, PM10: 20, NO2: 11, O3: 17 },
+    Weather: "Humid",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 41,
+    "Main Pollutant": "PM10",
+    Temperature: 24,
+  },
+  {
+    City: "Detroit",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 26, PM10: 43, NO2: 22, O3: 28 },
+    Weather: "Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 75,
+    "Main Pollutant": "PM2.5",
+    Temperature: 14,
+  },
+  {
+    City: "Oklahoma City",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 31, PM10: 46, NO2: 24, O3: 34 },
+    Weather: "Clear",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 87,
+    "Main Pollutant": "PM2.5",
+    Temperature: 28,
+  },
+  {
+    City: "Portland",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 10, PM10: 17, NO2: 7, O3: 13 },
+    Weather: "Rainy",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 37,
+    "Main Pollutant": "PM10",
+    Temperature: 13,
+  },
+  {
+    City: "Las Vegas",
+    "Air Quality": "Unhealthy for Sensitive Groups",
+    "Air Quality Metrics": { "PM2.5": 52, PM10: 70, NO2: 29, O3: 50 },
+    Weather: "Hot",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 110,
+    "Main Pollutant": "PM2.5",
+    Temperature: 37,
+  },
+  {
+    City: "Memphis",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 27, PM10: 42, NO2: 19, O3: 33 },
+    Weather: "Humid",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 74,
+    "Main Pollutant": "PM2.5",
+    Temperature: 27,
+  },
+  {
+    City: "Louisville",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 24, PM10: 37, NO2: 21, O3: 25 },
+    Weather: "Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 71,
+    "Main Pollutant": "PM2.5",
+    Temperature: 22,
+  },
+  {
+    City: "Baltimore",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 29, PM10: 41, NO2: 22, O3: 30 },
+    Weather: "Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 79,
+    "Main Pollutant": "PM2.5",
+    Temperature: 20,
+  },
+  {
+    City: "Milwaukee",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 9, PM10: 16, NO2: 6, O3: 12 },
+    Weather: "Snow",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 33,
+    "Main Pollutant": "PM10",
+    Temperature: -2,
+  },
+  {
+    City: "Albuquerque",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 34, PM10: 52, NO2: 18, O3: 28 },
+    Weather: "Dry",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 95,
+    "Main Pollutant": "PM2.5",
+    Temperature: 26,
+  },
+  {
+    City: "Tucson",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 33, PM10: 50, NO2: 17, O3: 29 },
+    Weather: "Hot",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 92,
+    "Main Pollutant": "PM2.5",
+    Temperature: 35,
+  },
+  {
+    City: "Fresno",
+    "Air Quality": "Unhealthy",
+    "Air Quality Metrics": { "PM2.5": 80, PM10: 105, NO2: 45, O3: 75 },
+    Weather: "Dry",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 165,
+    "Main Pollutant": "PM2.5",
+    Temperature: 32,
+  },
+  {
+    City: "Sacramento",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 28, PM10: 44, NO2: 20, O3: 30 },
+    Weather: "Clear",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 77,
+    "Main Pollutant": "PM2.5",
+    Temperature: 24,
+  },
+  {
+    City: "Kansas City",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 13, PM10: 22, NO2: 10, O3: 16 },
+    Weather: "Windy",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 42,
+    "Main Pollutant": "PM10",
+    Temperature: 14,
+  },
+  {
+    City: "Atlanta",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 25, PM10: 41, NO2: 19, O3: 27 },
+    Weather: "Humid",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 72,
+    "Main Pollutant": "PM2.5",
+    Temperature: 27,
+  },
+  {
+    City: "Miami",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 8, PM10: 12, NO2: 7, O3: 11 },
+    Weather: "Sunny",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 28,
+    "Main Pollutant": "PM10",
+    Temperature: 30,
+  },
+  {
+    City: "Raleigh",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 11, PM10: 18, NO2: 9, O3: 14 },
+    Weather: "Clear",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 38,
+    "Main Pollutant": "PM10",
+    Temperature: 19,
+  },
+  {
+    City: "Cincinnati",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 26, PM10: 39, NO2: 22, O3: 31 },
+    Weather: "Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 74,
+    "Main Pollutant": "PM2.5",
+    Temperature: 17,
+  },
+  {
+    City: "Orlando",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 10, PM10: 17, NO2: 8, O3: 13 },
+    Weather: "Sunny",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 36,
+    "Main Pollutant": "PM10",
+    Temperature: 29,
+  },
+  {
+    City: "Pittsburgh",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 28, PM10: 43, NO2: 24, O3: 29 },
+    Weather: "Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 76,
+    "Main Pollutant": "PM2.5",
+    Temperature: 13,
+  },
+  {
+    City: "Richmond",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 9, PM10: 14, NO2: 8, O3: 13 },
+    Weather: "Partly Cloudy",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 31,
+    "Main Pollutant": "PM10",
+    Temperature: 18,
+  },
+  {
+    City: "Cleveland",
+    "Air Quality": "Moderate",
+    "Air Quality Metrics": { "PM2.5": 30, PM10: 45, NO2: 23, O3: 30 },
+    Weather: "Snow",
+    "Date Measured": "2025-11-14",
+    Certified: false,
+    AQI: 85,
+    "Main Pollutant": "PM2.5",
+    Temperature: -1,
+  },
+  {
+    City: "Minneapolis",
+    "Air Quality": "Good",
+    "Air Quality Metrics": { "PM2.5": 12, PM10: 19, NO2: 10, O3: 15 },
+    Weather: "Cold",
+    "Date Measured": "2025-11-14",
+    Certified: true,
+    AQI: 39,
+    "Main Pollutant": "PM10",
+    Temperature: -3,
+  },
+];
+
+const dataSourceSettings = {
+  mapChar: ">",
+  dataFields: [
+    { name: "City", dataType: "string" },
+    { name: "Air Quality", dataType: "string" },
+    { name: "Air Quality Metrics.PM2.5", map: "Air Quality Metrics>PM2.5", dataType: "number" },
+    { name: "Air Quality Metrics.PM10", map: "Air Quality Metrics>PM10", dataType: "number" },
+    { name: "Air Quality Metrics.NO2", map: "Air Quality Metrics>NO2", dataType: "number" },
+    { name: "Air Quality Metrics.O3", map: "Air Quality Metrics>O3", dataType: "number" },
+    { name: "Weather", dataType: "string" },
+    { name: "Date Measured", dataType: "date" },
+    { name: "Certified", dataType: "boolean" },
+    { name: "AQI", dataType: "number" },
+    { name: "Main Pollutant", dataType: "string" },
+    { name: "Temperature", dataType: "number" },
+  ],
+};
+
+const cityMap = {
+  "New York": "🗽",
+  "Los Angeles": "🌴",
+  Chicago: "🌆",
+  Houston: "🚀",
+  Phoenix: "🌵",
+  Philadelphia: "🏛️",
+  "San Antonio": "🤠",
+  "San Diego": "🏖️",
+  Dallas: "🤠",
+  "San Jose": "💻",
+  Austin: "🎸",
+  Jacksonville: "🏖️",
+  "Fort Worth": "🤠",
+  Columbus: "🏛️",
+  Charlotte: "🏀",
+  "San Francisco": "🌉",
+  Indianapolis: "🏎️",
+  Seattle: "☔",
+  Denver: "🏔️",
+  Washington: "🏛️",
+  Boston: "⚓",
+  "El Paso": "🌵",
+  Nashville: "🎸",
+};
+
+const pollutantMap = {
+  "PM2.5": "🌫️",
+  PM10: "🌫️",
+  NO2: "🏭",
+  O3: "☁️",
+};
+
+const pollutantColors = {
+  "PM2.5": "#FF5733",
+  PM10: "#33C1FF",
+  NO2: "#33FF57",
+  O3: "#FF33A8",
+};
+
+const airQualityColors = {
+  Good: "#2ECC40",
+  Moderate: "#FFDC00",
+  "Unhealthy for Sensitive Groups": "#FF851B",
+  Unhealthy: "#FF4136",
+  "Very Unhealthy": "#B10DC9",
+};
+
+const airQualityIcons = {
+  Good: "😊",
+  Moderate: "😐",
+  "Unhealthy for Sensitive Groups": "😷",
+  Unhealthy: "🤒",
+  "Very Unhealthy": "🤢",
+};
+
+const weatherIcons = {
+  Sunny: "☀️",
+  Cloudy: "☁️",
+  Rainy: "🌧️",
+  Windy: "🌬️",
+  Humid: "💧",
+  Hot: "🔥",
+  Cold: "❄️",
+  Foggy: "🌫️",
+  Clear: "🌟",
+  "Partly Cloudy": "⛅",
+  Snow: "🌨️",
+  Dry: "🏜️",
+};
+
+const getAQIColor = (value) => {
+  if (value > 200) return "#B10DC9";
+  if (value > 150) return "#FF4136";
+  if (value > 100) return "#FF851B";
+  if (value > 50) return "#FFDC00";
+  return "#2ECC40";
+};
+
+const getSparklineColor = (value) => {
+  if (value <= 12) return "#2ECC40"; // Good - Green
+  if (value <= 35.4) return "#FFDC00"; // Moderate - Yellow
+  if (value <= 55.4) return "#FF851B"; // Unhealthy for Sensitive Groups - Orange
+  if (value <= 150.4) return "#FF4136"; // Unhealthy - Red
+  if (value <= 250.4) return "#B10DC9"; // Very Unhealthy - Purple
+  return "#85144b"; // Hazardous - Maroon
+};
+
+const Demo = () => {
+  const gridRef = useRef(null);
+
+  // Cells renderers for columns that require custom rendering
+  const cellsRenderers = {
+    City: (row, column, value) => {
+      return `${cityMap[value] || ""} ${value}`;
+    },
+    AQI: (row, column, value) => {
+      const color = getAQIColor(value);
+      return (
+        <span
+          style={{
+            backgroundColor: color,
+            color: "white",
+            padding: "5px",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "15px",
+            minWidth: "40px",
+            fontWeight: "600",
+          }}
+        >
+          {value}
+        </span>
+      );
+    },
+    "Main Pollutant": (row, column, value) => {
+      return (
+        <>
+          {" "}
+          {pollutantMap[value] || ""}{" "}
+          <span style={{ color: pollutantColors[value] || "black" }}>{value}</span>
+        </>
+      );
+    },
+    "Air Quality": (row, column, value) => {
+      const color = airQualityColors[value] || "#2ECC40";
+      const icon = airQualityIcons[value] || "";
+      return (
+        <span style={{ color }}>
+          {icon} {value}
+        </span>
+      );
+    },
+    Weather: (row, column, value) => {
+      const icon = weatherIcons[value] || "🌈";
+      return (
+        <>
+          <span style={{ fontSize: 24, marginRight: 6 }}>{icon}</span> {value}
+        </>
+      );
+    },
+    Temperature: (row, column, value) => {
+      const temperatureIcons = value >= 30 ? "🔥" : value <= 10 ? "❄️" : "🌤️";
+      return (
+        <>
+          <span style={{ fontSize: 24, marginRight: 6 }}>{temperatureIcons}</span> {value}°C
+        </>
+      );
+    },
+  };
+
+  // Template settings for sparklines columns
+  const sparklineTemplateSettings = {
+    type: "bar",
+    padding: 10,
+    roundedCorners: true,
+    min: 0,
+    max: 100,
+    tooltipFormatFunction: (value) => `${value} µg/m³`,
+    colorFunction: getSparklineColor,
+  };
+
+  // We need to customize tooltipFormatFunction per column for sparklines
+  // We'll override the tooltipFormatFunction in columns below
+
+  // Columns definition
+  const columns = [
+    {
+      label: "City",
+      dataField: "City",
+      columnGroup: "City Info",
+      cellsRenderer: (row, column, value) => cellsRenderers.City(row, column, value),
+    },
+    {
+      label: "AQI",
+      dataField: "AQI",
+      width: 120,
+      columnGroup: "City Info",
+      cellsRenderer: (row, column, value) => cellsRenderers.AQI(row, column, value),
+    },
+    {
+      label: "Main Pollutant",
+      dataField: "Main Pollutant",
+      width: 150,
+      columnGroup: "City Info",
+      cellsRenderer: (row, column, value) => cellsRenderers["Main Pollutant"](row, column, value),
+    },
+    {
+      label: "Air Quality",
+      dataField: "Air Quality",
+      collapsed: true,
+      detailColumns: [
+        "Air Quality Metrics.PM2.5",
+        "Air Quality Metrics.PM10",
+        "Air Quality Metrics.NO2",
+        "Air Quality Metrics.O3",
+      ],
+      cellsRenderer: (row, column, value) => cellsRenderers["Air Quality"](row, column, value),
+    },
+    {
+      label: "PM2.5 (µg/m³)",
+      dataField: "Air Quality Metrics.PM2.5",
+      columnGroup: "Air Quality Metrics",
+      width: 150,
+      template: "sparklines",
+      templateSettings: {
+        ...sparklineTemplateSettings,
+        tooltipFormatFunction: (value) => `PM2.5: ${value} µg/m³`,
+      },
+    },
+    {
+      label: "PM10 (µg/m³)",
+      dataField: "Air Quality Metrics.PM10",
+      width: 150,
+      columnGroup: "Air Quality Metrics",
+      template: "sparklines",
+      templateSettings: {
+        ...sparklineTemplateSettings,
+        tooltipFormatFunction: (value) => `PM10: ${value} µg/m³`,
+      },
+    },
+    {
+      label: "NO2 (µg/m³)",
+      dataField: "Air Quality Metrics.NO2",
+      columnGroup: "Air Quality Metrics",
+      width: 150,
+      template: "sparklines",
+      templateSettings: {
+        ...sparklineTemplateSettings,
+        tooltipFormatFunction: (value) => `NO2: ${value} µg/m³`,
+      },
+    },
+    {
+      label: "O3 (µg/m³)",
+      dataField: "Air Quality Metrics.O3",
+      columnGroup: "Air Quality Metrics",
+      width: 150,
+      template: "sparklines",
+      templateSettings: {
+        ...sparklineTemplateSettings,
+        tooltipFormatFunction: (value) => `O3: ${value} µg/m³`,
+      },
+    },
+    {
+      label: "Weather",
+      dataField: "Weather",
+      columnGroup: "Measurement Details",
+      width: 150,
+      cellsRenderer: (row, column, value) => cellsRenderers.Weather(row, column, value),
+    },
+    {
+      label: "Temperature (°C)",
+      dataField: "Temperature",
+      width: 150,
+      columnGroup: "Measurement Details",
+      cellsRenderer: (row, column, value) => cellsRenderers.Temperature(row, column, value),
+    },
+    {
+      label: "Date Measured",
+      dataField: "Date Measured",
+      columnGroup: "Measurement Details",
+      dataType: "date",
+    },
+    {
+      label: "Certified",
+      dataField: "Certified",
+      template: "checkBox",
+      width: 150,
+      columnGroup: "Measurement Details",
+    },
+  ];
+
+  // dataSourceSettings is passed as is
+
+  return (
+    <div>
+      <Grid
+        ref={gridRef}
+        dataSource={dataSource}
+        dataSourceSettings={dataSourceSettings}
+        sorting={{ enabled: true }}
+        selection={{ enabled: true, mode: "one" }}
+        layout={{ rowHeight: 60 }}
+        columns={columns}
+      />
+    </div>
+  );
+};
+
+export default Demo;
+
