@@ -8,6 +8,10 @@ const Demo = () => {
 	const gridRef = useRef(null);
 
 	const columns = [
+		{
+            label: "Task ID", width: 300, dataField: "Task ID", "dataType": "string",
+            visible: false
+        },
         {
             label: "Task Name", width: 300, dataField: "Task Name", "dataType": "string",
             tooltip: 'This is a tooltip for the Task Name header',
@@ -209,27 +213,19 @@ const Demo = () => {
 	return (
 		<div className="viewport">
 			<div className="demo-description">
-				<h1>AI Assistant</h1>
-				<p>
-					This demo illustrates how to use the AI Assistant feature of the Grid. The AI Assistant feature
-					generates values based on prompt and data provided to the grid. It uses
-					artificial intelligence algorithms to analyze the data and provide relevant suggestions or
-					completions. The AI assistant can be used to Sort, Filter, Group, Highlight, Summarize and Edit data.
-				</p>
 			</div>
 			<Grid
 				ref={gridRef}
 				id="grid"
+				dataSourceSettings={dataSourceSettings}
 				columns={columns}
 				dataSource={dataSource}
-				dataSourceSettings={dataSourceSettings}
 				sorting={sorting}
 				layout={layout}
 				filtering={filtering}
 				editing={editing}
 				selection={selection}
 				summaryRow={summaryRow}
-				grouping={grouping}
 				behavior={behavior}
 				appearance={appearance}
 			/>
