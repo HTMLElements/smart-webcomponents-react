@@ -1,0 +1,48 @@
+jqx-grid {
+  width: 100%;
+  height: calc(100vh - 200px);
+}
+
+jqx-query-builder {
+  width: 100%;
+  border:none;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+	height: 100%;
+}
+.jqx-filter-add-btn, .jqx-filter-nested-operator {
+  display:none !important;
+}
+.jqx-data-view-header-button,
+.jqx-data-view-header-button:focus,
+.jqx-data-view-header-button:hover {
+  background: transparent;
+}
+#applyFiltersButton {
+  border-radius: 15px;
+  --jqx-background-color: #007bff;
+  --jqx-ui-state-hover: #0056b3;
+  --jqx-ui-state-color-hover: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+#applyFiltersButton:hover {
+  background-color: #0056b3;
+}
+#clearFiltersButton {
+  border-radius: 15px;
+  background-color: #dc3545;
+  border-color: #dc3545;
+   --jqx-background-color: #dc3545;
+  --jqx-ui-state-hover: #a71d2a;
+  --jqx-ui-state-color-hover: #fff;
+  color: white;
+}
+#clearFiltersButton:hover {
+  background-color: #a71d2a;
+}

@@ -1,0 +1,46 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#grid,
+jqx-grid {
+  width: 100%;
+  height: 100%;
+}
+
+.add-client-button .jqx-button {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  --jqx-background: rgba(var(--jqx-primary-rgb), .05);
+  --jqx-background-color: var(--jqx-primary);
+}
+
+.insert-client-button .jqx-button {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  --jqx-background: rgba(var(--jqx-primary-rgb), .05);
+  --jqx-background-color: var(--jqx-primary);
+  border-left: none;
+}
+
+.delete-client-button .jqx-button {
+  border-radius: 15px;
+  --jqx-background: rgba(var(--jqx-error-rgb), .05);
+  --jqx-background-color: var(--jqx-error);
+}
+
+.jqx-grid-dialog .jqx-footer .jqx-button {
+  border-radius: 15px;
+}
+
+.jqx-data-view-header-button:hover {
+  background: transparent;
+}
