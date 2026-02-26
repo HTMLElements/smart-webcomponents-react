@@ -38,7 +38,7 @@ const columns = [
     label: "Contact Person",
     dataField: "contactPerson",
     template: "collaborator",
-    icon: "jqx-icon-user",
+    icon: "smart-icon-user",
     // Smart.Grid will use the users prop for collaborators
   },
   {
@@ -100,50 +100,44 @@ const Demo = () => {
   };
 
   // Custom header buttons as JSX
-  const headerButtons = [
-    {
-      template: (
-        <span className="add-client-button" title="Adds a new client at bottom">
-          <Button
-            style={{ marginLeft: "10px", marginTop: "6px" }}
-            onClick={handleAdd}
-            className="jqx-button"
-          >
-            <span style={{ fontFamily: "FontAwesome" }} className="fa-solid fa-plus-circle"></span>
-            <span style={{ marginLeft: 10 }}>Add</span>
-          </Button>
-        </span>
-      )
-    },
-    {
-      template: (
-        <span className="insert-client-button" title="Adds a new client at top">
-          <Button
-            style={{ marginLeft: "-10px", marginTop: "6px" }}
-            onClick={handleInsert}
-            className="jqx-button"
-          >
-            <span style={{ fontFamily: "FontAwesome" }} className="fa-solid fa-plus-square"></span>
-            <span style={{ marginLeft: 10 }}>Insert</span>
-          </Button>
-        </span>
-      )
-    },
-    {
-      template: (
-        <span className="delete-client-button" title="Deletes the selected client">
-          <Button
-            style={{ marginLeft: "20px", marginTop: "6px" }}
-            onClick={handleDelete}
-            className="jqx-button"
-          >
-            <span style={{ fontFamily: "FontAwesome" }} className="fa-solid fa-trash"></span>
-            <span style={{ marginLeft: 10 }}>Delete</span>
-          </Button>
-        </span>
-      )
-    }
-  ];
+  const headerButtons =  [
+		{
+			innerHTML: '<smart-button><span style="font-family: FontAwesome;" class="fa-plus-circle"></span><span style="margin-left: 10px;">Add</span></smart-button>',
+			command: function () {
+				gridRef.current.addRow({});
+			},
+			style: {
+				marginLeft: '10px',
+				marginTop: '6px'
+			},
+			className: 'add-client-button',
+			title: 'Adds a new client at bottom',
+		},
+		{
+			innerHTML: '<smart-button><span style="font-family: FontAwesome;" class="fa-plus-square"></span><span style="margin-left: 10px;">Insert</span></smart-button>',
+			command: function () {
+				gridRef.current.addRow({}, false);
+			},
+			style: {
+				marginLeft: '-10px',
+				marginTop: '6px'
+			},
+			className: 'insert-client-button',
+			title: 'Adds a new client at top',
+		},
+		{
+			innerHTML: '<smart-button><span style="font-family: FontAwesome;" class="fa-trash"></span><span style="margin-left: 10px;">Delete</span></smart-button>',
+			command: function () {
+				gridRef.current.deleteSelectedRows();
+			},
+			style: {
+				marginLeft: '20px',
+				marginTop: '6px'
+			},
+			className: 'delete-client-button',
+			title: 'Deletes the selected client',
+		}
+	]
 
   return (
     <div className="viewport">
