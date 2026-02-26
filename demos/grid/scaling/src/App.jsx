@@ -8,7 +8,6 @@ import { Grid } from "smart-webcomponents-react/grid";
 import { Slider } from "smart-webcomponents-react/slider";
 
 // FontAwesome for icons
-import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const data = [
     {
