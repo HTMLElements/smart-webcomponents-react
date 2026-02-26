@@ -2,7 +2,9 @@ import 'smart-webcomponents-react/source/styles/smart.default.css';
 import './App.css';
 
 import React, { useRef } from "react";
-import { Grid, Smart, Menu } from "smart-webcomponents-react/grid";
+import { Grid, Smart } from "smart-webcomponents-react/grid";
+import { Menu } from "smart-webcomponents-react/menu";
+
 import "smart-webcomponents-react/source/styles/smart.default.css";
 import "./App.css";
 
