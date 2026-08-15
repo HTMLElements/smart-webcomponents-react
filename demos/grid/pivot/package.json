@@ -1,0 +1,21 @@
+{
+  "name": "smart-ui-react-grid-pivot",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Smart UI for React - Data Grid pivot view with a docked designer",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "smart-webcomponents-react": "^27.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.0"
+  }
+}
